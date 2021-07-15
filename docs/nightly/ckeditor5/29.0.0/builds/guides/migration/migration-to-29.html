@@ -219,24 +219,24 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.10.1/img/book.svg" alt="guide">Migration to CKEditor 5 v29.0.0
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#inline-images">Inline images</a></li><li><a href="#image-caption">Image caption</a></li><li><a href="#image-styles">Image styles</a></li><li><a href="#image-toolbar">Image toolbar</a></li><li><a href="#inserting-images">Inserting images</a></li><li><a href="#image-utils">Image utils</a></li><li><a href="#easyimage-plugin">EasyImage plugin</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#inline-images">Inline images</a></li><li><a href="#image-caption">Image caption</a></li><li><a href="#image-styles">Image styles</a></li><li><a href="#image-toolbar">Image toolbar</a></li><li><a href="#inserting-images">Inserting images</a></li><li><a href="#image-utilities">Image utilities</a></li><li><a href="#easyimage-plugin">EasyImage plugin</a></li><li><a href="#ckfinder-plugin">CKFinder plugin</a></li></ol></nav>
 <p>This migration guide enumerates the most important changes that require your attention when upgrading to CKEditor 5 v29.0.0 due to changes introduced in the <a href="../../../api/module_image_image-Image.html"><code>Image</code></a> plugin and some other image-related features.</p>
-<!-- For the entire list of the changes introduced in version 29.0.0 of the CKEditor 5 see the changelog (TODO:link). -->
+<p>For the entire list of changes introduced in version 29.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/blob/master/CHANGELOG.md#2900-2021-07-05" target="_blank" rel="noopener">changelog for CKEditor 5 v29.0.0</a>.</p>
 <p>To get to know the new editor UI for the image features, visit the <a href="../../../features/images/images-overview.html">image feature guide</a>, especially:</p>
 <ul>
-<li><a href="../../../features/images/images-styles.html#semantical-styles">Images in the structured content </a></li>
+<li><a href="../../../features/images/images-styles.html#semantical-styles">Images in the structured content</a></li>
 <li><a href="../../../features/images/images-styles.html#presentational-styles">Images in the document-like content</a></li>
 </ul>
 <h2 id="inline-images"><a class="headerlink" href="#inline-images">#</a> Inline images</h2>
-<p>Starting from v29.0.0, the existing <a href="../../../api/module_image_image-Image.html"><code>Image</code></a> plugin loads two independent plugins - <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> and <a href="../../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a>, therefore both of them are included in all of the <a href="../overview.html#available-builds">predefined editor builds</a> by default.</p>
+<p>Starting from v29.0.0, the existing <a href="../../../api/module_image_image-Image.html"><code>Image</code></a> plugin loads two independent plugins: <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> and <a href="../../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a>, therefore both of them are included in all of the <a href="../overview.html#available-builds">predefined editor builds</a> by default.</p>
 <ul>
-<li>The <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> is a newly introduced plugin supporting an inline <code>&lt;img&gt;</code> tag nested in text (e.g. inside a paragraph).</li>
+<li>The <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> is a newly introduced plugin supporting the inline <code>&lt;img&gt;</code> tag nested in text (e.g. inside a paragraph).</li>
 <li>The <a href="../../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> maintains the functionality of the previous <a href="../../../api/module_image_image-Image.html"><code>Image</code></a> plugin before v29.0.0. In the model, it ues the <code>imageBlock</code> element (known as <code>image</code> before v29.0.0).</li>
 </ul>
 <div class="info-box notice"><p><strong>Note:</strong> It is possible to load only one of these plugins, but only when <a href="../integration/advanced-setup.html#scenario-2-building-from-source">building the editor from source</a>.</p></div>
 <h2 id="image-caption"><a class="headerlink" href="#image-caption">#</a> Image caption</h2>
-<p>An image caption is no longer automatically showed up when selecting the image widget. Its visibility can now be toggled with a <a href="../../../api/module_image_imagecaption_toggleimagecaptioncommand-ToggleImageCaptionCommand.html"><code>ToggleImageCaptionCommand</code></a> executed by the <code>&apos;toggleImageCaption&apos;</code> toolbar button, both registered by the <a href="../../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin. The button is added to the default image toolbar in all of the <a href="../overview.html#available-builds">predefined editor builds</a>.</p>
-<div class="info-box notice"><p>To provide a valid data output, captions can be added to block images only. Adding a caption to an inline image will automatically convert it to the block image (which can be undone by the user).</p></div>
+<p>An image caption is no longer automatically shown when selecting the image widget. Its visibility can now be toggled with a <a href="../../../api/module_image_imagecaption_toggleimagecaptioncommand-ToggleImageCaptionCommand.html"><code>ToggleImageCaptionCommand</code></a> executed by the <code>&apos;toggleImageCaption&apos;</code> toolbar button, both registered by the <a href="../../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin. The button is added to the default image toolbar in all of the <a href="../overview.html#available-builds">predefined editor builds</a>.</p>
+<div class="info-box notice"><p>To provide a valid data output, captions can be added to block images only. Adding a caption to an inline image will automatically convert it to a block image (which can be undone by the user).</p></div>
 <h2 id="image-styles"><a class="headerlink" href="#image-styles">#</a> Image styles</h2>
 <p>Since the appearance of the image in the document depends on the image type (block/inline), the <a href="../../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin is now in charge of switching between these types. Thus, the following changes have been introduced:</p>
 <ul>
@@ -246,12 +246,12 @@
 <li>
 <p>There is a possibility to group the buttons provided by the <a href="../../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin into dropdowns.</p>
 <ul>
-<li>A few <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_DROPDOWN_DEFINITIONS">default drop-downs</a> are provided.</li>
-<li>In the editor configuration, <a href="../../../api/module_image_imagestyle_imagestyleui-ImageStyleDropdownDefinition.html">a custom drop-down</a> can be declared.</li>
+<li>A few <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_DROPDOWN_DEFINITIONS">default dropdowns</a> are provided.</li>
+<li>In the editor configuration, <a href="../../../api/module_image_imagestyle_imagestyleui-ImageStyleDropdownDefinition.html">a custom dropdown</a> can be declared.</li>
 </ul>
 </li>
 <li>
-<p>The name of the default block image style has changed from <code>full</code> to <code>block</code> (as the default style for the inline images is called <code>inline</code>), the default <a href="../integration/content-styles.html">content styles</a> for these images remain the same. The button label has also changed and now reads <code>Centered image</code> so that it reflects the actual appearance of the image. If you customized the default appearance of the block images, you can change the button label by <a href="../../../api/module_image_image-ImageConfig.html#member-styles">modifying an existing image style</a>.</p>
+<p>The name of the default block image style has changed from <code>full</code> to <code>block</code> (as the default style for the inline images is called <code>inline</code>), the default <a href="../integration/content-styles.html">content styles</a> for these images remain the same. The button label has also changed and now reads <code>Centered image</code> so that it reflects the actual appearance of the image. If you customized the default appearance of the block images, you can change the button label by <a href="../../../api/module_image_image-ImageConfig.html#member-styles">modifying the existing image style</a>.</p>
 </li>
 <li>
 <p>The format of the <code>config.image.styles</code> has changed. The list of the styles must be wrapped with the <code>options</code> array. Read more about the <a href="../../../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code> configuration</a>.</p>
@@ -308,13 +308,13 @@ Editor.create( document.querySelector( &apos;#editor&apos; ), {
 </code></pre>
 </li>
 <li>
-<p>Several changes has been also made to the <a href="../../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin API:</p>
+<p>Several changes have been also made to the <a href="../../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin API:</p>
 <ul>
-<li>In the <a href="../../../api/module_image_imagestyle_utils.html">image style utils</a> module:
+<li>In the <a href="../../../api/module_image_imagestyle_utils.html">image style utilities</a> module:
 <ul>
-<li>the <code>defaultIcons</code> were renamed to <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_ICONS"><code>DEFAULT_ICONS</code></a>,</li>
-<li>the <code>defaultStyles</code> were renamed to <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_OPTIONS"><code>DEFAULT_OPTIONS</code></a>,</li>
-<li>the <code>normalizeImageStyles()</code> function was removed from the public API.</li>
+<li>The <code>defaultIcons</code> were renamed to <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_ICONS"><code>DEFAULT_ICONS</code></a>.</li>
+<li>The <code>defaultStyles</code> were renamed to <a href="../../../api/module_image_imagestyle_utils.html#constant-DEFAULT_OPTIONS"><code>DEFAULT_OPTIONS</code></a>.</li>
+<li>The <code>normalizeImageStyles()</code> function was removed from the public API.</li>
 </ul>
 </li>
 <li>The <code>ImageStyleCommand#defaultStyle</code> and <code>ImageStyleCommand#styles</code> were removed from the public API.</li>
@@ -353,9 +353,9 @@ Editor.create( document.querySelector( &apos;#editor&apos; ), {
         toolbar: [
             &apos;toggleImageCaption&apos;,
             &apos;imageStyle:inline&apos;,
-            // A drop-down containing `alignLeft` and `alignRight` options
+            // A dropdown containing `alignLeft` and `alignRight` options.
             &apos;imageStyle:wrapText&apos;,
-            // A drop-down containing `alignBlockLeft`, `block` (default) and  `alignBlockRight` options
+            // A dropdown containing `alignBlockLeft`, `block` (default) and  `alignBlockRight` options.
             &apos;imageStyle:breakText&apos;
         ]
     }
@@ -366,10 +366,10 @@ Editor.create( document.querySelector( &apos;#editor&apos; ), {
 <p>See the <a href="../../../features/images/images-overview.html#image-contextual-toolbar">image feature guide</a> to learn more about the configuration of the image toolbar.</p>
 <h2 id="inserting-images"><a class="headerlink" href="#inserting-images">#</a> Inserting images</h2>
 <p>Since v29.0.0 inserting (also: pasting, dropping) an image in the middle of text will no longer split it if the <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> plugin is loaded (default). If you prefer the old behavior in your integration, this can be specified in the <a href="../../../api/module_image_imageinsert-ImageInsertConfig.html"><code>ImageInsert</code> plugin configuration</a>.</p>
-<h2 id="image-utils"><a class="headerlink" href="#image-utils">#</a> Image utils</h2>
+<h2 id="image-utilities"><a class="headerlink" href="#image-utilities">#</a> Image utilities</h2>
 <ul>
 <li>
-<p>The image utils are now wrapped by the <a href="../../../api/module_image_imageutils-ImageUtils.html"><code>ImageUtils</code></a> plugin.</p>
+<p>The image utilities are now wrapped by the <a href="../../../api/module_image_imageutils-ImageUtils.html"><code>ImageUtils</code></a> plugin.</p>
 <pre class="highlight"><code class="js">// Before v29.0.0
 import { isImage } from &apos;./utils&apos;;
 
@@ -390,11 +390,11 @@ if ( imageUtils.isImage( selectedElement ) ) {
 </code></pre>
 </li>
 <li>
-<p>The <a href="../../../api/module_image_imageutils-ImageUtils.html#function-insertImage"><code>insertImage()</code></a> function</p>
+<p>The <a href="../../../api/module_image_imageutils-ImageUtils.html#function-insertImage"><code>insertImage()</code></a> function:</p>
 <ul>
-<li>no longer requires the <code>model</code> model instance to run,</li>
-<li>allows <a href="../../../api/module_engine_model_selection-Selectable.html"><code>Selectable</code></a> as a second argument (previously only <a href="../../../api/module_engine_model_position-Position.html"><code>Position</code></a> was accepted),</li>
-<li>supports the optional <code>imageType</code> argument to force a type of the image to be inserted.</li>
+<li>No longer requires the <code>model</code> model instance to run.</li>
+<li>Allows <a href="../../../api/module_engine_model_selection-Selectable.html"><code>Selectable</code></a> as a second argument (previously only <a href="../../../api/module_engine_model_position-Position.html"><code>Position</code></a> was accepted).</li>
+<li>Supports the optional <code>imageType</code> argument to force the type of the image to be inserted.</li>
 </ul>
 <pre class="highlight"><code class="js">// Before v29.0.0
 import { insertImage } from &apos;./utils&apos;;
@@ -443,6 +443,25 @@ ClassicEditor
         toolbar: [ &apos;uploadImage&apos;, ... ],
 
         // ...
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Check out the comprehensive <a href="../../../features/images/images-installation.html">installation guide to images</a> in CKEditor 5 to learn more.</p>
+<h2 id="ckfinder-plugin"><a class="headerlink" href="#ckfinder-plugin">#</a> <code>CKFinder</code> plugin</h2>
+<p>Please note that the <a href="../../../api/module_ckfinder_ckfinder-CKFinder.html"><code>CKFinder</code></a> plugin is no longer automatically importing the <a href="../../../api/module_image_image-Image.html"><code>Image</code></a> plugin as a dependency. This allows using it alone with either <a href="../../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> without loading the other one.</p>
+<p>This decoupling does not have an impact on integrations based on <a href="../overview.html#available-builds">official editor builds</a> or using <a href="https://ckeditor.com/ckeditor-5/online-builder/">the CKEditor 5 online builder</a>.</p>
+<p>However, for integrations that <a href="../integration/advanced-setup.html#scenario-2-building-from-source">build the editor from source</a>, this means that in order to get CKFinder working properly, the <code>Image</code> plugin (or either the <a href="../../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> plugin) must be imported separately:</p>
+<pre class="highlight"><code class="js">import CKFinder from &apos;@ckeditor/ckeditor5-ckfinder/src/ckfider&apos;;
+import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CKFinder, Image, ... ],
+        toolbar: [ &apos;uploadImage&apos;, ... ],
+        ckfinder: {
+            // Feature configuration.
+        }
     } )
     .then( ... )
     .catch( ... );
