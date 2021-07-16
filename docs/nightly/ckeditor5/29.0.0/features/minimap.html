@@ -267,11 +267,11 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.10.1/img/book.svg" alt="guide">Content minimap
-          </h1><p>The <a href="../api/module_minimap_minimap-Minimap.html"><code>Minimap</code></a> feature renders a content minimap which, when placed next to the editor, helps users navigate their content. It allows moving around documents and provides a visual overview when the document is longer than its visible portion on the screen.</p>
+          </h1><p>The <a href="../api/module_minimap_minimap-Minimap.html"><code>Minimap</code></a> feature renders a content minimap which, when placed next to the editor, helps the users navigate their content. It enables navigating the content and provides a visual overview when the document is longer than its visible portion on the screen.</p>
 <p>You can try the minimap feature it in the demo below.</p>
 <div class="info-box notice notice__warning"><p>This is a <strong>feature preview</strong>, and as such it is not recommended for production use. For more information, comments and feature requests, please refer to the <a href="https://github.com/ckeditor/ckeditor5/issues/10089" target="_blank" rel="noopener">issue on GitHub</a>.</p></div>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<p>Scroll the content and the minimap in the sidebar will show you your current location. Drag the box pointing to the visible portion of the content for quick navigation. You can also simply click the minimap to move around instantly.</p>
+<p>Scroll the content and the minimap in the sidebar will show your current location. Drag the box marking the visible portion of the content to quickly navigate the document. You can also simply click anywhere on the minimap to move around instantly.</p>
 <div class="live-snippet"><div class="document-container">
 	<div id="toolbar-container" class="toolbar-container"></div>
 	<div class="minimap-wrapper">
@@ -780,7 +780,7 @@
 <p>To configure the editor as <a href="#demo">presented above</a>, you can use the following DOM structure:</p>
 <pre class="highlight"><code class="html">&lt;div id=&quot;document-container&quot;&gt;
     &lt;div id=&quot;toolbar-container&quot;&gt;
-        &lt;!-- This is where document editor toolbar will be inserted. --&gt;
+        &lt;!-- This is where the document editor toolbar will be inserted. --&gt;
     &lt;/div&gt;
     &lt;div class=&quot;minimap-wrapper&quot;&gt;
         &lt;div class=&quot;editor-container&quot;&gt;
@@ -794,7 +794,7 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-<p>and the following CSS:</p>
+<p>Employ the following CSS:</p>
 <pre class="highlight"><code class="css">.document-container {
     display: flex;
     flex-direction: column;
@@ -851,7 +851,7 @@
     overflow: hidden;
 }
 </code></pre>
-<p>and, finally, the JavaScript to run the editor (learn how to <a href="#installation">install</a> the feature):</p>
+<p>Finally, the JavaScript to run the editor (learn how to <a href="#installation">install</a> the feature):</p>
 <pre class="highlight"><code class="js">import DecoupledEditor from &apos;@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor&apos;;
 import Minimap from &apos;@ckeditor/ckeditor5-pagination/src/minimap&apos;;
 
@@ -870,7 +870,7 @@ DecoupledEditor
     .catch( ... );
 </code></pre>
 <h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
-<p>To add the pagination feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-minimap" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-minimap</code></a> package:</p>
+<p>To add the content minimap feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-minimap" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-minimap</code></a> package:</p>
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-minimap
 </code></pre>
 <p>Then add the <code>Minimap</code> plugin to your plugin list and <a href="#configuration">configure</a> it:</p>
@@ -906,7 +906,7 @@ DecoupledEditor
     .catch( ... );
 </code></pre>
 <h3 id="content-styles-and-classes"><a class="headerlink" href="#content-styles-and-classes">#</a> Content styles and classes</h3>
-<p>The minimap feature uses <code>&lt;iframe&gt;</code> internally. For proper look and operation, is is essential the content (clone) inside the <code>&lt;iframe&gt;</code> has exactly the same styles as the main editor document. If the content of your editor inherits styles from parent containers, you may need to pass class names of these containers in the feature configuration to maintain style parity. See the <a href="../api/module_minimap_minimap-MinimapConfig.html#member-extraClasses">detailed documentation</a> to learn more.</p>
+<p>The minimap feature uses <code>&lt;iframe&gt;</code> internally. For a proper look and operation, is is essential for the content (clone) inside the <code>&lt;iframe&gt;</code> to have exactly the same styles as the main editor document. If the content of your editor inherits styles from parent containers, you may need to pass the class names of these containers in the feature configuration to maintain style parity. See the <a href="../api/module_minimap_minimap-MinimapConfig.html#member-extraClasses">detailed classes documentation</a> to learn more.</p>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 
         </div>
