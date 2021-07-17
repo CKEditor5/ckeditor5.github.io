@@ -290,7 +290,7 @@
 
 </div>
 </div>
-<p>The source editing plugin also works well with the <a href="markdown.html">Markdown output</a> plugin. Please remember that Markdown syntax is very simple and it does not cover all the rich-text features. Some features provided by CKEditor 5 will thus work as intended only when output to HTML as they have no Markdown equivalent.</p>
+<p>The source editing plugin also works well with the <a href="markdown.html">Markdown output</a> plugin. It is enough to add the plugin to the editor to change the source editing mode. Please remember that Markdown syntax is very simple and it does not cover all the rich-text features. Some features provided by CKEditor 5 will thus work as intended only when output to HTML as they have no Markdown equivalent.</p>
 <div class="live-snippet"><div id="editor-markdown">
 
 <h2>The three greatest things you learn from traveling</h2>
@@ -321,6 +321,18 @@
 ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
         plugins: [ SourceEditing, ... ],
+        toolbar: [ &apos;sourceEditing&apos;, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>To achieve Markdown source editing mode just add the <a href="../api/module_markdown-gfm_markdown-Markdown.html"><code>Markdown</code></a> Markdown plugin to the editor.</p>
+<pre class="highlight"><code class="js">import SourceEditing from &apos;@ckeditor/ckeditor5-source-editing/src/sourceediting&apos;;
+import Markdown from &apos;@ckeditor/ckeditor5-markdown-gfm/src/markdown&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ SourceEditing, Markdown, ... ],
         toolbar: [ &apos;sourceEditing&apos;, ... ]
     } )
     .then( ... )
