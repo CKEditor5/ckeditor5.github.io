@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quick start - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Quick start - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/predefined-builds/quick-start.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Quick start - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/predefined-builds/quick-start.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/1.16.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../assets/1.16.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../index.html">CKEditor 5</a></li>
+          <li><a class="top__menu__item--active" href="../../index.html">Installation</a></li>
+          <li><a href="../../../framework/index.html">Framework</a></li>
+          <li><a href="../../../features/index.html">Features</a></li>
+          <li><a href="../../../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../../index.html">Installation</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Predefined builds</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="overview.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                              </div></a></li>
+                                          <li><a href="">
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integration</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../integration/installation.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/basic-api.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/configuration.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/saving-data.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and saving data</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/installing-plugins.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/advanced-setup.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/csp.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/content-styles.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                              </div></a></li>
+                                          <li><a href="../integration/features-html-output-overview.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Features' HTML output</span>
+                                              </div></a></li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Frameworks</span>
+                                            </div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="../integration/frameworks/overview.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                                      </div></a></li>
+                                                  <li><a href="../integration/frameworks/angular.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular component</span>
+                                                      </div></a></li>
+                                                  <li><a href="../integration/frameworks/react.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React component</span>
+                                                      </div></a></li>
+                                                  <li><a href="../integration/frameworks/vuejs-v2.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x component</span>
+                                                      </div></a></li>
+                                                  <li><a href="../integration/frameworks/vuejs-v3.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+ component</span>
+                                                      </div></a></li>
+                                                  <li><a href="../integration/frameworks/css.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                                      </div></a></li>
+                                            </ul>
+                                          </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Development</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../development/custom-builds.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span>
+                                              </div></a></li>
+                                          <li><a href="../development/plugins.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                              </div></a></li>
+                                          <li><a href="../development/dll-builds.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Migration / update</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../migration/migration-to-30.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v30.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-to-29.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v29.x</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-to-28.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v28.x</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-to-27.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v27.x</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-to-26.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v26.x</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-to-25.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v25.x</span>
+                                              </div></a></li>
+                                          <li><a href="../migration/migration-from-ckeditor-4.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../support/browser-compatibility.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span>
+                                              </div></a></li>
+                                          <li><a href="../support/license-and-legal.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span>
+                                              </div></a></li>
+                                          <li><a href="../support/getting-support.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span>
+                                              </div></a></li>
+                                          <li><a href="../support/reporting-issues.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li><a href="../faq.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="framework"><a href="../../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="features"><a href="../../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="api-reference"><a href="../../../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.16.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Installation</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../assets/1.16.0/img/book.svg" alt="guide">Quick start
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#classic-editor">Classic editor</a><ol><li><a href="#example">Example</a></li></ol></li><li><a href="#inline-editor">Inline editor</a><ol><li><a href="#example-2">Example</a></li></ol></li><li><a href="#balloon-editor">Balloon editor</a><ol><li><a href="#example-3">Example</a></li></ol></li><li><a href="#balloon-block-editor">Balloon block editor</a><ol><li><a href="#example-4">Example</a></li></ol></li><li><a href="#document-editor">Document editor</a><ol><li><a href="#example-5">Example</a></li></ol></li><li><a href="#next-steps">Next steps</a></li></ol></nav>
+<p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
+<ol>
+<li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
+<li>Call the static <code>create()</code> method to create the editor.</li>
+</ol>
+<div class="info-box notice"><p>There are other installation and integration methods available. For more information check <a href="../integration/installation.html">Installation</a> and <a href="../integration/basic-api.html">Basic API</a> guides.</p></div>
+<h2 id="classic-editor"><a class="headerlink" href="#classic-editor">#</a> Classic editor</h2>
+<p>In your HTML page add an element that CKEditor should replace:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a> method.</p>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    ClassicEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="example"><a class="headerlink" href="#example">#</a> Example</h3>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Classic editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        ClassicEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="inline-editor"><a class="headerlink" href="#inline-editor">#</a> Inline editor</h2>
+<p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#static-function-create"><code>InlineEditor.create()</code></a> method.</p>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    InlineEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="example-2"><a class="headerlink" href="#example-2">#</a> Example</h3>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 - Inline editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Inline editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        InlineEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="balloon-editor"><a class="headerlink" href="#balloon-editor">#</a> Balloon editor</h2>
+<p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load the balloon editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> method.</p>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    BalloonEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="example-3"><a class="headerlink" href="#example-3">#</a> Example</h3>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Balloon editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        BalloonEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="balloon-block-editor"><a class="headerlink" href="#balloon-block-editor">#</a> Balloon block editor</h2>
+<p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load the balloon block editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/balloon-block/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> method.</p>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    BalloonEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<p><strong>Note:</strong> You can configure the block toolbar items using the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-blockToolbar"><code>config.blockToolbar</code></a> option.</p>
+<h3 id="example-4"><a class="headerlink" href="#example-4">#</a> Example</h3>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon block editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/balloon-block/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Balloon editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        BalloonEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="document-editor"><a class="headerlink" href="#document-editor">#</a> Document editor</h2>
+<p>Load the document editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method. The decoupled editor requires you to inject the toolbar into the DOM and the best place to do that is somewhere in the promise chain (e.g. one of the <code>then( () =&gt; { ... } )</code> blocks).</p>
+<div class="info-box notice"><p>The following snippet will run the document editor but to make the most of it check out the <a href="../../../framework/guides/deep-dive/ui/document-editor.html">comprehensive tutorial</a> which explains step&#x2014;by&#x2014;step how to configure and style the application for the best editing experience.</p></div>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    DecoupledEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .then( editor =&gt; {
+            const toolbarContainer = document.querySelector( &apos;#toolbar-container&apos; );
+
+            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+        } )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="example-5"><a class="headerlink" href="#example-5">#</a> Example</h3>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Document editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/30.0.0/decoupled-document/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Document editor&lt;/h1&gt;
+
+    &lt;!-- The toolbar will be rendered in this container. --&gt;
+    &lt;div id=&quot;toolbar-container&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- This container will become the editable. --&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is the initial editor content.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        DecoupledEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .then( editor =&gt; {
+                const toolbarContainer = document.querySelector( &apos;#toolbar-container&apos; );
+
+                toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+            } )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="next-steps"><a class="headerlink" href="#next-steps">#</a> Next steps</h2>
+<p>Check the <a href="../integration/configuration.html">Configuration guide</a> to learn how to configure the editor &#x2014; for example, change the default toolbar.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Predefined builds</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="overview.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                                  </div></a></li>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integration</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../integration/installation.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/basic-api.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/saving-data.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and saving data</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/installing-plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/advanced-setup.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/csp.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/content-styles.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                                  </div></a></li>
+                                              <li><a href="../integration/features-html-output-overview.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Features' HTML output</span>
+                                                  </div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Frameworks</span>
+                                                </div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../integration/frameworks/overview.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                                            </div></a></li>
+                                                        <li><a href="../integration/frameworks/angular.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular component</span>
+                                                            </div></a></li>
+                                                        <li><a href="../integration/frameworks/react.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React component</span>
+                                                            </div></a></li>
+                                                        <li><a href="../integration/frameworks/vuejs-v2.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x component</span>
+                                                            </div></a></li>
+                                                        <li><a href="../integration/frameworks/vuejs-v3.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+ component</span>
+                                                            </div></a></li>
+                                                        <li><a href="../integration/frameworks/css.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                                            </div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Development</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../development/custom-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span>
+                                                  </div></a></li>
+                                              <li><a href="../development/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                                  </div></a></li>
+                                              <li><a href="../development/dll-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Migration / update</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../migration/migration-to-30.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v30.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-to-29.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v29.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-to-28.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v28.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-to-27.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v27.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-to-26.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v26.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-to-25.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration to v25.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../migration/migration-from-ckeditor-4.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span>
+                                                  </div></a></li>
+                                              <li><a href="../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span>
+                                                  </div></a></li>
+                                              <li><a href="../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span>
+                                                  </div></a></li>
+                                              <li><a href="../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="../faq.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2021 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'features', 'examples', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'builds' ] = hits.filter( function( h ) {return h.tags.includes( 'builds' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'builds' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'builds' ] );tags.forEach( function( tag ) {if ( tag !== 'builds' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../../assets/1.16.0/scripts/app.js"></script>
+    <script src="../../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>
