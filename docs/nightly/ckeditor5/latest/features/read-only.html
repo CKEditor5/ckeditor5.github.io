@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/1.16.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
-    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../snippets/features/read-only-build/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../snippets/assets.css" type="text/css" data-cke="true">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
@@ -425,14 +425,14 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.16.0/img/book.svg" alt="guide">Read-only support
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#hiding-toolbar-in-read-only-mode">Hiding toolbar in read-only mode</a></li><li><a href="#related-features">Related features</a></li></ol></nav>
 
 <p>The editor can be set into a read-only mode by changing the value of the <a href="../api/module_core_editor_editor-Editor.html#member-isReadOnly"><code>Editor#isReadOnly</code></a> property.</p>
 <p>The read-only mode may have several applications. It may be used to impose user-based access restriction, where a selected user or a group of users is only allowed to access the content for evaluation purposes but not change it.</p>
 <p>The feature may also be used to view content that should not be edited, like financial reports, software logs or reprinted stories. While not editable, this content will still be accessible for copying or for screen readers.</p>
 <div class="info-box notice"><p>See also the <a href="restricted-editing.html">restricted editing feature</a> that lets you define which parts of a document can be editable for a group of users with limited editing rights, leaving the rest of the content non-editable to them.</p></div>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<p>Use the demo below to toggle between editing modes and test the feature.</p>
+<p>Use the demo below to toggle between editing modes and test the feature. Some features, like exports or search, are still functional even in the read-only mode. While the search is available, the replace function, however, is disabled, as changing the content is blocked.</p>
 <div class="live-snippet"><p>
 	<button id="snippet-read-only-toggle">Switch to read-only mode</button>
 </p>
@@ -468,12 +468,69 @@
 </table>
 </div>
 </div>
+<div class="info-box notice"><p>You can see that after switching to read-only mode, some of the toolbar items are still active and functional. It happens thanks to the <a href="../api/module_core_command-Command.html#member-affectsData"><code>affectsData</code> property</a>. For most of the plugins, it is set to <code>true</code> by default, which makes them inactive when entering read-only mode. However, for those plugins that do not make any changes in the model &#x2013; do not affect the content &#x2013; it is set to <code>false</code>, thus allowing to still make use of them in modes with restricted user write permissions.</p></div>
+<h2 id="hiding-toolbar-in-read-only-mode"><a class="headerlink" href="#hiding-toolbar-in-read-only-mode">#</a> Hiding toolbar in read-only mode</h2>
+<p>Some use cases might require hiding the editor toolbar when entering the read-only mode. This can be achieved easily with the following code:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+    } )
+    .then( editor =&gt; {
+        const toolbarElement = editor.ui.view.toolbar.element;
+
+        editor.on( &apos;change:isReadOnly&apos;, ( evt, propertyName, isReadOnly ) =&gt; {
+            if ( isReadOnly ) {
+                toolbarElement.style.display = &apos;none&apos;;
+            } else {
+                toolbarElement.style.display = &apos;flex&apos;;
+            }
+        } );
+    } )
+    .catch( error =&gt; {
+        console.log( error );
+    } );
+</code></pre>
+<p>When the button is clicked, the property <code>editor.isReadOnly</code> is set to <code>true</code>. This triggers the code showed above, which in turn hides the toolbar using CSS styles. After clicking the button once more and setting <code>editor.isReadOnly</code> to <code>false</code>, the toolbar is visible again. This approach will work both for classic and decoupled editors.</p>
+<p>Use the demo below to see this code in action, toggle read-only mode together with the editor&#x2019;s toolbar with the dedicated button.</p>
+<div class="live-snippet"><p>
+	<button id="snippet-read-only-toggle-toolbar">Switch to read-only mode</button>
+</p>
+
+<div id="snippet-read-only-toolbar">
+	<h2>The sales data for Q4 for the <strong>Click&#39;n&#39;go</strong> product line</h2>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px">
+	<thead>
+		<tr>
+			<th scope="row">&nbsp;</th>
+			<th scope="col">Income</th>
+			<th scope="col">Income rise</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">Walker 3</th>
+			<td style="text-align:center">$121.000</td>
+			<td style="text-align:center">15%</td>
+		</tr>
+		<tr>
+			<th scope="row">Stroller</th>
+			<td style="text-align:center">$14.400</td>
+			<td style="text-align:center">20%</td>
+		</tr>
+		<tr>
+			<th scope="row">Runner</th>
+			<td style="text-align:center">$100.000</td>
+			<td style="text-align:center">0,5%</td>
+		</tr>
+	</tbody>
+</table>
+</div></div>
 <h2 id="related-features"><a class="headerlink" href="#related-features">#</a> Related features</h2>
 <p>There are more features that help control user permissions in the WYSIWYG editor:</p>
 <ul>
 <li><a href="restricted-editing.html">Restricted editing</a> &#x2013; Define editable areas of the document for users with restricted editing rights.</li>
-<li><a href="collaboration/track-changes/track-changes.html">Track changes</a> &#x2013; User changes are marked in the content and shown as suggestions in the sidebar for acceptance or rejection.</li>
-<li><a href="collaboration/comments/comments.html">Comments</a> &#x2013; Users can add comments to any part of the content instead of editing it directly.</li>
+<li><a href="collaboration/comments/comments-only-mode.html">Comments-only mode</a> &#x2013; Users can add comments to any part of the content instead of editing it directly.</li>
 </ul>
 
         </div>
@@ -820,8 +877,9 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../../../assets/1.16.0/scripts/app.js"></script>
     <script src="../assets/snippet.js"></script>
     <script src="../snippets/assets.js"></script>
-    <script src="../snippets/build-classic-source/snippet.js"></script>
+    <script src="../snippets/features/read-only-build/snippet.js"></script>
     <script src="../snippets/features/read-only/snippet.js"></script>
+    <script src="../snippets/features/read-only-hide-toolbar/snippet.js"></script>
     <script src="../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
