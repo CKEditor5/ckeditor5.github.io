@@ -7,6 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Nov 17 2021 23:43:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Code style - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -24,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.16.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.17.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
@@ -58,7 +59,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.16.0/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.17.0/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -267,11 +268,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/code-style.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.16.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/code-style.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.17.0/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.16.0/img/book.svg" alt="guide">Code style
+          <h1 class="main__content-title"><img src="../../../../../assets/1.17.0/img/book.svg" alt="guide">Code style
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#general">General</a></li><li><a href="#whitespace">Whitespace</a></li><li><a href="#indentation">Indentation</a></li><li><a href="#braces">Braces</a></li><li><a href="#blank-lines">Blank lines</a></li><li><a href="#multi-line-statements-and-calls">Multi-line statements and calls</a></li><li><a href="#strings">Strings</a></li><li><a href="#comments">Comments</a></li><li><a href="#linting">Linting</a></li><li><a href="#visibility-levels">Visibility levels</a><ol><li><a href="#accessibility">Accessibility</a></li></ol></li><li><a href="#getters">Getters</a></li><li><a href="#order-within-class-definition">Order within class definition</a></li><li><a href="#tests">Tests</a><ol><li><a href="#test-organization">Test organization</a></li><li><a href="#test-implementation">Test implementation</a></li></ol></li><li><a href="#naming">Naming</a><ol><li><a href="#javascript-code-names">JavaScript code names</a><ol><li><a href="#private-properties-and-methods">Private properties and methods</a></li><li><a href="#methods-and-functions">Methods and functions</a></li><li><a href="#properties-and-variables">Properties and variables</a></li></ol></li><li><a href="#buttons-commands-and-plugins">Buttons, Commands and Plugins</a><ol><li><a href="#buttons">Buttons</a></li><li><a href="#commands">Commands</a></li><li><a href="#plugins">Plugins</a></li></ol></li><li><a href="#shortcuts">Shortcuts</a></li><li><a href="#acronyms-and-proper-names">Acronyms and proper names</a></li><li><a href="#css-classes">CSS classes</a></li><li><a href="#id-attributes">ID attributes</a></li><li><a href="#file-names">File names</a><ol><li><a href="#examples">Examples</a></li><li><a href="#standard-files">Standard files</a></li></ol></li></ol></li><li><a href="#ckeditor-5-custom-eslint-rules">CKEditor 5 custom ESLint rules</a><ol><li><a href="#importing-between-packages-ckeditor5-rulesno-relative-imports">Importing between packages: ckeditor5-rules/no-relative-imports</a></li><li><a href="#description-of-an-error-ckeditor5-rulesckeditor-error-message">Description of an error: ckeditor5-rules/ckeditor-error-message</a></li><li><a href="#dll-builds-ckeditor5-rulesckeditor-imports">DLL Builds: ckeditor5-rules/ckeditor-imports</a></li><li><a href="#cross-package-imports-ckeditor5-rulesno-cross-package-imports">Cross package imports: ckeditor5-rules/no-cross-package-imports</a></li></ol></li></ol></nav>
 <p><a href="development-environment.html">CKEditor 5 development environment</a> has ESLint enabled both as a pre-commit hook and on CI. This means that code style issues are detected automatically. Additionally, <code>.editorconfig</code> files are present in every repository to automatically adjust your IDEs settings (if it is configured to read them).</p>
 <p>Here comes a quick summary of these rules.</p>
@@ -1244,7 +1245,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'features', 'examples', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../../assets/1.16.0/scripts/app.js"></script>
+    <script src="../../../../../assets/1.17.0/scripts/app.js"></script>
     <script src="../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
