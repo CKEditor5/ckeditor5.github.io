@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Nov 17 2021 23:43:35 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Nov 18 2021 23:44:14 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Using package generator - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -273,7 +273,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/1.17.0/img/book.svg" alt="guide">Using package generator
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#structure-of-the-project">Structure of the project</a></li><li><a href="#npm-scripts">Npm scripts</a><ol><li><a href="#start">start</a></li><li><a href="#test">test</a></li><li><a href="#lint">lint</a></li><li><a href="#stylelint">stylelint</a></li><li><a href="#dllbuild">dll:build</a></li><li><a href="#dllserve">dll:serve</a></li><li><a href="#prepare-and-prepublishonly">prepare and prepublishOnly</a></li></ol></li><li><a href="#how-to-change-eslint-configuration">How to change ESLint configuration?</a><ol><li><a href="#why-the-predefined-eslint-rules-are-recommended">Why the predefined ESLint rules are recommended?</a></li></ol></li><li><a href="#translations">Translations</a></li><li><a href="#reporting-issues">Reporting issues</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#structure-of-the-project">Structure of the project</a></li><li><a href="#npm-scripts">Npm scripts</a><ol><li><a href="#start">start</a></li><li><a href="#test">test</a></li><li><a href="#lint">lint</a></li><li><a href="#stylelint">stylelint</a></li><li><a href="#dllbuild">dll:build</a></li><li><a href="#dllserve">dll:serve</a></li><li><a href="#translationscollect">translations:collect</a></li><li><a href="#translationsdownload">translations:download</a></li><li><a href="#translationsupload">translations:upload</a></li><li><a href="#prepare-and-prepublishonly">prepare and prepublishOnly</a></li></ol></li><li><a href="#how-to-change-eslint-configuration">How to change ESLint configuration?</a><ol><li><a href="#why-the-predefined-eslint-rules-are-recommended">Why the predefined ESLint rules are recommended?</a></li></ol></li><li><a href="#translations">Translations</a></li><li><a href="#reporting-issues">Reporting issues</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/ckeditor5-package-generator" target="_blank" rel="noopener"><code>ckeditor5-package-generator</code></a> is a tool for developers, and it creates a working package with the development environment that allows writing new plugins for CKEditor 5.</p>
 <h2 id="quick-start"><a class="headerlink" href="#quick-start">#</a> Quick start</h2>
 <p>To create a new package without installing the tool, execute the following command:</p>
@@ -301,7 +301,9 @@ cd ckeditor5-foo
 <p>There, the plugin can be seen within the example editor.</p>
 <h2 id="structure-of-the-project"><a class="headerlink" href="#structure-of-the-project">#</a> Structure of the project</h2>
 <p>An overview of the project&#x2019;s directory structure:</p>
-<pre class="highlight"><code class="plain-text">&#x251C;&#x2500; sample
+<pre class="highlight"><code class="plain-text">&#x251C;&#x2500; lang
+&#x2502;  &#x2514;&#x2500; contexts.json        # Entries used for creating translations.
+&#x251C;&#x2500; sample
 &#x2502;  &#x251C;&#x2500; dll.html             # The editor initialized using the DLL builds.
 &#x2502;  &#x251C;&#x2500; index.html           # The sample file.
 &#x2502;  &#x2514;&#x2500; ckeditor.js          # The editor initialization script.
@@ -344,12 +346,16 @@ cd ckeditor5-foo
 <h3 id="start"><a class="headerlink" href="#start">#</a> <code>start</code></h3>
 <p>Starts a HTTP server with the live-reload mechanism that allows previewing and testing plugins available in the package.</p>
 <p>When the server has been started, the default browser will open the developer sample. This can be disabled by passing the <code>--no-open</code> option to that command.</p>
+<p>You can also define the language that will translate the created editor by specifying the <code>--language [LANG]</code> option. It defaults to <code>&apos;en&apos;</code>.</p>
 <p>Examples:</p>
 <pre class="highlight"><code class="bash"># Starts the server and open the browser.
 npm run start
 
 # Disable auto-opening the browser.
 npm run start -- --no-open
+
+# Create the editor with the interface in German.
+npm run start -- --language=de
 </code></pre>
 <h3 id="test"><a class="headerlink" href="#test">#</a> <code>test</code></h3>
 <p>Allows executing unit tests for the package, specified in the <code>tests/</code> directory. The command accepts the following modifiers:</p>
@@ -393,6 +399,29 @@ npm run dll:build -- --watch
 <pre class="highlight"><code class="bash"># Starts the HTTP server and opens the browser.
 npm run dll:serve
 </code></pre>
+<h3 id="translationscollect"><a class="headerlink" href="#translationscollect">#</a> <code>translations:collect</code></h3>
+<p>Collects translation messages (arguments of the <code>t()</code> function) and context files, then validates whether the provided values do not interfere with the values specified in the <code>@ckeditor/ckeditor5-core</code> package.</p>
+<p>The task may end with an error if one of the following conditions is met:</p>
+<ul>
+<li>Found the <code>Unused context</code> error &#x2013; entries specified in the <code>lang/contexts.json</code> file are not used in source files. They should be removed.</li>
+<li>Found the <code>Context is duplicated for the id</code> error &#x2013; some of the entries are duplicated. Consider removing them from the <code>lang/contexts.json</code> file, or rewrite them.</li>
+<li>Found the <code>Context for the message id is missing</code> error &#x2013; entries specified in source files are not described in the <code>lang/contexts.json</code> file. They should be added.</li>
+</ul>
+<p>Examples:</p>
+<pre class="highlight"><code class="bash">npm run translations:collect
+</code></pre>
+<h3 id="translationsdownload"><a class="headerlink" href="#translationsdownload">#</a> <code>translations:download</code></h3>
+<p>Download translations from the Transifex server. Depending on users&#x2019; activity in the project, it creates translations files used for building the editor.</p>
+<div class="info-box notice notice__info"><p>The task requires passing the URL to Transifex API. Usually, it matches the following format: <code>https://www.transifex.com/api/2/project/[PROJECT_SLUG]</code>.</p><p>To avoid passing the <code>--transifex</code> option every time when calls the command, you can store it in <code>package.json</code>, next to the <code>ckeditor5-package-tools translations:upload</code> command.</p></div>
+<p>Examples:</p>
+<pre class="highlight"><code class="bash">npm run translations:download -- --transifex [API URL]
+</code></pre>
+<h3 id="translationsupload"><a class="headerlink" href="#translationsupload">#</a> <code>translations:upload</code></h3>
+<p>Uploads translation messages onto the Transifex server. It allows for the creation of translations into other languages by users using the Transifex platform.</p>
+<div class="info-box notice notice__info"><p>The task requires passing the URL to the Transifex API. Usually, it matches the following format: <code>https://www.transifex.com/api/2/project/[PROJECT_SLUG]</code>.</p><p>To avoid passing the <code>--transifex</code> option every time when you call the command, you can store it in <code>package.json</code>, next to the <code>ckeditor5-package-tools translations:upload</code> command.</p></div>
+<p>Examples:</p>
+<pre class="highlight"><code class="bash">npm run translations:upload -- --transifex [API URL]
+</code></pre>
 <h3 id="prepare-and-prepublishonly"><a class="headerlink" href="#prepare-and-prepublishonly">#</a> <code>prepare</code> and <code>prepublishOnly</code></h3>
 <p>Npm supports some special <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#life-cycle-scripts" target="_blank" rel="noopener">life cycle scripts</a> that allow performing operations on your package before it is published. In the context of the generated package, they just create a DLL-compatible package build.</p>
 <h2 id="how-to-change-eslint-configuration"><a class="headerlink" href="#how-to-change-eslint-configuration">#</a> How to change ESLint configuration?</h2>
@@ -401,6 +430,17 @@ npm run dll:serve
 <p>To make CKEditor 5 plugins compatible with each other, we needed to introduce limitations when importing files from packages. To learn more, visit the <a href="../../builds/guides/development/dll-builds.html">DLL guide</a> and <a href="contributing/code-style.html#dll-builds-ckeditor5-rulesckeditor-imports">see detailed explanation</a> about the limitation.</p>
 <h2 id="translations"><a class="headerlink" href="#translations">#</a> Translations</h2>
 <p>Packages created by this tool, just like the entirety of the CKEditor 5 ecosystem include full support for localization. If you wish to include translations for your package, <a href="deep-dive/ui/localization.html">visit the docs page</a> and learn more.</p>
+<p>The package contains several tools for handling translations in the created package. We recommend the following flow when dealing with translations:</p>
+<ol>
+<li>Call <code>npm run translations:download</code> &#x2013; download the latest version of translations.
+<ul>
+<li>If there are changes in the <code>lang/translations/*</code> files, commit them as they represent new or updated translation files.</li>
+</ul>
+</li>
+<li>Call <code>npm run translations:collect</code> &#x2013; verify whether contexts are up-to-date.</li>
+<li>Call <code>npm run translations:upload</code> &#x2013; upload new translations.</li>
+<li>Call <code>npm run translations:download</code> &#x2013; if new contexts were uploaded, it updates the <code>en.po</code> file in the package. Do not forget to commit the change.</li>
+</ol>
 <h2 id="reporting-issues"><a class="headerlink" href="#reporting-issues">#</a> Reporting issues</h2>
 <p>If you found a problem with CKEditor 5 or the package generator, please, report an issue:</p>
 <ul>
