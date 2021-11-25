@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Nov 23 2021 23:42:45 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Nov 24 2021 23:43:16 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Testing environment - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -213,7 +213,7 @@
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span>
                                               </div></a></li>
                                           <li><a href="">
-                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Testing environment</span>
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Testing environment</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="code-style.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
@@ -273,7 +273,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.17.0/img/book.svg" alt="guide">Testing environment
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#running-automated-tests">Running automated tests</a><ol><li><a href="#examples">Examples</a></li></ol></li><li><a href="#running-manual-tests">Running manual tests</a><ol><li><a href="#creating-a-manual-test">Creating a manual test</a></li><li><a href="#verifying-all-manual-tests">Verifying all manual tests</a></li></ol></li><li><a href="#test-suite-and-ci">Test suite and CI</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#running-automated-tests">Running automated tests</a><ol><li><a href="#examples">Examples</a></li><li><a href="#custom-chai-assertions">Custom Chai assertions</a><ol><li><a href="#equalmarkup">equalMarkup</a></li><li><a href="#attribute">attribute</a></li></ol></li></ol></li><li><a href="#running-manual-tests">Running manual tests</a><ol><li><a href="#creating-a-manual-test">Creating a manual test</a></li><li><a href="#verifying-all-manual-tests">Verifying all manual tests</a></li></ol></li><li><a href="#test-suite-and-ci">Test suite and CI</a></li></ol></nav>
 <p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
 <h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
 <p>The CKEditor 5 testing environment uses a popular setup with <a href="https://karma-runner.github.io" target="_blank" rel="noopener">Karma</a>, <a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a>, <a href="https://github.com/babel/babel-loader" target="_blank" rel="noopener">babel-loader</a> and <a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="noopener">Istanbul</a>. We created some <a href="https://docs.npmjs.com/cli/run-script" target="_blank" rel="noopener">npm scripts</a> which glue all these pieces and special requirements for CKEditor together.</p>
@@ -300,6 +300,30 @@
 </code></pre>
 <p>Run the <code>bold*.js</code> tests in the <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-basic-styles/tests" target="_blank" rel="noopener"><code>ckeditor5-basic-styles</code></a> package:</p>
 <pre class="highlight"><code class>yarn run test -cw --files=basic-styles/bold*.js
+</code></pre>
+<h3 id="custom-chai-assertions"><a class="headerlink" href="#custom-chai-assertions">#</a> Custom Chai assertions</h3>
+<p>Our testing environment allows for some custom <code>Chai</code> assertions. There is no need to import them, as they are imported by default inside all tests.</p>
+<h4 id="equalmarkup"><a class="headerlink" href="#equalmarkup">#</a> <code>equalMarkup</code></h4>
+<p>Tests whether two given strings containing markup language are equal. Unlike <code>expect().to.equal()</code> from Chai assertion library, this assertion formats the markup before showing a diff. It can be used to test HTML strings and strings containing a serialized model.</p>
+<p>This assertion will pass:</p>
+<pre class="highlight"><code class="js">expect( `&lt;b&gt;foo&lt;/b&gt;` ).to.equalMarkup( `&lt;b&gt;foo&lt;/b&gt;` )
+</code></pre>
+<p>This assertion will throw an error:</p>
+<pre class="highlight"><code class="js">expect(
+    &apos;&lt;paragraph&gt;foo bXXX[]r baz&lt;/paragraph&gt;&apos;
+).to.equalMarkup(
+    &apos;&lt;paragraph&gt;foo bYYY[]r baz&lt;/paragraph&gt;&apos;
+);
+</code></pre>
+<h4 id="attribute"><a class="headerlink" href="#attribute">#</a> <code>attribute</code></h4>
+<p>Asserts that the target has an attribute with the given key name. See <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html#function-hasAttribute">hasAttribute</a>.</p>
+<pre class="highlight"><code class="js">expect( selection ).to.have.attribute( &apos;linkHref&apos; );
+</code></pre>
+<p>When optional <code>value</code> is provided, <code>.attribute</code> also asserts that the attribute&#x2019;s value is equal to the given <code>value</code>. See <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html#function-getAttribute">getAttribute</a>.</p>
+<pre class="highlight"><code class="js">expect( selection ).to.have.attribute( &apos;linkHref&apos;, &apos;example.com&apos; );
+</code></pre>
+<p>Negations works as well.</p>
+<pre class="highlight"><code class="js">expect( selection ).to.not.have.attribute( &apos;linkHref&apos; );
 </code></pre>
 <h2 id="running-manual-tests"><a class="headerlink" href="#running-manual-tests">#</a> Running manual tests</h2>
 <p>In order to start the manual tests server, use the <code>yarn run manual</code> task.</p>
@@ -513,7 +537,7 @@ ClassicEditor
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span>
                                                   </div></a></li>
                                               <li><a href="">
-                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Testing environment</span>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Testing environment</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="code-style.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
