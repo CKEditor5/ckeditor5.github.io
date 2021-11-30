@@ -7,11 +7,11 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sun Nov 28 2021 23:49:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Nov 30 2021 06:38:00 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Using package generator - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/package-generator.html">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/package-generator.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
@@ -19,14 +19,14 @@
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
-    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/package-generator.html">
-    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
-    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/package-generator.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.17.0/css/styles.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../../../assets/1.17.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -56,64 +56,58 @@
     <header class="top" data-project="ckeditor5">
       <div class="header__main">
         <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
-        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.17.0/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.17.0/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
         <ul class="top__menu">
-          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
-          <li><a href="../../builds/index.html">Installation</a></li>
-          <li><a class="top__menu__item--active" href="../index.html">Framework</a></li>
-          <li><a href="../../features/index.html">Features</a></li>
-          <li><a href="../../examples/index.html">Examples</a></li>
-          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li class="top__menu-project-logo"><a href="../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../builds/index.html">Installation</a></li>
+          <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+          <li><a href="../../../features/index.html">Features</a></li>
+          <li><a href="../../../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
           <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
         </ul>
       </div>
       <div class="header__menu-rwd">
         <ul class="header__menu-rwd__projects">
-          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+          <li data-project="ckeditor5"><a href="../../../../latest/index.html">CKEditor 5</a>
             <ul class="tree header__menu-rwd__projects-pages">
-              <li data-group="builds"><a href="../../builds/index.html">Installation</a>
+              <li data-group="builds"><a href="../../../builds/index.html">Installation</a>
               </li>
-              <li data-group="framework"><a href="../index.html">Framework</a>
+              <li data-group="framework"><a href="../../index.html">Framework</a>
                 <ul class="header__menu-rwd__projects-subpages">
                           <li>
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span>
                             </div>
                             <ul class="tree__item-nested-list">
-                                  <li><a href="overview.html">
+                                  <li><a href="../overview.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
                                       </div></a></li>
-                                  <li><a href="quick-start.html">
+                                  <li><a href="../quick-start.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
                                       </div></a></li>
-                                  <li><a href="creating-simple-plugin.html">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
-                                      </div></a></li>
-                                  <li><a href="">
-                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
-                                      </div></a></li>
-                                  <li><a href="development-tools.html">
+                                  <li><a href="../development-tools.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span>
                                       </div></a></li>
                                   <li>
                                     <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span>
                                     </div>
                                     <ul class="tree__item-nested-list">
-                                          <li><a href="architecture/intro.html">
+                                          <li><a href="../architecture/intro.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span>
                                               </div></a></li>
-                                          <li><a href="architecture/core-editor-architecture.html">
+                                          <li><a href="../architecture/core-editor-architecture.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
-                                          <li><a href="architecture/editing-engine.html">
+                                          <li><a href="../architecture/editing-engine.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span>
                                               </div></a></li>
-                                          <li><a href="architecture/ui-library.html">
+                                          <li><a href="../architecture/ui-library.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span>
                                               </div></a></li>
                                     </ul>
@@ -122,14 +116,26 @@
                                     <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span>
                                     </div>
                                     <ul class="tree__item-nested-list">
-                                          <li><a href="tutorials/implementing-a-block-widget.html">
+                                          <li><a href="../tutorials/implementing-a-block-widget.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
                                               </div></a></li>
-                                          <li><a href="tutorials/implementing-an-inline-widget.html">
+                                          <li><a href="../tutorials/implementing-an-inline-widget.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
                                               </div></a></li>
-                                          <li><a href="tutorials/using-react-in-a-widget.html">
+                                          <li><a href="../tutorials/using-react-in-a-widget.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Developing custom plugins</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="creating-simple-plugin.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
+                                              </div></a></li>
+                                          <li><a href="">
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                     </ul>
                                   </li>
@@ -137,38 +143,38 @@
                                     <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span>
                                     </div>
                                     <ul class="tree__item-nested-list">
-                                          <li><a href="deep-dive/clipboard.html">
+                                          <li><a href="../deep-dive/clipboard.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span>
                                               </div></a></li>
-                                          <li><a href="deep-dive/upload-adapter.html">
+                                          <li><a href="../deep-dive/upload-adapter.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span>
                                               </div></a></li>
-                                          <li><a href="deep-dive/event-system.html">
+                                          <li><a href="../deep-dive/event-system.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Event system</span>
                                               </div></a></li>
-                                          <li><a href="deep-dive/observables.html">
+                                          <li><a href="../deep-dive/observables.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span>
                                               </div></a></li>
-                                          <li><a href="deep-dive/schema.html">
+                                          <li><a href="../deep-dive/schema.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span>
                                               </div></a></li>
                                           <li>
                                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span>
                                             </div>
                                             <ul class="tree__item-nested-list">
-                                                  <li><a href="deep-dive/conversion/conversion-introduction.html">
+                                                  <li><a href="../deep-dive/conversion/conversion-introduction.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/conversion/conversion-extending-output.html">
+                                                  <li><a href="../deep-dive/conversion/conversion-extending-output.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/conversion/conversion-preserving-custom-content.html">
+                                                  <li><a href="../deep-dive/conversion/conversion-preserving-custom-content.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/conversion/custom-element-conversion.html">
+                                                  <li><a href="../deep-dive/conversion/custom-element-conversion.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom element conversion</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/conversion/element-reconversion.html">
+                                                  <li><a href="../deep-dive/conversion/element-reconversion.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Element reconversion</span>
                                                       </div></a></li>
                                             </ul>
@@ -177,25 +183,25 @@
                                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span>
                                             </div>
                                             <ul class="tree__item-nested-list">
-                                                  <li><a href="deep-dive/ui/focus-tracking.html">
+                                                  <li><a href="../deep-dive/ui/focus-tracking.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/widget-internals.html">
+                                                  <li><a href="../deep-dive/ui/widget-internals.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/theme-customization.html">
+                                                  <li><a href="../deep-dive/ui/theme-customization.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/external-ui.html">
+                                                  <li><a href="../deep-dive/ui/external-ui.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/document-editor.html">
+                                                  <li><a href="../deep-dive/ui/document-editor.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/custom-editor-creator.html">
+                                                  <li><a href="../deep-dive/ui/custom-editor-creator.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span>
                                                       </div></a></li>
-                                                  <li><a href="deep-dive/ui/localization.html">
+                                                  <li><a href="../deep-dive/ui/localization.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span>
                                                       </div></a></li>
                                             </ul>
@@ -206,22 +212,22 @@
                                     <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span>
                                     </div>
                                     <ul class="tree__item-nested-list">
-                                          <li><a href="contributing/contributing.html">
+                                          <li><a href="../contributing/contributing.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span>
                                               </div></a></li>
-                                          <li><a href="contributing/development-environment.html">
+                                          <li><a href="../contributing/development-environment.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span>
                                               </div></a></li>
-                                          <li><a href="contributing/testing-environment.html">
+                                          <li><a href="../contributing/testing-environment.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
-                                          <li><a href="contributing/code-style.html">
+                                          <li><a href="../contributing/code-style.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
-                                          <li><a href="contributing/package-metadata.html">
+                                          <li><a href="../contributing/package-metadata.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Package metadata</span>
                                               </div></a></li>
-                                          <li><a href="contributing/git-commit-message-convention.html">
+                                          <li><a href="../contributing/git-commit-message-convention.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span>
                                               </div></a></li>
                                     </ul>
@@ -230,22 +236,22 @@
                                     <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span>
                                     </div>
                                     <ul class="tree__item-nested-list">
-                                          <li><a href="support/browser-compatibility.html">
+                                          <li><a href="../support/browser-compatibility.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span>
                                               </div></a></li>
-                                          <li><a href="support/license-and-legal.html">
+                                          <li><a href="../support/license-and-legal.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span>
                                               </div></a></li>
-                                          <li><a href="support/getting-support.html">
+                                          <li><a href="../support/getting-support.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span>
                                               </div></a></li>
-                                          <li><a href="support/reporting-issues.html">
+                                          <li><a href="../support/reporting-issues.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span>
                                               </div></a></li>
-                                          <li><a href="support/versioning-policy.html">
+                                          <li><a href="../support/versioning-policy.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span>
                                               </div></a></li>
-                                          <li><a href="support/error-codes.html">
+                                          <li><a href="../support/error-codes.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span>
                                               </div></a></li>
                                     </ul>
@@ -254,11 +260,11 @@
                           </li>
                 </ul>
               </li>
-              <li data-group="features"><a href="../../features/index.html">Features</a>
+              <li data-group="features"><a href="../../../features/index.html">Features</a>
               </li>
-              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              <li data-group="examples"><a href="../../../examples/index.html">Examples</a>
               </li>
-              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              <li data-group="api-reference"><a href="../../../api/index.html">API</a>
               </li>
             </ul>
           </li>
@@ -268,13 +274,13 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/package-generator.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../assets/1.17.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/package-generator.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.17.0/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
-          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
+          <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.17.0/img/book.svg" alt="guide">Using package generator
+          <h1 class="main__content-title"><img src="../../../../../assets/1.17.0/img/book.svg" alt="guide">Using package generator
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#structure-of-the-project">Structure of the project</a></li><li><a href="#npm-scripts">Npm scripts</a><ol><li><a href="#start">start</a></li><li><a href="#test">test</a></li><li><a href="#lint">lint</a></li><li><a href="#stylelint">stylelint</a></li><li><a href="#dllbuild">dll:build</a></li><li><a href="#dllserve">dll:serve</a></li><li><a href="#translationscollect">translations:collect</a></li><li><a href="#translationsdownload">translations:download</a></li><li><a href="#translationsupload">translations:upload</a></li><li><a href="#prepare-and-prepublishonly">prepare and prepublishOnly</a></li></ol></li><li><a href="#how-to-change-eslint-configuration">How to change ESLint configuration?</a><ol><li><a href="#why-the-predefined-eslint-rules-are-recommended">Why the predefined ESLint rules are recommended?</a></li></ol></li><li><a href="#translations">Translations</a></li><li><a href="#reporting-issues">Reporting issues</a></li></ol></nav>
-<p>The <a href="https://www.npmjs.com/package/ckeditor5-package-generator" target="_blank" rel="noopener"><code>ckeditor5-package-generator</code></a> is a tool for developers, and it creates a working package with the development environment that allows writing new plugins for CKEditor 5.</p>
+<p>The <a href="https://www.npmjs.com/package/ckeditor5-package-generator" target="_blank" rel="noopener"><code>ckeditor5-package-generator</code></a> is a tool for developers, and it creates a working package with the development environment that allows writing new custom plugins for CKEditor 5.</p>
 <h2 id="quick-start"><a class="headerlink" href="#quick-start">#</a> Quick start</h2>
 <p>To create a new package without installing the tool, execute the following command:</p>
 <pre class="highlight"><code class="bash">npx ckeditor5-package-generator &lt;packageName&gt; [--verbose] [--use-npm]
@@ -336,7 +342,7 @@ cd ckeditor5-foo
 <li><a href="https://editorconfig.org/" target="_blank" rel="noopener">.editorconfig</a></li>
 <li><a href="https://git-scm.com/docs/gitattributes" target="_blank" rel="noopener">.gitattributes</a></li>
 <li><a href="https://git-scm.com/docs/gitignore" target="_blank" rel="noopener">.gitignore</a></li>
-<li><a href="contributing/package-metadata.html">ckeditor5-metadata.json</a></li>
+<li><a href="../contributing/package-metadata.html">ckeditor5-metadata.json</a></li>
 <li><a href="https://docs.npmjs.com/cli/v7/configuring-npm/package-json" target="_blank" rel="noopener">package.json</a></li>
 </ul>
 <h2 id="npm-scripts"><a class="headerlink" href="#npm-scripts">#</a> Npm scripts</h2>
@@ -385,7 +391,7 @@ npm run lint
 npm run stylelint
 </code></pre>
 <h3 id="dllbuild"><a class="headerlink" href="#dllbuild">#</a> <code>dll:build</code></h3>
-<p>Creates a DLL-compatible package build which can be loaded into an editor using <a href="../../builds/guides/development/dll-builds.html">DLL builds</a>.</p>
+<p>Creates a DLL-compatible package build which can be loaded into an editor using <a href="../../../builds/guides/development/dll-builds.html">DLL builds</a>.</p>
 <p>Examples:</p>
 <pre class="highlight"><code class="bash"># Build the DLL file that is ready to publish.
 npm run dll:build
@@ -394,7 +400,7 @@ npm run dll:build
 npm run dll:build -- --watch
 </code></pre>
 <h3 id="dllserve"><a class="headerlink" href="#dllserve">#</a> <code>dll:serve</code></h3>
-<p>Creates a simple HTTP server (without the live-reload mechanism) that allows verifying whether the DLL build of the package is compatible with the CKEditor 5 <a href="../../builds/guides/development/dll-builds.html">DLL builds</a>.</p>
+<p>Creates a simple HTTP server (without the live-reload mechanism) that allows verifying whether the DLL build of the package is compatible with the CKEditor 5 <a href="../../../builds/guides/development/dll-builds.html">DLL builds</a>.</p>
 <p>Examples:</p>
 <pre class="highlight"><code class="bash"># Starts the HTTP server and opens the browser.
 npm run dll:serve
@@ -427,9 +433,9 @@ npm run dll:serve
 <h2 id="how-to-change-eslint-configuration"><a class="headerlink" href="#how-to-change-eslint-configuration">#</a> How to change ESLint configuration?</h2>
 <p>To change ESLint config, edit the <a href="https://github.com/ckeditor/ckeditor5-package-generator/blob/master/.eslintrc.js" target="_blank" rel="noopener">.eslintrc.js</a> file. It is also a good idea to check out the <a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">ESLint docs</a>.</p>
 <h3 id="why-the-predefined-eslint-rules-are-recommended"><a class="headerlink" href="#why-the-predefined-eslint-rules-are-recommended">#</a> Why the predefined ESLint rules are recommended?</h3>
-<p>To make CKEditor 5 plugins compatible with each other, we needed to introduce limitations when importing files from packages. To learn more, visit the <a href="../../builds/guides/development/dll-builds.html">DLL guide</a> and <a href="contributing/code-style.html#dll-builds-ckeditor5-rulesckeditor-imports">see detailed explanation</a> about the limitation.</p>
+<p>To make CKEditor 5 plugins compatible with each other, we needed to introduce limitations when importing files from packages. To learn more, visit the <a href="../../../builds/guides/development/dll-builds.html">DLL guide</a> and <a href="../contributing/code-style.html#dll-builds-ckeditor5-rulesckeditor-imports">see detailed explanation</a> about the limitation.</p>
 <h2 id="translations"><a class="headerlink" href="#translations">#</a> Translations</h2>
-<p>Packages created by this tool, just like the entirety of the CKEditor 5 ecosystem include full support for localization. If you wish to include translations for your package, <a href="deep-dive/ui/localization.html">visit the docs page</a> and learn more.</p>
+<p>Packages created by this tool, just like the entirety of the CKEditor 5 ecosystem include full support for localization. If you wish to include translations for your package, <a href="../deep-dive/ui/localization.html">visit the docs page</a> and learn more.</p>
 <p>The package contains several tools for handling translations in the created package. We recommend the following flow when dealing with translations:</p>
 <ol>
 <li>Call <code>npm run translations:download</code> &#x2013; download the latest version of translations.
@@ -458,35 +464,29 @@ npm run dll:serve
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span>
                             </div>
                             <ul class="tree__item-nested-list">
-                                    <li><a href="overview.html">
+                                    <li><a href="../overview.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
                                         </div></a></li>
-                                    <li><a href="quick-start.html">
+                                    <li><a href="../quick-start.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
                                         </div></a></li>
-                                    <li><a href="creating-simple-plugin.html">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
-                                        </div></a></li>
-                                    <li><a href="">
-                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
-                                        </div></a></li>
-                                    <li><a href="development-tools.html">
+                                    <li><a href="../development-tools.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span>
                                         </div></a></li>
                                     <li>
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span>
                                       </div>
                                       <ul class="tree__item-nested-list">
-                                              <li><a href="architecture/intro.html">
+                                              <li><a href="../architecture/intro.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span>
                                                   </div></a></li>
-                                              <li><a href="architecture/core-editor-architecture.html">
+                                              <li><a href="../architecture/core-editor-architecture.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
-                                              <li><a href="architecture/editing-engine.html">
+                                              <li><a href="../architecture/editing-engine.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span>
                                                   </div></a></li>
-                                              <li><a href="architecture/ui-library.html">
+                                              <li><a href="../architecture/ui-library.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span>
                                                   </div></a></li>
                                       </ul>
@@ -495,14 +495,26 @@ npm run dll:serve
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span>
                                       </div>
                                       <ul class="tree__item-nested-list">
-                                              <li><a href="tutorials/implementing-a-block-widget.html">
+                                              <li><a href="../tutorials/implementing-a-block-widget.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
                                                   </div></a></li>
-                                              <li><a href="tutorials/implementing-an-inline-widget.html">
+                                              <li><a href="../tutorials/implementing-an-inline-widget.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
                                                   </div></a></li>
-                                              <li><a href="tutorials/using-react-in-a-widget.html">
+                                              <li><a href="../tutorials/using-react-in-a-widget.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Developing custom plugins</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="creating-simple-plugin.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
+                                                  </div></a></li>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>
@@ -510,38 +522,38 @@ npm run dll:serve
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span>
                                       </div>
                                       <ul class="tree__item-nested-list">
-                                              <li><a href="deep-dive/clipboard.html">
+                                              <li><a href="../deep-dive/clipboard.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span>
                                                   </div></a></li>
-                                              <li><a href="deep-dive/upload-adapter.html">
+                                              <li><a href="../deep-dive/upload-adapter.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span>
                                                   </div></a></li>
-                                              <li><a href="deep-dive/event-system.html">
+                                              <li><a href="../deep-dive/event-system.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Event system</span>
                                                   </div></a></li>
-                                              <li><a href="deep-dive/observables.html">
+                                              <li><a href="../deep-dive/observables.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span>
                                                   </div></a></li>
-                                              <li><a href="deep-dive/schema.html">
+                                              <li><a href="../deep-dive/schema.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span>
                                                   </div></a></li>
                                               <li>
                                                 <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span>
                                                 </div>
                                                 <ul class="tree__item-nested-list">
-                                                        <li><a href="deep-dive/conversion/conversion-introduction.html">
+                                                        <li><a href="../deep-dive/conversion/conversion-introduction.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/conversion/conversion-extending-output.html">
+                                                        <li><a href="../deep-dive/conversion/conversion-extending-output.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/conversion/conversion-preserving-custom-content.html">
+                                                        <li><a href="../deep-dive/conversion/conversion-preserving-custom-content.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/conversion/custom-element-conversion.html">
+                                                        <li><a href="../deep-dive/conversion/custom-element-conversion.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom element conversion</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/conversion/element-reconversion.html">
+                                                        <li><a href="../deep-dive/conversion/element-reconversion.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Element reconversion</span>
                                                             </div></a></li>
                                                 </ul>
@@ -550,25 +562,25 @@ npm run dll:serve
                                                 <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span>
                                                 </div>
                                                 <ul class="tree__item-nested-list">
-                                                        <li><a href="deep-dive/ui/focus-tracking.html">
+                                                        <li><a href="../deep-dive/ui/focus-tracking.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/widget-internals.html">
+                                                        <li><a href="../deep-dive/ui/widget-internals.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/theme-customization.html">
+                                                        <li><a href="../deep-dive/ui/theme-customization.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/external-ui.html">
+                                                        <li><a href="../deep-dive/ui/external-ui.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/document-editor.html">
+                                                        <li><a href="../deep-dive/ui/document-editor.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/custom-editor-creator.html">
+                                                        <li><a href="../deep-dive/ui/custom-editor-creator.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span>
                                                             </div></a></li>
-                                                        <li><a href="deep-dive/ui/localization.html">
+                                                        <li><a href="../deep-dive/ui/localization.html">
                                                             <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span>
                                                             </div></a></li>
                                                 </ul>
@@ -579,22 +591,22 @@ npm run dll:serve
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span>
                                       </div>
                                       <ul class="tree__item-nested-list">
-                                              <li><a href="contributing/contributing.html">
+                                              <li><a href="../contributing/contributing.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span>
                                                   </div></a></li>
-                                              <li><a href="contributing/development-environment.html">
+                                              <li><a href="../contributing/development-environment.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span>
                                                   </div></a></li>
-                                              <li><a href="contributing/testing-environment.html">
+                                              <li><a href="../contributing/testing-environment.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
-                                              <li><a href="contributing/code-style.html">
+                                              <li><a href="../contributing/code-style.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
-                                              <li><a href="contributing/package-metadata.html">
+                                              <li><a href="../contributing/package-metadata.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Package metadata</span>
                                                   </div></a></li>
-                                              <li><a href="contributing/git-commit-message-convention.html">
+                                              <li><a href="../contributing/git-commit-message-convention.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span>
                                                   </div></a></li>
                                       </ul>
@@ -603,22 +615,22 @@ npm run dll:serve
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span>
                                       </div>
                                       <ul class="tree__item-nested-list">
-                                              <li><a href="support/browser-compatibility.html">
+                                              <li><a href="../support/browser-compatibility.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span>
                                                   </div></a></li>
-                                              <li><a href="support/license-and-legal.html">
+                                              <li><a href="../support/license-and-legal.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span>
                                                   </div></a></li>
-                                              <li><a href="support/getting-support.html">
+                                              <li><a href="../support/getting-support.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span>
                                                   </div></a></li>
-                                              <li><a href="support/reporting-issues.html">
+                                              <li><a href="../support/reporting-issues.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span>
                                                   </div></a></li>
-                                              <li><a href="support/versioning-policy.html">
+                                              <li><a href="../support/versioning-policy.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span>
                                                   </div></a></li>
-                                              <li><a href="support/error-codes.html">
+                                              <li><a href="../support/error-codes.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span>
                                                   </div></a></li>
                                       </ul>
@@ -639,7 +651,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'features', 'examples', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../assets/1.17.0/scripts/app.js"></script>
-    <script src="../../assets/buildwarningbanner.js" async></script>
+    <script src="../../../../../assets/1.17.0/scripts/app.js"></script>
+    <script src="../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
