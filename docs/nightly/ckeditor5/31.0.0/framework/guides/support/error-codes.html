@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Nov 30 2021 06:38:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Nov 30 2021 23:51:49 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -1418,6 +1418,77 @@ starts or ends at incorrect position.
               :
  <span><a class="collapsing-list__type" href="../../../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
           <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-domconverter-unsafe-attribute-detected">
+      <h3><code><a class="member-name" href="#error-domconverter-unsafe-attribute-detected">domconverter-unsafe-attribute-detected</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">The <a href="../../../api/module_engine_view_domconverter-DomConverter.html"><code>DomConverter</code></a> detected an interactive attribute in the
+<a href="../architecture/editing-engine.html#editing-pipeline" data-glink>editing pipeline</a>. For the best
+editing experience, the attribute was renamed to <code>data-ck-unsafe-attribute-[original attribute name]</code>.
+      </p>
+      <div class="collapsing-list__content">
+<p>If you are the author of the plugin that generated this attribute and you want it to be preserved
+in the editing pipeline, you can configure this when creating the element
+using <a href="../../../api/module_engine_view_downcastwriter-DowncastWriter.html"><code>DowncastWriter</code></a> during the
+<a href="../architecture/editing-engine.html#conversion" data-glink>model&#x2013;view conversion</a>. Methods such as
+<a href="../../../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createContainerElement"><code>createContainerElement</code></a>,
+<a href="../../../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createAttributeElement"><code>createAttributeElement</code></a>, or
+<a href="../../../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createEmptyElement"><code>createEmptyElement</code></a>
+accept an option that will disable filtering of specific attributes:</p>
+<pre><code>const paragraph = writer.createContainerElement( &apos;p&apos;,
+	{
+		class: &apos;clickable-paragraph&apos;,
+		onclick: &apos;alert( &quot;Paragraph clicked!&quot; )&apos;
+	},
+	{
+		// Make sure the &quot;onclick&quot; attribute will pass through.
+		renderUnsafeAttributes: [ &apos;onclick&apos; ]
+	}
+);</code></pre>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>domElement
+              :
+ <span>HTMLElement</span></code></dt>
+          <dd><p>The DOM element the attribute was set on.</p>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd><p>The original name of the attribute</p>
+          </dd>
+          <dt><code>value
+              :
+ <span>String</span></code></dt>
+          <dd><p>The value of the original attribute</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-domconverter-unsafe-element-detected">
+      <h3><code><a class="member-name" href="#error-domconverter-unsafe-element-detected">domconverter-unsafe-element-detected</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">The <a href="../../../api/module_engine_view_domconverter-DomConverter.html"><code>DomConverter</code></a> detected a <code>&lt;script&gt;</code> element that may disrupt the
+<a href="../architecture/editing-engine.html#editing-pipeline" data-glink>editing pipeline</a> of the editor. To avoid this,
+the <code>&lt;script&gt;</code> element was renamed to <code>&lt;span data-ck-unsafe-element=&quot;script&quot;&gt;&lt;/span&gt;</code>.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>unsafeElement
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_element-Element.html">Element</a></span> | <span>HTMLElement</span></code></dt>
+          <dd><p>The editing view or DOM element
+that was renamed.</p>
           </dd>
         </dl>
       </div>
