@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Nov 30 2021 23:50:48 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Dec 01 2021 23:51:39 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class RealTimeCollaborationClient (real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta property="og:type" content="website">
@@ -265,9 +265,12 @@ editor.plugins.get( &apos;TextTransformation&apos; ).isEnabled = false;
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
-                            <p>The number of the last document version synchronized with the server for the current session.</p>
+                            <p>The last document version synchronized with the server during current real-time collaboration session.</p>
                           </div>
                           <div class="collapsing-list__content">
+<p>Equals to <code>0</code> when the client is not connected to the server yet.</p>
+<p>This includes only operations created by this or other clients. Notably, user selection markers operations created by
+the server are excluded.</p>
                           </div>
                         </div>
                       </li>
@@ -280,9 +283,6 @@ editor.plugins.get( &apos;TextTransformation&apos; ).isEnabled = false;
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>The number of changes not synchronized with the server yet.</p>
-                          </div>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -299,6 +299,22 @@ editor.plugins.get( &apos;TextTransformation&apos; ).isEnabled = false;
                           <div class="collapsing-list__content">
 <p>Contains only these operations, that have been already synchronized. It is exactly the same for all clients
 connected to the same editing session.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-sessionId">
+                          <h3><code><a class="member-name" href="#member-sessionId">sessionId</a> : <span>String</span> | <span>null</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient#sessionId</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>The ID of the current editing session to which the client is connected (or was connected before losing the connection).</p>
+                          </div>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -1237,9 +1253,14 @@ order they were added.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
-                            <p>Reconnects the client.</p>
+                            <p>Reconnects the client to the document.</p>
                           </div>
                           <div class="collapsing-list__content">
+<p>If the document has been flushed (editing session for that document was closed) in the meantime, the editing session is recreated
+using the local operations history.</p>
+<p>There are several scenarios where the reconnection can fail because it is impossible to synchronize local document state with the
+server editing session or with the document state saved in the database. In those situations, the editor switches to read-only
+mode and a <a href="module_ui_notification_notification-Notification.html"><code>Notification</code></a> is created.</p>
                           </div>
                         </div>
                       </li>
