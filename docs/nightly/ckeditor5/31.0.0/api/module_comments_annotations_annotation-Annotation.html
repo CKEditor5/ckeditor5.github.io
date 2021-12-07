@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class Annotation. Represents an annotation. Annotation is an entity that combines an AnnotationView and an annotation target (a DOM element or a Rect) to which the annotation is bound.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class Annotation. Represents an annotation. Annotation is an entity that combines an AnnotationView and an annotation target (a DOM element or a Rect) to which the annotation is bound.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sun Dec 05 2021 23:54:16 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Mon Dec 06 2021 23:54:59 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class Annotation (comments/annotations/annotation~Annotation) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class Annotation. Represents an annotation. Annotation is an entity that combines an AnnotationView and an annotation target (a DOM element or a Rect) to which the annotation is bound.">
     <meta property="og:type" content="website">
@@ -112,6 +112,7 @@
               <ul>
                 <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="properties">Properties</li>
                 <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="methods">Methods</li>
+                <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="events">Events</li>
               </ul>
             </nav>
           </div>
@@ -198,6 +199,22 @@ It can be extended with custom targets that will be tracked by the annotation fo
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-isVisible">
+                          <h3><code><a class="member-name" href="#member-isVisible">isVisible</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#isVisible</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray badge--observable "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>The visibility of the annotation. Not visible annotations are filtered from Annotation UI collections.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-target">
                           <h3><code><a class="member-name" href="#member-target">target</a> : <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span> | <span>Element</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#target</code></span>
                           </h3>
@@ -255,7 +272,7 @@ It can be extended with custom targets that will be tracked by the annotation fo
           <ul class="collapsing-list collapsing-list--filtered" data-type="methods">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( options = { options.view, options.target, options.type } )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#constructor</code></span>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( options = { options.view, options.target, options.type, [options.isVisible] } )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#constructor</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
@@ -287,6 +304,11 @@ It can be extended with custom targets that will be tracked by the annotation fo
  <span>String</span> | <span>function</span></code></dt>
                                                       <dd><p>The annotation type.</p>
                                                       </dd>
+                                                      <dt><code>[ options.isVisible ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>The initial visibility of the annotation.</p>
+                                                      </dd>
                                                     </dl>
                                         </dd>
                                       </dl>
@@ -307,6 +329,22 @@ It can be extended with custom targets that will be tracked by the annotation fo
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-refreshVisibility">
+                          <h3><code><a class="member-name" href="#function-refreshVisibility">refreshVisibility</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#refreshVisibility</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Refreshes visibility of the annotation based on the visibility of the annotation target.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>It sets the <a href="module_comments_annotations_annotation-Annotation.html#member-isVisible"><code>isVisible</code></a> property when the target is not attached to DOM or if the target or its descendant have
+set the <code>display</code> attribute to <code>none</code>.</p>
+<p>This method only updates an annotation if the annotation target is an HTML Element.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-updateTargetRect">
                           <h3><code><a class="member-name" href="#function-updateTargetRect">updateTargetRect</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#updateTargetRect</code></span>
                           </h3>
@@ -316,6 +354,45 @@ It can be extended with custom targets that will be tracked by the annotation fo
                             <p>Updates the target rect in the annotation view instance.</p>
                           </div>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2 id="events">Events</h2>
+          <ul class="collapsing-list collapsing-list--filtered" data-type="events">
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:isVisible">
+                          <h3><code><a class="member-name" href="#event-change:isVisible">change:isVisible</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/annotations/annotation~Annotation#event:change:isVisible</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Fired when the <code>isVisible</code> property changed value.</p>
+                          </div>
+                          <div class="collapsing-list__content"><p></p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>name
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>isVisible</code>).</p>
+                                        </dd>
+                                        <dt><code>value
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>New value of the <code>isVisible</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code>oldValue
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>isVisible</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
