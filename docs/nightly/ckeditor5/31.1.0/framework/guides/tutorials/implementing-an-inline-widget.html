@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Dec 07 2021 23:56:34 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Dec 15 2021 00:00:00 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Implementing an inline widget - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.17.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.18.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/inline-widget/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -62,7 +62,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.17.0/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.18.0/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -277,11 +277,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-an-inline-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.17.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-an-inline-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.18.0/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.17.0/img/book.svg" alt="guide">Implementing an inline widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.18.0/img/book.svg" alt="guide">Implementing an inline widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start-&#xFE0F;">Before you start &#x26A0;&#xFE0F;</a></li><li><a href="#bootstrapping-the-project">Bootstrapping the project</a></li><li><a href="#the-model-and-the-view-layers">The model and the view layers</a><ol><li><a href="#defining-the-schema">Defining the schema</a></li><li><a href="#defining-converters">Defining converters</a></li><li><a href="#feature-styles">Feature styles</a></li><li><a href="#command">Command</a></li><li><a href="#lets-see-it">Let&#x2019;s see it!</a></li><li><a href="#fixing-position-mapping">Fixing position mapping</a></li></ol></li><li><a href="#creating-the-ui">Creating the UI</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an inline widget.</p>
 <p>You will build a &#x201C;placeholder&#x201D; feature that allows the users to insert predefined placeholders, like a date or a surname, into the document. You will use widget utilities and conversion in order to define the behavior of this feature. Later on, you will use dropdown utilities to create a dropdown that will allow for inserting new placeholders. You will also learn how to use the editor configuration to define allowed placeholder names.</p>
@@ -292,11 +292,12 @@
 <p>The overall project structure will be similar to one described in <a href="implementing-a-block-widget.html#lets-start">Let&#x2019;s start</a> and <a href="implementing-a-block-widget.html#plugin-structure">Plugin structure</a> sections of the &#x201C;Implementing a block widget&#x201D; tutorial.</p>
 <p>First, install required dependencies:</p>
 <pre class="highlight"><code class="bash">npm install --save \
-    postcss-loader@3 \
-    raw-loader@3 \
-    style-loader@1 \
-    webpack@4 \
-    webpack-cli@3 \
+    css-loader@5 \
+    postcss-loader@4 \
+    raw-loader@4 \
+    style-loader@2 \
+    webpack@5 \
+    webpack-cli@4 \
     @ckeditor/ckeditor5-basic-styles \
     @ckeditor/ckeditor5-core \
     @ckeditor/ckeditor5-dev-utils \
@@ -345,15 +346,18 @@ module.exports = {
                             }
                         }
                     },
+                    &apos;css-loader&apos;,
                     {
                         loader: &apos;postcss-loader&apos;,
-                        options: styles.getPostCssConfig( {
-                            themeImporter: {
-                                themePath: require.resolve( &apos;@ckeditor/ckeditor5-theme-lark&apos; )
-                            },
-                            minify: true
-                        } )
-                    },
+                        options: {
+                            postcssOptions: styles.getPostCssConfig( {
+                                themeImporter: {
+                                    themePath: require.resolve( &apos;@ckeditor/ckeditor5-theme-lark&apos; )
+                                },
+                                minify: true
+                            } )
+                        }
+                    }
                 ]
             }
         ]
@@ -1358,7 +1362,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'features', 'examples', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../../assets/1.17.0/scripts/app.js"></script>
+    <script src="../../../../../assets/1.18.0/scripts/app.js"></script>
     <script src="../../../assets/snippet.js"></script>
     <script src="../../../snippets/assets.js"></script>
     <script src="../../../snippets/framework/tutorials/inline-widget/snippet.js"></script>
