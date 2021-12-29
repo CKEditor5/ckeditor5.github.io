@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Dec 28 2021 00:06:14 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Dec 29 2021 00:07:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Ordered and unordered lists - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -462,9 +462,9 @@
 </div>
 </div>
 <h2 id="list-styles"><a class="headerlink" href="#list-styles">#</a> List styles</h2>
-<p>The <a href="../../api/module_list_liststyle-ListStyle.html">list style</a> feature introduces some more styles for the list item markers. When enabled, it adds 3 styles for unordered lists and 6 styles for ordered lists to choose from. The styles can be changed via the dropdown that opens when you click the arrow next to the appropriate list button in the toolbar.</p>
+<p>The <a href="../../api/module_list_listproperties-ListProperties.html">list style</a> feature introduces some more styles for the list item markers. When enabled, it adds 3 styles for unordered lists and 6 styles for ordered lists to choose from. The styles can be changed via the dropdown that opens when you click the arrow next to the appropriate list button in the toolbar.</p>
 <h3 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h3>
-<p>Use the editor below to see the list style plugin in action.</p>
+<p>Use the editor below to see the list properties plugin in action.</p>
 <div class="live-snippet"><div id="snippet-lists-styles">
     <h2>Modern manned spacecraft</h2>
     <ol style="list-style-type:upper-roman;">
@@ -507,19 +507,19 @@
 <p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-list</code></a> package:</p>
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-list
 </code></pre>
-<p>Then add the <code>ListStyle</code> plugin to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js">import ListStyle from &apos;@ckeditor/ckeditor5-list/src/liststyle&apos;;
+<p>Then add the <code>ListProperties</code> plugin to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js">import ListProperties from &apos;@ckeditor/ckeditor5-list/src/listproperties&apos;;
 
 ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
-        plugins: [ ListStyle, ... ],
+        plugins: [ ListProperties, ... ],
         toolbar: [ &apos;bulletedList&apos;, &apos;numberedList&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
 </code></pre>
 <div class="info-box notice notice__info"><p>Read more about <a href="../../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
-<div class="info-box notice notice__warning"><p>The <a href="../../api/module_list_liststyle-ListStyle.html"><code>ListStyle</code></a> feature overrides UI button implementations from the <a href="../../api/module_list_listui-ListUI.html"><code>ListUI</code></a>.</p></div>
+<div class="info-box notice notice__warning"><p>The <a href="../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> feature overrides UI button implementations from the <a href="../../api/module_list_listui-ListUI.html"><code>ListUI</code></a>.</p></div>
 <h2 id="list-indentation"><a class="headerlink" href="#list-indentation">#</a> List indentation</h2>
 <p>Refer to the <a href="../indent.html">Indenting lists</a> section of the Block indentation feature guide.</p>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
@@ -532,7 +532,7 @@ ClassicEditor
 <li>The <code>&apos;numberedList&apos;</code> UI button.</li>
 <li>The <code>&apos;bulletedList&apos;</code> UI button.</li>
 </ul>
-<p>The <a href="../../api/module_list_liststyle-ListStyle.html"><code>ListStyle</code></a> plugin registers:</p>
+<p>The <a href="../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> plugin registers:</p>
 <ul>
 <li>
 <p>The <a href="../../api/module_list_liststylecommand-ListStyleCommand.html"><code>&apos;listStyle&apos;</code></a> command that accepts a <code>type</code> of the list style to set.</p>
