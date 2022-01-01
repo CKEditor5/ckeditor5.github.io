@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */ClassicEditor.create(document.querySelector("#demo-editor"),{toolbar:{items:["heading","|","bold","italic","bulletedList","numberedList","|","outdent","indent","|","blockQuote","link","|","mediaEmbed","insertTable","|","undo","redo"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells"]}}).then((e=>{window.editor=e,document.getElementById("demo-word-count").appendChild(e.plugins.get("WordCount").wordCountContainer)})).catch((e=>{console.error(e.stack)}));

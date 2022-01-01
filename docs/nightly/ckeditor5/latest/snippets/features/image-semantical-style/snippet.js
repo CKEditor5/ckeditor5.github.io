@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const e={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-semantical-image-style-default"),{removePlugins:["imageCaption"],ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},cloudServices:e,image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:side"]}}).then((e=>{window.editorStyleSemantical=e})).catch((e=>{console.error(e)}))})();
