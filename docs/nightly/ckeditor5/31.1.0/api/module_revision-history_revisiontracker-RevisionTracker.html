@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class RevisionTracker (revision-history/revisiontracker~RevisionTracker) - CKEditor 5 API docs</title>
-    <meta name="description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Follows the changes to the editor content and manages creating revisions.">
-    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class RevisionTracker. Follows the changes to the editor content and manages creating revisions.">
+    <meta name="description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: initial revision and current revision.">
+    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: initial revision and current revision. If those revisions has not been created for the document yet, they are created when the editor data is loaded. The initial revision contains the initial document data - when the document was loaded for the first time. The current revision contains all the unsaved document changes, that is changes which has not been saved yet as a concrete revision.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jan 19 2022 00:21:39 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jan 20 2022 00:22:44 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class RevisionTracker (revision-history/revisiontracker~RevisionTracker) - CKEditor 5 API docs">
-    <meta property="og:description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Follows the changes to the editor content and manages creating revisions.">
+    <meta property="og:description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: initial revision and current revision. If those revisions has not been created for the document yet, they are created when the editor data is loaded. The initial revision contains the initial document data - when the document was loaded for the first time. The current revision contains all the unsaved document changes, that is changes which has not been saved yet as a concrete revision.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/api/module_revision-history_revisiontracker-RevisionTracker.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Class RevisionTracker (revision-history/revisiontracker~RevisionTracker) - CKEditor 5 API docs">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Follows the changes to the editor content and manages creating revisions.">
+    <meta property="DC.description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: initial revision and current revision. If those revisions has not been created for the document yet, they are created when the editor data is loaded. The initial revision contains the initial document data - when the document was loaded for the first time. The current revision contains all the unsaved document changes, that is changes which has not been saved yet as a concrete revision.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/api/module_revision-history_revisiontracker-RevisionTracker.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
@@ -118,7 +118,12 @@
           <div class="types">
           </div>
           <div class="main-description__outer">
-            <div class="main-description"><p>Follows the changes to the editor content and manages creating revisions.</p></div>
+            <div class="main-description"><p>Creates and updates revisions based on changes of the editor content.</p>
+<p>There are always at least two revisions available for the document: initial revision and current revision. If those revisions
+has not been created for the document yet, they are created when the editor data is loaded.</p>
+<p>The initial revision contains the initial document data - when the document was loaded for the first time.</p>
+<p>The current revision contains all the unsaved document changes, that is changes which has not been saved yet as a concrete revision.
+The current revision is always available and it is always the &quot;top&quot; revision (most recent).</p></div>
           </div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
@@ -167,81 +172,205 @@
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-isDirty">
-                          <h3><code><a class="member-name" href="#member-isDirty">isDirty</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#isDirty</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Informs if any changes happened since the last time a revision was saved.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-isLocked">
-                          <h3><code><a class="member-name" href="#member-isLocked">isLocked</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#isLocked</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Informs if the most recent revision is <a href="module_revision-history_revision-Revision.html#member-isLocked">locked</a> or not.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>Is <code>true</code> if there are no revisions added (before the editor and the feature are fully initialized).</p>
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered" data-type="methods">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-updateRevision">
-                          <h3><code><a class="member-name" href="#function-updateRevision">updateRevision</a>( [ data ] = { [data.name], [data.isLocked] } ) &rarr;  <span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#updateRevision</code></span>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-addRevisionData">
+                          <h3><code><a class="member-name" href="#function-addRevisionData">addRevisionData</a>( revisionData ) &rarr;  <span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#addRevisionData</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
-                            <p>Updates the most recent revision with given data and recent document changes which happened since the last update.</p>
+                            <p>Creates a revision basing on given revision data and adds it to the revision tracker and revision repository.</p>
                           </div>
                           <div class="collapsing-list__content">
-<p>If the most recent revision is locked, a new revision with given data and document changes is created.</p>
-<p>See <a href="../features/revision-history/revision-history-integration.html#how-revisions-are-saved-and-updated" data-glink>revision history guide</a> to
-learn more about saving and updating revisions.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>[ data ]
+                                        <dt><code>revisionData
                                             :
  <span>Object</span></code></dt>
                                         <dd><p>Revision data.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>[ data.name ]
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>Revision name for the updated or created revision. If set, forces <code>data.isLocked</code> to be <code>true</code>.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.isLocked ]
-                                                          :
- <span>Boolean</span></code></dt>
-                                                      <dd><p>Whether to lock the revision after it is updated or created.</p>
-                                                        <p>Defaults to <code>false</code></p>
-                                                      </dd>
-                                                    </dl>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code></dt>
-                                        <dd><p>Updated or created revision.</p>
+                                        <dd><p>The created revision.</p>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-saveRevision">
+                          <h3><code><a class="member-name" href="#function-saveRevision">saveRevision</a>( [ revisionData ] = { [revisionData.name], [revisionData.id], [revisionData.attributes] }, [ version ] ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#saveRevision</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Creates and saves a new revision.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<pre><code>// Saves all the unsaved changes as a revision without a name.
+const myRevision = await revisionTracker.saveRevision();
+
+// Saves all the unsaved changes as a revision named &apos;My revision&apos;.
+const myRevision = await revisionTracker.saveRevision( { name: &apos;My revision&apos; } );
+
+// Saves a revision named &apos;My revision&apos;.
+// It will include document data with all the changes up to document version `30`.
+// The revision will be on &quot;top&quot; of the closest revision with a lower document version.
+// The revision diff will include all the changes since the previous revision up to document version `30`.
+const myRevision = await revisionTracker.saveRevision( { name: &apos;My revision&apos; }, 30 );
+</code></pre>
+<p>A new revision can be created in the middle of the revision history. In such case, already existing revisions will be
+appropriately updated.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ revisionData ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Revision data to set on the created revision.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ revisionData.name ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Revision name.</p>
+                                                      </dd>
+                                                      <dt><code>[ revisionData.id ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Revision id.</p>
+                                                      </dd>
+                                                      <dt><code>[ revisionData.attributes ]
+                                                          :
+ <span>Object</span></code></dt>
+                                                      <dd><p>Revision attributes.</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                        <dt><code>[ version ]
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p><a href="module_engine_model_document-Document.html#member-version">Document version</a> on which the revision is saved.
+If not set, the revision will be saved for the current (most recent) document state.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span></code></dt>
+                                        <dd><p>Promise that resolves with the created revision.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-update">
+                          <h3><code><a class="member-name" href="#function-update">update</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#update</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Adds the new document changes to the current revision.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>This method should be called before document data and revision data is saved (for example, in the autosave callback).</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_bufferUpdate">
+                          <h3><code><a class="member-name" href="#function-_bufferUpdate">_bufferUpdate</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#_bufferUpdate</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                          </div>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-buildRevisionData">
+                          <h3><code><a class="member-name" href="#function-buildRevisionData">buildRevisionData</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#buildRevisionData</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                          </div>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getRevisionDocumentData">
+                          <h3><code><a class="member-name" href="#function-getRevisionDocumentData">getRevisionDocumentData</a>( revision ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#getRevisionDocumentData</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Fetches document data for given revision.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>The document data is an HTML string or other format, depending on the editor configuration.
+It is the same format as returned by <a href="module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>editor.getData()</code></a>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>revision
+                                            :
+ <span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code></dt>
+                                        <dd><p>Revision for which the data should be returned.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span></code></dt>
+                                        <dd><p>Promise that resolves with the revision document data.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-sendBufferedUpdates">
+                          <h3><code><a class="member-name" href="#function-sendBufferedUpdates">sendBufferedUpdates</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#sendBufferedUpdates</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                          </div>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-setRevisionData">
+                          <h3><code><a class="member-name" href="#function-setRevisionData">setRevisionData</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisiontracker~RevisionTracker#setRevisionData</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                          </div>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -4795,6 +4924,15 @@ learn more about saving and updating revisions.</p>
                 </li>
                 <li><a href="module_real-time-collaboration_realtimecollaborativeediting-RealTimeCollaborationConfig.html">
                     <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativeediting~RealTimeCollaborationConfig"><span class="tree__item--interface tree__item__text">RealTimeCollaborationConfig</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory"><a class="tree__item--module tree__item__text" href="module_real-time-collaboration_realtimecollaborativerevisionhistory.html">realtimecollaborativerevisionhistory</a>
+              </div>
+              <ul>
+                <li><a href="module_real-time-collaboration_realtimecollaborativerevisionhistory-RealTimeCollaborativeRevisionHistory.html">
+                    <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory~RealTimeCollaborativeRevisionHistory"><span class="tree__item--class tree__item__text">RealTimeCollaborativeRevisionHistory</span></div></a>
                 </li>
               </ul>
             </li>

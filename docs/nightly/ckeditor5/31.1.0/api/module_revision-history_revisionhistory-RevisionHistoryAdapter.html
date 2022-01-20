@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Interface RevisionHistoryAdapter. The revision history adapter. The revision history adapter is an object that communicates asynchronously with the data source to fetch or save the revisions data.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface RevisionHistoryAdapter. The revision history adapter. The revision history adapter is an object that communicates asynchronously with the data source to fetch or save the revisions data. It is used internally by the revision history feature whenever revision data is required, a revision is created, or updated. The adapter is optional. See the Revision history feature integration guide to learn more. To set the adapter, overwrite the RevisionHistory#adapter property.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jan 19 2022 00:21:42 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jan 20 2022 00:22:47 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Interface RevisionHistoryAdapter (revision-history/revisionhistory~RevisionHistoryAdapter) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Interface RevisionHistoryAdapter. The revision history adapter. The revision history adapter is an object that communicates asynchronously with the data source to fetch or save the revisions data. It is used internally by the revision history feature whenever revision data is required, a revision is created, or updated. The adapter is optional. See the Revision history feature integration guide to learn more. To set the adapter, overwrite the RevisionHistory#adapter property.">
     <meta property="og:type" content="website">
@@ -158,85 +158,6 @@ or updated.</p>
           <h2 id="methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered" data-type="methods">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-addRevision">
-                          <h3><code><a class="member-name" href="#function-addRevision">addRevision</a>( data = { data.channelId, data.id, data.name, data.creatorId, data.authorsIds, data.isLocked, data.data, data.createdAt, data.attributes } ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisionhistory~RevisionHistoryAdapter#addRevision</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Called when a new revision is added.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>The method should make a query that adds a new revision in the data source and
-it should return a promise that will be resolved when the query is completed.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>data
-                                            :
- <span>Object</span></code></dt>
-                                        <dd>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>data.channelId
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>The ID of the document.</p>
-                                                      </dd>
-                                                      <dt><code>data.id
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>The ID of the revision.</p>
-                                                      </dd>
-                                                      <dt><code>data.name
-                                                          :
- <span>String</span> | <span>null</span></code></dt>
-                                                      <dd><p>The name of the revision. Can be empty (<code>null</code>).</p>
-                                                      </dd>
-                                                      <dt><code>data.creatorId
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>The ID of the user who created the revision.</p>
-                                                      </dd>
-                                                      <dt><code>data.authorsIds
-                                                          :
- <span>Array.&lt;String&gt;</span></code></dt>
-                                                      <dd><p>IDs of all users who contributed to this revision.</p>
-                                                      </dd>
-                                                      <dt><code>data.isLocked
-                                                          :
- <span>Boolean</span></code></dt>
-                                                      <dd><p>Informs if the revision is locked or not.</p>
-                                                      </dd>
-                                                      <dt><code>data.data
-                                                          :
- <span>Object</span></code></dt>
-                                                      <dd><p>The revision data (content). This is an object with all
-root names as keys (except of the <code>$graveyard</code> root) and strings as values.</p>
-                                                      </dd>
-                                                      <dt><code>data.createdAt
-                                                          :
- <span>Date</span></code></dt>
-                                                      <dd><p>The date when the revision was created.</p>
-                                                      </dd>
-                                                      <dt><code>data.attributes
-                                                          :
- <span>Object</span></code></dt>
-                                                      <dd><p>Custom revision attributes.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Promise</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-getRevision">
                           <h3><code><a class="member-name" href="#function-getRevision">getRevision</a>( data = { data.revisionId } ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisionhistory~RevisionHistoryAdapter#getRevision</code></span>
                           </h3>
@@ -275,107 +196,73 @@ root names as keys (except of the <code>$graveyard</code> root) and strings as v
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-getRevisions">
-                          <h3><code><a class="member-name" href="#function-getRevisions">getRevisions</a>( data = { data.channelId } ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisionhistory~RevisionHistoryAdapter#getRevisions</code></span>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-updateRevisions">
+                          <h3><code><a class="member-name" href="#function-updateRevisions">updateRevisions</a>( data, data[].revisionId, [ data[].name ], [ data[].creatorId ], [ data[].authorsIds ], [ data[].diffData ], [ data[].createdAt ], [ data[].fromVersion ], [ data[].toVersion ], [ data[].attributes ] ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisionhistory~RevisionHistoryAdapter#updateRevisions</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
-                            <p>Called when initializing the editor to get the revisions created for the document.</p>
+                            <p>Called when revision(s) data is added or updated.</p>
                           </div>
                           <div class="collapsing-list__content">
-<p>It should return a promise that resolves with the revisions objects.</p>
-<p>The returned objects should not include the <code>data</code> property, which will be fetched when
-needed. This ensures faster loading times and better user experience.</p>
-<p>However, if the document is small and there are not many revisions for that document,
-you may provide the <code>data</code> property in this call and in that case it will not be fetched later
-for the second time.</p>
+<p>Multiple revisions can be added and updated at the same moment. The method is passed an array with the updated data.
+Each item in the array is a data object that describes a single revision. Each data object contains revision id. If the revision
+id does not exist in your data source (database), then a new revision should be created. Otherwise, the existing revision
+should be updated with passed data.</p>
+<p>Keep in mind that the <code>data</code> parameter only contains those properties of a revision that have changed.</p>
+<p>The method should return a promise that is resolved when the update is completed.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>data
                                             :
- <span>Object</span></code></dt>
-                                        <dd>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>data.channelId
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>The ID of the document for which the revisions should be loaded.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Promise</span></code></dt>
+ <span>Array.&lt;Object&gt;</span></code></dt>
                                         <dd>
                                         </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-updateRevision">
-                          <h3><code><a class="member-name" href="#function-updateRevision">updateRevision</a>( data = { data.revisionId, [data.name], [data.authorsIds], [data.isLocked], [data.data], [data.createdAt], [data.attributes] } ) &rarr;  <span>Promise</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revisionhistory~RevisionHistoryAdapter#updateRevision</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Called when revision data is updated.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>The method should make a query that updates a given revision in the data source and
-it should return a promise that will be resolved when the update is completed.</p>
-<p>Keep in mind that the <code>data</code> parameter only contains the
-properties of a revision that have changed.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>data
+                                        <dt><code>data[].revisionId
                                             :
- <span>Object</span></code></dt>
-                                        <dd>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>data.revisionId
-                                                          :
  <span>String</span></code></dt>
-                                                      <dd><p>The ID of the revision to update.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.name ]
-                                                          :
+                                        <dd><p>The ID of the revision to update.</p>
+                                        </dd>
+                                        <dt><code>[ data[].name ]
+                                            :
  <span>String</span> | <span>null</span></code></dt>
-                                                      <dd><p>The name of the revision. Can be empty (<code>null</code>).</p>
-                                                      </dd>
-                                                      <dt><code>[ data.authorsIds ]
-                                                          :
+                                        <dd><p>The name of the revision.</p>
+                                        </dd>
+                                        <dt><code>[ data[].creatorId ]
+                                            :
+ <span>String</span> | <span>null</span></code></dt>
+                                        <dd><p>ID of the user who created the revision.</p>
+                                        </dd>
+                                        <dt><code>[ data[].authorsIds ]
+                                            :
  <span>Array.&lt;String&gt;</span></code></dt>
-                                                      <dd><p>IDs of all users who contributed to this revision.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.isLocked ]
-                                                          :
- <span>Boolean</span></code></dt>
-                                                      <dd><p>Informs if the revision is locked or not.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.data ]
-                                                          :
+                                        <dd><p>IDs of all users who contributed to this revision.</p>
+                                        </dd>
+                                        <dt><code>[ data[].diffData ]
+                                            :
  <span>Object</span></code></dt>
-                                                      <dd><p>The revision data (content). This is an object with all
+                                        <dd><p>The revision data (content). This is an object with all
 root names as keys (except of the <code>$graveyard</code> root) and strings as values.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.createdAt ]
-                                                          :
+                                        </dd>
+                                        <dt><code>[ data[].createdAt ]
+                                            :
  <span>Date</span></code></dt>
-                                                      <dd><p>The date when the revision was created.</p>
-                                                      </dd>
-                                                      <dt><code>[ data.attributes ]
-                                                          :
+                                        <dd><p>The date when the revision was created.</p>
+                                        </dd>
+                                        <dt><code>[ data[].fromVersion ]
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p>Document version from which the revision starts.</p>
+                                        </dd>
+                                        <dt><code>[ data[].toVersion ]
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p>Document version at which the revision ends.</p>
+                                        </dd>
+                                        <dt><code>[ data[].attributes ]
+                                            :
  <span>Object</span></code></dt>
-                                                      <dd><p>Custom revision attributes.</p>
-                                                      </dd>
-                                                    </dl>
+                                        <dd><p>Custom revision attributes.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -4937,6 +4824,15 @@ root names as keys (except of the <code>$graveyard</code> root) and strings as v
                 </li>
                 <li><a href="module_real-time-collaboration_realtimecollaborativeediting-RealTimeCollaborationConfig.html">
                     <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativeediting~RealTimeCollaborationConfig"><span class="tree__item--interface tree__item__text">RealTimeCollaborationConfig</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory"><a class="tree__item--module tree__item__text" href="module_real-time-collaboration_realtimecollaborativerevisionhistory.html">realtimecollaborativerevisionhistory</a>
+              </div>
+              <ul>
+                <li><a href="module_real-time-collaboration_realtimecollaborativerevisionhistory-RealTimeCollaborativeRevisionHistory.html">
+                    <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory~RealTimeCollaborativeRevisionHistory"><span class="tree__item--class tree__item__text">RealTimeCollaborativeRevisionHistory</span></div></a>
                 </li>
               </ul>
             </li>

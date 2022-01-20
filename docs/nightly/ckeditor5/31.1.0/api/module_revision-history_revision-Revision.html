@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class Revision. Represents a revision.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class Revision. Represents a revision.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jan 19 2022 00:21:39 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jan 20 2022 00:22:44 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class Revision (revision-history/revision~Revision) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class Revision. Represents a revision.">
     <meta property="og:type" content="website">
@@ -241,8 +241,8 @@
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-data">
-                          <h3><code><a class="member-name" href="#member-data">data</a> : <span>Object</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#data</code></span>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-diffData">
+                          <h3><code><a class="member-name" href="#member-diffData">diffData</a> : <span>Object</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#diffData</code></span>
                           </h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
@@ -254,6 +254,25 @@
                           </div>
                           <div class="collapsing-list__content">
 <p>An object, where the keys are the names of roots and the values are strings with the revision data for those roots.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-fromVersion">
+                          <h3><code><a class="member-name" href="#member-fromVersion">fromVersion</a> : <span>Number</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#fromVersion</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Document version from which the revision starts.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>The revision includes changes introduced by <a href="module_engine_model_operation_operation-Operation.html">operations</a>
+with base versions starting from <a href="module_revision-history_revision-Revision.html#member-fromVersion"><code>fromVersion</code></a> (inclusive) up to
+<a href="module_revision-history_revision-Revision.html#member-toVersion"><code>toVersion</code></a> (exclusive).</p>
                           </div>
                         </div>
                       </li>
@@ -274,26 +293,8 @@
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-isLocked">
-                          <h3><code><a class="member-name" href="#member-isLocked">isLocked</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#isLocked</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>A locked version cannot be further updated with the document changes.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>See <a href="../features/revision-history/revision-history-integration.html#unlocked-and-locked-revisions" data-glink>revision history guide</a> to
-learn more about unlocked and locked revisions.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-name">
-                          <h3><code><a class="member-name" href="#member-name">name</a> : <span>String</span> | <span>null</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#name</code></span>
+                          <h3><code><a class="member-name" href="#member-name">name</a> : <span>String</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#name</code></span>
                           </h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
@@ -305,6 +306,26 @@ learn more about unlocked and locked revisions.</p>
                             <p>The revision name.</p>
                           </div>
                           <div class="collapsing-list__content">
+<p>If revision has not been named yet, this is an empty string.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-toVersion">
+                          <h3><code><a class="member-name" href="#member-toVersion">toVersion</a> : <span>Number</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#toVersion</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Document version at which the revision ends.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>The revision includes changes introduced by <a href="module_engine_model_operation_operation-Operation.html">operations</a>
+with base versions starting from <a href="module_revision-history_revision-Revision.html#member-fromVersion"><code>fromVersion</code></a> (inclusive) up to
+<a href="module_revision-history_revision-Revision.html#member-toVersion"><code>toVersion</code></a> (exclusive).</p>
                           </div>
                         </div>
                       </li>
@@ -828,7 +849,7 @@ is re-set and the observables are refreshed.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
-                            <p>Sets the revision name and <a href="module_revision-history_revision-Revision.html#member-isLocked">locks</a> the revision.</p>
+                            <p>Sets the revision name.</p>
                           </div>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -1047,7 +1068,7 @@ order they were added.</p>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_update">
-                          <h3><code><a class="member-name" href="#function-_update">_update</a>( newValues = { [newValues.name], [newValues.createdAt], [newValues.data], [newValues.authors], [newValues.attributes], [newValues.isLocked] } )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#_update</code></span>
+                          <h3><code><a class="member-name" href="#function-_update">_update</a>( newValues = { [newValues.name], [newValues.createdAt], [newValues.diffData], [newValues.authors], [newValues.attributes], [newValues.toVersion], [newValues.fromVersion] }, [ isFromAdapter ] )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#_update</code></span>
                           </h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
@@ -1077,7 +1098,7 @@ order they were added.</p>
  <span>Date</span></code></dt>
                                                       <dd>
                                                       </dd>
-                                                      <dt><code>[ newValues.data ]
+                                                      <dt><code>[ newValues.diffData ]
                                                           :
  <span>Object</span></code></dt>
                                                       <dd>
@@ -1092,30 +1113,26 @@ order they were added.</p>
  <span>Object</span></code></dt>
                                                       <dd>
                                                       </dd>
-                                                      <dt><code>[ newValues.isLocked ]
+                                                      <dt><code>[ newValues.toVersion ]
                                                           :
- <span>Boolean</span></code></dt>
+ <span>Number</span></code></dt>
+                                                      <dd>
+                                                      </dd>
+                                                      <dt><code>[ newValues.fromVersion ]
+                                                          :
+ <span>Number</span></code></dt>
                                                       <dd>
                                                       </dd>
                                                     </dl>
                                         </dd>
+                                        <dt><code>[ isFromAdapter ]
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Whether the data comes from adapter (<code>true</code>) or not and need to be send
+to the adapter (<code>false</code>).</p>
+                                          <p>Defaults to <code>false</code></p>
+                                        </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-lock">
-                          <h3><code><a class="member-name" href="#function-lock">lock</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:revision-history/revision~Revision#lock</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Locks the revision.</p>
-                          </div>
-                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -1218,12 +1235,12 @@ order they were added.</p>
                                         </dd>
                                         <dt><code>value
                                             :
- <span>String</span> | <span>null</span></code></dt>
+ <span>String</span></code></dt>
                                         <dd><p>New value of the <code>name</code> property with given key or <code>null</code>, if operation should remove property.</p>
                                         </dd>
                                         <dt><code>oldValue
                                             :
- <span>String</span> | <span>null</span></code></dt>
+ <span>String</span></code></dt>
                                         <dd><p>Old value of the <code>name</code> property with given key or <code>null</code>, if property was not set before.</p>
                                         </dd>
                                       </dl>
@@ -5886,6 +5903,15 @@ observable.prop = 2; // -&gt; &apos;Value is going to be changed from 1 to 2&apo
                 </li>
                 <li><a href="module_real-time-collaboration_realtimecollaborativeediting-RealTimeCollaborationConfig.html">
                     <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativeediting~RealTimeCollaborationConfig"><span class="tree__item--interface tree__item__text">RealTimeCollaborationConfig</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory"><a class="tree__item--module tree__item__text" href="module_real-time-collaboration_realtimecollaborativerevisionhistory.html">realtimecollaborativerevisionhistory</a>
+              </div>
+              <ul>
+                <li><a href="module_real-time-collaboration_realtimecollaborativerevisionhistory-RealTimeCollaborativeRevisionHistory.html">
+                    <div class="tree__item__wrapper" data-ln="module:real-time-collaboration/realtimecollaborativerevisionhistory~RealTimeCollaborativeRevisionHistory"><span class="tree__item--class tree__item__text">RealTimeCollaborativeRevisionHistory</span></div></a>
                 </li>
               </ul>
             </li>
