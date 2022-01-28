@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class TrackChangesEditing. Provides editing part of the track changes plugin.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class TrackChangesEditing. Provides editing part of the track changes plugin.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jan 21 2022 00:23:27 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jan 28 2022 00:28:34 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class TrackChangesEditing (track-changes/trackchangesediting~TrackChangesEditing) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class TrackChangesEditing. Provides editing part of the track changes plugin.">
     <meta property="og:type" content="website">
@@ -274,24 +274,6 @@ A disabled plugin will not transform text.</p>
 editor.plugins.get( &apos;TextTransformation&apos; ).isEnabled = false;
 </code></pre>
 <p>You can also use <a href="module_core_plugin-Plugin.html#function-forceDisabled"><code>forceDisabled</code></a> method.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_isForcedDefaultExecutionBlock">
-                          <h3><code><a class="member-name" href="#member-_isForcedDefaultExecutionBlock">_isForcedDefaultExecutionBlock</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:track-changes/trackchangesediting~TrackChangesEditing#_isForcedDefaultExecutionBlock</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Informs whether the plugin is temporarily disabled and does not create new suggestions.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>When resolving a suggestion, track changes custom integration code should not be executed, so
-new suggestions are not created when other suggestion is being accepted or discarded.</p>
                           </div>
                         </div>
                       </li>
@@ -1880,50 +1862,6 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_findSuggestions">
-                          <h3><code><a class="member-name" href="#function-_findSuggestions">_findSuggestions</a>( range, [ type ] ) &rarr;  <span>Array.&lt;Object&gt;</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:track-changes/trackchangesediting~TrackChangesEditing#_findSuggestions</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Returns all suggestions of passed type (if defined) which ranges are intersecting or have equal end/start positions.
-For each suggestion a meta object is returned with additional data about how suggestion interacts with given range.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>Returned value is an array with objects, each object has two properties:
-<a href="module_track-changes_suggestion-Suggestion.html"><code>suggestion</code></a> and <code>meta</code> object, which contains:</p>
-<ul>
-<li><code>isOwn</code> - <code>true</code> if the suggestion is created by the local user, <code>false</code> otherwise,</li>
-<li><code>isNextTo</code> - <code>true</code> if the suggestion ends/starts where given <code>range</code> starts/ends, <code>false</code> if suggestion intersects with <code>range</code>,</li>
-<li><code>isInsideObject</code> - <code>true</code> if the suggestion is contained in <code>range</code> and is in an element defined as object in schema,</li>
-<li><code>containsRangeInObject</code> - <code>true</code> if the suggestion contains <code>range</code> and <code>range</code> is in an element defined as object in schema.</li>
-</ul>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>range
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                        <dt><code>[ type ]
-                                            :
- <span>'insertion'</span> | <span>'deletion'</span> | <span>'formatInline'</span> | <span>'formatBlock'</span> | <span>null</span></code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_removeEventListener">
                           <h3><code><a class="member-name" href="#function-_removeEventListener">_removeEventListener</a>( event, callback )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:track-changes/trackchangesediting~TrackChangesEditing#_removeEventListener</code></span>
@@ -1951,48 +1889,6 @@ For each suggestion a meta object is returned with additional data about how sug
                                         <dd><p>The function to stop being called.</p>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_splitMarkerName">
-                          <h3><code><a class="member-name" href="#function-_splitMarkerName">_splitMarkerName</a>( name ) &rarr;  <span>Object</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:track-changes/trackchangesediting~TrackChangesEditing#_splitMarkerName</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Helper for splitting suggestion marker name into named pieces.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>name
-                                            :
- <span>String</span></code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>parts</p>
-                                        </dd>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>parts.group</p>
-                                        </dd>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>parts.type</p>
-                                        </dd>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>parts.id</p>
-                                        </dd>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>parts.authorId</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>

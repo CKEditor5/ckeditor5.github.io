@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const t={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-paste-plain-text"),{toolbar:{items:["heading","|","fontSize","fontFamily","fontColor","fontBackgroundColor","|","bold","italic","underline","strikethrough","|","undo","redo"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},fontFamily:{supportAllValues:!0},fontSize:{options:[10,12,14,"default",18,20,22],supportAllValues:!0},placeholder:"Paste the content here to test the feature.",cloudServices:t}).then((t=>{window.editor=t,window.preventPasteFromOfficeNotification=!1})).catch((t=>{console.error(t.stack)}))})();

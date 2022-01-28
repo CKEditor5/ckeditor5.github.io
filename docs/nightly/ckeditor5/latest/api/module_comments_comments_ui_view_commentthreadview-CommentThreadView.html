@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class CommentThreadView. The default view for comment thread.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class CommentThreadView. The default view for comment thread.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jan 21 2022 00:23:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jan 28 2022 00:28:28 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class CommentThreadView (comments/comments/ui/view/commentthreadview~CommentThreadView) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class CommentThreadView. The default view for comment thread.">
     <meta property="og:type" content="website">
@@ -400,60 +400,6 @@ the view in DOM, which is <a href="module_ui_view-View.html#function-render">ren
                         </div>
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_config">
-                          <h3><code><a class="member-name" href="#member-_config">_config</a> : <span>Object</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_config</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>The configuration for the whole comment thread view.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_localUser">
-                          <h3><code><a class="member-name" href="#member-_localUser">_localUser</a> : <span><a class="collapsing-list__type" href="module_collaboration-core_users-User.html">User</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_localUser</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Local user.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_model">
-                          <h3><code><a class="member-name" href="#member-_model">_model</a> : <span><a class="collapsing-list__type" href="module_comments_comments_commentsrepository-CommentThread.html">CommentThread</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_model</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Comment thread model.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-_unboundChildren">
                           <h3><code><a class="member-name" href="#member-_unboundChildren">_unboundChildren</a> : <span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_unboundChildren</code></span>
                           </h3>
@@ -531,6 +477,59 @@ into the <a href="module_ui_template-Template.html#member-children"><code>childr
                                         <dd><p>The localization services instance.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_getTemplate">
+                          <h3><code><a class="member-name" href="#function-_getTemplate">_getTemplate</a>() &rarr;  <span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_getTemplate</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Returns a template definition that will be passed to <a href="module_ui_view-View.html#function-setTemplate"><code>setTemplate</code></a>.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+<p>Overwrite this method if you want to set a custom template for the comment thread view.</p>
+<p>The default template looks as follows:</p>
+<pre><code>const bind = this.bindTemplate;
+return {
+	tag: &apos;div&apos;,
+
+	attributes: {
+		class: [
+			&apos;ck-thread&apos;,
+			bind.if( &apos;isActive&apos;, &apos;ck-thread--active&apos; ),
+			bind.if( &apos;isConfirm&apos;, &apos;ck-thread--remove-confirmation&apos; ),
+			bind.to( &apos;actionIndicator&apos;, value =&gt; value ? `ck-thread--${ value }` : &apos;&apos; )
+		],
+		&apos;data-thread-id&apos;: this._model.id,
+		// Needed for managing focus after adding new comment.
+		tabindex: -1
+	},
+
+	children: [
+		{
+			tag: &apos;div&apos;,
+			attributes: {
+				class: &apos;ck-thread__container&apos;
+			},
+			children: [
+				this.commentsListView,
+				this.commentThreadInputView
+			]
+		}
+	]
+};
+</code></pre>
+<p>See the <a href="../features/collaboration/annotations/annotations-custom-view.html" data-glink>Annotation custom view guide</a> to learn more about
+the possible annotation customizations.</p>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></dt>
+                                        <dd><p>The definition of a comment thread view's template.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -1526,62 +1525,6 @@ order they were added.</p>
                                           <p>Defaults to <code>{}</code></p>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_getTemplate">
-                          <h3><code><a class="member-name" href="#function-_getTemplate">_getTemplate</a>() &rarr;  <span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentthreadview~CommentThreadView#_getTemplate</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Returns a template definition that will be passed to <a href="module_ui_view-View.html#function-setTemplate"><code>setTemplate</code></a>.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>Overwrite this method if you want to set a custom template for the comment thread view.</p>
-<p>The default template looks as follows:</p>
-<pre><code>const bind = this.bindTemplate;
-return {
-	tag: &apos;div&apos;,
-
-	attributes: {
-		class: [
-			&apos;ck-thread&apos;,
-			bind.if( &apos;isActive&apos;, &apos;ck-thread--active&apos; ),
-			bind.if( &apos;isConfirm&apos;, &apos;ck-thread--remove-confirmation&apos; ),
-			bind.to( &apos;actionIndicator&apos;, value =&gt; value ? `ck-thread--${ value }` : &apos;&apos; )
-		],
-		&apos;data-thread-id&apos;: this._model.id,
-		// Needed for managing focus after adding new comment.
-		tabindex: -1
-	},
-
-	children: [
-		{
-			tag: &apos;div&apos;,
-			attributes: {
-				class: &apos;ck-thread__container&apos;
-			},
-			children: [
-				this.commentsListView,
-				this.commentThreadInputView
-			]
-		}
-	]
-};
-</code></pre>
-<p>See the <a href="../features/collaboration/annotations/annotations-custom-view.html" data-glink>Annotation custom view guide</a> to learn more about
-the possible annotation customizations.</p>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></dt>
-                                        <dd><p>The definition of a comment thread view's template.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>

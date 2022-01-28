@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const e={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"},t=[...ClassicEditor.defaultConfig.toolbar.items];t.splice(t.indexOf("uploadImage"),1,"insertImage"),ClassicEditor.create(document.querySelector("#snippet-image-insert-via-url"),{removePlugins:["ImageToolbar","ImageCaption","ImageStyle","ImageResize","LinkImage","AutoImage"],toolbar:{items:t},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},cloudServices:e}).then((e=>{window.editorInsertImageViaUrl=e})).catch((e=>{console.error(e)}))})();

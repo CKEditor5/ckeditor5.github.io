@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jan 21 2022 00:23:25 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jan 28 2022 00:28:32 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class RealTimeCollaborationClient (real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class RealTimeCollaborationClient. A plugin that handles the real-time collaborative editing. There is no need to add it to the editor's config.plugins list as the RealTimeCollaborativeEditing already loads it.">
     <meta property="og:type" content="website">
@@ -302,26 +302,6 @@ connected to the same editing session.</p>
                             <p>The ID of the current editing session to which the client is connected (or was connected before losing the connection).</p>
                           </div>
                           <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_isPendingUpdate">
-                          <h3><code><a class="member-name" href="#member-_isPendingUpdate">_isPendingUpdate</a> : <span>Boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient#_isPendingUpdate</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray badge--observable "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>When set to <code>true</code> it means that the plugin is about to send an update to the server.
-When there is an unfinished update, the plugin should not send any other requests
-and also should not handle other server updates.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>It is also used in tests to detect when update has finished.</p>
                           </div>
                         </div>
                       </li>
@@ -1230,69 +1210,9 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-reconnect">
-                          <h3><code><a class="member-name" href="#function-reconnect">reconnect</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient#reconnect</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Reconnects the client to the document.</p>
-                          </div>
-                          <div class="collapsing-list__content">
-<p>If the document has been flushed (editing session for that document was closed) in the meantime, the editing session is recreated
-using the local operations history.</p>
-<p>There are several scenarios where the reconnection can fail because it is impossible to synchronize local document state with the
-server editing session or with the document state saved in the database. In those situations, the editor switches to read-only
-mode and a <a href="module_ui_notification_notification-Notification.html"><code>Notification</code></a> is created.</p>
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered" data-type="events">
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event-change:_isPendingUpdate">
-                          <h3><code><a class="member-name" href="#event-change:_isPendingUpdate">change:_isPendingUpdate</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient#event:change:_isPendingUpdate</code></span>
-                          </h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__excerpt">
-                            <p>Fired when the <code>_isPendingUpdate</code> property changed value.</p>
-                          </div>
-                          <div class="collapsing-list__content"><p></p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code>name
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the changed property (<code>_isPendingUpdate</code>).</p>
-                                        </dd>
-                                        <dt><code>value
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>New value of the <code>_isPendingUpdate</code> property with given key or <code>null</code>, if operation should remove property.</p>
-                                        </dd>
-                                        <dt><code>oldValue
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>Old value of the <code>_isPendingUpdate</code> property with given key or <code>null</code>, if property was not set before.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-change:isEnabled">
                           <h3><code><a class="member-name" href="#event-change:isEnabled">change:isEnabled</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:real-time-collaboration/realtimecollaborationclient~RealTimeCollaborationClient#event:change:isEnabled</code></span>

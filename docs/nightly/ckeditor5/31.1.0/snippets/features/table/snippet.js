@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */ClassicEditor.create(document.querySelector("#snippet-table"),{table:{contentToolbar:["tableColumn","tableRow","mergeTableCells"]},image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:side","|","toggleImageCaption","imageTextAlternative"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((e=>{window.editor=e,window.attachTourBalloon({target:window.findToolbarItem(e.ui.view.toolbar,(e=>e.buttonView&&e.buttonView.label&&"Insert table"===e.buttonView.label)),text:"Click to create a table.",editor:e,tippyOptions:{placement:"bottom-start"}})})).catch((e=>{console.error(e.stack)}));
