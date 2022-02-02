@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Feb 01 2022 00:30:44 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Feb 02 2022 00:31:21 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Ordered and unordered lists - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -426,7 +426,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/1.18.0/img/book.svg" alt="guide">Lists
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ordered-and-unordered-lists">Ordered and unordered lists</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#list-properties">List properties</a><ol><li><a href="#list-start-index">List start index</a><ol><li><a href="#demo-2">Demo</a></li></ol></li><li><a href="#reversed-list">Reversed list</a><ol><li><a href="#demo-3">Demo</a></li></ol></li><li><a href="#list-styles">List styles</a><ol><li><a href="#demo-4">Demo</a></li></ol></li></ol></li><li><a href="#list-indentation">List indentation</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a><ol><li><a href="#list-properties-2">List properties</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ordered-and-unordered-lists">Ordered and unordered lists</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#list-properties">List properties</a><ol><li><a href="#list-styles">List styles</a><ol><li><a href="#demo-2">Demo</a></li></ol></li><li><a href="#list-start-index">List start index</a><ol><li><a href="#demo-3">Demo</a></li></ol></li><li><a href="#reversed-list">Reversed list</a><ol><li><a href="#demo-4">Demo</a></li></ol></li></ol></li><li><a href="#list-indentation">List indentation</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a><ol><li><a href="#list-properties-2">List properties</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../../api/module_list_list-List.html">list</a> feature lets you create ordered (numbered) and unordered (bulleted) lists. This allows for better structuring and presenting specific content such as enumerating elements, creating tables of content or <a href="todo-lists.html">to-do lists</a>.</p>
 <p>Lists are useful when you want to emphasize selected information, highlight a series of steps, enumerate items of a collection. They draw the reader&#x2019;s attention and, just like <a href="../block-quote.html">block quotes</a> or <a href="../indent.html">indentation</a>, give the text a structure and breathing room. They help visually separate passages for a better reading experience and make skimming for information easier.</p>
 <p>You may find additional interesting details and examples in the <a href="https://ckeditor.com/blog/Feature-of-the-month-Lists-in-CKEditor-5/">Lists in CKEditor 5</a> blog post after reading this guide.</p>
@@ -462,12 +462,47 @@
 </div>
 </div>
 <h2 id="list-properties"><a class="headerlink" href="#list-properties">#</a> List properties</h2>
-<p>Beside the basic functionality of creating the ordered and unordered list, CKEditor 5 offers additional formatting tools that allow controlling the lists.</p>
+<p>Beside the basic functionality of creating the ordered and unordered lists, CKEditor 5 offers additional formatting tools that allow controlling the lists. Features such as more styles for list markers, setting the start index or reversing the list order can be enabled separately or all together. Check out the individual demos below or see all list properties working together in the <a href="../../examples/builds-custom/full-featured-editor.html">full-featured editor example</a>.</p>
 <div class="info-box notice notice__info"><p>The <a href="../../api/module_list_listproperties-ListProperties.html">list properties feature</a> is enabled by default in the <a href="../../builds/guides/predefined-builds/overview.html#document-editor">document editor build</a> only. See the <a href="#list-properties-2">installation</a> section to learn how to enable it in your editor.</p></div>
+<h3 id="list-styles"><a class="headerlink" href="#list-styles">#</a> List styles</h3>
+<p>The list style feature introduces some more styles for the list item markers. When <a href="../../api/module_list_listproperties-ListPropertiesConfig.html#member-styles">enabled</a>, it adds 3 styles for unordered lists and 6 styles for ordered lists to choose from. The user will be able to set or change the list style via the dropdown that opens when you click the arrow next to the appropriate list button in the toolbar.</p>
+<h4 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h4>
+<p>In the editor below use the ordered or unordered list dropdown to choose the desired marker type for each list.</p>
+<div class="live-snippet"><div id="snippet-lists-styles">
+    <h2>Modern manned spacecraft</h2>
+    <ol style="list-style-type:upper-roman;">
+        <li>Soyuz (Soviet/Russian)</li>
+            <ol style="list-style-type:decimal;">
+                <li>Early stage (all retired)</li>
+                    <ol style="list-style-type:lower-latin;">
+                        <li>7K-OK</li>
+                        <li>7KT-OK</li>
+                        <li>7K-T</li>
+                        <li>7K-TM</li>
+                    </ol>
+                <li>Soyuz T (retired)</li>
+                <li>Soyuz TM (retired)</li>
+                <li>Soyuz TMA (retired)</li>
+                <li>Soyuz TMA-M (retired)</li>
+                <li>Soyuz MS</li>
+            </ol>
+        <li>STS orbiter (American; all retired)</li>
+            <ol style="list-style-type:decimal;">
+                <li>Columbia</li>
+                <li>Challenger</li>
+                <li>Discovery</li>
+                <li>Atlantis</li>
+                <li>Endeavour</li>
+            </ol>
+        <li>SpaceX Crew Dragon (American)</li>
+        <li>Shenzhou (Chinese)</li>
+    </ol>
+</div>
+</div>
 <h3 id="list-start-index"><a class="headerlink" href="#list-start-index">#</a> List start index</h3>
 <p>The list start index feature allows the user to choose the starting point of an ordered list. By default, this would be <code>1</code> (or <code>A</code>, or <code>I</code> &#x2014; see the <a href="#list-styles">list styles section</a>), but in certain situations it may be desired to start a list with some other digit or letter.</p>
 <p>When this feature is <a href="../../api/module_list_listproperties-ListPropertiesConfig.html#member-startIndex">enabled</a>, an additional dropdown option is available in the ordered list toolbar button. Thanks to it, the user may set or change the starting marker.</p>
-<h4 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h4>
+<h4 id="demo-3"><a class="headerlink" href="#demo-3">#</a> Demo</h4>
 <p>In the editor below, notice how the ordering is continued in the second list. You can go to the first item of the last list and use the ordered list dropdown input field to set the start index to achieve continuous numbering of spaceships.</p>
 <div class="live-snippet"><div id="snippet-lists-index">
     <h2>A list of human spacecraft</h2>
@@ -501,7 +536,7 @@
 <h3 id="reversed-list"><a class="headerlink" href="#reversed-list">#</a> Reversed list</h3>
 <p>The reversed list feature lets the user reverse the numbering order of a list, changing it from ascending to descending. This is especially useful in countdowns and things-to-do lists that need to reproduce steps in a reversed order (for example, in a disassembling instruction in an owners manual).</p>
 <p>When this feature is <a href="../../api/module_list_listproperties-ListPropertiesConfig.html#member-reversed">enabled</a>, an additional dropdown switch is available in the ordered list toolbar button. Thanks to it,  the user may easily reverse the order of a list with a single click.</p>
-<h4 id="demo-3"><a class="headerlink" href="#demo-3">#</a> Demo</h4>
+<h4 id="demo-4"><a class="headerlink" href="#demo-4">#</a> Demo</h4>
 <p>Click the second list and use the ordered list dropdown switch to choose whether it should be reversed.</p>
 <div class="live-snippet"><div id="snippet-lists-reversed">
     <h2>Replacing the screen  of your Nintendo Game Boy</h2>
@@ -529,41 +564,6 @@
 	<li>Fasten the six triwing screws inside the battery compartment and on the back of the case.</li>
 	<li>Reload three AA-size batteries, close the compartment cover and insert your favorite game cartridge to play!</li>
 </ol>
-</div>
-</div>
-<h3 id="list-styles"><a class="headerlink" href="#list-styles">#</a> List styles</h3>
-<p>The list style feature introduces some more styles for the list item markers. When <a href="../../api/module_list_listproperties-ListPropertiesConfig.html#member-styles">enabled</a>, it adds 3 styles for unordered lists and 6 styles for ordered lists to choose from. The user will be able to set or change the list style via the dropdown that opens when you click the arrow next to the appropriate list button in the toolbar.</p>
-<h4 id="demo-4"><a class="headerlink" href="#demo-4">#</a> Demo</h4>
-<p>In the editor below use the ordered or unordered list dropdown to choose the desired marker type for each list.</p>
-<div class="live-snippet"><div id="snippet-lists-styles">
-    <h2>Modern manned spacecraft</h2>
-    <ol style="list-style-type:upper-roman;">
-        <li>Soyuz (Soviet/Russian)</li>
-            <ol style="list-style-type:decimal;">
-                <li>Early stage (all retired)</li>
-                    <ol style="list-style-type:lower-latin;">
-                        <li>7K-OK</li>
-                        <li>7KT-OK</li>
-                        <li>7K-T</li>
-                        <li>7K-TM</li>
-                    </ol>
-                <li>Soyuz T (retired)</li>
-                <li>Soyuz TM (retired)</li>
-                <li>Soyuz TMA (retired)</li>
-                <li>Soyuz TMA-M (retired)</li>
-                <li>Soyuz MS</li>
-            </ol>
-        <li>STS orbiter (American; all retired)</li>
-            <ol style="list-style-type:decimal;">
-                <li>Columbia</li>
-                <li>Challenger</li>
-                <li>Discovery</li>
-                <li>Atlantis</li>
-                <li>Endeavour</li>
-            </ol>
-        <li>SpaceX Crew Dragon (American)</li>
-        <li>Shenzhou (Chinese)</li>
-    </ol>
 </div>
 </div>
 <h2 id="list-indentation"><a class="headerlink" href="#list-indentation">#</a> List indentation</h2>
@@ -1004,9 +1004,9 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../../snippets/assets.js"></script>
     <script src="../../snippets/features/lists-source/snippet.js"></script>
     <script src="../../snippets/features/lists-basic/snippet.js"></script>
+    <script src="../../snippets/features/lists-style/snippet.js"></script>
     <script src="../../snippets/features/lists-index/snippet.js"></script>
     <script src="../../snippets/features/lists-reversed/snippet.js"></script>
-    <script src="../../snippets/features/lists-style/snippet.js"></script>
     <script src="../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
