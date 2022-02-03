@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 02 2022 00:31:36 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Feb 03 2022 00:32:47 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Migration to v32.x - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -246,14 +246,137 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Installation</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.18.0/img/book.svg" alt="guide">Migration to CKEditor 5 v32.0.0
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#bump-of-minimal-version-of-nodejs-to-14x">Bump of minimal version of Node.js to 14.x</a></li><li><a href="#the-liststyle-plugin-is-now-obsolete">The ListStyle plugin is now obsolete</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#migration-to-ckeditor-5-v3200-2">Migration to CKEditor 5 v32.0.0</a></li><li><a href="#bump-of-minimal-version-of-nodejs-to-14x">Bump of minimal version of Node.js to 14.x</a></li><li><a href="#the-liststyle-plugin-is-now-deprecated">The ListStyle plugin is now deprecated</a></li><li><a href="#revision-history">Revision history</a><ol><li><a href="#revisions-data">Revisions data</a></li><li><a href="#revision-history-adapter">Revision history adapter</a></li><li><a href="#revision-history-api-and-autosave-integration">Revision history API and autosave integration</a></li></ol></li></ol></nav>
 <div class="info-box notice"><p>When updating your CKEditor 5 installation, make sure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
-<p>For the entire list of changes introduced in version 32.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/blob/master/CHANGELOG.md#3200-202?-??-??" target="_blank" rel="noopener">changelog for CKEditor 5 v32.0.0</a>.</p>
+<h2 id="migration-to-ckeditor-5-v3200-2"><a class="headerlink" href="#migration-to-ckeditor-5-v3200-2">#</a> Migration to CKEditor 5 v32.0.0</h2>
+<p>For the entire list of changes introduced in version 32.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/blob/master/CHANGELOG.md#3200-2022-01-26" target="_blank" rel="noopener">changelog for CKEditor 5 v32.0.0</a>.</p>
 <p>Listed below are the most important changes that require your attention when upgrading to CKEditor 5 v32.0.0.</p>
-<h2 id="bump-of-minimal-version-of-nodejs-to-14x"><a class="headerlink" href="#bump-of-minimal-version-of-nodejs-to-14x">#</a> Bump of minimal version of <code>Node.js</code> to 14.x</h2>
-<p><a href="https://nodejs.org/en/about/releases/" target="_blank" rel="noopener"><code>Node.js</code> 12 ends its long-term support in April 2022</a>. Because of that, starting from v32.0.0, the minimal version of <code>Node.js</code> required by CKEditor 5 will be 14.</p>
-<h2 id="the-liststyle-plugin-is-now-obsolete"><a class="headerlink" href="#the-liststyle-plugin-is-now-obsolete">#</a> The <code>ListStyle</code> plugin is now obsolete</h2>
-<p>Due to the introduction of the new <a href="../../../features/lists/lists.html#list-properties">list properties</a>, the <code>ListStyle</code> plugin used so far became obsolete as it was replaced by the <a href="../../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> plugin. Please refer to the <a href="../../../features/lists/lists.html#installation">installation guide</a> for details on how to handle the upgrade.</p>
+<h2 id="bump-of-minimal-version-of-nodejs-to-14x"><a class="headerlink" href="#bump-of-minimal-version-of-nodejs-to-14x">#</a> Bump of minimal version of Node.js to 14.x</h2>
+<p><a href="https://nodejs.org/en/about/releases/" target="_blank" rel="noopener">Node.js 12 ends its long-term support in April 2022</a>. Because of that, starting from v32.0.0, the minimal version of Node.js required by CKEditor 5 will be 14.</p>
+<h2 id="the-liststyle-plugin-is-now-deprecated"><a class="headerlink" href="#the-liststyle-plugin-is-now-deprecated">#</a> The <code>ListStyle</code> plugin is now deprecated</h2>
+<p>Due to the introduction of the new <a href="../../../features/lists/lists.html#list-properties">list properties</a>, the <code>ListStyle</code> plugin used so far became obsolete as it was replaced by the <a href="../../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> plugin. Please refer to the <a href="../../../features/lists/lists.html#">list feature installation guide</a> for details on how to handle the upgrade.</p>
+<h2 id="revision-history"><a class="headerlink" href="#revision-history">#</a> Revision history</h2>
+<p>The revision history feature was adapted to future support for real-time editing integration. Unfortunately, this introduced several breaking changes for the non-real-time integrations as well. The migration instructions are below. We also recommend revisiting the <a href="../../../features/revision-history/revision-history-integration.html">revision history integration guide</a>.</p>
+<p>In case of any problems with migrating to CKEditor 5 v32.0.0, please <a href="https://ckeditor.com/contact/">contact our support team</a>.</p>
+<h3 id="revisions-data"><a class="headerlink" href="#revisions-data">#</a> Revisions data</h3>
+<p>The revision model has changed along with the list of properties stored in the database. Below is the summary of the changes:</p>
+<ul>
+<li>New properties <a href="../../../api/module_revision-history_revision-Revision.html#member-fromVersion"><code>#fromVersion</code></a> and <a href="../../../api/module_revision-history_revision-Revision.html#member-toVersion"><code>#toVersion</code></a> were added and need to be stored in your database. For existing revisions, set the value of these properties.</li>
+<li>Revision ID for the initial revision will be set to the document ID or to the <code>&apos;initial&apos;</code> value. Make sure that you either set the <code>collaboration.channelId</code> configuration variable or allow for storing multiple revisions with the same ID (among different documents).</li>
+<li>The <code>Revision#isLocked</code> property was removed as it is no longer needed. You may remove it from the revisions saved in your database.</li>
+<li>The <code>Revision#data</code> property was renamed to <a href="../../../api/module_revision-history_revision-Revision.html#member-diffData"><code>#diffData</code></a>. Rename this property for revisions stored in your database.</li>
+</ul>
+<p>Please <strong>adjust your integration so that the revision data is properly saved in your database</strong>.</p>
+<h3 id="revision-history-adapter"><a class="headerlink" href="#revision-history-adapter">#</a> Revision history adapter</h3>
+<p>The adapter interface has changed:</p>
+<p>The <code>RevisionHistoryAdapter#getRevisions()</code> method was removed. You will need to fetch and add the revisions data directly in the adapter:</p>
+<pre class="highlight"><code class="js">/* Before v32.0.0 */
+class RevisionHistoryIntegration extends Plugin {
+    init() {
+        const revisionHistory = editor.plugins.get( &apos;RevisionHistory&apos; );
+
+    	// ...
+
+        revisionHistory.adapter = {
+            getRevisions: () =&gt; {
+                return this._getRevisions();
+            }
+            // ...
+        };
+    }
+
+    _getRevisions() {
+    	// An example of an asynchronous call to the database
+        // that fetches the revisions data for the document.
+        // Do not return the `diffData` property for these revisions!
+    	return fetch( /* ... */ ).then( /* ... */ );
+    }
+}
+</code></pre>
+<pre class="highlight"><code class="js">/* After v32.0.0 */
+class RevisionHistoryIntegration extends Plugin {
+    async init() {
+        const revisionHistory = editor.plugins.get( &apos;RevisionHistory&apos; );
+
+        // ...
+
+        revisionHistory.adapter = {
+            // ...
+        };
+
+        const revisionsData = await this._getRevisions();
+
+        for ( const revisionData of revisionsData ) {
+            revisionHistory.addRevisionData( revisionData );
+        }
+    }
+
+    _getRevisions() {
+        return fetch( /* ... */ ).then( /* ... */ );
+    }
+}
+</code></pre>
+<p>Keep in mind that you can still pass the revisions data (<code>revisionsData</code>) straight in the web page source instead of making an asynchronous call.</p>
+<p>The adapter methods <code>#addRevision()</code> and <code>#updateRevision()</code> were removed in favor of <a href="../../../api/module_revision-history_revisionhistory-RevisionHistoryAdapter.html#function-updateRevisions"><code>#updateRevisions()</code></a> which needs to be implemented. The new method updates and/or saves one or multiple revisions in a single request. The input parameter is an array of objects containing revisions data. These may be either new revisions or existing revisions. Every object contains a revision ID, which should be checked to verify if a given revision already exists in your database. For new revisions, the data object contains all revision data. For existing revisions, only updated properties are passed:</p>
+<pre class="highlight"><code class="js">/* Before v32.0.0 */
+const revisionHistory = editor.plugins.get( &apos;RevisionHistory&apos; );
+
+revisionHistory.adapter = {
+    // ...
+    addRevision: ( revisionData ) =&gt; {
+        // `revisionData` contains the data for a new revision.
+        // Make an asynchronous call to you backend that will save the revision.
+        return fetch( /* ... */ );
+    },
+    updateRevision: ( revisionData ) =&gt; {
+        // `revisionData` contains updated data for an existing revision.
+        // Make an asynchronous call to you backend that will update the revision.
+        return fetch( /* ... */ );
+    }
+};
+</code></pre>
+<pre class="highlight"><code class="js">/* After v32.0.0 */
+const revisionHistory = editor.plugins.get( &apos;RevisionHistory&apos; );
+
+revisionHistory.adapter = {
+    // ...
+    updateRevisions: ( revisionsData ) =&gt; {
+        // `revisionsData` contains one or multiple
+        // revision data objects for new and/or updated revisions.
+        //
+        // Make one asynchronous call to your backend that will update all the revisions.
+        return fetch( /* ... */ );
+    }
+};
+</code></pre>
+<h3 id="revision-history-api-and-autosave-integration"><a class="headerlink" href="#revision-history-api-and-autosave-integration">#</a> Revision history API and autosave integration</h3>
+<p>The <code>RevisionTracker#updateRevision()</code> method was removed in favor of <a href="../../../api/module_revision-history_revisiontracker-RevisionTracker.html#function-update"><code>#update()</code></a> and <a href="../../../api/module_revision-history_revisiontracker-RevisionTracker.html#function-saveRevision"><code>#saveRevision()</code></a>.</p>
+<p>Earlier, <code>#updateRevision()</code> could either update the most recent revision or create a new revision (if the most recent revision was locked earlier). Now, the <a href="../../../features/revision-history/revision-history-integration.html#how-revisions-are-updated-and-saved">revision lifecycle</a> was simplified and &#x201C;locking&#x201D; is no longer needed. The <code>#updateRevision()</code> utility was split into two, more &#x201C;precise&#x201D; methods, that more clearly communicate the outcome of their use. We believe that the new approach is easier to understand.</p>
+<pre class="highlight"><code class="js">/* Before v32.0.0 */
+const revisionTracker = editor.plugins.get( &apos;RevisionTracker&apos; );
+
+// Update the most recent revision with the newest document changes:
+revisionTracker.updateRevision();
+// Lock the most recent revision so that new changes cannot be added to it:
+revisionTracker.updateRevision( { name: &apos;My revision&apos;, isLocked: true } );
+// New changes would be added to a new revision
+// (with or without specifying the revision name):
+revisionTracker.updateRevision();
+// Naming revision automatically locked it.
+revisionTracker.updateRevision( { name: &apos;Another revision&apos; } );
+</code></pre>
+<pre class="highlight"><code class="js">/* After v32.0.0 */
+const revisionTracker = editor.plugins.get( &apos;RevisionTracker&apos; );
+
+// Update the most recent revision with the unsaved document changes:
+revisionTracker.update();
+// Save all unsaved changes as a new revision:
+revisionTracker.saveRevision( { name: &apos;My revision&apos; } );
+// After some time, new changes can be added as unsaved changes or as a new revision:
+revisionTracker.update();
+revisionTracker.saveRevision( { name: &apos;Another revision&apos; } );
+</code></pre>
+<p>These methods may have been used in your autosave integration. Please refer to the documentation to see updated <a href="../../../features/revision-history/revision-history-integration.html#autosave-integration">autosave integration examples</a>.</p>
 
         </div>
       </section>
