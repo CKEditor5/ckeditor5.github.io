@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 09 2022 00:34:21 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Feb 11 2022 00:35:25 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Ordered and unordered lists - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -615,21 +615,21 @@ ClassicEditor
     .catch( ... );
 </code></pre>
 <div class="info-box notice notice__info"><p>Read more about <a href="../../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
-<div class="info-box notice notice__warning"><p>The <a href="../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> feature overrides UI button implementations from the <a href="../../api/module_list_listui-ListUI.html"><code>ListUI</code></a>.</p></div>
+<div class="info-box notice notice__warning"><p>The <a href="../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> feature overrides UI button implementations from the <a href="../../api/module_list_list_listui-ListUI.html"><code>ListUI</code></a>.</p></div>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../../api/module_list_list-List.html"><code>List</code></a> plugin registers:</p>
 <ul>
-<li>The <a href="../../api/module_list_listcommand-ListCommand.html"><code>&apos;numberedList&apos;</code></a> command.</li>
-<li>The <a href="../../api/module_list_listcommand-ListCommand.html"><code>&apos;bulletedList&apos;</code></a> command.</li>
-<li>The <a href="../../api/module_list_indentcommand-IndentCommand.html"><code>&apos;indentList&apos;</code></a> command.</li>
-<li>The <a href="../../api/module_list_indentcommand-IndentCommand.html"><code>&apos;outdentList&apos;</code></a> command.</li>
+<li>The <a href="../../api/module_list_list_listcommand-ListCommand.html"><code>&apos;numberedList&apos;</code></a> command.</li>
+<li>The <a href="../../api/module_list_list_listcommand-ListCommand.html"><code>&apos;bulletedList&apos;</code></a> command.</li>
+<li>The <a href="../../api/module_list_list_indentcommand-IndentCommand.html"><code>&apos;indentList&apos;</code></a> command.</li>
+<li>The <a href="../../api/module_list_list_indentcommand-IndentCommand.html"><code>&apos;outdentList&apos;</code></a> command.</li>
 <li>The <code>&apos;numberedList&apos;</code> UI button.</li>
 <li>The <code>&apos;bulletedList&apos;</code> UI button.</li>
 </ul>
 <p>The <a href="../../api/module_list_listproperties-ListProperties.html"><code>ListProperties</code></a> plugin registers:</p>
 <ul>
 <li>
-<p>The <a href="../../api/module_list_liststylecommand-ListStyleCommand.html"><code>&apos;listStyle&apos;</code></a> command that accepts the <code>type</code> of the list style to set. If not set, is uses the default marker (usually decimal).</p>
+<p>The <a href="../../api/module_list_listproperties_liststylecommand-ListStyleCommand.html"><code>listStyle</code></a> command that accepts the <code>type</code> of the list style to set. If not set, is uses the default marker (usually decimal).</p>
 <pre class="highlight"><code class="js">editor.execute( &apos;listStyle&apos;, { type: &apos;lower-roman&apos; } );
 </code></pre>
 <p>The available types are:</p>
@@ -639,20 +639,20 @@ ClassicEditor
 </ul>
 </li>
 <li>
-<p>The <a href="../../api/module_list_liststartcommand-ListStartCommand.html"><code>&apos;listStart&apos;</code></a> command which is a Boolean and defaults to <code>false</code> (meaning a list starts with <code>1</code>). If enabled, it accepts a numerical value for the <code>start</code> attribute.</p>
+<p>The <a href="../../api/module_list_listproperties_liststartcommand-ListStartCommand.html"><code>listStart</code></a> command which is a Boolean and defaults to <code>false</code> (meaning a list starts with <code>1</code>). If enabled, it accepts a numerical value for the <code>start</code> attribute.</p>
 <pre class="highlight"><code class="js">editor.execute( &apos;listStart&apos;, { startIndex: 3 } );
 </code></pre>
 </li>
 <li>
-<p>The <a href="../../api/module_list_listreversedcommand-ListReversedCommand.html"><code>&apos;listReversed&apos;</code></a> command which is a Boolean and defaults to <code>false</code> (meaning the list order is ascending).</p>
+<p>The <a href="../../api/module_list_listproperties_listreversedcommand-ListReversedCommand.html"><code>listReversed</code></a> command which is a Boolean and defaults to <code>false</code> (meaning the list order is ascending).</p>
 <pre class="highlight"><code class="js">editor.execute( &apos;listReversed&apos;, { reversed: &apos;true&apos; } );
 </code></pre>
 </li>
 <li>
-<p>The <code>&apos;numberedList&apos;</code> UI split button that overrides the UI button registered by the <code>List</code> plugin.</p>
+<p>The <code>numberedList</code> UI split button that overrides the UI button registered by the <code>List</code> plugin.</p>
 </li>
 <li>
-<p>The <code>&apos;bulletedList&apos;</code> UI split button that overrides the UI button registered by the <code>List</code> plugin.</p>
+<p>The <code>bulletedList</code> UI split button that overrides the UI button registered by the <code>List</code> plugin.</p>
 </li>
 </ul>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>

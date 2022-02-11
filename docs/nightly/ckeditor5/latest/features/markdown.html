@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 09 2022 00:34:21 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Feb 11 2022 00:35:25 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Markdown output - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -426,11 +426,12 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.18.0/img/book.svg" alt="guide">Markdown output
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#the-markdown-data-processor">The Markdown data processor</a></li><li><a href="#installation">Installation</a></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><p>The <a href="../api/module_markdown-gfm_markdown-Markdown.html"><code>Markdown</code></a> plugin allows switching the default CKEditor 5 output from HTML to Markdown. This allows for producing lightweight text documents with a simple formatting syntax, widespread among the programming and development communities and popular in many environments (e.g. GitHub). Coupled with the <a href="autoformat.html">autoformatting</a> feature, it allows for the full-fledged Markdown WYSIWYG editing experience, as described in the <a href="https://ckeditor.com/blog/CKEditor-5-the-best-open-source-Markdown-editor/">&#x201C;CKEditor 5: the best open source Markdown editor&#x201D;</a> blog post.</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#extending-formatting-support">Extending formatting support</a></li><li><a href="#related-features">Related features</a></li><li><a href="#the-markdown-data-processor">The Markdown data processor</a></li><li><a href="#installation">Installation</a></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><p>The <a href="../api/module_markdown-gfm_markdown-Markdown.html"><code>Markdown</code></a> plugin allows switching the default CKEditor 5 output from HTML to Markdown. This allows for producing lightweight text documents with a simple formatting syntax, widespread among the programming and development communities and popular in many environments (e.g. GitHub). Coupled with the <a href="autoformat.html">autoformatting</a> feature, it allows for the full-fledged Markdown WYSIWYG editing experience, as described in the <a href="https://ckeditor.com/blog/CKEditor-5-the-best-open-source-Markdown-editor/">&#x201C;CKEditor 5: the best open source Markdown editor&#x201D;</a> blog post.</p>
 <p>Please remember that Markdown syntax is very simple and it does not cover all the rich-text features. Some features provided by CKEditor 5 will thus work as intended only when output to HTML as they have no Markdown equivalent.</p>
 <div class="info-box notice notice__info"><p>You can learn more about the possible practical applications of Markdown editing with CKEditor 5 in <a href="https://ckeditor.com/blog/CKEditor-5-the-best-open-source-Markdown-editor/">this dedicated blog post depicting the idea, solutions and a case study</a>.</p></div>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <p>The CKEditor 5 instance below is configured to output GitHub Flavored Markdown. Use the editor to create your content and see the Markdown output displayed as you type below the editor.</p>
+<div class="info-box notice notice__info"><p>Please observe that the <a href="source-editing.html">source editing</a> in the demo below is a separate feature. If you would like to use it in your integration, it needs to be installed separately.</p></div>
 <div class="live-snippet"><textarea id="snippet-markdown">
 
 <h2>The Markdown language</h2>
@@ -502,13 +503,15 @@
 
 <pre><code id="snippet-markdown-output"></code></pre>
 </div>
+<h2 id="extending-formatting-support"><a class="headerlink" href="#extending-formatting-support">#</a> Extending formatting support</h2>
+<p>If you need a more extensive Markdown support for formatting elements (for example, having the <code>title</code> attribute on links represented as <code>[Foo Bar](https://foo.bar &quot;My link title&quot;)</code>), you can also install <a href="general-html-support.html">General HTML Support</a>. This advanced feature allows the integrators to provide additional tags, elements and attributes, not yet supported by other CKEditor 5 plugins and extend the formatting capabilities.</p>
 <h2 id="related-features"><a class="headerlink" href="#related-features">#</a> Related features</h2>
 <p>Some other ways to output the edited content include:</p>
 <ul>
+<li><a href="source-editing.html#markdown-source-view">Source editing</a> &#x2013; Allows for Markdown source edition if configured accordingly.</li>
 <li><a href="export-word.html">Export to Word</a> &#x2013; Generate editable <code>.docx</code> files out of your editor-created content.</li>
 <li><a href="export-pdf.html">Export to PDF</a> &#x2013; Generate portable PDF files out of your editor-created content.</li>
 <li><a href="autoformat.html">Autoformatting</a> &#x2013; Use Markdown syntax shortcodes to automatically format your content as you type!</li>
-<li><a href="source-editing.html#markdown-source-view">Source editing</a> &#x2013; Allows for Markdown source edition if configured accordingly.</li>
 </ul>
 <h2 id="the-markdown-data-processor"><a class="headerlink" href="#the-markdown-data-processor">#</a> The Markdown data processor</h2>
 <p>The Markdown plugins uses a <a href="../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a> (implemented by the <a href="../api/module_markdown-gfm_gfmdataprocessor-GFMDataProcessor.html"><code>GFMDataProcessor</code></a> class) which changes the default output from HTML to Markdown. This means that you can <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-setData">set</a> or <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData">get</a> data from the editor in the Markdown format:</p>
@@ -549,6 +552,7 @@ ClassicEditor
     .catch( ... );
 
 </code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
 <h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
 <div class="info-box notice notice__info"><p>Please bear in mind that the Markdown data processor does not support all rich text features. The <a href="https://daringfireball.net/projects/markdown/syntax" target="_blank" rel="noopener">Markdown syntax</a> is very simple and only supports limited formatting options.</p><p>This means that advanced formatting like list styles, table styles or page break markers will be stripped in the effecting data. These are not supported by Markdown and therefore cannot be converted from HTML to Markdown.</p></div>
 <p>While the Markdown plugin is stable and ready to use, some issues are still being worked on. Feel free to upvote &#x1F44D;&#xA0; these on GitHub if you would like to see this introduced.</p>
