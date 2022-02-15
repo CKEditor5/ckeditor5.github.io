@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sat Feb 12 2022 00:36:52 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Feb 15 2022 00:38:25 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integration - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -428,7 +428,7 @@
           <h1 class="main__content-title"><img src="../../../../assets/1.18.0/img/book.svg" alt="guide">Integrating revision history with your application
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a><ol><li><a href="#prepare-a-custom-build">Prepare a custom build</a></li><li><a href="#core-setup">Core setup</a></li></ol></li><li><a href="#a-simple-load-and-save-integration">A simple &#x201C;load and save&#x201D; integration</a><ol><li><a href="#loading-the-data">Loading the data</a></li><li><a href="#saving-the-data">Saving the data</a></li><li><a href="#full-implementation">Full implementation</a></li><li><a href="#demo">Demo</a></li></ol></li><li><a href="#adapter-integration">Adapter integration</a><ol><li><a href="#saving-document-data-and-revisions-data">Saving document data and revisions data</a></li><li><a href="#implementation">Implementation</a></li><li><a href="#full-implementation-2">Full implementation</a></li><li><a href="#demo-2">Demo</a></li></ol></li><li><a href="#pending-actions">Pending actions</a></li><li><a href="#autosave-integration">Autosave integration</a><ol><li><a href="#autosave-and-load-save-integration">Autosave and &#x201C;load &amp; save&#x201D; integration</a></li><li><a href="#autosave-and-adapter-integration">Autosave and adapter integration</a></li><li><a href="#advanced-autosave-strategies">Advanced autosave strategies</a></li></ol></li><li><a href="#how-revisions-are-updated-and-saved">How revisions are updated and saved</a><ol><li><a href="#save-or-update-revision-using-the-feature-api">Save or update revision using the feature API</a></li></ol></li></ol></nav>
 
-<div class="info-box notice"><p>This guide describes integrating the revision history feature as a standalone plugin.</p><p>The real-time collaboration integration is currently under development.</p></div>
+<div class="info-box notice"><p>This guide describes integrating the revision history feature as a standalone plugin.</p><p>If you are using the real-time collaboration feature, refer to the <a href="../collaboration/real-time-collaboration/real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide.</p></div>
 <p>The revision history plugin provides an API for creating and managing named revisions of the document. To save and load the revisions from your database you need to provide a proper integration.</p>
 <p>This guide will discuss two ways to integrate CKEditor 5 with revision history plugin:</p>
 <ul>
@@ -1298,7 +1298,7 @@ class RevisionHistoryAdapter {
             revisionHistory.addRevisionData( revisionData );
         }
     }
-    
+
     async _fetchRevisionsData() {
     	// Make an asynchronous call to your database.
     	return Promise.resolve(
@@ -1596,7 +1596,7 @@ ClassicEditor
                 },
                 updateRevisions: revisionsData =&gt; {
                     const documentData = this.editor.getData();
-                    
+
                     // This should be an asynchronous request to your database
                     // that saves `revisionsData` and `documentData`.
                     //
@@ -1809,15 +1809,16 @@ ClassicEditor
 <p>Below section describes how to correctly integrate revision history with the autosave plugin. This way you can frequently save both your document data and your revisions data, and keep them in sync.</p>
 <div class="info-box notice"><p>Although this guide provides ready-to-use snippets, we encourage you to also read <a href="#how-revisions-are-updated-and-saved">How revisions are saved and updated</a> section to get a better understanding of this subject.</p></div>
 <div class="info-box notice"><p>If the autosave plugin is enabled, the autosave callback is additionally called when the revision history view is opened.</p></div>
+<div class="info-box notice"><p>If you are using the real-time collaboration feature, refer to the <a href="../collaboration/real-time-collaboration/real-time-collaboration-integration.html#autosave-for-revision-history">Autosave for revision history</a> section in Real-time collaboration features integration guide.</p></div>
 <p>The integration differs a bit whether you use adapter or not.</p>
 <h3 id="autosave-and-load-save-integration"><a class="headerlink" href="#autosave-and-load-save-integration">#</a> Autosave and &#x201C;load &amp; save&#x201D; integration</h3>
 <p>Update the revision and make sure that the updated or created revision is saved together with the editor data:</p>
 <pre class="highlight"><code class="js">autosave: {
     save: async editor =&gt; {
         const revisionTracker = editor.plugins.get( &apos;RevisionTracker&apos; );
-        
+
         await revisionTracker.update();
-        
+
         const revisionData = revisionTracker.currentRevision.toJSON();
         const documentData = editor.getData();
 

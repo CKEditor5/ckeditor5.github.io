@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sat Feb 12 2022 00:36:47 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Feb 15 2022 00:38:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integration - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -423,23 +423,30 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.18.0/img/book.svg" alt="guide">Real-time collaboration features integration
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#the-channelid-configuration-property">The channelId configuration property</a></li><li><a href="#data-initialization">Data initialization</a></li><li><a href="#saving-data">Saving data</a><ol><li><a href="#the-clouddocumentversion-property">The cloudDocumentVersion property</a></li><li><a href="#the-autosave-plugin">The Autosave plugin</a></li><li><a href="#reconnection-process">Reconnection process</a></li></ol></li><li><a href="#users-selection">Users selection</a></li></ol></nav>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/" target="_blank" rel="noopener">ready-to-use <strong>samples</strong> available for download</a>. We prepared samples for all editor types (multi-root included) as well as for the React, Angular and Vue.js integrations. You may use them as an example or as a starting point for your own integration.</p></div>
-<p>The real-time collaboration feature needs a cloud service to synchronize content between the clients, so first you need to sign up to the Collaboration service powered by <a href="https://ckeditor.com/ckeditor-cloud-services/">CKEditor Cloud Services</a>. Refer to {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration - Quick Start} for more details.</p>
-<p>After that, you need to <a href="../../../builds/guides/integration/installing-plugins.html#adding-a-plugin-to-a-build">create a custom CKEditor 5 build</a> that will include the real-time collaboration feature, because it is not included in any of the official builds. The following instructions describe step-by-step what you need to do.</p>
-<div class="info-box notice notice__info"><p>Real-time collaboration is a complex topic and despite having over 10.000 tests we cannot guarantee that no error will show during a long collaboration session. This is why we recommend to use the <a href="../../watchdog.html">watchdog</a>, which is a helpful utility that ensures that an editor instance is running and in case of an error, tries to restore the editor to the working state. While using collaboration features without the watchdog is possible, we highly recommend to add it.</p></div>
-<p>First, clone the editor build that you want to integrate. This example uses the classic build, however, real-time collaboration, like every other official CKEditor 5 plugin, will work with any rich text editor build.</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#sign-up-to-the-collaboration-service">Sign up to the collaboration service</a></li><li><a href="#prepare-editor-build">Prepare editor build</a></li><li><a href="#prepare-the-html-structure">Prepare the HTML structure</a></li><li><a href="#configure-and-initialize-the-editor">Configure and initialize the editor</a><ol><li><a href="#the-channelid-configuration-property">The channelId configuration property</a></li></ol></li><li><a href="#handling-document-data">Handling document data</a><ol><li><a href="#data-initialization">Data initialization</a></li><li><a href="#saving-data">Saving data</a><ol><li><a href="#the-clouddocumentversion-property">The cloudDocumentVersion property</a></li><li><a href="#the-autosave-plugin">The Autosave plugin</a></li><li><a href="#autosave-for-revision-history">Autosave for revision history</a></li></ol></li></ol></li><li><a href="#reconnection-process">Reconnection process</a></li><li><a href="#users-selection">Users selection</a></li></ol></nav>
+<p>Read the following guide to learn how to integrate the collaboration feature with you instance of CKEditor 5.</p>
+<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/" target="_blank" rel="noopener">ready-to-use <strong>samples</strong></a> available for download. We prepared samples for all editor types (multi-root included) as well as for the React, Angular and Vue.js integrations. You may use them as an example or as a starting point for your own integration.</p></div>
+<h2 id="sign-up-to-the-collaboration-service"><a class="headerlink" href="#sign-up-to-the-collaboration-service">#</a> Sign up to the collaboration service</h2>
+<p>The real-time collaboration feature needs a server to synchronize content between the clients, so in order to use them, you need to sign up to the collaboration service first. Refer to the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration - Quick Start} guide for more details. There is also {@link @trial guides/overview Premium features free trial} available for testing purposes, that will provide the necessary backend.</p>
+<h2 id="prepare-editor-build"><a class="headerlink" href="#prepare-editor-build">#</a> Prepare editor build</h2>
+<p>Once you have the server ready, the next step is to <a href="../../../builds/guides/integration/installing-plugins.html#adding-a-plugin-to-a-build">create a custom CKEditor 5 build</a>. It needs to include the real-time collaboration feature, because it is not present in any of the official builds. The following instructions describe what you need to do step-by-step.</p>
+<div class="info-box notice notice__info"><p>Real-time collaboration is a complex topic and despite having over 10.000 tests we cannot guarantee that no error will show during a long collaboration session. This is why we recommend to use the <a href="../../watchdog.html">watchdog</a> feature. It is a helpful utility which ensures that an editor instance is running and, in case of an error, tries to restore the editor to a working state. We highly recommend it using watchdog, even though using collaboration features without it is still possible.</p></div>
+<p>First, clone the editor build that you want to integrate.</p>
 <pre class="highlight"><code class="bash">git clone -b stable https://github.com/ckeditor/ckeditor5
-cd ckeditor5/packages/ckeditor5-build-classic
+</code></pre>
+<p>This example will use the classic build, however, real-time collaboration, like every other official CKEditor 5 plugin, will work with any of the rich text editor predefine builds.</p>
+<p>Change your directory to the <code>ckeditor5-build-classic</code> package. All files and commands are relative to this directory.</p>
+<p>Install the package:</p>
+<pre class="highlight"><code class="bash">cd ckeditor5/packages/ckeditor5-build-classic
 
 npm install
 </code></pre>
-<p>To add real-time collaborative features to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-real-time-collaboration" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-real-time-collaboration</code></a> and <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-watchdog</code></a> packages:</p>
+<p>To add the real-time collaborative features to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-real-time-collaboration" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-real-time-collaboration</code></a> and <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-watchdog</code></a> packages:</p>
 <pre class="highlight"><code class="bash">npm install --save-dev \
     @ckeditor/ckeditor5-real-time-collaboration \
     @ckeditor/ckeditor5-watchdog
 </code></pre>
-<p>Then import and enable the plugins you want to use and export both the editor and the watchdog. The updated <code>src/ckeditor.js</code> should look like this:</p>
+<p>Then, import and enable the plugins you want to use and export both the editor and the watchdog. The updated <code>src/ckeditor.js</code> should look like this:</p>
 <pre class="highlight"><code class="js">import EditorWatchdog from &apos;@ckeditor/ckeditor5-watchdog/src/editorwatchdog&apos;;
 import ClassicEditorBase from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
@@ -449,29 +456,35 @@ import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
 import ImageUpload from &apos;@ckeditor/ckeditor5-image/src/imageupload&apos;;
 import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
+import CloudServices from &apos;@ckeditor/ckeditor5-cloud-services/src/cloudservices&apos;;
 import EasyImageUpload from &apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;;
 
 import RealTimeCollaborativeEditing from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/realtimecollaborativeediting&apos;;
 
+// The following plugin enables the users presence list and is optional.
+// You do not need to import it if you do not want to integrate the user list.
+import PresenceList from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/presencelist&apos;;
+
 // The following plugin enables real-time collaborative comments.
-// You do not need to import it if you do not want to integrate it.
+// You do not need to import it if you do not want to use real-time comments.
 import RealTimeCollaborativeComments from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/realtimecollaborativecomments&apos;;
 
 // The following plugin enables real-time collaborative track changes and is optional.
-// You do not need to import it if you do not want to integrate it.
+// You do not need to import it if you do not want to use the track changes functionality.
 import RealTimeCollaborativeTrackChanges from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/realtimecollaborativetrackchanges&apos;;
 
-// The following plugin enables users presence list and is optional.
-// You do not need to import it if you do not want to integrate it.
-import PresenceList from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/presencelist&apos;;
+// The following plugin enables revision history for real-time collaboration.
+// You do not need to import it if you do not want to use the revision history feature.
+import RealTimeCollaborativeRevisionHistory from &apos;@ckeditor/ckeditor5-real-time-collaboration/src/realtimecollaborativerevisionhistory&apos;;
 
 class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
-    Essentials, Paragraph, Bold, Italic, Image, ImageUpload, ImageToolbar, EasyImageUpload,
-    // Remove plugins from here if you have not imported them.
-    RealTimeCollaborativeEditing, RealTimeCollaborativeComments, RealTimeCollaborativeTrackChanges, PresenceList
+    Essentials, Paragraph, Bold, Italic, Image, ImageUpload, ImageToolbar, CloudServices, EasyImageUpload,
+    // Remove applicable plugins from here that you have not imported above.
+    RealTimeCollaborativeEditing, PresenceList,
+    RealTimeCollaborativeComments, RealTimeCollaborativeTrackChanges, RealTimeCollaborativeRevisionHistory
 ];
 
 // Editor configuration.
@@ -481,126 +494,220 @@ ClassicEditor.defaultConfig = {
 
 export default { ClassicEditor, EditorWatchdog };
 </code></pre>
-<p>After that, your custom build needs to be bundled using webpack:</p>
+<p>After the above steps are done, your custom build needs to be bundled using webpack:</p>
 <pre class="highlight"><code class="bash">npm run build
 </code></pre>
-<div class="info-box notice notice__info"><p>Read more about <a href="../../../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
-<p>Then, you need to place your bundle in an HTML document and create the editor.</p>
-<p>As for configuration, you need to define the CKEditor Cloud Services connection data and add buttons to toolbars.</p>
-<div class="info-box notice notice__info"><p>If you do not have your CKEditor Cloud Services URLs yet, read more about them in the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration - Quick Start} guide.</p></div>
-<p>For completeness sake, the example below implements the <a href="../annotations/annotations-display-mode.html#wide-sidebar">wide sidebar display mode</a> for comments and suggestions annotations. If you want to use inline display mode, remove parts of the snippets that set up the sidebar.</p>
-<p>The updated HTML file (<code>sample/index.html</code>) should look like as follows. Remember to pass the correct values in the <a href="../../../api/module_cloud-services_cloudservices-CloudServicesConfig.html">CKEditor Cloud Services configuration</a>.</p>
+<div class="info-box notice notice__info"><p>Read more about installing plugins in the dedicated <a href="../../../builds/guides/integration/installing-plugins.html">installing plugins</a> guide.</p></div>
+<h2 id="prepare-the-html-structure"><a class="headerlink" href="#prepare-the-html-structure">#</a> Prepare the HTML structure</h2>
+<p>Having configure the plugins, you need to place your bundle in an HTML document and create the editor.</p>
+<p>For the sake of completeness, the examples below implement the <a href="../annotations/annotations-display-mode.html#wide-sidebar">wide sidebar display mode</a> for comments and suggestions annotations. If you want to use the inline display mode, remove parts of the snippets that set up the wide sidebar.</p>
+<p>Your HTML structure will also differ depending on whether you would like to integrate revision history feature or not.</p>
+<p>Below you will find an example of an HTML structure for an integration with sidebar and without the revision history feature:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;presence-list-container&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+    &lt;div id=&quot;editor&quot;&gt;&lt;p&gt;Let&apos;s edit this together!&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The revision history feature requires a more complex HTML structure:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;presence-list-container&quot;&gt;&lt;/div&gt;
+
+&lt;div id=&quot;editor-container&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div id=&quot;editor&quot;&gt;&lt;p&gt;Let&apos;s edit this together!&lt;/p&gt;&lt;/div&gt;
+        &lt;div class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;revision-viewer-container&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div id=&quot;revision-viewer-editor&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;sidebar&quot; id=&quot;revision-viewer-sidebar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="configure-and-initialize-the-editor"><a class="headerlink" href="#configure-and-initialize-the-editor">#</a> Configure and initialize the editor</h2>
+<p>To finalize the editor configuration, you need to define the <a href="../../../api/module_cloud-services_cloudservices-CloudServicesConfig.html">CKEditor Cloud Services connection data</a>, set the <a href="#the-channelid-configuration-property"><code>channelId</code></a>, and set up the containers for the features and add buttons to the toolbar.</p>
+<div class="info-box notice"><p>If you do not have your CKEditor Cloud Services URLs ready, read more about them first in the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration - Quick Start} guide.</p></div>
+<p>Below you will find an updated HTML file (<code>sample/index.html</code>) with a minimal editor configuration and the CSS+HTML structure prepared for integration with the revision history feature.</p>
 <pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
         &lt;title&gt;CKEditor 5 Collaboration &#x2013; Hello World!&lt;/title&gt;
 
-        &lt;style type=&quot;text/css&quot;&gt;
-         #container {
-             /* To create the column layout. */
-             display: flex;
+        &lt;style&gt;
+            body {
+                font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+            }
 
-             /* To make the container relative to its children. */
-             position: relative;
-         }
+            .container {
+                display: flex; /* Create a column layout. */
+                position: relative;
+                width: 1000px; /* Set some size for the whole editor + sidebar (can be any size). */
+            }
 
-         #container .ck.ck-editor {
-             /* To stretch the editor to max 700px
-                (just to look nice for this example but it can be any size). */
-             width: 100%;
-             max-width: 700px;
-         }
+            .container &gt; .ck.ck-editor {
+                width: 100%;  /* Stretch the editable area. */
+            }
 
-         #sidebar {
-            /* Set some size for the sidebar (it can be any). */
-            min-width: 300px;
+            .sidebar {
+                border: 1px solid #c4c4c4;
+                margin-left: -1px;
+                background: #fafafa;
+            }
 
-            /* Add some distance. */
-            padding: 0 10px;
-         }
+            #sidebar {
+                /* Set some size and spacing for the sidebar (can be any size). */
+                min-width: 300px;
+                padding: 0 10px;
+                overflow: hidden; /* Hide annotations moved above top sidebar border. */
+            }
+
+            #revision-viewer-container {
+                display: none; /* Revision history viewer is initially hidden. */
+            }
+
+            #revision-viewer-sidebar {
+                min-width: 320px; /* 20px more than #sidebar due to paddings. */
+            }
         &lt;/style&gt;
     &lt;/head&gt;
 
-    &lt;div id=&quot;presence-list-container&quot;&gt;&lt;/div&gt;
+    &lt;body&gt;
+        &lt;!-- Use simpler CSS and HTML structure if you do not want to integrate revision history feature. !--&gt;
+        &lt;div id=&quot;presence-list-container&quot;&gt;&lt;/div&gt;
 
-    &lt;div id=&quot;container&quot;&gt;
-        &lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
-        &lt;div id=&quot;sidebar&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
+        &lt;div id=&quot;editor-container&quot;&gt;
+            &lt;div class=&quot;container&quot;&gt;
+                &lt;div id=&quot;editor&quot;&gt;&lt;p&gt;Let&apos;s edit this together!&lt;/p&gt;&lt;/div&gt;
+                &lt;div class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
 
-    &lt;script src=&quot;../build/ckeditor.js&quot;&gt;&lt;/script&gt;
-    &lt;script&gt;
-        // We are working on distributing watchdog as a separate package.
-        // See https://github.com/ckeditor/ckeditor5-watchdog/issues/9.
-        const { ClassicEditor: Editor, EditorWatchdog } = ClassicEditor;
+        &lt;div id=&quot;revision-viewer-container&quot;&gt;
+            &lt;div class=&quot;container&quot;&gt;
+                &lt;div id=&quot;revision-viewer-editor&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;sidebar&quot; id=&quot;revision-viewer-sidebar&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
 
-        const watchdog = new EditorWatchdog( Editor );
+        &lt;script src=&quot;../build/ckeditor.js&quot;&gt;&lt;/script&gt;
+        &lt;script&gt;
+            const { ClassicEditor: Editor, EditorWatchdog } = ClassicEditor;
 
-        watchdog.create( document.querySelector( &apos;#editor&apos; ), {
-            initialData: &apos;&lt;p&gt;Let\&apos;s edit this together!&lt;/p&gt;&apos;,
-            // Do not include the `&apos;comment&apos;` or `&apos;trackChanges&apos;` buttons if you do not integrate them.
-            // If you use the image toolbar, you might want to add the `&apos;comment&apos;` button to the image toolbar, too.
-            toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;uploadImage&apos;, &apos;|&apos;, &apos;comment&apos;, &apos;trackChanges&apos; ],
-            cloudServices: {
-                // PROVIDE CORRECT VALUES HERE:
-                tokenUrl: &apos;https://example.com/cs-token-endpoint&apos;,
-                uploadUrl: &apos;https://your-organization-id.cke-cs.com/easyimage/upload/&apos;,
-                webSocketUrl: &apos;your-organization-id.cke-cs.com/ws/&apos;
-            },
-            collaboration: {
-                channelId: &apos;document-id&apos;
-            },
-            sidebar: {
-                container: document.querySelector( &apos;#sidebar&apos; )
-            },
-            presenceList: {
-                container: document.querySelector( &apos;#presence-list-container&apos; )
-            }
-        } );
-    &lt;/script&gt;
+            const watchdog = new EditorWatchdog( Editor );
+
+            watchdog.create( document.querySelector( &apos;#editor&apos; ), {
+                initialData: &apos;&lt;p&gt;Let\&apos;s edit this together!&lt;/p&gt;&apos;,
+                // Do not include buttons for the features that you do not want to integrate.
+                // If you use the image toolbar, you might want to add the `&apos;comment&apos;` button to the image toolbar, too.
+                toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;uploadImage&apos;, &apos;|&apos;, &apos;comment&apos;, &apos;trackChanges&apos;, &apos;|&apos;, &apos;revisionHistory&apos; ],
+                cloudServices: {
+                    // PROVIDE CORRECT VALUES HERE:
+                    tokenUrl: &apos;https://example.com/cs-token-endpoint&apos;,
+                    uploadUrl: &apos;https://your-organization-id.cke-cs.com/easyimage/upload/&apos;,
+                    webSocketUrl: &apos;your-organization-id.cke-cs.com/ws/&apos;
+                },
+                collaboration: {
+                    channelId: &apos;document-id&apos;
+                },
+                sidebar: {
+                    container: document.querySelector( &apos;#sidebar&apos; )
+                },
+                presenceList: {
+                    container: document.querySelector( &apos;#presence-list-container&apos; )
+                },
+                // Do not include revision history configuration if you do not want to integrate it.
+                revisionHistory: {
+                    editorContainer: document.querySelector( &apos;#editor-container&apos; ),
+                    viewerContainer: document.querySelector( &apos;#revision-viewer-container&apos; ),
+                    viewerEditorElement: document.querySelector( &apos;#revision-viewer-editor&apos; ),
+                    viewerSidebarContainer: document.querySelector( &apos;#revision-viewer-sidebar&apos; )
+                }
+            } );
+        &lt;/script&gt;
+    &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Note that to make the integration work out of the box, all comments and suggestions data is saved in CKEditor Cloud Services, however, some markup is added to the content, too. To learn more, refer to the <a href="../comments/comments.html#comments-markup">Comments markup</a> and <a href="../track-changes/track-changes.html#suggestions-markup">Suggestions markup</a> sections of the documentation.</p>
-<div class="info-box notice notice__info"><p>Do note that CKEditor Cloud Services does not save or load the document content. It is a medium to handle the collaboration process. Content management should be handled by the integrated application.</p></div>
-<div class="info-box notice"><p>We understand that due to legislation or your company&#x2019;s policy you may be required to store all data in your own data center or private cloud. This is why we also provide the on-premises version of CKEditor Cloud Services. <a href="https://ckeditor.com/contact/">Contact us</a> to learn more about it.</p></div>
 <p>Voil&#xE0;! All users who open this page should be able to collaborate, working on the same rich text document at the same time.</p>
 <h3 id="the-channelid-configuration-property"><a class="headerlink" href="#the-channelid-configuration-property">#</a> The <code>channelId</code> configuration property</h3>
 <p>The <a href="../../../api/module_real-time-collaboration_realtimecollaborativeediting-RealTimeCollaborationConfig.html#member-channelId"><code>config.collaboration.channelId</code></a> configuration property is an important property that controls which editor instances collaborate with one another. All clients created with the same <code>channelId</code> will be collaborating on the same content.</p>
-<p>Each document must have a different channel ID. The ID is usually the primary key of the document in the database, but you are free to provide whatever identifier fits your scenario. The <code>channelId</code> needs to be unique in the environment, so if you are using, for instance, staging and production environments, you may use the same document ID. Since the environments are separated, they will not collaborate with one another.</p>
+<p>Each document must have a different <code>channelId</code>. This ID is usually the primary key of the document in the database or a unique identifier for a given form field. However, you are free to provide whatever identifier fits your scenario.</p>
+<div class="info-box notice notice__info"><p>Note, that to start the collaboration on a new document, you need the document ID since the very beginning, when the editor is created for the first time. If your application creates document IDs later, for instance when the form is submitted, you may need to provide another method to generate document IDs (for example, some random unique IDs generator).</p></div>
+<p>The <code>channelId</code> needs to be unique in a given environment, so if you are using, for instance, staging and production environments, you may use the same channel ID in these. Since the environments are separated, they will not collaborate with one another.</p>
+<p>Since editor content is linked with and only with channel ID, it is possible to create an application where different views (forms, subpages, etc.) provide various sets of rich-text editable fields and have users collaborate with each other even though they have opened a different form, etc.</p>
+<h2 id="handling-document-data"><a class="headerlink" href="#handling-document-data">#</a> Handling document data</h2>
+<p>To make the integration work out of the box, all comments, suggestions and revisions data is saved in CKEditor Cloud Services.</p>
+<div class="info-box notice"><p>In this section, it is assumed that {@link @cs guides/collaboration/document-storage Cloud Services document storage} is not enabled.</p><p>{@link @cs guides/collaboration/document-storage Document storage} has numerous advantages and we recommend enabling it if available in your case.</p></div>
+<p>Note that CKEditor Cloud Services does not save or load the document content. Instead, Cloud Services acts as a medium to handle the collaboration process. Content management should be handled by the application integration.</p>
+<div class="info-box notice"><p>We understand that due to legislation or your company&#x2019;s policy, you may be required to store all data in your own data center or private cloud. This is why we also provide the on-premises version of CKEditor Cloud Services. <a href="https://ckeditor.com/contact/">Contact us</a> to learn more about it.</p></div>
 <h3 id="data-initialization"><a class="headerlink" href="#data-initialization">#</a> Data initialization</h3>
-<p>When the first user with a certain document ID opens the rich text editor, their content is sent to CKEditor Cloud Services. In case of the example above it is:</p>
+<p>When the first user opens the rich text editor for a certain document ID, their content is sent to CKEditor Cloud Services. In case of the example above it is:</p>
 <pre class="highlight"><code class="html">&lt;p&gt;Let&apos;s edit this together!&lt;/p&gt;
 </code></pre>
-<p>Then, when the next user connects to the same document, they receive content from CKEditor Cloud Services and their local content is discarded.</p>
-<p>This is the reason why you should not use the <code>editor.setData()</code> or <code>editor.data.set()</code> methods when using the collaboration plugin. The content of the editor needs to be defined before the editor initialization, so the collaboration plugin can decide which data should be used. Use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-initialData"><code>initialData</code> configuration option</a> instead.</p>
-<p>Keep in mind that the <code>editor.setData()</code> and <code>editor.data.set()</code> methods simply overwrite the content of the editor. The entire existing content is removed and the new content is loaded, even if it is the same. In collaboration, this behavior can cause issues. The local data will be overwritten on all clients, which means that some data might be lost. In most cases, using <code>editor.setData()</code> and <code>editor.data.set()</code> in real-time collaboration is a mistake either in the integration or a third-party plugin. For that reason, the editor throws an error when this is attempted.</p>
-<p>If you are sure that you understand and accept the behavior and effects of setting the data in this way, use <code>editor.data.set()</code> with the flag <code>suppressErrorInCollaboration</code> set to <code>true</code>, for example:</p>
+<p>If you cannot or do not want to set the initial data straight in the HTML, use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-initialData"><code>initialData</code> configuration option</a> instead. Do not use <code>editor.setData()</code> (see below).</p>
+<p>After the first user initializes the document and starts the editing session, every other user that connects to the same document will receive the content from CKEditor Cloud Services (while their local initial data is discarded).</p>
+<p>From that moment on, every single change to the editor content is passed between Cloud Services and clients and the document for each client is updated. Any conflicting updates are resolved on-the-fly.</p>
+<p>This is the reason why you should not use the <code>editor.setData()</code> or <code>editor.data.set()</code> methods when using the collaboration plugin. These simply overwrite the whole content of the editor (even if the data to set is the same as the current editor data). In real-time collaboration, this behavior can result in overwriting other clients&#x2019; local updates. In most cases, using <code>editor.setData()</code> and <code>editor.data.set()</code> in real-time collaboration is incorrect.</p>
+<p>If you are sure that you understand and accept the behavior and side effects of setting the editor data this way, you can call <code>editor.data.set()</code> with the flag <code>suppressErrorInCollaboration</code> set to <code>true</code>:</p>
 <pre class="highlight"><code class="js">editor.data.set( &apos;&lt;p&gt;Your data&lt;/p&gt;&apos;, { suppressErrorInCollaboration: true } );
 </code></pre>
 <p>This will let you overwrite the editor data without throwing an error.</p>
-<div class="info-box notice notice__info"><p>Note that to start the collaboration on a new document, you need the document ID from the very beginning, when the editor is created for the first time. If your application creates document IDs later, for instance when the form is submitted, you may need another method to generate document IDs (for example, some random unique IDs generator).</p></div>
-<p>The document is removed from CKEditor Cloud Services a while after the last user disconnects.</p>
 <h3 id="saving-data"><a class="headerlink" href="#saving-data">#</a> Saving data</h3>
-<p>The document is temporarily stored in the cloud by CKEditor Cloud Services only when there are connected users. It means that the content should be saved in the database on your server at the very latest when the last user disconnects &#x2014; otherwise it may get lost.</p>
-<p>Note that CKEditor 5 will handle the real-time synchronization of the content in the editor between collaborating clients. You need to take care of the collaborative workflow in the rest of your application. For instance, if the WYSIWYG editor is a part of a bigger data form, you need to make the entire form collaborative. The classic data form with the &#x201C;Save&#x201D; button might not work for you since the data will not be saved in real time in your database even if the editor will synchronize the content between all your clients. It is recommended to save the data automatically whenever it changes.</p>
+<p>Although CKEditor Cloud Services handles passing data between clients, you are still responsible for saving the final data in your database. The document is stored in the cloud by CKEditor Cloud Services only temporarily, as long as there are connected users. It means that the editor content should be saved in the database on your server before the last user disconnects &#x2014; otherwise it will be lost. It is recommended to save the data automatically whenever it changes.</p>
 <p>CKEditor 5 provides two utilities to make your integration simpler.</p>
 <h4 id="the-clouddocumentversion-property"><a class="headerlink" href="#the-clouddocumentversion-property">#</a> The <code>cloudDocumentVersion</code> property</h4>
-<p>The first helper is the <code>cloudDocumentVersion</code> property. When your collaborative users are saving the same document at the same time, there might be a conflict. It might happen that an older document version overwrites the new one.</p>
-<p>To prevent race conditions, the <code>cloudDocumentVersion</code> variable is provided:</p>
+<p>When your collaborative users are saving the same document at the same time, there might be a conflict. It might happen that one user will try to save an older document version, overwriting a newer one.</p>
+<p>To prevent such race conditions, use the <code>cloudDocumentVersion</code> property.</p>
 <pre class="highlight"><code class="js">editor.plugins.get( &apos;RealTimeCollaborationClient&apos; ).cloudDocumentVersion
 </code></pre>
-<p>This property is simply a number and a bigger value means a newer document version. This number should be stored in the database together with the content. When any client wants to save the content, document versions should be compared. The document should only be saved when the version is higher. Otherwise, it means that this is an older version of the document and there is already a newer version saved.</p>
-<p>The <code>cloudDocumentVersion</code> is stored in the CKEditor Cloud Services server between collaboration sessions so if you start a new session, this property will equal the number it reached at the end of the previous session.</p>
+<p>This property is simply a number, and a bigger value means a newer document version. This number should be stored in the database together with the document content. When a client wants to save the content, document versions should be compared. The document should only be saved when the version is higher. Otherwise, it means that the incoming data is an older version of the document and should be discarded.</p>
+<p>CKEditor Cloud Services keeps the value of <code>cloudDocumentVersion</code> and makes sure that it is properly set whenever there is a new editing session for a given document.</p>
 <h4 id="the-autosave-plugin"><a class="headerlink" href="#the-autosave-plugin">#</a> The <code>Autosave</code> plugin</h4>
 <p>The second helper is the <a href="../../../api/module_autosave_autosave-Autosave.html"><code>Autosave</code></a> plugin.</p>
-<p>The autosave plugin triggers the save callback whenever the user changes the content. It takes care of throttling the callback execution so it is not called too often. It also automatically secures the user from leaving the page before the content is saved.</p>
-<p>The autosave plugin is not included in any of the builds by default nor is it automatically required by the real-time collaboration plugins so you need to <a href="../../../builds/guides/integration/installing-plugins.html">install it</a> separately. To learn more about this plugin refer to the <a href="../../../builds/guides/integration/saving-data.html#autosave-feature">Getting and saving data</a> guide.</p>
-<h4 id="reconnection-process"><a class="headerlink" href="#reconnection-process">#</a> Reconnection process</h4>
-<p>During the real-time collaboration, it may happen that the internet connection will go down for some time. When this happens, the editor will switch to read-only mode. After the connection is back, the real-time collaboration plugin will try to reconnect the editor back to the editing session. This reconnection process may involve re-creating the editing session (if the reconnection happens after a longer period of time).</p>
+<p>The autosave plugin triggers the save callback whenever the user changes the content. It takes care of throttling the callback execution to limit the number of calls to the database. It also automatically secures the user from leaving the page before the content is saved.</p>
+<p>The autosave plugin is not included in any of the predefined builds by default nor is it automatically required by the real-time collaboration plugins, so you need to <a href="../../../builds/guides/integration/installing-plugins.html">install it</a> separately. To learn more about this plugin, refer to the <a href="../../../builds/guides/integration/saving-data.html#autosave-feature">Getting and saving data</a> guide.</p>
+<div class="info-box notice"><p>Using the autosave feature with large documents may result in a lot of data being sent to your server and can have negative impact on the editor user experience.</p><p>We recommend using the {@link @cs guides/collaboration/document-storage document storage} feature instead.</p></div>
+<h4 id="autosave-for-revision-history"><a class="headerlink" href="#autosave-for-revision-history">#</a> Autosave for revision history</h4>
+<p>If you are using the revision history feature, your autosave callback should take care of updating the recent revision data. It is crucial to keep the revisions state in sync with the document data. See the example below:</p>
+<pre class="highlight"><code class="js">autosave: {
+    save: async editor =&gt; {
+        const revisionTracker = editor.plugins.get( &apos;RevisionTracker&apos; );
+        const currentRevision = revisionTracker.currentRevision;
+        const oldRevisionVersion = currentRevision.toVersion;
+        
+        // Update the current revision with the newest document changes.
+        await revisionTracker.update();
+        
+        // Check if the revision was updated.
+        // If not, do not make an unnecessary call.
+        if ( oldRevisionVersion === currentRevision.toVersion ) {
+            return true;
+        }
+        
+        // Use the document data saved with the revision instead of the editor data.
+        // Revision data may slightly differ from the editor data when
+        // real-time collaboration is involved.
+        const documentData = await revisionTracker.getRevisionDocumentData( revisionTracker.currentRevision );
+        
+        // Use revision version instead of `cloudDocumentVersion`.
+        const documentVersion = currentRevision.toVersion;
+        
+        // `saveData()` should save the document in your database.
+        // `documentData` contains data for all roots.
+        // You can save just `documentData.main` if you are using a single root,
+        // or the whole object if you are using multiple roots.
+        return saveData( documentData.main, documentVersion );
+    }
+}
+</code></pre>
+<h2 id="reconnection-process"><a class="headerlink" href="#reconnection-process">#</a> Reconnection process</h2>
+<p>During the real-time collaboration, it may happen that the internet connection will go down for some time. When this happens, the editor will switch into read-only mode. After the connection is back, the real-time collaboration plugin will try to reconnect the editor back to the editing session. This reconnection process may involve re-creating the editing session (if the reconnection happens after a longer period of time).</p>
 <p>While one client is offline, other clients may perform changes to the document. When the offline client reconnects, the real-time editing plugin will make a decision if the reconnection is possible.</p>
-<h3 id="users-selection"><a class="headerlink" href="#users-selection">#</a> Users selection</h3>
-<p>The real-time collaborative editing feature not only synchronizes the document content between all participants, but it also shows each user the selection of all other users in real time. It works out of the box and does not require any additional configuration. This is the only part of the real-time collaborative editing plugin that provides a UI. See the <a href="users-in-real-time-collaboration.html">Users in real-time collaboration guide</a> to learn more.</p>
+<h2 id="users-selection"><a class="headerlink" href="#users-selection">#</a> Users selection</h2>
+<p>The real-time collaborative editing feature not only synchronizes the document content between all participants, but it also shows each user the list of all other users in real time. It works out of the box and does not require any additional configuration. This is the only part of the real-time collaborative editing plugin that provides a UI. Refer to the <a href="users-in-real-time-collaboration.html">Users in real-time collaboration</a> guide to learn more.</p>
 
         </div>
       </section>

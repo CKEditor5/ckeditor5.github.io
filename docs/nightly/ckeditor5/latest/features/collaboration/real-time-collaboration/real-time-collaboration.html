@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sat Feb 12 2022 00:36:48 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Feb 15 2022 00:38:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Overview - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../../../assets/1.18.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
-    <link rel="stylesheet" href="../../../snippets/features/collaboration/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../snippets/features/real-time-collaboration/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../snippets/assets.css" type="text/css" data-cke="true">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
@@ -419,7 +419,7 @@
       </div>
     </header>
     <main class="main">
-      <section class="main__content formatted main__content-wide">
+      <section class="main__content formatted">
         <div class="main__content-inner">
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" target="_blank" rel="noopener" title="Report an issue"><img src="../../../../../assets/1.18.0/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
@@ -427,7 +427,9 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.18.0/img/book.svg" alt="guide">Real-time collaboration overview
           </h1>
-<p>CKEditor 5 real-time collaboration features let you customize any CKEditor 5 build to include real-time collaborative editing, commenting and suggesting features and tailor them to your needs.  You can read more about CKEditor 5&#x2019;s collaboration features and their real life implementations in this <a href="https://ckeditor.com/blog/Feature-of-the-month-Collaborative-writing-in-CKEditor-5/">dedicated blog post</a>.</p>
+<p>The CKEditor 5 real-time collaboration features let you customize any CKEditor 5 build to include real-time collaborative editing, commenting, suggesting and revision history features and tailor them to your needs. You can read more about CKEditor 5&#x2019;s collaboration features and their real-life implementations in this <!-- a bit deprecated --><a href="https://ckeditor.com/blog/Feature-of-the-month-Collaborative-writing-in-CKEditor-5/">dedicated blog post</a>.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<p>Try CKEditor 5 collaboration features in the demo below. Use the comments, track changes and revision history toolbar items to enable each feature.</p>
 <div class="info-box notice"><p>Share the complete URL of this page with your colleagues to collaborate in real time!</p></div>
 <div class="live-snippet"><div class="live-snippet__loader">
 	<svg class="spinner" viewBox="25 25 50 50">
@@ -435,24 +437,75 @@
 	</svg>
 </div>
 
-<div class="live-snippet__container loaded">
+<div class="live-snippet__container">
 	<div class="presence"></div>
 	<div class="row">
-		<div class="editor"></div>
-		<div class="sidebar"></div>
+		<div class="editors-holder">
+			<div id="editor-container">
+				<div class="editor-container">
+					<div id="editor"></div>
+					<div class="sidebar sidebar-container" id="sidebar-container"></div>
+				</div>
+			</div>
+
+			<div id="revision-viewer-container">
+				<div class="editor-container">
+					<div id="revision-viewer-editor"></div>
+					<div class="sidebar-container" id="revision-viewer-sidebar"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+<style>
+    .editor-container {
+        display: flex;
+    }
+
+    #revision-viewer-container {
+        display: none;
+    }
+
+    .sidebar-container {
+        min-width: 275px;
+        font-size: 20px;
+        border: 1px solid var(--ck-color-toolbar-border);
+        margin-left: -1px;
+        background: var(--ck-color-toolbar-background);
+    }
+
+    #editor-container .sidebar-container {
+        padding: 0px 10px;
+        overflow: hidden;
+    }
+
+    .ck.ck-revision-history-sidebar {
+        height: 100%;
+    }
+
+    @media only screen and (min-width: 1600px) {
+        .main .main__content-inner {
+            width: 905px;
+        }
+    }
+</style>
 </div>
 <div class="info-box notice notice__info"><p>This sample automatically switches between comments and suggestions display modes according to the screen size. Resize the window and observe how the editor changes its appearance. See the <a href="../annotations/annotations-display-mode.html">Annotations display mode</a> guide for more details.</p></div>
-<p>Real-time collaboration consists of four features delivered as separate plugins that can be used with any CKEditor 5 build:</p>
+<p>The CKEditor 5 real-time collaboration experience is enabled by several plugins that can be added to the editor build just like any other CKEditor 5 plugin.</p>
+<p>These include two base, real-time-collaboration-oriented features:</p>
 <ul>
 <li>Real-time collaborative editing &#x2013; Allows for editing the same document by multiple users simultaneously. It also automatically solves all conflicts if users make changes at the same time.</li>
-<li>Real-time collaborative comments &#x2013; Makes it possible to add comments to any part of content in the editor.</li>
-<li>Real-time collaborative track changes &#x2013; Changes to the content are saved as suggestions that can be accepted or discarded later.</li>
 <li><a href="users-in-real-time-collaboration.html">Users selection and presence list</a> &#x2013; Shows the selection of other users and lets you view the list of users currently editing the content in the editor.</li>
 </ul>
-<p>All of the above features are customizable. This makes implementing real-time collaborative editing within your application a highly customizable out-of-the-box experience. Refer to the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide to learn how to enable real-time collaboration in your WYSIWYG editor.</p>
-<p><img src="../../../assets/img/docs-collaboration-overview.png" data-lightbox="true" alt="Real-time collaboration features in CKEditor 5 WYSIWYG editor screenshot" width="810"></p>
+<p>We also provide plugins that integrate our other premium collaboration features with real-time editing:</p>
+<ul>
+<li>Real-time collaborative <a href="../comments/comments.html">comments</a> &#x2013; Makes it possible to add comments to any part of content in the editor.</li>
+<li>Real-time collaborative <a href="../track-changes/track-changes.html">track changes</a> &#x2013; Changes to the content are saved as suggestions that can be accepted or discarded later.</li>
+<li>Real-time <a href="../../revision-history/revision-history.html">revision history</a> &#x2013; Create and view the chronological revision history of the document.</li>
+</ul>
+<p>Refer to the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide to learn how to enable real-time collaboration in your WYSIWYG editor.</p>
+<div class="info-box notice"><p>CKEditor 5 Collaboration Features are customizable and can be configured to suit your needs. We strongly encourage you to read other collaboration feature guides to learn how you can use and customize these features. All guides apply to real-time editing environment too!</p><p>Additionally, custom plugins you provide will automatically integrate with real-time collaborative editing (very complex plugins may need additional effort to provide real-time editing integration).</p></div>
 
         </div>
       </section>
@@ -798,7 +851,7 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../../../../../assets/1.18.0/scripts/app.js"></script>
     <script src="../../../assets/snippet.js"></script>
     <script src="../../../snippets/assets.js"></script>
-    <script src="../../../snippets/features/collaboration/snippet.js"></script>
+    <script src="../../../snippets/features/real-time-collaboration/snippet.js"></script>
     <script src="../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
