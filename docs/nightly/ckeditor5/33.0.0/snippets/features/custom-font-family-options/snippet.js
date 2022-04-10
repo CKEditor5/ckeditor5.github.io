@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{"use strict";const o={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-custom-font-family-options"),{cloudServices:o,toolbar:{items:["heading","|","fontFamily","|","bulletedList","numberedList","|","outdent","indent","|","undo","redo"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},fontFamily:{options:["default","Ubuntu, Arial, sans-serif","Ubuntu Mono, Courier New, Courier, monospace"]}}).then((o=>{window.editor=o})).catch((o=>{console.error(o.stack)}))})();
