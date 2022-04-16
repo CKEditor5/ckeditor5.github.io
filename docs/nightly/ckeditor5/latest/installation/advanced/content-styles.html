@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Apr 15 2022 01:11:49 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Apr 16 2022 01:11:54 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Content styles - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -219,7 +219,7 @@
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
 <pre class="highlight"><code class="css">/*
  * CKEditor 5 (v34.0.0) content styles.
- * Generated on Fri, 15 Apr 2022 01:10:38 GMT.
+ * Generated on Sat, 16 Apr 2022 01:10:43 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/installation/advanced/content-styles.html
  */
 
@@ -257,57 +257,54 @@
     border-right: solid 5px hsl(0, 0%, 80%);
 }
 /* ckeditor5-font/theme/fontsize.css */
-.ck-content .text-tiny {
-    font-size: .7em;
-}
-/* ckeditor5-font/theme/fontsize.css */
-.ck-content .text-small {
-    font-size: .85em;
-}
-/* ckeditor5-font/theme/fontsize.css */
-.ck-content .text-big {
-    font-size: 1.4em;
-}
-/* ckeditor5-font/theme/fontsize.css */
-.ck-content .text-huge {
-    font-size: 1.8em;
-}
-/* ckeditor5-image/theme/image.css */
-.ck-content .image {
-    display: table;
-    clear: both;
-    text-align: center;
-    margin: 0.9em auto;
-    min-width: 50px;
+.ck-content {
+    &amp; .text-tiny {
+        font-size: .7em;
+    }
+    &amp; .text-small {
+        font-size: .85em;
+    }
+    &amp; .text-big {
+        font-size: 1.4em;
+    }
+    &amp; .text-huge {
+        font-size: 1.8em;
+    }
 }
 /* ckeditor5-image/theme/image.css */
-.ck-content .image img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    min-width: 100%;
-}
-/* ckeditor5-image/theme/image.css */
-.ck-content .image-inline {
-    /*
-     * Normally, the .image-inline would have &quot;display: inline-block&quot; and &quot;img { width: 100% }&quot; (to follow the wrapper while resizing).;
-     * Unfortunately, together with &quot;srcset&quot;, it gets automatically stretched up to the width of the editing root.
-     * This strange behavior does not happen with inline-flex.
-     */
-    display: inline-flex;
-    max-width: 100%;
-    align-items: flex-start;
-}
-/* ckeditor5-image/theme/image.css */
-.ck-content .image-inline picture {
-    display: flex;
-}
-/* ckeditor5-image/theme/image.css */
-.ck-content .image-inline picture,
-.ck-content .image-inline img {
-    flex-grow: 1;
-    flex-shrink: 1;
-    max-width: 100%;
+.ck-content {
+    &amp; .image {
+        display: table;
+        clear: both;
+        text-align: center;
+        margin: 0.9em auto;
+        min-width: 50px;
+        &amp; img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            min-width: 100%;
+        }
+    }
+    &amp; .image-inline {
+        /*
+         * Normally, the .image-inline would have &quot;display: inline-block&quot; and &quot;img { width: 100% }&quot; (to follow the wrapper while resizing).;
+         * Unfortunately, together with &quot;srcset&quot;, it gets automatically stretched up to the width of the editing root.
+         * This strange behavior does not happen with inline-flex.
+         */
+        display: inline-flex;
+        max-width: 100%;
+        align-items: flex-start;
+        &amp; picture {
+            display: flex;
+        }
+        &amp; picture,
+        &amp; img {
+            flex-grow: 1;
+            flex-shrink: 1;
+            max-width: 100%;
+        }
+    }
 }
 /* ckeditor5-image/theme/imagecaption.css */
 .ck-content .image &gt; figcaption {
@@ -325,75 +322,66 @@
     max-width: 100%;
     display: block;
     box-sizing: border-box;
-}
-/* ckeditor5-image/theme/imageresize.css */
-.ck-content .image.image_resized img {
-    width: 100%;
-}
-/* ckeditor5-image/theme/imageresize.css */
-.ck-content .image.image_resized &gt; figcaption {
-    display: block;
+    &amp; img {
+        width: 100%;
+    }
+    &amp; &gt; figcaption {
+        display: block;
+    }
 }
 /* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-block-align-left,
-.ck-content .image-style-block-align-right {
-    max-width: calc(100% - var(--ck-image-style-spacing));
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-align-left,
-.ck-content .image-style-align-right {
-    clear: none;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-side {
-    float: right;
-    margin-left: var(--ck-image-style-spacing);
-    max-width: 50%;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-align-left {
-    float: left;
-    margin-right: var(--ck-image-style-spacing);
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-align-center {
-    margin-left: auto;
-    margin-right: auto;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-align-right {
-    float: right;
-    margin-left: var(--ck-image-style-spacing);
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-block-align-right {
-    margin-right: 0;
-    margin-left: auto;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-style-block-align-left {
-    margin-left: 0;
-    margin-right: auto;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content p + .image-style-align-left,
-.ck-content p + .image-style-align-right,
-.ck-content p + .image-style-side {
-    margin-top: 0;
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-inline.image-style-align-left,
-.ck-content .image-inline.image-style-align-right {
-    margin-top: var(--ck-inline-image-style-spacing);
-    margin-bottom: var(--ck-inline-image-style-spacing);
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-inline.image-style-align-left {
-    margin-right: var(--ck-inline-image-style-spacing);
-}
-/* ckeditor5-image/theme/imagestyle.css */
-.ck-content .image-inline.image-style-align-right {
-    margin-left: var(--ck-inline-image-style-spacing);
+.ck-content {
+    &amp; .image-style-block-align-left,
+    &amp; .image-style-block-align-right {
+        max-width: calc(100% - var(--ck-image-style-spacing));
+    }
+    &amp; .image-style-align-left,
+    &amp; .image-style-align-right {
+        clear: none;
+    }
+    &amp; .image-style-side {
+        float: right;
+        margin-left: var(--ck-image-style-spacing);
+        max-width: 50%;
+    }
+    &amp; .image-style-align-left {
+        float: left;
+        margin-right: var(--ck-image-style-spacing);
+    }
+    &amp; .image-style-align-center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &amp; .image-style-align-right {
+        float: right;
+        margin-left: var(--ck-image-style-spacing);
+    }
+    &amp; .image-style-block-align-right {
+        margin-right: 0;
+        margin-left: auto;
+    }
+    &amp; .image-style-block-align-left {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    &amp; p + .image-style-align-left,
+    &amp; p + .image-style-align-right,
+    &amp; p + .image-style-side {
+        margin-top: 0;
+    }
+    &amp; .image-inline {
+        &amp;.image-style-align-left,
+        &amp;.image-style-align-right {
+            margin-top: var(--ck-inline-image-style-spacing);
+            margin-bottom: var(--ck-inline-image-style-spacing);
+        }
+        &amp;.image-style-align-left {
+            margin-right: var(--ck-inline-image-style-spacing);
+        }
+        &amp;.image-style-align-right {
+            margin-left: var(--ck-inline-image-style-spacing);
+        }
+    }
 }
 /* ckeditor5-language/theme/language.css */
 .ck-content span[lang] {
@@ -402,69 +390,65 @@
 /* ckeditor5-list/theme/todolist.css */
 .ck-content .todo-list {
     list-style: none;
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list li {
-    margin-bottom: 5px;
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list li .todo-list {
-    margin-top: 5px;
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label &gt; input {
-    -webkit-appearance: none;
-    display: inline-block;
-    position: relative;
-    width: var(--ck-todo-list-checkmark-size);
-    height: var(--ck-todo-list-checkmark-size);
-    vertical-align: middle;
-    border: 0;
-    left: -25px;
-    margin-right: -15px;
-    right: 0;
-    margin-left: 0;
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label &gt; input::before {
-    display: block;
-    position: absolute;
-    box-sizing: border-box;
-    content: &apos;&apos;;
-    width: 100%;
-    height: 100%;
-    border: 1px solid hsl(0, 0%, 20%);
-    border-radius: 2px;
-    transition: 250ms ease-in-out box-shadow, 250ms ease-in-out background, 250ms ease-in-out border;
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label &gt; input::after {
-    display: block;
-    position: absolute;
-    box-sizing: content-box;
-    pointer-events: none;
-    content: &apos;&apos;;
-    left: calc( var(--ck-todo-list-checkmark-size) / 3 );
-    top: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
-    width: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
-    height: calc( var(--ck-todo-list-checkmark-size) / 2.6 );
-    border-style: solid;
-    border-color: transparent;
-    border-width: 0 calc( var(--ck-todo-list-checkmark-size) / 8 ) calc( var(--ck-todo-list-checkmark-size) / 8 ) 0;
-    transform: rotate(45deg);
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label &gt; input[checked]::before {
-    background: hsl(126, 64%, 41%);
-    border-color: hsl(126, 64%, 41%);
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label &gt; input[checked]::after {
-    border-color: hsl(0, 0%, 100%);
-}
-/* ckeditor5-list/theme/todolist.css */
-.ck-content .todo-list .todo-list__label .todo-list__label__description {
-    vertical-align: middle;
+    &amp; li {
+        margin-bottom: 5px;
+        &amp; .todo-list {
+            margin-top: 5px;
+        }
+    }
+    &amp; .todo-list__label {
+        &amp; &gt; input {
+            -webkit-appearance: none;
+            display: inline-block;
+            position: relative;
+            width: var(--ck-todo-list-checkmark-size);
+            height: var(--ck-todo-list-checkmark-size);
+            vertical-align: middle;
+            border: 0;
+            left: -25px;
+            margin-right: -15px;
+            right: 0;
+            margin-left: 0;
+            &amp;::before {
+                display: block;
+                position: absolute;
+                box-sizing: border-box;
+                content: &apos;&apos;;
+                width: 100%;
+                height: 100%;
+                border: 1px solid hsl(0, 0%, 20%);
+                border-radius: 2px;
+                transition: 250ms ease-in-out box-shadow, 250ms ease-in-out background, 250ms ease-in-out border;
+            }
+            &amp;::after {
+                display: block;
+                position: absolute;
+                box-sizing: content-box;
+                pointer-events: none;
+                content: &apos;&apos;;
+                left: calc( var(--ck-todo-list-checkmark-size) / 3 );
+                top: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
+                width: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
+                height: calc( var(--ck-todo-list-checkmark-size) / 2.6 );
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0 calc( var(--ck-todo-list-checkmark-size) / 8 ) calc( var(--ck-todo-list-checkmark-size) / 8 ) 0;
+                transform: rotate(45deg);
+            }
+            &amp;[checked] {
+                &amp;::before {
+                    background: hsl(126, 64%, 41%);
+                    border-color: hsl(126, 64%, 41%);
+                }
+                &amp;::after {
+                    border-color: hsl(0, 0%, 100%);
+                }
+            }
+        }
+        &amp; .todo-list__label__description {
+            vertical-align: middle;
+        }
+    }
 }
 /* ckeditor5-media-embed/theme/mediaembed.css */
 .ck-content .media {
@@ -481,13 +465,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-/* ckeditor5-page-break/theme/pagebreak.css */
-.ck-content .page-break::after {
-    content: &apos;&apos;;
-    position: absolute;
-    border-bottom: 2px dashed hsl(0, 0%, 77%);
-    width: 100%;
+    &amp;::after {
+        content: &apos;&apos;;
+        position: absolute;
+        border-bottom: 2px dashed hsl(0, 0%, 77%);
+        width: 100%;
+    }
 }
 /* ckeditor5-page-break/theme/pagebreak.css */
 .ck-content .page-break__label {
@@ -513,26 +496,23 @@
 .ck-content .table {
     margin: 0.9em auto;
     display: table;
-}
-/* ckeditor5-table/theme/table.css */
-.ck-content .table table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px double hsl(0, 0%, 70%);
-}
-/* ckeditor5-table/theme/table.css */
-.ck-content .table table td,
-.ck-content .table table th {
-    min-width: 2em;
-    padding: .4em;
-    border: 1px solid hsl(0, 0%, 75%);
-}
-/* ckeditor5-table/theme/table.css */
-.ck-content .table table th {
-    font-weight: bold;
-    background: hsla(0, 0%, 0%, 5%);
+    &amp; table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px double hsl(0, 0%, 70%);
+        &amp; td,
+        &amp; th {
+            min-width: 2em;
+            padding: .4em;
+            border: 1px solid hsl(0, 0%, 75%);
+        }
+        &amp; th {
+            font-weight: bold;
+            background: hsla(0, 0%, 0%, 5%);
+        }
+    }
 }
 /* ckeditor5-table/theme/table.css */
 .ck-content[dir=&quot;rtl&quot;] .table th {
@@ -567,12 +547,11 @@
     white-space: pre-wrap;
     font-style: normal;
     min-width: 200px;
-}
-/* ckeditor5-code-block/theme/codeblock.css */
-.ck-content pre code {
-    background: unset;
-    padding: 0;
-    border-radius: 0;
+    &amp; code {
+        background: unset;
+        padding: 0;
+        border-radius: 0;
+    }
 }
 /* ckeditor5-horizontal-line/theme/horizontalline.css */
 .ck-content hr {
@@ -603,10 +582,9 @@
     /* ckeditor5-page-break/theme/pagebreak.css */
     .ck-content .page-break {
         padding: 0;
-    }
-    /* ckeditor5-page-break/theme/pagebreak.css */
-    .ck-content .page-break::after {
-        display: none;
+        &amp;::after {
+            display: none;
+        }
     }
 }
 </code></pre>
