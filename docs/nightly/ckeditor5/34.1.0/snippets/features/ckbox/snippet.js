@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{"use strict";ClassicEditor.create(document.querySelector("#snippet-ckbox"),{toolbar:{items:["heading","|","bold","italic","link","insertTable","|","undo","redo","|","ckbox"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},ckbox:{tokenUrl:"https://dev.ckbox.io/demo/token/"}}).then((e=>{window.editor=e,window.attachTourBalloon({target:window.findToolbarItem(e.ui.view.toolbar,(e=>e.label&&"Open file manager"===e.label)),text:"Click to open the file manager.",editor:e})})).catch((e=>{console.error(e.stack)}))})();

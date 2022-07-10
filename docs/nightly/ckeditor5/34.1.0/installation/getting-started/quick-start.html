@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quick start - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Jun 29 2022 01:51:28 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Quick start - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Quick start - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/2.1.3/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/2.1.3/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Installation</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../updating/index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="installation"><a href="../index.html">Installation</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Getting started</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="quick-start-other.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                      </div></a></li>
+                                  <li><a href="configuration.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                      </div></a></li>
+                                  <li><a href="installing-plugins.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                      </div></a></li>
+                                  <li><a href="basic-api.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span>
+                                      </div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Frameworks</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="frameworks/overview.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                              </div></a></li>
+                                          <li><a href="frameworks/angular.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular component</span>
+                                              </div></a></li>
+                                          <li><a href="frameworks/react.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React component</span>
+                                              </div></a></li>
+                                          <li><a href="frameworks/vuejs-v2.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x component</span>
+                                              </div></a></li>
+                                          <li><a href="frameworks/vuejs-v3.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+ component</span>
+                                              </div></a></li>
+                                          <li><a href="frameworks/css.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li><a href="migration-from-ckeditor-4.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                      </div></a></li>
+                                  <li><a href="maintenance.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Maintaining your build</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="../advanced/using-two-editors.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/saving-data.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and saving data</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/content-styles.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/csp.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/plugins.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom plugins</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/features-html-output-overview.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Features' HTML output</span>
+                                      </div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../advanced/alternative-setups/integrating-from-source.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/dll-builds.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/predefined-builds.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="updating"><a href="../../updating/index.html">Updating</a>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/installation/getting-started/quick-start.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../assets/2.1.3/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Installation</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/2.1.3/img/book.svg" alt="guide">Quick start
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#running-a-simple-editor">Running a simple editor</a><ol><li><a href="#sample-implementation">Sample implementation</a></li></ol></li><li><a href="#running-a-full-featured-editor-from-cdn">Running a full-featured editor from CDN</a><ol><li><a href="#using-the-ckeditor-5-superbuild">Using the CKEditor 5 superbuild</a></li><li><a href="#sample-implementation-2">Sample implementation</a></li><li><a href="#the-ckeditor-5-superbuild-limitations">The CKEditor 5 superbuild limitations</a></li></ol></li><li><a href="#running-a-full-featured-editor-with-premium-features">Running a full-featured editor with Premium features</a></li><li><a href="#list-of-all-plugins-included-in-the-ckeditor-5-superbuild">List of all plugins included in the CKEditor 5 superbuild</a></li></ol></nav>
+<h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
+<p>In this guide, you will find the quickest and easiest way to run ready-to-use CKEditor 5 with minimal effort &#x2013; by running the editor from <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a>.</p>
+<div class="info-box notice"><p>Please bear in mind that the CDN solution only offers <a href="../advanced/alternative-setups/predefined-builds.html">ready-to-use predefined editor builds</a>, hence it is not possible to add new plugins and all the features available in the editor are preset.</p><p>Should you need a more flexible solution, consider using the <a href="quick-start-other.html#creating-custom-builds-with-online-builder">Online builder</a> or try <a href="quick-start-other.html#building-the-editor-from-source">building the editor from source</a>.</p></div>
+<h2 id="running-a-simple-editor"><a class="headerlink" href="#running-a-simple-editor">#</a> Running a simple editor</h2>
+<p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
+<ol>
+<li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
+<li>Call the static <code>create()</code> method to create the editor.</li>
+</ol>
+<p>Let us run a classic editor build as an example. In your HTML page add an element that will serve as a placeholder for a CKEditor instance:</p>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load the classic editor build (here a <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used).</p>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a> method to display the editor.</p>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    ClassicEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="sample-implementation"><a class="headerlink" href="#sample-implementation">#</a> Sample implementation</h3>
+<p>A full webpage with embedded CKEditor 5 from the above example would look like this:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Classic editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        ClassicEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div class="info-box notice"><p>This kind of installation will only provide features available in the build used.</p><p>You can learn more about other available predefined editor builds in the <a href="../advanced/alternative-setups/predefined-builds.html">dedicated builds guide</a>.</p></div>
+<h2 id="running-a-full-featured-editor-from-cdn"><a class="headerlink" href="#running-a-full-featured-editor-from-cdn">#</a> Running a full-featured editor from CDN</h2>
+<p>The fastest way to run an advanced editor using the <a href="../../features/index.html">rich editing features offered by CKEditor 5</a> is using a superbuild. The superbuild, available instantly from CDN, is a preconfigured package that offers access to almost all available plugins and all predefined editor types.</p>
+<div class="info-box notice"><p>Please consider, that the superbuild contains a really whole lot of code. A good portion of that code may not be needed in your implementation, so using the superbuild should be considered for evaluation purposes and tests rather, than for the production environment.</p><p>We strongly advise using the <a href="quick-start-other.html#creating-custom-builds-with-online-builder">Online builder</a> approach or <a href="quick-start-other.html#building-the-editor-from-source">building the editor from source</a> to create customized and efficient production-environment solutions. You can also try out the <a href="../advanced/alternative-setups/predefined-builds.html">predefined builds</a> tailored for specific needs.</p></div>
+<h3 id="using-the-ckeditor-5-superbuild"><a class="headerlink" href="#using-the-ckeditor-5-superbuild">#</a> Using the CKEditor 5 superbuild</h3>
+<p>In the superbuild, all editor classes are stored under the <code>CKEDITOR</code> object. Apart from that exception, the editor initialization is no different than the one described in the <a href="../advanced/alternative-setups/predefined-builds.html#available-builds">available builds documentation</a>.</p>
+<p>Because the superbuild contains a lot of plugins, you may need to remove the plugins you do not need with the <code>removePlugins</code> configuration option and adjust the toolbar configuration.</p>
+<h3 id="sample-implementation-2"><a class="headerlink" href="#sample-implementation-2">#</a> Sample implementation</h3>
+<p>In this example, we remove the premium collaboration features as well as several other plugins that require credentials to work. We need to do this, otherwise the editor would throw an error.</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;style&gt;
+            #container {
+                width: 1000px;
+                margin: 20px auto;
+            }
+            .ck-editor__editable[role=&quot;textbox&quot;] {
+                /* editing area */
+                min-height: 200px;
+            }
+            .ck-content .image {
+                /* block images */
+                max-width: 80%;
+                margin: 20px auto;
+            }
+        &lt;/style&gt;
+        &lt;div id=&quot;container&quot;&gt;
+            &lt;div id=&quot;editor&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!--
+            The &quot;super-build&quot; of CKEditor 5 served via CDN contains a large set of plugins and multiple editor types.
+            See https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/quick-start.html#running-a-full-featured-editor-from-cdn
+        --&gt;
+        &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/34.1.0/super-build/ckeditor.js&quot;&gt;&lt;/script&gt;
+        &lt;!--
+            Uncomment to load the Spanish translation
+            &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/34.1.0/super-build/translations/es.js&quot;&gt;&lt;/script&gt;
+        --&gt;
+        &lt;script&gt;
+            // This sample still does not showcase all CKEditor 5 features (!)
+            // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
+            CKEDITOR.ClassicEditor.create(document.getElementById(&quot;editor&quot;), {
+                // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
+                toolbar: {
+                    items: [
+                        &apos;exportPDF&apos;,&apos;exportWord&apos;, &apos;|&apos;,
+                        &apos;findAndReplace&apos;, &apos;selectAll&apos;, &apos;|&apos;,
+                        &apos;heading&apos;, &apos;|&apos;,
+                        &apos;bold&apos;, &apos;italic&apos;, &apos;strikethrough&apos;, &apos;underline&apos;, &apos;code&apos;, &apos;subscript&apos;, &apos;superscript&apos;, &apos;removeFormat&apos;, &apos;|&apos;,
+                        &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;todoList&apos;, &apos;|&apos;,
+                        &apos;outdent&apos;, &apos;indent&apos;, &apos;|&apos;,
+                        &apos;undo&apos;, &apos;redo&apos;,
+                        &apos;-&apos;,
+                        &apos;fontSize&apos;, &apos;fontFamily&apos;, &apos;fontColor&apos;, &apos;fontBackgroundColor&apos;, &apos;highlight&apos;, &apos;|&apos;,
+                        &apos;alignment&apos;, &apos;|&apos;,
+                        &apos;link&apos;, &apos;insertImage&apos;, &apos;blockQuote&apos;, &apos;insertTable&apos;, &apos;mediaEmbed&apos;, &apos;codeBlock&apos;, &apos;htmlEmbed&apos;, &apos;|&apos;,
+                        &apos;specialCharacters&apos;, &apos;horizontalLine&apos;, &apos;pageBreak&apos;, &apos;|&apos;,
+                        &apos;textPartLanguage&apos;, &apos;|&apos;,
+                        &apos;sourceEditing&apos;
+                    ],
+                    shouldNotGroupWhenFull: true
+                },
+                // Changing the language of the interface requires loading the language file using the &lt;script&gt; tag.
+                // language: &apos;es&apos;,
+                list: {
+                    properties: {
+                        styles: true,
+                        startIndex: true,
+                        reversed: true
+                    }
+                },
+                // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
+                heading: {
+                    options: [
+                        { model: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                        { model: &apos;heading1&apos;, view: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                        { model: &apos;heading2&apos;, view: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; },
+                        { model: &apos;heading3&apos;, view: &apos;h3&apos;, title: &apos;Heading 3&apos;, class: &apos;ck-heading_heading3&apos; },
+                        { model: &apos;heading4&apos;, view: &apos;h4&apos;, title: &apos;Heading 4&apos;, class: &apos;ck-heading_heading4&apos; },
+                        { model: &apos;heading5&apos;, view: &apos;h5&apos;, title: &apos;Heading 5&apos;, class: &apos;ck-heading_heading5&apos; },
+                        { model: &apos;heading6&apos;, view: &apos;h6&apos;, title: &apos;Heading 6&apos;, class: &apos;ck-heading_heading6&apos; }
+                    ]
+                },
+                // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
+                placeholder: &apos;Welcome to CKEditor 5!&apos;,
+                // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
+                fontFamily: {
+                    options: [
+                        &apos;default&apos;,
+                        &apos;Arial, Helvetica, sans-serif&apos;,
+                        &apos;Courier New, Courier, monospace&apos;,
+                        &apos;Georgia, serif&apos;,
+                        &apos;Lucida Sans Unicode, Lucida Grande, sans-serif&apos;,
+                        &apos;Tahoma, Geneva, sans-serif&apos;,
+                        &apos;Times New Roman, Times, serif&apos;,
+                        &apos;Trebuchet MS, Helvetica, sans-serif&apos;,
+                        &apos;Verdana, Geneva, sans-serif&apos;
+                    ],
+                    supportAllValues: true
+                },
+                // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
+                fontSize: {
+                    options: [ 10, 12, 14, &apos;default&apos;, 18, 20, 22 ],
+                    supportAllValues: true
+                },
+                // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
+                // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
+                htmlSupport: {
+                    allow: [
+                        {
+                            name: /.*/,
+                            attributes: true,
+                            classes: true,
+                            styles: true
+                        }
+                    ]
+                },
+                // Be careful with enabling previews
+                // https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html#content-previews
+                htmlEmbed: {
+                    showPreviews: true
+                },
+                // https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
+                link: {
+                    decorators: {
+                        addTargetToExternalLinks: true,
+                        defaultProtocol: &apos;https://&apos;,
+                        toggleDownloadable: {
+                            mode: &apos;manual&apos;,
+                            label: &apos;Downloadable&apos;,
+                            attributes: {
+                                download: &apos;file&apos;
+                            }
+                        }
+                    }
+                },
+                // https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#configuration
+                mention: {
+                    feeds: [
+                        {
+                            marker: &apos;@&apos;,
+                            feed: [
+                                &apos;@apple&apos;, &apos;@bears&apos;, &apos;@brownie&apos;, &apos;@cake&apos;, &apos;@cake&apos;, &apos;@candy&apos;, &apos;@canes&apos;, &apos;@chocolate&apos;, &apos;@cookie&apos;, &apos;@cotton&apos;, &apos;@cream&apos;,
+                                &apos;@cupcake&apos;, &apos;@danish&apos;, &apos;@donut&apos;, &apos;@drag&#xE9;e&apos;, &apos;@fruitcake&apos;, &apos;@gingerbread&apos;, &apos;@gummi&apos;, &apos;@ice&apos;, &apos;@jelly-o&apos;,
+                                &apos;@liquorice&apos;, &apos;@macaroon&apos;, &apos;@marzipan&apos;, &apos;@oat&apos;, &apos;@pie&apos;, &apos;@plum&apos;, &apos;@pudding&apos;, &apos;@sesame&apos;, &apos;@snaps&apos;, &apos;@souffl&#xE9;&apos;,
+                                &apos;@sugar&apos;, &apos;@sweet&apos;, &apos;@topping&apos;, &apos;@wafer&apos;
+                            ],
+                            minimumCharacters: 1
+                        }
+                    ]
+                },
+                // The &quot;super-build&quot; contains more premium features that require additional configuration, disable them below.
+                // Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
+                removePlugins: [
+                    // These two are commercial, but you can try them out without registering to a trial.
+                    // &apos;ExportPdf&apos;,
+                    // &apos;ExportWord&apos;,
+                    &apos;CKBox&apos;,
+                    &apos;CKFinder&apos;,
+                    &apos;EasyImage&apos;,
+                    // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
+                    // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
+                    // Storing images as Base64 is usually a very bad idea.
+                    // Replace it on production website with other solutions:
+                    // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
+                    // &apos;Base64UploadAdapter&apos;,
+                    &apos;RealTimeCollaborativeComments&apos;,
+                    &apos;RealTimeCollaborativeTrackChanges&apos;,
+                    &apos;RealTimeCollaborativeRevisionHistory&apos;,
+                    &apos;PresenceList&apos;,
+                    &apos;Comments&apos;,
+                    &apos;TrackChanges&apos;,
+                    &apos;TrackChangesData&apos;,
+                    &apos;RevisionHistory&apos;,
+                    &apos;Pagination&apos;,
+                    &apos;WProofreader&apos;,
+                    // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
+                    // from a local file system (file://) - load this site via HTTP server if you enable MathType
+                    &apos;MathType&apos;
+                ]
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="the-ckeditor-5-superbuild-limitations"><a class="headerlink" href="#the-ckeditor-5-superbuild-limitations">#</a> The CKEditor 5 superbuild limitations</h3>
+<p>While the superbuild is designed to provide as many of them as possible, some of these plugins may conflict with each other. Due to that fact, several of those needed to be excluded from the superbuild and are not available that way:</p>
+<ul>
+<li>Watchdog</li>
+<li>ContextWatchdog</li>
+<li>Context</li>
+<li>Title</li>
+<li>Restricted editing</li>
+</ul>
+<h2 id="running-a-full-featured-editor-with-premium-features"><a class="headerlink" href="#running-a-full-featured-editor-with-premium-features">#</a> Running a full-featured editor with Premium features</h2>
+<p>If you would like to quickly evaluate CKEditor 5 with premium features such as real-time collaboration, track changes and revision history then sign up for a <a href="https://orders.ckeditor.com/trial/premium-features" target="_blank" rel="noopener">30-day free trial</a>.</p>
+<p>After you sign up, you will find in the customer dashboard the full code snippet to run the editor with premium features with all the necessary configurations.</p>
+<h2 id="list-of-all-plugins-included-in-the-ckeditor-5-superbuild"><a class="headerlink" href="#list-of-all-plugins-included-in-the-ckeditor-5-superbuild">#</a> List of all plugins included in the CKEditor 5 superbuild</h2>
+<p>The table below presents the list of all plugins included in the superbuild. You may disable any of them using the <code>removePlugins</code> configuration option.</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px">
+	<tbody>
+		<tr>
+			<td><b>Plugin</b></td>
+			<td><b>Documentation</b></td>
+		</tr>
+		<tr>
+			<td>Alignment</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/text-alignment.html">https://ckeditor.com/docs/ckeditor5/latest/features/text-alignment.html</a></td>
+		</tr>
+		<tr>
+			<td>Autoformat</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/autoformat.html">https://ckeditor.com/docs/ckeditor5/latest/features/autoformat.html</a></td>
+		</tr>
+		<tr>
+			<td>AutoImage</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/images-inserting.html#inserting-images-via-pasting-url-into-editor">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/images-inserting.html#inserting-images-via-pasting-url-into-editor</a></td>
+		</tr>
+		<tr>
+			<td>Base64UploadAdapter</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html</a></td>
+		</tr>
+		<tr>
+			<td>BlockQuote</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/block-quote.html">https://ckeditor.com/docs/ckeditor5/latest/features/block-quote.html</a></td>
+		</tr>
+		<tr>
+			<td>Bold</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>CKBox</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/ckbox.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/ckbox.html</a></td>
+		</tr>
+		<tr>
+			<td>CKFinder</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/ckfinder.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/ckfinder.html</a></td>
+		</tr>
+		<tr>
+			<td>CloudServices</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_cloud-services_cloudservices-CloudServices.html">https://ckeditor.com/docs/ckeditor5/latest/api/module_cloud-services_cloudservices-CloudServices.html</a></td>
+		</tr>
+		<tr>
+			<td>Code</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>CodeBlock</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/code-blocks.html">https://ckeditor.com/docs/ckeditor5/latest/features/code-blocks.html</a></td>
+		</tr>
+		<tr>
+			<td>Comments</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/comments/comments.html">https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/comments/comments.html</a></td>
+		</tr>
+		<tr>
+			<td>EasyImage</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/easy-image.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/easy-image.html</a></td>
+		</tr>
+		<tr>
+			<td>ExportPdf</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/export-pdf.html">https://ckeditor.com/docs/ckeditor5/latest/features/export-pdf.html</a></td>
+		</tr>
+		<tr>
+			<td>ExportWord</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/export-word.html">https://ckeditor.com/docs/ckeditor5/latest/features/export-word.html</a></td>
+		</tr>
+		<tr>
+			<td>FindAndReplace</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/find-and-replace.html">https://ckeditor.com/docs/ckeditor5/latest/features/find-and-replace.html</a></td>
+		</tr>
+		<tr>
+			<td>FontBackgroundColor, FontColor, FontFamily, FontSize</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/font.html">https://ckeditor.com/docs/ckeditor5/latest/features/font.html</a></td>
+		</tr>
+		<tr>
+			<td>GeneralHtmlSupport</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html">https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html</a></td>
+		</tr>
+		<tr>
+			<td>Heading</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/headings.html">https://ckeditor.com/docs/ckeditor5/latest/features/headings.html</a></td>
+		</tr>
+		<tr>
+			<td>Highlight</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/highlight.html">https://ckeditor.com/docs/ckeditor5/latest/features/highlight.html</a></td>
+		</tr>
+		<tr>
+			<td>HorizontalLine</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/horizontal-line.html">https://ckeditor.com/docs/ckeditor5/latest/features/horizontal-line.html</a></td>
+		</tr>
+		<tr>
+			<td>HtmlComment</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#html-comments">https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#html-comments</a></td>
+		</tr>
+		<tr>
+			<td>HtmlEmbed</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html">https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html</a></td>
+		</tr>
+		<tr>
+			<td>Image</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/images-overview.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/images-overview.html</a></td>
+		</tr>
+		<tr>
+			<td>ImageCaption</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/images-captions.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/images-captions.html</a></td>
+		</tr>
+		<tr>
+			<td>ImageResize</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/images-resizing.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/images-resizing.html</a></td>
+		</tr>
+		<tr>
+			<td>ImageStyle</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/images-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/images-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>ImageToolbar</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/images-overview.html#image-contextual-toolbar">https://ckeditor.com/docs/ckeditor5/latest/features/images/images-overview.html#image-contextual-toolbar</a></td>
+		</tr>
+		<tr>
+			<td>ImageUpload</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html</a></td>
+		</tr>
+		<tr>
+			<td>ImageInsert</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/images-inserting.html">https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/images-inserting.html</a></td>
+		</tr>
+		<tr>
+			<td>Indent, IndentBlock</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/indent.html">https://ckeditor.com/docs/ckeditor5/latest/features/indent.html</a></td>
+		</tr>
+		<tr>
+			<td>Italic</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>Link, Autolink, LinkImage</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/link.html">https://ckeditor.com/docs/ckeditor5/latest/features/link.html</a></td>
+		</tr>
+		<tr>
+			<td>List, ListProperties, TodoList</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/lists/lists.html">https://ckeditor.com/docs/ckeditor5/latest/features/lists/lists.html</a></td>
+		</tr>
+		<tr>
+			<td>MathType</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/math-equations.html">https://ckeditor.com/docs/ckeditor5/latest/features/math-equations.html</a></td>
+		</tr>
+		<tr>
+			<td>MediaEmbed</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/media-embed.html">https://ckeditor.com/docs/ckeditor5/latest/features/media-embed.html</a></td>
+		</tr>
+		<tr>
+			<td>Mention</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html">https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html</a></td>
+		</tr>
+		<tr>
+			<td>PageBreak</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/page-break.html">https://ckeditor.com/docs/ckeditor5/latest/features/page-break.html</a></td>
+		</tr>
+		<tr>
+			<td>Pagination</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/pagination/pagination.html">https://ckeditor.com/docs/ckeditor5/latest/features/pagination/pagination.html</a></td>
+		</tr>
+		<tr>
+			<td>PasteFromOffice</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/pasting/paste-from-word.html">https://ckeditor.com/docs/ckeditor5/latest/features/pasting/paste-from-word.html</a></td>
+		</tr>
+		<tr>
+			<td>PictureEditing</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_image_pictureediting-PictureEditing.html">https://ckeditor.com/docs/ckeditor5/latest/api/module_image_pictureediting-PictureEditing.html</a></td>
+		</tr>
+		<tr>
+			<td>PresenceList</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/real-time-collaboration/users-in-real-time-collaboration.html">https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/real-time-collaboration/users-in-real-time-collaboration.html</a></td>
+		</tr>
+		<tr>
+			<td>RealTimeCollaborativeEditing, RealTimeCollaborativeComments, RealTimeCollaborativeRevisionHistory, RealTimeCollaborativeTrackChanges</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/real-time-collaboration/real-time-collaboration.html">https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/real-time-collaboration/real-time-collaboration.html</a></td>
+		</tr>
+		<tr>
+			<td>RemoveFormat</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/remove-format.html">https://ckeditor.com/docs/ckeditor5/latest/features/remove-format.html</a></td>
+		</tr>
+		<tr>
+			<td>RevisionHistory</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/revision-history/revision-history.html">https://ckeditor.com/docs/ckeditor5/latest/features/revision-history/revision-history.html</a></td>
+		</tr>
+		<tr>
+			<td>StandardEditingMode</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/restricted-editing.html">https://ckeditor.com/docs/ckeditor5/latest/features/restricted-editing.html</a></td>
+		</tr>
+		<tr>
+			<td>SpecialCharacters</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/special-characters.html">https://ckeditor.com/docs/ckeditor5/latest/features/special-characters.html</a></td>
+		</tr>
+		<tr>
+			<td>Strikethrough</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>Subscript</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>Superscript</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>Table, TableToolbar, TableCellProperties, TableProperties, TableCaption, TableColumnResize</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/table.html">https://ckeditor.com/docs/ckeditor5/latest/features/table.html</a></td>
+		</tr>
+		<tr>
+			<td>TextPartLanguage</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/language.html">https://ckeditor.com/docs/ckeditor5/latest/features/language.html</a></td>
+		</tr>
+		<tr>
+			<td>TextTransformation</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/text-transformation.html">https://ckeditor.com/docs/ckeditor5/latest/features/text-transformation.html</a></td>
+		</tr>
+		<tr>
+			<td>TrackChanges</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/track-changes/track-changes.html">https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/track-changes/track-changes.html</a></td>
+		</tr>
+		<tr>
+			<td>TrackChangesData</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/track-changes/track-changes-data.html">https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/track-changes/track-changes-data.html</a></td>
+		</tr>
+		<tr>
+			<td>Underline</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html">https://ckeditor.com/docs/ckeditor5/latest/features/basic-styles.html</a></td>
+		</tr>
+		<tr>
+			<td>WordCount</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/word-count.html">https://ckeditor.com/docs/ckeditor5/latest/features/word-count.html</a></td>
+		</tr>
+		<tr>
+			<td>WProofReader</td>
+			<td><a href="https://ckeditor.com/docs/ckeditor5/latest/features/spelling-and-grammar-checking.html">https://ckeditor.com/docs/ckeditor5/latest/features/spelling-and-grammar-checking.html</a></td>
+		</tr>
+	</tbody>
+</table>
+<div class="info-box notice notice__hint"><p><strong>What&#x2019;s next?</strong></p><p>Congratulations, you have just run your first CKEditor 5 instance!</p><p>You can also try another simple installation method, like the <a href="quick-start-other.html#creating-custom-builds-with-online-builder">Online builder</a> or <a href="quick-start-other.html#building-the-editor-from-source">building the editor from source</a>.</p><p>And if you use Angular, React or Vue.js and want to integrate CKEditor 5 in your application, refer to the <a href="frameworks/overview.html">Frameworks section</a>.</p></div>
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted an outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22installation%2Fgetting-started%2Fquick-start.html%22&amp;project-version=34.1.0" target="_blank" rel="noopener" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Getting started</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="quick-start-other.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                        </div></a></li>
+                                    <li><a href="configuration.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                        </div></a></li>
+                                    <li><a href="installing-plugins.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                        </div></a></li>
+                                    <li><a href="basic-api.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span>
+                                        </div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Frameworks</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="frameworks/overview.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                                  </div></a></li>
+                                              <li><a href="frameworks/angular.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular component</span>
+                                                  </div></a></li>
+                                              <li><a href="frameworks/react.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React component</span>
+                                                  </div></a></li>
+                                              <li><a href="frameworks/vuejs-v2.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x component</span>
+                                                  </div></a></li>
+                                              <li><a href="frameworks/vuejs-v3.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+ component</span>
+                                                  </div></a></li>
+                                              <li><a href="frameworks/css.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="migration-from-ckeditor-4.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                        </div></a></li>
+                                    <li><a href="maintenance.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Maintaining your build</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced</span>
+                            </div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../advanced/using-two-editors.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/saving-data.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and saving data</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/content-styles.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/csp.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/plugins.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom plugins</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/features-html-output-overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Features' HTML output</span>
+                                        </div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../advanced/alternative-setups/integrating-from-source.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/dll-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/predefined-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2022 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'updating', 'support', 'framework', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'installation' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'installation' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'installation' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'installation' ] );tags.forEach( function( tag ) {if ( tag !== 'installation' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/2.1.3/scripts/app.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>
