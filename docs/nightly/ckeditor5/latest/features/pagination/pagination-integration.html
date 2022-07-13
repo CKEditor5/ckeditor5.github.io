@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sun Jul 10 2022 01:57:47 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 13 2022 01:58:59 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integration with Export to PDF/Word - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -433,7 +433,16 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/2.1.3/img/book.svg" alt="guide">Integration with Export to PDF/Word
-          </h1><p>This guide is meant to be a point of reference for anyone integrating the <code><a href="pagination.html">Pagination</a></code>, <code><a href="../export-pdf.html">Export to PDF</a></code> and <code><a href="../export-word.html">Export to Word</a></code> features together. It describes the whole process from creating a custom editor and configuring it, up to the point of having a working solution.</p>
+          </h1><style>
+.invalid-browser {
+  display: none;
+}
+
+.invalid-browser--active {
+  display: block;
+}
+</style>
+<p>This guide is meant to be a point of reference for anyone integrating the <code><a href="pagination.html">Pagination</a></code>, <code><a href="../export-pdf.html">Export to PDF</a></code> and <code><a href="../export-word.html">Export to Word</a></code> features together. It describes the whole process from creating a custom editor and configuring it, up to the point of having a working solution.</p>
 <p>We strongly advise you to get familiar with all three mentioned plugins&#x2019; user guides before reading this guide.</p>
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <div class="info-box notice"><p>Pagination, Export to PDF and Export to Word are premium features. Please <a href="https://ckeditor.com/contact/">contact us</a> if you would like to purchase a license. Let us know if you have any feedback or questions!</p><p>You can also sign up for the <a href="https://orders.ckeditor.com/trial/premium-features" target="_blank" rel="noopener">CKEditor Premium Features 30-day free trial</a>.</p></div>
@@ -813,7 +822,10 @@ DecoupledEditor
 </code></pre>
 <p>You can read more about sending styles to the server in the <a href="pagination.html#troubleshooting">troubleshooting section</a> of Pagination overview.</p>
 <h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
-<p>Presented below is a sample editor with the <code><a href="pagination.html">pagination</a></code>, <code><a href="../export-pdf.html">export to PDF</a></code> and <code><a href="../export-word.html">export to Word</a></code> features enabled (keep in mind, however, that this demo might be slightly different than the editor you just built because of the fonts and other styling, that is specific to the whole documentation page):</p>
+<p>Presented below is a sample editor with the <code><a href="pagination.html">Pagination</a></code>, <code><a href="../export-pdf.html">Export to PDF</a></code> and <code><a href="../export-word.html">Export to Word</a></code> features enabled (keep in mind, however, that this demo might be slightly different than the editor you just built because of the fonts and other styling, that is specific to the whole documentation page):</p>
+<div class="invalid-browser">
+<div class="info-box notice"><p>Please note, that, as of now, the Pagination feature demo does not work properly in the Firefox and Safari browsers. Refer to the <a href="pagination.html#browser-compatibility">browser compatibility section</a> for further details.</p></div>
+</div>
 <div class="live-snippet"><div class="document-container">
 	<div id="toolbar-container" class="toolbar-container"></div>
 	<div class="editor-container">
@@ -1460,6 +1472,15 @@ DecoupledEditor
 <h3 id="troubleshooting"><a class="headerlink" href="#troubleshooting">#</a> Troubleshooting</h3>
 <p>Please keep in mind that each of the plugins used in this guide has some known issues - this could be partial or missing support for other CKEditor 5 plugins, partial browser support, some known bugs, etc. When combined, these sometimes might cause problems for certain more complicated use cases. We strongly advise to go through all <em>Known issues</em> sections in the features&#x2019; respective documentation pages and make sure that you understand all their limitations.</p>
 <p>If you would like to report a bug or propose enhancements for these plugins, we encourage you to use the <a href="https://github.com/ckeditor/ckeditor5/issues" target="_blank" rel="noopener">CKEditor 5 issue tracker</a>. If you would like to use CKEditor 5 as a part of a commercial solution or have a request for custom development, feel free to contact us through our <a href="https://ckeditor.com/contact/">support channel</a> - our team will make sure to answer all your questions.</p>
+<script>
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+if ( isSafari || isFirefox ) {
+  const invalidBrowser = document.querySelector('.invalid-browser');
+  invalidBrowser.classList.add('invalid-browser--active');
+}
+</script>
 
           <div class="info-box notice notice__feedback">
             <p>
