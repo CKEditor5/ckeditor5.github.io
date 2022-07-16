@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jul 13 2022 01:58:50 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Jul 16 2022 02:00:14 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKBox file manager - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -435,7 +435,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/2.1.3/img/book.svg" alt="guide">CKBox file manager
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#defining-upload-categories">Defining upload categories</a></li><li><a href="#adding-the-id-for-inserted-assets">Adding the ID for inserted assets</a></li><li><a href="#changing-the-language">Changing the language</a></li><li><a href="#providing-the-token-url">Providing the token URL</a></li><li><a href="#configuring-the-api-service-and-assets-origin">Configuring the API service and assets origin</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/CKBox/1.0.0/ckbox.js"></script>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#defining-upload-categories">Defining upload categories</a></li><li><a href="#adding-the-id-for-inserted-assets">Adding the ID for inserted assets</a></li><li><a href="#changing-the-language">Changing the language</a></li><li><a href="#providing-the-token-url">Providing the token URL</a></li><li><a href="#configuring-the-api-service-and-assets-origin">Configuring the API service and assets origin</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/CKBox/1.1.0/ckbox.js"></script>
 </div>
 
 <p>This CKBox integration feature allows you to effortlessly and intuitively insert images as well as links to other files into the rich-text editor content. CKBox is a file manager and a file uploader that acts as a convenient interface for the cloud storage service. The CKBox feature provides a simple integration with this service for the CKEditor 5 WYSIWYG editor. To find out more about CKBox, the brand-new file manager, visit the <a href="https://ckeditor.com/ckbox/">CKBox website</a>.</p>
@@ -460,7 +460,7 @@
 <div class="info-box notice notice__info"><p>This feature is enabled by default in all predefined builds. The installation instructions are for developers interested in building their own, custom WYSIWYG editor.</p></div>
 <p>To use this feature in your application, you must first load the CKBox library and then enable CKBox integration in your rich-text editor instance.</p>
 <p>The easiest way to load the CKBox library is to include the <code>&lt;script&gt;</code> tag loading the <code>ckbox.js</code> file first:</p>
-<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.0.0/ckbox.js&quot;&gt;&lt;/script&gt;
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.1.0/ckbox.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Then, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ckbox" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ckbox</code></a> package:</p>
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-ckbox
@@ -554,8 +554,8 @@ ClassicEditor
     .catch( ... );
 </code></pre>
 <p>Also, make sure to include the translation file after loading the CKBox library:</p>
-<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.0.0/ckbox.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.0.0/translations/es.js&quot;&gt;&lt;/script&gt;
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.1.0/ckbox.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.ckbox.io/CKBox/1.1.0/translations/es.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <h3 id="providing-the-token-url"><a class="headerlink" href="#providing-the-token-url">#</a> Providing the token URL</h3>
 <p>The CKBox feature requires the token endpoint URL configured in the <a href="../../../api/module_ckbox_ckbox-CKBoxConfig.html#member-tokenUrl"><code>config.ckbox.tokenUrl</code></a> key. If not explicitly provided, the token URL from <a href="../../../api/module_cloud-services_cloudservices-CloudServicesConfig.html#member-tokenUrl"><code>config.cloudServices.tokenUrl</code></a> is used instead. If both are provided, the token URL defined in <code>config.ckbox.tokenUrl</code> takes precedence over the <code>config.cloudServices.tokenUrl</code>.</p>

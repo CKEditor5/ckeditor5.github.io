@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jul 13 2022 01:59:05 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Jul 16 2022 02:00:29 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -4212,6 +4212,59 @@ the second argument of the <code>t()</code> function should always be a number o
 Please contact our customer support to get a full access at https://ckeditor.com/contact/.
       </p>
       <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-dropdown-focus-child-on-open-child-missing-focus">
+      <h3><code><a class="member-name" href="#error-ui-dropdown-focus-child-on-open-child-missing-focus">ui-dropdown-focus-child-on-open-child-missing-focus</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">The child view of a <a href="../api/module_ui_dropdown_dropdownview-DropdownView.html">dropdown</a> is missing the <code>focus()</code> method
+and could not be focused when the dropdown got <a href="../api/module_ui_dropdown_dropdownview-DropdownView.html#member-isOpen">open</a>.
+      </p>
+      <div class="collapsing-list__content">
+<p>Making the content of a dropdown focusable in this case greatly improves the accessibility. Please make the view instance
+implements the <a href="../api/module_ui_dropdown_dropdownpanelfocusable-DropdownPanelFocusable.html">focusable interface</a> for the best user
+experience.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>view
+              :
+ <span><a class="collapsing-list__type" href="../api/module_ui_view-View.html">View</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-dropdown-panel-focus-child-missing-focus">
+      <h3><code><a class="member-name" href="#error-ui-dropdown-panel-focus-child-missing-focus">ui-dropdown-panel-focus-child-missing-focus</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">The child view of a dropdown could not be focused because it is missing the <code>focus()</code> method.
+      </p>
+      <div class="collapsing-list__content">
+<p>This warning appears when a dropdown <a href="../api/module_ui_dropdown_dropdownview-DropdownView.html#member-isOpen">gets open</a> and it
+attempts to focus the <a href="../api/module_ui_dropdown_dropdownpanelview-DropdownPanelView.html#member-children">first child</a> of its panel
+but the child does not implement the
+<a href="../api/module_ui_dropdown_dropdownpanelfocusable-DropdownPanelFocusable.html">focusable interface</a>.</p>
+<p>Focusing the content of a dropdown on open greatly improves the accessibility. Please make sure the view instance
+provides the <code>focus()</code> method for the best user experience.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>childView
+              :
+ <span><a class="collapsing-list__type" href="../api/module_ui_view-View.html">View</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>dropdownPanel
+              :
+ <span><a class="collapsing-list__type" href="../api/module_ui_dropdown_dropdownpanelview-DropdownPanelView.html">DropdownPanelView</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
       </div>
     </div>
   </li>
