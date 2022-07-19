@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 18 2022 02:02:40 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 19 2022 02:03:39 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Vue.js 3+ component - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -90,6 +90,9 @@
                                   <li><a href="../quick-start.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
+                                  <li><a href="../predefined-builds.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="../quick-start-other.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
                                       </div></a></li>
@@ -169,9 +172,6 @@
                                           <li><a href="../../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
                                               </div></a></li>
-                                          <li><a href="../../advanced/alternative-setups/predefined-builds.html">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
-                                              </div></a></li>
                                     </ul>
                                   </li>
                             </ul>
@@ -211,12 +211,12 @@
 	</a>
 </p>
 <div class="info-box notice"><p><strong>Important</strong>: This guide is about the CKEditor 5 integration with Vue.js 3+. To learn more about the integration with Vue.js 2.x, check out the <a href="vuejs-v2.html">&#x201C;Rich text editor component for Vue.js 2.x&#x201D;</a> guide.</p></div>
-<p>CKEditor 5 consists of the <a href="../../advanced/alternative-setups/predefined-builds.html">ready-to-use editor builds</a> and the <a href="../../../framework/guides/overview.html">CKEditor 5 Framework</a> upon which the builds are based.</p>
-<p>The easiest way to use CKEditor 5 in your Vue.js application is by choosing one of the <a href="../../advanced/alternative-setups/predefined-builds.html#available-builds">rich text editor builds</a> and simply passing it to the configuration of the Vue.js component. Read more about this solution in the <a href="#quick-start">Quick start</a> section of this guide.</p>
+<p>CKEditor 5 consists of the <a href="../predefined-builds.html">ready-to-use editor builds</a> and the <a href="../../../framework/guides/overview.html">CKEditor 5 Framework</a> upon which the builds are based.</p>
+<p>The easiest way to use CKEditor 5 in your Vue.js application is by choosing one of the <a href="../predefined-builds.html#available-builds">rich text editor builds</a> and simply passing it to the configuration of the Vue.js component. Read more about this solution in the <a href="#quick-start">Quick start</a> section of this guide.</p>
 <p>Additionally, you can <a href="#using-ckeditor-from-source">integrate CKEditor 5 from source</a> which is a much more flexible and powerful solution, but requires some additional configuration.</p>
 <div class="info-box notice"><p>The <a href="../../../features/watchdog.html">watchdog feature</a> is available for the <a href="react.html">React</a> and <a href="angular.html">Angular</a> integrations, but is not supported in Vue yet.</p></div>
 <h2 id="quick-start"><a class="headerlink" href="#quick-start">#</a> Quick start</h2>
-<p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-vue" target="_blank" rel="noopener">CKEditor 5 WYSIWYG editor component for Vue.js</a> and the <a href="../../advanced/alternative-setups/predefined-builds.html#available-builds">editor build of your choice</a>.</p>
+<p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-vue" target="_blank" rel="noopener">CKEditor 5 WYSIWYG editor component for Vue.js</a> and the <a href="../predefined-builds.html#available-builds">editor build of your choice</a>.</p>
 <p>Assuming that you picked <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-build-classic</code></a>:</p>
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-vue @ckeditor/ckeditor5-build-classic
 </code></pre>
@@ -556,7 +556,7 @@ createApp( { /* options */ } ).use( CKEditor ).mount( /* DOM element */ );
 <h2 id="localization"><a class="headerlink" href="#localization">#</a> Localization</h2>
 <p>CKEditor 5 supports <a href="../../../features/ui-language.html">multiple UI languages</a>, and so does the official Vue.js component. Follow the instructions below to translate CKEditor 5 in your Vue.js application.</p>
 <h3 id="predefined-builds"><a class="headerlink" href="#predefined-builds">#</a> Predefined builds</h3>
-<p>When using one of the <a href="../../advanced/alternative-setups/predefined-builds.html#available-builds">official editor builds</a>, you need to import the translations first.</p>
+<p>When using one of the <a href="../predefined-builds.html#available-builds">official editor builds</a>, you need to import the translations first.</p>
 <ul>
 <li>When using a <a href="#direct-script-include">direct script include</a>:<pre class="highlight"><code class="html">&lt;!-- Import translations for the German language. --&gt;
 &lt;script src=&quot;../node_modules/@ckeditor/ckeditor5-build-classic/build/translations/de.js&quot;&gt;&lt;/script&gt;
@@ -810,6 +810,9 @@ module.exports = {
                                     <li><a href="../quick-start.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
+                                    <li><a href="../predefined-builds.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="../quick-start-other.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
                                         </div></a></li>
@@ -888,9 +891,6 @@ module.exports = {
                                                   </div></a></li>
                                               <li><a href="../../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
-                                                  </div></a></li>
-                                              <li><a href="../../advanced/alternative-setups/predefined-builds.html">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>

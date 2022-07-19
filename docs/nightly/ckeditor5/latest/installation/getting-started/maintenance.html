@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 18 2022 02:02:41 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 19 2022 02:03:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Maintaining your build - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -88,6 +88,9 @@
                                   <li><a href="quick-start.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
+                                  <li><a href="predefined-builds.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="quick-start-other.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
                                       </div></a></li>
@@ -167,9 +170,6 @@
                                           <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
                                               </div></a></li>
-                                          <li><a href="../advanced/alternative-setups/predefined-builds.html">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
-                                              </div></a></li>
                                     </ul>
                                   </li>
                             </ul>
@@ -207,7 +207,7 @@
 <h2 id="ckeditor-5-release-process"><a class="headerlink" href="#ckeditor-5-release-process">#</a> CKEditor 5 release process</h2>
 <p>Regular code releases (there are usually 10-12 of these a year) bring different changes and new features. They are often divided into major and minor changes, along the lines of <a href="https://semver.org/" target="_blank" rel="noopener">semantic versioning</a>.</p>
 <h3 id="code-release"><a class="headerlink" href="#code-release">#</a> Code release</h3>
-<p>Each code release is noted in the <a href="https://github.com/ckeditor/ckeditor5/blob/stable/CHANGELOG.md" target="_blank" rel="noopener">changelog</a> and enumerates all changes, additions and bug fixes that took place, also highlighting if there are any breaking changes (i.e. changes that make the latest release incompatible with the previous ones code-wise). These are released on the <a href="https://www.npmjs.com/package/ckeditor5" target="_blank" rel="noopener">CKEditor 5 npm site</a>, as well as in <a href="../advanced/alternative-setups/predefined-builds.html#download-options">updated predefined builds</a> and <a href="quick-start-other.html#creating-custom-builds-with-online-builder">online builder</a> and are ready to download.</p>
+<p>Each code release is noted in the <a href="https://github.com/ckeditor/ckeditor5/blob/stable/CHANGELOG.md" target="_blank" rel="noopener">changelog</a> and enumerates all changes, additions and bug fixes that took place, also highlighting if there are any breaking changes (i.e. changes that make the latest release incompatible with the previous ones code-wise). These are released on the <a href="https://www.npmjs.com/package/ckeditor5" target="_blank" rel="noopener">CKEditor 5 npm site</a>, as well as in <a href="predefined-builds.html#download-options">updated predefined builds</a> and <a href="quick-start-other.html#creating-custom-builds-with-online-builder">online builder</a> and are ready to download.</p>
 <p>It is good to follow npm release messages about new packages being published as well as periodically check the changelog.</p>
 <h3 id="public-release"><a class="headerlink" href="#public-release">#</a> Public release</h3>
 <p>Soon after the code release, a more user-oriented information is published. In a <a href="https://ckeditor.com/blog/?category=releases&amp;tags=CKEditor-5">release blog post</a> the latest release version is presented in more details, with examples, screencasts, screenshots and links to the new or updated documentation if it brings important information about the release. The release blog post would also provide additional information and context for the changes if needed and direct the user toward migration guides if these were created for the release.</p>
@@ -219,7 +219,7 @@
 <h3 id="upgrade-regularly"><a class="headerlink" href="#upgrade-regularly">#</a> Upgrade regularly</h3>
 <p>CKEditor 5 should be <a href="../../updating/updating.html">updated frequently</a>, as bug fixes and new features are not backported. While installing and using a CKEditor 5 instance, especially when adding new features, always make sure all the packages are of the same (preferably latest) version. If this requirement is not met, errors may occur.</p>
 <h3 id="update-your-custom-builds"><a class="headerlink" href="#update-your-custom-builds">#</a> Update your custom builds</h3>
-<p>If you want to skip some editor features, <a href="quick-start-other.html#creating-custom-builds-with-online-builder">customize your build with online builder</a> and remove unneeded functionality. Alternatively, <a href="quick-start-other.html#building-the-editor-from-source">create your own customized build from scratch</a>. It is a bad practice to download a <a href="../advanced/alternative-setups/predefined-builds.html">predefined editor build</a> and then remove plugins or buttons in your configuration. You will only be loading unnecessary stuff without any good reason.</p>
+<p>If you want to skip some editor features, <a href="quick-start-other.html#creating-custom-builds-with-online-builder">customize your build with online builder</a> and remove unneeded functionality. Alternatively, <a href="quick-start-other.html#building-the-editor-from-source">create your own customized build from scratch</a>. It is a bad practice to download a <a href="predefined-builds.html">predefined editor build</a> and then remove plugins or buttons in your configuration. You will only be loading unnecessary stuff without any good reason.</p>
 <h3 id="use-online-builder-to-add-plugins"><a class="headerlink" href="#use-online-builder-to-add-plugins">#</a> Use online builder to add plugins</h3>
 <p>Some releases would bring new features and new plugins and sometimes replace old ones and make them obsolete. If you want to install additional plugins, use online builder instead of adding them manually. This will reduce the risk of omitting plugin dependencies.</p>
 <h2 id="safety"><a class="headerlink" href="#safety">#</a> Safety</h2>
@@ -255,6 +255,9 @@
                             <ul class="tree__item-nested-list">
                                     <li><a href="quick-start.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="predefined-builds.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="quick-start-other.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
@@ -334,9 +337,6 @@
                                                   </div></a></li>
                                               <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
-                                                  </div></a></li>
-                                              <li><a href="../advanced/alternative-setups/predefined-builds.html">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>

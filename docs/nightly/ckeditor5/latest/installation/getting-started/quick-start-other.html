@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 18 2022 02:02:41 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 19 2022 02:03:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Customized installation - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -88,6 +88,9 @@
                                   <li><a href="quick-start.html">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
+                                  <li><a href="predefined-builds.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="">
                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Customized installation</span>
                                       </div></a></li>
@@ -167,9 +170,6 @@
                                           <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
                                               </div></a></li>
-                                          <li><a href="../advanced/alternative-setups/predefined-builds.html">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
-                                              </div></a></li>
                                     </ul>
                                   </li>
                             </ul>
@@ -211,12 +211,12 @@
 <li><a href="#building-the-editor-from-source">Building from the source path</a> &#x2013; An advanced path including using <code>npm</code> and webpack.</li>
 </ul>
 <h2 id="creating-custom-builds-with-online-builder"><a class="headerlink" href="#creating-custom-builds-with-online-builder">#</a> Creating custom builds with online builder</h2>
-<p>Although the CKEditor 5 WYSIWYG editor comes with handy <a href="../advanced/alternative-setups/predefined-builds.html">predefined builds</a>, sometimes these predefined bundled versions are not enough and a need for more customized  builds arises. Some of the reasons for creating custom builds are:</p>
+<p>Although the CKEditor 5 WYSIWYG editor comes with handy <a href="predefined-builds.html">predefined builds</a>, sometimes these predefined bundled versions are not enough and a need for more customized  builds arises. Some of the reasons for creating custom builds are:</p>
 <ul>
 <li>Adding <a href="../advanced/plugins.html">plugin-driven features</a> which are not included in the existing builds.</li>
 <li>Removing unnecessary features present in a build.</li>
 <li>Designing a <a href="configuration.html#toolbar-setup">customized toolbar experience</a>.</li>
-<li>Changing the <a href="../advanced/alternative-setups/predefined-builds.html#available-builds">editor type build</a>.</li>
+<li>Changing the <a href="predefined-builds.html#available-builds">editor type build</a>.</li>
 <li>Changing the <a href="../../features/ui-language.html">localization language</a> of the editor.</li>
 </ul>
 <p>This is where the online builder comes to help you.</p>
@@ -224,11 +224,11 @@
 <h3 id="choosing-the-editor-type"><a class="headerlink" href="#choosing-the-editor-type">#</a> Choosing the editor type</h3>
 <p>The following editor types are currently available to choose from:</p>
 <ul>
-<li><a href="../advanced/alternative-setups/predefined-builds.html#classic-editor">Classic editor</a></li>
-<li><a href="../advanced/alternative-setups/predefined-builds.html#inline-editor">Inline editor</a></li>
-<li><a href="../advanced/alternative-setups/predefined-builds.html#balloon-editor">Balloon editor</a></li>
-<li><a href="../advanced/alternative-setups/predefined-builds.html#balloon-block-editor">Balloon block editor</a></li>
-<li><a href="../advanced/alternative-setups/predefined-builds.html#document-editor">Document editor</a></li>
+<li><a href="predefined-builds.html#classic-editor">Classic editor</a></li>
+<li><a href="predefined-builds.html#inline-editor">Inline editor</a></li>
+<li><a href="predefined-builds.html#balloon-editor">Balloon editor</a></li>
+<li><a href="predefined-builds.html#balloon-block-editor">Balloon block editor</a></li>
+<li><a href="predefined-builds.html#document-editor">Document editor</a></li>
 </ul>
 <p>Refer to the predefined builds documentation and <a href="../../examples/index.html">examples</a> to check what kind of WYSIWYG editor suits your needs best. Once you choose the desired editor type, select it to move to the next step.</p>
 <p>For the sake of clarity, this guide will use the classic build as an example.</p>
@@ -342,7 +342,7 @@ module.exports = {
 </code></pre>
 <p>Based on these packages you can create a simple application.</p>
 <div class="info-box notice"><p>This guide is using the ES6 modules syntax. If you are not familiar with it, check out <a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">this article</a>.</p></div>
-<div class="info-box notice notice__warning"><p>Note that in this guide, the editor class is used directly (i.e. you use <code>@ckeditor/ckeditor5-editor-classic</code> instead of <code>@ckeditor/ckeditor5-build-classic</code>).</p><p>No <a href="../advanced/alternative-setups/predefined-builds.html">predefined editor builds</a> are used, because adding new plugins to these requires rebuilding them anyway. This can be done by <a href="installing-plugins.html">customizing a build</a> or by including the CKEditor 5 source into your application (like in this guide).</p></div>
+<div class="info-box notice notice__warning"><p>Note that in this guide, the editor class is used directly (i.e. you use <code>@ckeditor/ckeditor5-editor-classic</code> instead of <code>@ckeditor/ckeditor5-build-classic</code>).</p><p>No <a href="predefined-builds.html">predefined editor builds</a> are used, because adding new plugins to these requires rebuilding them anyway. This can be done by <a href="installing-plugins.html">customizing a build</a> or by including the CKEditor 5 source into your application (like in this guide).</p></div>
 <pre class="highlight"><code class="js">// app.js
 
 import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
@@ -441,6 +441,9 @@ bundle.js.map  2.39 MiB    main  [emitted]  main
                                     <li><a href="quick-start.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
+                                    <li><a href="predefined-builds.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="">
                                         <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Customized installation</span>
                                         </div></a></li>
@@ -519,9 +522,6 @@ bundle.js.map  2.39 MiB    main  [emitted]  main
                                                   </div></a></li>
                                               <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
-                                                  </div></a></li>
-                                              <li><a href="../advanced/alternative-setups/predefined-builds.html">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>

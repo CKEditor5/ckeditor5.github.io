@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class CommentView. The default view for comment.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class CommentView. The default view for comment.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 18 2022 02:01:31 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 19 2022 02:02:31 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class CommentView (comments/comments/ui/view/commentview~CommentView) - CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class CommentView. The default view for comment.">
     <meta property="og:type" content="website">
@@ -960,6 +960,115 @@ is the first param of every callback).</p>
                           </div>
                           <div class="collapsing-list__content">
 <p>Overwrite this method if you want to set a custom template for the comment view.</p>
+<p>The default template looks as follows:</p>
+<pre><code>const bind = this.bindTemplate;
+
+{
+	tag: &apos;li&apos;,
+
+	attributes: {
+		class: [
+			&apos;ck-comment__wrapper&apos;,
+			bind.if( &apos;isConfirm&apos;, &apos;ck-comment--remove-confirmation&apos; )
+		],
+		tabindex: -1
+	},
+
+	children: [
+		{
+			tag: &apos;div&apos;,
+
+			attributes: {
+				class: [
+					&apos;ck-comment&apos;,
+					&apos;ck-annotation&apos;,
+					bind.if( &apos;isEditMode&apos;, &apos;ck-comment--edit&apos; ),
+					bind.to( &apos;actionIndicator&apos;, value =&gt; value ? `ck-comment--${ value }` : &apos;&apos; )
+				],
+				&apos;data-author-id&apos;: this._model.author.id,
+				&apos;data-comment-id&apos;: this._model.id
+			},
+
+			children: [
+				this.userView,
+				{
+					tag: &apos;div&apos;,
+
+					attributes: {
+						class: [ &apos;ck-comment__main&apos;, &apos;ck-annotation__main&apos; ]
+					},
+
+					children: [
+						{
+							tag: &apos;div&apos;,
+
+							attributes: {
+								class: [ &apos;ck-comment__info&apos;, &apos;ck-annotation__info&apos; ]
+							},
+
+							children: [
+								{
+									tag: &apos;span&apos;,
+
+									children: [
+										{
+											text: this.userView.name
+										}
+									],
+
+									attributes: {
+										class: [ &apos;ck-comment__info-name&apos;, &apos;ck-annotation__info-name&apos; ]
+									}
+								},
+								{
+									tag: &apos;time&apos;,
+
+									attributes: {
+										datetime: bind.to( &apos;createdAt&apos; ),
+										class: [ &apos;ck-comment__info-time&apos;, &apos;ck-annotation__info-time&apos; ]
+									},
+
+									children: [
+										{
+											text: bind.to( &apos;createdAt&apos;, value =&gt; this._config.formatDateTime( value ) )
+										}
+									]
+								}
+							]
+						},
+						{
+							tag: &apos;div&apos;,
+
+							attributes: {
+								class: [
+									&apos;ck-comment__actions&apos;,
+									&apos;ck-annotation__actions&apos;,
+									bind.if( &apos;isEditMode&apos;, &apos;ck-comment__actions--hidden&apos; ),
+									bind.if( &apos;isEditMode&apos;, &apos;ck-annotation__actions--hidden&apos; )
+								]
+							},
+
+							children: [
+								this.editButton,
+								this.removeButton
+							]
+						},
+						{
+							tag: &apos;div&apos;,
+
+							attributes: {
+								class: [ &apos;ck-annotation__content-wrapper&apos; ]
+							},
+
+							children: this.visibleView
+						}
+					]
+				}
+
+			]
+		}
+	]
+}</code></pre>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></dt>
@@ -1441,6 +1550,38 @@ for all events from <code>emitter</code>.</p>
 <code>event</code>.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-switchToDisplayMode">
+                          <h3><code><a class="member-name" href="#function-switchToDisplayMode">switchToDisplayMode</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentview~CommentView#switchToDisplayMode</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Switches the comment back from the editing mode to the content display mode.</p>
+                          </div>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-switchToEditMode">
+                          <h3><code><a class="member-name" href="#function-switchToEditMode">switchToEditMode</a>()</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:comments/comments/ui/view/commentview~CommentView#switchToEditMode</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Switches the comment to the editing mode.</p>
+                          </div>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
