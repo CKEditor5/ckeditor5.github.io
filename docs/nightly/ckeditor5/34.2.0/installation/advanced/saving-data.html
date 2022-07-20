@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 19 2022 02:03:38 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 20 2022 02:03:48 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Getting and saving data - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -204,7 +204,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Installation</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/2.1.3/img/book.svg" alt="guide">Getting and saving data
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#automatic-integration-with-html-forms">Automatic integration with HTML forms</a></li><li><a href="#manually-retrieving-the-data">Manually retrieving the data</a></li><li><a href="#autosave-feature">Autosave feature</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#handling-users-exiting-the-page">Handling users exiting the page</a><ol><li><a href="#demo-2">Demo</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#automatic-integration-with-html-forms">Automatic integration with HTML forms</a></li><li><a href="#manually-retrieving-the-data">Manually retrieving the data</a></li><li><a href="#updating-the-source-element">Updating the source element</a></li><li><a href="#autosave-feature">Autosave feature</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#handling-users-exiting-the-page">Handling users exiting the page</a><ol><li><a href="#demo-2">Demo</a></li></ol></li></ol></nav>
 
 <p>CKEditor 5 allows you to retrieve the data from and save it to your server (or to your system in general) in various ways. In this guide you can learn about the available options along with their pros and cons.</p>
 <h2 id="automatic-integration-with-html-forms"><a class="headerlink" href="#automatic-integration-with-html-forms">#</a> Automatic integration with HTML forms</h2>
@@ -276,6 +276,14 @@ document.querySelector( &apos;#submit&apos; ).addEventListener( &apos;click&apos
     // ...
 } );
 </code></pre>
+<h2 id="updating-the-source-element"><a class="headerlink" href="#updating-the-source-element">#</a> Updating the source element</h2>
+<p>If the source element is not <code>&lt;textarea&gt;</code>, CKEditor 5 clears its content after the editor destroy. However, if you would like to enable updating the source element with the output coming from the data pipeline, you can use the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-updateSourceElementOnDestroy"><code>updateSourceElementOnDestroy</code></a> configuration option.</p>
+<pre class="highlight"><code class="js">ClassicEditor.create( document.querySelector( &apos;#editor&apos; ), {
+    // ...
+    updateSourceElementOnDestroy: true
+} );
+</code></pre>
+<div class="info-box notice notice__warning"><p>Enabling the <code>updateSourceElementOnDestroy</code> option in your configuration, depending on plugins you use, might have some security implications. While the editing view is secured, there might be some unsafe content in the data output, so enable this option only if you know what you are doing. Especially, be careful when using Markdown, General HTML Support and HTML embed features</p></div>
 <h2 id="autosave-feature"><a class="headerlink" href="#autosave-feature">#</a> Autosave feature</h2>
 <p>The <a href="../../api/module_autosave_autosave-Autosave.html"><code>Autosave</code></a> feature allows you to automatically save the data (e.g. send it to the server) when needed (when the user changed the content).</p>
 <div class="info-box notice"><p>This plugin is unavailable in any of the builds by default so you need to <a href="../getting-started/installing-plugins.html">install it</a>.</p></div>

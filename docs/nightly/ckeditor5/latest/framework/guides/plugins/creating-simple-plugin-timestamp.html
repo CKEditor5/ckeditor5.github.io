@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Creating a simple plugin - CKEditor 5 Documentation</title>
+    <title>Creating a basic plugin - CKEditor 5 Documentation</title>
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 19 2022 02:03:34 GMT+0000 (Coordinated Universal Time)">
-    <meta property="og:title" content="Creating a simple plugin - CKEditor 5 Documentation">
+    <meta name="x-generated-at" content="Wed Jul 20 2022 02:03:44 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Creating a basic plugin - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/creating-simple-plugin.html">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/creating-simple-plugin-timestamp.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
-    <meta property="DC.title" content="Creating a simple plugin - CKEditor 5 Documentation">
+    <meta property="DC.title" content="Creating a basic plugin - CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
-    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/creating-simple-plugin.html">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/creating-simple-plugin-timestamp.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../../../assets/2.1.3/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../snippets/framework/timestamp-plugin/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../snippets/assets.css" type="text/css" data-cke="true">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -127,8 +130,23 @@
                                     </div>
                                     <ul class="tree__item-nested-list">
                                           <li><a href="">
-                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                            </div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="simple-plugin/abbreviation-plugin-level-1.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                      </div></a></li>
+                                                  <li><a href="simple-plugin/abbreviation-plugin-level-2.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                      </div></a></li>
+                                                  <li><a href="simple-plugin/abbreviation-plugin-level-3.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                      </div></a></li>
+                                            </ul>
+                                          </li>
                                           <li><a href="package-generator.html">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using package generator</span>
                                               </div></a></li>
@@ -265,224 +283,34 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/creating-simple-plugin.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/2.1.3/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/creating-simple-plugin-timestamp.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/2.1.3/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/2.1.3/img/book.svg" alt="guide">Creating a simple plugin
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#step-1-installing-dependencies">Step 1. Installing dependencies</a></li><li><a href="#step-2-creating-a-plugin">Step 2. Creating a plugin</a></li><li><a href="#step-3-registering-a-button">Step 3. Registering a button</a></li><li><a href="#step-4-inserting-a-new-image">Step 4. Inserting a new image</a></li><li><a href="#bonus-enabling-image-captions">Bonus. Enabling image captions</a></li><li><a href="#final-code">Final code</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
-<p>This guide will show you how to create a simple rich-text editor plugin for CKEditor 5.</p>
-<div class="info-box notice"><p>Before you get to work, you should check out the <a href="../quick-start.html">Quick start</a> guide first to set up the framework and building tools. Be sure to check out the <a href="package-generator.html">package generator guide</a> as well.</p></div>
-<p>CKEditor plugins need to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do that is to inherit from the <a href="../../../api/module_core_plugin-Plugin.html">base <code>Plugin</code> class</a>. However, you can also write simple constructor functions. This guide uses the former method.</p>
-<p>The plugin that you will write will use a part of the <a href="../../../features/images/images-overview.html">image feature</a> and will add a simple UI to it &#x2014; an &#x201C;Insert image&#x201D; button that will open a prompt window asking for the image URL when clicked. Submitting the URL will result in inserting the image into the content and selecting it.</p>
-<div class="info-box notice"><p>We recommend using the official <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
-<div class="info-box notice notice__hint"><p>For simplicity reasons this guide does not describe how to localize the created plugin. To see how to localize plugins, refer to the <a href="../deep-dive/ui/localization.html">localization guide</a>.</p></div>
-<h2 id="step-1-installing-dependencies"><a class="headerlink" href="#step-1-installing-dependencies">#</a> Step 1. Installing dependencies</h2>
-<p>Start from installing the necessary dependencies:</p>
-<ul>
-<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package that contains the image feature (on which the plugin will rely).</li>
-<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package which contains the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> and <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> classes.</li>
-<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a> package which contains the UI library and framework.</li>
-</ul>
-<pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-image \
-    @ckeditor/ckeditor5-core \
-    @ckeditor/ckeditor5-ui
-</code></pre>
-<div class="info-box notice"><p>Most of the time, you will also want to install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package (it contains the <a href="../architecture/editing-engine.html">editing engine</a>). It was omitted in this guide because it is unnecessary for a simple plugin like this one.</p></div>
-<p>Now, open the <code>app.js</code> file and start adding code there. Usually, when implementing more complex features you will want to split the code into multiple files (modules). However, to make this guide simpler the entire code will be kept in <code>app.js</code>.</p>
-<p>The first thing to do will be to load the core of the image feature:</p>
-<pre class="highlight"><code class="js">import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+          <h1 class="main__content-title"><img src="../../../../../assets/2.1.3/img/book.svg" alt="guide">Creating a basic plugin
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start">Let&#x2019;s start!</a></li><li><a href="#creating-a-plugin">Creating a plugin</a></li><li><a href="#registering-a-toolbar-button">Registering a toolbar button</a></li><li><a href="#inserting-a-timestamp">Inserting a timestamp</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-code">Full code</a></li></ol></nav>
+<p>This guide will show you how to create a simple, basic plugin that will let the users insert timestamps into their document. This is a beginner friendly tutorial, perfect for your first interactions with the CKEditor 5 framework.</p>
+<p>We will create a toolbar button that will insert the current date and time at the caret position into the document. If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a> below.</p>
+<h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let&#x2019;s start!</h2>
+<p>The easiest way to set up your project is to grab the starter files from our <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/Timestamp%20plugin" target="_blank" rel="noopener">Github repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor 5 packages and other files needed to build the editor.</p>
+<p>The editor has already been created in the <code>app.js</code> file with some basic plugins. All you need to do, is clone the repository, run the <code>npm install</code> command, and you can start coding right away.</p>
+<p>The webpack is also already configured, so you can just use the <code>npm run build</code> command to build your application. Whenever you want to check anything in the browser, save the changes and run build again. Then, refresh the page in your browser (remember to turn off caching, so that new changes are displayed instantly).</p>
+<p>If you want to set up the project yourself, you should follow the steps listed in the <a href="../quick-start.html">the &#x201C;Quick start&#x201D; section</a>. Additionally, you will need to install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package, which contains the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class, and the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a> package, which contains the UI library and the framework.</p>
+<p>We are going to write the whole plugin in your base <code>app.js</code> file. It should look like the code listed below. There maybe a couple of different imports if you chose to set up the environment yourself.</p>
+<pre class="highlight"><code class="js">// app.js
 
-// ...
-
-ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ), {
-        // Add Image to the plugin list.
-        plugins: [ Essentials, Paragraph, Bold, Italic, Image ],
-
-        // ...
-    } )
-    // ...
-</code></pre>
-<p>Save the file and run webpack. Refresh the page in your browser (<strong>remember about the cache</strong>) and&#x2026; you should not see any changes. This is correct! The core of the image feature does not come with any UI, nor have you added any image to the initial HTML. Change this now:</p>
-<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;
-    &lt;p&gt;Simple image:&lt;/p&gt;
-
-    &lt;figure class=&quot;image&quot;&gt;
-        &lt;img src=&quot;https://via.placeholder.com/1000x300/02c7cd/fff?text=Placeholder%20image&quot; alt=&quot;CKEditor 5 rocks!&quot;&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-</code></pre>
-<p><img src="../../../assets/img/framework-quick-start-classic-editor-with-image.png" data-lightbox="true" alt="Screenshot of a classic editor with bold, italic and image features." width="837"></p>
-<div class="info-box notice"><p>Running webpack with the <code>-w</code> option will start it in the watch mode. This means that webpack will watch your files for changes and rebuild the application every time you save them.</p></div>
-<h2 id="step-2-creating-a-plugin"><a class="headerlink" href="#step-2-creating-a-plugin">#</a> Step 2. Creating a plugin</h2>
-<p>You can now start implementing your new plugin. Create the <code>InsertImage</code> plugin:</p>
-<pre class="highlight"><code class="js">import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
-
-class InsertImage extends Plugin {
-    init() {
-        console.log( &apos;InsertImage was initialized&apos; );
-    }
-}
-</code></pre>
-<p>And add your new plugin to the <code>config.plugins</code> array. After rebuilding the application and refreshing the page you should see &#x201C;InsertImage was initialized&#x201D; logged to the console.</p>
-<div class="info-box notice notice__hint"><p>It was said that your <code>InsertImage</code> plugin relies on the image feature represented here by the <code>Image</code> plugin. You could add the <code>Image</code> plugin as a <a href="../../../api/module_core_plugin-PluginInterface.html#static-member-requires">dependency</a> of the <code>InsertImage</code> plugin. This would make the editor initialize <code>Image</code> automatically before initializing <code>InsertImage</code>, so you would be able to remove <code>Image</code> from <code>config.plugins</code>.</p><p>However, this means that your plugin would be coupled with the <code>Image</code> plugin. This is unnecessary &#x2014; they do not need to know about each other. And while it does not change anything in this simple example, it is a good practice to keep plugins as decoupled as possible.</p></div>
-<h2 id="step-3-registering-a-button"><a class="headerlink" href="#step-3-registering-a-button">#</a> Step 3. Registering a button</h2>
-<p>Create a button now:</p>
-<pre class="highlight"><code class="js">// This SVG file import will be handled by webpack&apos;s raw-text loader.
-// This means that imageIcon will hold the source SVG.
-import imageIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/image.svg&apos;;
-
-import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
-
-class InsertImage extends Plugin {
-    init() {
-        const editor = this.editor;
-
-        editor.ui.componentFactory.add( &apos;insertImage&apos;, locale =&gt; {
-            const view = new ButtonView( locale );
-
-            view.set( {
-                label: &apos;Insert image&apos;,
-                icon: imageIcon,
-                tooltip: true
-            } );
-
-            // Callback executed once the image is clicked.
-            view.on( &apos;execute&apos;, () =&gt; {
-                const imageURL = prompt( &apos;Image URL&apos; );
-            } );
-
-            return view;
-        } );
-    }
-}
-</code></pre>
-<p>And add the <code>InsertImage</code> plugin to <code>config.plugins</code> and <code>insertImage</code> to <code>config.toolbar</code>:</p>
-<pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ), {
-        // ...
-        plugins: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage ],
-        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;insertImage&apos; ]
-    } )
-    // ...
-</code></pre>
-<p>Rebuild the application and refresh the page. You should see a new button in the toolbar. Clicking the button should open a prompt window asking you for the image URL.</p>
-<h2 id="step-4-inserting-a-new-image"><a class="headerlink" href="#step-4-inserting-a-new-image">#</a> Step 4. Inserting a new image</h2>
-<p>Now, expand the button&#x2019;s <code>#execute</code> event listener, so it will actually insert the new image into the content:</p>
-<pre class="highlight"><code class="js">class InsertImage extends Plugin {
-    init() {
-        const editor = this.editor;
-
-        editor.ui.componentFactory.add( &apos;insertImage&apos;, locale =&gt; {
-            const view = new ButtonView( locale );
-
-            view.set( {
-                label: &apos;Insert image&apos;,
-                icon: imageIcon,
-                tooltip: true
-            } );
-
-            // Callback executed once the image is clicked.
-            view.on( &apos;execute&apos;, () =&gt; {
-                const imageUrl = prompt( &apos;Image URL&apos; );
-
-                editor.model.change( writer =&gt; {
-                    const imageElement = writer.createElement( &apos;imageBlock&apos;, {
-                        src: imageUrl
-                    } );
-
-                    // Insert the image in the current selection location.
-                    editor.model.insertContent( imageElement, editor.model.document.selection );
-                } );
-            } );
-
-            return view;
-        } );
-    }
-}
-</code></pre>
-<p>If you refresh the page, you should now be able to insert new images into the content:</p>
-<p><img src="../../../assets/img/framework-quick-start-classic-editor-insert-image.gif" data-lightbox="true" alt="Screencast of inserting a new image." width="640"></p>
-<p>The image is fully functional. You can undo inserting by pressing <kbd>Ctrl</kbd>+<kbd>Z</kbd> and the image is always inserted as a block element (the paragraph that contains the selection is automatically split). This is all handled by the CKEditor 5 engine.</p>
-<div class="info-box notice"><p>As you can see, by clicking the button you are inserting an <code>&lt;imageBlock src=&quot;...&quot;&gt;</code> element into the model. The image feature is represented in the model as <code>&lt;imageBlock&gt;</code>, while in the view (i.e. the virtual DOM) and in the real DOM it is rendered as <code>&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/figure&gt;</code>.</p><p>The <code>&lt;imageBlock&gt;</code> to <code>&lt;figure&gt;&lt;img&gt;&lt;/figure&gt;</code> transformation is called &#x201C;conversion&#x201D; and it requires a separate guide. However, as you can see in this example, it is a powerful mechanism because it allows non-1:1 mappings.</p></div>
-<p>Congratulations! You have just created your first CKEditor 5 plugin!</p>
-<h2 id="bonus-enabling-image-captions"><a class="headerlink" href="#bonus-enabling-image-captions">#</a> Bonus. Enabling image captions</h2>
-<p>All the plugins operate both on the model and on the view, and know as little about themselves as possible. Thanks to this fact, you can easily enable image captions by simply loading the <a href="../../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin which handles the captions feature and the <a href="../../../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> which gives you the ability to control such image properties like having the caption or not. It is also necessary to specify what to include in this new toolbar. In this case, it would be a toggle executing the <a href="../../../api/module_image_imagecaption_toggleimagecaptioncommand-ToggleImageCaptionCommand.html"><code>ToggleImageCaptionCommand</code></a> which disables or enables the image caption:</p>
-<pre class="highlight"><code class="js">import ImageCaption from &apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;;
-import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
-// ...
-
-ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ), {
-        // Add ImageCaption to the plugin list.
-        plugins: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage, ImageCaption, ImageToolbar ],
-        // ...
-        image: {
-            toolbar: [ &apos;toggleImageCaption&apos; ]
-        }
-        // ...
-    } )
-    // ...
-</code></pre>
-<p>This should be the result of the change:</p>
-<p><img src="../../../assets/img/framework-quick-start-classic-editor-bonus.gif" data-lightbox="true" alt="Screencast of inserting a new image with a caption." width="640"></p>
-<h2 id="final-code"><a class="headerlink" href="#final-code">#</a> Final code</h2>
-<p>If you got lost at any point, this should be your final <code>app.js</code>:</p>
-<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
-
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
 import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
 import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
 import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
-import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
-import ImageCaption from &apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;;
-import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
-
-import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
-import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
-
-import imageIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/image.svg&apos;;
-
-class InsertImage extends Plugin {
-    init() {
-        const editor = this.editor;
-
-        editor.ui.componentFactory.add( &apos;insertImage&apos;, locale =&gt; {
-            const view = new ButtonView( locale );
-
-            view.set( {
-                label: &apos;Insert image&apos;,
-                icon: imageIcon,
-                tooltip: true
-            } );
-
-            // Callback executed once the image is clicked.
-            view.on( &apos;execute&apos;, () =&gt; {
-                const imageUrl = prompt( &apos;Image URL&apos; );
-
-                editor.model.change( writer =&gt; {
-                    const imageElement = writer.createElement( &apos;imageBlock&apos;, {
-                        src: imageUrl
-                    } );
-
-                    // Insert the image in the current selection location.
-                    editor.model.insertContent( imageElement, editor.model.document.selection );
-                } );
-            } );
-
-            return view;
-        } );
-    }
-}
 
 ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
-        plugins: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage, ImageCaption, ImageToolbar ],
-        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;insertImage&apos; ],
-        image: {
-            toolbar: [ &apos;toggleImageCaption&apos; ]
-        }
+        plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic ],
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos; ]
     } )
     .then( editor =&gt; {
         console.log( &apos;Editor was initialized&apos;, editor );
@@ -491,19 +319,150 @@ ClassicEditor
         console.error( error.stack );
     } );
 </code></pre>
-<h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>
-<p>If you would like to read more tutorials, check out the following one:</p>
-<ul>
-<li><a href="../tutorials/implementing-a-block-widget.html">Implementing a block widget</a></li>
-<li><a href="../tutorials/implementing-an-inline-widget.html">Implementing an inline widget</a></li>
-</ul>
-<p>If you want to read more about the CKEditor 5 architecture, check out the <a href="../architecture/intro.html">Introduction to CKEditor 5 architecture</a> guide.</p>
-<p>If you want your plugin to be easily integrated by other developers, learn about the <a href="../contributing/package-metadata.html">package metadata file</a> that can be added to your package.</p>
+<p>Your <code>index.html</code> should look as listed below. The editor will load with HTML content you put inside the <code>&lt;div id=&quot;editor&quot;&gt;</code> tags.</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CKEditor 5 Framework &#x2013; timestamp plugin&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;editor&quot;&gt;
+            &lt;h2&gt;Timestamp plugin&lt;/h2&gt;
+            &lt;p&gt;Press the timestamp button to insert the current date and time.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="creating-a-plugin"><a class="headerlink" href="#creating-a-plugin">#</a> Creating a plugin</h2>
+<p>All features in the CKEditor 5 are powered by plugins. In order to create our custom timestamp plugin, we need to import the <a href="../../../api/module_core_plugin-Plugin.html">base <code>Plugin</code> class</a>.</p>
+<p>We can now create a <code>Timestamp</code> class that extends the basic <code>Plugin</code> class. After we define it, we can add it into the editor&#x2019;s <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-plugins"><code>config.plugins</code></a> array.</p>
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
+
+class Timestamp extends Plugin {
+    init() {
+        console.log( &apos;Timestamp was initialized.&apos; );
+    }
+}
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // Add the Timestamp plugin to config.plugins array.
+        plugins: [
+            Timestamp, Essentials, Paragraph, Heading, List, Bold, Italic
+        ],
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos; ]
+    } )
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error.stack );
+    } );
+</code></pre>
+<p>Rebuild the editor and check in your console whether the timestamp was initialized. You should see this:</p>
+<p><img src="../../../assets/img/timestamp-1.png" data-lightbox="true" alt="Screenshot of the editor and the console showing &apos;Editor was initialized&quot;."></p>
+<h2 id="registering-a-toolbar-button"><a class="headerlink" href="#registering-a-toolbar-button">#</a> Registering a toolbar button</h2>
+<p>CKEditor 5 has a rich UI library. Form it, we will grab the <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> class for our toolbar button.</p>
+<p>Once we create a new instance of the <code>ButtonView</code>, we will be able to customize it by setting its properties. We will create a label, which will be visible on the button thanks to the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#member-withText"><code>withText</code></a> property.</p>
+<p>We also need to register our button in the editor&#x2019;s UI <a href="../../../api/module_ui_componentfactory-ComponentFactory.html"><code>componentFactory</code></a>, so it can be displayed in the toolbar. To do it, we will pass the name of the button in the <a href="../../../api/module_ui_componentfactory-ComponentFactory.html#function-add"><code>componentFactory.add</code></a> method, in order to be able to add it into the <a href="../../../features/toolbar/toolbar.html"><code>config.toolbar</code></a> array.</p>
+<pre class="highlight"><code class="js">// ...
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+
+class Timestamp extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        // The button must be registered among the UI components of the editor
+        // to be displayed in the toolbar.
+        editor.ui.componentFactory.add( &apos;timestamp&apos;, () =&gt; {
+            // The button will be an instance of ButtonView.
+            const button = new ButtonView();
+
+            button.set( {
+                label: &apos;Timestamp&apos;,
+                withText: true
+            } );
+
+            return button;
+        } );
+    }
+}
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
+            Timestamp, Essentials, Paragraph, Heading, List, Bold, Italic
+        ],
+        // Add the Timestamp button to the config.toolbar array.
+        toolbar: [
+            &apos;timestamp&apos;, &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos;
+        ]
+    } )
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error.stack );
+    } );
+
+</code></pre>
+<p>You should be able to see the timestamp button now. It doesn&#x2019;t do anything just yet, so let&#x2019;s change that.</p>
+<h2 id="inserting-a-timestamp"><a class="headerlink" href="#inserting-a-timestamp">#</a> Inserting a timestamp</h2>
+<p>We can now define the core functionality of our plugin &#x2013; the action that should be executed once our button is clicked.</p>
+<p>In order to insert anything into the document structure, we need to <a href="../architecture/editing-engine.html#changing-the-model">change the model</a> using the model&#x2019;s <code>change()</code> method. This way we get access to the <a href="../../../api/module_engine_model_writer-Writer.html">model writer</a>.</p>
+<div class="info-box notice"><p>What is the model? It is a DOM-like structure, that is converted into the view, which is the layer that the user interacts with. You can read more about <a href="../architecture/editing-engine.html#model">the model</a> and <a href="../architecture/editing-engine.html#view">the view</a> in dedicated guides.</p></div>
+<p>We will use the <a href="../../../api/module_engine_model_model-Model.html#function-insertContent"><code>insertContent()</code></a> method to insert our timestamp into the document. Inside, we just need to create a new text node with the <a href="../../../api/module_engine_model_writer-Writer.html#function-createText"><code>writer.createText()</code></a> method.</p>
+<pre class="highlight"><code class="js">class Timestamp extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        editor.ui.componentFactory.add( &apos;timestamp&apos;, locale =&gt; {
+            //...
+
+            //Execute a callback function when the button is clicked
+            button.on( &apos;execute&apos;, () =&gt; {
+                const now = new Date();
+
+                //Change the model using the model writer
+                editor.model.change( writer =&gt; {
+
+                    //Insert the text at the user&apos;s current position
+                    editor.model.insertContent( writer.createText( now.toString() ) );
+                } );
+            } );
+
+            return button;
+        } );
+    }
+}
+</code></pre>
+<p>Well done! Your timestamp plugin is now ready.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><div id="snippet-timestamp-plugin">
+    <h2>Timestamp plugin</h2>
+    <p>Press the timestamp button to insert current date and time.</p>
+
+
+</div></div>
+<h2 id="full-code"><a class="headerlink" href="#full-code">#</a> Full code</h2>
+<p>If you got lost at any point, see <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/Timestamp%20plugin/Final%20project" target="_blank" rel="noopener">the final implementation of the plugin</a>. You can paste the code from <code>app.js</code>, or clone and install the whole thing, and it will run out-of-the-box.</p>
+<div class="info-box notice"><p><strong>What&#x2019;s next?</strong></p><p>You can read more about the <a href="../overview.html">CKEditor 5 framework</a>, or continue with our next tutorial, where we will create <a href="simple-plugin/abbreviation-plugin-level-1.html">an abbreviation plugin</a>.</p></div>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted an outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fplugins%2Fcreating-simple-plugin.html%22&amp;project-version=34.2.0" target="_blank" rel="noopener" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fplugins%2Fcreating-simple-plugin-timestamp.html%22&amp;project-version=34.2.0" target="_blank" rel="noopener" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
           </div>
           <script>
@@ -557,8 +516,23 @@ ClassicEditor
                                       </div>
                                       <ul class="tree__item-nested-list">
                                               <li><a href="">
-                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                                </div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="simple-plugin/abbreviation-plugin-level-1.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                            </div></a></li>
+                                                        <li><a href="simple-plugin/abbreviation-plugin-level-2.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                            </div></a></li>
+                                                        <li><a href="simple-plugin/abbreviation-plugin-level-3.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                            </div></a></li>
+                                                </ul>
+                                              </li>
                                               <li><a href="package-generator.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using package generator</span>
                                                   </div></a></li>
@@ -698,6 +672,9 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
 });
 </script>
     <script src="../../../../../assets/2.1.3/scripts/app.js"></script>
+    <script src="../../../assets/snippet.js"></script>
+    <script src="../../../snippets/assets.js"></script>
+    <script src="../../../snippets/framework/timestamp-plugin/snippet.js"></script>
     <script src="../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
