@@ -1,4 +1,0 @@
-/*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
- */ClassicEditor.create(document.querySelector("#snippet-link-decorators"),{cloudServices:{tokenUrl:"https://33333.cke-cs.com/token/dev/dbIg4Hr2bqf5bSV3wuzN8bW8td7OAStvLjRlJof9ZW13cUXRHRraVJsD8J9J",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/",webSocketUrl:"33333.cke-cs.com/ws"},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},link:{addTargetToExternalLinks:!0,decorators:[{mode:"manual",label:"Downloadable",attributes:{download:"download"}}]}}).then((o=>{window.editors||(window.editors={}),window.editors.decorators=o;const e=document.querySelector("#output-link-decorators");e.innerHTML=window.Prism.highlight(o.getData(),window.Prism.languages.html,"html"),o.model.document.on("change",(()=>{e.innerHTML=window.Prism.highlight(o.getData(),window.Prism.languages.html,"html")}))})).catch((o=>{console.error(o.stack)}));

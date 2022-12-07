@@ -1,4 +1,0 @@
-/*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
- */(()=>{"use strict";const o={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-font"),{cloudServices:o,toolbar:{items:["heading","|","fontSize","fontFamily","fontColor","fontBackgroundColor","|","bulletedList","numberedList","|","outdent","indent","|","undo","redo"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((o=>{window.editor=o,window.attachTourBalloon({target:window.findToolbarItem(o.ui.view.toolbar,(o=>o.buttonView&&o.buttonView.label&&"Font Size"===o.buttonView.label)),text:"Click to change font size, family or colors.",editor:o})})).catch((o=>{console.error(o.stack)}))})();
