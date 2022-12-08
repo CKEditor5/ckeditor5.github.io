@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Dec 07 2022 03:21:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Dec 08 2022 07:01:30 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Focus tracking - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/2.1.7/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/2.1.8/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
@@ -59,7 +59,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/2.1.7/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/2.1.8/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -295,11 +295,11 @@
     <main class="main">
       <section class="main__content formatted focus-tracking">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-ui/docs/framework/guides/deep-dive/focus-tracking.md" title="Contribute to this guide"><img src="../../../../../../assets/2.1.7/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-ui/docs/framework/guides/deep-dive/focus-tracking.md" title="Contribute to this guide"><img src="../../../../../../assets/2.1.8/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/2.1.7/img/book.svg" alt="guide">Deep dive into focus tracking
+          <h1 class="main__content-title"><img src="../../../../../../assets/2.1.8/img/book.svg" alt="guide">Deep dive into focus tracking
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#what-is-focus-and-why-it-matters-for-ckeditor">What is focus and why it matters for CKEditor?</a><ol><li><a href="#what-is-focus">What is focus?</a></li><li><a href="#focus-in-ckeditor">Focus in CKEditor</a></li></ol></li><li><a href="#focus-in-the-editor-engine">Focus in the editor engine</a><ol><li><a href="#checking-if-the-view-document-is-focused">Checking if the view document is focused</a></li><li><a href="#how-to-focus-the-editor">How to focus the editor?</a></li></ol></li><li><a href="#focus-in-the-editor-ui">Focus in the editor UI</a><ol><li><a href="#tools-and-architecture">Tools and architecture</a></li><li><a href="#implementing-focusable-ui-components">Implementing focusable UI components</a></li><li><a href="#using-the-focustracker-class">Using the FocusTracker class</a><ol><li><a href="#a-note-about-the-global-focus-tracker">A note about the global focus tracker</a></li><li><a href="#a-practical-example">A practical example</a></li></ol></li><li><a href="#using-the-keystrokehandler-class">Using the KeystrokeHandler class</a></li><li><a href="#using-the-focuscycler-class">Using the FocusCycler class</a></li><li><a href="#using-all-focus-helpers-together">Using all focus helpers together</a></li></ol></li><li><a href="#focus-state-analysis">Focus state analysis</a><ol><li><a href="#scenario">Scenario</a></li><li><a href="#conclusions">Conclusions</a></li></ol></li></ol></nav>
 <p><strong>Focus is where all the keyboard interactions (events) take place.</strong> It is an essential concept for any piece of a web page operated with a keyboard, be it a physical keyboard of your laptop or a software keyboard of your smartphone. And CKEditor 5 being a rich text editor is no exception here.</p>
 <h2 id="what-is-focus-and-why-it-matters-for-ckeditor"><a class="headerlink" href="#what-is-focus-and-why-it-matters-for-ckeditor">#</a> What is focus and why it matters for CKEditor?</h2>
@@ -970,7 +970,7 @@ class MyListItemView extends View {
 
           <div class="info-box notice notice__feedback">
             <p>
-              Every day, we work hard to keep our documentation complete. Have you spotted an outdated information? Is something missing?
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
               Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fdeep-dive%2Fui%2Ffocus-tracking.html%22&amp;project-version=35.3.2" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
           </div>
@@ -1195,7 +1195,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'updating', 'support', 'framework', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../../../assets/2.1.7/scripts/app.js"></script>
+    <script src="../../../../../../assets/2.1.8/scripts/app.js"></script>
     <script src="../../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>

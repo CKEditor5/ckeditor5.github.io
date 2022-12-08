@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Dec 07 2022 03:21:23 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Dec 08 2022 07:01:31 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Schema - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/2.1.7/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/2.1.8/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
@@ -59,7 +59,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/2.1.7/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/2.1.8/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -295,12 +295,12 @@
     <main class="main">
       <section class="main__content formatted schema-deep-dive">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/2.1.7/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/2.1.8/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/2.1.7/img/book.svg" alt="guide">Schema
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-recap">Quick recap</a></li><li><a href="#defining-allowed-structures">Defining allowed structures</a></li><li><a href="#defining-additional-semantics">Defining additional semantics</a><ol><li><a href="#limit-elements">Limit elements</a></li><li><a href="#object-elements">Object elements</a></li><li><a href="#block-elements">Block elements</a></li><li><a href="#inline-elements">Inline elements</a></li><li><a href="#selectable-elements">Selectable elements</a></li><li><a href="#content-elements">Content elements</a></li></ol></li><li><a href="#generic-items">Generic items</a></li><li><a href="#defining-advanced-rules-in-checkchild-callbacks">Defining advanced rules in checkChild() callbacks</a></li><li><a href="#implementing-additional-constraints">Implementing additional constraints</a></li><li><a href="#who-checks-the-schema">Who checks the schema?</a><ol><li><a href="#low-level-apis">Low-level APIs</a></li><li><a href="#high-level-apis">High-level APIs</a></li></ol></li></ol></nav>
+          <h1 class="main__content-title"><img src="../../../../../assets/2.1.8/img/book.svg" alt="guide">Schema
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-recap">Quick recap</a></li><li><a href="#defining-allowed-structures">Defining allowed structures</a></li><li><a href="#defining-additional-semantics">Defining additional semantics</a><ol><li><a href="#limit-elements">Limit elements</a></li><li><a href="#object-elements">Object elements</a></li><li><a href="#block-elements">Block elements</a></li><li><a href="#inline-elements">Inline elements</a></li><li><a href="#selectable-elements">Selectable elements</a></li><li><a href="#content-elements">Content elements</a></li></ol></li><li><a href="#generic-items">Generic items</a><ol><li><a href="#relations-between-generic-items">Relations between generic items</a></li></ol></li><li><a href="#defining-advanced-rules-in-checkchild-callbacks">Defining advanced rules in checkChild() callbacks</a></li><li><a href="#implementing-additional-constraints">Implementing additional constraints</a></li><li><a href="#who-checks-the-schema">Who checks the schema?</a><ol><li><a href="#low-level-apis">Low-level APIs</a></li><li><a href="#high-level-apis">High-level APIs</a></li></ol></li></ol></nav>
 <p>This article assumes that you have already read the <a href="../architecture/editing-engine.html#schema">“Schema”</a> section of the <a href="../architecture/editing-engine.html">introduction to the editing engine architecture</a>.</p>
 <h2 id="quick-recap"><a class="headerlink" href="#quick-recap">#</a> Quick recap</h2>
 <p>The editor’s schema is available in the <a href="../../../api/module_engine_model_model-Model.html#member-schema"><code>editor.model.schema</code></a> property. It defines allowed model structures (how model elements can be nested), allowed attributes (of both elements and text nodes), and other characteristics (inline vs. block, atomicity in regards of external actions). This information is later used by editing features and the editing engine to decide how to process the model, where to enable features, etc.</p>
@@ -623,6 +623,7 @@
 } );
 </code></pre>
 <p>The <a href="../../../api/module_engine_model_schema-Schema.html#function-isObject"><code>Schema#isObject()</code></a> can later be used to check this property.</p>
+<div class="info-box notice"><p>There are also the <code>$blockObject</code> and the <code>$inlineObject</code> generic items which have the <code>isObject</code> property set to <code>true</code>. Most object type items will inherit from <code>$blockObject</code> or <code>$inlineObject</code> (through <code>inheritAllFrom</code>).</p></div>
 <div class="info-box notice"><p>Every object is automatically also:</p><ul>
 <li>A <a href="#limit-elements">limit element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../../api/module_engine_model_schema-Schema.html#function-isLimit"><code>Schema#isLimit( element )</code></a> will always return <code>true</code>.</li>
 <li>A <a href="#selectable-elements">selectable element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../../api/module_engine_model_schema-Schema.html#function-isSelectable"><code>Schema#isSelectable( element )</code></a> will always return <code>true</code>.</li>
@@ -631,12 +632,14 @@
 </div>
 <h3 id="block-elements"><a class="headerlink" href="#block-elements">#</a> Block elements</h3>
 <p>Generally speaking, content is usually made out of blocks like paragraphs, list items, images, headings, etc. All these elements should be marked as blocks by using <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isBlock"><code>isBlock</code></a>.</p>
+<p>Schema items with the <code>isBlock</code> property set are (among others) affecting the <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html#function-getSelectedBlocks"><code>Selection#getSelectedBlocks()</code></a> behavior and by that allow setting block level attributes like <code>alignment</code> to appropriate elements.</p>
 <p>It is important to remember that a block should not allow another block inside. Container elements like <code>&lt;blockQuote&gt;</code>, which can contain other block elements, should not be marked as blocks.</p>
-<div class="info-box notice"><p>There is also the <code>$block</code> generic item which has <code>isBlock</code> set to <code>true</code>. Most block type items will inherit from <code>$block</code> (through <code>inheritAllFrom</code>).</p></div>
+<div class="info-box notice"><p>There are also the <code>$block</code> and the <code>$blockObject</code> generic items which have the <code>isBlock</code> property set to <code>true</code>. Most block type items will inherit from <code>$block</code> or <code>$blockObject</code> (through <code>inheritAllFrom</code>).</p><p>Note that every item that inherits from <code>$block</code> has <code>isBlock</code> set, but not every item with <code>isBlock</code> set has to be a <code>$block</code>.</p></div>
 <h3 id="inline-elements"><a class="headerlink" href="#inline-elements">#</a> Inline elements</h3>
 <p>In the editor, all HTML formatting elements such as <code>&lt;strong&gt;</code> or <code>&lt;code&gt;</code> are represented by text attributes. Therefore, inline model elements are not supposed to be used for these scenarios.</p>
-<p>Currently, the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isInline"><code>isInline</code></a> property is used for the <code>$text</code> token (so, text nodes) and elements such as <code>&lt;softBreak&gt;</code> or placeholder elements such as described in the <a href="../tutorials/implementing-an-inline-widget.html">Implementing an inline widget</a> tutorial.</p>
+<p>Currently, the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isInline"><code>isInline</code></a> property is used for the <code>$text</code> token (so, text nodes) and elements such as <code>&lt;softBreak&gt;</code>, <code>&lt;imageInline&gt;</code> or placeholder elements such as described in the <a href="../tutorials/implementing-an-inline-widget.html">Implementing an inline widget</a> tutorial.</p>
 <p>The support for inline elements in CKEditor 5 is so far limited to self-contained elements. Because of this, all elements marked with <code>isInline</code> should also be marked with <code>isObject</code>.</p>
+<div class="info-box notice"><p>There is also the <code>$inlineObject</code> generic item which has the <code>isInline</code> property set to <code>true</code>. Most inline object type items will inherit from <code>$inlineObject</code> (through <code>inheritAllFrom</code>).</p></div>
 <h3 id="selectable-elements"><a class="headerlink" href="#selectable-elements">#</a> Selectable elements</h3>
 <p>Elements that users can select as a whole (with all their internals) and then, for instance, copy them or apply formatting, are marked with the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isSelectable"><code>isSelectable</code></a> property in the schema:</p>
 <pre class="highlight"><code class="js">schema.register( 'mySelectable', {
@@ -646,7 +649,7 @@
 <p>The <a href="../../../api/module_engine_model_schema-Schema.html#function-isSelectable"><code>Schema#isSelectable()</code></a> method can later be used to check this property.</p>
 <div class="info-box notice"><p>All <a href="#object-elements">object elements</a> are selectable by default. There are other selectable elements registered in the editor, though. For instance, there is also the <code>tableCell</code> model element (rendered as a <code>&lt;td&gt;</code> in the editing view) that is selectable while <strong>not</strong> registered as an object. The <a href="../../../features/table.html#table-selection">table selection</a> plugin takes advantage of this fact and allows users to create rectangular selections made of multiple table cells.</p></div>
 <h3 id="content-elements"><a class="headerlink" href="#content-elements">#</a> Content elements</h3>
-<p>You can tell content model elements from other elements by looking at their representation in the editor data (you can use <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> or <a href="../../../api/module_engine_model_model-Model.html#function-hasContent">Model#hasContent()</a> to check this out).</p>
+<p>You can tell content model elements from other elements by looking at their representation in the editor data (you can use <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> or <a href="../../../api/module_engine_model_model-Model.html#function-hasContent"><code>Model#hasContent()</code></a> to check this out).</p>
 <p>Elements such as images or media will <strong>always</strong> find their way into the editor data and this is what makes them content elements. They are marked with the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isContent"><code>isContent</code></a> property in the schema:</p>
 <pre class="highlight"><code class="js">schema.register( 'myImage', {
     isContent: true
@@ -717,6 +720,81 @@ schema.register( '$text', {
 <p>Because <code>&lt;$block&gt;</code> is allowed in <code>&lt;$container&gt;</code> (see <code>schema.register( '$block' ...)</code>), despite the fact that the block quote and paragraph features know nothing about each other, paragraphs will be allowed in block quotes: the schema rules allow chaining.</p>
 <p>Taking this even further, if anyone registers a <code>&lt;section&gt;</code> element (with the <code>allowContentOf: '$root'</code> rule), because <code>&lt;$container&gt;</code> is also allowed in <code>&lt;$root&gt;</code> (see <code>schema.register( '$container' ...)</code>) the <code>&lt;section&gt;</code> elements will allow block quotes out–of–the–box.</p>
 <div class="info-box notice"><p>You can read more about the format of the item definition in <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.</p></div>
+<h3 id="relations-between-generic-items"><a class="headerlink" href="#relations-between-generic-items">#</a> Relations between generic items</h3>
+<p>Relations between generic items (which one can be used where) can be visualized by the following abstract structure:</p>
+<pre class="highlight"><code class="xml html">&lt;$root&gt;
+    &lt;$block&gt;                &lt;!-- example: &lt;paragraph&gt;, &lt;heading1&gt; --&gt;
+        &lt;$text/&gt;
+        &lt;$inlineObject/&gt;    &lt;!-- example: &lt;imageInline&gt; --&gt;
+    &lt;/$block&gt;
+    &lt;$blockObject/&gt;         &lt;!-- example: &lt;imageBlock&gt;, &lt;table&gt; --&gt;
+    &lt;$container&gt;            &lt;!-- example: &lt;blockQuote&gt; --&gt;
+        &lt;$container/&gt; 
+        &lt;$block/&gt;
+        &lt;$blockObject/&gt;
+    &lt;/$container&gt;
+&lt;/$root&gt;
+</code></pre>
+<p>The above rules will be met for instance by such a model content:</p>
+<pre class="highlight"><code class="xml html">&lt;$root&gt;
+    &lt;heading1&gt;            &lt;!-- inheritAllFrom: $block --&gt;
+        &lt;$text/&gt;          &lt;!-- allowIn: $block --&gt;
+    &lt;/heading1&gt;
+    &lt;paragraph&gt;           &lt;!-- inheritAllFrom: $block --&gt;
+        &lt;$text/&gt;          &lt;!-- allowIn: $block --&gt;
+        &lt;softBreak/&gt;      &lt;!-- allowWhere: $text --&gt;
+        &lt;$text/&gt;          &lt;!-- allowIn: $block --&gt; 
+        &lt;imageInline/&gt;    &lt;!-- inheritAllFrom: $inlineObject --&gt;
+    &lt;/paragraph&gt;
+    &lt;imageBlock&gt;          &lt;!-- inheritAllFrom: $blockObject --&gt;
+        &lt;caption&gt;         &lt;!-- allowIn: imageBlock, allowContentOf: $block --&gt;
+            &lt;$text/&gt;      &lt;!-- allowIn: $block --&gt;
+        &lt;/caption&gt;
+    &lt;/imageBlock&gt;
+    &lt;blockQuote&gt;                    &lt;!-- inheritAllFrom: $container --&gt;
+        &lt;paragraph/&gt;                &lt;!-- inheritAllFrom: $block --&gt;
+        &lt;table&gt;                     &lt;!-- inheritAllFrom: $blockObject --&gt;
+            &lt;tableRow&gt;              &lt;!-- allowIn: table --&gt;
+                &lt;tableCell&gt;         &lt;!-- allowIn: tableRow, allowContentOf: $container --&gt;
+                    &lt;paragraph&gt;     &lt;!-- inheritAllFrom: $block --&gt;
+                        &lt;$text/&gt;    &lt;!-- allowIn: $block --&gt;
+                    &lt;/paragraph&gt;
+                &lt;/tableCell&gt;
+            &lt;/tableRow&gt;
+        &lt;/table&gt;
+    &lt;/blockQuote&gt;
+&lt;/$root&gt;
+</code></pre>
+<p>Which, in turn, has thess <a href="#defining-additional-semantics">semantics</a>:</p>
+<pre class="highlight"><code class="xml html">&lt;$root&gt;                   &lt;!-- isLimit: true --&gt;
+    &lt;heading1&gt;            &lt;!-- isBlock: true --&gt;
+        &lt;$text/&gt;          &lt;!-- isInline: true, isContent: true --&gt;
+    &lt;/heading1&gt;
+    &lt;paragraph&gt;           &lt;!-- isBlock: true --&gt;
+        &lt;$text/&gt;          &lt;!-- isInline: true, isContent: true --&gt;
+        &lt;softBreak/&gt;      &lt;!-- isInline: true --&gt;
+        &lt;$text/&gt;          &lt;!-- isInline: true, isContent: true --&gt; 
+        &lt;imageInline/&gt;    &lt;!-- isInline: true, isObject: true --&gt;
+    &lt;/paragraph&gt;
+    &lt;imageBlock&gt;          &lt;!-- isBlock: true, isObject: true --&gt;
+        &lt;caption&gt;         &lt;!-- isLimit: true --&gt;
+            &lt;$text/&gt;      &lt;!-- isInline: true, isContent: true --&gt;
+        &lt;/caption&gt;
+    &lt;/imageBlock&gt;
+    &lt;blockQuote&gt;
+        &lt;paragraph/&gt;                &lt;!-- isBlock: true --&gt;
+        &lt;table&gt;                     &lt;!-- isBlock: true, isObject: true --&gt;
+            &lt;tableRow&gt;              &lt;!-- isLimit: true --&gt;
+                &lt;tableCell&gt;         &lt;!-- isLimit: true --&gt;
+                    &lt;paragraph&gt;     &lt;!-- isBlock: true --&gt;
+                        &lt;$text/&gt;    &lt;!-- isInline: true, isContent: true --&gt;
+                    &lt;/paragraph&gt;
+                &lt;/tableCell&gt;
+            &lt;/tableRow&gt;
+        &lt;/table&gt;
+    &lt;/blockQuote&gt;
+&lt;/$root&gt;
+</code></pre>
 <h2 id="defining-advanced-rules-in-checkchild-callbacks"><a class="headerlink" href="#defining-advanced-rules-in-checkchild-callbacks">#</a> Defining advanced rules in <code>checkChild()</code> callbacks</h2>
 <p>The <a href="../../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> method which is the a base method used to check whether some element is allowed in a given structure is <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-decorate">a decorated method</a>. It means that you can add listeners to implement your specific rules which are not limited by the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html">declarative <code>SchemaItemDefinition</code> API</a>.</p>
 <p>These listeners can be added either by listening directly to the <a href="../../../api/module_engine_model_schema-Schema.html#event-checkChild"><code>event:checkChild</code></a> event or by using the handy <a href="../../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> method.</p>
@@ -829,7 +907,7 @@ TODO
 
           <div class="info-box notice notice__feedback">
             <p>
-              Every day, we work hard to keep our documentation complete. Have you spotted an outdated information? Is something missing?
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
               Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fdeep-dive%2Fschema.html%22&amp;project-version=35.3.2" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
           </div>
@@ -1054,7 +1132,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'updating', 'support', 'framework', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../../assets/2.1.7/scripts/app.js"></script>
+    <script src="../../../../../assets/2.1.8/scripts/app.js"></script>
     <script src="../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
