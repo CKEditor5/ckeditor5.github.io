@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */ClassicEditor.create(document.querySelector("#editor"),{toolbar:{items:["bold","italic","underline","strikethrough","code","subscript","superscript","|","fontSize","fontFamily","|","alignment","link","|","undo","redo","|","removeformat"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((o=>{window.editor=o,window.attachTourBalloon({target:window.findToolbarItem(o.ui.view.toolbar,(o=>o.label&&"Remove Format"===o.label)),text:"Click to clear formatting.",editor:o})})).catch((o=>{console.error(o.stack)}));
