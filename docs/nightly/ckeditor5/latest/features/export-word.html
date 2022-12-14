@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Dec 13 2022 03:23:18 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Dec 14 2022 03:23:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Export to Word - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -616,7 +616,16 @@ ClassicEditor
 </li>
 <li>
 <p><strong><a href="../api/module_export-word_exportword-ExportWordConfig.html#member-fileName"><code>config.exportWord.fileName</code></a></strong></p>
-<p>Sets the name for the generated Word file (together with the extension). The default name is <code>document.docx</code>.</p>
+<p>Sets the name for the generated Word file (together with the extension). The default name is <code>document.docx</code>. You can see it called in the <a href="#default-configuration">default configuration</a> listing above.</p>
+<p>This option, however, also allows for using a callback to generate dynamic filename. In the example below, the document’s title will be used as the filename of the generated <code>.docx</code> file.</p>
+<pre class="highlight"><code class="js">// Dynamic file name.
+const exportWordConfig = {
+    fileName: () =&gt; {
+        const articleTitle = document.querySelector( '#title' );
+        return `${ articleTitle.value }.docx`;
+    }
+}
+</code></pre>
 </li>
 <li>
 <p><strong><a href="../api/module_export-word_exportword-ExportWordConfig.html#member-converterUrl"><code>config.exportWord.converterUrl</code></a></strong></p>
@@ -750,7 +759,7 @@ const converterOptions = {
 <p>Regarding CSS, <code>header</code> and <code>footer</code> can be styled using the same <a href="#supported-css-properties">supported properties</a> as used for styling the whole document.</p>
 <p>For more details, refer to the <a href="https://docx-converter.cke-cs.com/docs#section/Options">CKEditor Cloud Services HTML to DOCX converter’s documentation</a>.</p>
 <h3 id="setting-the-base-url"><a class="headerlink" href="#setting-the-base-url">#</a> Setting the base URL</h3>
-<p>To enable correct resolution of relative URLs for images and links, you need to pass the <code>base_url</code> option:</p>
+<p>To enable proper resolution of relative URLs for images and links, you need to pass the <code>base_url</code> option:</p>
 <pre class="highlight"><code class="js">const conversionOptions = {
     base_url: 'https://ckeditor.com'
 };
@@ -848,7 +857,7 @@ editor.execute( 'exportWord', config );
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fexport-word.html%22&amp;project-version=35.3.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fexport-word.html%22&amp;project-version=35.4.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
           </div>
           <script>
