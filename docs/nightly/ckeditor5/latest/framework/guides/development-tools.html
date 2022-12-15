@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Dec 14 2022 03:24:06 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Dec 15 2022 03:24:23 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Development tools - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -372,7 +372,7 @@ CKEditorInspector.attach( 'body-editor', editor );
 <h2 id="mr-git"><a class="headerlink" href="#mr-git">#</a> Mr. Git</h2>
 <p><a href="https://github.com/cksource/mrgit">Mr. Git</a> is a multi-repo manager for git. In CKEditor 5, it can be used for easy development and testing of various CKEditor&nbsp;5-related repositories, such as <a href="https://github.com/ckeditor/ckeditor5-dev">ckeditor5-dev</a> or <a href="https://github.com/ckeditor/ckeditor5-linters-config">ckeditor5-linters-config</a>.</p>
 <h3 id="setup"><a class="headerlink" href="#setup">#</a> Setup</h3>
-<p>In order to use the tool, it should be installed globally from the npm.</p>
+<p>In order to use the tool, install it globally from the npm.</p>
 <pre class="highlight"><code class="bash">npm install -g mrgit
 </code></pre>
 <p>Then, put a file named <code>mrgit.json</code> in the root of the <code>ckeditor5</code> repository. This is an example content of this file:</p>
@@ -393,12 +393,12 @@ CKEditorInspector.attach( 'body-editor', editor );
     }
 }
 </code></pre>
-<div class="info-box notice"><p>Support for tags and presets is available in <code>mrgit</code> <a href="https://github.com/cksource/mrgit/releases/tag/v2.0.0"><code>v2.0.0</code></a>+.</p></div>
+<div class="info-box notice"><p>Support for tags and presets is available since <code>mrgit</code> <a href="https://github.com/cksource/mrgit/releases/tag/v2.0.0"><code>v2.0.0</code></a>+.</p></div>
 <h3 id="usage"><a class="headerlink" href="#usage">#</a> Usage</h3>
-<p>In the example configuration file listed above we have defined base dependencies that should be used. They use the <code>@latest</code> tag, which means that the latest tag will be used, which generally should coincide with the latest version available on npm. After calling <code>mrgit sync</code>, these dependencies will be cloned and made available locally in the specified (latest) version.</p>
+<p>In the example configuration file listed above we have defined base dependencies that should be used. These use the <code>@latest</code> tag, which means that the latest release tag will be used, which generally should coincide with the latest version available on npm. After calling <code>mrgit sync</code>, these dependencies will be cloned and made available locally in the specified (latest) version.</p>
 <p>Alternatively, you can use one of the presets defined in the latter section of the file, eg. the <code>dev</code> preset. To do so, execute <code>mrgit sync --preset dev</code> – this will use versions specified in the preset instead. <code>ckeditor/ckeditor5-dev</code> does not have any tag or branch specified, so the <code>master</code> branch will be used by default.</p>
-<p>Since in this preset only <code>ckeditor5-dev</code> is specified, version used for <code>ckeditor5-linters-config</code> will be as specified in the default <code>dependencies</code> section. Using this mechanism, it is possible to easily switch between production and development versions of the dependencies used by the <code>ckeditor5</code> repository.</p>
-<p>For all available commands and configuration options, see <a href="https://github.com/cksource/mrgit#mr-git">the documentation of the tool</a>.</p>
+<p>Since only <code>ckeditor5-dev</code> is specified in this preset, version used for <code>ckeditor5-linters-config</code> will be the same as specified in the default <code>dependencies</code> section. Using this mechanism, it is possible to easily switch between production and development versions of the dependencies used by the <code>ckeditor5</code> repository.</p>
+<p>For all available commands and configuration options, see the <a href="https://github.com/cksource/mrgit#mr-git">Mr. Git documentation</a>.</p>
 <h2 id="testing-helpers"><a class="headerlink" href="#testing-helpers">#</a> Testing helpers</h2>
 <p>The <code>getData()</code> and <code>setData()</code> functions exposed by <a href="../../api/module_engine_dev-utils_model.html">model developer utilities</a> and <a href="../../api/module_engine_dev-utils_view.html">view developer utilities</a> are useful development helpers.</p>
 <p>They allow for “stringifying” the <a href="architecture/editing-engine.html#model">model</a> and <a href="architecture/editing-engine.html#view">view</a> structures, selections, ranges, and positions as well as for loading them from a string. They are often used when writing tests.</p>

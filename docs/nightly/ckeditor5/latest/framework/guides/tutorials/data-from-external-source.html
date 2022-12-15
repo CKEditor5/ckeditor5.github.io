@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Dec 14 2022 03:24:14 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Dec 15 2022 03:24:35 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Data from external source - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -303,12 +303,12 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/2.1.8/img/book.svg" alt="guide">Data from external source
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start-️">Before you start ⚠️</a></li><li><a href="#bootstrapping-the-project">Bootstrapping the project</a></li><li><a href="#the-model-and-the-view-layers">The model and the view layers</a><ol><li><a href="#defining-the-schema">Defining the schema</a></li><li><a href="#defining-converters">Defining converters</a></li><li><a href="#feature-styles">Feature styles</a></li><li><a href="#command">Command</a></li></ol></li><li><a href="#creating-the-ui">Creating the UI</a></li><li><a href="#handling-the-external-source">Handling the external source</a></li><li><a href="#demo">Demo</a></li><li><a href="#final-solution">Final solution</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start-️">Before you start ⚠️</a></li><li><a href="#bootstrapping-the-project">Bootstrapping the project</a></li><li><a href="#the-model-and-the-view-layers">The model and the view layers</a><ol><li><a href="#defining-the-schema">Defining the schema</a></li><li><a href="#defining-converters">Defining converters</a></li><li><a href="#feature-styles">Feature styles</a></li><li><a href="#the-command">The command</a></li></ol></li><li><a href="#creating-the-ui">Creating the UI</a></li><li><a href="#handling-the-external-source">Handling the external source</a></li><li><a href="#demo">Demo</a></li><li><a href="#final-solution">Final solution</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement a widget that fetches data from an external source and updates all own instances in a set interval of time.</p>
 <p>You will build an “external data fetch” feature that allows users to insert a predefined widget that will show the current Bitcoin rate and it will be updated with the set time interval fetching data from a predefined external source. You will use widget utilities and conversion in order to define the behavior of this feature. Later on, you will use <a href="../architecture/ui-library.html">UI library</a> to create a <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> that will allow for inserting new instances of external source widgets. You will also learn how to update the widget data based on the editor API.</p>
 <div class="info-box notice"><p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p></div>
 <h2 id="before-you-start-️"><a class="headerlink" href="#before-you-start-️">#</a> Before you start ⚠️</h2>
-<p>This guide assumes that you are familiar with the widgets concept introduced in the <a href="implementing-a-block-widget.html">Implementing a block widget</a> and <a href="implementing-an-inline-widget.html">implementing an inline widget</a> tutorials. The tutorial also references various concepts concerning the <a href="../architecture/intro.html">CKEditor 5 architecture</a>.</p>
+<p>This guide assumes that you are familiar with the widgets concept introduced in the <a href="implementing-a-block-widget.html">Implementing a block widget</a> and <a href="implementing-an-inline-widget.html">Implementing an inline widget</a> tutorials. The tutorial also references various concepts concerning the <a href="../architecture/intro.html">CKEditor 5 architecture</a>.</p>
 <h2 id="bootstrapping-the-project"><a class="headerlink" href="#bootstrapping-the-project">#</a> Bootstrapping the project</h2>
 <p>The overall project structure will be similar to one described in the <a href="implementing-an-inline-widget.html#bootstrapping-the-project">Bootstrapping the project</a> section of the “Implementing an inline widget” tutorial.</p>
 <p>First, install the required dependencies:</p>
@@ -454,11 +454,11 @@ ClassicEditor
 │   └── theme
 │       └── externaldatawidget.css
 │
-│   ... the rest of the plugin files go here as well.
+│   ... the rest of the plugin files goes here as well.
 │
 └── webpack.config.js
 </code></pre>
-<p>You can see that the external data widget feature has an established plugin structure: the master (glue) plugin (<code>external-data-widget/externaldatawidget.js</code>), the “editing” (<code>external-data-widget/externaldatawidgetediting.js</code>) and the “UI” (<code>external-data-widget/externaldatawidgetui.js</code>) parts.</p>
+<p>You can see that the external data widget feature follows an established plugin structure: the master (glue) plugin (<code>external-data-widget/externaldatawidget.js</code>), the “editing” (<code>external-data-widget/externaldatawidgetediting.js</code>) and the “UI” (<code>external-data-widget/externaldatawidgetui.js</code>) parts.</p>
 <p>The master (glue) plugin:</p>
 <pre class="highlight"><code class="js">// external-data-widget/externaldatawidget.js
 
@@ -499,12 +499,12 @@ export default class ExternalDataWidgetEditing extends Plugin {
 <p>Use the <code>./node_modules/.bin/webpack --mode development</code> command in the root folder of the widget to build the project.</p>
 <p>After the build is completed, open <code>index.html</code> in your browser to check if all is correct at this stage.</p>
 <h2 id="the-model-and-the-view-layers"><a class="headerlink" href="#the-model-and-the-view-layers">#</a> The model and the view layers</h2>
-<p>The external data widget feature will be <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html">defined as an inline</a> (text-like) element so it will be inserted into other editor blocks that allow text e.g. <code>&lt;paragraph&gt;</code>. The external data widget will have a <code>data-resource-url</code> attribute. This means that the model representation of the external data widget will look like this:</p>
+<p>The external data widget feature will be <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html">defined as an inline</a> (text-like) element so it will be inserted into other editor blocks that allow text e.g. <code>&lt;paragraph&gt;</code>. The external data widget will also have a <code>data-resource-url</code> attribute. This means that the model representation of the external data widget will look like this:</p>
 <pre class="highlight"><code class="html">&lt;paragraph&gt;
     External value: &lt;externalElement data-resource-url="RESOURCE_URL"&gt;&lt;/externalElement&gt;.
 &lt;/paragraph&gt;
 </code></pre>
-<div class="info-box notice"><p>Syntax presented above is used by our debugging tools, like <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a>, which is particularly helpful when developing new rich-text editor features.</p></div>
+<div class="info-box notice"><p>The syntax presented above is used by our debugging tools, such as <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a>, which is particularly helpful when developing new rich-text editor features.</p></div>
 <h3 id="defining-the-schema"><a class="headerlink" href="#defining-the-schema">#</a> Defining the schema</h3>
 <p>The schema definition of this widget is almost the same as in the <a href="implementing-an-inline-widget.html#defining-the-schema">inline widget</a> tutorial, the only thing that is different is the <code>allowAttributes</code>. In our case we want to allow the <code>'data-resource-url'</code> attribute.<br>
 Instead of passing all the attributes to the config object we can use <a href="../deep-dive/schema.html#generic-items">generic items</a> to inherit already predefined options.</p>
@@ -535,7 +535,7 @@ export default class ExternalDataWidgetEditing extends Plugin {
     }
 }
 </code></pre>
-<p>The schema is defined, now you can define the model-view converters.</p>
+<p>Once the schema is defined, you can now define the model-view converters.</p>
 <h3 id="defining-converters"><a class="headerlink" href="#defining-converters">#</a> Defining converters</h3>
 <p>The HTML structure (data output) of the converter will be a <code>&lt;span&gt;</code> with a <code>data-resource-url</code> attribute with the external resource url as its value.</p>
 <pre class="highlight"><code class="html">&lt;span data-resource-url="RESOURCE_URL"&gt;&lt;/span&gt;
@@ -636,7 +636,7 @@ export default class ExternalDataWidgetEditing extends Plugin {
     }
 }
 </code></pre>
-<h3 id="command"><a class="headerlink" href="#command">#</a> Command</h3>
+<h3 id="the-command"><a class="headerlink" href="#the-command">#</a> The command</h3>
 <p>The <a href="../architecture/core-editor-architecture.html#commands">command</a> for the external data widget feature will insert an <code>&lt;externalElement&gt;</code> element (if allowed by the schema) at the selection and set the selection on the inserted widget.</p>
 <pre class="highlight"><code class="js">// external-data-widget/externaldatawidgetcommand.js
 
@@ -677,7 +677,7 @@ class ExternalDataWidgetCommand extends Command {
     }
 }
 </code></pre>
-<p>Import the created command and add it to the editor commands:</p>
+<p>Import the newly created command and add it to the editor commands:</p>
 <pre class="highlight"><code class="js">// external-data-widget/externaldatawidgetediting.js
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
@@ -914,7 +914,7 @@ class ExternalDataWidgetEditing extends Plugin {
 </style>
 
 <div id="snippet-external-data-widget">
-	<h1>This is a simple widget for fetching data from an external source:</h1>
+	<h2>Current exchange rate fetched from Binance (updates every 10 seconds):</h2>
 	<p>Bitcoin rate:&nbsp;<span data-resource-url="https://api2.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"></span></p>
 </div>
 </div>
