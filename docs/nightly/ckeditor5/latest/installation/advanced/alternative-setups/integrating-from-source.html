@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Dec 19 2022 03:26:25 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Dec 21 2022 03:20:31 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integrating from source - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -202,7 +202,7 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/2.1.8/img/book.svg" alt="guide">Integrating from source
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#webpack-configuration">webpack configuration</a><ol><li><a href="#webpack-encore">Webpack Encore</a></li></ol></li><li><a href="#running-the-editor-method-1">Running the editor – method 1</a></li><li><a href="#running-the-editor-method-2">Running the editor – method 2</a></li><li><a href="#building">Building</a></li><li><a href="#option-minifying-javascript">Option: Minifying JavaScript</a></li><li><a href="#option-extracting-css">Option: Extracting CSS</a></li><li><a href="#option-building-to-es5-target">Option: Building to ES5 target</a></li></ol></nav>
-<div class="info-box notice"><p>CKEditor 5 is currently built using <a href="https://webpack.js.org/">webpack@5</a>. All builds, examples and demos are generated using this bundler. It should also be possible to build CKEditor 5 using other bundlers (if they are configured properly), such as <a href="https://github.com/rollup/rollup">Rollup</a> or <a href="http://browserify.org/">Browserify</a>, but these setups are not officially supported yet. Also, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> that allows to localize the editor is only available for webpack. More work on this subject will be done in the future.</p><p>Therefore, a prerequisite to this guide is that you are using webpack as your build tool.</p></div>
+<div class="info-box notice"><p>CKEditor 5 is currently built using <a href="https://webpack.js.org/">webpack@5</a>. All builds, examples and demos are generated using this bundler. It should also be possible to build CKEditor 5 using other bundlers (if they are configured properly), such as <a href="https://github.com/rollup/rollup">Rollup</a> or <a href="http://browserify.org/">Browserify</a>, but these setups are not officially supported yet. Also, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-translations"><code>@ckeditor/ckeditor5-dev-translations</code></a> that allows to localize the editor is only available for webpack. More work on this subject will be done in the future.</p><p>Therefore, a prerequisite to this guide is that you are using webpack as your build tool.</p></div>
 <p>This scenario allows you to fully control the building process of CKEditor 5. This means that you will not actually use the builds anymore, but instead build CKEditor from source directly into your project. This integration method gives you full control over which features will be included and how webpack will be configured.</p>
 <div class="info-box notice"><p>Similar results to what this method allows can be achieved by <a href="../../getting-started/quick-start-other.html#building-the-editor-from-source">customizing an existing build</a> and integrating your custom build. This will give faster build times (since CKEditor 5 will be built once and committed), however, it requires maintaining a separate repository and installing the code from that repository into your project (e.g. by publishing a new npm package or using tools like <a href="https://github.com/lerna/lerna">Lerna</a>). This makes it less convenient than the method described in this scenario.</p></div>
 <p>First of all, you need to install source packages that you will use. If you base your integration on one of the existing builds, you can take them from that build’s <code>package.json</code> file (see e.g. <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-build-classic/package.json">classic build’s <code>package.json</code></a>). At this moment you can choose the editor creator and the features you want. Keep in mind, however, that all packages (excluding <code>@ckeditor/ckeditor5-dev-*</code>) <a href="../../getting-started/installing-plugins.html#requirements">must have the same version as the base editor package</a>.</p>
@@ -230,7 +230,7 @@
 </code></pre>
 <p>The second step is to install dependencies needed to build the editor. The list may differ if you want to customize the webpack configuration, but this is a typical setup:</p>
 <pre class="highlight"><code class="bash">npm install --save \
-    @ckeditor/ckeditor5-dev-webpack-plugin \
+    @ckeditor/ckeditor5-dev-translations \
     @ckeditor/ckeditor5-dev-utils \
     css-loader@5 \
     postcss-loader@4 \
@@ -244,17 +244,17 @@
 <ul>
 <li>Handling CSS files of the CKEditor theme. They are included in the CKEditor 5 sources using <code>import 'path/to/styles.css'</code> statements, so you need <a href="https://webpack.js.org/loaders/">proper loaders</a>.</li>
 <li>Similarly, you need to handle bundling SVG icons, which are also imported directly into the source. For that you need the <a href="https://webpack.js.org/loaders/raw-loader/"><code>raw-loader</code></a>.</li>
-<li>Finally, to localize the editor you need to use the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> webpack plugin.</li>
+<li>Finally, to localize the editor you need to use the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-translations"><code>@ckeditor/ckeditor5-dev-translations</code></a> webpack plugin.</li>
 </ul>
 <p>The minimal configuration, assuming that you use the same methods of handling assets as CKEditor 5 builds, will look like this:</p>
-<pre class="highlight"><code class="js">const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
+<pre class="highlight"><code class="js">const { CKEditorTranslationsPlugin } = require( '@ckeditor/ckeditor5-dev-translations' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 
 module.exports = {
     plugins: [
         // ...
 
-        new CKEditorWebpackPlugin( {
+        new CKEditorTranslationsPlugin( {
             // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
             language: 'pl'
         } )
@@ -299,13 +299,13 @@ module.exports = {
 <div class="info-box notice"><p>If you cannot use the latest webpack (at the moment of writing this guide, it is 5), the provided configuration will also work with webpack 4.</p></div>
 <h4 id="webpack-encore"><a class="headerlink" href="#webpack-encore">#</a> Webpack Encore</h4>
 <p>If you use <a href="https://github.com/symfony/webpack-encore">Webpack Encore</a>, you can use the following configuration:</p>
-<pre class="highlight"><code class="js">const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
+<pre class="highlight"><code class="js">const { CKEditorTranslationsPlugin } = require( '@ckeditor/ckeditor5-dev-translations' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 
 Encore.
     // ... your configuration ...
 
-    .addPlugin( new CKEditorWebpackPlugin( {
+    .addPlugin( new CKEditorTranslationsPlugin( {
         // See https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
         language: 'pl'
     } ) )
