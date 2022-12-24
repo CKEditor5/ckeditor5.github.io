@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Abbreviation plugin (part 2) - CKEditor 5 Documentation</title>
+    <title>Improving accessibility and adding a command - CKEditor 5 Documentation</title>
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Dec 23 2022 03:26:18 GMT+0000 (Coordinated Universal Time)">
-    <meta property="og:title" content="Abbreviation plugin (part 2) - CKEditor 5 Documentation">
+    <meta name="x-generated-at" content="Sat Dec 24 2022 03:29:37 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Improving accessibility and adding a command - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/simple-plugin/abbreviation-plugin-level-2.html">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/abbreviation-plugin/abbreviation-plugin-level-3.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
-    <meta property="DC.title" content="Abbreviation plugin (part 2) - CKEditor 5 Documentation">
+    <meta property="DC.title" content="Improving accessibility and adding a command - CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
-    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/simple-plugin/abbreviation-plugin-level-2.html">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/abbreviation-plugin/abbreviation-plugin-level-3.html">
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../../../../assets/2.2.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
-    <link rel="stylesheet" href="../../../../snippets/framework/abbreviation-level-2/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../../snippets/framework/abbreviation-level-3/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../../snippets/assets.css" type="text/css" data-cke="true">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
@@ -133,17 +133,17 @@
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
                                               </div></a></li>
                                           <li>
-                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an abbreviation plugin</span>
                                             </div>
                                             <ul class="tree__item-nested-list">
                                                   <li><a href="abbreviation-plugin-level-1.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span>
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a toolbar button</span>
+                                                      </div></a></li>
+                                                  <li><a href="abbreviation-plugin-level-2.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
                                                       </div></a></li>
                                                   <li><a href="">
-                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span>
-                                                      </div></a></li>
-                                                  <li><a href="abbreviation-plugin-level-3.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span>
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
                                                       </div></a></li>
                                             </ul>
                                           </li>
@@ -298,196 +298,23 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/simple-plugin-tutorial/abbreviation-plugin-level-2.md" title="Contribute to this guide"><img src="../../../../../../assets/2.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/abbreviation-plugin-tutorial/abbreviation-plugin-level-3.md" title="Contribute to this guide"><img src="../../../../../../assets/2.2.0/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/2.2.0/img/book.svg" alt="guide">Abbreviation plugin tutorial – part 2
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#creating-a-view">Creating a view</a><ol><li><a href="#creating-a-form-view-template">Creating a form view template</a></li><li><a href="#creating-input-fields">Creating input fields</a></li><li><a href="#creating-form-buttons">Creating form buttons</a></li><li><a href="#adding-styles">Adding styles</a></li><li><a href="#wrapping-up-the-form-view">Wrapping up the form view</a></li></ol></li><li><a href="#adding-the-contextual-balloon">Adding the Contextual Balloon</a></li><li><a href="#getting-user-input">Getting user input</a></li><li><a href="#hiding-the-form-view">Hiding the form view</a></li><li><a href="#demo">Demo</a></li><li><a href="#final-code">Final code</a></li></ol></nav>
-<p>In this part of the tutorial we will focus on creating a dialog box, which will get the user’s input.</p>
-<p>We will pick up where we left off in the first part, so make sure you <a href="abbreviation-plugin-level-1.html">start there</a>, or grab our <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-1">starter files for this part</a>.</p>
-<div class="info-box notice"><p>As we will mostly work on the UI, we recommend reading about our <a href="../../architecture/ui-library.html">UI library</a> before you start coding.</p></div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/2.2.0/img/book.svg" alt="guide">Improving accessibility and adding a command
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#improving-accessibility">Improving accessibility</a><ol><li><a href="#adding-a-keystroke-handler-and-a-focus-tracker">Adding a keystroke handler and a focus tracker</a></li><li><a href="#adding-a-focus-cycler">Adding a focus cycler</a></li></ol></li><li><a href="#improving-the-ui-functionalities">Improving the UI functionalities</a></li><li><a href="#adding-a-command">Adding a command</a><ol><li><a href="#creating-a-command">Creating a command</a></li><li><a href="#refreshing-the-state">Refreshing the state</a></li><li><a href="#improving-the-execute-method">Improving the execute() method</a></li></ol></li><li><a href="#demo">Demo</a></li><li><a href="#final-code">Final code</a></li></ol></nav>
+<p>You made it to the final part of the abbreviation plugin tutorial. In this part, we will improve accessibility of our plugin. We will also work on a command, which will additionally grab the text from user’s selection, and insert it into our form. And more!</p>
+<p>We pick up where we left off in the <a href="abbreviation-plugin-level-2.html">second part</a>, so make sure you finished it, or grab our <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-2">starter files for this part</a>.</p>
 <p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a>.</p>
-<h2 id="creating-a-view"><a class="headerlink" href="#creating-a-view">#</a> Creating a view</h2>
-<p>The most important part of the UI for this plugin is a dialog box with a form, which will get us the user’s input.</p>
-<h3 id="creating-a-form-view-template"><a class="headerlink" href="#creating-a-form-view-template">#</a> Creating a form view template</h3>
-<p>Let’s start by creating a view with a form. It will include two input fields (for the abbreviation and the title), and the <code>submit</code> and <code>cancel</code> buttons. We will do it in a separate view. First, we create a new file <code>abbreviationview.js</code> in the <code>abbreviation/</code> directory.</p>
-<p>Our new <code>FormView</code> class will extend the <a href="../../architecture/ui-library.html#views">View</a> class, so let’s start by importing it from the UI library.</p>
-<p>In the <code>FormView</code> constructor we define a template for our abbreviation form. We need to set the tag of the HTML element, and a couple of its attributes. To make sure our view is focusable, let’s add <a href="../../deep-dive/ui/focus-tracking.html#implementing-focusable-ui-components"><code>tabindex="-1"</code></a>.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
-
-import View from '@ckeditor/ckeditor5-ui';
-
-export default class FormView extends View {
-    constructor( locale ) {
-        super( locale );
-
-        this.setTemplate( {
-            tag: 'form',
-            attributes: {
-                class: [ 'ck', 'ck-abbr-form' ],
-                tabindex: '-1'
-            }
-        } );
-    }
-
-}
-</code></pre>
-<p>Notice that we added two classes. All UI elements of the editor need to have the <code>ck</code> class (unless you want to create your own UI and not use CKEditor 5’s built-in library). We also created a new class for our form, which we will use later on to style it.</p>
-<h3 id="creating-input-fields"><a class="headerlink" href="#creating-input-fields">#</a> Creating input fields</h3>
-<p>As we have two similar input fields to create and we don’t want to repeat ourselves, let’s define a method <code>_createInput()</code>, which will produce them for us. It will accept the label of our input field.</p>
-<p>We will use <a href="../../../../api/module_ui_labeledfield_labeledfieldview-LabeledFieldView.html"><code>LabeledFieldView</code></a> class and we will pass it the <a href="../../../../api/module_ui_labeledfield_utils.html#function-createLabeledInputText"><code>createLabeledInputText()</code></a> function as the second argument. It is a helper coming from the CKEditor UI library that will take care of creating the input.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
-
-import {
-    View,
-    LabeledFieldView,				// ADDED
-    createLabeledInputText			// ADDED
-    } from '@ckeditor/ckeditor5-ui';
-
-export default class FormView extends View {
-    constructor( locale ) {
-        // ...
-
-        this.abbrInputView = this._createInput( 'Add abbreviation' );
-        this.titleInputView = this._createInput( 'Add title' );
-    }
-
-    _createInput( label ) {
-        const labeledInput = new LabeledFieldView( this.locale, createLabeledInputText );
-
-        labeledInput.label = label;
-
-        return labeledInput;
-    }
-}
-</code></pre>
-<h3 id="creating-form-buttons"><a class="headerlink" href="#creating-form-buttons">#</a> Creating form buttons</h3>
-<p>Now, we add the <code>submit</code> and <code>cancel</code> buttons to our form. You can start by importing <code>ButtonView</code> from our UI library together with the icons, which we will use for labels.</p>
-<p>We will use the <code>check</code> and <code>cancel</code> icons from the core package’s <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-core/theme/icons">icons library</a>. After importing the icons, we will use them for creating the buttons.</p>
-<p>Let’s write a <code>_createButton</code> function, which will take three arguments – <code>label</code>, <code>icon</code> and <code>className</code>. We then set the button attributes, using the properties we passed into the function before, and adding a tooltip option.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
-
-import {
-    View,
-    LabeledFieldView,
-    createLabeledInputText,
-    ButtonView										// ADDED
-    } from '@ckeditor/ckeditor5-ui';
-import { icons } from '@ckeditor/ckeditor5-core';	// ADDED
-
-export default class FormView extends View {
-    constructor( locale ) {
-        // ...
-
-        // Create the save and cancel buttons.
-        this.saveButtonView = this._createButton(
-            'Save', icons.check, 'ck-button-save'
-        );
-        // Set the type to 'submit', which will trigger
-        // the submit event on entire form when clicked.
-        this.saveButtonView.type = 'submit';
-
-        this.cancelButtonView = this._createButton(
-            'Cancel', icons.cancel, 'ck-button-cancel'
-        );
-    }
-
-    _createInput( label ) {
-        // ...
-    }
-
-    _createButton( label, icon, className ) {
-        const button = new ButtonView();
-
-        button.set( {
-            label,
-            icon,
-            tooltip: true,
-            class: className
-        } );
-
-        return button;
-    }
-}
-</code></pre>
-<p>When the user clicks one of these buttons, we want to either submit or cancel the form view. These events should be fired off from the form view, so we need to delegate them from the buttons to the form view.</p>
-<div class="info-box notice"><p>Event delegation allows selected events of one emitter to be fired off by another emitter. Read about it in our <a href="../../architecture/core-editor-architecture.html#event-system-and-observables">introduction to the event system</a> and more on <a href="../../deep-dive/event-system.html#delegating-events">delegating events</a>.</p></div>
-<p>For now, we delegate <code>cancelButtonView#execute</code> to the FormView, so pressing the <code>cancel</code> button will fire off <code>FormView#cancel</code>. We will handle delegating the submit event in a couple of steps.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
-// ...
-
-export default class FormView extends View {
-    constructor( locale ) {
-        // ...
-
-        this.saveButtonView = this._createButton(
-            'Save', icons.check, 'ck-button-save'
-        );
-        this.saveButtonView.type = 'submit';
-        this.cancelButtonView = this._createButton(
-            'Cancel', icons.cancel, 'ck-button-cancel'
-        );
-        // Delegate ButtonView#execute to FormView#cancel.
-        this.cancelButtonView.delegate( 'execute' ).to( this, 'cancel' );
-    }
-
-    _createInput( label ) {
-        // ...
-    }
-
-    _createButton( label, icon, className ) {
-        // ...
-    }
-}
-</code></pre>
-<h3 id="adding-styles"><a class="headerlink" href="#adding-styles">#</a> Adding styles</h3>
-<p>We use <code>styles.css</code> to style the new UI elements. Let’s add some padding to our form and use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid">CSS grid layout</a> to nicely display all four elements of the form.</p>
-<p>We will use our set spacing variables to keep things uniform.</p>
-<pre class="highlight"><code class="css">/* style.css */
-
-.ck.ck-abbr-form {
-    padding: var(--ck-spacing-large);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: var(--ck-spacing-standard);
-}
-
-.ck.ck-abbr-form .ck.ck-labeled-field-view:nth-of-type(1) {
-    grid-area: 1 / 1 / 2 / 3;
-}
-
-.ck.ck-abbr-form .ck.ck-labeled-field-view:nth-of-type(2) {
-    grid-area: 2 / 1 / 3 / 3;
-}
-
-.ck.ck-abbr-form .ck-button:nth-of-type(1) {
-    grid-area: 3 / 1 / 4 / 2;
-}
-
-.ck.ck-abbr-form .ck-button:nth-of-type(2) {
-    grid-area: 3 / 2 / 4 / 3;
-}
-
-</code></pre>
-<p>Import it into <code>AbbreviationUI</code>:</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
-
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import './styles.css';											// ADDED
-
-export default class AbbreviationUI extends Plugin {
-    // ...
-}
-</code></pre>
-<h3 id="wrapping-up-the-form-view"><a class="headerlink" href="#wrapping-up-the-form-view">#</a> Wrapping up the form view</h3>
-<p>We are almost done with the form view, we just need to add a couple of finishing touches.</p>
-<p>In the <code>constructor</code>, we create a <a href="../../../../api/module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a> with the <code>createCollection()</code> method. We put all our input and button views in the collection, and use it to update the <code>FormView</code> template with its newly created children.</p>
-<p>Let’s also add <code>render()</code> method to our <code>FormView</code>.  We will use a helper <code>submitHandler()</code> function there, which intercepts a native DOM submit event, prevents the default web browser behavior (navigation and page reload) and fires the <code>submit</code> event on a view instead.</p>
-<p>We also need a <code>focus()</code> method, which will focus on the first child of our <code>abbreviation</code> input view each time the form is added to the editor. This is just a taste of what <a href="../../deep-dive/ui/focus-tracking.html">focus tracking</a> can do in CKEditor 5. We will get into it more in next part of this tutorial.</p>
+<h2 id="improving-accessibility"><a class="headerlink" href="#improving-accessibility">#</a> Improving accessibility</h2>
+<p>First, we make our plugin accessible for users who rely on keyboards for navigation. We want to ensure that pressing <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> will move focus around in the form view, and pressing <code>esc</code> will close it.</p>
+<div class="info-box notice"><p>In order to improve the accessibility of the plugin, it is important to understand how keystroke and focus management works in the CKEditor 5 framework. We recommend you <a href="../../architecture/ui-library.html#keystrokes-and-focus-management">read up on the basics</a>, or do a <a href="../../deep-dive/ui/focus-tracking.html">deep dive into focus tracking</a>.</p></div>
+<p>We have some ready-to-use options to help us out – the <a href="../../deep-dive/ui/focus-tracking.html#using-the-keystrokehandler-class">KeystrokeHandler</a>, <a href="../../deep-dive/ui/focus-tracking.html#using-the-focustracker-class">FocusTracker</a>, and <a href="../../deep-dive/ui/focus-tracking.html#using-the-focuscycler-class">FocusCycler</a> helper classes.</p>
+<h3 id="adding-a-keystroke-handler-and-a-focus-tracker"><a class="headerlink" href="#adding-a-keystroke-handler-and-a-focus-tracker">#</a> Adding a keystroke handler and a focus tracker</h3>
+<p>We start by importing the <code>KeystrokeHandler</code> and <code>FocusTracker</code> classes into our form view, and creating their new instances in the <code>constructor()</code>.</p>
+<p>Now, in the <code>render()</code> method, we add each element of our <code>childViews</code> view collection to the <code>focusTracker</code>. There, we can also start listening for the keystrokes coming from the rendered view element.</p>
+<p>Finally let’s add the <code>destroy()</code> method, and destroy both the focus tracker and the keystroke handler. It will ensure that when the user kills the editor, our helpers “die” too, preventing any memory leaks.</p>
 <pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
 
 import {
@@ -495,293 +322,546 @@ import {
     LabeledFieldView,
     createLabeledInputText,
     ButtonView,
-    submitHandler									// ADDED
-    } from '@ckeditor/ckeditor5-ui';
+    submitHandler,
+} from '@ckeditor/ckeditor5-ui';
+import { FocusTracker, KeystrokeHandler } from '@ckeditor/ckeditor5-utils'; // ADDED
 import { icons } from '@ckeditor/ckeditor5-core';
 
 export default class FormView extends View {
     constructor( locale ) {
         // ...
 
-        this.childViews = this.createCollection( [
-            this.abbrInputView,
-            this.titleInputView,
-            this.saveButtonView,
-            this.cancelButtonView
-        ] );
+        this.focusTracker = new FocusTracker();
+        this.keystrokes = new KeystrokeHandler();
 
-        this.setTemplate( {
-            tag: 'form',
-            attributes: {
-                // ...
-            },
-            children: this.childViews				// ADDED
-        } );
+        // ...
     }
 
     render() {
-        super.render();
+        // ...
 
-        // Submit the form when the user clicked the save button
-        // or pressed enter in the input.
-        submitHandler( {
-            view: this
+        this.childViews._items.forEach( view =&gt; {
+            // Register the view in the focus tracker.
+            this.focusTracker.add( view.element );
         } );
+
+        // Start listening for the keystrokes coming from #element.
+        this.keystrokes.listenTo( this.element );
     }
 
-    focus() {
-        this.childViews.first.focus();
+    destroy() {
+        super.destroy();
+
+        this.focusTracker.destroy();
+        this.keystrokes.destroy();
     }
 
-    _createInput( label ) {
-        // ...
-    }
-
-    _createButton( label, icon, className ) {
-        // ...
-    }
+    // ...
 }
 </code></pre>
-<p>Our <code>FormView</code> is done! However, we cannot see it just yet, so let’s add it to our <code>AbbreviationUI</code> class.</p>
-<h2 id="adding-the-contextual-balloon"><a class="headerlink" href="#adding-the-contextual-balloon">#</a> Adding the Contextual Balloon</h2>
-<p>Our form needs to appear in a balloon, and we will use the <a href="../../../../api/module_ui_panel_balloon_contextualballoon-ContextualBalloon.html"><code>ContextualBalloon</code></a> class from the CKEditor 5 UI library to make one.</p>
-<p>This is where we ended up with our UI in the first part of the tutorial.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+<h3 id="adding-a-focus-cycler"><a class="headerlink" href="#adding-a-focus-cycler">#</a> Adding a focus cycler</h3>
+<p>The <code>FocusCycler</code> will allow the user to navigate through all the children of our form view, cycling over them. Check how our navigation works now in our form view – we can use <kbd>Tab</kbd> to move from the first input field to the second, but then the focus leaves the form, and the editor itself. Let’s fix that.</p>
+<p>We import the <code>FocusCycler</code> class, and create its instance in the form view <code>constructor()</code>. We need to pass an object with focusables (so our <code>childViews</code> collection), the focus tracker, the keystroke handler, and the actions connected to different keystrokes.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+import {
+    View,
+    LabeledFieldView,
+    createLabeledInputText,
+    ButtonView,
+    submitHandler,
+    FocusCycler																// ADDED
+} from '@ckeditor/ckeditor5-ui';
+import { FocusTracker, KeystrokeHandler } from '@ckeditor/ckeditor5-utils';
+import { icons } from '@ckeditor/ckeditor5-core';
 
-export default class AbbreviationUI extends Plugin {
-    init() {
-        const editor = this.editor;
+export default class FormView extends View {
+    constructor( locale ) {
 
-        editor.ui.componentFactory.add( 'abbreviation', () =&gt; {
-            const button = new ButtonView();
+        // ...
 
-            button.label = 'Abbreviation';
-            button.tooltip = true;
-            button.withText = true;
+        this._focusCycler = new FocusCycler( {
+            focusables: this.childViews,
+            focusTracker: this.focusTracker,
+            keystrokeHandler: this.keystrokes,
+            actions: {
+                // Navigate form fields backwards using the Shift + Tab keystroke.
+                focusPrevious: 'shift + tab',
 
-            this.listenTo( button, 'execute', () =&gt; {
-                const title = 'What You See Is What You Get';
-                const abbr = 'WYSIWYG';
-
-                editor.model.change( writer =&gt; {
-                    editor.model.insertContent(
-                        writer.createText( abbr ),
-                        { 'abbreviation': title }
-                    );
-
-                } );
-            } );
-
-            return button;
+                // Navigate form fields forwards using the Tab key.
+                focusNext: 'tab'
+            }
         } );
-    }
-}
-</code></pre>
-<p>We will need to change it quite a bit and add <code>ContextualBalloon</code> and <code>FormView</code>. We need to make sure Contextual Balloon is required when making an instance of our <code>AbbreviationUI</code>, so we will start with that.</p>
-<p>Let’s write a basic <code>_createFormView()</code> function, just to create an instance of our <code>FormView</code> class (we will expand it later).</p>
-<p>We also need to create a function, which will give us the target position for our balloon from user’s selection. We need to convert the selected view range into DOM range. We can use the <code>viewRangeToDom()</code> method to do so.</p>
-<p>Finally, we add our balloon and the form view to the <code>init()</code> method.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-import ContextualBalloon from '@ckeditor/ckeditor5-ui';				// ADDED
-import FormView from './abbreviationview';							// ADDED
-
-export default class AbbreviationUI extends Plugin {
-    static get requires() {
-        return [ ContextualBalloon ];
-    }
-
-    init() {
-        const editor = this.editor;
-
-        // Create the balloon and the form view.
-        this._balloon = this.editor.plugins.get( ContextualBalloon );
-        this.formView = this._createFormView();
-
-        editor.ui.componentFactory.add( 'abbreviation', () =&gt; {
+        this.setTemplate( {
             // ...
         } );
     }
 
-    _createFormView() {
-        const editor = this.editor;
-        const formView = new FormView( editor.locale );
-
-        return formView;
-    }
-
-    _getBalloonPositionData() {
-        const view = this.editor.editing.view;
-        const viewDocument = view.document;
-        let target = null;
-
-        // Set a target position by converting view selection range to DOM.
-        target = () =&gt; view.domConverter.viewRangeToDom(
-            viewDocument.selection.getFirstRange()
-        );
-
-        return {
-            target
-        };
-    }
+    // ...
 }
 </code></pre>
-<p>We can now change what happens when the user clicks the toolbar button. We will replace inserting the hard-coded abbreviation with one defined by the user.</p>
-<p>Let’s write a <code>_showUI()</code> method which will show our UI elements by adding the form view to our balloon and setting its position. The last thing is to focus the form view, so the user can immediately start typing in the first input field.</p>
+<p>Now we can add the <kbd>Esc</kbd> button handler in our <code>_createFromView()</code> function, which will hide the UI and fire off <code>cancel</code> on the form.</p>
 <pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
 // ...
 
 export default class AbbreviationUI extends Plugin {
     // ...
 
-    init() {
-        // ...
-
-        editor.ui.componentFactory.add( 'abbreviation', () =&gt; {
-            this._showUI();
-        } );
-    }
-
     _createFormView() {
         // ...
+
+        // Close the panel on esc key press when the form has focus.
+        formView.keystrokes.set( 'Esc', ( data, cancel ) =&gt; {
+            this._hideUI();
+            cancel();
+        } );
+
+        return formView;
     }
 
-    _getBalloonPositionData() {
-        // ...
-    }
+    // ...
+}
+</code></pre>
+<p>We are done with improving accessibility for keyboard-only users. Try it out yourself by pressing <kbd>Tab</kbd>, <kbd>Shift</kbd> + <kbd>Tab</kbd>, and <kbd>Esc</kbd> in the form.</p>
+<h2 id="improving-the-ui-functionalities"><a class="headerlink" href="#improving-the-ui-functionalities">#</a> Improving the UI functionalities</h2>
+<p>When the user selects a range (a letter, a word, or a whole document fragment) and presses the abbreviation button, they might expect that their selected text appears automatically in the abbreviation input field. Let’s add this functionality to our form.</p>
+<div class="info-box notice"><p>As we will be working with user’s selection in the document, it is important to understand what exactly does it mean in the editor’s model. Read our introduction to <a href="../../architecture/editing-engine.html#positions-ranges-and-selections">positions, ranges and selections</a> to expand your knowledge in the field.</p></div>
+<p>In order to display the text from the user’s selection in the form field, we need to first grab and concatenate all text from the selected range. If the user selects a couple of paragraphs, a heading, and an image, we need to go through all the nodes, and use only the ones containing text.</p>
+<p>Let’s create a helper <code>getRangeText()</code> function in a separate <code>/utils.js</code> file. It will grab all items from a range using its <code>getItems()</code> method. Then, it will concatenate all text from the <a href="../../../../api/module_engine_model_text-Text.html"><code>text</code></a> and <a href="../../../../api/module_engine_model_textproxy-TextProxy.html"><code>textProxy</code></a> nodes, and skip all the others.</p>
+<pre class="highlight"><code class="js">// abbreviation/utils.js
+
+// A helper function that retrieves and concatenates all text within the model range.
+export default function getRangeText( range ) {
+    return Array.from( range.getItems() ).reduce( ( rangeText, node ) =&gt; {
+        if ( !( node.is( 'text' ) || node.is( 'textProxy' ) ) ) {
+            return rangeText;
+        }
+
+        return rangeText + node.data;
+    }, '' );
+}
+
+</code></pre>
+<p>Now, in <code>AbbreviationUI</code> we can adjust the <code>_showUI()</code> method to display the selected text in the abbreviation input field. We import <code>getRangeText</code> and pass the first range in the selection (using the <code>getFirstRange()</code> method) as an argument.</p>
+<p>We will also disable the input field when the selection is not collapsed, because it would be hard to change the text of the abbreviation if the selection spans multiple paragraphs.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+// ...
+import getRangeText from './utils.js';
+
+export default class AbbreviationUI extends Plugin {
+    // ...
 
     _showUI() {
+        const selection = this.editor.model.document.selection;
+
         this._balloon.add( {
             view: this.formView,
             position: this._getBalloonPositionData()
         } );
 
+        // Disable the input when the selection is not collapsed.
+        this.formView.abbrInputView.isEnabled = selection.getFirstRange().isCollapsed;
+
+        const selectedText = getRangeText( selection.getFirstRange() );
+        this.formView.abbrInputView.fieldView.value = selectedText;
+        this.formView.titleInputView.fieldView.value = '';
+
         this.formView.focus();
     }
+
+    // ...
 }
 </code></pre>
-<p>You should be able to see your balloon and form now! Check and see your balloon pop up (we will get to hiding it soon). It should look like this:</p>
-<p><img src="../../../../assets/img/abbreviation-part2.png" data-lightbox="true" alt="Screenshot of the balloon with the form view."></p>
-<h2 id="getting-user-input"><a class="headerlink" href="#getting-user-input">#</a> Getting user input</h2>
-<p>Now is the time to replace the hard-coded “WYSIWYG” abbreviation with the user input. We will be getting values from the form and listening to the <code>submit</code> event on the form view, which we delegated from the save button (with the help of <code>submitHandler</code>).</p>
-<p>We use the same callback function we had in the toolbar button in the first part of the tutorial. We just need to replace the “WYSIWYG” abbreviation with values from our input views.</p>
+<p>Since we are disabling the first input field in some cases, let’s update the <code>focus()</code> method in our form view accordingly.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationview.js
+// ...
+
+export default class FormView extends View {
+    // ...
+
+    focus() {
+        // If the abbreviation text field is enabled, focus it.
+        if ( this.abbrInputView.isEnabled ) {
+            this.abbrInputView.focus();
+        }
+        // Focus the abbreviation title field if the former is disabled.
+        else {
+            this.titleInputView.focus();
+        }
+    }
+    // ...
+}
+</code></pre>
+<p>Our new functionality should work now, check it out yourself! It does not recognize whether the selected text is an abbreviation already, so if you select “WYSIWYG”, the full title does not yet appear in the title input field. We will change it in the next steps.</p>
+<h2 id="adding-a-command"><a class="headerlink" href="#adding-a-command">#</a> Adding a command</h2>
+<p>Our plugin does what we want it to do, so why complicate things by adding a command? Well, a command not only executes an action, but also automatically reacts when any changes are applied to the model.</p>
+<div class="info-box notice"><p>A command in CKEditor 5 is a combination of an action and a state. The state of the command gets refreshed whenever anything changes in the model. We highly recommend <a href="../../architecture/core-editor-architecture.html#commands">reading about commands</a> before we move on.</p></div>
+<p>When the user makes a selection in the editor, the command will automatically check if there is an abbreviation there. It will also ensure that the command is only enabled where the “abbreviation” attribute can be set on the current model selection (not on images, for instance).</p>
+<h3 id="creating-a-command"><a class="headerlink" href="#creating-a-command">#</a> Creating a command</h3>
+<p>Let’s start by creating the command, and moving the existing action logic there.</p>
+<p>In the <code>/abbreviationcommand.js</code> file, we import the <code>Command</code> class and create its instance.</p>
+<p>We will start by simply moving there the action we already created for <code>submit</code> in our <code>_createFormView()</code> method, passing the title and the abbreviation text into the command’s <code>execute()</code> method.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+
+import Command from '@ckeditor/ckeditor5-core/src/command';
+
+export default class AbbreviationCommand extends Command {
+    execute( { title, abbr } ) {
+        const model = this.editor.model;
+
+        model.change( writer =&gt; {
+            model.insertContent(
+                writer.createText( abbr, { abbreviation: title } )
+            );
+        } );
+
+    }
+}
+</code></pre>
+<p>Now, let’s initialize our <code>AbbreviationCommand</code>, by adding it to the list of editor’s commands in <code>AbbreviationEditing</code>. We will also pass a name there, that we will use to call our command.</p>
+<pre class="highlight"><code class="js">// abreviation/abbreviationediting.js
+
+import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import AbbreviationCommand from './abbreviationcommand';			// ADDED
+
+export default class AbbreviationEditing extends Plugin {
+    init() {
+        this._defineSchema();
+        this._defineConverters();
+
+        this.editor.commands.add(
+            'addAbbreviation', new AbbreviationCommand( this.editor )
+        );
+    }
+
+    // ...
+}
+</code></pre>
+<p>We can now replace the action called on <code>submit</code> with our new command, passing it into editor’s <code>execute()</code> method, along with the abbreviation and title values.</p>
 <pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
 // ...
 
 export default class AbbreviationUI extends Plugin {
-    static get requires() {
-        return [ ContextualBalloon ];
-    }
-
-    init() {
-        // ...
-    }
+    // ...
 
     _createFormView() {
         const editor = this.editor;
         const formView = new FormView( editor.locale );
 
+        // Execute the command after clicking the "Save" button.
         this.listenTo( formView, 'submit', () =&gt; {
-            const title = formView.titleInputView.fieldView.element.value;
-            const abbr = formView.abbrInputView.fieldView.element.value;
+            const value = {
+                abbr: formView.abbrInputView.fieldView.element.value,
+                title: formView.titleInputView.fieldView.element.value
+            };
+            editor.execute( 'addAbbreviation', value );
 
-            editor.model.change( writer =&gt; {
-                editor.model.insertContent(
+            this._hideUI();
+        } );
+
+        // ...
+    }
+
+    // ...
+}
+</code></pre>
+<p>The command should now work, and pressing the <code>submit</code> button should have the same effect as it did before. We can now explore some additional functionalities. You can check it out now in the CKEditor 5 Inspector.</p>
+<p><img src="../../../../assets/img/abbreviation-part3-1.png" data-lightbox="true" alt="Screenshot of the CKEditor 5 inspector showing the ‘addAbbreviation’ command."></p>
+<h3 id="refreshing-the-state"><a class="headerlink" href="#refreshing-the-state">#</a> Refreshing the state</h3>
+<p>Thanks to the command’s <code>refresh()</code> method, we can observe the state and the value of our command not just when the user presses the button, but whenever any changes are made in the editor. We will use this to check if the user’s selection has an abbreviation model attribute already.</p>
+<p>Before we do that, we may want to check if the command can be used at all on a given selection. If the user selects an image, the command should be disabled. Let’s check if our <code>abbreviation</code> attribute is allowed in the schema, using its <code>checkAttributeInSelection()</code> method.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+
+import Command from '@ckeditor/ckeditor5-core/src/command';
+
+export default class AbbreviationCommand extends Command {
+    refresh() {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+
+        // The command is enabled when the "abbreviation" attribute
+        // can be set on the current model selection.
+        this.isEnabled = model.schema.checkAttributeInSelection(
+            selection, 'abbreviation'
+        );
+    }
+
+    execute( { title, abbr } ) {
+        // ...
+    }
+}
+</code></pre>
+<p>We can now check if the selected range is collapsed. If so, we will check if the caret is in an abbreviation, and grab the entire range containing it. We can easily do so using the <a href="../../../../api/module_typing_utils_findattributerange.html#function-findAttributeRange"><code>findAttributeRange</code></a> helper function. We need to pass it the first position of the selection, our attribute name and value, and the model.</p>
+<p>Then, we change the value of the command. We will get the abbreviation text using our <code>getRangeText</code> helper function. We also add a range value, which we will use when executing the command.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+
+import Command from '@ckeditor/ckeditor5-core/src/command';
+import findAttributeRange from '@ckeditor/ckeditor5-typing/src/utils/findattributerange'; 	// ADDED
+import getRangeText from './utils.js';														// ADDED
+
+export default class AbbreviationCommand extends Command {
+    refresh() {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const firstRange = selection.getFirstRange();
+
+        // When the selection is collapsed, the command has a value
+        // if the caret is in an abbreviation.
+        if ( firstRange.isCollapsed ) {
+            if ( selection.hasAttribute( 'abbreviation' ) ) {
+                const attributeValue = selection.getAttribute( 'abbreviation' );
+
+                // Find the entire range containing the abbreviation
+                // under the caret position.
+                const abbreviationRange = findAttributeRange(
+                    selection.getFirstPosition(), 'abbreviation', attributeValue, model
+                );
+
+                this.value = {
+                    abbr: getRangeText( abbreviationRange ),
+                    title: attributeValue,
+                    range: abbreviationRange
+                };
+            } else {
+                this.value = null;
+            }
+        }
+
+        // ...
+    }
+
+    execute( { title, abbr } ) {
+        // ...
+    }
+}
+</code></pre>
+<p>If the selection is not collapsed, we check if it has the <code>abbreviation</code> model attribute. If so, we will again grab the full range of the abbreviation and compare it with the user selection.</p>
+<p>When the user selects a bit of text with the abbreviation attribute, along with a bit without it, we do not want to change the command’s value. So, we will use the <code>containsRange()</code> method to see if the selected range is within the abbreviation range. The second parameter makes it a <code>loose</code> check, meaning the selected range can start, end, or be equal to the abbreviation range.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+//...
+
+export default class AbbreviationCommand extends Command {
+    refresh() {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const firstRange = selection.getFirstRange();
+
+        if ( firstRange.isCollapsed ) {
+            // ...
+        }
+        // When the selection is not collapsed, the command has a value if the selection
+        // contains a subset of a single abbreviation or an entire abbreviation.
+        else {
+            if ( selection.hasAttribute( 'abbreviation' ) ) {
+                const attributeValue = selection.getAttribute( 'abbreviation' );
+
+                // Find the entire range containing the abbreviation
+                // under the caret position.
+                const abbreviationRange = findAttributeRange(
+                    selection.getFirstPosition(), 'abbreviation', attributeValue, model
+                );
+
+                if ( abbreviationRange.containsRange( firstRange, true ) ) {
+                    this.value = {
+                        abbr: getRangeText( firstRange ),
+                        title: attributeValue,
+                        range: firstRange
+                    };
+                } else {
+                    this.value = null;
+                }
+            } else {
+                this.value = null;
+            }
+        }
+
+        // ...
+    }
+
+    execute( { title, abbr } ) {
+        // ...
+    }
+}
+</code></pre>
+<p>You can check the command and its current value in the inspector.</p>
+<p><img src="../../../../assets/img/abbreviation-part3-2.png" data-lightbox="true" alt="Screenshot of the CKEditor 5 inspector showing the value of the ‘addAbbreviation’ command."></p>
+<p>We can now check the command value when the user presses the toolbar abbreviation button, and insert both abbreviation text and title values into the form’s input fields.</p>
+<p>In the <code>AbbreviationUI</code> add a simple <code>if</code> statement to fill the form using either the value of the command, or the selected text (as we did before).</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+// ...
+
+export default class AbbreviationUI extends Plugin {
+    // ...
+
+    _showUI() {
+        const selection = this.editor.model.document.selection;
+
+        // Check the value of the command.
+        const commandValue = this.editor.commands.get( 'addAbbreviation' ).value;
+
+        this._balloon.add( {
+            view: this.formView,
+            position: this._getBalloonPositionData()
+        } );
+
+        // Disable the input when the selection is not collapsed.
+        this.formView.abbrInputView.isEnabled = selection.getFirstRange().isCollapsed;
+
+        // Fill the form using the state (value) of the command.
+        if ( commandValue ) {
+            this.formView.abbrInputView.fieldView.value = commandValue.abbr;
+            this.formView.titleInputView.fieldView.value = commandValue.title;
+        }
+        // If the command has no value, put the currently selected text (not collapsed)
+        // in the first field and empty the second in that case.
+        else {
+            const selectedText = getRangeText( selection.getFirstRange() );
+
+            this.formView.abbrInputView.fieldView.value = selectedText;
+            this.formView.titleInputView.fieldView.value = '';
+        }
+
+        this.formView.focus();
+    }
+
+    // ...
+}
+
+</code></pre>
+<h3 id="improving-the-execute-method"><a class="headerlink" href="#improving-the-execute-method">#</a> Improving the <code>execute()</code> method</h3>
+<p>We should now introduce more cases into our <code>execute()</code> method. For starters, if the user’s selection is not collapsed, we just need to add the abbreviation attribute to their selection instead of inserting the abbreviation text into the model.</p>
+<p>So if the selection is not collapsed, we will gather all the ranges, that are allowed to use the <code>abbreviation</code> model attribute, using the schema’s <code>getValidRanges()</code> method. Then we will use the <code>setAttribute()</code>, to add the title value to each of the ranges.</p>
+<p>If the selection is collapsed, we will keep our <code>insertContent()</code> model method from before. Then, we need to use <code>removeSelectionAttribute</code> method, to stop adding new content into the abbreviation if the user starts to type.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+// ...
+
+export default class AbbreviationCommand extends Command {
+    refresh() {
+        // ...
+    }
+
+    execute( { abbr, title } ) {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+
+        model.change( writer =&gt; {
+            // If selection is collapsed then update the selected abbreviation
+            // or insert a new one at the place of caret.
+            if ( selection.isCollapsed ) {
+                model.insertContent(
                     writer.createText( abbr, { abbreviation: title } )
                 );
-            } );
 
+                // Remove the "abbreviation" attribute attribute from the selection.
+                writer.removeSelectionAttribute( 'abbreviation' );
+            } else {
+                // If the selection has non-collapsed ranges,
+                // change the attribute on nodes inside those ranges
+                // omitting nodes where the "abbreviation" attribute is disallowed.
+                const ranges = model.schema.getValidRanges(
+                    selection.getRanges(), 'abbreviation'
+                );
+
+                for ( const range of ranges ) {
+                    writer.setAttribute( 'abbreviation', title, range );
+                }
+            }
         } );
-
-        return formView;
-    }
-
-    _getBalloonPositionData() {
-        // ...
-    }
-
-    _showUI() {
-        // ...
     }
 }
-</code></pre>
-<p>Our plugin is finally doing what it is supposed to. The last thing is to hide it from our editor when we do not need it.</p>
-<h2 id="hiding-the-form-view"><a class="headerlink" href="#hiding-the-form-view">#</a> Hiding the form view</h2>
-<p>We will need to hide the form view in these three situations:</p>
-<ul>
-<li>after the user submits the form;</li>
-<li>when the user clicks the “Cancel” button;</li>
-<li>when the user clicks outside of the balloon.</li>
-</ul>
-<p>We will write a simple <code>_hideUI()</code> function, which will clear the input field values and remove the view from our balloon.</p>
-<p>Additionally, we will import the <code>clickOutsideHandler()</code> method, which will take our <code>_hideUI()</code> function as a callback. It will be emitted from our form view, and activated when the form view is visible. We also need to set <code>contextElements</code> for the handler to determine its scope. Clicking on HTML elements listed there will not fire the callback.</p>
-<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
 
+</code></pre>
+<p>Now we can use the command’s state to check whether the selection is inside an existing abbreviation. If the command’s value is not <code>null</code>, we will grab the whole range, and update its text and title.</p>
+<p>We will create a position at the end of the inserted abbreviation, and set a selection there. The <a href="../../../../api/module_engine_model_model-Model.html#function-insertContent"><code>insertContent()</code></a> method returns a range, and we grab its end position to define our <code>positionAfter</code>.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
 // ...
 
-import { ContextualBalloon, clickOutsideHandler } from '@ckeditor/ckeditor5-ui'; // ADDED
-
-export default class AbbreviationUI extends Plugin {
-    static get requires() {
-        return [ ContextualBalloon ];
-    }
-
-    init() {
+export default class AbbreviationCommand extends Command {
+    refresh() {
         // ...
     }
 
-    _createFormView() {
-        const editor = this.editor;
-        const formView = new FormView( editor.locale );
+    execute( { abbr, title } ) {
+        const model = this.editor.model;
+        const selection = model.document.selection;
 
-        this.listenTo( formView, 'submit', () =&gt; {
-            // ...
+        model.change( writer =&gt; {
+            // If selection is collapsed then update the selected abbreviation
+            // or insert a new one at the place of caret.
+            if ( selection.isCollapsed ) {
+                // When a collapsed selection is inside text with the "abbreviation" attribute,
+                // update its text and title.
+                if ( this.value ) {
+                    const { end: positionAfter } = model.insertContent(
+                        writer.createText( abbr, { abbreviation: title } ),
+                        this.value.range
+                    );
 
-            // Hide the form view after submit.
-            this._hideUI();
+                    // Put the selection at the end of the inserted abbreviation.
+                    writer.setSelection( positionAfter );
+                }
+
+                writer.removeSelectionAttribute( 'abbreviation' );
+            } else {
+                // ...
+            }
         } );
-
-        // Hide the form view after clicking the "Cancel" button.
-        this.listenTo( formView, 'cancel', () =&gt; {
-            this._hideUI();
-        } );
-
-        // Hide the form view when clicking outside the balloon.
-        clickOutsideHandler( {
-            emitter: formView,
-            activator: () =&gt; this._balloon.visibleView === formView,
-            contextElements: [ this._balloon.view.element ],
-            callback: () =&gt; this._hideUI()
-        } );
-
-        return formView;
-    }
-
-    _hideUI() {
-        this.formView.abbrInputView.fieldView.value = '';
-        this.formView.titleInputView.fieldView.value = '';
-        this.formView.element.reset();
-
-        this._balloon.remove( this.formView );
-
-        // Focus the editing view after closing the form view.
-        this.editor.editing.view.focus();
-    }
-
-    _getBalloonPositionData() {
-        // ...
-    }
-
-    _showUI() {
-        // ...
     }
 }
 </code></pre>
+<p>If the collapsed selection is not inside an existing abbreviation, we will insert a text node with the “abbreviation” attribute in place of the caret.</p>
+<p>The user might place the abbreviation inside a text, which already has some other model attributes, like “bold” or “italic”. We should first collect them along with our abbreviation attribute, and use the whole list when inserting the abbreviation into the document. We will use our <a href="../../../../api/module_utils_tomap.html#function-toMap"><code>toMap</code></a> helper function to collect all attributes.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationcommand.js
+// ...
+import { toMap } from '@ckeditor/ckeditor5-utils';					// ADDED
+
+export default class AbbreviationCommand extends Command {
+    refresh() {
+        // ...
+    }
+
+    execute( { abbr, title } ) {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+
+        model.change( writer =&gt; {
+            if ( selection.isCollapsed ) {
+                if ( this.value ) {
+                    // ...
+                }
+                // If the collapsed selection is not in an existing abbreviation,
+                // insert a text node with the "abbreviation" attribute
+                // in place of the caret.
+                // If the abbreviation is empty, don't do anything.
+                else if ( abbr !== '' ) {
+                    const firstPosition = selection.getFirstPosition();
+
+                    // Collect all attributes of the user selection.
+                    const attributes = toMap( selection.getAttributes() );
+
+                    // Put the new attribute to the map of attributes.
+                    attributes.set( 'abbreviation', title );
+
+                    // Inject the new text node with the abbreviation text
+                    // with all selection attributes.
+                    const { end: positionAfter } = model.insertContent(
+                        writer.createText( abbr, attributes ), firstPosition
+                    );
+
+                    // Put the selection at the end of the inserted abbreviation.
+                    writer.setSelection( positionAfter );
+                }
+
+                writer.removeSelectionAttribute( 'abbreviation' );
+            } else {
+                // ...
+            }
+        } );
+    }
+}
+</code></pre>
+<p>The command is now done, check how it works by trying all our different cases - selection collapsed, not collapsed, inside an existing abbreviation, etc.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <div class="live-snippet"><div id="snippet-abbreviation-plugin">
     <h2>Abbreviation plugin</h2>
@@ -818,16 +898,17 @@ export default class AbbreviationUI extends Plugin {
 	.ck.ck-abbr-form .ck-button:nth-of-type(2) {
 		grid-area: 3 / 2 / 4 / 3;
 	}
+
 </style>
 </div>
 <h2 id="final-code"><a class="headerlink" href="#final-code">#</a> Final code</h2>
-<p>If you got lost at any point, this is <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-2">the final implementation of the plugin</a>. You can paste the code from different files into your project, or clone and install the whole thing, and it will run out-of-the-box.</p>
-<div class="info-box notice"><p><strong>What’s next?</strong></p><p>That’s it for the second part of the tutorial! We have a working UI, and our plugin does what we want it to do. We can improve it according to our best practices, adding a <a href="../../architecture/core-editor-architecture.html#commands">command</a>, focus tracking, and more. We will do it in the <a href="abbreviation-plugin-level-3.html">third part of the tutorial</a>, so head over there.</p></div>
+<p>If you got lost at any point, this is <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-3">the final implementation of the plugin</a>. You can paste the code from different files into your project, or clone and install the whole thing, and it will run out-of-the-box.</p>
+<div class="info-box notice"><p><strong>What’s next?</strong></p><p>That’s it, you’ve finished the tutorial! You are now ready to create your own plugins. If you want to continue learning, move on to our more advanced tutorials, starting with the <a href="../../tutorials/implementing-a-block-widget.html">Implementing a block widget</a> guide.</p></div>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fplugins%2Fsimple-plugin%2Fabbreviation-plugin-level-2.html%22&amp;project-version=35.4.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fguides%2Fplugins%2Fabbreviation-plugin%2Fabbreviation-plugin-level-3.html%22&amp;project-version=35.4.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
           </div>
           <script>
@@ -884,17 +965,17 @@ export default class AbbreviationUI extends Plugin {
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
                                                   </div></a></li>
                                               <li>
-                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an abbreviation plugin</span>
                                                 </div>
                                                 <ul class="tree__item-nested-list">
                                                         <li><a href="abbreviation-plugin-level-1.html">
-                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span>
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a toolbar button</span>
+                                                            </div></a></li>
+                                                        <li><a href="abbreviation-plugin-level-2.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
                                                             </div></a></li>
                                                         <li><a href="">
-                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span>
-                                                            </div></a></li>
-                                                        <li><a href="abbreviation-plugin-level-3.html">
-                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span>
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
                                                             </div></a></li>
                                                 </ul>
                                               </li>
@@ -1054,7 +1135,7 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../../../../../../assets/2.2.0/scripts/app.js"></script>
     <script src="../../../../assets/snippet.js"></script>
     <script src="../../../../snippets/assets.js"></script>
-    <script src="../../../../snippets/framework/abbreviation-level-2/snippet.js"></script>
+    <script src="../../../../snippets/framework/abbreviation-level-3/snippet.js"></script>
     <script src="../../../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>

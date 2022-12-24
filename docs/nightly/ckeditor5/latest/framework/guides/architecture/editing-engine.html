@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Dec 23 2022 03:26:13 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Dec 24 2022 03:29:37 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Editing engine - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -130,17 +130,17 @@
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
                                               </div></a></li>
                                           <li>
-                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an abbreviation plugin</span>
                                             </div>
                                             <ul class="tree__item-nested-list">
-                                                  <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-1.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span>
+                                                  <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-1.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a toolbar button</span>
                                                       </div></a></li>
-                                                  <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-2.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span>
+                                                  <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-2.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
                                                       </div></a></li>
-                                                  <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-3.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span>
+                                                  <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-3.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
                                                       </div></a></li>
                                             </ul>
                                           </li>
@@ -579,7 +579,7 @@ editor.data;                    // The data pipeline (DataController).
 </ul>
 <p>Additionally, some features add their own observers. For instance, the <a href="../../../api/module_clipboard_clipboard-Clipboard.html">clipboard feature</a> adds <a href="../../../api/module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <div class="info-box notice"><p>For a complete list of events fired by observers check the <a href="../../../api/module_engine_view_document-Document.html"><code>Document</code></a>'s list of events.</p></div>
-<p>You can add your own observer (which should be a subclass of <a href="../../../api/module_engine_view_observer_observer-Observer.html"><code>Observer</code></a>) by using the <a href="../../../api/module_engine_view_view-View.html#function-addObserver"><code>view.addObserver()</code></a> method. Check the code of existing observers to learn how to write them: https://github.com/ckeditor/ckeditor5-engine/tree/master/src/view/observer.</p>
+<p>You can add your own observer (which should be a subclass of <a href="../../../api/module_engine_view_observer_observer-Observer.html"><code>Observer</code></a>) by using the <a href="../../../api/module_engine_view_view-View.html#function-addObserver"><code>view.addObserver()</code></a> method. Check the code of existing observers to learn how to write them: <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/src/view/observer">https://github.com/ckeditor/ckeditor5-engine/tree/master/src/view/observer</a>.</p>
 <div class="info-box notice"><p>Since all events are by default fired on <a href="../../../api/module_engine_view_document-Document.html"><code>Document</code></a>, it is recommended that third party packages prefix their events with an identifier of the project to avoid name collisions. For example, MyApp’s features should fire <code>myApp:keydown</code> instead of <code>keydown</code>.</p></div>
 <h2 id="conversion"><a class="headerlink" href="#conversion">#</a> Conversion</h2>
 <p>So far, we talked about the model and the view as about two completely independent subsystems. It is time to connect them. The three main situations in which these two layers meet are:</p>
@@ -687,17 +687,17 @@ editor.data;                    // The data pipeline (DataController).
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
                                                   </div></a></li>
                                               <li>
-                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating a simple plugin</span>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an abbreviation plugin</span>
                                                 </div>
                                                 <ul class="tree__item-nested-list">
-                                                        <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-1.html">
-                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 1)</span>
+                                                        <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-1.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a toolbar button</span>
                                                             </div></a></li>
-                                                        <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-2.html">
-                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 2)</span>
+                                                        <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-2.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
                                                             </div></a></li>
-                                                        <li><a href="../plugins/simple-plugin/abbreviation-plugin-level-3.html">
-                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Abbreviation plugin (part 3)</span>
+                                                        <li><a href="../plugins/abbreviation-plugin/abbreviation-plugin-level-3.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
                                                             </div></a></li>
                                                 </ul>
                                               </li>
