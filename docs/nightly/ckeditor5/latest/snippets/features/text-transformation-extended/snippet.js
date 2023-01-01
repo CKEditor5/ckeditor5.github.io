@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const o={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-text-transformation-extended"),{cloudServices:o,placeholder:"Type here...",ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},typing:{transformations:{remove:["symbols","quotes","arrowLeft","arrowRight"],extra:[{from:":)",to:"🙂"},{from:":+1:",to:"👍"},{from:":tada:",to:"🎉"},{from:/(^|\s)(")([^"]*)(")$/,to:[null,"«",null,"»"]},{from:/([.?!] )([a-z])$/,to:o=>[null,o[1].toUpperCase()]}]}}}).then((o=>{window.editor=o})).catch((o=>{console.error(o.stack)}))})();

@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const t={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-highlight"),{cloudServices:t,toolbar:{items:["heading","|","bulletedList","numberedList","|","outdent","indent","|","highlight","undo","redo"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((t=>{window.editor=t,window.attachTourBalloon({target:window.findToolbarItem(t.ui.view.toolbar,(t=>t.buttonView&&t.buttonView.label&&"Highlight"===t.buttonView.label)),text:"Click to add highlight.",editor:t})})).catch((t=>{console.error(t.stack)}))})();

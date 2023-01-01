@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */ClassicEditor.create(document.querySelector("#snippet-findandreplace"),{toolbar:{items:["heading","|","bold","italic","underline","link","insertTable","|","undo","redo","|","findAndReplace"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((e=>{window.editor=e,window.attachTourBalloon({target:window.findToolbarItem(e.ui.view.toolbar,(e=>e.buttonView&&"Find and replace"===e.buttonView.label)),text:"Click here to search.",editor:e})})).catch((e=>{console.error(e.stack)}));

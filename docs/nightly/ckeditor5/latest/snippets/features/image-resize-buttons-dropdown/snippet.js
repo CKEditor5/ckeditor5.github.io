@@ -1,4 +1,4 @@
 /*!
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */(()=>{"use strict";const e={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-image-resize-buttons-dropdown"),{removePlugins:["LinkImage","AutoImage"],ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},image:{resizeUnit:"%",resizeOptions:[{name:"resizeImage:original",label:"Original",value:null},{name:"resizeImage:40",label:"40%",value:"40"},{name:"resizeImage:60",label:"60%",value:"60"}],toolbar:["resizeImage"]},cloudServices:e}).then((e=>{window.editorResizeUIDropdown=e})).catch((e=>{console.error(e)}))})();
