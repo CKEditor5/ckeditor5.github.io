@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Jan 05 2023 03:31:15 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jan 06 2023 03:34:10 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Styles - CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -459,7 +459,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/2.2.0/img/book.svg" alt="guide">Styles
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#known-issues">Known issues</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The style feature lets the user apply pre-configured styles to existing elements in the editor content.</p>
 <p>Under the hood, every style applies one or more HTML classes to such an element which, depending on your integration requirements, can be used to either control the visual styles of that element or apply additional semantics. <!-- The <a href=remove-format.html>remove formatting</a> feature can be used to clear those styles. --></p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
@@ -852,6 +852,7 @@ style: {
 <ul>
 <li><a href="basic-styles.html">Basic text styles</a> – Apply the most frequently used formatting such as bold, italic, underline, etc.</li>
 <li><a href="font.html">Font styles</a> – Easily and efficiently control the font <a href="font.html#configuring-the-font-family-feature">family</a>, <a href="font.html#configuring-the-font-size-feature">size</a>, <a href="font.html#configuring-the-font-color-and-font-background-color-features">text or background color</a>.</li>
+<li><a href="headings.html">Headings</a> – Divide your content into sections.</li>
 <li><a href="remove-format.html">Remove format</a> – Easily clean basic text formatting.</li>
 <li><a href="general-html-support.html">General HTML support</a> – Allows enabling additional HTML, such as <code>&lt;style&gt;</code> and <code>&lt;classes&gt;</code> attributes.</li>
 </ul>
@@ -931,6 +932,8 @@ ClassicEditor
 }
 </code></pre>
 <p>Note that the editor will automatically distinguish text and block styles and group them in the dropdown.</p>
+<h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
+<p>At present, the styles feature may clash with other features that bring in similar content (e.g. headings). Problems with overlapping styles applied to the same element may also occur.</p>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../api/module_style_style-Style.html">Style</a> plugin registers:</p>
 <ul>
