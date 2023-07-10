@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{"use strict";const t={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#snippet-text-alignment"),{toolbar:{items:["undo","redo","|","heading","|","bold","italic","|","link","uploadImage","insertTable","mediaEmbed","|","alignment","|","bulletedList","numberedList","outdent","indent"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}},cloudServices:t}).then((t=>{window.editor=t,window.attachTourBalloon({target:window.findToolbarItem(t.ui.view.toolbar,(t=>t.buttonView&&t.buttonView.label&&"Text alignment"===t.buttonView.label)),text:"Click to change text alignment.",editor:t})})).catch((t=>{console.error(t.stack)}))})();

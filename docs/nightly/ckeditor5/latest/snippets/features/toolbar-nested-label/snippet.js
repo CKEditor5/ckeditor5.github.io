@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{"use strict";const t={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#toolbar-nested-label"),{toolbar:["undo","redo","|",{label:"Fonts",icon:"text",withText:!0,items:["fontSize","fontFamily","fontColor","fontBackgroundColor"]},"|",{label:"Basic styles",withText:!0,items:["bold","italic","strikethrough","superscript","subscript"]}],cloudServices:t,ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((t=>{window.editor=t})).catch((t=>{console.error(t.stack)}))})();

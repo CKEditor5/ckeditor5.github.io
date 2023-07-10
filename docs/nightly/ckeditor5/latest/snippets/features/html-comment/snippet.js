@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */ClassicEditor.create(document.querySelector("#snippet-html-comment"),{extraPlugins:[HtmlComment],image:{toolbar:["imageStyle:inline","imageStyle:wrapText","imageStyle:breakText","|","toggleImageCaption","imageTextAlternative"]},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells"]},ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((e=>{window.editor2=e,window.attachTourBalloon({target:window.findToolbarItem(e.ui.view.toolbar,(e=>e.label&&"Source"===e.label)),text:"Switch to the source mode to check out the source of the content and play with it.",editor:e})})).catch((e=>{console.error(e.stack)}));

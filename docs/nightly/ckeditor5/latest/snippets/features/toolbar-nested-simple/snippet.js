@@ -1,0 +1,4 @@
+/*!
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{"use strict";const t={tokenUrl:"https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",uploadUrl:"https://33333.cke-cs.com/easyimage/upload/"};ClassicEditor.create(document.querySelector("#toolbar-nested-simple"),{toolbar:["undo","redo","|","heading","|",{label:"Fonts",icon:"text",items:["fontSize","fontFamily","fontColor","fontBackgroundColor"]},"|","bold","italic","underline",{label:"More basic styles",icon:"threeVerticalDots",items:["strikethrough","superscript","subscript"]},"|","alignment","|",{label:"Lists",withText:!0,icon:!1,items:["bulletedList","numberedList","todoList"]}],cloudServices:t,ui:{viewportOffset:{top:window.getViewportTopOffsetConfig()}}}).then((t=>{window.editor=t})).catch((t=>{console.error(t.stack)}))})();
