@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Mar 06 2024 01:14:48 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/tutorials/abbreviation-plugin/abbreviation-plugin-level-1.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/tutorials/abbreviation-plugin/abbreviation-plugin-level-1.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/4.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../snippets/tutorials/abbreviation-level-1/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../snippets/assets.css" type="text/css" data-cke="true">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	( function ( w, d, e, u, a, b ) {
+      		a = d.createElement( e );
+      		b = d.getElementsByTagName( e )[ 0 ];
+      		a.async = 1;
+      		a.src = u;
+      		b.parentNode.insertBefore( a, b )
+      	} )( window, document, 'script', 'https://www.googletagmanager.com/gtag/js?id=G-H2PK3PSE3F' );
+      	window.dataLayer = window.dataLayer || [];
+      
+      	function gtag() {
+      		dataLayer.push( arguments );
+      	}
+      
+      	gtag( 'js', new Date() );
+      	gtag( 'config', 'G-H2PK3PSE3F' );
+      }
+    </script>
+    <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
+    <meta name="project-version" content="41.1.0">
+    <meta name="project-slug" content="ckeditor5">
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/4.2.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a href="../../installation/index.html">Getting started</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Tutorials</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a href="../../updating/index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="installation"><a href="../../installation/index.html">Getting started</a>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="tutorials"><a href="../index.html">Tutorials</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Crash course</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="crash-course">
+                                  <li><a href="../crash-course/editor.html" title="Editor and configuration">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/plugins.html" title="Plugins">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/model-and-schema.html" title="Model and schema">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Model and schema</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/data-conversion.html" title="Data conversion">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/commands.html" title="Commands">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/view.html" title="Editor UI">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/events-and-observables.html" title="Events and observables">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/keystrokes.html" title="Handling keystrokes">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                      </div></a></li>
+                                  <li><a href="../crash-course/plugin-configuration.html" title="Plugin configuration">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../creating-simple-plugin-timestamp.html" title="Creating a basic plugin">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an advanced plugin</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="abbreviation-plugin">
+                                  <li><a href="" title="Defining a model and a view">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Defining a model and a view</span>
+                                      </div></a></li>
+                                  <li><a href="abbreviation-plugin-level-2.html" title="Getting user input with a custom UI">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
+                                      </div></a></li>
+                                  <li><a href="abbreviation-plugin-level-3.html" title="Improving accessibility and adding a command">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Using widgets</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="widget-tutorials">
+                                  <li><a href="../widgets/implementing-a-block-widget.html" title="Implementing a block widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/implementing-an-inline-widget.html" title="Implementing an inline widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/using-react-in-a-widget.html" title="Using a React component in a widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/data-from-external-source.html" title="Data from an external source">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data from an external source</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+              <li data-group="updating"><a href="../../updating/index.html">Updating</a>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/tutorials/abbreviation-plugin-tutorial/abbreviation-plugin-level-1.md" title="Contribute to this guide"><img src="../../../../assets/4.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Tutorials</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.0/img/book.svg" alt="guide">Defining a model and a view
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start" title="Let’s start!">Let’s start!</a></li><li><a href="#plugin-structure" title="Plugin structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a><ol><li><a href="#downcast-conversion" title="Downcast conversion">Downcast conversion</a></li><li><a href="#upcast-conversion" title="Upcast conversion">Upcast conversion</a></li></ol></li></ol></li><li><a href="#creating-a-toolbar-button" title="Creating a toolbar button">Creating a toolbar button</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-code" title="Final code">Final code</a></li></ol></nav>
+<p>This guide will show you how to create a simple abbreviation plugin for CKEditor&nbsp;5.</p>
+<p>We will create a toolbar button that lets the users insert abbreviations into their document. These abbreviations will use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr"><code>&lt;abbr&gt;</code>&nbsp;<abbr title="HyperText Markup Language">HTML</abbr> element</a> with a ‘title’ attribute that will show up in a tooltip when the user hovers over the&nbsp;element. You can check the mechanism hovering over the underlined “HTML” text in the previous sentence.</p>
+<p>This first part of the tutorial will cover the basics. We will just insert one possible abbreviation: “WYSIWYG.” We will get user input in the <a href="abbreviation-plugin-level-2.html">next part of this tutorial series</a>.</p>
+<p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a>.</p>
+<h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
+<p>The easiest way to set up your project is to grab the starter files from the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor&nbsp;5 packages and other files needed to build the editor.</p>
+<p>The editor has already been created in the <code>app.js</code> file with some basic plugins. All you need to do is clone the repository, navigate to the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/starter-files">starter-files directory</a>, run the <code>npm install</code> command, and you can start coding right away.</p>
+<p>The webpack is also already configured, so you can just use the <code>npm run build</code> command to build your application. Whenever you want to check anything in the browser, save the changes and run build again. Then, refresh the page in your browser (remember to turn off caching, so that new changes are displayed instantly).</p>
+<div class="info-box notice"><p>The starter files come with the <a href="../../framework/develpment-tools/inspector.html">CKEditor&nbsp;5 Inspector</a> attached to the editor, so you can debug and observe what is happening in the model and the view layers. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<p>If you want to set up the project yourself, you should follow the steps listed in the <a href="../../framework/quick-start.html">the “Quick start” section</a>. Additionally, you will need to install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core"><code>@ckeditor/ckeditor5-core</code></a> package, which contains the <code>Plugin</code> class, and the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui"><code>@ckeditor/ckeditor5-ui</code></a> package, which contains the UI library and the framework.</p>
+<p>Your entry point to the plugin is <code>app.js</code>:</p>
+<pre class="highlight"><code class="js">// app.js
+
+import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
+import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { Heading } from '@ckeditor/ckeditor5-heading';
+import { List } from '@ckeditor/ckeditor5-list';
+import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic ],
+        toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList' ]
+    } )
+    .then( editor =&gt; {
+        console.log( 'Editor was initialized', editor );
+        CKEditorInspector.attach( editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error.stack );
+    } );
+</code></pre>
+<p>Now take look at <code>index.html</code>. We added the <code>&lt;abbr&gt;</code> element. It will not work just yet, but we will fix that in a couple of steps.</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;CKEditor 5 Framework – Abbreviation plugin&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+ 			&lt;h2&gt;Abbreviation plugin&lt;/h2&gt;
+            &lt;p&gt;CKEditor5 is a modern, feature-rich, world-class &lt;abbr title="What You See Is What You Get"&gt;WYSIWYG&lt;/abbr&gt; editor.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;script src="dist/bundle.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="plugin-structure"><a class="headerlink" href="#plugin-structure">#</a> Plugin structure</h2>
+<p>Our abbreviation plugin is divided into three components – <code>Abbreviation</code>, <code>AbbreviationUI</code>, and <code>AbbreviationEditing</code>:</p>
+<ul>
+<li><code>AbbreviationEditing</code> will enable the abbreviation attribute in the model and introduce a proper model ←→ view conversion.</li>
+<li><code>AbbreviationUI</code> will be responsible for the UI – the toolbar button.</li>
+<li><code>Abbreviation</code> will be the glue that holds the UI and the editing together.</li>
+</ul>
+<p>We put them in the <code>/abbreviation</code> directory. We will be adding more files the in the next parts of the tutorial. This is our directory structure:</p>
+<pre class="highlight"><code class="">├── app.js
+├── dist
+│&nbsp;&nbsp; ├── bundle.js
+│&nbsp;&nbsp; └── bundle.js.map
+├── index.html
+├── node_modules
+├── package.json
+├── abbreviation
+│&nbsp;&nbsp; ├── abbreviation.js
+│&nbsp;&nbsp; ├── abbreviationediting.js
+│&nbsp;&nbsp; └── abbreviationui.js
+└── webpack.config.js
+</code></pre>
+<p>Take a look at the 3 components, which have already been defined and imported into <code>app.js</code>.</p>
+<p><code>AbbreviationUI</code>:</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class AbbreviationUI extends Plugin {
+    init() {
+        console.log( 'AbbreviationUI#init() got called' );
+    }
+}
+</code></pre>
+<p><code>AbbreviationEditing</code>:</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationediting.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class AbbreviationEditing extends Plugin {
+    init() {
+        console.log( 'AbbreviationEditing#init() got called' );
+    }
+}
+</code></pre>
+<p><code>Abbreviation</code>:</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviation.js
+
+import AbbreviationEditing from './abbreviationediting';
+import AbbreviationUI from './abbreviationui';
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class Abbreviation extends Plugin {
+    static get requires() {
+        return [ AbbreviationEditing, AbbreviationUI ];
+    }
+}
+</code></pre>
+<p>Now we need to load the <code>Abbreviation</code> plugin in our <code>app.js</code> file. The editor will load the <code>AbbreviationUI</code> and the <code>AbbreviationEditing</code> components by itself, as they are required by our “glue” plugin.</p>
+<pre class="highlight"><code class="js">// app.js
+
+import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
+import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { Heading } from '@ckeditor/ckeditor5-heading';
+import { List } from '@ckeditor/ckeditor5-list';
+import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+
+import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
+
+import Abbreviation from './abbreviation/abbreviation';					// ADDED
+
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        plugins: [
+            Essentials, Paragraph, Heading, List, Bold, Italic,
+            Abbreviation												// ADDED
+        ],
+        toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList' ]
+    } )
+    .then( editor =&gt; {
+        console.log( 'Editor was initialized', editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error.stack );
+    } );
+</code></pre>
+<p>Rebuild the project now, refresh the browser and you should see that the <code>AbbreviationEditing</code> and <code>AbbreviationUI</code> plugins were loaded.</p>
+<h2 id="the-model-and-the-view-layers"><a class="headerlink" href="#the-model-and-the-view-layers">#</a> The model and the view layers</h2>
+<p>CKEditor&nbsp;5 implements its own custom data model, which does not map 1:1 to the DOM. The model document is converted into the view, which represents the content that the user is editing.</p>
+<div class="info-box notice"><p>Before moving forward, it is important to understand the editor architecture. Read more about the <a href="../../framework/architecture/editing-engine.html#model">model</a> and the <a href="../../framework/architecture/editing-engine.html#view">view</a> to get familiar with the basic concepts.</p></div>
+<p>In the view layer, we will have the <code>&lt;abbr&gt;</code> HTML element, with a title attribute. See how it will look like in the inspector.<br>
+<img src="../../assets/img/abbreviation-part1-1.png" data-lightbox="true" alt="Screenshot of a the inspector showing the view layer."></p>
+<p>In the model, inline elements such as <code>&lt;abbr&gt;</code>, are represented as attributes not as separate elements. In order for our plugin to work, we will need to make sure that we can add abbreviation attribute to the text node.<br>
+<img src="../../assets/img/abbreviation-part1-2.png" data-lightbox="true" alt="Screenshot of a the inspector showing the model layer."></p>
+<h3 id="defining-the-schema"><a class="headerlink" href="#defining-the-schema">#</a> Defining the schema</h3>
+<p>We can do it by defining the model’s schema. Thanks to a couple lines of code, we will allow all text nodes to receive the model abbreviation attribute.</p>
+<div class="info-box notice"><p>Schema defines what is allowed in the model in terms of structures, attributes, and other characteristics. This information is then used by the features and the engine to make decisions on how to process the model, so it is crucial that your custom plugins have a well-defined schema. Read more about it in our <a href="../../framework/architecture/editing-engine.html#schema">introduction to the editing engine architecture</a>.</p></div>
+<p>We will just extend the text node’s schema to accept our abbreviation attribute, using the <code>schema.extend()</code> method.</p>
+<p>Update the <code>AbbreviationEditing</code> plugin with this definition:</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationediting.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class AbbreviationEditing extends Plugin {
+    init() {
+        this._defineSchema();									// ADDED
+    }
+
+    _defineSchema() {											// ADDED
+        const schema = this.editor.model.schema;
+
+        // Extend the text node's schema to accept the abbreviation attribute.
+        schema.extend( '$text', {
+            allowAttributes: [ 'abbreviation' ]
+        } );
+    }
+}
+</code></pre>
+<h3 id="defining-converters"><a class="headerlink" href="#defining-converters">#</a> Defining converters</h3>
+<p>Converters tell the editor how to transform the view to the model (for example, when loading the data to the editor or handling pasted content) and how to render the model to the view (for editing purposes, or when retrieving the editor data).</p>
+<div class="info-box notice"><p>Conversion is one of the more complex topics in our editing engine architecture. It is definitely worth reading more about <a href="../../framework/deep-dive/conversion/intro.html">the conversion in the editor</a> before you move on.</p></div>
+<p>We will need to convert the model abbreviation attribute into a view element (downcast) and vice versa (upcast). We can achieve this by using our <a href="../../framework/deep-dive/conversion/helpers/intro.html">conversion helpers</a> and defining what the model and the view is supposed to look like for both conversions.</p>
+<p>Converting the full title of the abbreviation is a little bit tricky, because we need to make sure that its value is synchronized between the model and the view.</p>
+<h4 id="downcast-conversion"><a class="headerlink" href="#downcast-conversion">#</a> Downcast conversion</h4>
+<p>In the downcast conversion, we will use one of our conversion helpers – <a href="../../framework/deep-dive/conversion/helpers/downcast.html#attribute-to-element-conversion-helper"><code>attributeToElement()</code></a> – to transform the model abbreviation attribute into the view <code>&lt;abbr&gt;</code> element.</p>
+<p>We will need to use a callback function to get the title stored as a model attribute value and transform it into the title value of the view element. Here, the second parameter of the view callback is the <code>DowncastConversionApi</code> object. We will use its <code>writer</code> property, which will allow us to manipulate the data during downcast conversion, as it contains an instance of the <code>DowncastWriter</code>.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationediting.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class AbbreviationEditing extends Plugin {
+    init() {
+        this._defineSchema();
+        this._defineConverters();							// ADDED
+    }
+
+    _defineSchema() {
+    // Previously defined schema.
+    // ...
+    }
+
+    _defineConverters() {									// ADDED
+        const conversion = this.editor.conversion;
+
+        // Conversion from a model attribute to a view element.
+        conversion.for( 'downcast' ).attributeToElement( {
+            model: 'abbreviation',
+            // Callback function provides access to the model attribute value
+            // and the DowncastWriter.
+            view: ( modelAttributeValue, conversionApi ) =&gt; {
+                const { writer } = conversionApi;
+
+                return writer.createAttributeElement( 'abbr', {
+                    title: modelAttributeValue
+                } );
+            }
+        } );
+
+    }
+}
+</code></pre>
+<h4 id="upcast-conversion"><a class="headerlink" href="#upcast-conversion">#</a> Upcast conversion</h4>
+<p>The upcast conversion tells the editor how the view <code>&lt;abbr&gt;</code> element is supposed to look like in the model. We will transform it using another conversion helper – <a href="../../framework/deep-dive/conversion/helpers/upcast.html#element-to-attribute-conversion-helper"><code>elementToAttribute()</code></a>.</p>
+<p>We also need to grab the title value from the content and use it in the model. We can do that thanks to a callback function, which gives us the access to the view element.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationediting.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+
+export default class AbbreviationEditing extends Plugin {
+    init() {
+    // Schema and converters initialization.
+    // ...
+    }
+
+    _defineSchema() {
+    // Previously defined schema.
+    // ...
+    }
+
+    _defineConverters() {
+        const conversion = this.editor.conversion;
+
+        conversion.for( 'downcast' ).attributeToElement(
+        // Code responsible for downcast conversion.
+        // ...
+        );
+
+        // Conversion from a view element to a model attribute.
+        conversion.for( 'upcast' ).elementToAttribute( {
+            view: {
+                name: 'abbr',
+                attributes: [ 'title' ]
+            },
+            model: {
+                key: 'abbreviation',
+                // Callback function provides access to the view element.
+                value: viewElement =&gt; {
+                    const title = viewElement.getAttribute( 'title' );
+
+                    return title;
+                }
+            }
+        } );
+    }
+}
+</code></pre>
+<p>Thanks to the upcast conversion, our abbreviation added in the <code>index.html</code> should work now. Rebuild the editor and check it out yourself.</p>
+<p><img src="../../assets/img/abbreviation-part1-3.png" data-lightbox="true" alt="Screenshot of the editor showing working abbreviation."></p>
+<h2 id="creating-a-toolbar-button"><a class="headerlink" href="#creating-a-toolbar-button">#</a> Creating a toolbar button</h2>
+<p>Now we can create our <code>Abbreviation</code> toolbar button using the <a href="../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> class.</p>
+<p>We need to register it in the editor’s UI <code>componentFactory</code>, so it can be displayed in the toolbar.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+import { ButtonView } from '@ckeditor/ckeditor5-ui';
+
+export default class AbbreviationUI extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        editor.ui.componentFactory.add( 'abbreviation', () =&gt; {
+            const button = new ButtonView();
+
+            button.label = 'Abbreviation';
+            button.tooltip = true;
+            button.withText = true;
+
+            return button;
+        } );
+    }
+}
+</code></pre>
+<p>We passed the name of the button in the <code>componentFactory.add</code>, so it is now available to use in the toolbar configuration. We can now simply add it to the toolbar in <code>app.js</code>:</p>
+<pre class="highlight"><code class="js">// app.js
+
+import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
+import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { Heading } from '@ckeditor/ckeditor5-heading';
+import { List } from '@ckeditor/ckeditor5-list';
+import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+
+import Abbreviation from './abbreviation/abbreviation';
+
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        plugins: [
+            Essentials, Paragraph, Heading, List, Bold, Italic, Abbreviation
+        ],
+        toolbar: [
+            'heading', 'bold', 'italic', 'numberedList', 'bulletedList', '|',
+            'abbreviation'												  // ADDED
+        ]
+    } )
+    .then( editor =&gt; {
+        console.log( 'Editor was initialized', editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error.stack );
+    } );
+</code></pre>
+<p>We have the button, so let’s define what should happen after the user clicks it.</p>
+<p>We will use the <code>insertContent()</code> method to insert our abbreviation and its title attribute into the document. Inside, we just need to create a new text node with <code>writer.createText()</code>.</p>
+<pre class="highlight"><code class="js">// abbreviation/abbreviationui.js
+
+import { Plugin } from '@ckeditor/ckeditor5-core';
+import { ButtonView } from '@ckeditor/ckeditor5-ui';
+
+export default class AbbreviationUI extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        editor.ui.componentFactory.add( 'abbreviation', () =&gt; {
+            // Previously initialized button view.
+            // ...
+
+            this.listenTo( button, 'execute', () =&gt; {
+                const selection = editor.model.document.selection;
+                const title = 'What You See Is What You Get';
+                const abbr = 'WYSIWYG';
+
+                // Change the model to insert the abbreviation.
+                editor.model.change( writer =&gt; {
+                    editor.model.insertContent(
+                        // Create a text node with the abbreviation attribute.
+                        writer.createText( abbr, { abbreviation: title } )
+                    );
+                } );
+            } );
+
+            return button;
+        } );
+    }
+}
+</code></pre>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><div class="ck ck-content" id="snippet-abbreviation-plugin">
+    <h2>Abbreviation plugin</h2>
+    <p>CKEditor 5 is a modern, feature-rich, world-class <abbr title="What You See Is What You Get">WYSIWYG</abbr> editor.</p>
+</div>
+
+<style>
+	.formatted abbr:hover::before,
+	.formatted abbr:hover::after {
+		display: none;
+	}
+</style>
+</div>
+<h2 id="final-code"><a class="headerlink" href="#final-code">#</a> Final code</h2>
+<p>If you got lost at any point, this is <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-1">the final implementation of the plugin</a>. You can paste the code from different files into your project, or clone and install the whole thing, and it will run out-of-the-box.</p>
+<div class="info-box notice"><p><strong>What’s next</strong></p><p>That’s it for the first part of this tutorial! Your plugin should now work (at least in its most basic form). Move on to the <a href="abbreviation-plugin-level-2.html">second part</a>, where you will create a balloon with a form to get user’s input, replacing our hard-coded “WYSIWYG” abbreviation.</p></div>
+
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22tutorials%2Fabbreviation-plugin%2Fabbreviation-plugin-level-1.html%22&amp;project-version=41.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree" id="guidetree">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Crash course</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="crash-course">
+                                    <li><a href="../crash-course/editor.html" title="Editor and configuration">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/plugins.html" title="Plugins">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/model-and-schema.html" title="Model and schema">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Model and schema</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/data-conversion.html" title="Data conversion">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/commands.html" title="Commands">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/view.html" title="Editor UI">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/events-and-observables.html" title="Events and observables">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/keystrokes.html" title="Handling keystrokes">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                        </div></a></li>
+                                    <li><a href="../crash-course/plugin-configuration.html" title="Plugin configuration">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../creating-simple-plugin-timestamp.html" title="Creating a basic plugin">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an advanced plugin</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="abbreviation-plugin">
+                                    <li><a href="" title="Defining a model and a view">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Defining a model and a view</span>
+                                        </div></a></li>
+                                    <li><a href="abbreviation-plugin-level-2.html" title="Getting user input with a custom UI">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
+                                        </div></a></li>
+                                    <li><a href="abbreviation-plugin-level-3.html" title="Improving accessibility and adding a command">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Using widgets</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="widget-tutorials">
+                                    <li><a href="../widgets/implementing-a-block-widget.html" title="Implementing a block widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/implementing-an-inline-widget.html" title="Implementing an inline widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/using-react-in-a-widget.html" title="Using a React component in a widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/data-from-external-source.html" title="Data from an external source">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data from an external source</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2024 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'framework', 'tutorials', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'tutorials' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'tutorials' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'tutorials' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'tutorials' ] );tags.forEach( function( tag ) {if ( tag !== 'tutorials' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/4.2.0/scripts/app.js"></script>
+    <script src="../../assets/snippet.js"></script>
+    <script src="../../snippets/assets.js"></script>
+    <script src="../../snippets/tutorials/abbreviation-level-1/snippet.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>

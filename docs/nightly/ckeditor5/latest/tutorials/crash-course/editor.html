@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to use CKEditor 5 APIs to create a custom editor plugin.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Mar 06 2024 01:14:49 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/tutorials/crash-course/editor.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/tutorials/crash-course/editor.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/4.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	( function ( w, d, e, u, a, b ) {
+      		a = d.createElement( e );
+      		b = d.getElementsByTagName( e )[ 0 ];
+      		a.async = 1;
+      		a.src = u;
+      		b.parentNode.insertBefore( a, b )
+      	} )( window, document, 'script', 'https://www.googletagmanager.com/gtag/js?id=G-H2PK3PSE3F' );
+      	window.dataLayer = window.dataLayer || [];
+      
+      	function gtag() {
+      		dataLayer.push( arguments );
+      	}
+      
+      	gtag( 'js', new Date() );
+      	gtag( 'config', 'G-H2PK3PSE3F' );
+      }
+    </script>
+    <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
+    <meta name="project-version" content="41.1.0">
+    <meta name="project-slug" content="ckeditor5">
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/4.2.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a href="../../installation/index.html">Getting started</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Tutorials</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a href="../../updating/index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="installation"><a href="../../installation/index.html">Getting started</a>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="tutorials"><a href="../index.html">Tutorials</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Crash course</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="crash-course">
+                                  <li><a href="" title="Editor and configuration">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                      </div></a></li>
+                                  <li><a href="plugins.html" title="Plugins">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                      </div></a></li>
+                                  <li><a href="model-and-schema.html" title="Model and schema">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Model and schema</span>
+                                      </div></a></li>
+                                  <li><a href="data-conversion.html" title="Data conversion">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
+                                      </div></a></li>
+                                  <li><a href="commands.html" title="Commands">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                      </div></a></li>
+                                  <li><a href="view.html" title="Editor UI">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                      </div></a></li>
+                                  <li><a href="events-and-observables.html" title="Events and observables">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
+                                      </div></a></li>
+                                  <li><a href="keystrokes.html" title="Handling keystrokes">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                      </div></a></li>
+                                  <li><a href="plugin-configuration.html" title="Plugin configuration">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../creating-simple-plugin-timestamp.html" title="Creating a basic plugin">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an advanced plugin</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="abbreviation-plugin">
+                                  <li><a href="../abbreviation-plugin/abbreviation-plugin-level-1.html" title="Defining a model and a view">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Defining a model and a view</span>
+                                      </div></a></li>
+                                  <li><a href="../abbreviation-plugin/abbreviation-plugin-level-2.html" title="Getting user input with a custom UI">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
+                                      </div></a></li>
+                                  <li><a href="../abbreviation-plugin/abbreviation-plugin-level-3.html" title="Improving accessibility and adding a command">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Using widgets</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="widget-tutorials">
+                                  <li><a href="../widgets/implementing-a-block-widget.html" title="Implementing a block widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/implementing-an-inline-widget.html" title="Implementing an inline widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/using-react-in-a-widget.html" title="Using a React component in a widget">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                      </div></a></li>
+                                  <li><a href="../widgets/data-from-external-source.html" title="Data from an external source">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data from an external source</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+              <li data-group="updating"><a href="../../updating/index.html">Updating</a>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/tutorials/crash-course/editor.md" title="Contribute to this guide"><img src="../../../../assets/4.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Tutorials</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.0/img/book.svg" alt="guide">Editor and configuration
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#test-environment" title="Test environment">Test environment</a></li><li><a href="#creating-an-editor" title="Creating an editor">Creating an editor</a></li><li><a href="#configuration" title="Configuration">Configuration</a></li><li><a href="#editor-methods" title="Editor methods">Editor methods</a><ol><li><a href="#getdata-and-setdata" title="getData() and setData()">getData() and setData()</a></li><li><a href="#execute" title="execute()">execute()</a></li><li><a href="#destroy" title="destroy()">destroy()</a></li></ol></li><li><a href="#whats-next" title="What’s next">What’s next</a></li></ol></nav>
+<h2 id="test-environment"><a class="headerlink" href="#test-environment">#</a> Test environment</h2>
+<p>For the purposes of this tutorial, we have created a repository with the minimal setup required to use the editor. To follow along:</p>
+<ol>
+<li>Clone <a href="https://github.com/ckeditor/tutorial-setup">this repository</a>.</li>
+<li>Run the <code>npm install</code> command to install the dependencies.</li>
+<li>Run the <code>npm run dev</code> command to start the project.</li>
+<li>Open the URL displayed in your terminal.</li>
+</ol>
+<p>If everything went well, you should see a “Hello world!” text displayed on the page.</p>
+<p>We encourage you to follow the steps in the tutorial and type the code yourself to build the muscle and mental memory.</p>
+<h2 id="creating-an-editor"><a class="headerlink" href="#creating-an-editor">#</a> Creating an editor</h2>
+<p>The test environment you set up displays the “Hello world!” on the page. Let’s learn the first editor method that replaces this element with the editor.</p>
+<p>Open the <code>src/main.js</code> file and add the following code:</p>
+<pre class="highlight"><code class="js">// Import the editor
+import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
+
+// Get the HTML element with the ID of 'app'.
+const element = document.querySelector( '#app' );
+
+// Instantiate the editor using the `create` method.
+const editor = await ClassicEditor.create( element );
+</code></pre>
+<p>As you can see, the <a href="../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method creates a new editor instance. It replaces the DOM element passed as the first argument with the editor UI, and sets the initial state of the editor to the content of that DOM element.</p>
+<p>However, you may have noticed that the “Hello world!” text does not appear in the editor, and you cannot write anything in it. This may seem strange at first, but it is by design. Let’s fix this with the right configuration.</p>
+<h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>The editor itself does not do much - it is just an empty shell at this stage. What gives the editor almost all of its functionality are the plugins. We will talk more about plugins in the next chapter, but for now, let’s just install two plugins that provide the bare minimum needed to type in the editor.</p>
+<pre class="highlight"><code class="js">// Add these two imports.
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+
+// Update the call to the `create()` method.
+const editor = await ClassicEditor.create( element, {
+    plugins: [
+        Essentials,
+        Paragraph
+    ]
+} );
+</code></pre>
+<p>As shown in the example above, the <a href="../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method takes a configuration object as its second parameter. In this object, we can pass the <code>plugins</code> array with the plugins we want to use.</p>
+<p>When the page refreshes, you should see the “Hello world!” text in the editor and be able to type in it.</p>
+<p>The <code>Essentials</code> plugin adds the <code>Undo</code> and <code>Redo</code> operations. Let’s add them to the editor’s toolbar.</p>
+<pre class="highlight"><code class="js">const editor = await ClassicEditor.create( element, {
+    plugins: [
+        Essentials,
+        Paragraph
+    ],
+
+    // Add the toolbar configuration.
+    toolbar: {
+        items: [
+            'undo',
+            'redo'
+        ]
+    }
+} );
+</code></pre>
+<p>After refreshing the page, the editor should have two buttons at the top. If you type something into the editor and click the “back arrow” button, your changes should be removed. Clicking the “forward arrow” button should restore those changes.</p>
+<p>The configuration object we have just updated controls the features, appearance, and behavior of the editor. If you want to change any aspect of the editor, it is most likely through this object.</p>
+<h2 id="editor-methods"><a class="headerlink" href="#editor-methods">#</a> Editor methods</h2>
+<p>Now that you can type in the editor, let’s test other editor methods besides <code>create()</code>. Add the following to the bottom of the <code>src/main.js</code> file. It will allow us to access the editor instance globally for testing purposes.</p>
+<pre class="highlight"><code class="js">// Add the global `editor` variable (only needed for debugging).
+window.editor = editor;
+</code></pre>
+<p>Four common methods we will test are:</p>
+<ul>
+<li><a href="../../api/module_core_editor_editor-Editor.html#function-getData"><code>getData()</code></a></li>
+<li><a href="../../api/module_core_editor_editor-Editor.html#function-setData"><code>setData()</code></a></li>
+<li><a href="../../api/module_core_editor_editor-Editor.html#function-execute"><code>execute()</code></a></li>
+<li><a href="../../api/module_core_editor_editor-Editor.html#function-destroy"><code>destroy()</code></a></li>
+</ul>
+<h3 id="getdata-and-setdata"><a class="headerlink" href="#getdata-and-setdata">#</a> <code>getData()</code> and <code>setData()</code></h3>
+<p>Open the page in your browser and open the console. Inside the console, run the following code:</p>
+<pre class="highlight"><code class="js">editor.getData();
+</code></pre>
+<p>It should print the text <code>&lt;p&gt;Hello world!&lt;/p&gt;</code>, which is the current content of the editor. Note the opening and closing <code>&lt;p&gt;</code> tags. The<code>getData()</code> returns the resulting HTML content of the editor, not the content you see in the UI. This is explained in more detail in the following chapters of the tutorial.</p>
+<p>You can also use the <code>setData()</code> method to change the content of the editor programmatically.</p>
+<pre class="highlight"><code class="js">editor.setData( '&lt;p&gt;Modified from the console!&lt;/p&gt;' );
+</code></pre>
+<p>Running the above command should update the state of the editor. Note the opening and closing <code>&lt;p&gt;</code> tags. This method expects HTML as an argument, but the editor displays this content in a more user-friendly way.</p>
+<h3 id="execute"><a class="headerlink" href="#execute">#</a> <code>execute()</code></h3>
+<p>In the previous step of this tutorial, we used the Undo and Redo buttons to revert and restore our changes. Let’s do the same thing from the console.</p>
+<p>Before we do that, type something in the editor. Then run the following code from the console:</p>
+<pre class="highlight"><code class="js">editor.execute( 'undo' );
+</code></pre>
+<p>The editor should execute the <code>undo</code> command and restore the state to before your changes. Now run the <code>redo</code> command to restore those changes:</p>
+<pre class="highlight"><code class="js">editor.execute( 'redo' );
+</code></pre>
+<h3 id="destroy"><a class="headerlink" href="#destroy">#</a> <code>destroy()</code></h3>
+<p>The <code>destroy()</code> method removes the editor and cleans up after it. This includes removing it from the DOM, removing all event listeners, etc.</p>
+<p>Run the following command from a console:</p>
+<pre class="highlight"><code class="js">editor.destroy();
+</code></pre>
+<p>The editor and its contents should disappear. <strong>This method returns a promise, so you need to <code>await</code> it</strong> if you want to execute more logic after the editor is destroyed.</p>
+<h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What’s next</h2>
+<p>In the next chapter you will <a href="plugins.html">learn more about plugins</a> and we will start creating a new one from scratch.</p>
+
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22tutorials%2Fcrash-course%2Feditor.html%22&amp;project-version=41.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree" id="guidetree">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Crash course</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="crash-course">
+                                    <li><a href="" title="Editor and configuration">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                        </div></a></li>
+                                    <li><a href="plugins.html" title="Plugins">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
+                                        </div></a></li>
+                                    <li><a href="model-and-schema.html" title="Model and schema">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Model and schema</span>
+                                        </div></a></li>
+                                    <li><a href="data-conversion.html" title="Data conversion">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
+                                        </div></a></li>
+                                    <li><a href="commands.html" title="Commands">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                        </div></a></li>
+                                    <li><a href="view.html" title="Editor UI">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                        </div></a></li>
+                                    <li><a href="events-and-observables.html" title="Events and observables">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
+                                        </div></a></li>
+                                    <li><a href="keystrokes.html" title="Handling keystrokes">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                        </div></a></li>
+                                    <li><a href="plugin-configuration.html" title="Plugin configuration">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../creating-simple-plugin-timestamp.html" title="Creating a basic plugin">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a basic plugin</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Creating an advanced plugin</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="abbreviation-plugin">
+                                    <li><a href="../abbreviation-plugin/abbreviation-plugin-level-1.html" title="Defining a model and a view">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Defining a model and a view</span>
+                                        </div></a></li>
+                                    <li><a href="../abbreviation-plugin/abbreviation-plugin-level-2.html" title="Getting user input with a custom UI">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting user input with a custom UI</span>
+                                        </div></a></li>
+                                    <li><a href="../abbreviation-plugin/abbreviation-plugin-level-3.html" title="Improving accessibility and adding a command">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Improving accessibility and adding a command</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Using widgets</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="widget-tutorials">
+                                    <li><a href="../widgets/implementing-a-block-widget.html" title="Implementing a block widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/implementing-an-inline-widget.html" title="Implementing an inline widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/using-react-in-a-widget.html" title="Using a React component in a widget">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span>
+                                        </div></a></li>
+                                    <li><a href="../widgets/data-from-external-source.html" title="Data from an external source">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data from an external source</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2024 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'framework', 'tutorials', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'tutorials' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'tutorials' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'tutorials' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'tutorials' ] );tags.forEach( function( tag ) {if ( tag !== 'tutorials' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/4.2.0/scripts/app.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>

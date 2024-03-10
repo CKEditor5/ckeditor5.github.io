@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Installing plugins | CKEditor 5 documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Mar 06 2024 01:14:48 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Installing plugins | CKEditor 5 documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Installing plugins | CKEditor 5 documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/4.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	( function ( w, d, e, u, a, b ) {
+      		a = d.createElement( e );
+      		b = d.getElementsByTagName( e )[ 0 ];
+      		a.async = 1;
+      		a.src = u;
+      		b.parentNode.insertBefore( a, b )
+      	} )( window, document, 'script', 'https://www.googletagmanager.com/gtag/js?id=G-H2PK3PSE3F' );
+      	window.dataLayer = window.dataLayer || [];
+      
+      	function gtag() {
+      		dataLayer.push( arguments );
+      	}
+      
+      	gtag( 'js', new Date() );
+      	gtag( 'config', 'G-H2PK3PSE3F' );
+      }
+    </script>
+    <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
+    <meta name="project-version" content="41.1.0">
+    <meta name="project-slug" content="ckeditor5">
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/4.2.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Getting started</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a href="../../tutorials/index.html">Tutorials</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a href="../../updating/index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="installation"><a href="../index.html">Getting started</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Basics</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="getting-started">
+                                  <li><a href="../getting-started/quick-start.html" title="Quick start">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/predefined-builds.html" title="Predefined builds">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/quick-start-other.html" title="Customized installation">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/configuration.html" title="Configuration">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/editor-lifecycle.html" title="Editor’s lifecycle">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor’s lifecycle</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/getting-and-setting-data.html" title="Getting and setting data">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and setting data</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/api-and-events.html" title="API and events">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">API and events</span>
+                                      </div></a></li>
+                                  <li><a href="../getting-started/extending-features.html" title="Extending features">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending features</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Plugins</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="plugins">
+                                  <li><a href="plugins.html" title="Concept">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Concept</span>
+                                      </div></a></li>
+                                  <li><a href="features-html-output-overview.html" title="Plugins and HTML output">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins and HTML output</span>
+                                      </div></a></li>
+                                  <li><a href="" title="Installing plugins">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../working-with-typescript.html" title="TypeScript support">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integrations</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="integrations">
+                                  <li><a href="../integrations/overview.html" title="Overview">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/angular.html" title="Angular">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/react.html" title="React">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/vuejs-v2.html" title="Vue.js 2.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/vuejs-v3.html" title="Vue.js 3+">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/laravel.html" title="Laravel">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Laravel</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/dotnet.html" title=".NET">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">.NET</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/css.html" title="CSS frameworks">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/drupal-real-time-collaboration.html" title="Drupal">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drupal</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/next-js.html" title="Next.js">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Next.js</span>
+                                      </div></a></li>
+                                  <li><a href="../integrations/other.html" title="Other">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Other</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced concepts</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="advanced">
+                                  <li><a href="../advanced/using-two-editors.html" title="Using two different editors">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/content-styles.html" title="Content styles">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                      </div></a></li>
+                                  <li><a href="../advanced/csp.html" title="Content Security Policy">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                      </div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list" data-id="alternative-setups">
+                                          <li><a href="../advanced/alternative-setups/integrating-from-source-webpack.html" title="Integrating from source using webpack">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using webpack</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/integrating-from-source-vite.html" title="Integrating from source using Vite">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using Vite</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/dll-builds.html" title="DLL builds">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                              </div></a></li>
+                                          <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html" title="DLL builds for CKEditor 5 Collaboration Features">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="tutorials"><a href="../../tutorials/index.html">Tutorials</a>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+              <li data-group="updating"><a href="../../updating/index.html">Updating</a>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/installation/plugins/installing-plugins.md" title="Contribute to this guide"><img src="../../../../assets/4.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.0/img/book.svg" alt="guide">Installing plugins
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements" title="Requirements">Requirements</a></li><li><a href="#adding-a-plugin-to-an-editor" title="Adding a plugin to an editor">Adding a plugin to an editor</a><ol><li><a href="#installing-a-package" title="Installing a package">Installing a package</a></li><li><a href="#updating-the-editors-configuration" title="Updating the editor’s configuration">Updating the editor’s configuration</a></li><li><a href="#building-an-editor" title="Building an editor">Building an editor</a></li></ol></li><li><a href="#adding-an-unofficial-javascript-plugin" title="Adding an unofficial JavaScript plugin">Adding an unofficial JavaScript plugin</a><ol><li><a href="#community-types" title="Community types">Community types</a></li><li><a href="#custom-declarations" title="Custom declarations">Custom declarations</a></li><li><a href="#suppressing-errors" title="Suppressing errors">Suppressing errors</a></li></ol></li></ol></nav>
+<p>CKEditor&nbsp;5 plugins, responsible for various features, are distributed through <a href="https://www.npmjs.com">npm</a> packages. We implemented them in a modular way. It means a single plugin may contain multiple JavaScript files. Do not hesitate and explore available CKEditor&nbsp;5 features – they are waiting for you to install them!</p>
+<div class="info-box notice notice__hint"><p>If you are looking for an easy way to create a custom build of CKEditor&nbsp;5 without installing anything, check the <a href="https://ckeditor.com/ckeditor-5/online-builder/">online builder</a>. It allows you to create a build with a custom set of plugins through a simple and intuitive UI.</p></div>
+<h2 id="requirements"><a class="headerlink" href="#requirements">#</a> Requirements</h2>
+<p>To enrich the CKEditor&nbsp;5 by installing plugins, you will require:</p>
+<ul>
+<li><a href="https://nodejs.org/en/">Node.js</a> 18.0.0+</li>
+<li><a href="https://www.npmjs.com/">npm</a> 5.7.1+ (<strong>note:</strong> some npm 5+ versions were known to cause <a href="https://github.com/npm/npm/issues/16991">problems</a>, especially with deduplicating packages; upgrade npm when in doubt)</li>
+</ul>
+<div class="info-box notice notice__warning"><p>When installing CKEditor&nbsp;5 Framework packages, you need to make sure their versions match the version of the base editor package. For example: if you would like to install the <code>@ckeditor/ckeditor5-alignment</code> package and your other packages are outdated, like at version <code>38.0.0</code>, you should consider updating your editor and all other packages to the latest <code>41.1.0</code> version. You might also install the alignment package at version <code>38.0.0</code> (which is not advised, actually). Otherwise, if package versions are different, this will result in an <a href="https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-ckeditor-duplicated-modules"><code>ckeditor-duplicated-modules error</code></a>.</p><p>The simplest way to avoid such situations is to always use the latest <code>41.1.0</code> versions of the official packages. If you already stumbled upon this error, you can use <a href="https://www.npmjs.com/package/npm-check-updates"><code>npm-check-updates</code></a>, which is a handy tool for keeping your packages up to date.</p><p><strong>NOTE:</strong> The above rule does not apply to packages named <code>@ckeditor/ckeditor5-dev-*</code>.</p></div>
+<p>If you are here looking for a way to install plugins, there is a chance you have the CKEditor already installed. But if you do not, you have two options: create a custom build with an <a href="../getting-started/quick-start-other.html">online builder</a> or <a href="../advanced/alternative-setups/integrating-from-source-webpack.html">integrate the editor from the source</a>.</p>
+<h2 id="adding-a-plugin-to-an-editor"><a class="headerlink" href="#adding-a-plugin-to-an-editor">#</a> Adding a plugin to an editor</h2>
+<p>You can start adding plugins if you are in a directory with the CKEditor&nbsp;5 build or the root folder of your application if you are integrating the editor from the source. Every plugin has its corresponding npm package. To install any plugin, you can use this template in a terminal:</p>
+<pre class="highlight"><code class="bash">npm install &lt;plugin-name&gt;
+</code></pre>
+<h3 id="installing-a-package"><a class="headerlink" href="#installing-a-package">#</a> Installing a package</h3>
+<p>Let’s say you want to install the alignment package. It adds text alignment functionality to your editor. You can install it using the following command:</p>
+<pre class="highlight"><code class="bash">npm install @ckeditor/ckeditor5-alignment
+</code></pre>
+<p>The command will install the package and add it to <code>package.json</code>. You can also edit <code>package.json</code> manually. All packages (excluding <code>@ckeditor/ckeditor5-dev-*</code>) <a href="#requirements">must have the same version as the base editor package</a>.</p>
+<div class="info-box notice notice__hint"><p>Due to the non-deterministic way how npm installs packages, it is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages from getting installed more than once in <code>node_modules/</code> (which might lead to broken builds).</p><p>You can also give <a href="https://yarnpkg.com/lang/en/">Yarn</a> a try.</p></div>
+<h3 id="updating-the-editors-configuration"><a class="headerlink" href="#updating-the-editors-configuration">#</a> Updating the editor’s configuration</h3>
+<p>To add a plugin to your editor, you need to follow three steps:</p>
+<ol>
+<li>Import the installed package in the file with the CKEditor configuration.</li>
+<li>Add the imported plugin to the list of plugins. There are two ways to achieve that: using the <a href="../../api/module_core_editor_editor-Editor.html#static-member-builtinPlugins"><code>builtinPlugins</code></a> property or passing a plugin to the <a href="../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method. Adding a plugin through the property lets you automatically enable it in all editor instances using this editor class. Passing the plugin to the method will affect only one instance.</li>
+<li>Configure the toolbar if the installed plugin requires UI.</li>
+</ol>
+<pre class="highlight"><code class="ts">// &lt;path-to-your-build&gt;/src/ckeditor.ts or file containing editor configuration if you are integrating an editor from source.
+
+// The editor creator to use.
+import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
+
+import { Alignment } from '@ckeditor/ckeditor5-alignment';  // Importing the package.
+import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
+import { Bold, Italic } from '@ckeditor/ckeditor5-basic-styles';
+import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
+import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
+import { Essentials } from '@ckeditor/ckeditor5-essentials';
+import { Heading } from '@ckeditor/ckeditor5-heading';
+import {
+    Image,
+    ImageCaption,
+    ImageStyle,
+    ImageToolbar,
+    ImageUpload
+} from '@ckeditor/ckeditor5-image';
+import { Indent } from '@ckeditor/ckeditor5-indent';
+import { Link } from '@ckeditor/ckeditor5-link';
+import { List } from '@ckeditor/ckeditor5-list';
+import { MediaEmbed } from '@ckeditor/ckeditor5-media-embed';
+import { Paragraph } from '@ckeditor/ckeditor5-paragraph';
+import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
+import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
+import { TextTransformation } from '@ckeditor/ckeditor5-typing';
+
+
+
+class Editor extends ClassicEditor {
+    public static override builtinPlugins = [
+        Alignment,  // Adding the package to the list of plugins.
+        Autoformat,
+        BlockQuote,
+        Bold,
+        CloudServices,
+        Essentials,
+        Heading,
+        Image,
+        ImageCaption,
+        ImageStyle,
+        ImageToolbar,
+        ImageUpload,
+        Indent,
+        Italic,
+        Link,
+        List,
+        MediaEmbed,
+        Paragraph,
+        PasteFromOffice,
+        Table,
+        TableToolbar,
+        TextTransformation
+    ];
+
+    // Editor configuration.
+    public static override defaultConfig = {
+        toolbar: {
+            items: [
+                'alignment',  // Displaying the proper UI element in the toolbar.
+                'heading',
+                '|',
+                'bold',
+                'italic',
+                'link',
+                'bulletedList',
+                'numberedList',
+                '|',
+                'outdent',
+                'indent',
+                '|',
+                'imageUpload',
+                'blockQuote',
+                'insertTable',
+                'mediaEmbed',
+                'undo',
+                'redo'
+            ]
+        },
+        language: 'en',
+        image: {
+            toolbar: [
+                'imageTextAlternative',
+                'toggleImageCaption',
+                'imageStyle:inline',
+                'imageStyle:block',
+                'imageStyle:side'
+            ]
+        },
+        table: {
+            contentToolbar: [
+                'tableColumn',
+                'tableRow',
+                'mergeTableCells'
+            ]
+        }
+    };
+}
+
+export default Editor;
+</code></pre>
+<h3 id="building-an-editor"><a class="headerlink" href="#building-an-editor">#</a> Building an editor</h3>
+<p>If you are using builds you need to rebuild your editor. To do that, call the <code>webpack</code> executable in a folder containing your build:</p>
+<pre class="highlight"><code class="bash">./node_modules/.bin/webpack --mode development
+</code></pre>
+<p>You can also install <code>webpack-cli</code> globally (using <code>npm install -g</code>) and run it via a globally available <code>webpack</code>.</p>
+<p>Alternatively, you can add it as an <a href="https://docs.npmjs.com/misc/scripts">npm script</a>:</p>
+<pre class="highlight"><code class="json">// package.json
+
+"scripts": {
+    "build": "webpack --mode development"
+}
+</code></pre>
+<p>And use it with:</p>
+<pre class="highlight"><code class="bash">npm run build
+</code></pre>
+<p>If you are integrating an editor from the source into your application, this step should be handled by build scripts used in your project.</p>
+<h2 id="adding-an-unofficial-javascript-plugin"><a class="headerlink" href="#adding-an-unofficial-javascript-plugin">#</a> Adding an unofficial JavaScript plugin</h2>
+<p>The CKEditor&nbsp;5 is a TypeScript project, and all plugins provided by CKEditor&nbsp;5 also use TypeScript. However, there are ways to use JavaScript packages with the editor.</p>
+<h3 id="community-types"><a class="headerlink" href="#community-types">#</a> Community types</h3>
+<p>Even if the package you want to use is in JavaScript, there is a chance there are already types you can use. <a href="https://github.com/DefinitelyTyped/DefinitelyTyped">Definitely Typed</a> is a central repository of TypeScript definitions for non-typed npm packages. To install community types for your JavaScript package, try the following command:</p>
+<pre class="highlight"><code class="bash">npm install --save-dev @types/&lt;package-name&gt;
+</code></pre>
+<p>If you successfully installed those types, there is nothing more to do. You should no longer see TypeScript compiler errors, and your project should be ready to build.</p>
+<h3 id="custom-declarations"><a class="headerlink" href="#custom-declarations">#</a> Custom declarations</h3>
+<p>If you create a custom plugin, community types will not be available. In that case, you need to add your custom definitions.</p>
+<p>First, create a declaration file <code>.d.ts</code> in your project. For example, you can place it in <code>types/index.d.ts</code>. Then inside the file, define the module as shown in the example below.</p>
+<pre class="highlight"><code class="ts">// index.d.ts
+
+declare module 'path' { // Module name.
+  export function normalize( p: string ): string; // API exposed by the module.
+  export function join( ...paths: any[] ): string;
+}
+</code></pre>
+<p>Finally, make sure the TypeScript compiler is aware of your declarations. Put the path to the directory with your file inside the <code>include</code> array.</p>
+<pre class="highlight"><code class="json">// tsconfig.json
+
+{
+    "include": [ "./src", "./types" ],
+    "compilerOptions": {
+        // Compiler options.
+        // ...
+    }
+    // More options.
+    // ...
+}
+</code></pre>
+<h3 id="suppressing-errors"><a class="headerlink" href="#suppressing-errors">#</a> Suppressing errors</h3>
+<p>If there are no community types and creating declarations is not an option, there is still a way to build a TypeScript project with a JavaScript package. Just add a reserved TypeScript comment above the JavaScript package.</p>
+<pre class="highlight"><code class="ts">// @ts-ignore
+import { foo } from 'javascript-package';
+</code></pre>
+<p>This comment suppresses all errors that originate from the following line.</p>
+
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22installation%2Fplugins%2Finstalling-plugins.html%22&amp;project-version=41.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree" id="guidetree">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Basics</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="getting-started">
+                                    <li><a href="../getting-started/quick-start.html" title="Quick start">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/predefined-builds.html" title="Predefined builds">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/quick-start-other.html" title="Customized installation">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/configuration.html" title="Configuration">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/editor-lifecycle.html" title="Editor’s lifecycle">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor’s lifecycle</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/getting-and-setting-data.html" title="Getting and setting data">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and setting data</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/api-and-events.html" title="API and events">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">API and events</span>
+                                        </div></a></li>
+                                    <li><a href="../getting-started/extending-features.html" title="Extending features">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending features</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Plugins</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="plugins">
+                                    <li><a href="plugins.html" title="Concept">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Concept</span>
+                                        </div></a></li>
+                                    <li><a href="features-html-output-overview.html" title="Plugins and HTML output">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins and HTML output</span>
+                                        </div></a></li>
+                                    <li><a href="" title="Installing plugins">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Installing plugins</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../working-with-typescript.html" title="TypeScript support">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integrations</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="integrations">
+                                    <li><a href="../integrations/overview.html" title="Overview">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/angular.html" title="Angular">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/react.html" title="React">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/vuejs-v2.html" title="Vue.js 2.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/vuejs-v3.html" title="Vue.js 3+">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/laravel.html" title="Laravel">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Laravel</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/dotnet.html" title=".NET">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">.NET</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/css.html" title="CSS frameworks">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/drupal-real-time-collaboration.html" title="Drupal">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drupal</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/next-js.html" title="Next.js">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Next.js</span>
+                                        </div></a></li>
+                                    <li><a href="../integrations/other.html" title="Other">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Other</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced concepts</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="advanced">
+                                    <li><a href="../advanced/using-two-editors.html" title="Using two different editors">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/content-styles.html" title="Content styles">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                        </div></a></li>
+                                    <li><a href="../advanced/csp.html" title="Content Security Policy">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                        </div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list" data-id="alternative-setups">
+                                              <li><a href="../advanced/alternative-setups/integrating-from-source-webpack.html" title="Integrating from source using webpack">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using webpack</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/integrating-from-source-vite.html" title="Integrating from source using Vite">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using Vite</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/dll-builds.html" title="DLL builds">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                                  </div></a></li>
+                                              <li><a href="../advanced/alternative-setups/dll-builds-collaboration-features.html" title="DLL builds for CKEditor 5 Collaboration Features">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2024 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'installation', 'features', 'examples', 'framework', 'tutorials', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'installation' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'installation' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'installation' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'installation' ] );tags.forEach( function( tag ) {if ( tag !== 'installation' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/4.2.0/scripts/app.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>
