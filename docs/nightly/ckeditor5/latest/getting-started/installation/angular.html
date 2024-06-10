@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular rich text editor component | CKEditor 5 documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Wed Jun 05 2024 04:33:33 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Angular rich text editor component | CKEditor 5 documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/getting-started/installation/angular.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Angular rich text editor component | CKEditor 5 documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/getting-started/installation/angular.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/4.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../snippets/assets.css" type="text/css" data-cke="true">
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	( function ( w, d, e, u, a, b ) {
+      		a = d.createElement( e );
+      		b = d.getElementsByTagName( e )[ 0 ];
+      		a.async = 1;
+      		a.src = u;
+      		b.parentNode.insertBefore( a, b )
+      	} )( window, document, 'script', 'https://www.googletagmanager.com/gtag/js?id=G-H2PK3PSE3F' );
+      	window.dataLayer = window.dataLayer || [];
+      
+      	function gtag() {
+      		dataLayer.push( arguments );
+      	}
+      
+      	gtag( 'js', new Date() );
+      	gtag( 'config', 'G-H2PK3PSE3F' );
+      }
+    </script>
+    <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
+    <meta name="project-version" content="41.4.2">
+    <meta name="project-slug" content="ckeditor5">
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/4.2.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Getting started</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a href="../../updating/index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="getting-started"><a href="../index.html">Getting started</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Installation</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="installation">
+                                  <li><a href="quick-start.html" title="Quick start">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="" title="Angular">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Angular</span>
+                                      </div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">React</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list" data-id="react">
+                                          <li><a href="react/react.html" title="Default integration">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Default integration</span>
+                                              </div></a></li>
+                                          <li><a href="react/react-multiroot.html" title="Multi-root integration">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Multi-root integration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li><a href="next-js.html" title="Next.js">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Next.js</span>
+                                      </div></a></li>
+                                  <li><a href="vuejs-v2.html" title="Vue.js 2.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                      </div></a></li>
+                                  <li><a href="vuejs-v3.html" title="Vue.js 3+">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                      </div></a></li>
+                                  <li><a href="laravel.html" title="Laravel">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Laravel</span>
+                                      </div></a></li>
+                                  <li><a href="dotnet.html" title=".NET">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">.NET</span>
+                                      </div></a></li>
+                                  <li><a href="css.html" title="CSS frameworks">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                      </div></a></li>
+                                  <li><a href="drupal-real-time-collaboration.html" title="Drupal">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drupal</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Setup</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="setup">
+                                  <li><a href="../setup/getting-and-setting-data.html" title="Getting and setting data">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and setting data</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/editor-lifecycle.html" title="Editor lifecycle">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor lifecycle</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/configuration.html" title="Configuring features">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuring features</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/toolbar.html" title="Editor toolbars">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbars</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/menubar.html" title="Menu bar">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/ui-language.html" title="UI language">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/managing-ckeditor-logo.html" title="Managing the “Powered by CKEditor” logo">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Managing the “Powered by CKEditor” logo</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/license-key-and-activation.html" title="License key and activation">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License key and activation</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/css.html" title="Editor and content styles">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and content styles</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/typescript-support.html" title="TypeScript support">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../setup/csp.html" title="Content Security Policy">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Legacy installation methods</span>
+                            </div>
+                            <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="legacy">
+                                  <li><a href="../legacy/working-with-typescript.html" title="TypeScript legacy support">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript legacy support</span>
+                                      </div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Basics</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list" data-id="installation-methods">
+                                          <li><a href="../legacy/installation-methods/quick-start.html" title="Quick start">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/installation-methods/predefined-builds.html" title="Predefined builds">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/installation-methods/quick-start-other.html" title="Customized installation">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/installation-methods/api-and-events.html" title="API and events">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">API and events</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/installation-methods/extending-features.html" title="Extending features">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending features</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced concepts</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list" data-id="advanced">
+                                          <li><a href="../legacy/advanced/using-two-editors.html" title="Using two different editors">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/advanced/content-styles.html" title="Content styles">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                              </div></a></li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                            </div>
+                                            <ul class="tree__item-nested-list" data-id="alternative-setups">
+                                                  <li><a href="../legacy/advanced/alternative-setups/integrating-from-source-webpack.html" title="Integrating from source using webpack">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using webpack</span>
+                                                      </div></a></li>
+                                                  <li><a href="../legacy/advanced/alternative-setups/integrating-from-source-vite.html" title="Integrating from source using Vite">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using Vite</span>
+                                                      </div></a></li>
+                                                  <li><a href="../legacy/advanced/alternative-setups/dll-builds.html" title="DLL builds">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                                      </div></a></li>
+                                                  <li><a href="../legacy/advanced/alternative-setups/dll-builds-collaboration-features.html" title="DLL builds for CKEditor 5 Collaboration Features">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                                      </div></a></li>
+                                            </ul>
+                                          </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integrations</span>
+                                    </div>
+                                    <ul class="tree__item-nested-list" data-id="legacy-integrations">
+                                          <li><a href="../legacy/legacy-integrations/overview.html" title="Overview">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/legacy-integrations/angular.html" title="Angular">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/legacy-integrations/react.html" title="React">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/legacy-integrations/vuejs-v2.html" title="Vue.js 2.x">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                              </div></a></li>
+                                          <li><a href="../legacy/legacy-integrations/vuejs-v3.html" title="Vue.js 3+">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                              </div></a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+              <li data-group="updating"><a href="../../updating/index.html">Updating</a>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/getting-started/integrations/angular.md" title="Contribute to this guide"><img src="../../../../assets/4.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.1/img/book.svg" alt="guide">Angular rich text editor component
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#supported-angular-versions" title="Supported Angular versions">Supported Angular versions</a></li><li><a href="#quick-start" title="Quick start">Quick start</a><ol><li><a href="#using-ckeditor-5-builder" title="Using CKEditor&nbsp;5 Builder">Using CKEditor&nbsp;5 Builder</a></li><li><a href="#setting-up-the-project" title="Setting up the project">Setting up the project</a></li><li><a href="#installing-from-npm" title="Installing from npm">Installing from npm</a><ol><li><a href="#ngmodule-components" title="NGModule components">NGModule components</a></li><li><a href="#standalone-components" title="Standalone components">Standalone components</a></li></ol></li></ol></li><li><a href="#supported-input-properties" title="Supported @Input properties">Supported @Input properties</a><ol><li><a href="#editor-required" title="editor (required)">editor (required)</a></li><li><a href="#config" title="config">config</a></li><li><a href="#data" title="data">data</a></li><li><a href="#tagname" title="tagName">tagName</a></li><li><a href="#disabled" title="disabled">disabled</a></li><li><a href="#watchdog" title="watchdog">watchdog</a></li><li><a href="#editorwatchdogconfig" title="editorWatchdogConfig">editorWatchdogConfig</a></li><li><a href="#disabletwowaydatabinding" title="disableTwoWayDataBinding">disableTwoWayDataBinding</a></li></ol></li><li><a href="#supported-output-properties" title="Supported @Output properties">Supported @Output properties</a><ol><li><a href="#ready" title="ready">ready</a></li><li><a href="#change" title="change">change</a></li><li><a href="#blur" title="blur">blur</a></li><li><a href="#focus" title="focus">focus</a></li><li><a href="#error" title="error">error</a></li></ol></li><li><a href="#integration-with-ngmodel" title="Integration with ngModel">Integration with ngModel</a><ol><li><a href="#styling" title="Styling">Styling</a></li><li><a href="#setting-the-height-via-the-component-style-sheet" title="Setting the height via the component style sheet">Setting the height via the component style sheet</a><ol><li><a href="#setting-the-height-via-a-global-style-sheet" title="Setting the height via a global style sheet">Setting the height via a global style sheet</a></li><li><a href="#setting-the-placeholder" title="Setting the placeholder">Setting the placeholder</a></li></ol></li><li><a href="#accessing-the-editor-instance" title="Accessing the editor instance">Accessing the editor instance</a></li></ol></li><li><a href="#how-to" title="How to?">How to?</a><ol><li><a href="#using-the-document-editor-type" title="Using the Document editor type">Using the Document editor type</a></li><li><a href="#using-the-editor-with-collaboration-plugins" title="Using the editor with collaboration plugins">Using the editor with collaboration plugins</a></li><li><a href="#localization" title="Localization">Localization</a></li></ol></li><li><a href="#contributing-and-reporting-issues" title="Contributing and reporting issues">Contributing and reporting issues</a></li></ol></nav>
+
+<p>
+	<a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular" target="_blank" rel="noopener">
+		<img src="https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg" alt="npm version" loading="lazy">
+	</a>
+</p>
+<p>Angular is a TypeScript-based, open-source, single-page web application framework. The CKEditor 5 component for Angular supports integrating different editor types.</p>
+<div class="info-box notice notice__hint"><p>Starting from version 6.0.0 of this package, you can use native type definitions provided by CKEditor&nbsp;5. Check the details about <a href="../setup/typescript-support.html">TypeScript support</a>.</p></div>
+<h2 id="supported-angular-versions"><a class="headerlink" href="#supported-angular-versions">#</a> Supported Angular versions</h2>
+<p>Because of the breaking changes in the Angular library output format, the <code>@ckeditor/ckeditor5-angular</code> package is released in the following versions to support various Angular ecosystems:</p>
+<table>
+  <thead>
+	<tr>
+	 <th>CKEditor&nbsp;5&nbsp;version</th>
+	 <th>Angular&nbsp;version</th>
+	 <th>Details</th>
+	</tr>
+  </thead>
+  <tbody>
+	<tr>
+	 <td colspan="3">Actively supported versions</td>
+	</tr>
+	<tr>
+	 <td><code>^6</code></td>
+	 <td><code>13+</code></td>
+	 <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v37.0.0">37</a> or higher.</td>
+	</tr>
+	<tr>
+	 <td colspan="3">Past releases (no longer maintained)</td>
+	</tr>
+	<tr>
+	 <td><code>^5</code></td>
+	 <td><code>13+</code></td>
+	 <td>Requires Angular in version 13+ or higher. Lower versions are no longer maintained.</td>
+	</tr>
+	<tr>
+	 <td><code>^5</code></td>
+	 <td><code>13+</code></td>
+	 <td>Requires Angular in version 13+ or higher. Lower versions are no longer maintained.</td>
+	</tr>
+	<tr>
+	 <td><code>^4</code></td>
+	 <td><code>9.1+</code></td>
+	 <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v34.0.0">34</a> or higher.</td>
+	</tr>
+	<tr>
+	 <td><code>^3</code></td>
+	 <td><code>9.1+</code></td>
+	 <td>Requires Node.js in version 14 or higher.</td>
+	</tr>
+	<tr>
+	 <td><code>^2</code></td>
+	 <td><code>9.1+</code></td>
+	 <td>Migration to TypeScript&nbsp;4. Declaration files are not backward compatible.</td>
+	</tr>
+	<tr>
+	 <td><code>^1</code></td>
+	 <td><code>5.x&nbsp;-&nbsp;8.x</code></td>
+	 <td>Angular versions are no longer maintained.</td>
+	</tr>
+  </tbody>
+</table>
+<p>All available Angular versions are <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular">listed on npm</a>, where they can be pulled from.</p>
+<h2 id="quick-start"><a class="headerlink" href="#quick-start">#</a> Quick start</h2>
+<h3 id="using-ckeditor-5-builder"><a class="headerlink" href="#using-ckeditor-5-builder">#</a> Using CKEditor&nbsp;5 Builder</h3>
+<p>The easiest way to use CKEditor 5 in your Angular application is by configuring it with <a href="https://ckeditor.com/builder?redirect=docs">CKEditor&nbsp;5 Builder</a> and integrating it with your application. Builder offers an easy-to-use user interface to help you configure, preview, and download the editor suited to your needs. You can easily select:</p>
+<ul>
+<li>the features you need,</li>
+<li>the preferred framework (React, Angular, Vue or Vanilla JS),</li>
+<li>the preferred distribution method.</li>
+</ul>
+<p>You get ready-to-use code tailored to your needs!</p>
+<h3 id="setting-up-the-project"><a class="headerlink" href="#setting-up-the-project">#</a> Setting up the project</h3>
+<p>This guide assumes you already have a Angular project. To create such a project, you can use Angular CLI. Refer to the <a href="https://angular.io/cli">Angular documentation</a> to learn more.</p>
+<h3 id="installing-from-npm"><a class="headerlink" href="#installing-from-npm">#</a> Installing from npm</h3>
+<p>First, install the CKEditor 5 packages:</p>
+<ul>
+<li><code>ckeditor5</code> – package with open-source plugins and features.</li>
+<li><code>ckeditor5-premium-features</code> – package with premium plugins and features.</li>
+</ul>
+<p>Depending on your configuration and chosen plugins, you may need to install the first or both packages.</p>
+<pre class="highlight"><code class="bash">npm install ckeditor5 ckeditor5-premium-features
+</code></pre>
+<p>Then, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular">CKEditor&nbsp;5 WYSIWYG editor component for Angular</a>:</p>
+<pre class="highlight"><code class="bash">npm install @ckeditor/ckeditor5-angular
+</code></pre>
+<p>The following setup differs depending on the type of component you use.</p>
+<h4 id="ngmodule-components"><a class="headerlink" href="#ngmodule-components">#</a> NGModule components</h4>
+<p>If you want to use NGModule components, add the <code>CKEditorModule</code> to the <code>imports</code> array. It will make the CKEditor&nbsp;5 component available in your Angular application.</p>
+<pre class="highlight"><code class="ts">// app.module.ts
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+import { AppComponent } from './app.component';
+
+@NgModule( {
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        CKEditorModule
+    ],
+    providers: [],
+    bootstrap: [ AppComponent ]
+} )
+export class AppModule { }
+</code></pre>
+<p>Then, import the editor in your Angular component and assign it to a <code>public</code> property to make it accessible from the template. The below example shows how to use the component with open-source and premium plugins.</p>
+<pre class="highlight"><code class="ts">// app.component.ts
+
+import { Component } from '@angular/core';
+import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
+import { SlashCommand } from 'ckeditor5-premium-features';
+
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+
+@Component( {
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: [ './app.component.css' ]
+} )
+export class AppComponent {
+    title = 'angular';
+
+    public Editor = ClassicEditor;
+    public config = {
+        toolbar: [ 'undo', 'redo', '|', 'bold', 'italic' ],
+        plugins: [
+            Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
+        ],
+        licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
+        mention: {
+            // Mention configuration
+        }
+    }
+}
+</code></pre>
+<p>Finally, use the <code>&lt;ckeditor&gt;</code> tag in the template to run the rich text editor:</p>
+<pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
+
+&lt;ckeditor [editor]="Editor" [config]="config" data="&lt;p&gt;Hello, world!&lt;/p&gt;"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h4 id="standalone-components"><a class="headerlink" href="#standalone-components">#</a> Standalone components</h4>
+<p>Standalone components provide a simplified way to build Angular applications. They are enabled in Angular 17 by default. Standalone components aim to simplify the setup and reduce the need for <code>NGModules</code>. That is why you do not need such a module in this case.</p>
+<p>Instead, add the <code>CKEditorModule</code> to the imports in your app component. The component needs the <code>standalone</code> option set to <code>true</code>.</p>
+<pre class="highlight"><code class="ts">import { Component } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
+import { SlashCommand } from 'ckeditor5-premium-features';
+
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+
+@Component( {
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [ CKEditorModule ],
+    standalone: true
+} )
+export class AppComponent {
+    title = 'angular';
+
+    public Editor = ClassicEditor;
+    public config = {
+        toolbar: [ 'undo', 'redo', '|', 'bold', 'italic' ],
+        plugins: [
+            Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
+        ],
+        licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
+        mention: {
+            // Mention configuration
+        }
+    }
+}
+</code></pre>
+<p>Then, use the <code>&lt;ckeditor&gt;</code> tag in the template to run the rich text editor:</p>
+<pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
+
+&lt;ckeditor [editor]="Editor" [config]="config" data="&lt;p&gt;Hello, world!&lt;/p&gt;"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h2 id="supported-input-properties"><a class="headerlink" href="#supported-input-properties">#</a> Supported <code>@Input</code> properties</h2>
+<p>The following <code>@Input</code> properties are supported by the CKEditor&nbsp;5 rich text editor component for Angular:</p>
+<h3 id="editor-required"><a class="headerlink" href="#editor-required">#</a> <code>editor</code> (required)</h3>
+<p>The <a href="../setup/editor-lifecycle.html"><code>Editor</code></a> which provides the static <a href="../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method to create an instance of the editor:</p>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]="Editor"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="config"><a class="headerlink" href="#config">#</a> <code>config</code></h3>
+<p>The <a href="../../api/module_core_editor_editorconfig-EditorConfig.html">configuration</a> of the editor:</p>
+<pre class="highlight"><code class="html">&lt;ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="data"><a class="headerlink" href="#data">#</a> <code>data</code></h3>
+<p>The initial data of the editor. It can be a static value:</p>
+<pre class="highlight"><code class="html">&lt;ckeditor data="&lt;p&gt;Hello, world!&lt;/p&gt;"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<p>or a shared parent component’s property</p>
+<pre class="highlight"><code class="ts html">@Component( {
+    // ...
+} )
+export class MyComponent {
+    public editorData = '&lt;p&gt;Hello, world!&lt;/p&gt;';
+    // ...
+}
+</code></pre>
+<pre class="highlight"><code class="html">&lt;ckeditor [data]="editorData"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="tagname"><a class="headerlink" href="#tagname">#</a> <code>tagName</code></h3>
+<p>The tag name of the HTML element on which the rich text editor will be created.</p>
+<p>The default tag is <code>&lt;div&gt;</code>.</p>
+<pre class="highlight"><code class="html">&lt;ckeditor tagName="textarea"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="disabled"><a class="headerlink" href="#disabled">#</a> <code>disabled</code></h3>
+<p>Controls the editor’s <a href="../../api/module_core_editor_editor-Editor.html#member-isReadOnly">read–only</a> state:</p>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
+} )
+export class MyComponent {
+    public isDisabled = false;
+    // ...
+    toggleDisabled() {
+        this.isDisabled = !this.isDisabled
+    }
+}
+</code></pre>
+<pre class="highlight"><code class="html">&lt;ckeditor [disabled]="isDisabled"&gt;&lt;/ckeditor&gt;
+
+&lt;button (click)="toggleDisabled()"&gt;
+    {{ isDisabled ? 'Enable editor' : 'Disable editor' }}
+&lt;/button&gt;
+</code></pre>
+<!-- TODO: Change the watchdog section if needed -->
+<h3 id="watchdog"><a class="headerlink" href="#watchdog">#</a> <code>watchdog</code></h3>
+<p>An instance of the <a href="../../api/module_watchdog_contextwatchdog-ContextWatchdog.html"><code>ContextWatchdog</code></a> class that is responsible for providing the same context to multiple editor instances and restarting the whole structure in case of crashes.</p>
+<pre class="highlight"><code class="ts">import CKSource from 'path/to/custom/build';
+
+const Context = CKSource.Context;
+const Editor = CKSource.Editor;
+const ContextWatchdog = CKSource.ContextWatchdog;
+
+@Component( {
+    // ...
+} )
+export class MyComponent {
+    public editor = Editor;
+    public watchdog: any;
+    public ready = false;
+
+    ngOnInit() {
+        const contextConfig = {};
+
+        this.watchdog = new ContextWatchdog( Context );
+
+        this.watchdog.create( contextConfig )
+            .then( () =&gt; {
+                this.ready = true;
+            } );
+    }
+}
+</code></pre>
+<pre class="highlight"><code class="html">&lt;div *ngIf="ready"&gt;
+    &lt;ckeditor [watchdog]="watchdog"&gt;&lt;/ckeditor&gt;
+    &lt;ckeditor [watchdog]="watchdog"&gt;&lt;/ckeditor&gt;
+    &lt;ckeditor [watchdog]="watchdog"&gt;&lt;/ckeditor&gt;
+&lt;/div&gt;
+</code></pre>
+<h3 id="editorwatchdogconfig"><a class="headerlink" href="#editorwatchdogconfig">#</a> <code>editorWatchdogConfig</code></h3>
+<p>If the <code>watchdog</code> property is not used, <a href="../../api/module_watchdog_editorwatchdog-EditorWatchdog.html"><code>EditorWatchdog</code></a> will be used by default. <code>editorWatchdogConfig</code> property allows for passing a <a href="../../api/module_watchdog_watchdog-WatchdogConfig.html">config</a> to that watchdog.</p>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
+} )
+export class MyComponent {
+    public myWatchdogConfig = {
+        crashNumberLimit: 5,
+        // ...
+    };
+    // ...
+}
+</code></pre>
+<pre class="highlight"><code class="html">&lt;ckeditor [editorWatchdogConfig]="myWatchdogConfig"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="disabletwowaydatabinding"><a class="headerlink" href="#disabletwowaydatabinding">#</a> <code>disableTwoWayDataBinding</code></h3>
+<p>Allows disabling the two-way data binding mechanism. The default value is <code>false</code>.</p>
+<p>The reason for the introduction of this option are performance issues in large documents. By default, while using the <code>ngModel</code> directive, whenever the editor’s data is changed, the component must synchronize the data between the editor instance and the connected property. This results in calling the <a href="../../api/module_core_editor_editor-Editor.html#function-getData"><code>editor.getData()</code></a> function, which causes a massive slowdown while typing in large documents.</p>
+<p>This option allows the integrator to disable the default behavior and only call the <a href="../../api/module_core_editor_editor-Editor.html#function-getData"><code>editor.getData()</code></a> method on demand, which prevents the slowdowns. You can read more in the <a href="https://github.com/ckeditor/ckeditor5-angular/issues/141">relevant issue</a>.</p>
+<h2 id="supported-output-properties"><a class="headerlink" href="#supported-output-properties">#</a> Supported <code>@Output</code> properties</h2>
+<p>The following <code>@Output</code> properties are supported by the CKEditor&nbsp;5 rich text editor component for Angular:</p>
+<h3 id="ready"><a class="headerlink" href="#ready">#</a> <code>ready</code></h3>
+<p>Fired when the editor is ready. It corresponds with the <a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready"><code>editor#ready</code></a> event.<br>
+It is fired with the editor instance.</p>
+<p>Note that this method might be called multiple times. Apart from initialization, it is also called whenever the editor is restarted after a crash. Do not keep the reference to the editor instance internally, because it will change in case of restart. Instead, you should use <code>watchdog.editor</code> property.</p>
+<h3 id="change"><a class="headerlink" href="#change">#</a> <code>change</code></h3>
+<p>Fired when the content of the editor has changed. It corresponds with the <a href="../../api/module_engine_model_document-Document.html#event-change:data"><code>editor.model.document#change:data</code></a> event.<br>
+It is fired with an object containing the editor and the CKEditor&nbsp;5 <code>change:data</code> event object.</p>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]="Editor" (change)="onChange($event)"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<pre class="highlight"><code class="ts">import { ClassicEditor } from 'ckeditor5';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+
+@Component( {
+    // ...
+} )
+export class MyComponent {
+    public Editor = ClassicEditor;
+
+    public onChange( { editor }: ChangeEvent ) {
+        const data = editor.getData();
+
+        console.log( data );
+    }
+    // ...
+}
+</code></pre>
+<h3 id="blur"><a class="headerlink" href="#blur">#</a> <code>blur</code></h3>
+<p>Fired when the editing view of the editor is blurred. It corresponds with the <a href="../../api/module_engine_view_document-Document.html#event-blur"><code>editor.editing.view.document#blur</code></a> event.<br>
+It is fired with an object containing the editor and the CKEditor&nbsp;5 <code>blur</code> event data.</p>
+<h3 id="focus"><a class="headerlink" href="#focus">#</a> <code>focus</code></h3>
+<p>Fired when the editing view of the editor is focused. It corresponds with the <a href="../../api/module_engine_view_document-Document.html#event-focus"><code>editor.editing.view.document#focus</code></a> event.<br>
+It is fired with an object containing the editor and the CKEditor&nbsp;5 <code>focus</code> event data.</p>
+<h3 id="error"><a class="headerlink" href="#error">#</a> <code>error</code></h3>
+<p>Fired when the editor crashes. Once the editor is crashed, the internal watchdog mechanism restarts the editor and fires the <a href="#ready">ready</a> event.</p>
+<div class="info-box notice"><p>Prior to ckeditor5-angular <code>v7.0.1</code>, this event was not fired for crashes during the editor initialization.</p></div>
+<h2 id="integration-with-ngmodel"><a class="headerlink" href="#integration-with-ngmodel">#</a> Integration with <code>ngModel</code></h2>
+<p>The component implements the <a href="https://angular.io/api/forms/ControlValueAccessor"><code>ControlValueAccessor</code></a> interface and works with the <code>ngModel</code>. Here is how to use it:</p>
+<p>Create some model in your component to share with the editor:</p>
+<pre class="highlight"><code class="ts html">@Component( {
+    // ...
+} )
+export class MyComponent {
+    public model = {
+        editorData: '&lt;p&gt;Hello, world!&lt;/p&gt;'
+    };
+    // ...
+}
+</code></pre>
+<p>Use the model in the template to enable a two–way data binding:</p>
+<pre class="highlight"><code class="html">&lt;ckeditor [(ngModel)]="model.editorData" [editor]="Editor"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="styling"><a class="headerlink" href="#styling">#</a> Styling</h3>
+<p>The CKEditor&nbsp;5 rich text editor component for Angular can be styled using the component style sheet or using a global style sheet. See how to set the CKEditor&nbsp;5 component’s height using these two approaches.</p>
+<h3 id="setting-the-height-via-the-component-style-sheet"><a class="headerlink" href="#setting-the-height-via-the-component-style-sheet">#</a> Setting the height via the component style sheet</h3>
+<p>First, create a (S)CSS file in the parent component’s directory and style the given editor’s part preceded by the <code>:host</code> and <code>::ng-deep</code> pseudo selectors:</p>
+<pre class="highlight"><code class="css">/* src/app/app.component.css */
+
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 500px;
+}
+</code></pre>
+<p>Then in the parent component add the relative path to the above style sheet:</p>
+<pre class="highlight"><code class="ts">/* src/app/app.component.ts */
+
+@Component( {
+    // ...
+    styleUrls: [ './app.component.css' ]
+} )
+</code></pre>
+<h4 id="setting-the-height-via-a-global-style-sheet"><a class="headerlink" href="#setting-the-height-via-a-global-style-sheet">#</a> Setting the height via a global style sheet</h4>
+<p>To style the component using a global style sheet, first, create it:</p>
+<pre class="highlight"><code class="css">/* src/styles.css */
+
+.ck-editor__editable_inline {
+    min-height: 500px;
+}
+</code></pre>
+<p>Then, add it in the <code>angular.json</code> configuration file:</p>
+<pre class="highlight"><code class="json">"architect": {
+    "build": {
+        "options": {
+            "styles": [
+                { "input": "src/styles.css" }
+            ]
+        }
+    }
+}
+</code></pre>
+<h4 id="setting-the-placeholder"><a class="headerlink" href="#setting-the-placeholder">#</a> Setting the placeholder</h4>
+<p>To display <a href="../../features/editor-placeholder.html">the placeholder</a> in the main editable element, set the <code>placeholder</code> field in the CKEditor&nbsp;5 rich text editor component configuration:</p>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
+} )
+export class MyComponent {
+    public config = {
+        placeholder: 'Type the content here!'
+    }
+}
+</code></pre>
+<h3 id="accessing-the-editor-instance"><a class="headerlink" href="#accessing-the-editor-instance">#</a> Accessing the editor instance</h3>
+<p>The CKEditor&nbsp;5 rich text editor component provides all the functionality needed for most use cases. When access to the full CKEditor&nbsp;5 API is needed you can get the editor instance with an additional step.</p>
+<p>To do this, create a template reference variable <code>#editor</code> pointing to the <code>&lt;ckeditor&gt;</code> component:</p>
+<pre class="highlight"><code class="html">&lt;ckeditor #editor [editor]="Editor"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<p>Then get the <code>&lt;ckeditor&gt;</code> component using a property decorated by <code>@ViewChild( 'editor' )</code> and access the editor instance when needed:</p>
+<pre class="highlight"><code class="ts">@Component()
+export class MyComponent {
+    @ViewChild( 'editor' ) editorComponent: CKEditorComponent;
+
+    public getEditor() {
+        // Warning: This may return "undefined" if the editor is hidden behind the `*ngIf` directive or
+        // if the editor is not fully initialised yet.
+        return this.editorComponent.editorInstance;
+    }
+}
+</code></pre>
+<div class="info-box notice"><p>The editor creation is asynchronous so the <code>editorInstance</code> will not be available until the editor is created. If you want to make changes to an editor that has just been created, a better option would be getting the CKEditor&nbsp;5 instance on the <a href="#ready"><code>ready</code></a> event.</p></div>
+<h2 id="how-to"><a class="headerlink" href="#how-to">#</a> How to?</h2>
+<h3 id="using-the-document-editor-type"><a class="headerlink" href="#using-the-document-editor-type">#</a> Using the Document editor type</h3>
+<p>If you want to use the <a href="../../framework/deep-dive/ui/document-editor.html">document (decoupled) editor</a>, you need to <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create">add the toolbar to the DOM manually</a>:</p>
+<pre class="highlight"><code class="ts">// app.component.ts
+
+import { Component } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { DecoupledEditor, Essentials, Italic, Paragraph, Bold, Undo } from 'ckeditor5';
+
+import 'ckeditor5/ckeditor5.css';
+
+@Component( {
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [ CKEditorModule ],
+    standalone: true
+} )
+export class AppComponent {
+    title = 'angular';
+
+    public Editor = DecoupledEditor;
+    public config = {
+        plugins: [ Bold, Essentials, Italic, Paragraph, Undo ],
+        toolbar: [ 'undo', 'redo', '|', 'bold', 'italic' ]
+    }
+    public onReady( editor: DecoupledEditor ): void {
+        const element = editor.ui.getEditableElement()!;
+        const parent = element.parentElement!;
+
+        parent.insertBefore(
+            editor.ui.view.toolbar.element!,
+            element
+        );
+    }
+}
+</code></pre>
+<p>And then, link the method in the template:</p>
+<pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
+
+&lt;ckeditor [editor]="Editor" data="&lt;p&gt;Hello, world!&lt;/p&gt;" (ready)="onReady($event)"&gt;&lt;/ckeditor&gt;
+</code></pre>
+<h3 id="using-the-editor-with-collaboration-plugins"><a class="headerlink" href="#using-the-editor-with-collaboration-plugins">#</a> Using the editor with collaboration plugins</h3>
+<p>We provide a few <strong>ready-to-use integrations</strong> featuring collaborative editing in Angular applications:</p>
+<ul>
+<li><a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-for-angular">CKEditor&nbsp;5 with real-time collaboration features</a></li>
+<li><a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-revision-history-for-angular">CKEditor&nbsp;5 with real-time collaboration and revision history features</a></li>
+<li><a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/revision-history-for-angular">CKEditor&nbsp;5 with the revision history feature</a></li>
+<li><a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/track-changes-for-angular">CKEditor&nbsp;5 with the track changes feature</a></li>
+</ul>
+<p>It is not mandatory to build applications on top of the above samples, however, they should help you get started.</p>
+<h3 id="localization"><a class="headerlink" href="#localization">#</a> Localization</h3>
+<p>CKEditor 5 supports multiple UI languages, and so does the official Angular component. Follow the instructions below to translate CKEditor 5 in your Angular application.</p>
+<p>Similarly to CSS style sheets, both packages have separate translations. Import them as shown in the example below. Then, pass them to the translations array of the <code>config</code> property.</p>
+<pre class="highlight"><code class="ts">import { Component } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ClassicEditor } from 'ckeditor5';
+// More imports...
+
+import coreTranslations from 'ckeditor5/translations/es.js';
+import commercialTranslations from 'ckeditor5-premium-features/translations/es.js';
+
+// style sheets imports...
+
+@Component( {
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [ CKEditorModule ],
+    standalone: true
+} )
+export class AppComponent {
+    title = 'angular';
+    public Editor = ClassicEditor;
+    public config = {
+        translations: [ coreTranslations, commercialTranslations ]
+    }
+}
+</code></pre>
+<p>For advanced usage see the <a href="../setup/ui-language.html">Setting the UI language</a> guide.</p>
+<h2 id="contributing-and-reporting-issues"><a class="headerlink" href="#contributing-and-reporting-issues">#</a> Contributing and reporting issues</h2>
+<p>The source code of the CKEditor&nbsp;5 rich text editor component for Angular is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-angular">https://github.com/ckeditor/ckeditor5-angular</a>.</p>
+
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Finstallation%2Fangular.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree" id="guidetree">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Installation</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="installation">
+                                    <li><a href="quick-start.html" title="Quick start">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="" title="Angular">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Angular</span>
+                                        </div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">React</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list" data-id="react">
+                                              <li><a href="react/react.html" title="Default integration">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Default integration</span>
+                                                  </div></a></li>
+                                              <li><a href="react/react-multiroot.html" title="Multi-root integration">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Multi-root integration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="next-js.html" title="Next.js">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Next.js</span>
+                                        </div></a></li>
+                                    <li><a href="vuejs-v2.html" title="Vue.js 2.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                        </div></a></li>
+                                    <li><a href="vuejs-v3.html" title="Vue.js 3+">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                        </div></a></li>
+                                    <li><a href="laravel.html" title="Laravel">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Laravel</span>
+                                        </div></a></li>
+                                    <li><a href="dotnet.html" title=".NET">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">.NET</span>
+                                        </div></a></li>
+                                    <li><a href="css.html" title="CSS frameworks">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CSS frameworks</span>
+                                        </div></a></li>
+                                    <li><a href="drupal-real-time-collaboration.html" title="Drupal">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drupal</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Setup</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="setup">
+                                    <li><a href="../setup/getting-and-setting-data.html" title="Getting and setting data">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting and setting data</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/editor-lifecycle.html" title="Editor lifecycle">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor lifecycle</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/configuration.html" title="Configuring features">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuring features</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/toolbar.html" title="Editor toolbars">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbars</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/menubar.html" title="Menu bar">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/ui-language.html" title="UI language">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/managing-ckeditor-logo.html" title="Managing the “Powered by CKEditor” logo">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Managing the “Powered by CKEditor” logo</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/license-key-and-activation.html" title="License key and activation">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License key and activation</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/css.html" title="Editor and content styles">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and content styles</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/typescript-support.html" title="TypeScript support">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../setup/csp.html" title="Content Security Policy">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content Security Policy</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Legacy installation methods</span>
+                            </div>
+                            <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="legacy">
+                                    <li><a href="../legacy/working-with-typescript.html" title="TypeScript legacy support">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript legacy support</span>
+                                        </div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Basics</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list" data-id="installation-methods">
+                                              <li><a href="../legacy/installation-methods/quick-start.html" title="Quick start">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/installation-methods/predefined-builds.html" title="Predefined builds">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Predefined builds</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/installation-methods/quick-start-other.html" title="Customized installation">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customized installation</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/installation-methods/api-and-events.html" title="API and events">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">API and events</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/installation-methods/extending-features.html" title="Extending features">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending features</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Advanced concepts</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list" data-id="advanced">
+                                              <li><a href="../legacy/advanced/using-two-editors.html" title="Using two different editors">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using two different editors</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/advanced/content-styles.html" title="Content styles">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content styles</span>
+                                                  </div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Alternative setups</span>
+                                                </div>
+                                                <ul class="tree__item-nested-list" data-id="alternative-setups">
+                                                        <li><a href="../legacy/advanced/alternative-setups/integrating-from-source-webpack.html" title="Integrating from source using webpack">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using webpack</span>
+                                                            </div></a></li>
+                                                        <li><a href="../legacy/advanced/alternative-setups/integrating-from-source-vite.html" title="Integrating from source using Vite">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Integrating from source using Vite</span>
+                                                            </div></a></li>
+                                                        <li><a href="../legacy/advanced/alternative-setups/dll-builds.html" title="DLL builds">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds</span>
+                                                            </div></a></li>
+                                                        <li><a href="../legacy/advanced/alternative-setups/dll-builds-collaboration-features.html" title="DLL builds for CKEditor 5 Collaboration Features">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">DLL builds for CKEditor 5 Collaboration Features</span>
+                                                            </div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Integrations</span>
+                                      </div>
+                                      <ul class="tree__item-nested-list" data-id="legacy-integrations">
+                                              <li><a href="../legacy/legacy-integrations/overview.html" title="Overview">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/legacy-integrations/angular.html" title="Angular">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/legacy-integrations/react.html" title="React">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/legacy-integrations/vuejs-v2.html" title="Vue.js 2.x">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 2.x</span>
+                                                  </div></a></li>
+                                              <li><a href="../legacy/legacy-integrations/vuejs-v3.html" title="Vue.js 3+">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                                  </div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2024 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'getting-started', 'features', 'examples', 'framework', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'getting-started' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'getting-started' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'getting-started' ] );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/4.2.1/scripts/app.js"></script>
+    <script src="../../assets/snippet.js"></script>
+    <script src="../../snippets/assets.js"></script>
+    <script src="../../snippets/installation/integrations/framework-integration/snippet.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>
