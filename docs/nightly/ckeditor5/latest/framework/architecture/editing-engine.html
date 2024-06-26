@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jun 25 2024 01:28:43 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:47 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Editing engine | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/4.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/4.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	( function ( w, d, e, u, a, b ) {
@@ -56,7 +56,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/4.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/4.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -337,11 +337,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../assets/4.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../assets/4.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/4.2.1/img/book.svg" alt="guide">Editing engine
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.2/img/book.svg" alt="guide">Editing engine
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview" title="Overview">Overview</a></li><li><a href="#model" title="Model">Model</a><ol><li><a href="#changing-the-model" title="Changing the model">Changing the model</a></li><li><a href="#text-attributes" title="Text attributes">Text attributes</a></li><li><a href="#selection-attributes" title="Selection attributes">Selection attributes</a></li><li><a href="#indexes-and-offsets" title="Indexes and offsets">Indexes and offsets</a></li><li><a href="#positions-ranges-and-selections" title="Positions, ranges and selections">Positions, ranges and selections</a></li><li><a href="#markers" title="Markers">Markers</a></li><li><a href="#schema" title="Schema">Schema</a></li></ol></li><li><a href="#view" title="View">View</a><ol><li><a href="#element-types-and-custom-data" title="Element types and custom data">Element types and custom data</a><ol><li><a href="#non-semantic-views" title="Non-semantic views">Non-semantic views</a></li></ol></li><li><a href="#changing-the-view" title="Changing the view">Changing the view</a></li><li><a href="#positions" title="Positions">Positions</a></li><li><a href="#observers" title="Observers">Observers</a></li></ol></li><li><a href="#conversion" title="Conversion">Conversion</a><ol><li><a href="#data-pipeline" title="Data pipeline">Data pipeline</a></li><li><a href="#editing-pipeline" title="Editing pipeline">Editing pipeline</a></li><li><a href="#more-information" title="More information">More information</a></li></ol></li><li><a href="#read-next" title="Read next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
 <div class="info-box notice"><p>We recommend using the official <a href="../develpment-tools/inspector.html">CKEditor&nbsp;5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
@@ -679,6 +679,10 @@ editor.data;                    // The data pipeline (DataController).
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
               Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Farchitecture%2Fediting-engine.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
+            <p>
+              With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
+              We appreciate your feedback to help us ensure its accuracy and completeness.
+            </p>
           </div>
           <script>
             ( () => {
@@ -946,7 +950,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'getting-started', 'features', 'examples', 'framework', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../assets/4.2.1/scripts/app.js"></script>
+    <script src="../../../../assets/4.2.2/scripts/app.js"></script>
     <script src="../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
