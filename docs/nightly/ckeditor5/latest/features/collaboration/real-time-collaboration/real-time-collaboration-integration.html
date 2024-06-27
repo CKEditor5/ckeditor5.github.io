@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:30 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:51 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Real-time collaboration feature integration | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -46,7 +46,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -540,156 +540,71 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.2/img/book.svg" alt="guide">Real-time collaboration feature integration
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#sign-up-to-the-collaboration-service" title="Sign up to the collaboration service">Sign up to the collaboration service</a></li><li><a href="#prepare-editor-build" title="Prepare editor build">Prepare editor build</a></li><li><a href="#prepare-the-html-structure" title="Prepare the HTML structure">Prepare the HTML structure</a></li><li><a href="#configure-and-initialize-the-editor" title="Configure and initialize the editor">Configure and initialize the editor</a><ol><li><a href="#the-channelid-configuration-property" title="The channelId configuration property">The channelId configuration property</a></li></ol></li><li><a href="#handling-document-data" title="Handling document data">Handling document data</a><ol><li><a href="#data-initialization" title="Data initialization">Data initialization</a></li><li><a href="#saving-data" title="Saving data">Saving data</a><ol><li><a href="#the-clouddocumentversion-property" title="The cloudDocumentVersion property">The cloudDocumentVersion property</a></li><li><a href="#the-autosave-plugin" title="The Autosave plugin">The Autosave plugin</a></li><li><a href="#autosave-for-revision-history" title="Autosave for revision history">Autosave for revision history</a></li></ol></li></ol></li><li><a href="#reconnection-process" title="Reconnection process">Reconnection process</a></li><li><a href="#users-selection" title="Users selection">Users selection</a></li><li><a href="#real-time-collaboration-samples" title="Real-time collaboration samples">Real-time collaboration samples</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#sign-up-to-the-collaboration-service" title="Sign up to the collaboration service">Sign up to the collaboration service</a><ol><li><a href="#preparing-a-custom-editor-setup" title="Preparing a custom editor setup">Preparing a custom editor setup</a></li><li><a href="#setting-up-a-sample-project" title="Setting up a sample project">Setting up a sample project</a></li></ol></li><li><a href="#configure-and-initialize-the-editor" title="Configure and initialize the editor">Configure and initialize the editor</a><ol><li><a href="#the-channelid-configuration-property" title="The channelId configuration property">The channelId configuration property</a></li></ol></li><li><a href="#handling-document-data" title="Handling document data">Handling document data</a><ol><li><a href="#data-initialization" title="Data initialization">Data initialization</a></li><li><a href="#saving-data" title="Saving data">Saving data</a><ol><li><a href="#the-clouddocumentversion-property" title="The cloudDocumentVersion property">The cloudDocumentVersion property</a></li><li><a href="#the-autosave-plugin" title="The Autosave plugin">The Autosave plugin</a></li><li><a href="#autosave-for-revision-history" title="Autosave for revision history">Autosave for revision history</a></li></ol></li></ol></li><li><a href="#reconnection-process" title="Reconnection process">Reconnection process</a></li><li><a href="#users-selection" title="Users selection">Users selection</a></li><li><a href="#real-time-collaboration-samples" title="Real-time collaboration samples">Real-time collaboration samples</a></li></ol></nav>
 <p>This quick start guide will let you set up real-time collaboration inside your editor, including basic integration with other collaboration features.</p>
 <p>After reading this article, we recommend visiting the “Learn more” sections in our documentation pages for the <a href="../comments/comments.html#learn-more">comments</a>, <a href="../track-changes/track-changes.html#learn-more">track changes</a> and <a href="../revision-history/revision-history-integration.html#learn-more">revision history</a> features to get more in-depth knowledge about them.</p>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/">ready-to-use <strong>samples</strong></a> available for download. We prepared samples for all editor types (multi-root included) as well as for the React, Angular and Vue.js integrations. You may use them as an example or as a starting point for your own integration.</p></div>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/">ready-to-use <strong>samples</strong></a> available for download. We prepared samples for all editor types (multi-root included) as well as for the React, Angular, and Vue.js integrations. You may use them as an example or a starting point for your integration.</p></div>
 <h2 id="sign-up-to-the-collaboration-service"><a class="headerlink" href="#sign-up-to-the-collaboration-service">#</a> Sign up to the collaboration service</h2>
-<div class="info-box notice"><p>This is an additionally payable feature. <a href="https://ckeditor.com/contact/?sales=true#contact-form">Contact us</a> to receive an offer tailored to your needs. If you already have a valid license, please log into your <a href="https://dashboard.ckeditor.com/">user dashboard</a> to access the feature settings.</p></div>
+<div class="info-box notice notice__info"><p>This is a paid feature. <a href="https://ckeditor.com/contact/?sales=true#contact-form">Contact us</a> to receive an offer tailored to your needs. If you already have a valid license, please log into your <a href="https://dashboard.ckeditor.com/">user dashboard</a> to access the feature settings.</p></div>
 <p>The real-time collaboration feature needs a server to synchronize content between the clients, so to use it, you need to sign up to the collaboration service first. Refer to the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration – Quick Start} guide for more details. There is also {@link @trial guides/overview Premium features free trial} available for testing purposes, that will provide the necessary backend.</p>
-<h2 id="prepare-editor-build"><a class="headerlink" href="#prepare-editor-build">#</a> Prepare editor build</h2>
-<p>Once you have the server ready, the next step is to prepare an editor preset with all the necessary features included. Please use the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a> to create it and refer to the <a href="../../../getting-started/installation/quick-start.html">Quick Start</a> guide to install your editor.</p>
-<p>The Builder should provide all necessary files like HTML, CSS, and JavaScript.</p>
-<h2 id="prepare-the-html-structure"><a class="headerlink" href="#prepare-the-html-structure">#</a> Prepare the HTML structure</h2>
-<p>Having configured the plugins, you need to place your bundle in an HTML document and create the editor.</p>
-<p>For the sake of completeness, the examples below implement the <a href="../annotations/annotations-display-mode.html#wide-sidebar">wide sidebar display mode</a> for comments and suggestions annotations. If you want to use the inline display mode, remove parts of the snippets that set up the wide sidebar.</p>
-<p>Your HTML structure will also differ depending on whether you would like to integrate the revision history feature or not.</p>
-<p>Below, you will find an example of an HTML structure for an integration with the sidebar and without the revision history feature:</p>
-<pre class="highlight"><code class="html">&lt;div id="presence-list-container"&gt;&lt;/div&gt;
-
-&lt;div class="container"&gt;
-    &lt;div id="editor"&gt;&lt;p&gt;Let's edit this together!&lt;/p&gt;&lt;/div&gt;
-    &lt;div class="sidebar" id="sidebar"&gt;&lt;/div&gt;
-&lt;/div&gt;
+<h3 id="preparing-a-custom-editor-setup"><a class="headerlink" href="#preparing-a-custom-editor-setup">#</a> Preparing a custom editor setup</h3>
+<p>To use the real-time collaboration, you need to prepare a custom editor setup with several features enabled.</p>
+<p>The easiest way to do that is by using the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a>. Pick a preset and start customizing your editor.</p>
+<div class="info-box notice notice__info"><p>The Builder allows you to pick your preferred distribution method and framework. For this guide, we will use the “Vanilla JS” option with “npm” and a simple setup based on the “Classic Editor (basic)” preset, with the real-time collaboration features enabled.</p></div>
+<p><strong>In the “Features” section</strong> of the Builder (2nd step), make sure to:</p>
+<ul>
+<li>make sure the “real-time” toggle next to the “Collaboration” group is on,</li>
+<li>pick the entire “Collaboration” feature group.</li>
+</ul>
+<p>Once you finish the setup, the Builder will provide you with the necessary HTML, CSS, and JavaScript code snippets. We will use those code snippets in the next step.</p>
+<h3 id="setting-up-a-sample-project"><a class="headerlink" href="#setting-up-a-sample-project">#</a> Setting up a sample project</h3>
+<p>Once we have a custom editor setup we need a simple JavaScript project to run it. For this, we recommend cloning the basic project template from our repository:</p>
+<pre class="highlight"><code class="">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
+cd ckeditor5-tutorials-examples/sample-project
+npm install
 </code></pre>
-<p>The revision history feature requires a more complex HTML structure:</p>
-<pre class="highlight"><code class="html">&lt;div id="presence-list-container"&gt;&lt;/div&gt;
-
-&lt;div id="editor-container"&gt;
-    &lt;div class="container"&gt;
-        &lt;div id="editor"&gt;&lt;p&gt;Let's edit this together!&lt;/p&gt;&lt;/div&gt;
-        &lt;div class="sidebar" id="sidebar"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="revision-viewer-container"&gt;
-    &lt;div class="container"&gt;
-        &lt;div id="revision-viewer-editor"&gt;&lt;/div&gt;
-        &lt;div class="sidebar" id="revision-viewer-sidebar"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
+<p>Then, install the necessary dependencies:</p>
+<pre class="highlight"><code class="">npm install ckeditor5
+npm install ckeditor5-premium-features
 </code></pre>
+<p>This project template uses <a href="https://vitejs.dev/">Vite</a> under the hood and contains 3 source files that we will use: <code>index.html</code>, <code>style.css</code>, and <code>main.js</code>.</p>
+<p>It is now the time to use our custom editor setup. <strong>Go to the “Installation” section</strong> of the Builder and copy the generated code snippets to those 3 files.</p>
 <h2 id="configure-and-initialize-the-editor"><a class="headerlink" href="#configure-and-initialize-the-editor">#</a> Configure and initialize the editor</h2>
-<p>To finalize the editor configuration, you need to define the <a href="../../../api/module_cloud-services_cloudservicesconfig-CloudServicesConfig.html">CKEditor Cloud Services connection data</a>, set the {@glink features/collaboration/real-time-collaboration/real-time-collaboration-integration##the-channelid-configuration-property <code>channelId</code>}, and set up the containers for the features and add buttons to the toolbar.</p>
-<div class="info-box notice"><p>If you do not have your CKEditor Cloud Services URLs ready, read more about these first in the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration – Quick Start} guide.</p></div>
-<p>Below, you will find an updated HTML file (<code>sample/index.html</code>) with a minimal editor configuration and the CSS+HTML structure prepared for integration with the revision history feature.</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;CKEditor&amp;nbsp;5 Collaboration – Hello World!&lt;/title&gt;
+<p>To finalize the editor configuration, you need to take a few additional steps in the <code>main.js</code> file:</p>
+<ul>
+<li>
+<p>In the editor configuration (<code>editorConfig</code>), you need to fill in the following fields:</p>
+<ul>
+<li>The <a href="../../../api/module_cloud-services_cloudservicesconfig-CloudServicesConfig.html">CKEditor Cloud Services connection data (<code>cloudServices</code>)</a>,</li>
+<li>The <a href="#the-channelid-configuration-property"><code>collaboration.channelId</code></a> value.</li>
+<li>The valid <code>licenseKey</code>. Please refer to the <a href="../../../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</li>
+</ul>
+</li>
+<li>
+<p>This example uses the <a href="../../watchdog.html">watchdog</a> feature that provides an additional layer of protection against data loss in case the editor crashes. Use <a href="../../../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-create"><code>Watchdog.create()</code></a> instead of <code>ClassicEditor.create()</code> to take advantage of this feature, as shown in the example below.</p>
+</li>
+</ul>
+<div class="info-box notice notice__info"><p>If you do not have your CKEditor Cloud Services URLs ready, read more about these first in the {@link @cs guides/collaboration/quick-start CKEditor Cloud Services Collaboration – Quick Start} guide.</p></div>
+<pre class="highlight"><code class="js">const editorConfig = {
+    /* ... */
 
-        &lt;style&gt;
-            body {
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            }
+    licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
+    cloudServices: {
+        tokenUrl: '&lt;YOUR_CLOUD_SERVICES_TOKEN_URL&gt;',
+        webSocketUrl: '&lt;YOUR_CLOUD_SERVICES_WEBSOCKET_URL&gt;'
+    },
+    collaboration: {
+        channelId: '&lt;YOUR_UNIQUE_CHANNEL_PER_DOCUMENT&gt;'
+    },
 
-            .container {
-                display: flex; /* Create a column layout. */
-                position: relative;
-                width: 1000px; /* Set some size for the whole editor + sidebar (can be any size). */
-            }
+    /* ... */
+};
 
-            .container &gt; .ck.ck-editor {
-                width: 100%;  /* Stretch the editable area. */
-            }
+const { EditorWatchdog } = ClassicEditor;
+const watchdog = new EditorWatchdog( ClassicEditor );
 
-            .sidebar {
-                border: 1px solid #c4c4c4;
-                margin-left: -1px;
-                background: #fafafa;
-            }
-
-            #sidebar {
-                /* Set some size and spacing for the sidebar (can be any size). */
-                min-width: 300px;
-                padding: 0 10px;
-                overflow: hidden; /* Hide annotations moved above top sidebar border. */
-            }
-
-            #revision-viewer-container {
-                display: none; /* Revision history viewer is initially hidden. */
-            }
-
-            #revision-viewer-sidebar {
-                min-width: 320px; /* 20px more than #sidebar due to paddings. */
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-
-    &lt;body&gt;
-        &lt;!-- Use simpler CSS and HTML structure if you do not want to integrate revision history feature. !--&gt;
-        &lt;div id="presence-list-container"&gt;&lt;/div&gt;
-
-        &lt;div id="editor-container"&gt;
-            &lt;div class="container"&gt;
-                &lt;div id="editor"&gt;&lt;p&gt;Let's edit this together!&lt;/p&gt;&lt;/div&gt;
-                &lt;div class="sidebar" id="sidebar"&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div id="revision-viewer-container"&gt;
-            &lt;div class="container"&gt;
-                &lt;div id="revision-viewer-editor"&gt;&lt;/div&gt;
-                &lt;div class="sidebar" id="revision-viewer-sidebar"&gt;&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            const { ClassicEditor: Editor, EditorWatchdog } = ClassicEditor;
-
-            const watchdog = new EditorWatchdog( Editor );
-
-            watchdog.create( document.querySelector( '#editor' ), {
-                initialData: '&lt;p&gt;Let\'s edit this together!&lt;/p&gt;',
-                // Do not include buttons for the features that you do not want to integrate.
-                // If you use the image toolbar, you might want to add the `'comment'` button to the image toolbar, too.
-                toolbar: [ 'bold', 'italic', 'uploadImage', '|', 'comment', 'trackChanges', '|', 'revisionHistory' ],
-                cloudServices: {
-                    // PROVIDE CORRECT VALUES HERE:
-                    tokenUrl: 'https://example.com/cs-token-endpoint',
-                    uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
-                    webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
-                },
-                collaboration: {
-                    channelId: 'document-id'
-                },
-                sidebar: {
-                    container: document.querySelector( '#sidebar' )
-                },
-                presenceList: {
-                    container: document.querySelector( '#presence-list-container' )
-                },
-                // Add configuration for the Comments if the Comments plugin is added.
-                comments: {
-                    editorConfig: {
-                        extraPlugins: ClassicEditor.builtinPlugins.filter( plugin =&gt; {
-                            return [ 'Bold', 'Italic', 'Underline', 'List', 'Autoformat' ].includes( plugin.pluginName );
-                        } )
-                    }
-                }
-                // Do not include revision history configuration if you do not want to integrate it.
-                revisionHistory: {
-                    editorContainer: document.querySelector( '#editor-container' ),
-                    viewerContainer: document.querySelector( '#revision-viewer-container' ),
-                    viewerEditorElement: document.querySelector( '#revision-viewer-editor' ),
-                    viewerSidebarContainer: document.querySelector( '#revision-viewer-sidebar' )
-                }
-            } );
-        &lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+// Replace ClassicEditor.create(document.querySelector('#editor'), editorConfig); with
+watchdog.create( document.querySelector( '#editor' ), editorConfig );
 </code></pre>
 <p>Voilà! All users who open this page should be able to collaborate, working on the same rich text document at the same time.</p>
 <h3 id="the-channelid-configuration-property"><a class="headerlink" href="#the-channelid-configuration-property">#</a> The <code>channelId</code> configuration property</h3>
@@ -699,15 +614,15 @@
 <p>The <code>channelId</code> needs to be unique in a given environment, so if you are using, for instance, staging and production environments, you may use the same channel ID in these. Since the environments are separated, these IDs will not interfere with one another.</p>
 <p>Since editor content is linked with and only with the channel ID, it is possible to create an application where different views (forms, subpages, etc.) provide various sets of rich-text editable fields and have users collaborate with each other even though they have opened a different form, etc.</p>
 <h2 id="handling-document-data"><a class="headerlink" href="#handling-document-data">#</a> Handling document data</h2>
-<p>To make the integration work out of the box, all comments, suggestions and revisions data is saved in CKEditor Cloud Services.</p>
-<div class="info-box notice"><p>In this section, it is assumed that {@link @cs guides/collaboration/document-storage Cloud Services document storage} is not enabled.</p><p>{@link @cs guides/collaboration/document-storage Document storage} has numerous advantages and we recommend enabling it if available in your case.</p></div>
+<p>All comments, suggestions, and revisions data is saved in CKEditor Cloud Services to make the integration work out of the box.</p>
+<div class="info-box notice notice__info"><p>In this section, it is assumed that {@link @cs guides/collaboration/document-storage Cloud Services document storage} is not enabled.</p><p>{@link @cs guides/collaboration/document-storage Document storage} has numerous advantages and we recommend enabling it if available in your case.</p></div>
 <p>Note that CKEditor Cloud Services does not save or load the document content. Instead, Cloud Services acts as a medium to handle the collaboration process. Content management should be handled by the application integration.</p>
-<div class="info-box notice"><p>We understand that due to legislation or your company’s policy, you may be required to store all data in your own data center or private cloud. This is why we also provide the on-premises version of CKEditor Cloud Services. <a href="https://ckeditor.com/contact/">Contact us</a> to learn more about it.</p></div>
+<div class="info-box notice notice__info"><p>Your company’s policy may require you to store all data in your own data center or private cloud. We understand that. That is why we also provide the on-premises version of CKEditor Cloud Services. <a href="https://ckeditor.com/contact/">Contact us</a> to learn more about it.</p></div>
 <h3 id="data-initialization"><a class="headerlink" href="#data-initialization">#</a> Data initialization</h3>
 <p>When the first user opens the rich text editor for a certain document ID, their content is sent to CKEditor Cloud Services. In case of the example above it is:</p>
 <pre class="highlight"><code class="html">&lt;p&gt;Let's edit this together!&lt;/p&gt;
 </code></pre>
-<p>If you cannot or do not want to set the initial data straight in the HTML, use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-initialData"><code>initialData</code> configuration option</a> instead. Do not use <code>editor.setData()</code> (see below).</p>
+<p>If you cannot or do not want to set the initial data straight in the HTML, use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-initialData"><code>initialData</code> configuration option</a> instead. Do not use <a href="../../../api/module_core_editor_editor-Editor.html#function-setData"><code>editor.setData()</code></a> (see below).</p>
 <p>After the first user initializes the document and starts the editing session, every other user that connects to the same document will receive the content from CKEditor Cloud Services (while their local initial data is discarded).</p>
 <p>From that moment on, every single change to the editor content is passed between Cloud Services and clients and the document for each client is updated. Any conflicting updates are resolved on the fly.</p>
 <p>This is the reason why you should not use the <code>editor.setData()</code> or <code>editor.data.set()</code> methods when using the collaboration plugin. These simply overwrite the whole content of the editor (even if the data to set is the same as the current editor data). In real-time collaboration, this behavior can result in overwriting other clients’ local updates. In most cases, using <code>editor.setData()</code> and <code>editor.data.set()</code> in real-time collaboration is incorrect.</p>
@@ -726,41 +641,47 @@
 <p>This property is simply a number, and a bigger value means a newer document version. This number should be stored in the database together with the document content. When a client wants to save the content, document versions should be compared. The document should only be saved when the version is higher. Otherwise, it means that the incoming data is an older version of the document and should be discarded.</p>
 <p>CKEditor Cloud Services keeps the value of <code>cloudDocumentVersion</code> and makes sure that it is properly set whenever there is a new editing session for a given document.</p>
 <h4 id="the-autosave-plugin"><a class="headerlink" href="#the-autosave-plugin">#</a> The <code>Autosave</code> plugin</h4>
-<div class="info-box notice"><p>Using the autosave feature with large documents may result in a lot of data being sent to your server and can have a negative impact on the editor user experience.</p><p>We recommend using the {@link @cs guides/collaboration/document-storage document storage} feature instead.</p></div>
+<div class="info-box notice notice__info"><p>Using the autosave feature with large documents may result in a lot of data being sent to your server and can have a negative impact on the editor user experience.</p><p>We recommend using the {@link @cs guides/collaboration/document-storage document storage} feature instead.</p></div>
 <p>The second helper is the <a href="../../../api/module_autosave_autosave-Autosave.html"><code>Autosave</code></a> plugin.</p>
 <p>The autosave plugin triggers the save callback whenever the user changes the content. It takes care of throttling the callback execution to limit the number of calls to the database. It also automatically secures the user from leaving the page before the content is saved.</p>
 <p>The autosave plugin is not enabler by default. To learn more about this plugin, refer to the <a href="../../autosave.html">Autosave</a> feature guide.</p>
 <h4 id="autosave-for-revision-history"><a class="headerlink" href="#autosave-for-revision-history">#</a> Autosave for revision history</h4>
-<p>If you are using the revision history feature, your autosave callback should take care of updating the recent revision data. See the example below:</p>
-<pre class="highlight"><code class="js">autosave: {
-    save: async editor =&gt; {
-        const revisionTracker = editor.plugins.get( 'RevisionTracker' );
-        const currentRevision = revisionTracker.currentRevision;
-        const oldRevisionVersion = currentRevision.toVersion;
+<p>If you are using the revision history feature, your autosave callback should take care of updating the recent revision data. You can add the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-autosave"><code>autosave</code></a> configuration to <code>editorConfig</code> in the <code>main.js</code> file as shown below:</p>
+<pre class="highlight"><code class="js">const editorConfig = {
+    /* ... */
 
-        // Update the current revision with the newest document changes.
-        await revisionTracker.update();
+    autosave: {
+        save: async editor =&gt; {
+            const revisionTracker = editor.plugins.get( 'RevisionTracker' );
+            const currentRevision = revisionTracker.currentRevision;
+            const oldRevisionVersion = currentRevision.toVersion;
 
-        // Check if the revision was updated.
-        // If not, do not make an unnecessary call.
-        if ( oldRevisionVersion === currentRevision.toVersion ) {
-            return true;
+            // Update the current revision with the newest document changes.
+            await revisionTracker.update();
+
+            // Check if the revision was updated.
+            // If not, do not make an unnecessary call.
+            if ( oldRevisionVersion === currentRevision.toVersion ) {
+                return true;
+            }
+
+            // Use the document data saved with the revision instead of the editor data.
+            // Revision data may slightly differ from the editor data when
+            // real-time collaboration is involved.
+            const documentData = await revisionTracker.getRevisionDocumentData( revisionTracker.currentRevision );
+
+            // Use revision version instead of `cloudDocumentVersion`.
+            const documentVersion = currentRevision.toVersion;
+
+            // `saveData()` should save the document in your database.
+            // `documentData` contains data for all roots.
+            // You can save just `documentData.main` if you are using a single root,
+            // or the whole object if you are using multiple roots.
+            return saveData( documentData.main, documentVersion );
         }
+    },
 
-        // Use the document data saved with the revision instead of the editor data.
-        // Revision data may slightly differ from the editor data when
-        // real-time collaboration is involved.
-        const documentData = await revisionTracker.getRevisionDocumentData( revisionTracker.currentRevision );
-
-        // Use revision version instead of `cloudDocumentVersion`.
-        const documentVersion = currentRevision.toVersion;
-
-        // `saveData()` should save the document in your database.
-        // `documentData` contains data for all roots.
-        // You can save just `documentData.main` if you are using a single root,
-        // or the whole object if you are using multiple roots.
-        return saveData( documentData.main, documentVersion );
-    }
+    /* ... */
 }
 </code></pre>
 <p>You can read more about saving revisions in the <a href="../revision-history/revision-history-integration.html#how-revisions-are-updated-and-saved">Revision history</a> guide.</p>
@@ -775,7 +696,7 @@
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Freal-time-collaboration%2Freal-time-collaboration-integration.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Freal-time-collaboration%2Freal-time-collaboration-integration.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:56 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:34:13 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Using the package generator | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -46,7 +46,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -160,6 +160,9 @@
                                               </div></a></li>
                                     </ul>
                                   </li>
+                                  <li><a href="../../tutorials/supporting-multiple-versions.html" title="Compatibility of custom plugins">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Compatibility of custom plugins</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                             </ul>
                           </li>
                           <li>
@@ -180,13 +183,13 @@
                                     </div>
                                     <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="package-generator">
                                           <li><a href="" title="Using package generator">
-                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span>
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="javascript-package.html" title="JavaScript package">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">JavaScript package</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">JavaScript package</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="typescript-package.html" title="TypeScript package">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript package</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript package</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                     </ul>
                                   </li>
@@ -346,7 +349,7 @@
 <p>The <a href="https://www.npmjs.com/package/ckeditor5-package-generator"><code>ckeditor5-package-generator</code></a> is a tool for developers. It creates a working package with the development environment that allows writing new custom plugins for CKEditor&nbsp;5.</p>
 <h2 id="quick-start"><a class="headerlink" href="#quick-start">#</a> Quick start</h2>
 <p>To create a new package without installing the tool, simply execute the following command:</p>
-<pre class="highlight"><code class="bash">npx ckeditor5-package-generator@latest &lt;packageName&gt; [--use-npm] [--use-yarn] [--plugin-name &lt;...&gt;] [--verbose] [--lang &lt;js|ts&gt;] [--use-only-new-installation-methods]
+<pre class="highlight"><code class="bash">npx ckeditor5-package-generator@latest &lt;packageName&gt; [--use-npm] [--use-yarn] [--plugin-name &lt;...&gt;] [--verbose] [--lang &lt;js|ts&gt;] [--installation-methods &lt;current|current-and-legacy&gt;]
 </code></pre>
 <p>The <code>&lt;packageName&gt;</code> argument is required and must obey these rules:</p>
 <ul>
@@ -362,13 +365,13 @@
 <li><code>--plugin-name</code> – define the plugin name to be different from the package name.</li>
 <li><code>--lang</code> – (values: <code>js</code> | <code>ts</code>) choose whether the created package should use JavaScript or TypeScript. If omitted, the script will ask the user to choose manually.</li>
 <li><code>--verbose</code> – (alias: <code>-v</code>) print additional logs about the current executed task.</li>
-<li><code>--use-only-new-installation-methods</code> – use only new installation methods in a newly created package.</li>
+<li><code>--installation-methods</code> – (values: <code>current</code> | <code>current-and-legacy</code>) choose which installation methods of CKEditor 5 do you want to support? If omitted, the script will ask the user to choose manually.</li>
 </ul>
 <h2 id="choosing-the-method"><a class="headerlink" href="#choosing-the-method">#</a> Choosing the method</h2>
-<p>Currently there are two modes of operation for package generator:</p>
+<p>Currently, a package can be generated in one of two modes of supported installation methods for CKEditor&nbsp;5 :</p>
 <ul>
-<li>By default, package generator creates bundles for both the current installation methods and <a href="../../../getting-started/legacy/installation-methods/quick-start.html">legacy installation methods</a>.</li>
-<li>When the project is generated with the <code>--use-only-new-installation-methods</code> flag, the package will only support the current installation methods. This approach makes it easier to create CKEditor&nbsp;5 plugin at the cost of not supporting the old installation methods.</li>
+<li>The package will only support the current installation methods if the value for the <code>--installation-methods</code> flag is set to <code>current</code>. This approach makes it easier to create CKEditor&nbsp;5 plugin at the cost of not supporting the old installation methods.</li>
+<li>The package generator creates bundles for both the current installation methods and <a href="../../../getting-started/legacy/installation-methods/quick-start.html">legacy installation methods</a> if the value for the <code>--installation-methods</code> flag is set to <code>current-and-legacy</code>.</li>
 </ul>
 <h2 id="using-the-package"><a class="headerlink" href="#using-the-package">#</a> Using the package</h2>
 <p>After successfully creating a directory with the new package, enter it by executing the following command:</p>
@@ -385,12 +388,12 @@ cd ckeditor5-foo
 <li><a href="typescript-package.html">TypeScript</a></li>
 </ul>
 <h2 id="migration"><a class="headerlink" href="#migration">#</a> Migration</h2>
-<p>If you have used the <a href="https://www.npmjs.com/package/ckeditor5-package-generator"><code>ckeditor5-package-generator</code></a> (version <code>1.1.0</code> or lower) to generate and develop your own plugins for CKEditor&nbsp;5 and now you want to migrate to the newest installations methods used by CKEditor&nbsp;5 please visit the <a href="../../../updating/new-installation-methods.html">Migrating CKEditor&nbsp;5 to new installation methods</a> guide. You will find an instruction there that will guide you step by step through all things that need to be changed.</p>
+<p>If you have used the <a href="https://www.npmjs.com/package/ckeditor5-package-generator"><code>ckeditor5-package-generator</code></a> (version <code>1.1.0</code> or lower) to generate and develop your own plugins for CKEditor&nbsp;5 and now you want to migrate to the newest installations methods used by CKEditor&nbsp;5 please visit the <a href="../../../updating/nim-migration/migration-to-new-installation-methods.html">Migrating CKEditor&nbsp;5 to new installation methods</a> guide. You will find an instruction there that will guide you step by step through all things that need to be changed.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fdevelpment-tools%2Fpackage-generator%2Fusing-package-generator.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fdevelpment-tools%2Fpackage-generator%2Fusing-package-generator.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -488,6 +491,9 @@ cd ckeditor5-foo
                                                   </div></a></li>
                                       </ul>
                                     </li>
+                                    <li><a href="../../tutorials/supporting-multiple-versions.html" title="Compatibility of custom plugins">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Compatibility of custom plugins</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                             </ul>
                           </li>
                           <li>
@@ -508,13 +514,13 @@ cd ckeditor5-foo
                                       </div>
                                       <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="package-generator">
                                               <li><a href="" title="Using package generator">
-                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Using package generator</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="javascript-package.html" title="JavaScript package">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">JavaScript package</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">JavaScript package</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="typescript-package.html" title="TypeScript package">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript package</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript package</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>

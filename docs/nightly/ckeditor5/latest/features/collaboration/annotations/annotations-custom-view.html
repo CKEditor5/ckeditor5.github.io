@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:20 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Custom view for annotations | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -546,6 +546,7 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#using-base-views" title="Using base views">Using base views</a></li><li><a href="#default-view-template" title="Default view template">Default view template</a></li><li><a href="#creating-and-enabling-a-custom-view" title="Creating and enabling a custom view">Creating and enabling a custom view</a><ol><li><a href="#reading-data-and-binding-with-template" title="Reading data and binding with template">Reading data and binding with template</a></li><li><a href="#performing-actions" title="Performing actions">Performing actions</a></li></ol></li><li><a href="#example-comment-thread-actions-dropdown" title="Example: Comment thread actions dropdown">Example: Comment thread actions dropdown</a><ol><li><a href="#creating-a-custom-thread-view-with-a-new-template" title="Creating a custom thread view with a new template">Creating a custom thread view with a new template</a></li><li><a href="#linking-buttons-with-actions" title="Linking buttons with actions">Linking buttons with actions</a></li><li><a href="#altering-the-first-comment-view" title="Altering the first comment view">Altering the first comment view</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li><li><a href="#live-demo" title="Live demo">Live demo</a></li></ol></li></ol></nav>
 <p>A custom view is the most powerful way to customize annotations. In this case, you need to provide the whole view: a template, UI elements, and any necessary behavior logic, but you can still use some of the default building blocks.</p>
 <div class="info-box notice"><p>It is highly recommended to get familiar with the <a href="annotations-custom-template.html">Custom template for annotations</a> guide before continuing.</p></div>
+<div class="info-box notice notice__info"><p>Examples below are based on a working editor setup that includes collaboration features. We highly recommend you get your setup ready based on the <a href="../comments/comments-integration.html#before-you-start">comments feature integration</a> guide before moving any further.</p></div>
 <h2 id="using-base-views"><a class="headerlink" href="#using-base-views">#</a> Using base views</h2>
 <p>Providing a custom view is based on the same solution as <a href="annotations-custom-template.html">providing a custom template</a>. You will need to create your own class for the view. In this case, you will be interested in extending base view classes:</p>
 <ul>
@@ -560,19 +561,29 @@
 <p>The default template used to create suggestion thread views is shown here: <a href="../../../api/module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html#function-getTemplate"><code>SuggestionThreadView#getTemplate()</code></a>.</p>
 <h2 id="creating-and-enabling-a-custom-view"><a class="headerlink" href="#creating-and-enabling-a-custom-view">#</a> Creating and enabling a custom view</h2>
 <p>As a reminder, the code snippet below shows how to enable a custom view for CKEditor&nbsp;5 collaboration features:</p>
-<pre class="highlight"><code class="js">import { BaseCommentThreadView } from 'ckeditor5-premium-features';
+<pre class="highlight"><code class="js">// main.js
+// ...
+
+import { BaseCommentThreadView } from 'ckeditor5-premium-features';
 
 class CustomCommentThreadView extends BaseCommentThreadView {
     // CustomCommentThreadView implementation.
     // ...
 }
 
-// More code.
 // ...
 
-Editor.defaultConfig.comments = {
-    CommentThreadView: CustomCommentThreadView
-}
+const editorConfig = {
+    // ...
+
+    comments: {
+        CommentThreadView: CustomCommentThreadView
+    },
+
+    // ...
+};
+
+ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 </code></pre>
 <p>The only obligatory action that needs to be done in your custom view constructor is setting up a template:</p>
 <pre class="highlight"><code class="js">class CustomCommentThreadView extends BaseCommentThreadView {
@@ -620,7 +631,8 @@ this.removeButton.on( 'execute', () =&gt; this.fire( 'removeCommentThread' ) );
 <p>In this example, you will create a custom comment thread view with action buttons (edit, remove) moved to a dropdown UI element. The dropdown will be added inside a new element, and placed above the thread UI.</p>
 <h3 id="creating-a-custom-thread-view-with-a-new-template"><a class="headerlink" href="#creating-a-custom-thread-view-with-a-new-template">#</a> Creating a custom thread view with a new template</h3>
 <p>First, create a foundation for your custom solution:</p>
-<pre class="highlight"><code class="js">// customcommentthreadview.js
+<pre class="highlight"><code class="js">// main.js
+// ...
 
 import { BaseCommentThreadView } from 'ckeditor5-premium-features';
 
@@ -674,199 +686,233 @@ class CustomCommentThreadView extends BaseCommentThreadView {
 }
 </code></pre>
 <p>Then, you need to create a dropdown UI element and fill it with items:</p>
-<pre class="highlight"><code class="js">import { ViewModel as UIModel, addListToDropdown, createDropdown, Collection } from 'ckeditor5';
-
-// More imports.
+<pre class="highlight"><code class="js">// main.js
 // ...
 
-_createActionsDropdown() {
-    const dropdownView = createDropdown( this.locale );
+import { ViewModel, addListToDropdown, createDropdown, Collection } from 'ckeditor5';
 
-    dropdownView.buttonView.set( {
-        label: 'Actions',
-        withText: true
-    } );
+// ...
 
-    const items = new Collection();
+class CustomCommentThreadView extends BaseCommentThreadView {
+    // ...
 
-    const editButtonModel = new UIModel( {
-        withText: true,
-        label: 'Edit',
-        action: 'edit'
-    } );
+    _createActionsDropdown() {
+        const dropdownView = createDropdown( this.locale );
 
-    items.add( {
-        type: 'button',
-        model: editButtonModel
-    } );
+        dropdownView.buttonView.set( {
+            label: 'Actions',
+            withText: true
+        } );
 
-    const resolveButtonModel = new UIModel( {
-        withText: true,
-        label: 'Resolve',
-        action: 'resolve'
-    } );
+        const items = new Collection();
 
-    items.add( {
-        type: 'button',
-        model: resolveButtonModel
-    } );
+        const editButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Edit',
+            action: 'edit'
+        } );
 
-    const reopenButtonModel = new UIModel( {
-        withText: true,
-        label: 'Reopen',
-        action: 'reopen'
-    } );
+        items.add( {
+            type: 'button',
+            model: editButtonModel
+        } );
 
-    items.add( {
-        type: 'button',
-        model: reopenButtonModel
-    } );
+        const resolveButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Resolve',
+            action: 'resolve'
+        } );
 
-    const removeButtonModel = new UIModel( {
-        withText: true,
-        label: 'Delete',
-        action: 'delete'
-    } );
+        items.add( {
+            type: 'button',
+            model: resolveButtonModel
+        } );
 
-    items.add( {
-        type: 'button',
-        model: removeButtonModel
-    } );
+        const reopenButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Reopen',
+            action: 'reopen'
+        } );
 
-    addListToDropdown( dropdownView, items );
+        items.add( {
+            type: 'button',
+            model: reopenButtonModel
+        } );
 
-    dropdownView.on( 'execute', evt =&gt; {
-        // Callback on execute.
-        // ...
-    } );
+        const removeButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Delete',
+            action: 'delete'
+        } );
 
-    return dropdownView;
+        items.add( {
+            type: 'button',
+            model: removeButtonModel
+        } );
+
+        addListToDropdown( dropdownView, items );
+
+        dropdownView.on( 'execute', evt =&gt; {
+            // Callback on execute.
+            // ...
+        } );
+
+        return dropdownView;
+    }
+
+    // ...
 }
 </code></pre>
 <p>Note that the dropdown should not be visible if the current local user is not the author of the thread.</p>
 <p>Since the first comment in the comment thread represents the whole thread, you can base it on the properties of the first comment.</p>
 <p>If there are no comments in the thread, it means that this is a new thread so the local user is the author.</p>
-<pre class="highlight"><code class="js">constructor( ...args ) {
-    super( ...args );
+<pre class="highlight"><code class="js">// main.js
+// ...
 
-    // The template definition is partially based on the default comment thread view.
-    const templateDefinition = {
-        tag: 'div',
+import { BaseCommentThreadView } from 'ckeditor5-premium-features';
 
-        attributes: {
-            class: [
-                'ck-thread',
-                this.bindTemplate.if( 'isActive', 'ck-thread--active' )
-            ],
-            // Needed for managing focus after adding a new comment.
-            tabindex: -1
-        },
+class CustomCommentThreadView extends BaseCommentThreadView {
+    constructor( ...args ) {
+        super( ...args );
 
-        children: [
-            {
-                tag: 'div',
-                attributes: {
-                    class: 'ck-thread__container'
-                },
-                children: [
-                    this.commentsListView,
-                    this.commentThreadInputView
-                ]
-            }
-        ]
-    };
+        // The template definition is partially based on the default comment thread view.
+        const templateDefinition = {
+            tag: 'div',
 
-    const isNewThread = this.length == 0;
-    const isAuthor = isNewThread || this._localUser == this._model.comments.get( 0 ).author;
+            attributes: {
+                class: [
+                    'ck-thread',
+                    this.bindTemplate.if( 'isActive', 'ck-thread--active' )
+                ],
+                // Needed for managing focus after adding a new comment.
+                tabindex: -1
+            },
 
-    // Add the actions dropdown only if the local user is the author of the comment thread.
-    if ( isAuthor ) {
-        templateDefinition.children.unshift(
-            {
-                tag: 'div',
-                attributes: {
-                    class: 'ck-thread-top-bar'
-                },
+            children: [
+                {
+                    tag: 'div',
+                    attributes: {
+                        class: 'ck-thread__container'
+                    },
+                    children: [
+                        this.commentsListView,
+                        this.commentThreadInputView
+                    ]
+                }
+            ]
+        };
 
-                children: [
-                    this._createActionsDropdown()
-                ]
-            }
-        );
+        const isNewThread = this.length == 0;
+        const isAuthor = isNewThread || this._localUser == this._model.comments.get( 0 ).author;
+
+        // Add the actions dropdown only if the local user is the author of the comment thread.
+        if ( isAuthor ) {
+            templateDefinition.children.unshift(
+                {
+                    tag: 'div',
+                    attributes: {
+                        class: 'ck-thread-top-bar'
+                    },
+
+                    children: [
+                        this._createActionsDropdown()
+                    ]
+                }
+            );
+        }
+
+        this.setTemplate( templateDefinition );
     }
 
-    this.setTemplate( templateDefinition );
+    // ...
 }
 </code></pre>
 <p>As far as disabling the UI is concerned, the actions in the dropdown should be disabled if the comment thread is in the read-only mode. Also, the edit button should be hidden if there are no comments in the thread. Additionally, the resolve/reopen button should be displayed based on the comment thread resolve state.</p>
-<pre class="highlight"><code class="js">const editButtonModel = new UIModel( {
-    withText: true,
-    label: 'Edit',
-    action: 'edit'
-} );
+<pre class="highlight"><code class="js">// main.js
+// ...
 
-// The button should be enabled when the read-only mode is off.
-// So, `isEnabled` should be a negative of `isReadOnly`.
-editButtonModel.bind( 'isEnabled' )
-    .to( this._model, 'isReadOnly', isReadOnly =&gt; !isReadOnly );
+import { BaseCommentThreadView } from 'ckeditor5-premium-features';
 
-// Hide the button if the thread has no comments yet.
-editButtonModel.bind( 'isVisible' )
-    .to( this, 'length', length =&gt; length &gt; 0 );
+class CustomCommentThreadView extends BaseCommentThreadView {
+    // ...
 
-items.add( {
-    type: 'button',
-    model: editButtonModel
-} );
+    _createActionsDropdown() {
+        // ...
 
-const resolveButtonModel = new UIModel( {
-    withText: true,
-    label: 'Resolve',
-    action: 'resolve'
-} );
+        const editButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Edit',
+            action: 'edit'
+        } );
 
-// Hide the button if the thread is resolved or cannot be resolved.
-resolveButtonModel.bind( 'isVisible' )
-    .to( this._model, 'isResolved', this._model, 'isResolvable',
-        ( isResolved, isResolvable ) =&gt; !isResolved &amp;&amp; isResolvable );
+        // The button should be enabled when the read-only mode is off.
+        // So, `isEnabled` should be a negative of `isReadOnly`.
+        editButtonModel.bind( 'isEnabled' )
+            .to( this._model, 'isReadOnly', isReadOnly =&gt; !isReadOnly );
 
-items.add( {
-    type: 'button',
-    model: resolveButtonModel
-} );
+        // Hide the button if the thread has no comments yet.
+        editButtonModel.bind( 'isVisible' )
+            .to( this, 'length', length =&gt; length &gt; 0 );
 
-const reopenButtonModel = new UIModel( {
-    withText: true,
-    label: 'Reopen',
-    action: 'reopen'
-} );
+        items.add( {
+            type: 'button',
+            model: editButtonModel
+        } );
 
-// Hide the button if the thread is not resolved or cannot be resolved.
-reopenButtonModel.bind( 'isVisible' )
-    .to( this._model, 'isResolved', this._model, 'isResolvable',
-        ( isResolved, isResolvable ) =&gt; isResolved &amp;&amp; isResolvable );
+        const resolveButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Resolve',
+            action: 'resolve'
+        } );
 
-items.add( {
-    type: 'button',
-    model: reopenButtonModel
-} );
+        // Hide the button if the thread is resolved or cannot be resolved.
+        resolveButtonModel.bind( 'isVisible' )
+            .to( this._model, 'isResolved', this._model, 'isResolvable',
+                ( isResolved, isResolvable ) =&gt; !isResolved &amp;&amp; isResolvable );
 
-const removeButtonModel = new UIModel( {
-    withText: true,
-    label: 'Delete',
-    action: 'delete'
-} );
+        items.add( {
+            type: 'button',
+            model: resolveButtonModel
+        } );
 
-removeButtonModel.bind( 'isEnabled' )
-    .to( this._model, 'isReadOnly', isReadOnly =&gt; !isReadOnly );
+        const reopenButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Reopen',
+            action: 'reopen'
+        } );
 
-items.add( {
-    type: 'button',
-    model: removeButtonModel
-} );
+        // Hide the button if the thread is not resolved or cannot be resolved.
+        reopenButtonModel.bind( 'isVisible' )
+            .to( this._model, 'isResolved', this._model, 'isResolvable',
+                ( isResolved, isResolvable ) =&gt; isResolved &amp;&amp; isResolvable );
+
+        items.add( {
+            type: 'button',
+            model: reopenButtonModel
+        } );
+
+        const removeButtonModel = new ViewModel( {
+            withText: true,
+            label: 'Delete',
+            action: 'delete'
+        } );
+
+        removeButtonModel.bind( 'isEnabled' )
+            .to( this._model, 'isReadOnly', isReadOnly =&gt; !isReadOnly );
+
+        items.add( {
+            type: 'button',
+            model: removeButtonModel
+        } );
+    }
+}
+
+// ...
 </code></pre>
 <p>Finally, some styling will be required for the new UI elements:</p>
-<pre class="highlight"><code class="css">/* customcommentthreadview.css */
+<pre class="highlight"><code class="css">/* style.css */
+
+/* ... */
 
 .ck-thread-top-bar {
     padding: 2px 4px 3px 4px;
@@ -883,9 +929,6 @@ items.add( {
     color: #000000;
     background: #EEEEEE;
 }
-</code></pre>
-<p>Add it in <code>customcommentthreadview.js</code>:</p>
-<pre class="highlight"><code class="js">import './customcommentthreadview.css';
 </code></pre>
 <h3 id="linking-buttons-with-actions"><a class="headerlink" href="#linking-buttons-with-actions">#</a> Linking buttons with actions</h3>
 <p>The edit button should turn the first comment into edit mode:</p>
@@ -934,47 +977,58 @@ items.add( {
 <p>Your new custom comment thread view is ready.</p>
 <p>For comment views, you will use the default comment views. However, there is one thing you need to take care of. Since you moved comment thread controls to a separate dropdown, you should hide these buttons from the first comment view.</p>
 <p>This modification will be added in a custom comment thread view. It should not be done in a custom comment view because that would have an impact on comments in suggestion threads.</p>
-<p>The first comment view can be obtained from the <code>commentsListView</code> property. If there are no comments yet, you can listen to the property and apply the custom behavior when the first comment view is added.</p>
-<pre class="highlight"><code class="js">constructor( ...args ) {
+<p>The first comment view can be obtained from the <a href="../../../api/module_comments_comments_ui_view_basecommentthreadview-BaseCommentThreadView.html#member-commentsListView"><code>commentsListView</code></a> property. If there are no comments yet, you can listen to the property and apply the custom behavior when the first comment view is added.</p>
+<pre class="highlight"><code class="js">// main.js
+// ...
+
+import { BaseCommentThreadView } from 'ckeditor5-premium-features';
+
+class CustomCommentThreadView extends BaseCommentThreadView {
+    constructor( ...args ) {
+        // More code.
+        // ...
+
+        if ( this.length &gt; 0 ) {
+            // If there is a comment when the thread is created, apply custom behavior to it.
+            this._modifyFirstCommentView();
+        } else {
+            // If there are no comments (an empty thread was created by the user),
+            // listen to `this.commentsListView` and wait for the first comment to be added.
+            this.listenTo( this.commentsListView.commentViews, 'add', evt =&gt; {
+                // And apply the custom behavior when it is added.
+                this._modifyFirstCommentView();
+
+                evt.off();
+            } );
+        }
+    }
+
     // More code.
     // ...
 
-    if ( this.length &gt; 0 ) {
-        // If there is a comment when the thread is created, apply custom behavior to it.
-        this._modifyFirstCommentView();
-    } else {
-        // If there are no comments (an empty thread was created by the user),
-        // listen to `this.commentsListView` and wait for the first comment to be added.
-        this.listenTo( this.commentsListView.commentViews, 'add', evt =&gt; {
-            // And apply the custom behavior when it is added.
-            this._modifyFirstCommentView();
+    _modifyFirstCommentView() {
+        // Get the first comment.
+        const commentView = this.commentsListView.commentViews.get( 0 );
 
-            evt.off();
-        } );
+        // By default, the comment button is bound to the model state
+        // and the buttons are visible only if the current local user is the author.
+        // You need to remove this binding and make buttons for the first
+        // comment always invisible.
+        commentView.removeButton.unbind( 'isVisible' );
+        commentView.removeButton.isVisible = false;
+
+        commentView.editButton.unbind( 'isVisible' );
+        commentView.editButton.isVisible = false;
     }
 }
 
-// More code.
 // ...
-
-_modifyFirstCommentView() {
-    // Get the first comment.
-    const commentView = this.commentsListView.commentViews.get( 0 );
-
-    // By default, the comment button is bound to the model state
-    // and the buttons are visible only if the current local user is the author.
-    // You need to remove this binding and make buttons for the first
-    // comment always invisible.
-    commentView.removeButton.unbind( 'isVisible' );
-    commentView.removeButton.isVisible = false;
-
-    commentView.editButton.unbind( 'isVisible' );
-    commentView.editButton.isVisible = false;
-}
 </code></pre>
 <h3 id="final-solution"><a class="headerlink" href="#final-solution">#</a> Final solution</h3>
-<p>Below you can find the final code for the created components, together with the complete HTML code and an example of <code>appData</code>.</p>
-<pre class="highlight"><code class="css">/* customcommentthreadview.css */
+<p>Below you can find the final code for the created components:</p>
+<pre class="highlight"><code class="css">/* style.css */
+
+/* ... */
 
 .ck-thread-top-bar {
     padding: 2px 4px 3px 4px;
@@ -992,15 +1046,14 @@ _modifyFirstCommentView() {
     background: #EEEEEE;
 }
 </code></pre>
-<pre class="highlight"><code class="js">// customcommentthreadview.js
+<pre class="highlight"><code class="js">// main.js
 
-import { UIModel, addListToDropdown, createDropdown, Collection } from 'ckeditor5';
+// ...
 
+import { ViewModel, addListToDropdown, createDropdown, Collection, Bold, Italic } from 'ckeditor5';
 import { BaseCommentThreadView } from 'ckeditor5-premium-features';
 
-import './customcommentthreadview.css';
-
-export default class CustomCommentThreadView extends BaseCommentThreadView {
+class CustomCommentThreadView extends BaseCommentThreadView {
     constructor( ...args ) {
         super( ...args );
 
@@ -1077,7 +1130,7 @@ export default class CustomCommentThreadView extends BaseCommentThreadView {
 
         const items = new Collection();
 
-        const editButtonModel = new UIModel( {
+        const editButtonModel = new ViewModel( {
             withText: true,
             label: 'Edit',
             action: 'edit'
@@ -1097,7 +1150,7 @@ export default class CustomCommentThreadView extends BaseCommentThreadView {
             model: editButtonModel
         } );
 
-        const resolveButtonModel = new UIModel( {
+        const resolveButtonModel = new ViewModel( {
             withText: true,
             label: 'Resolve',
             action: 'resolve'
@@ -1113,7 +1166,7 @@ export default class CustomCommentThreadView extends BaseCommentThreadView {
             model: resolveButtonModel
         } );
 
-        const reopenButtonModel = new UIModel( {
+        const reopenButtonModel = new ViewModel( {
             withText: true,
             label: 'Reopen',
             action: 'reopen'
@@ -1130,7 +1183,7 @@ export default class CustomCommentThreadView extends BaseCommentThreadView {
         } );
 
 
-        const removeButtonModel = new UIModel( {
+        const removeButtonModel = new ViewModel( {
             withText: true,
             label: 'Delete',
             action: 'delete'
@@ -1176,201 +1229,24 @@ export default class CustomCommentThreadView extends BaseCommentThreadView {
         commentView.editButton.isVisible = false;
     }
 }
-</code></pre>
-<pre class="highlight"><code class="js">// build.js
 
-import {
-    ClassicEditor as ClassicEditorBase,
-    Essentials,
-    Paragrap,
-    Bold,
-    Italic
-} from 'ckeditor5';
-import { Comments, TrackChanges } from 'ckeditor5-premium-features';
+// ...
 
-import CustomCommentThreadView from './customcommentthreadview';
+const editorConfig = {
+    // ...
 
-class ClassicEditor extends ClassicEditorBase {}
-
-ClassicEditor.builtinPlugins = [ Essentials, Paragraph, Bold, Italic, Comments, TrackChanges ];
-
-ClassicEditor.defaultConfig = {
-    language: 'en',
     comments: {
         CommentThreadView: CustomCommentThreadView,
 
         editorConfig: {
             extraPlugins: [ Bold, Italic ]
         }
-    }
+    },
+
+    // ...
 };
 
-export default ClassicEditor;
-</code></pre>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;CKEditor&amp;nbsp;5 collaboration with comments&lt;/title&gt;
-        &lt;style type="text/css"&gt;
-            #container {
-                /* To create the column layout. */
-                display: flex;
-
-                /* To make the container relative to its children. */
-                position: relative;
-            }
-
-            #container .ck.ck-editor {
-                /* To stretch the editor to max 700px
-                (just to look nice for this example but it can be any size). */
-                width: 100%;
-                max-width: 700px;
-            }
-
-            #sidebar {
-                /* Set some size for the sidebar (it can be any). */
-                min-width: 300px;
-
-                /* Add some distance. */
-                padding: 0 10px;
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id="container"&gt;
-            &lt;div id="editor"&gt;&lt;/div&gt;
-            &lt;div id="sidebar"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-        // Application data will be available under a global variable `appData`.
-        const appData = {
-            // Users data.
-            users: [
-                {
-                    id: 'user-1',
-                    name: 'Mex Haddox'
-                },
-                {
-                    id: 'user-2',
-                    name: 'Zee Croce'
-                }
-            ],
-
-            // The ID of the current user.
-            userId: 'user-1',
-
-            // Comment threads data.
-            commentThreads: [
-                {
-                    threadId: 'thread-1',
-                    comments: [
-                        {
-                            commentId: 'comment-1',
-                            authorId: 'user-1',
-                            content: '&lt;p&gt;Are we sure we want to use a made-up disorder name?&lt;/p&gt;',
-                            createdAt: new Date()
-                        },
-                        {
-                            commentId: 'comment-2',
-                            authorId: 'user-2',
-                            content: '&lt;p&gt;Why not?&lt;/p&gt;',
-                            createdAt: new Date()
-                        },
-                        {
-                            commentId: 'comment-3',
-                            authorId: 'user-1',
-                            content: '&lt;p&gt;This comment should have normal action buttons.&lt;/p&gt;',
-                            createdAt: new Date()
-                        }
-                    ],
-                    context: {
-                        type: 'text',
-                        value: 'Bilingual Personality Disorder'
-                    }
-                },
-                {
-                    threadId: 'thread-2',
-                    comments: [
-                        {
-                            commentId: 'comment-4',
-                            authorId: 'user-2',
-                            content: '&lt;p&gt;A comment by another user.&lt;/p&gt;',
-                            createdAt: new Date()
-                        }
-                    ],
-                    context: {
-                        type: 'text',
-                        value: 'As recent studies show,'
-                    }
-                }
-            ],
-
-            // Initial editor data.
-            initialData:
-                `&lt;h2&gt;
-                    &lt;comment-start name="thread-1"&gt;&lt;/comment-start&gt;
-                    Bilingual Personality Disorder
-                    &lt;comment-end name="thread-1"&gt;&lt;/comment-end&gt;
-                &lt;/h2&gt;
-                &lt;p&gt;
-                    This may be the first time you hear about this made-up disorder but it actually isn’t so far from the truth.
-                    &lt;comment-start name="thread-2"&gt;&lt;/comment-start&gt;
-                    As recent studies show,
-                    &lt;comment-end name="thread-2"&gt;&lt;/comment-end&gt; the language you speak has more effects on you than you realize.
-                    According to the studies, the language a person speaks affects their cognition,
-                    behavior, emotions and hence &lt;strong&gt;their personality&lt;/strong&gt;.
-                &lt;/p&gt;
-                &lt;p&gt;
-                    This shouldn’t come as a surprise
-                    &lt;a href="https://en.wikipedia.org/wiki/Lateralization_of_brain_function"&gt;since we already know&lt;/a&gt;
-                    that different regions of the brain become more active depending on the activity.
-                    The structure, information and especially &lt;strong&gt;the culture&lt;/strong&gt; of languages varies substantially
-                    and the language a person speaks is an essential element of daily life.
-                &lt;/p&gt;`
-        };
-
-        class CommentsIntegration {
-            constructor( editor ) {
-                this.editor = editor;
-            }
-
-            init() {
-                const usersPlugin = this.editor.plugins.get( 'Users' );
-                const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
-
-                // Load the users data.
-                for ( const user of appData.users ) {
-                    usersPlugin.addUser( user );
-                }
-
-                // Set the current user.
-                usersPlugin.defineMe( appData.userId );
-
-                // Load the comment threads data.
-                for ( const commentThread of appData.commentThreads ) {
-                    commentsRepositoryPlugin.addCommentThread( commentThread );
-                }
-            }
-        }
-
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                initialData: appData.initialData,
-                extraPlugins: [ CommentsIntegration ],
-                licenseKey: 'your-license-key',
-                sidebar: {
-                    container: document.querySelector( '#sidebar' )
-                },
-                toolbar: {
-                    items: [ 'bold', 'italic', '|', 'comment', 'commentsArchive', 'trackChanges' ]
-                }
-            } )
-            .catch( error =&gt; console.error( error ) );
-    &lt;/script&gt;
-&lt;/html&gt;
+ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 </code></pre>
 <h3 id="live-demo"><a class="headerlink" href="#live-demo">#</a> Live demo</h3>
 <div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
@@ -1384,7 +1260,7 @@ export default ClassicEditor;
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fannotations%2Fannotations-custom-view.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fannotations%2Fannotations-custom-view.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

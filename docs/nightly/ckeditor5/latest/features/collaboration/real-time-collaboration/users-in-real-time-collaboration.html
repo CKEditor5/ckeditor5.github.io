@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:35 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:55 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Users in real-time collaboration | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -46,7 +46,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -548,64 +548,35 @@
 <p>CKEditor&nbsp;5 supports setting user roles and permissions to enable/disable some editor functionalities for the user.</p>
 <p>To learn how to define user roles and permissions, refer to the {@link @cs developer-resources/security/roles Roles and permissions} guide of the Cloud Services documentation.</p>
 <h2 id="users-presence-list"><a class="headerlink" href="#users-presence-list">#</a> Users presence list</h2>
-<p>The <code>PresenceList</code> plugin provides a UI which displays all users that are currently connected to the edited document. The users are displayed as a row of avatars. The information about the users is provided by {@link @cs developer-resources/security/token-endpoint#user CKEditor Cloud Services}.</p>
+<p>The <a href="../../../api/module_real-time-collaboration_presencelist-PresenceList.html"><code>PresenceList</code></a> plugin provides a UI which displays all users that are currently connected to the edited document. The users are displayed as a row of avatars. The information about the users is provided by {@link @cs developer-resources/security/token-endpoint#user CKEditor Cloud Services}.</p>
 <p>The presence list UI collapses to a dropdown if six or more users are connected.</p>
 <p>By default, the local user avatar is always present on the list. You can hide it by setting the <a href="../../../api/module_real-time-collaboration_config-PresenceListConfig.html#member-displayMe"><code>displayMe</code></a> configuration flag to <code>false</code>. It is also mark with an outline and listed first.</p>
 <p><img src="../../../assets/img/collaboration-presence-list.png" data-lightbox="true" alt="Real-time collaboration user presence list in CKEditor&nbsp;5 WYSIWYG editor." width="986"></p>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/">ready-to-use <strong>samples</strong> available for download</a>. We prepared samples for all editor types (multi-root included) as well as for the React, Angular and Vue integrations. You may use them as an example or as a starting point for your own integration.</p></div>
 <h3 id="installation-and-configuration"><a class="headerlink" href="#installation-and-configuration">#</a> Installation and configuration</h3>
-<p>The presence list feature requires the <code>RealTimeCollaborativeEditing</code> plugin to work.</p>
-<div class="info-box notice"><p>Before you start, make sure that you are already familiar with the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration guide</a>.</p></div>
-<div class="info-box notice"><p>The presence list feature also needs the <code>PresenceList</code> plugin to be included in your build. If you are using the preset from the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a>, it is already included. If you are creating your custom preset in any other way, you need to include it now.</p></div>
-<p>When you have the <code>PresenceList</code> plugin included in your custom build, you can add the HTML structure and initialize the editor.</p>
-<p>Note that you do not need to manually import the <code>RealTimeCollaborativeEditing</code> plugin anymore. The presence list plugin requires it and will enable it automatically. All you need to do is add the <code>PresenceList</code> plugin to the list of included plugins.</p>
-<p>The plugin configuration consists of three options:</p>
+<div class="info-box notice notice__info"><p>Before you start, make sure that you go through the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide. This section uses it as a starting point and assumes your real-time collaboration editor is working and the <a href="../../../api/module_real-time-collaboration_presencelist-PresenceList.html"><code>PresenceList</code></a> plugin is loaded.</p></div>
+<p>The <a href="../../../api/module_real-time-collaboration_config-PresenceListConfig.html">plugin configuration</a> consists of three options:</p>
 <ul>
-<li><code>container</code> – This is a DOM element that will hold the feature’s UI. It is required.</li>
+<li><code>container</code> – This is a DOM element that will hold the feature’s UI. It is required and already defined if you use the code from the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a> tutorial.</li>
 <li><code>collapseAt</code> – This optional parameter defines how many users need to be connected to switch the presence list to the dropdown view. The default value is <code>6</code>.</li>
-<li><code>onClick</code> – There you can pass a callback function that will be invoked after a click in a presence list member. This function is invoked with two arguments: the <code>user</code> and the <code>element</code>. The first provides the clicked member details and the second is the clicked element. This option is not required.</li>
+<li><code>onClick</code> – Here, you can pass a callback function that will be invoked after a click in a presence list member. This function is invoked with two arguments: the <code>user</code> and the <code>element</code>. The first provides the clicked member details, and the second is the clicked element. This option is not required.</li>
 </ul>
-<p>This is what the updated sample from the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration tutorial</a> with the presence list added looks like:</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;CKEditor 5 Collaboration – Hello World!&lt;/title&gt;
-    &lt;/head&gt;
+<p>You can add the following code to the editor configuration object to get more control over the user presence list:</p>
+<pre class="highlight"><code class="js">const editorConfig = {
+    /* ... */
 
-    &lt;div id="presence-list-container"&gt;&lt;/div&gt;
+    presenceList: {
+        // Existing configuration.
+        container: document.querySelector('#editor-presence'),
 
-    &lt;div id="editor"&gt;&lt;/div&gt;
+        // Additional configuration.
+        collapseAt: 3,
+        onClick: ( user, element ) =&gt; console.log( user, element )
+    },
 
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-        const { ClassicEditor: Editor, EditorWatchdog } = ClassicEditor;
-
-        const watchdog = new EditorWatchdog( Editor );
-
-        watchdog.create( document.querySelector( '#editor' ), {
-            initialData: '&lt;p&gt;Let\'s edit this together!&lt;/p&gt;',
-            toolbar: [ 'bold', 'italic', 'uploadImage' ],
-            cloudServices: {
-                // PROVIDE CORRECT VALUES HERE:
-                tokenUrl: 'https://example.com/cs-token-endpoint',
-                uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
-                webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
-            },
-            collaboration: {
-                channelId: 'document-id'
-            },
-            presenceList: {
-                container: document.querySelector( '#presence-list-container' ),
-                collapseAt: 3,
-                onClick: ( user, element ) =&gt; console.log( user, element )
-            }
-        } )
-        .catch( error =&gt; console.error( error ) );
-    &lt;/script&gt;
-&lt;/html&gt;
+    /* ... */
+}
 </code></pre>
-<p>This is all. You should now see the user presence list above the rich text editor.</p>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/">ready-to-use <strong>samples</strong> available for download</a>. We prepared samples for all editor types (multi-root included) as well as for the React, Angular, and Vue integrations. You may use them as an example or as a starting point for your integration.</p></div>
 <h3 id="theme-customization"><a class="headerlink" href="#theme-customization">#</a> Theme customization</h3>
 <p>Like in the whole CKEditor&nbsp;5 Ecosystem <a href="http://postcss.org">PostCSS</a> is used to handle styles with the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">CSS Variables</a>. The user presence list feature also uses it to make it possible to easily customize its appearance.</p>
 <p>By default a presence list has two states with a dedicated design:</p>
@@ -615,6 +586,7 @@
 </ul>
 <h3 id="example-of-presence-list-customization-with-css-variables"><a class="headerlink" href="#example-of-presence-list-customization-with-css-variables">#</a> Example of presence list customization with CSS Variables</h3>
 <p>With <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables#Inheritance_of_CSS_Variables">inheritance of CSS Variables</a> you can change the default values of variables. You can override these properties with a <code>.css</code> file or place your customizations directly into the <code>&lt;head&gt;</code> section of your page, but in this case, you will need to use a more specific CSS selector than <code>:root</code> (like <code>&lt;body&gt;</code>).</p>
+<p>Add the following styles to the <code>style.css</code> file created in the <a href="real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide:</p>
 <pre class="highlight"><code class="css">/* Change the user presence list hue to greenish. */
 .ck.ck-presence-list {
     --ck-user-avatar-background: #215a11;
@@ -635,14 +607,14 @@
     --ck-presence-list-dropdown-list-max-width: 150px;
 }
 </code></pre>
-<div class="info-box notice"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css">color sheet</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/ckeditor5-ui/globals">other files</a> with CSS Variables in CKEditor&nbsp;5.</p></div>
-<p>If you want to change the color assigned to users, refer to the <a href="../users.html#theme-customization">Users API guide</a>.</p>
+<div class="info-box notice notice__info"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css">color sheet</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/ckeditor5-ui/globals">other files</a> with CSS Variables in CKEditor&nbsp;5.</p></div>
+<p>To change the color assigned to users, refer to the <a href="../users.html#theme-customization">Users API</a> guide.</p>
 <p>The examples above will generate the following presence list designs:</p>
 <p><img src="../../../assets/img/presencelist-css-variables-custom.png" data-lightbox="true" alt="Custom CSS Variables in the user presence list for CKEditor&nbsp;5 WYSIWYG editor." width="684"></p>
 <h2 id="sessions"><a class="headerlink" href="#sessions">#</a> Sessions</h2>
-<p>The <code>Sessions</code> plugin stores information about users and sessions connected to the rich text editor. You may say that the presence list is a visualization of the sessions plugin data.</p>
+<p>The <a href="../../../api/module_real-time-collaboration_realtimecollaborativeediting_sessions-Sessions.html"><code>Sessions</code></a> plugin stores information about users and sessions connected to the rich text editor. You may say that the presence list is a visualization of the sessions plugin data.</p>
 <p>The difference between the sessions plugin and the <a href="../users.html">users plugin</a> is that the latter also keeps information about the users who are not currently connected to the editor (for example, a comment author who is currently offline).</p>
-<p>If your integration uses <code>Context</code> and there are multiple channels used, the <code>Sessions</code> plugin aggregates users connected to all the channels.</p>
+<p>If your integration uses the <a href="../context-and-collaboration-features.html">context feature</a> and there are multiple channels used, the <code>Sessions</code> plugin aggregates users connected to all the channels.</p>
 <p>There are two types of entries in the sessions plugin: connected users and sessions.</p>
 <p>There is one session for each connection to a given channel. For example, for each open editor instance connecting to a given channel ID, there will be a session. Every session has a user. However, the same user can be linked with multiple sessions (for example, the same user opened the same URL in multiple tabs).</p>
 <p>In other words, if the same user (with the same user ID) opens the same document in two different tabs, they will create two sessions but only one user will be connected. You will be able to see two selections in the same document, both in the same color, but only a single user in the <a href="#users-presence-list">user presence list</a>.</p>
@@ -651,12 +623,12 @@
 <p>If you use real-time collaboration features, the <code>Sessions</code> plugin will be loaded and available:</p>
 <pre class="highlight"><code class="js">const sessionsPlugin = editor.plugins.get( 'Sessions' );
 </code></pre>
-<p>Check the {module:real-time-collaboration/realtimecollaborativeediting/sessions~Sessions API of the <code>Session</code> plugin} to learn how to use it.</p>
+<p>Check the <a href="../../../api/module_real-time-collaboration_realtimecollaborativeediting_sessions-Sessions.html">API of the <code>Session</code> plugin</a> to learn how to use it.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Freal-time-collaboration%2Fusers-in-real-time-collaboration.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Freal-time-collaboration%2Fusers-in-real-time-collaboration.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

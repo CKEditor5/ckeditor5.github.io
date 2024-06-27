@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:43 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Comments outside the editor | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -543,203 +543,173 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.2/img/book.svg" alt="guide">Comments outside the editor
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#setting-up-the-context" title="Setting up the context">Setting up the context</a></li><li><a href="#preparing-the-html-structure" title="Preparing the HTML structure">Preparing the HTML structure</a></li><li><a href="#implementing-comments-on-form-fields" title="Implementing comments on form fields">Implementing comments on form fields</a><ol><li><a href="#adding-a-comment-thread" title="Adding a comment thread">Adding a comment thread</a></li><li><a href="#handling-new-comment-threads" title="Handling new comment threads">Handling new comment threads</a></li><li><a href="#handling-removed-comment-threads" title="Handling removed comment threads">Handling removed comment threads</a></li><li><a href="#handling-resolvedreopened-comment-threads" title="Handling resolved/reopened comment threads">Handling resolved/reopened comment threads</a></li><li><a href="#highlighting-an-active-form-field" title="Highlighting an active form field">Highlighting an active form field</a></li></ol></li><li><a href="#full-implementation" title="Full implementation">Full implementation</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#preparing-the-context" title="Preparing the context">Preparing the context</a></li><li><a href="#preparing-the-html-structure" title="Preparing the HTML structure">Preparing the HTML structure</a></li><li><a href="#implementing-comments-on-form-fields" title="Implementing comments on form fields">Implementing comments on form fields</a><ol><li><a href="#creating-a-context" title="Creating a context">Creating a context</a></li><li><a href="#adding-a-comment-thread" title="Adding a comment thread">Adding a comment thread</a></li><li><a href="#handling-new-comment-threads" title="Handling new comment threads">Handling new comment threads</a></li><li><a href="#handling-removed-comment-threads" title="Handling removed comment threads">Handling removed comment threads</a></li><li><a href="#handling-resolvedreopened-comment-threads" title="Handling resolved/reopened comment threads">Handling resolved/reopened comment threads</a></li><li><a href="#highlighting-an-active-form-field" title="Highlighting an active form field">Highlighting an active form field</a></li></ol></li><li><a href="#full-implementation" title="Full implementation">Full implementation</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></nav>
 
 <p>The <a href="../../../api/comments.html">comments feature API</a>, together with <a href="../../../api/module_core_context-Context.html"><code>Context</code></a>, lets you create deeper integrations with your application. One such integration is enabling comments on non-editor form fields.</p>
 <p>In this guide, you will learn how to add this functionality to your application. Additionally, all users connected to the form will be visible in the presence list.</p>
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <div class="info-box notice"><p>We highly recommend reading the <a href="../context-and-collaboration-features.html">Context and collaboration features</a> guide before continuing.</p></div>
 <p>For the purposes of this guide, the CKEditor Cloud Services and the <a href="../real-time-collaboration/real-time-collaboration-integration.html">real-time collaborative comments</a> will be used. However, the comments feature API can also be used in a similar way together with <a href="comments-integration.html">standalone comments</a>.</p>
-<h2 id="setting-up-the-context"><a class="headerlink" href="#setting-up-the-context">#</a> Setting up the context</h2>
+<h2 id="preparing-the-context"><a class="headerlink" href="#preparing-the-context">#</a> Preparing the context</h2>
 <div class="info-box notice"><p>Complementary to this guide, we provide a <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor">ready-to-use <strong>sample</strong></a> and <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor-for-angular">an example of Angular integration</a>.</p><p>You may use them as an example or as a starting point for your own integration.</p></div>
 <p>The goal is to enable comments on non-editor form fields, so we will need to use the context to initialize the comments feature without using the editor.</p>
-<p>First, make sure that your preset includes <a href="../../../api/module_core_context-Context.html"><code>Context</code></a>. You can build it together with the editor, as explained in the <a href="../context-and-collaboration-features.html">Context and collaboration features</a> guide:</p>
-<pre class="highlight"><code class="js">import ContextBase from '@ckeditor/ckeditor5-core/src/context';
-import { ClassicEditor, CloudServices } from 'ckeditor5';
+<p>First, you need to prepare <a href="../../../api/module_core_context-Context.html"><code>Context</code></a> configuration. You can refer to the <a href="../context-and-collaboration-features.html">Context and collaboration features</a> guide for more in-depth explanation:</p>
+<pre class="highlight"><code class="js">import { CloudServices } from 'ckeditor5';
 import { CommentsRepository, NarrowSidebar, WideSidebar, CloudServicesCommentsAdapter, PresenceList } from 'ckeditor5-premium-features';
 
-class Context extends ContextBase {}
+// The context's configuration.
+const contextConfig = {
+    // Plugins specific for the context:
+    plugins: [
+        CloudServices,
+        CommentsRepository,
+        NarrowSidebar,
+        PresenceList,
+        WideSidebar,
+        CloudServicesCommentsAdapter,
+    ],
 
-// Plugins to include in the context.
-Context.builtinPlugins = [
-    CloudServices,
-    CommentsRepository,
-    NarrowSidebar,
-    PresenceList,
-    WideSidebar,
-    CloudServicesCommentsAdapter,
-];
-
-Context.defaultConfig = {
+    // Sidebar and presence list's shared locations:
     sidebar: {
-        container: document.querySelector( '#sidebar' )
+        container: document.querySelector( '#editor-annotations' )
     },
     presenceList: {
-        container: document.querySelector( '#presence-list-container' )
+        container: document.querySelector( '#editor-presence' )
     },
+
     comments: {
         editorConfig: {}
+    },
+
+    // Real-time features configuration:
+    // NOTE: PROVIDE CORRECT VALUES HERE.
+    cloudServices: {
+        tokenUrl: 'https://example.com/cs-token-endpoint',
+        uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
+        webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
+    },
+
+    collaboration: {
+        channelId: 'your-channel-id'
     }
 };
-
-class ClassicEditor extends ClassicEditorBase {};
-
-export default { ClassicEditor, Context };
 </code></pre>
-<p>Even though the editor is available in the preset above, to keep it simple, you will only use the context in this guide.</p>
 <h2 id="preparing-the-html-structure"><a class="headerlink" href="#preparing-the-html-structure">#</a> Preparing the HTML structure</h2>
-<p>When your preset is ready, it is time to prepare an HTML structure with an example form, a presence list, and a sidebar.</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;title&gt;CKEditor&amp;nbsp;5 Collaboration – Hello World!&lt;/title&gt;
+<p>When the context config is ready, it is time to prepare an HTML structure with an example form, a presence list, and a sidebar.</p>
+<pre class="highlight"><code class="html">&lt;div id="editor-presence"&gt;&lt;/div&gt;
 
-    &lt;style type="text/css"&gt;
-        #presence-list-container {
-            width: 679px;
-            margin: 0 auto;
-        }
-
-        #container {
-            display: flex;
-            position: relative;
-            width: 679px;
-            margin: 0 auto;
-        }
-
-        #sidebar {
-            width: 300px;
-        }
-
-        .form-field {
-            padding: 8px 10px;
-            margin-bottom: 20px;
-            outline: none;
-            margin-right: 20px;
-            border: 1px solid #DDDDDD;
-            border-radius: 3px;
-        }
-
-        .form-field.has-comment {
-            background: hsl(55, 98%, 83%);
-        }
-
-        .form-field.active {
-            background: hsl(55, 98%, 68%);
-        }
-
-        .form-field label {
-            display: inline-block;
-            width: 100px;
-        }
-
-        .form-field input, .form-field select {
-            width: 200px;
-            margin: 0px;
-            padding: 0px 8px;
-            height: 29px;
-            background: #FFFFFF;
-            border: 1px solid #DDDDDD;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-
-        .form-field button {
-            width: 29px;
-            margin: 0px;
-            height: 29px;
-            background: #EEEEEE;
-            border: 1px solid #DDDDDD;
-            border-radius: 3px;
-            vertical-align: top;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id="presence-list-container"&gt;&lt;/div&gt;
-
-    &lt;div id="container"&gt;
-        &lt;div class="form"&gt;
-            &lt;div class="form-field" id="field-1" tabindex="-1"&gt;
-                &lt;label&gt;Field 1:&lt;/label&gt;
-                &lt;input name="field-1" type="text" value="Input 1"&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div class="form-field" id="field-2" tabindex="-1"&gt;
-                &lt;label&gt;Field 2:&lt;/label&gt;
-                &lt;input name="field-2" type="text" value="Input 2"&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div class="form-field" id="field-3" tabindex="-1"&gt;
-                &lt;label&gt;Field 3:&lt;/label&gt;
-                &lt;input name="field-3" type="text" value="Input 3"&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div class="form-field" id="field-4" tabindex="-1"&gt;
-                &lt;label&gt;Field 4:&lt;/label&gt;
-                &lt;select name="field-4"&gt;
-                    &lt;option&gt;Option 1&lt;/option&gt;
-                    &lt;option&gt;Option 2&lt;/option&gt;
-                    &lt;option&gt;Option 3&lt;/option&gt;
-                &lt;/select&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div class="form-field" id="field-5" tabindex="-1"&gt;
-                &lt;label&gt;Field 5:&lt;/label&gt;
-                &lt;select name="field-5"&gt;
-                    &lt;option&gt;Option 1&lt;/option&gt;
-                    &lt;option&gt;Option 2&lt;/option&gt;
-                    &lt;option&gt;Option 3&lt;/option&gt;
-                &lt;/select&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div class="form-field" id="field-6" tabindex="-1"&gt;
-                &lt;label&gt;Field 6:&lt;/label&gt;
-                &lt;select name="field-6"&gt;
-                    &lt;option&gt;Option 1&lt;/option&gt;
-                    &lt;option&gt;Option 2&lt;/option&gt;
-                    &lt;option&gt;Option 3&lt;/option&gt;
-                &lt;/select&gt;
-                &lt;button class="add-comment"&gt;+&lt;/button&gt;
-            &lt;/div&gt;
+&lt;div id="container"&gt;
+    &lt;div class="form"&gt;
+        &lt;div class="form-field" id="field-1" tabindex="-1"&gt;
+            &lt;label&gt;Field 1:&lt;/label&gt;
+            &lt;input name="field-1" type="text" value="Input 1"&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
         &lt;/div&gt;
-        &lt;div id="sidebar"&gt;&lt;/div&gt;
+        &lt;div class="form-field" id="field-2" tabindex="-1"&gt;
+            &lt;label&gt;Field 2:&lt;/label&gt;
+            &lt;input name="field-2" type="text" value="Input 2"&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="form-field" id="field-3" tabindex="-1"&gt;
+            &lt;label&gt;Field 3:&lt;/label&gt;
+            &lt;input name="field-3" type="text" value="Input 3"&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="form-field" id="field-4" tabindex="-1"&gt;
+            &lt;label&gt;Field 4:&lt;/label&gt;
+            &lt;select name="field-4"&gt;
+                &lt;option&gt;Option 1&lt;/option&gt;
+                &lt;option&gt;Option 2&lt;/option&gt;
+                &lt;option&gt;Option 3&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="form-field" id="field-5" tabindex="-1"&gt;
+            &lt;label&gt;Field 5:&lt;/label&gt;
+            &lt;select name="field-5"&gt;
+                &lt;option&gt;Option 1&lt;/option&gt;
+                &lt;option&gt;Option 2&lt;/option&gt;
+                &lt;option&gt;Option 3&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="form-field" id="field-6" tabindex="-1"&gt;
+            &lt;label&gt;Field 6:&lt;/label&gt;
+            &lt;select name="field-6"&gt;
+                &lt;option&gt;Option 1&lt;/option&gt;
+                &lt;option&gt;Option 2&lt;/option&gt;
+                &lt;option&gt;Option 3&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;button class="add-comment"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-    ( async () =&gt; {
-        // The channel ID could be, for example, an ID of the form in the database.
-        const channelId = 'your-channel-id';
-        const { Context } = ClassicEditor;
-
-        const context = await Context.create( {
-            cloudServices: {
-                // PROVIDE CORRECT VALUES HERE:
-                tokenUrl: 'https://example.com/cs-token-endpoint',
-                uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
-                webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
-            },
-            // Collaboration configuration for the context:
-            collaboration: {
-                channelId
-            }
-        } );
-
-        const commentsRepository = context.plugins.get( 'CommentsRepository' );
-        const annotations = context.plugins.get( 'Annotations' );
-
-        // The integration code goes here.
-    } )();
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+    &lt;div id="editor-annotations"&gt;&lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
-<p>The form contains several fields as shown above. Each field has a button that allows for creating a comment attached to that field. Each field is assigned a unique ID. Also, the <code>tabindex="-1"</code> attribute was added to make it possible to focus the DOM elements (and add them to the <a href="../../../api/module_utils_focustracker-FocusTracker.html">focus trackers</a>).</p>
+<p>The form contains several fields, as shown above. Each field has a button that allows for creating a comment attached to that field. Each field is assigned a unique ID. Also, the <code>tabindex="-1"</code> attribute was added to make it possible to focus the DOM elements (and add them to the <a href="../../../api/module_utils_focustracker-FocusTracker.html">focus trackers</a>).</p>
+<p>Then, style HTML as below.</p>
+<pre class="highlight"><code class="css">#editor-presence {
+    width: 679px;
+    margin: 0 auto;
+}
+
+#container {
+    display: flex;
+    position: relative;
+    width: 679px;
+    margin: 0 auto;
+}
+
+#editor-annotations {
+    width: 300px;
+}
+
+.form-field {
+    padding: 8px 10px;
+    margin-bottom: 20px;
+    outline: none;
+    margin-right: 20px;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+}
+
+.form-field.has-comment {
+    background: hsl(55, 98%, 83%);
+}
+
+.form-field.active {
+    background: hsl(55, 98%, 68%);
+}
+
+.form-field label {
+    display: inline-block;
+    width: 100px;
+}
+
+.form-field input, .form-field select {
+    width: 200px;
+    margin: 0px;
+    padding: 0px 8px;
+    height: 29px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.form-field button {
+    width: 29px;
+    margin: 0px;
+    height: 29px;
+    background: #EEEEEE;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    vertical-align: top;
+}
+</code></pre>
 <h2 id="implementing-comments-on-form-fields"><a class="headerlink" href="#implementing-comments-on-form-fields">#</a> Implementing comments on form fields</h2>
-<p>The integration will meet the following requirements:</p>
+<p>Now, it is time to integrate comments with our custom UI. The integration will meet the following requirements:</p>
 <ol>
 <li>It will be possible to add a comment thread to any form field.</li>
 <li>The comments should be sent, received, and handled in real-time.</li>
@@ -747,92 +717,114 @@ export default { ClassicEditor, Context };
 <li>A button click creates a comment thread or activates an existing thread.</li>
 <li>There should be a visible indication that there is a comment thread on a given field.</li>
 </ol>
+<h3 id="creating-a-context"><a class="headerlink" href="#creating-a-context">#</a> Creating a context</h3>
+<p>First, create a context instance using the <code>contextConfig</code> defined earlier.</p>
+<pre class="highlight"><code class="js">import { Context } from 'ckeditor5';
+
+Context.create( contextConfig ).then( context =&gt; {
+    const commentsRepository = context.plugins.get( 'CommentsRepository' );
+    const annotations = context.plugins.get( 'Annotations' );
+    const channelId = context.config.get( 'collaboration.channelId' );
+
+    // ...
+} );
+</code></pre>
 <h3 id="adding-a-comment-thread"><a class="headerlink" href="#adding-a-comment-thread">#</a> Adding a comment thread</h3>
 <p>To create a new comment thread attached to a form field, use <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html"><code>CommentsRepository#openNewCommentThread()</code></a>.</p>
-<pre class="highlight"><code class="js">document.querySelectorAll( '.form-field button' ).forEach( button =&gt; {
-    const field = button.parentNode;
+<pre class="highlight"><code class="js">Context.create( contextConfig ).then( context =&gt; {
 
-    button.addEventListener( 'click', () =&gt; {
-        // Thread ID must be unique.
-        // Use field ID + current date time to generate a unique thread ID.
-        const threadId = field.id + ':' + new Date().getTime();
+    // ...
 
-        commentsRepository.openNewCommentThread( {
-            channelId,
-            threadId,
-            target: () =&gt; getAnnotationTarget( field, threadId ),
-            // `context` is additional information about what the comment was made on.
-            // It can be left empty but it also can be set to a custom message.
-            // The value is used when the comment is displayed in comments archive.
-            context: {
-                type: 'text',
-                value: getCustomContextMessage( field )
-            },
-            // `isResolvable` indicates whether the comment thread can become resolved.
-            // Set this flag to `false` to disable the possibility of resolving given comment thread.
-            // You will still be able to remove the comment thread.
-            isResolvable: true
+    document.querySelectorAll( '.form-field button' ).forEach( button =&gt; {
+        const field = button.parentNode;
+
+        button.addEventListener( 'click', () =&gt; {
+            // Thread ID must be unique.
+            // Use field ID + current date time to generate a unique thread ID.
+            const threadId = field.id + ':' + new Date().getTime();
+
+            commentsRepository.openNewCommentThread( {
+                channelId,
+                threadId,
+                target: () =&gt; getAnnotationTarget( field, threadId ),
+                // `context` is additional information about what the comment was made on.
+                // It can be left empty but it also can be set to a custom message.
+                // The value is used when the comment is displayed in comments archive.
+                context: {
+                    type: 'text',
+                    value: getCustomContextMessage( field )
+                },
+                // `isResolvable` indicates whether the comment thread can become resolved.
+                // Set this flag to `false` to disable the possibility of resolving given comment thread.
+                // You will still be able to remove the comment thread.
+                isResolvable: true
+            } );
         } );
     } );
-} );
 
-function getCustomContextMessage( field ) {
-    // This function should return the custom context value for given form field.
-    // It will depend on your application.
-    // Below, we assume HTML structure from this sample.
-    return field.previousSibling.innerText + ' ' + field.value;
-}
+    function getCustomContextMessage( field ) {
+        // This function should return the custom context value for given form field.
+        // It will depend on your application.
+        // Below, we assume HTML structure from this sample.
+        return field.previousSibling.innerText + ' ' + field.value;
+    }
+} );
 </code></pre>
 <h3 id="handling-new-comment-threads"><a class="headerlink" href="#handling-new-comment-threads">#</a> Handling new comment threads</h3>
 <p>Define a callback that will handle comment threads added to the comments repository – both created by the local user and incoming from remote users. For that, use the <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#event-addCommentThread"><code>CommentsRepository#addCommentThread</code> event</a>.</p>
 <p>Note that the event name includes the context channel ID. Only comments “added to the context” will be handled.</p>
-<pre class="highlight"><code class="js">// This `Map` is used to store all open threads for a given field.
-// An open thread is a non-resolved, non-removed thread.
-// Keys are field IDs and values are arrays with all opened threads on this field.
-// Since it is possible to create multiple comment threads on the same field, this `Map`
-// is used to check if a given field has an open thread.
-const commentThreadsForField = new Map();
+<pre class="highlight"><code class="js">Context.create( contextConfig ).then( context =&gt; {
 
-commentsRepository.on( 'addCommentThread:' + channelId, ( evt, data ) =&gt; {
-    handleNewCommentThread( data.threadId );
-}, { priority: 'low' } );
+    // ...
 
-function handleNewCommentThread( threadId ) {
-    // Get the thread instance and the related DOM element using the thread ID.
-    // Note that thread ID format is "fieldId:time".
-    const thread = commentsRepository.getCommentThread( threadId );
-    const field = document.getElementById( threadId.split( ':' )[ 0 ] );
+    // This `Map` is used to store all open threads for a given field.
+    // An open thread is a non-resolved, non-removed thread.
+    // Keys are field IDs, and values are arrays with all opened threads on this field.
+    // Since it is possible to create multiple comment threads on the same field, this `Map`
+    // is used to check if a given field has an open thread.
+    const commentThreadsForField = new Map();
 
-    // If the thread is not attached yet, attach it.
-    // This is the difference between local and remote comments.
-    // Locally created comments are attached in the `openNewCommentThread()` call.
-    // Remotely created comments need to be attached when they are received.
-    if ( !thread.isAttached ) {
-        thread.attachTo( () =&gt; thread.isResolved ? null : field );
+    commentsRepository.on( 'addCommentThread:' + channelId, ( evt, data ) =&gt; {
+        handleNewCommentThread( data.threadId );
+    }, { priority: 'low' } );
+
+    function handleNewCommentThread( threadId ) {
+        // Get the thread instance and the related DOM element using the thread ID.
+        // Note that thread ID format is "fieldId:time".
+        const thread = commentsRepository.getCommentThread( threadId );
+        const field = document.getElementById( threadId.split( ':' )[ 0 ] );
+
+        // If the thread is not attached yet, attach it.
+        // This is the difference between local and remote comments.
+        // Locally created comments are attached in the `openNewCommentThread()` call.
+        // Remotely created comments need to be attached when they are received.
+        if ( !thread.isAttached ) {
+            thread.attachTo( () =&gt; thread.isResolved ? null : field );
+        }
+
+        // Add a CSS class to the field to show that it has a comment.
+        field.classList.add( 'has-comment' );
+
+        // Get all open threads for given field.
+        const openThreads = commentThreadsForField.get( field.id ) || [];
+
+        // When an annotation is created or reopened we need to bound its focus manager with the field.
+        // Thanks to that, the annotation will be focused whenever the field is focused as well.
+        // However, this can be done only for one annotation, so we do it only if there are no open
+        // annotations for a given field.
+        if ( !openThreads.length ) {
+            const threadView = commentsRepository._threadToController.get( thread ).view;
+            const annotation = annotations.collection.getByInnerView( threadView );
+
+            annotation.focusableElements.add( field );
+        }
+
+        // Add new thread to open threads list.
+        openThreads.push( thread );
+
+        commentThreadsForField.set( field.id, openThreads );
     }
-
-    // Add a CSS class to the field to show that it has a comment.
-    field.classList.add( 'has-comment' );
-
-    // Get all open threads for given field.
-    const openThreads = commentThreadsForField.get( field.id ) || [];
-
-    // When an annotation is created or reopened we need to bound its focus manager with the field.
-    // Thanks to that, the annotation will be focused whenever the field is focused as well.
-    // However, this can be done only for one annotation, so we do it only if there are no open
-    // annotations for given field.
-    if ( !openThreads.length ) {
-        const threadView = commentsRepository._threadToController.get( thread ).view;
-        const annotation = annotations.collection.getByInnerView( threadView );
-
-        annotation.focusableElements.add( field );
-    }
-
-    // Add new thread to open threads list.
-    openThreads.push( thread );
-
-    commentThreadsForField.set( field.id, openThreads );
-}
+} );
 </code></pre>
 <p>When the context is initialized, there could already be some comment threads created by remote users and loaded while the editor was initialized. These comments need to be handled as well.</p>
 <pre class="highlight"><code class="js">for ( const thread of commentsRepository.getCommentThreads( { channelId } ) ) {
@@ -844,116 +836,311 @@ function handleNewCommentThread( threadId ) {
 </code></pre>
 <h3 id="handling-removed-comment-threads"><a class="headerlink" href="#handling-removed-comment-threads">#</a> Handling removed comment threads</h3>
 <p>You should also handle removing comment threads. To provide that, use the <a href="../../../api/module_comments_comments_commentsrepository-RemoveCommentThreadEvent.html"><code>CommentsRepository#removeCommentThread</code> event</a>. Again, note the event name.</p>
-<pre class="highlight"><code class="js">commentsRepository.on( 'removeCommentThread:' + channelId, ( evt, data ) =&gt; {
-    handleRemovedCommentThread( data.threadId );
-}, { priority: 'low' } );
+<pre class="highlight"><code class="js">Context.create( contextConfig ).then( context =&gt; {
 
-function handleRemovedCommentThread( threadId ) {
-    // Note that thread ID format is "fieldId:time".
-    const field = document.getElementById( threadId.split( ':' )[ 0 ] );
-    const openThreads = commentThreadsForField.get( field.id );
-    const threadIndex = openThreads.findIndex( openThread =&gt; openThread.id === threadId );
+    // ...
 
-    // Remove this comment thread from the list of open comment threads for given field.
-    openThreads.splice( threadIndex, 1 );
+    commentsRepository.on( 'removeCommentThread:' + channelId, ( evt, data ) =&gt; {
+        handleRemovedCommentThread( data.threadId );
+    }, { priority: 'low' } );
 
-    // In `handleNewCommentThread` we bound the first comment thread annotation focus manager with the field.
-    // If we are removing that comment thread, we need to handle field focus as well.
-    // After removing or resolving the first thread you should field focus to the next thread's annotation.
-    if ( threadIndex === 0 ) {
-        const thread = commentsRepository.getCommentThread( threadId );
-        const threadController = commentsRepository._threadToController.get( thread );
+    function handleRemovedCommentThread( threadId ) {
+        // Note that thread ID format is "fieldId:time".
+        const field = document.getElementById( threadId.split( ':' )[ 0 ] );
+        const openThreads = commentThreadsForField.get( field.id );
+        const threadIndex = openThreads.findIndex( openThread =&gt; openThread.id === threadId );
 
-        // Remove the old binding between removed annotation and field.
-        if ( threadController ) {
-            const threadView = threadController.view;
-            const annotation = annotations.collection.getByInnerView( threadView );
+        // Remove this comment thread from the list of open comment threads for given field.
+        openThreads.splice( threadIndex, 1 );
 
-            annotation.focusableElements.remove( field );
+        // In `handleNewCommentThread` we bound the first comment thread annotation focus manager with the field.
+        // If we are removing that comment thread, we need to handle field focus as well.
+        // After removing or resolving the first thread you should field focus to the next thread's annotation.
+        if ( threadIndex === 0 ) {
+            const thread = commentsRepository.getCommentThread( threadId );
+            const threadController = commentsRepository._threadToController.get( thread );
+
+            // Remove the old binding between removed annotation and field.
+            if ( threadController ) {
+                const threadView = threadController.view;
+                const annotation = annotations.collection.getByInnerView( threadView );
+
+                annotation.focusableElements.remove( field );
+            }
+
+            const newActiveThread = commentThreadsForField[ 0 ];
+
+            // If there other open threads, bind another annotation to the field.
+            if ( newActiveThread ) {
+                const newThreadView = commentsRepository._threadToController.get( newActiveThread ).view;
+                const newAnnotation = annotations.collection.getByInnerView( newThreadView );
+
+                newAnnotation.focusableElements.add( field );
+            }
         }
 
-        const newActiveThread = commentThreadsForField[ 0 ];
-
-        // If there other open threads, bind another annotation to the field.
-        if ( newActiveThread ) {
-            const newThreadView = commentsRepository._threadToController.get( newActiveThread ).view;
-            const newAnnotation = annotations.collection.getByInnerView( newThreadView );
-
-            newAnnotation.focusableElements.add( field );
+        // If there are no more active threads the CSS classes should be removed.
+        if ( openThreads.length === 0 ) {
+            field.classList.remove( 'has-comment', 'active' );
         }
-    }
 
-    // If there are no more active threads the CSS classes should be removed.
-    if ( openThreads.length === 0 ) {
-        field.classList.remove( 'has-comment', 'active' );
+        commentThreadsForField.set( field.id, openThreads );
     }
-
-    commentThreadsForField.set( field.id, openThreads );
-}
+} );
 </code></pre>
 <h3 id="handling-resolvedreopened-comment-threads"><a class="headerlink" href="#handling-resolvedreopened-comment-threads">#</a> Handling resolved/reopened comment threads</h3>
 <p>Handling the resolving of comment threads is significant to keep your UI up to date. To manage that, use the <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#event-resolveCommentThread"><code>CommentsRepository#resolveCommentThread</code> event</a> and, when the thread is opened again, <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#event-reopenCommentThread"><code>CommentsRepository#reopenCommentThread</code> event</a>. As with the previous point, note the event name.</p>
-<p>After resolving, the comment thread is removed from the sidebar, however, you can still obtain the annotation from <code>Annotations#collection</code> and render in a custom comments archive UI.</p>
-<pre class="highlight"><code class="js">commentsRepository.on( 'resolveCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
-    handleRemovedCommentThread( threadId );
-}, { priority: 'low' } );
+<p>After resolving, the comment thread is removed from the sidebar, however, you can still obtain the annotation from the <code>Annotations#collection</code> and render it in a custom comments archive UI.</p>
+<pre class="highlight"><code class="js">Context.create( contextConfig ).then( context =&gt; {
 
-commentsRepository.on( 'reopenCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
-    handleNewCommentThread( threadId );
-}, { priority: 'low' } );
+    // ...
+
+    commentsRepository.on( 'resolveCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
+        handleRemovedCommentThread( threadId );
+    }, { priority: 'low' } );
+
+    commentsRepository.on( 'reopenCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
+        handleNewCommentThread( threadId );
+    }, { priority: 'low' } );
+} );
 </code></pre>
 <h3 id="highlighting-an-active-form-field"><a class="headerlink" href="#highlighting-an-active-form-field">#</a> Highlighting an active form field</h3>
 <p>To make the UI more responsive, it is a good idea to highlight the form field corresponding to the active comment. To add this improvement, add a listener to the <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html"><code>CommentsRepository#activeCommentThread</code></a> observable property.</p>
-<pre class="highlight"><code class="js">commentsRepository.on( 'change:activeCommentThread', ( evt, propName, activeThread ) =&gt; {
-    // When an active comment thread changes, remove the 'active' class from all the fields.
-    document.querySelectorAll( '.form-field.active' )
-        .forEach( el =&gt; el.classList.remove( 'active' ) );
+<pre class="highlight"><code class="js">Context.create( contextConfig ).then( context =&gt; {
 
-    // If `activeThread` is not null, highlight the corresponding form field.
-    // Handle only comments added to the context channel ID.
-    if ( activeThread &amp;&amp; activeThread.channelId == channelId ) {
-        const field = document.getElementById( activeThread.id.split( ':' )[ 0 ] );
+    // ...
 
-        field.classList.add( 'active' );
-    }
+    commentsRepository.on( 'change:activeCommentThread', ( evt, propName, activeThread ) =&gt; {
+        // When an active comment thread changes, remove the 'active' class from all the fields.
+        document.querySelectorAll( '.form-field.active' )
+            .forEach( el =&gt; el.classList.remove( 'active' ) );
+
+        // If `activeThread` is not null, highlight the corresponding form field.
+        // Handle only comments added to the context channel ID.
+        if ( activeThread &amp;&amp; activeThread.channelId == channelId ) {
+            const field = document.getElementById( activeThread.id.split( ':' )[ 0 ] );
+
+            field.classList.add( 'active' );
+        }
+    } );
 } );
 </code></pre>
 <h2 id="full-implementation"><a class="headerlink" href="#full-implementation">#</a> Full implementation</h2>
 <p>Below you can find the final solution.</p>
-<p>Build source file:</p>
-<pre class="highlight"><code class="js">import ContextBase from '@ckeditor/ckeditor5-core/src/context';
-import { ClassicEditor as ClassicEditorBase, CloudServices } from 'ckeditor5';
+<p>This is the content of the <code>main.js</code> file:</p>
+<pre class="highlight"><code class="js">import { CloudServices, Context } from 'ckeditor5';
 import { CommentsRepository, NarrowSidebar, WideSidebar, CloudServicesCommentsAdapter, PresenceList } from 'ckeditor5-premium-features';
 
-class Context extends ContextBase {}
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 
-// Plugins to include in the context.
-Context.builtinPlugins = [
-    CloudServices,
-    CommentsRepository,
-    NarrowSidebar,
-    PresenceList,
-    WideSidebar,
-    CloudServicesCommentsAdapter,
-];
+// The context's configuration.
+const contextConfig = {
+    // Plugins specific for the context:
+    plugins: [
+        CloudServices,
+        CommentsRepository,
+        NarrowSidebar,
+        PresenceList,
+        WideSidebar,
+        CloudServicesCommentsAdapter,
+    ],
 
-Context.defaultConfig = {
+    // Sidebar and presence list's shared locations:
     sidebar: {
-        container: document.querySelector( '#sidebar' )
+        container: document.querySelector( '#editor-annotations' )
     },
     presenceList: {
-        container: document.querySelector( '#presence-list-container' )
+        container: document.querySelector( '#editor-presence' )
     },
+
     comments: {
         editorConfig: {}
+    },
+
+    // Real-time features configuration:
+    // NOTE: PROVIDE CORRECT VALUES HERE.
+    cloudServices: {
+        tokenUrl: 'https://example.com/cs-token-endpoint',
+        uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
+        webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
+    },
+
+    collaboration: {
+        channelId: 'your-channel-id'
     }
 };
 
-class ClassicEditor extends ClassicEditorBase {};
+Context.create( contextConfig ).then( context =&gt; {
+    const commentsRepository = context.plugins.get( 'CommentsRepository' );
+    const annotations = context.plugins.get( 'Annotations' );
 
-export default { ClassicEditor, Context };
+    // This `Map` is used to store all open threads for a given field.
+    // An open thread is a non-resolved, non-removed thread.
+    // Keys are field IDs and values are arrays with all opened threads on this field.
+    // Since it is possible to create multiple comment threads on the same field, this `Map`
+    // is used to check if a given field has an open thread.
+    const commentThreadsForField = new Map();
+
+    for ( const thread of commentsRepository.getCommentThreads( { channelId } ) ) {
+        // Ignore threads that have been already resolved.
+        if ( !thread.isResolved ) {
+            handleNewCommentThread(thread.id);
+        }
+    }
+
+    commentsRepository.on( 'addCommentThread:' + channelId, ( evt, data ) =&gt; {
+        handleNewCommentThread( data.threadId );
+    }, { priority: 'low' } );
+
+    commentsRepository.on( 'resolveCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
+        handleRemovedCommentThread( threadId );
+    }, { priority: 'low' } );
+
+    commentsRepository.on( 'reopenCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
+        handleNewCommentThread( threadId );
+    }, { priority: 'low' } );
+
+    commentsRepository.on( 'removeCommentThread:' + channelId, ( evt, data ) =&gt; {
+        handleRemovedCommentThread( data.threadId );
+    }, { priority: 'low' } );
+
+    document.querySelectorAll( '.form-field button' ).forEach( button =&gt; {
+        const field = button.parentNode;
+
+        button.addEventListener( 'click', () =&gt; {
+            // Thread ID must be unique.
+            // Use field ID + current date time to generate a unique thread ID.
+            const threadId = field.id + ':' + new Date().getTime();
+
+            commentsRepository.openNewCommentThread( {
+                channelId,
+                threadId,
+                target: () =&gt; getAnnotationTarget( field, threadId ),
+                // `context` is additional information about what the comment was made on.
+                // It can be left empty but it also can be set to a custom message.
+                // The value is used when the comment is displayed in comments archive.
+                context: {
+                    type: 'text',
+                    value: getCustomContextMessage( field )
+                },
+                // `isResolvable` indicates whether the comment thread can become resolved.
+                // Set this flag to `false` to disable the possibility of resolving given comment thread.
+                // You will still be able to remove the comment thread.
+                isResolvable: true
+            } );
+        } );
+    } );
+
+    commentsRepository.on( 'change:activeCommentThread', ( evt, propName, activeThread ) =&gt; {
+        // When an active comment thread changes, remove the 'active' class from all the fields.
+        document.querySelectorAll( '.form-field.active' )
+                .forEach( el =&gt; el.classList.remove( 'active' ) );
+
+        // If `activeThread` is not null, highlight the corresponding form field.
+        // Handle only comments added to the context channel ID.
+        if ( activeThread &amp;&amp; activeThread.channelId == channelId ) {
+            const field = document.getElementById( activeThread.id.split( ':' )[ 0 ] );
+
+            field.classList.add( 'active' );
+        }
+    } );
+
+    function getCustomContextMessage( field ) {
+        // This function should return the custom context value for given form field.
+        // It will depend on your application.
+        // Below, we assume HTML structure from this sample.
+        return field.previousSibling.innerText + ' ' + field.value;
+    }
+
+    function handleNewCommentThread( threadId ) {
+        // Get the thread instance and the related DOM element using the thread ID.
+        // Note that thread ID format is "fieldId:time".
+        const thread = commentsRepository.getCommentThread( threadId );
+        const field = document.getElementById( threadId.split( ':' )[ 0 ] );
+
+        // If the thread is not attached yet, attach it.
+        // This is the difference between local and remote comments.
+        // Locally created comments are attached in the `openNewCommentThread()` call.
+        // Remotely created comments need to be attached when they are received.
+        if ( !thread.isAttached ) {
+            thread.attachTo( () =&gt; thread.isResolved ? null : field );
+        }
+
+        // Add a CSS class to the field to show that it has a comment.
+        field.classList.add( 'has-comment' );
+
+        // Get all open threads for given field.
+        const openThreads = commentThreadsForField.get( field.id ) || [];
+
+        // When an annotation is created or reopened we need to bound its focus manager with the field.
+        // Thanks to that, the annotation will be focused whenever the field is focused as well.
+        // However, this can be done only for one annotation, so we do it only if there are no open
+        // annotations for given field.
+        if ( !openThreads.length ) {
+            const threadView = commentsRepository._threadToController.get( thread ).view;
+            const annotation = annotations.collection.getByInnerView( threadView );
+
+            annotation.focusableElements.add( field );
+        }
+
+        // Add new thread to open threads list.
+        openThreads.push( thread );
+
+        commentThreadsForField.set( field.id, openThreads );
+    }
+
+    function getAnnotationTarget( target, threadId ) {
+        const thread = commentsRepository.getCommentThread( threadId );
+
+        return thread.isResolved ? null : target;
+    }
+
+    function handleRemovedCommentThread( threadId ) {
+        // Note that thread ID format is "fieldId:time".
+        const field = document.getElementById( threadId.split( ':' )[ 0 ] );
+        const openThreads = commentThreadsForField.get( field.id );
+        const threadIndex = openThreads.findIndex( openThread =&gt; openThread.id === threadId );
+
+        // Remove this comment thread from the list of open comment threads for given field.
+        openThreads.splice( threadIndex, 1 );
+
+        // In `handleNewCommentThread` we bound the first comment thread annotation focus manager with the field.
+        // If we are removing that comment thread, we need to handle field focus as well.
+        // After removing or resolving the first thread you should field focus to the next thread's annotation.
+        if ( threadIndex === 0 ) {
+            const thread = commentsRepository.getCommentThread( threadId );
+            const threadController = commentsRepository._threadToController.get( thread );
+
+            // Remove the old binding between removed annotation and field.
+            if ( threadController ) {
+                const threadView = threadController.view;
+                const annotation = annotations.collection.getByInnerView( threadView );
+
+                annotation.focusableElements.remove( field );
+            }
+
+            const newActiveThread = openThreads[ 0 ];
+
+            // If there other open threads, bind another annotation to the field.
+            if ( newActiveThread ) {
+                const newThreadView = commentsRepository._threadToController.get( newActiveThread ).view;
+                const newAnnotation = annotations.collection.getByInnerView( newThreadView );
+
+                newAnnotation.focusableElements.add( field );
+            }
+        }
+
+        // If there are no more active threads the CSS classes should be removed.
+        if ( openThreads.length === 0 ) {
+            field.classList.remove( 'has-comment', 'active' );
+        }
+
+        commentThreadsForField.set( field.id, openThreads );
+    }
+} );
 </code></pre>
-<p>The HTML structure and the integration code:</p>
+<p>The HTML structure and styles of the <code>index.html</code> file:</p>
 <pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -961,7 +1148,7 @@ export default { ClassicEditor, Context };
     &lt;title&gt;CKEditor5 Collaboration – Hello World!&lt;/title&gt;
 
     &lt;style type="text/css"&gt;
-        #presence-list-container {
+        #editor-presence {
             width: 679px;
             margin: 0 auto;
         }
@@ -973,7 +1160,7 @@ export default { ClassicEditor, Context };
             margin: 0 auto;
         }
 
-        #sidebar {
+        #editor-annotations {
             width: 300px;
         }
 
@@ -1023,7 +1210,7 @@ export default { ClassicEditor, Context };
 &lt;/head&gt;
 
 &lt;body&gt;
-    &lt;div id="presence-list-container"&gt;&lt;/div&gt;
+    &lt;div id="editor-presence"&gt;&lt;/div&gt;
 
     &lt;div id="container"&gt;
         &lt;div class="form"&gt;
@@ -1070,197 +1257,11 @@ export default { ClassicEditor, Context };
                 &lt;button class="add-comment"&gt;+&lt;/button&gt;
             &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div id="sidebar"&gt;&lt;/div&gt;
+
+        &lt;div id="editor-annotations"&gt;&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-    ( async () =&gt; {
-        // The channel ID could be, for example, an ID of the form in the database.
-        const channelId = 'your-channel-id';
-        const { Context } = ClassicEditor;
-
-        const context = await Context.create( {
-            cloudServices: {
-                // PROVIDE CORRECT VALUES HERE:
-                tokenUrl: 'https://example.com/cs-token-endpoint',
-                uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
-                webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
-            },
-            // Collaboration configuration for the context:
-            collaboration: {
-                channelId
-            }
-        } );
-
-        // This `Map` is used to store all open threads for a given field.
-        // An open thread is a non-resolved, non-removed thread.
-        // Keys are field IDs and values are arrays with all opened threads on this field.
-        // Since it is possible to create multiple comment threads on the same field, this `Map`
-        // is used to check if a given field has an open thread.
-        const commentThreadsForField = new Map();
-
-        const commentsRepository = context.plugins.get( 'CommentsRepository' );
-        const annotations = context.plugins.get( 'Annotations' );
-
-        for ( const thread of commentsRepository.getCommentThreads( { channelId } ) ) {
-            // Ignore threads that have been already resolved.
-            if ( !thread.isResolved ) {
-                handleNewCommentThread(thread.id);
-            }
-        }
-
-        commentsRepository.on( 'addCommentThread:' + channelId, ( evt, data ) =&gt; {
-            handleNewCommentThread( data.threadId );
-        }, { priority: 'low' } );
-
-        commentsRepository.on( 'resolveCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
-            handleRemovedCommentThread( threadId );
-        }, { priority: 'low' } );
-
-        commentsRepository.on( 'reopenCommentThread:' + channelId, ( evt, { threadId } ) =&gt; {
-            handleNewCommentThread( threadId );
-        }, { priority: 'low' } );
-
-        commentsRepository.on( 'removeCommentThread:' + channelId, ( evt, data ) =&gt; {
-            handleRemovedCommentThread( data.threadId );
-        }, { priority: 'low' } );
-
-        document.querySelectorAll( '.form-field button' ).forEach( button =&gt; {
-            const field = button.parentNode;
-
-            button.addEventListener( 'click', () =&gt; {
-                // Thread ID must be unique.
-                // Use field ID + current date time to generate a unique thread ID.
-                const threadId = field.id + ':' + new Date().getTime();
-
-                commentsRepository.openNewCommentThread( {
-                    channelId,
-                    threadId,
-                    target: () =&gt; getAnnotationTarget( field, threadId ),
-                    // `context` is additional information about what the comment was made on.
-                    // It can be left empty but it also can be set to a custom message.
-                    // The value is used when the comment is displayed in comments archive.
-                    context: {
-                        type: 'text',
-                        value: getCustomContextMessage( field )
-                    },
-                    // `isResolvable` indicates whether the comment thread can become resolved.
-                    // Set this flag to `false` to disable the possibility of resolving given comment thread.
-                    // You will still be able to remove the comment thread.
-                    isResolvable: true
-                } );
-            } );
-        } );
-
-        commentsRepository.on( 'change:activeCommentThread', ( evt, propName, activeThread ) =&gt; {
-            // When an active comment thread changes, remove the 'active' class from all the fields.
-            document.querySelectorAll( '.form-field.active' )
-                    .forEach( el =&gt; el.classList.remove( 'active' ) );
-
-            // If `activeThread` is not null, highlight the corresponding form field.
-            // Handle only comments added to the context channel ID.
-            if ( activeThread &amp;&amp; activeThread.channelId == channelId ) {
-                const field = document.getElementById( activeThread.id.split( ':' )[ 0 ] );
-
-                field.classList.add( 'active' );
-            }
-        } );
-
-        function getCustomContextMessage( field ) {
-            // This function should return the custom context value for given form field.
-            // It will depend on your application.
-            // Below, we assume HTML structure from this sample.
-            return field.previousSibling.innerText + ' ' + field.value;
-        }
-
-        function handleNewCommentThread( threadId ) {
-            // Get the thread instance and the related DOM element using the thread ID.
-            // Note that thread ID format is "fieldId:time".
-            const thread = commentsRepository.getCommentThread( threadId );
-            const field = document.getElementById( threadId.split( ':' )[ 0 ] );
-
-            // If the thread is not attached yet, attach it.
-            // This is the difference between local and remote comments.
-            // Locally created comments are attached in the `openNewCommentThread()` call.
-            // Remotely created comments need to be attached when they are received.
-            if ( !thread.isAttached ) {
-                thread.attachTo( () =&gt; thread.isResolved ? null : field );
-            }
-
-            // Add a CSS class to the field to show that it has a comment.
-            field.classList.add( 'has-comment' );
-
-            // Get all open threads for given field.
-            const openThreads = commentThreadsForField.get( field.id ) || [];
-
-            // When an annotation is created or reopened we need to bound its focus manager with the field.
-            // Thanks to that, the annotation will be focused whenever the field is focused as well.
-            // However, this can be done only for one annotation, so we do it only if there are no open
-            // annotations for given field.
-            if ( !openThreads.length ) {
-                const threadView = commentsRepository._threadToController.get( thread ).view;
-                const annotation = annotations.collection.getByInnerView( threadView );
-
-                annotation.focusableElements.add( field );
-            }
-
-            // Add new thread to open threads list.
-            openThreads.push( thread );
-
-            commentThreadsForField.set( field.id, openThreads );
-        }
-
-        function getAnnotationTarget( target, threadId ) {
-            const thread = commentsRepository.getCommentThread( threadId );
-
-            return thread.isResolved ? null : target;
-        }
-
-        function handleRemovedCommentThread( threadId ) {
-            // Note that thread ID format is "fieldId:time".
-            const field = document.getElementById( threadId.split( ':' )[ 0 ] );
-            const openThreads = commentThreadsForField.get( field.id );
-            const threadIndex = openThreads.findIndex( openThread =&gt; openThread.id === threadId );
-
-            // Remove this comment thread from the list of open comment threads for given field.
-            openThreads.splice( threadIndex, 1 );
-
-            // In `handleNewCommentThread` we bound the first comment thread annotation focus manager with the field.
-            // If we are removing that comment thread, we need to handle field focus as well.
-            // After removing or resolving the first thread you should field focus to the next thread's annotation.
-            if ( threadIndex === 0 ) {
-                const thread = commentsRepository.getCommentThread( threadId );
-                const threadController = commentsRepository._threadToController.get( thread );
-
-                // Remove the old binding between removed annotation and field.
-                if ( threadController ) {
-                    const threadView = threadController.view;
-                    const annotation = annotations.collection.getByInnerView( threadView );
-
-                    annotation.focusableElements.remove( field );
-                }
-
-                const newActiveThread = openThreads[ 0 ];
-
-                // If there other open threads, bind another annotation to the field.
-                if ( newActiveThread ) {
-                    const newThreadView = commentsRepository._threadToController.get( newActiveThread ).view;
-                    const newAnnotation = annotations.collection.getByInnerView( newThreadView );
-
-                    newAnnotation.focusableElements.add( field );
-                }
-            }
-
-            // If there are no more active threads the CSS classes should be removed.
-            if ( openThreads.length === 0 ) {
-                field.classList.remove( 'has-comment', 'active' );
-            }
-
-            commentThreadsForField.set( field.id, openThreads );
-        }
-    } )();
-    &lt;/script&gt;
+    &lt;script src="main.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -1382,7 +1383,7 @@ export default { ClassicEditor, Context };
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcomments%2Fcomments-outside-editor.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcomments%2Fcomments-outside-editor.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

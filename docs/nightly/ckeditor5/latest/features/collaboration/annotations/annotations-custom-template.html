@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:20 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Custom template for annotations | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -543,7 +543,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.2/img/book.svg" alt="guide">Custom template for annotations
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#how-it-works" title="How it works">How it works</a></li><li><a href="#views-for-comments-and-suggestions" title="Views for comments and suggestions">Views for comments and suggestions</a></li><li><a href="#changing-the-view-template" title="Changing the view template">Changing the view template</a></li><li><a href="#example-adding-a-new-button" title="Example: Adding a new button">Example: Adding a new button</a><ol><li><a href="#styling-for-an-important-comment" title="Styling for an important comment">Styling for an important comment</a></li><li><a href="#creating-a-button-and-adding-it-to-the-template" title="Creating a button and adding it to the template">Creating a button and adding it to the template</a></li><li><a href="#enabling-the-custom-view" title="Enabling the custom view">Enabling the custom view</a></li><li><a href="#html-structure-and-initialization" title="HTML structure and initialization">HTML structure and initialization</a></li><li><a href="#live-demo" title="Live demo">Live demo</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#how-it-works" title="How it works">How it works</a></li><li><a href="#views-for-comments-and-suggestions" title="Views for comments and suggestions">Views for comments and suggestions</a></li><li><a href="#changing-the-view-template" title="Changing the view template">Changing the view template</a></li><li><a href="#example-adding-a-new-button" title="Example: Adding a new button">Example: Adding a new button</a><ol><li><a href="#styling-for-an-important-comment" title="Styling for an important comment">Styling for an important comment</a></li><li><a href="#creating-a-button-and-adding-it-to-the-template" title="Creating a button and adding it to the template">Creating a button and adding it to the template</a></li><li><a href="#enabling-the-custom-view" title="Enabling the custom view">Enabling the custom view</a></li><li><a href="#live-demo" title="Live demo">Live demo</a></li></ol></li></ol></nav>
 <p>A custom template is a middle ground between the default UI and a completely custom UI of your own.</p>
 <h2 id="how-it-works"><a class="headerlink" href="#how-it-works">#</a> How it works</h2>
 <p>This solution lets you alter the HTML structure of comment and suggestion annotations. Thanks to that you can, for example:</p>
@@ -553,7 +553,8 @@
 <li>Add new UI elements, linked with your custom features.</li>
 <li>Remove UI elements.</li>
 </ul>
-<div class="info-box notice"><p>It is highly recommended to get familiar with the CKEditor&nbsp;5 UI library <a href="../../../api/ui.html">API</a> and <a href="../../../framework/architecture/ui-library.html">guide</a> before continuing.</p></div>
+<div class="info-box notice notice__info"><p>It is highly recommended to get familiar with the CKEditor&nbsp;5 UI library <a href="../../../api/ui.html">API</a> and <a href="../../../framework/architecture/ui-library.html">framework/architecture/ui-library</a> guide before continuing.</p></div>
+<div class="info-box notice notice__info"><p>The examples below are based on a working editor setup that includes collaboration features. We highly recommend you get your setup ready based on the <a href="../comments/comments-integration.html#before-you-start">comments feature integration</a> guide before moving any further.</p></div>
 <h2 id="views-for-comments-and-suggestions"><a class="headerlink" href="#views-for-comments-and-suggestions">#</a> Views for comments and suggestions</h2>
 <p>The view classes used by default by CKEditor&nbsp;5 collaboration features are:</p>
 <ul>
@@ -561,22 +562,17 @@
 <li><a href="../../../api/module_comments_comments_ui_view_commentview-CommentView.html"><code>CommentView</code></a> – Presents a single comment.</li>
 <li><a href="../../../api/module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html"><code>SuggestionThreadView</code></a> – Generates the UI for suggestion annotations.</li>
 </ul>
-<p>These classes are exported in files in their respective repositories at the following paths:</p>
-<ul>
-<li><code>@ckeditor/ckeditor5-comments/src/comments/ui/view/commentthreadview.js</code>,</li>
-<li><code>@ckeditor/ckeditor5-comments/src/comments/ui/view/commentview.js</code>,</li>
-<li><code>@ckeditor/ckeditor5-track-changes/src/ui/view/suggestionthreadview.js</code>.</li>
-</ul>
-<div class="info-box notice"><p>Note that the source code of these files and classes is closed.</p><p>It is highly recommended to get familiar with the <a href="../../../api/module_comments_comments_ui_view_commentview-CommentView.html">comment view</a>, <a href="../../../api/module_comments_comments_ui_view_commentthreadview-CommentThreadView.html">comment thread view</a> and the <a href="../../../api/module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html">suggestion view</a> API docs before continuing.</p></div>
+<p>These closed-source classes are exported by the <code>ckeditor5-premium-features</code> package on npm (<a href="../comments/comments-integration.html#setting-up-a-sample-project">learn more</a>).</p>
+<div class="info-box notice notice__info"><p>It is highly recommended to get familiar with the <a href="../../../api/module_comments_comments_ui_view_commentview-CommentView.html">comment view</a>, <a href="../../../api/module_comments_comments_ui_view_commentthreadview-CommentThreadView.html">comment thread view</a>, and the <a href="../../../api/module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html">suggestion view</a> API documentation before continuing.</p></div>
 <h2 id="changing-the-view-template"><a class="headerlink" href="#changing-the-view-template">#</a> Changing the view template</h2>
 <p>To use a custom view template, you need to:</p>
 <ol>
 <li>Create a new view class by extending the default view class.</li>
-<li>Provide (or extend) the template by overwriting the <code>getTemplate()</code> method.</li>
-<li>Set your custom view class through the editor configuration. We recommend setting it in the default configuration in the editor build file.</li>
+<li>Provide (or extend) the template by overwriting the <a href="../../../api/module_comments_comments_ui_view_commentview-CommentView.html#function-getTemplate"><code>getTemplate()</code></a> method.</li>
+<li>Set your custom view class through the editor configuration. We recommend setting it in the default configuration.</li>
 </ol>
 <p>Creating a custom view:</p>
-<pre class="highlight"><code class="js">// mycommentview.js
+<pre class="highlight"><code class="js">// ...
 
 import { CommentView } from 'ckeditor5-premium-features';
 
@@ -590,31 +586,42 @@ class MyCommentView extends CommentView {
         };
     }
 }
-</code></pre>
-<p>Setting up configuration in the build file:</p>
-<pre class="highlight"><code class="js">// build.js
 
-import { ClassicEditor as ClassicEditorBase } from ckeditor5';
-import MyCommentView from './mycommentview';
-
-export default class ClassicEditor extends ClassicEditorBase {}
-
-// More code.
 // ...
-
-// Make sure the `defaultConfig` object exists.
-ClassicEditor.defaultConfig.comments = {
-    CommentView: MyCommentView
-};
 </code></pre>
-<p>Custom comment and suggestion thread views can be set in a similar way:</p>
-<pre class="highlight"><code class="js">ClassicEditor.defaultConfig.comments = {
-    CommentThreadView: MyCommentThreadView
+<p>Using the custom view in the editor configuration:</p>
+<pre class="highlight"><code class="js">// ...
+
+const editorConfig = {
+    // ...
+
+    comments: {
+        CommentView: MyCommentView
+    },
+
+    // ...
 };
 
-ClassicEditor.defaultConfig.trackChanges = {
-    SuggestionThreadView: MySuggestionThreadView
+ClassicEditor.create(document.querySelector('#editor'), editorConfig);
+</code></pre>
+<p>Custom <a href="../../../api/module_comments_config-CommentsConfig.html#member-CommentThreadView">comment</a> and <a href="../../../api/module_track-changes_trackchangesconfig-TrackChangesConfig.html#member-SuggestionThreadView">suggestion</a> thread views can be set in a similar way:</p>
+<pre class="highlight"><code class="js">// ...
+
+const editorConfig = {
+    // ...
+
+    comments: {
+        CommentThreadView: MyCommentThreadView,
+    },
+
+    trackChanges: {
+        SuggestionThreadView: MySuggestionThreadView
+    },
+
+    // ...
 };
+
+ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 </code></pre>
 <h2 id="example-adding-a-new-button"><a class="headerlink" href="#example-adding-a-new-button">#</a> Example: Adding a new button</h2>
 <p>Below is an example of how you can provide a simple custom feature that requires creating a new UI element and additional styling.</p>
@@ -626,8 +633,8 @@ ClassicEditor.defaultConfig.trackChanges = {
 <li>An integration between the model state and the view template.</li>
 </ul>
 <h3 id="styling-for-an-important-comment"><a class="headerlink" href="#styling-for-an-important-comment">#</a> Styling for an important comment</h3>
-<p>This step is easy. Simply create a CSS file and add a CSS rule:</p>
-<pre class="highlight"><code class="css">/* importantcomment.css */
+<p>This step is easy. Add the following styles to the <code>style.css</code> file in your project:</p>
+<pre class="highlight"><code class="css">/* style.css */
 
 /* Yellow border for an important comment. */
 .ck-comment--important {
@@ -637,12 +644,12 @@ ClassicEditor.defaultConfig.trackChanges = {
 <h3 id="creating-a-button-and-adding-it-to-the-template"><a class="headerlink" href="#creating-a-button-and-adding-it-to-the-template">#</a> Creating a button and adding it to the template</h3>
 <p>In this step, you will add some new elements to the template.</p>
 <p>Keep in mind that you do not need to overwrite the whole template. You can extend it instead.</p>
-<pre class="highlight"><code class="js">// importantcommentview.js
+<pre class="highlight"><code class="js">// main.js
+
+// ...
 
 import { CommentView } from 'ckeditor5-premium-features';
 import { ButtonView } from 'ckeditor5';
-
-import './importantcomment.css';
 
 export default class ImportantCommentView extends CommentView {
     constructor( ...args ) {
@@ -660,7 +667,7 @@ export default class ImportantCommentView extends CommentView {
         // If `isImportant` is `true`, add the `ck-comment--important` class to the template.
         templateDefinition.children[ 0 ].attributes.class.push( this.bindTemplate.if( 'isImportant', 'ck-comment--important' ) );
 
-        // Add the new button next to other comment buttons (edit and remove).
+        // Add the new button next to the other comment buttons (edit and remove).
         templateDefinition.children[ 0 ].children[ 1 ].children[ 1 ].children.add( this._createImportantButtonView(), 0 );
 
         return templateDefinition;
@@ -692,13 +699,13 @@ export default class ImportantCommentView extends CommentView {
             }
         } );
 
-        // The button should be enabled if the comment model is not in read-only mode.
+        // The button should be enabled if the comment model is not in the read-only mode.
         // The same setting is used for other comment buttons.
         button.bind( 'isEnabled' ).to( this._model, 'isReadOnly', value =&gt; !value );
 
         // The button should be hidden if the comment is not editable
         // (this is true when the current user is not the comment author).
-        // The same setting is used for other comment buttons.
+        // The same setting is used for the other comment buttons.
         button.bind( 'isVisible' ).to( this._model, 'isEditable' );
 
         // When the button is clicked, change the comment state in the comment model.
@@ -710,22 +717,18 @@ export default class ImportantCommentView extends CommentView {
         return button;
     }
 }
+
+// ...
 </code></pre>
 <h3 id="enabling-the-custom-view"><a class="headerlink" href="#enabling-the-custom-view">#</a> Enabling the custom view</h3>
-<p>The custom view will be enabled in the build file, as shown earlier.</p>
-<pre class="highlight"><code class="js">// build.js
+<p>The custom view will be enabled in editor configuration, as <a href="#changing-the-view-template">shown earlier</a>.</p>
+<pre class="highlight"><code class="js">// main.js
 
-import { ClassicEditor as ClassicEditorBase, Essentials, Paragrap, Bold, Italic } from 'ckeditor5';
-import { Comments, TrackChanges } from 'ckeditor5-premium-features';
+// ...
 
-import ImportantCommentView from './importantcommentview';
+const editorConfig = {
+    // ...
 
-class Editor extends ClassicEditorBase {}
-
-Editor.builtinPlugins = [ Essentials, Paragraph, Bold, Italic, Comments, TrackChanges ];
-
-Editor.defaultConfig = {
-    language: 'en',
     comments: {
         CommentView: ImportantCommentView,
         editorConfig: {
@@ -734,172 +737,7 @@ Editor.defaultConfig = {
     }
 };
 
-// Export the editor build.
-export default Editor;
-</code></pre>
-<h3 id="html-structure-and-initialization"><a class="headerlink" href="#html-structure-and-initialization">#</a> HTML structure and initialization</h3>
-<p>The example below uses the “load &amp; save” type of integration.</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;CKEditor&amp;nbsp;5 collaboration with comments&lt;/title&gt;
-        &lt;style type="text/css"&gt;
-             #container {
-                 /* To create the column layout. */
-                 display: flex;
-
-                 /* To make the container relative to its children. */
-                 position: relative;
-             }
-
-             #container .ck.ck-editor {
-                 /* To stretch the editor to max 700px
-                     (just to look nice for this example but it can be any size). */
-                 width: 100%;
-                 max-width: 700px;
-             }
-
-             #sidebar {
-                 /* Set some size for the sidebar (it can be any). */
-                 min-width: 300px;
-
-                 /* Add some distance. */
-                 padding: 0 10px;
-             }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;button id="get-data"&gt;Get editor data&lt;/button&gt;
-
-        &lt;div id="container"&gt;
-            &lt;div id="editor"&gt;&lt;/div&gt;
-            &lt;div id="sidebar"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-        // Application data will be available under a global variable `appData`.
-        const appData = {
-            // Users data.
-            users: [
-                {
-                    id: 'user-1',
-                    name: 'Mex Haddox'
-                },
-                {
-                    id: 'user-2',
-                    name: 'Zee Croce'
-                }
-            ],
-
-            // The ID of the current user.
-            userId: 'user-1',
-
-            // Comment threads data.
-            commentThreads: [
-                {
-                    threadId: 'thread-1',
-                    comments: [
-                        {
-                            commentId: 'comment-1',
-                            authorId: 'user-1',
-                            content: '&lt;p&gt;Are we sure we want to use a made-up disorder name?&lt;/p&gt;',
-                            createdAt: new Date(),
-                            attributes: {
-                                isImportant: true
-                            }
-                        },
-                        {
-                            commentId: 'comment-2',
-                            authorId: 'user-2',
-                            content: '&lt;p&gt;Why not?&lt;/p&gt;',
-                            createdAt: new Date()
-                        }
-                    ]
-                }
-            ],
-
-            // Initial editor data.
-            initialData:
-                `&lt;h2&gt;
-                    &lt;comment-start name="thread-1"&gt;&lt;/comment-start&gt;
-                    Bilingual Personality Disorder
-                    &lt;comment-end name="thread-1"&gt;&lt;/comment-end&gt;
-                &lt;/h2&gt;
-                &lt;p&gt;
-                    This may be the first time you hear about this made-up disorder but it actually is not that far from truth.
-                    As recent studies show, the language you speak has more effects on you than you realize.
-                    According to the studies, the language a person speaks affects their cognition,
-                    behavior, emotions and hence &lt;strong&gt;their personality&lt;/strong&gt;.
-                &lt;/p&gt;
-                &lt;p&gt;
-                    This shouldn’t come as a surprise
-                    &lt;a href="https://en.wikipedia.org/wiki/Lateralization_of_brain_function"&gt;since we already know&lt;/a&gt;
-                    that different regions of the brain become more active depending on the activity.
-                    The structure, information and especially &lt;strong&gt;the culture&lt;/strong&gt; of languages varies substantially
-                    and the language a person speaks is an essential element of daily life.
-                &lt;/p&gt;`
-            };
-
-            class CommentsIntegration {
-                constructor( editor ) {
-                    this.editor = editor;
-                }
-
-                init() {
-                    const usersPlugin = this.editor.plugins.get( 'Users' );
-                    const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
-
-                    // Load the users data.
-                    for ( const user of appData.users ) {
-                        usersPlugin.addUser( user );
-                    }
-
-                    // Set the current user.
-                    usersPlugin.defineMe( appData.userId );
-
-                    // Load the comment threads data.
-                    for ( const commentThread of appData.commentThreads ) {
-                        commentsRepositoryPlugin.addCommentThread( commentThread );
-                    }
-                }
-            }
-
-            ClassicEditor
-                .create( document.querySelector( '#editor' ), {
-                    initialData: appData.initialData,
-                    extraPlugins: [ CommentsIntegration ],
-                    licenseKey: 'your-license-key',
-                    sidebar: {
-                        container: document.querySelector( '#sidebar' )
-                    },
-                    toolbar: {
-                        items: [ 'bold', 'italic', '|', 'comment', 'commentsArchive', 'trackChanges' ]
-                    }
-                } )
-                .then( editor =&gt; {
-                    // After the editor is initialized, add an action to be performed after the button is clicked.
-                    const commentsRepository = editor.plugins.get( 'CommentsRepository' );
-
-                    // Get the data on demand.
-                    document.querySelector( '#get-data' ).addEventListener( 'click', () =&gt; {
-                        const editorData = editor.data.get();
-                        const commentThreadsData = commentsRepository.getCommentThreads( {
-                            skipNotAttached: true,
-                            skipEmpty: true
-                        } );
-
-                        // Now, use `editorData` and `commentThreadsData` to save the data in your application.
-                        // For example, you can set them as values of hidden input fields.
-                        // Note that the comment data include the custom `attributes.isImportant` value.
-                        console.log( 'editorData', editorData );
-                        console.log( 'commentThreadsData', commentThreadsData );
-                    } );
-                } )
-                .catch( error =&gt; console.error( error ) );
-    &lt;/script&gt;
-&lt;/html&gt;
+ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 </code></pre>
 <h3 id="live-demo"><a class="headerlink" href="#live-demo">#</a> Live demo</h3>
 <div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
@@ -917,7 +755,7 @@ export default Editor;
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fannotations%2Fannotations-custom-template.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fannotations%2Fannotations-custom-template.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

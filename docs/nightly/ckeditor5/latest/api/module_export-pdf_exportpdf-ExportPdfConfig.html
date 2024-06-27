@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Interface ExportPdfConfig. The configuration of the export to PDF feature. It is used by the PDF export features from the @ckeditor/ckeditor5-export-pdf package. See all editor options.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface ExportPdfConfig. The configuration of the export to PDF feature. It is used by the PDF export features from the @ckeditor/ckeditor5-export-pdf package. See all editor options.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:27:43 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Interface ExportPdfConfig (export-pdf/exportpdf~ExportPdfConfig) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Interface ExportPdfConfig. The configuration of the export to PDF feature. It is used by the PDF export features from the @ckeditor/ckeditor5-export-pdf package. See all editor options.">
     <meta property="og:type" content="website">
@@ -45,7 +45,7 @@
       	gtag( 'config', 'G-H2PK3PSE3F' );
       }
     </script>
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   </head>
   <body>
@@ -286,27 +286,28 @@ Otherwise your operating system or device may have trouble identifying the file 
 to the converter.</p>
 <p><strong>Default editor's content styles</strong>:
 <a href=../getting-started/setup/css.html data-glink>The default editor content styles</a>
-are applied to the generated PDF thanks to the 'EDITOR_STYLES' token, which is provided to the <code>stylesheets</code> by default.
+are applied to the generated PDF thanks to the <code>'EDITOR_STYLES'</code> token, which is provided to the <code>stylesheets</code> by default.
 If you don't want them to be applied, you have to omit the token:</p>
-<p><strong>NOTE:</strong> The 'EDITOR_STYLES' string is only supported in legacy webpack setup.</p>
+<p><strong>NOTE:</strong> The <code>'EDITOR_STYLES'</code> string is only supported in legacy custom builds with webpack or DLLs.
+In other setups you always need to pass the stylesheets.</p>
 <pre><code class="language-ts">const exportPdfConfig = {
 	stylesheets: [ './path/to/custom-editor-styles.css' ]
 }
 </code></pre>
 <p><strong>Web fonts:</strong> If you want to <a href=../features/converters/export-pdf.html#providing-web-font-styles data-glink>use web fonts</a> in your PDF document,
-you should provide a path to the file containing the web font declaration before the <code>'EDITOR_STYLES'</code> token:</p>
+you should provide a path to the file containing the web font declaration before the <code>'EDITOR_STYLES'</code> token and other style sheets:</p>
 <pre><code class="language-ts">const exportPdfConfig = {
 	stylesheets: [
-		'path/to/editor-styles.css',
 		'./path/to/fonts.css'
+		'./path/to/editor-styles.css',
 	]
 }
 </code></pre>
 <p><strong>Web fonts and custom styling:</strong> For more advanced styling, your configuration should look like this:</p>
 <pre><code class="language-ts">const exportPdfConfig = {
 	stylesheets: [
-		'path/to/editor-styles.css',
 		'./path/to/fonts.css',
+		'./path/to/editor-styles.css',
 		'./path/to/custom-styles.css'
 	]
 }
@@ -343,7 +344,7 @@ the export to PDF feature.</p>
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_export-pdf_exportpdf-ExportPdfConfig.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_export-pdf_exportpdf-ExportPdfConfig.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -4123,6 +4124,9 @@ the export to PDF feature.</p>
                 <li><a href="module_export-word_exportword-ExportWordConverterCommentsThreadOptionsV2.html">
                     <div class="tree__item__wrapper" data-ln="module:export-word/exportword~ExportWordConverterCommentsThreadOptionsV2"><span class="tree__item--typedef tree__item__text">ExportWordConverterCommentsThreadOptionsV2</span></div></a>
                 </li>
+                <li><a href="module_export-word_exportword-ExportWordConverterCommentsV2.html">
+                    <div class="tree__item__wrapper" data-ln="module:export-word/exportword~ExportWordConverterCommentsV2"><span class="tree__item--typedef tree__item__text">ExportWordConverterCommentsV2</span></div></a>
+                </li>
                 <li><a href="module_export-word_exportword-ExportWordConverterCustomFormatOptionsV2.html">
                     <div class="tree__item__wrapper" data-ln="module:export-word/exportword~ExportWordConverterCustomFormatOptionsV2"><span class="tree__item--typedef tree__item__text">ExportWordConverterCustomFormatOptionsV2</span></div></a>
                 </li>
@@ -7425,6 +7429,9 @@ the export to PDF feature.</p>
               <ul>
                 <li data-public="true"><a href="module_revision-history_revisiontracker-RevisionTracker.html">
                     <div class="tree__item__wrapper" data-ln="module:revision-history/revisiontracker~RevisionTracker"><span class="tree__item--class tree__item__text">RevisionTracker</span></div></a>
+                </li>
+                <li><a href="module_revision-history_revisiontracker-RevisionSource.html">
+                    <div class="tree__item__wrapper" data-ln="module:revision-history/revisiontracker~RevisionSource"><span class="tree__item--interface tree__item__text">RevisionSource</span></div></a>
                 </li>
               </ul>
             </li>

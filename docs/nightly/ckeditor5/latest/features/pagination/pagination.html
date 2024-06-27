@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:29 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:50 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Pagination | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -786,12 +786,13 @@
 <p>In addition to page breaks, the pagination feature shows you page numbers and the total number of pages in the document. The feature also introduces a dedicated toolbar that lets you easily go to the next or previous page of the document or jump straight to a particular page.</p>
 <p>The pagination feature is complementary to the <a href="../converters/export-pdf.html">export to PDF</a> and <a href="../converters/export-word.html">export to Word</a> features of CKEditor&nbsp;5, ensuring the proper output every time. Combined with other CKEditor&nbsp;5 features, these plugins allow for advanced editing and document creation implementations. This kind of practical application is shown in the <a href="https://ckeditor.com/blog/How-to-create-ready-to-print-documents-with-page-structure-in-WYSIWYG-editor---CKEditor-5-pagination-feature/">How to create ready-to-print documents with CKEditor&nbsp;5 pagination feature</a> blog post.</p>
 <p>The pagination plugin cannot be used to reflect the original page division in content <a href="../converters/import-word/import-word.html">imported from Word</a>. This is an export-only feature.</p>
-<div class="info-box notice"><p>This feature is dedicated for use with the <a href="../../examples/builds/document-editor.html">decoupled editor</a> only. If used with different types of editor builds, it may result in certain issues, for example, incorrect rendering of the toolbar. If you need support for the pagination feature in other editor types, feel free to <a href="https://ckeditor.com/contact/">contact us</a> and inquire.</p></div>
+<div class="info-box notice"><p>This feature is dedicated for use with the <a href="../../examples/builds/document-editor.html">decoupled editor</a> type only. If used with different types of editors, it may result in certain issues, for example, incorrect rendering of the toolbar. If you need support for the pagination feature in other editor types, feel free to <a href="https://ckeditor.com/contact/">contact us</a> and inquire.</p></div>
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <p>To use this premium feature, you need to activate it with proper credentials. Refer to the <a href="../../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</p>
 <p>For the export plugins, you will need a special <a href="https://ckeditor.com/docs/cs/latest/guides/security/token-endpoint.html">token endpoint</a>. To get it, log into your CKEditor Ecosystem Dashboard account and <a href="https://ckeditor.com/docs/trial/latest/guides/export-to-pdf/quick-start.html#account-dashboard">follow the guide on creating a token URL</a>. When export features are used without this token, all generated documents will contain a watermark at the bottom of every page.</p>
 <p>After obtaining all the credentials needed, create a custom editor and configure it.</p>
 <h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<div class="info-box notice notice__info"><p>⚠️ <strong>New import paths</strong></p><p>Starting with <a href="../../updating/guides/update-to-42.html">version 42.0.0</a>, we changed the format of import paths. This guide uses the new, shorter format. Refer to the <a href="../../getting-started/legacy/legacy-imports.html">Packages in the legacy setup</a> guide if you use an older version of CKEditor&nbsp;5.</p></div>
 <p>After <a href="../../getting-started/installation/quick-start.html">installing the editor</a>, add the feature to your plugin list and toolbar configuration:</p>
 <pre class="highlight"><code class="js">import { DecoupledEditor } from 'ckeditor5';
 import { Pagination } from 'ckeditor5-premium-features';
@@ -1008,7 +1009,7 @@ if ( isSafari || isFirefox ) {
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fpagination%2Fpagination.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fpagination%2Fpagination.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

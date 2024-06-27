@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:23 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:44 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Using context with collaboration features | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -543,44 +543,41 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.2/img/book.svg" alt="guide">Using context with collaboration features
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#collaboration-features-and-multiple-editors" title="Collaboration features and multiple editors">Collaboration features and multiple editors</a></li><li><a href="#collaboration-features-and-no-editor" title="Collaboration features and no editor">Collaboration features and no editor</a></li><li><a href="#channel-id" title="Channel ID">Channel ID</a></li><li><a href="#preparing-a-preset-with-the-context" title="Preparing a preset with the context">Preparing a preset with the context</a></li><li><a href="#using-the-context-in-an-integration" title="Using the context in an integration">Using the context in an integration</a></li><li><a href="#context-and-watchdog" title="Context and watchdog">Context and watchdog</a></li><li><a href="#full-implementation" title="Full implementation">Full implementation</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction-to-the-context" title="Introduction to the context">Introduction to the context</a><ol><li><a href="#collaboration-features-and-multiple-editors" title="Collaboration features and multiple editors">Collaboration features and multiple editors</a></li><li><a href="#collaboration-features-and-no-editor" title="Collaboration features and no editor">Collaboration features and no editor</a></li><li><a href="#channel-id" title="Channel ID">Channel ID</a></li></ol></li><li><a href="#before-you-start" title="Before you start">Before you start</a><ol><li><a href="#preparing-a-custom-editor-setup-with-the-context" title="Preparing a custom editor setup with the context">Preparing a custom editor setup with the context</a></li></ol></li><li><a href="#using-the-context-in-an-integration" title="Using the context in an integration">Using the context in an integration</a></li><li><a href="#context-and-watchdog" title="Context and watchdog">Context and watchdog</a></li><li><a href="#minimal-implementation" title="Minimal implementation">Minimal implementation</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></nav>
 
 <p>The <a href="../../api/module_core_context-Context.html"><code>Context</code> class</a> organizes multiple editors into one environment. This way you can initialize some features not for a single editor but for its context accessible to many editors.</p>
-<h2 id="collaboration-features-and-multiple-editors"><a class="headerlink" href="#collaboration-features-and-multiple-editors">#</a> Collaboration features and multiple editors</h2>
-<p>Most applications use only one editor instance per a web page or a form. In these integrations, the editor is treated as the topmost entity which initializes features and coordinates their work. Collaboration features like sidebar or presence list are linked with this single editor instance and handle only the changes happening within this editor instance.</p>
-<p>This does not create a good user experience for applications that need to present multiple editors on one web page, though. In that case, each editor instance has its own sidebar and presence list. Also, multiple, separate connections need to be handled for data exchange.</p>
+<h2 id="introduction-to-the-context"><a class="headerlink" href="#introduction-to-the-context">#</a> Introduction to the context</h2>
+<h3 id="collaboration-features-and-multiple-editors"><a class="headerlink" href="#collaboration-features-and-multiple-editors">#</a> Collaboration features and multiple editors</h3>
+<p>Most applications use just one editor instance per a web page or a form. In these integrations, the editor is the topmost entity that initializes features and coordinates their work. Collaboration features such as a sidebar or presence list are linked with this single editor instance and only handle the changes happening within this editor instance.</p>
+<p>It does not create a good user experience for applications that need to present multiple editors on one web page, though. In that case, each editor instance has its own sidebar and presence list. Also, multiple, separate connections need to be handled for data exchange.</p>
 <p>The <a href="../../api/module_core_context-Context.html"><code>Context</code> class</a> was introduced to solve such issues. It organizes multiple editors into one environment. Some of the features, instead of being initialized for a singular editor, can be initialized for the whole context. Then, each editor can use the same instance of the feature, which means that there can be one common presence list or sidebar linked with multiple editors.</p>
 <p>Note that only selected plugins are prepared to work as context plugins. See the API documentation for collaboration features to learn which plugins can be used as context plugins.</p>
 <p>Additionally, in integrations using <a href="../../api/module_core_context-Context.html"><code>Context</code></a> and multiple editor instances, each editor instance will display only “its own” comment threads in the comments archive panel.</p>
-<h2 id="collaboration-features-and-no-editor"><a class="headerlink" href="#collaboration-features-and-no-editor">#</a> Collaboration features and no editor</h2>
+<h3 id="collaboration-features-and-no-editor"><a class="headerlink" href="#collaboration-features-and-no-editor">#</a> Collaboration features and no editor</h3>
 <p>A context plugin that is added to a context is ready as soon as the context is created. This allows for using the context plugins without creating an editor at all!</p>
 <p>Thanks to that you can provide features like <a href="comments/comments-outside-editor.html">comments on non-editor form fields</a> that are no longer just editor features but are deeply integrated with your application.</p>
-<h2 id="channel-id"><a class="headerlink" href="#channel-id">#</a> Channel ID</h2>
-<p>The channel ID is used to identify a data storage for collaboration features that a given editor or context should connect to. If you are using multiple editors, each of them should use a different channel ID to connect to a specific document. Additionally, if you would like to use collaboration features outside of an editor, you should also specify a unique channel ID for the context.</p>
+<h3 id="channel-id"><a class="headerlink" href="#channel-id">#</a> Channel ID</h3>
+<p>The channel ID is used to identify a data storage for collaboration features that a given editor or context should connect to. If you are using multiple editors, each of them must use a different channel ID to connect to a specific document. Additionally, the context itself, needs to specify its own, unique channel ID.</p>
 <p>To set the channel ID, use the <a href="../../api/module_collaboration-core_config-RealTimeCollaborationConfig.html#member-channelId"><code>config.collaboration.channelId</code></a> configuration property. See the code snippets below.</p>
 <p>The channel ID is frequently used as a parameter or data property in the <a href="../../api/comments.html">comments API</a>. If you are preparing a custom integration using the comments API, you can use the channel ID to recognize whether the comment was added to an editor instance or to a context.</p>
-<h2 id="preparing-a-preset-with-the-context"><a class="headerlink" href="#preparing-a-preset-with-the-context">#</a> Preparing a preset with the context</h2>
-<div class="info-box notice"><p>Complementary to this guide, we provide a <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor">ready-to-use <strong>sample</strong></a> and <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor-for-angular">an example of Angular integration</a>.</p><p>You may use them as an example or as a starting point for your own integration.</p></div>
-<p>The context can be used both with standalone collaboration features and real-time collaboration features. Below is an example featuring real-time collaboration.</p>
-<div class="info-box notice"><p>We recommend reading about preparing a custom preset in <a href="real-time-collaboration/real-time-collaboration-integration.html">real-time collaboration features integration guide</a>. The samples below will be based on this guide.</p></div>
-<p>To use <code>Context</code>, add it to your preset and export together with the editor class.</p>
-<pre class="highlight"><code class="js">import ContextBase from '@ckeditor/ckeditor5-core/src/context';
-import {
-    ClassicEditor as ClassicEditorBase,
-    Bold,
-    Italic,
-    Essentials,
-    Heading,
-    Paragraph,
-    CloudServices
+<div class="info-box notice notice__warning"><p>If you have encountered issues with editor initializing due to <code>_CKEditorCloudServicesServerError: cloud-services-server-error: Validation failed.</code> error, it might be related to missing <code>config.collaboration.channelId</code> configuration.</p></div>
+<h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide a <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor">ready-to-use <strong>sample</strong></a> and <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-comments-outside-of-editor-for-angular">an example of Angular integration</a>.</p><p>You may use them as an example or as a starting point for your own integration.</p></div>
+<h3 id="preparing-a-custom-editor-setup-with-the-context"><a class="headerlink" href="#preparing-a-custom-editor-setup-with-the-context">#</a> Preparing a custom editor setup with the context</h3>
+<p>The context can be used with both: standalone collaboration features and real-time collaboration features. Below is an example featuring real-time collaboration.</p>
+<div class="info-box notice notice__info"><p>We recommend reading about preparing a custom editor setup in the <a href="real-time-collaboration/real-time-collaboration-integration.html">real-time collaboration features integration</a> guide. The samples below will be based on this guide.</p></div>
+<p>To use <code>Context</code>, add it to your editor setup:</p>
+<pre class="highlight"><code class="js">import {
+    /* ... */
+
+    CloudServices,
+    Context
 } from 'ckeditor5';
 
-// Real-time collaboration plugins are editor plugins:
 import {
-    RealTimeCollaborativeComments,
-    RealTimeCollaborativeEditing,
-    RealTimeCollaborativeTrackChanges,
-// Context plugins:
+    /* ... */
+
+    // Context plugins:
     CommentsRepository,
     NarrowSidebar,
     WideSidebar,
@@ -588,28 +585,176 @@ import {
     PresenceList
 } from 'ckeditor5-premium-features';
 
-class Context extends ContextBase {}
+// The context's configuration.
+const contextConfig = {
+    // Plugins specific for the context:
+    plugins: [
+        CloudServices,
+        CloudServicesCommentsAdapter,
+        CommentsRepository,
+        NarrowSidebar,
+        PresenceList,
+        WideSidebar
+    ],
 
-// Plugins to include in the context.
-Context.builtinPlugins = [
+    // Sidebar and presence list's shared locations:
+    sidebar: {
+        container: document.querySelector( '#editor-annotations' )
+    },
+    presenceList: {
+        container: document.querySelector( '#editor-presence' )
+    },
+
+    // Default configuration of the comments feature needs to be specified on the
+    // context as it is a context plugin:
+    comments: {
+        editorConfig: {
+            extraPlugins: [ Autoformat, Bold, Italic, List, Mention ],
+            mention: {
+                feeds: [
+                    {
+                        marker: '@',
+                        feed: [
+                            /* See: https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#comments-with-mentions */
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+
+    // Real-time features configuration:
+    // NOTE: PROVIDE CORRECT VALUES HERE.
+    cloudServices: {
+        tokenUrl: 'https://example.com/cs-token-endpoint',
+        uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
+        webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
+    },
+
+    collaboration: {
+        channelId: 'channel-id'
+    }
+};
+
+// Template of a specific editor configuration.
+const editorConfig = {
+    /*
+        Assuming that you based your setup on the configuration  produced by the Builder (https://ckeditor.com/ckeditor-5/builder),
+        now you can comment out (remove) a couple of properties that were specified on the context level
+        and do not need to be customized per editor instance:
+    */
+
+    // comments: ...
+    // sidebar: ...
+    // presenceList: ...
+    // cloudServices: ...
+
+    /* The channelId property will be specified later so you can remove it too: */
+
+    // collaboration: { channelId: ... }
+};
+</code></pre>
+<h2 id="using-the-context-in-an-integration"><a class="headerlink" href="#using-the-context-in-an-integration">#</a> Using the context in an integration</h2>
+<p>After your editor setup is ready, you need to configure and initialize the context and the editor.</p>
+<p>If you use the HTML produced by the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a>, it is enough to update the content of the <code>.editor-container__editor</code> container to this:</p>
+<pre class="highlight"><code class="html">&lt;div class="editor-container__editor"&gt;
+    &lt;div id="editor1" class="editor"&gt;&lt;/div&gt;
+    &lt;div id="editor2" class="editor"&gt;&lt;/div&gt;
+    &lt;div id="editor3" class="editor"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>We can now setup three editor instances, sharing one context, on these elements:</p>
+<pre class="highlight"><code class="js">// An example of initialization of the context and multiple editors:
+Context.create( contextConfig ).then( context =&gt; {
+    // After the context is ready, initialize an editor on all elements in the DOM with the `.editor` class:
+    for ( const editorElement of document.querySelectorAll( '.editor' ) ) {
+        // Create current editor's config based on the earlier defined template.
+        const currentEditorConfig = Object.assign( editorConfig, {
+            // Pass the context to the editor.
+            context,
+
+            // Each editor should connect to its document.
+            // Create a unique channel ID for an editor (document).
+            collaboration: {
+                channelId: 'channel-id-' + editorElement.id
+            }
+        } );
+
+        DecoupledEditor.create( editorElement, currentEditorConfig ).then( editor =&gt; {
+            // Insert the toolbar of this editor right above its editing area.
+            document.querySelector( '.editor-container__editor' )
+                .insertBefore( editor.ui.view.toolbar.element, editor.ui.view.editable.element );
+
+            // You can do something with the editor instance after it was initialized.
+            // ...
+        } );
+    }
+} );
+</code></pre>
+<p>The demo will render three editor instances, one after another. Since they share one context, you will be able to observe that:</p>
+<ul>
+<li>The presence list is shared between them (and they use one collaboration session).</li>
+<li>The sidebar with comments is also shared between them.</li>
+</ul>
+<div class="info-box notice notice__info"><p>The HTML proposed by the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a> may not work best with this altered setup. Configuring a full setup with the use of Context requires further customizations.</p></div>
+<h2 id="context-and-watchdog"><a class="headerlink" href="#context-and-watchdog">#</a> Context and watchdog</h2>
+<p>Similarly to an editor instance, context can be integrated with a watchdog to handle the errors that may happen in the editor or context features. Please refer to the <a href="../watchdog.html#context-watchdog">watchdog documentation</a> to learn how to use the context watchdog.</p>
+<h2 id="minimal-implementation"><a class="headerlink" href="#minimal-implementation">#</a> Minimal implementation</h2>
+<p>Below are code snippets showcasing the use of a context and a watchdog together with real-time collaboration features.</p>
+<p>The <code>main.js</code> file:</p>
+<pre class="highlight"><code class="js">import {
+    ClassicEditor,
+
+    // Import the context, its watchdog and plugins:
+    ContextWatchdog,
+    Context,
     CloudServices,
-    CloudServicesCommentsAdapter,
+
+    // Editor plugins:
+    Bold, Italic, Essentials, Heading, Paragraph
+} from 'ckeditor5';
+
+// Real-time collaboration plugins are editor plugins:
+import {
+    RealTimeCollaborativeComments,
+    RealTimeCollaborativeEditing,
+    RealTimeCollaborativeTrackChanges,
+    Comments,
+    TrackChanges,
+
+    // Context plugins:
     CommentsRepository,
     NarrowSidebar,
-    PresenceList,
-    WideSidebar
-];
+    WideSidebar,
+    CloudServicesCommentsAdapter,
+    PresenceList
+} from 'ckeditor5-premium-features';
 
-Context.defaultConfig = {
-    // The default configuration for the context plugins:
+import 'ckeditor5/ckeditor5.css';
+import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
+
+const channelId = 'channel-id';
+
+// The context's configuration.
+const contextConfig = {
+    // Plugins to include in the context.
+    plugins: [
+        CloudServices,
+        CloudServicesCommentsAdapter,
+        CommentsRepository,
+        NarrowSidebar,
+        WideSidebar,
+        PresenceList
+    ],
+
+    // Default configuration for the context plugins:
     sidebar: {
         container: document.querySelector( '#sidebar' )
     },
     presenceList: {
         container: document.querySelector( '#presence-list-container' )
     },
-    // Configuration shared between the editors:
-    language: 'en',
+    // The configuration shared between the editors:
     toolbar: {
         items: [
             'bold', 'italic', '|', 'undo', 'redo', '|',
@@ -620,28 +765,8 @@ Context.defaultConfig = {
         editorConfig: {
             plugins: [ Essentials, Paragraph, Bold, Italic ]
         }
-    }
-};
+    },
 
-class ClassicEditor extends ClassicEditorBase {}
-
-// Plugins to include in the build.
-ClassicEditor.builtinPlugins = [
-    Essentials, Paragraph, Bold, Italic, Heading,
-    // Real-time collaboration plugins are editor plugins:
-    RealTimeCollaborativeEditing, RealTimeCollaborativeComments, RealTimeCollaborativeTrackChanges
-];
-
-export default { ClassicEditor, Context };
-</code></pre>
-<h2 id="using-the-context-in-an-integration"><a class="headerlink" href="#using-the-context-in-an-integration">#</a> Using the context in an integration</h2>
-<p>After your preset is ready, you need to configure and initialize the context and the editor.</p>
-<pre class="highlight"><code class="js">const { ClassicEditor: Editor, Context } = ClassicEditor;
-
-const channelId = 'channel-id';
-
-// Create a configuration, passing additional configuration options:
-const contextConfiguration = {
     // The configuration for real-time collaboration features, shared between the editors:
     cloudServices: {
         // PROVIDE CORRECT VALUES HERE:
@@ -655,118 +780,46 @@ const contextConfiguration = {
     }
 };
 
-// An example of initialization of the context and multiple editors:
-const context = Context.create( contextConfiguration ).then( context =&gt; {
-    // After the context is ready, initialize an editor on all elements in the DOM with the `.editor` class:
-    for ( const editorElement of document.querySelectorAll( '.editor' ) ) {
-        const editorConfig = {
-            // Pass the context to the editor.
-            context,
-            collaboration: {
-                // Each editor should connect to its document.
-                // Create a unique channel ID for an editor (document).
-                channelId: channelId + '-' + editorElement.id
-            }
-        };
+// Template of a specific editor configuration.
+const editorConfig = {
+    // Plugins to include in the editor:
+    plugins: [
+        Essentials, Paragraph, Bold, Italic, Heading,
 
-        Editor.create( editorElement, editorConfig ).then( editor =&gt; {
-            // You can do something with the editor instance after it was initialized.
-            // ...
-        } );
-    }
-} );
-</code></pre>
-<p>Or you can use the simpler <code>async/await</code> pattern:</p>
-<pre class="highlight"><code class="js">( async () =&gt; {
-    const context = await Context.create( contextConfiguration );
-
-    for ( const editorElement of document.querySelectorAll( '.editor' ) ) {
-        const editorConfig = {
-            context,
-            collaboration: {
-                channelId: channelId + '-' + editorElement.id
-            }
-        };
-
-        const editor = await Editor.create( editorElement, editorConfig );
-
-        // You can do something with the editor instance after it was initialized.
-        // ...
-    }
-} )();
-</code></pre>
-<h2 id="context-and-watchdog"><a class="headerlink" href="#context-and-watchdog">#</a> Context and watchdog</h2>
-<p>Similarly to an editor instance, context can be integrated with a watchdog to handle the errors that may happen in the editor or context features. Please refer to the <a href="../watchdog.html#context-watchdog">watchdog documentation</a> to learn how to use the context watchdog.</p>
-<h2 id="full-implementation"><a class="headerlink" href="#full-implementation">#</a> Full implementation</h2>
-<p>Below are code snippets showcasing the use of a context and a watchdog together with real-time collaboration features.</p>
-<p>Build the source file:</p>
-<pre class="highlight"><code class="js">import ContextBase from '@ckeditor/ckeditor5-core/src/context';
-import {
-    ClassicEditor as ClassicEditorBase,
-// Import the watchdog for the context:
-    ContextWatchdog,
-// Editor plugins:
-    Bold, Italic, Essentials, Heading, Paragraph } from 'ckeditor5';
-
-// Real-time collaboration plugins are editor plugins:
-import {
-    RealTimeCollaborativeComments,
-    RealTimeCollaborativeEditing,
-    RealTimeCollaborativeTrackChanges,
-// Context plugins:
-    CommentsRepository,
-    NarrowSidebar,
-    WideSidebar,
-    CloudServicesCommentsAdapter,
-    PresenceList
-} from 'ckeditor5';
-
-class Context extends ContextBase {}
-
-// Plugins to include in the context.
-Context.builtinPlugins = [
-    CloudServicesCommentsAdapter,
-    CommentsRepository,
-    NarrowSidebar,
-    WideSidebar,
-    PresenceList
-];
-
-Context.defaultConfig = {
-    // Default configuration for the context plugins:
-    sidebar: {
-        container: document.querySelector( '#sidebar' )
-    },
-    presenceList: {
-        container: document.querySelector( '#presence-list-container' )
-    },
-    // The configuration shared between the editors:
-    language: 'en',
-    toolbar: {
-        items: [
-            'bold', 'italic', '|', 'undo', 'redo', '|',
-            'comment', 'commentsArchive', 'trackChanges'
-        ]
-    },
-    comments: {
-        editorConfig: {
-            plugins: [ Essentials, Paragraph, Bold, Italic ]
-        }
-    }
+        // Real-time collaboration plugins are editor plugins:
+        RealTimeCollaborativeEditing,
+        RealTimeCollaborativeComments,
+        RealTimeCollaborativeTrackChanges,
+        Comments,
+        TrackChanges
+    ],
 };
 
-class ClassicEditor extends ClassicEditorBase {}
+const watchdog = new ContextWatchdog( Context );
 
-// Plugins to include in the build.
-ClassicEditor.builtinPlugins = [
-    Essentials, Paragraph, Bold, Italic, Heading,
-    // Real-time collaboration plugins are editor plugins:
-    RealTimeCollaborativeEditing, RealTimeCollaborativeComments, RealTimeCollaborativeTrackChanges
-];
+await watchdog.create( contextConfig );
 
-export default { ClassicEditor, Context, ContextWatchdog };
+for ( const editorElement of document.querySelectorAll( '.editor' ) ) {
+    // Create current editor's configuration based on the template defined earlier.
+    const currentEditorConfig = Object.assign( editorConfig, {
+        collaboration: {
+            // Create a unique channel ID for an editor (document).
+            channelId: channelId + '-' + editorElement.id
+        }
+        // You do not need to pass the context to the configuration
+        // if you are using the context watchdog.
+    } );
+
+    await watchdog.add( {
+        id: editorElement.id,
+        type: 'editor',
+        sourceElementOrData: editorElement,
+        config: currentEditorConfig,
+        creator: ( element, config ) =&gt; ClassicEditor.create( element, config )
+    } );
+}
 </code></pre>
-<p>The updated HTML file should look as follows:</p>
+<p>The HTML file:</p>
 <pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -818,55 +871,12 @@ export default { ClassicEditor, Context, ContextWatchdog };
         &lt;div id="sidebar"&gt;&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-        ( async () =&gt; {
-            const { ClassicEditor: Editor, Context, ContextWatchdog } = ClassicEditor;
-
-            const channelId = 'channel-id';
-
-            const watchdog = new ContextWatchdog( Context );
-
-            // Create the configuration, passing additional configuration options:
-            const contextConfiguration = {
-                // The configuration for real-time collaboration features, shared between the editors:
-                cloudServices: {
-                    // PROVIDE CORRECT VALUES HERE:
-                    tokenUrl: 'https://example.com/cs-token-endpoint',
-                    uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/',
-                    webSocketUrl: 'your-organization-id.cke-cs.com/ws/'
-                },
-                // Collaboration configuration for the context:
-                collaboration: {
-                    channelId
-                }
-            };
-
-            await watchdog.create( contextConfiguration );
-
-            for ( const editorElement of document.querySelectorAll( '.editor' ) ) {
-                await watchdog.add( {
-                    id: editorElement.id,
-                    type: 'editor',
-                    sourceElementOrData: editorElement,
-                    config: {
-                        collaboration: {
-                            // Create a unique channel ID for an editor (document).
-                            channelId: channelId + '-' + editorElement.id
-                        }
-                        // You do not need to pass the context to the configuration
-                        // if you are using the context watchdog.
-                    },
-                    creator: ( element, config ) =&gt; Editor.create( element, config )
-                } );
-            }
-        } )();
-    &lt;/script&gt;
+    &lt;script type="module" src="./main.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<div class="info-box notice"><p>Share the complete URL of this page with your colleagues to collaborate in real time!</p></div>
+<div class="info-box notice notice__info"><p>Share the complete URL of this page with your colleagues to collaborate in real-time!</p></div>
 <div class="live-snippet"><head>
 	<meta name="x-cke-crawler-ignore-patterns" content='{
 		"request-failure": "randomuser.me"
@@ -906,7 +916,7 @@ export default { ClassicEditor, Context, ContextWatchdog };
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcontext-and-collaboration-features.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcontext-and-collaboration-features.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

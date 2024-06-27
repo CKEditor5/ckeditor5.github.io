@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 26 2024 05:28:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 27 2024 01:33:43 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integrating comments with your application | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -49,7 +49,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="41.4.2">
+    <meta name="project-version" content="42.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -543,130 +543,82 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.2/img/book.svg" alt="guide">Integrating comments with your application
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a><ol><li><a href="#activating-the-feature" title="Activating the feature">Activating the feature</a></li><li><a href="#prepare-a-custom-build" title="Prepare a custom build">Prepare a custom build</a></li><li><a href="#core-setup" title="Core setup">Core setup</a></li><li><a href="#comments-api" title="Comments API">Comments API</a></li></ol></li><li><a href="#a-simple-load-and-save-integration" title="A simple “load and save” integration">A simple “load and save” integration</a><ol><li><a href="#loading-the-data" title="Loading the data">Loading the data</a></li><li><a href="#saving-the-data" title="Saving the data">Saving the data</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></li><li><a href="#adapter-integration" title="Adapter integration">Adapter integration</a><ol><li><a href="#implementation" title="Implementation">Implementation</a></li><li><a href="#demo-2" title="Demo">Demo</a></li><li><a href="#why-is-there-no-event-when-i-remove-comment-thread-markers-from-the-content" title="Why is there no event when I remove comment thread markers from the content?">Why is there no event when I remove comment thread markers from the content?</a></li><li><a href="#php-integration-example" title="PHP integration example">PHP integration example</a></li></ol></li><li><a href="#comments-samples" title="Comments samples">Comments samples</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#integration-methods" title="Integration methods">Integration methods</a></li><li><a href="#before-you-start" title="Before you start">Before you start</a><ol><li><a href="#preparing-a-custom-editor-setup" title="Preparing a custom editor setup">Preparing a custom editor setup</a></li><li><a href="#setting-up-a-sample-project" title="Setting up a sample project">Setting up a sample project</a></li><li><a href="#activating-the-feature" title="Activating the feature">Activating the feature</a></li><li><a href="#building-the-project" title="Building the project">Building the project</a></li><li><a href="#basic-setups-anatomy" title="Basic setup’s anatomy">Basic setup’s anatomy</a><ol><li><a href="#html-structure" title="HTML structure">HTML structure</a></li><li><a href="#javascript" title="JavaScript">JavaScript</a></li></ol></li><li><a href="#comments-api" title="Comments API">Comments API</a></li><li><a href="#next-steps" title="Next steps">Next steps</a></li></ol></li><li><a href="#a-simple-load-and-save-integration" title="A simple “load and save” integration">A simple “load and save” integration</a><ol><li><a href="#loading-the-data" title="Loading the data">Loading the data</a></li><li><a href="#saving-the-data" title="Saving the data">Saving the data</a></li><li><a href="#demo" title="Demo">Demo</a></li></ol></li><li><a href="#adapter-integration" title="Adapter integration">Adapter integration</a><ol><li><a href="#implementation" title="Implementation">Implementation</a></li><li><a href="#demo-2" title="Demo">Demo</a></li><li><a href="#why-is-there-no-event-when-i-remove-comment-thread-markers-from-the-content" title="Why is there no event when I remove comment thread markers from the content?">Why is there no event when I remove comment thread markers from the content?</a></li><li><a href="#php-integration-example" title="PHP integration example">PHP integration example</a></li></ol></li><li><a href="#comments-samples" title="Comments samples">Comments samples</a></li></ol></nav>
 
 <p>The comments feature <a href="../../../api/comments.html">provides an API</a> that lets you add, remove, and update comments in the editor. To save and access all these changes in your database, you first need to integrate this feature.</p>
-<div class="info-box notice"><p>This guide describes integrating comments as a standalone plugin. If you are using real-time collaboration, refer to the <a href="../real-time-collaboration/real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide.</p></div>
-<h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
+<div class="info-box notice notice__info"><p>This guide describes integrating comments as a standalone plugin (the asynchronous version of it). If you are using real-time collaboration, refer to the <a href="../real-time-collaboration/real-time-collaboration-integration.html">Real-time collaboration features integration</a> guide.</p></div>
+<h2 id="integration-methods"><a class="headerlink" href="#integration-methods">#</a> Integration methods</h2>
 <p>This guide will discuss two ways to integrate CKEditor&nbsp;5 with your comments data source:</p>
 <ul>
 <li><a href="#a-simple-load-and-save-integration">A simple “load and save” integration</a> using directly the <code>CommentsRepository</code> plugin API.</li>
 <li><a href="#adapter-integration">An adapter integration</a> which updates the comments data immediately in the database when it changes in the editor.</li>
 </ul>
 <p>The adapter integration is the recommended one because it gives you better control over the data.</p>
-<p>Before you start creating an integration, there are a few concepts you should be familiar with. This guide will explain how to create a custom preset with the comments plugin, what data structure the comments use and what the comments plugin API looks like.</p>
-<p>Make sure that you understand all of these concepts before you proceed to the integration.</p>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or as a starting point for your own integration.</p></div>
-<h3 id="activating-the-feature"><a class="headerlink" href="#activating-the-feature">#</a> Activating the feature</h3>
-<p>To use this premium feature, you need to activate it with proper credentials. Refer to the <a href="../../../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</p>
-<p>After you have successfully obtained all the credentials needed, let’s create a custom editor and configure it.</p>
-<h3 id="prepare-a-custom-build"><a class="headerlink" href="#prepare-a-custom-build">#</a> Prepare a custom build</h3>
-<p>To use the comments plugin, you need to prepare an editor preset with the comments feature included. Please use the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a> to create it and refer to the <a href="../../../getting-started/installation/quick-start.html">Quick Start</a> guide to install your editor.</p>
-<p>The Builder should provide all necessary files like HTML, CSS, and JavaScript.</p>
-<h3 id="core-setup"><a class="headerlink" href="#core-setup">#</a> Core setup</h3>
-<div class="info-box notice notice__info"><p>For completeness’ sake, examples below implement the <a href="../annotations/annotations-display-mode.html#wide-sidebar">wide sidebar display mode</a> for comment threads. If you want to use the inline display mode, remove parts of the snippets that set up the sidebar.</p></div>
-<p>When you have the comments package included in your custom build, prepare an HTML structure for the sidebar. After that, you can enable the comments plugin. Proceed as follows:</p>
+<h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or a starting point for your integration.</p></div>
+<h3 id="preparing-a-custom-editor-setup"><a class="headerlink" href="#preparing-a-custom-editor-setup">#</a> Preparing a custom editor setup</h3>
+<p>To use the comments plugin, you need to prepare a custom editor setup with the asynchronous version of the comments feature included.</p>
+<p>The easiest way to do that is by using the <a href="https://ckeditor.com/ckeditor-5/builder?redirect=docs">Builder</a>. Pick a preset and start customizing your editor.</p>
+<div class="info-box notice notice__info"><p>The Builder allows you to pick your preferred distribution method and framework. For this guide, we will use the “Vanilla JS” option with “npm” and a simple setup based on the “Classic Editor (basic)” preset, with the comments feature enabled.</p></div>
+<p><strong>In the “Features” section</strong> of the Builder (2nd step), make sure to:</p>
 <ul>
-<li>Set up a two-column layout.</li>
-<li>Add the <code>sidebar</code> configuration.</li>
-<li>Add the <code>comment</code> button to the <code>toolbar</code>. If you use the <code>ImageToolbar</code> plugin, also add the <code>comment</code> button to the image toolbar.</li>
-<li>Add the <code>commentsArchive</code> button to the <code>toolbar</code>.</li>
-<li>Add your <code>licenseKey</code>. If you do not have a key yet, please <a href="https://ckeditor.com/contact/">contact us</a>. If you have already purchased a license, the key can be accessed via the <a href="https://dashboard.ckeditor.com/login">user dashboard</a>.</li>
+<li>turn off the “real-time” toggle next to the “Collaboration” group,</li>
+<li>enable the “Collaboration&nbsp;→&nbsp;Comments” feature.</li>
 </ul>
-<p>Edit the <code>sample/index.html</code> file as follows:</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;title&gt;CKEditor&amp;nbsp;5 collaboration with comments&lt;/title&gt;
-    &lt;style type="text/css"&gt;
-    #container {
-        /* To create the column layout. */
-        display: flex;
-
-        /* To make the container relative to its children. */
-        position: relative;
-    }
-
-    #container .ck.ck-editor {
-        /* To stretch the editor to max 700px
-            (just to look nice for this example but it can be any size). */
-        width: 100%;
-        max-width: 700px;
-    }
-
-    #sidebar {
-        /* Set some size for the sidebar (it can be any). */
-        min-width: 300px;
-
-        /* Add some distance. */
-        padding: 0 10px;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div id="container"&gt;
-    &lt;div id="editor"&gt;&lt;/div&gt;
-    &lt;div id="sidebar"&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    const initialData =
-        `&lt;h2&gt;
-            &lt;comment-start name="thread-1"&gt;&lt;/comment-start&gt;
-            Bilingual Personality Disorder
-            &lt;comment-end name="thread-1"&gt;&lt;/comment-end&gt;
-        &lt;/h2&gt;
-        &lt;p&gt;
-            This may be the first time you hear about this made-up disorder but it actually isn’t so far from the truth.
-            As recent studies show, the language you speak has more effects on you than you realize.
-            According to the studies, the language a person speaks affects their cognition,
-            behavior, emotions and hence &lt;strong&gt;their personality&lt;/strong&gt;.
-        &lt;/p&gt;
-        &lt;p&gt;
-            This shouldn’t come as a surprise
-            &lt;a href="https://en.wikipedia.org/wiki/Lateralization_of_brain_function"&gt;since we already know&lt;/a&gt;
-            that different regions of the brain become more active depending on the activity.
-            The structure, information and especially &lt;strong&gt;the culture&lt;/strong&gt; of languages varies substantially
-            and the language a person speaks is an essential element of daily life.
-        &lt;/p&gt;`;
-
-    ClassicEditor
-        .create( document.querySelector( '#editor' ), {
-            initialData,
-            licenseKey: 'your-license-key',
-            sidebar: {
-                container: document.querySelector( '#sidebar' )
-            },
-            toolbar: {
-                items: [
-                    'undo', 'redo',
-                    '|', 'comment', 'commentsArchive',
-                    '|', 'heading',
-                    '|', 'bold', 'italic',
-                    '|', 'link',
-                    '|', 'bulletedList', 'numberedList'
-                ]
-            }
-        } )
-        .catch( error =&gt; console.error( error ) );
-&lt;/script&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
+<p>Once you finish the setup, the Builder will provide you with the necessary HTML, CSS, and JavaScript code snippets. We will use those code snippets in the next step.</p>
+<h3 id="setting-up-a-sample-project"><a class="headerlink" href="#setting-up-a-sample-project">#</a> Setting up a sample project</h3>
+<p>Once we have a custom editor setup we need a simple JavaScript project to run it. For this, we recommend cloning the basic project template from our repository:</p>
+<pre class="highlight"><code class="">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
+cd ckeditor5-tutorials-examples/sample-project
+npm install
 </code></pre>
-<p>When you open the sample in the browser you should see the WYSIWYG editor with the comments plugin. However, it still does not load or save any data and the user is not defined so you will get a warning and the user will be defined as “Anonymous” when you try to add any comment. You will learn how to add data to the comments plugin later in this guide.</p>
+<p>Then, install the necessary dependencies:</p>
+<pre class="highlight"><code class="">npm install ckeditor5
+npm install ckeditor5-premium-features
+</code></pre>
+<p>This project template uses <a href="https://vitejs.dev/">Vite</a> under the hood and contains 3 source files that we will use: <code>index.html</code>, <code>style.css</code>, and <code>main.js</code>.</p>
+<p>It is now the time to use our custom editor setup. <strong>Go to the “Installation” section</strong> of the Builder and copy the generated code snippets to those 3 files.</p>
+<h3 id="activating-the-feature"><a class="headerlink" href="#activating-the-feature">#</a> Activating the feature</h3>
+<p>To use this premium feature, you need to activate it with a license key. Refer to the <a href="../../../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</p>
+<p>After you have successfully obtained the license key open the <code>main.js</code> file and update the <code>&lt;YOUR_LICENSE_KEY&gt;</code> string with your license key.</p>
+<h3 id="building-the-project"><a class="headerlink" href="#building-the-project">#</a> Building the project</h3>
+<p>Finally, build the project by running:</p>
+<pre class="highlight"><code class="">npm run dev
+</code></pre>
+<p>When you open the sample in the browser you should see the WYSIWYG editor with the comments plugin. However, it still does not load or save any data. You will learn how to add data to the comments plugin later in this guide.</p>
+<p>Let’s now dive deeper into the structure of this setup.</p>
+<h3 id="basic-setups-anatomy"><a class="headerlink" href="#basic-setups-anatomy">#</a> Basic setup’s anatomy</h3>
+<div class="info-box notice notice__info"><p>Examples below implement the <a href="../annotations/annotations-display-mode.html#wide-sidebar">wide sidebar display mode</a> for comment threads. If you want to use the inline display mode, remove parts of the snippets that set up the sidebar.</p></div>
+<p>Let’s now go through the key fragments of this basic setup.</p>
+<h4 id="html-structure"><a class="headerlink" href="#html-structure">#</a> HTML structure</h4>
+<p>The HTML and CSS structure of the page creates two columns:</p>
+<ul>
+<li><code>&lt;div class="editor-container__editor"&gt;</code> is the container used by the editor.</li>
+<li><code>&lt;div class="editor-container__sidebar"&gt;</code> is the container used by the sidebar that holds the annotations (namely comments).</li>
+</ul>
+<h4 id="javascript"><a class="headerlink" href="#javascript">#</a> JavaScript</h4>
+<p>The <code>main.js</code> file sets up the editor instance:</p>
+<ul>
+<li>Loads all necessary editor plugins (including the <a href="../../../api/module_comments_comments-Comments.html"><code>Comments</code></a> plugin).</li>
+<li>Sets the <code>licenseKey</code> configuration option.</li>
+<li>Sets the <code>sidebar.container</code> configuration option to the container mentioned above.</li>
+<li>Adds the <code>comment</code> and <code>commentsArchive</code> buttons to the editor toolbar.</li>
+<li>Defines the templates for the <code>CommentsIntegration</code> and <code>UsersIntegrations</code> plugins that we will use in the next steps of this tutorial.</li>
+</ul>
+<div class="info-box notice notice__info"><p>If you use the <code>ImageToolbar</code> plugin, also add the <code>comment</code> button to the <a href="../../../api/module_image_imageconfig-ImageConfig.html#member-toolbar">image toolbar</a>.</p></div>
 <h3 id="comments-api"><a class="headerlink" href="#comments-api">#</a> Comments API</h3>
 <p>The integration below uses the comments API. Making yourself familiar with the API may help you understand the code snippets. In case of any problems, refer to the <a href="../../../api/comments.html">comments API documentation</a>.</p>
+<h3 id="next-steps"><a class="headerlink" href="#next-steps">#</a> Next steps</h3>
+<p>We have set up a simple JavaScript project that runs a basic CKEditor&nbsp;5 instance with the asynchronous version of the Comments feature. It does not yet handle loading or saving data, though. The next two sections cover the two available integration methods.</p>
 <h2 id="a-simple-load-and-save-integration"><a class="headerlink" href="#a-simple-load-and-save-integration">#</a> A simple “load and save” integration</h2>
 <p>In this solution, users and comments data is loaded during the editor initialization, and comments data is saved after you finish working with the editor (for example when you submit the form containing the WYSIWYG editor).</p>
-<p>This method is recommended only if you can trust your users or if you provide additional validation of the submitted data to make sure that the user changed their comments only.</p>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or as a starting point for your own integration.</p></div>
+<p>This method is recommended if you can trust your users or if you provide additional validation of the submitted data. This way, we can make sure that the user changes their comments only.</p>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or as a starting point for your own integration.</p></div>
 <h3 id="loading-the-data"><a class="headerlink" href="#loading-the-data">#</a> Loading the data</h3>
 <p>When the comments plugin is already included in the editor, you need to create a plugin which will initialize users and existing comments.</p>
 <p>First, dump the users and comments data to a variable that will be available for your plugin.</p>
-<div class="info-box notice"><p>If your application needs to request the comments data from the server asynchronously, instead of putting the data in the HTML source, you can create a plugin that will fetch the data from the database. In this case, your plugin should <a href="../../../api/module_core_plugin-PluginInterface.html#function-init">return a <code>Promise</code> from the <code>Plugin.init</code> method</a> to make sure that the editor initialization waits for your data.</p></div>
+<div class="info-box notice notice__info"><p>If your application needs to request the comments data from the server asynchronously, instead of putting the data in the HTML source, you can create a plugin that will fetch the data from the database. In this case, your plugin should <a href="../../../api/module_core_plugin-PluginInterface.html#function-init">return a <code>Promise</code> from the <code>Plugin.init()</code> method</a> to make sure that the editor initialization waits for your data.</p></div>
+<p>If you have set up the sample project as <a href="#before-you-start">recommended in the “Before you start” section</a>, open the <code>main.js</code> file and add this variable right after the imports:</p>
 <pre class="highlight"><code class="js">// Application data will be available under a global variable `appData`.
 const appData = {
     // Users data.
@@ -737,19 +689,18 @@ const appData = {
         &lt;/p&gt;`
 };
 </code></pre>
-<p>Then, prepare a plugin that will read the data from <code>appData</code> and use the <code>Users</code> and <code>CommentsRepository</code> API.</p>
-<pre class="highlight"><code class="js">class CommentsIntegration {
-    constructor( editor ) {
-        this.editor = editor;
+<p>The Builder’s output sample already provides templates of two plugins: <code>UsersIntegration</code> and <code>CommentsIntegration</code>. Replace them with ones that read the data from <code>appData</code> and use the <a href="../../../api/module_collaboration-core_users-Users.html"><code>Users</code></a> and <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html"><code>CommentsRepository</code></a> API:</p>
+<pre class="highlight"><code class="js">class UsersIntegration extends Plugin {
+    static get requires() {
+        return [ 'Users' ];
     }
 
-    static get requires() {
-        return [ 'CommentsRepository' ];
+    static get pluginName() {
+        return 'UsersIntegration';
     }
 
     init() {
         const usersPlugin = this.editor.plugins.get( 'Users' );
-        const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
 
         // Load the users data.
         for ( const user of appData.users ) {
@@ -758,6 +709,20 @@ const appData = {
 
         // Set the current user.
         usersPlugin.defineMe( appData.userId );
+    }
+}
+
+class CommentsIntegration extends Plugin {
+    static get requires() {
+        return [ 'CommentsRepository', 'UsersIntegration' ];
+    }
+
+    static get pluginName() {
+        return 'CommentsIntegration';
+    }
+
+    init() {
+        const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
 
         // Load the comment threads data.
         for ( const commentThread of appData.commentThreads ) {
@@ -766,50 +731,28 @@ const appData = {
     }
 }
 </code></pre>
-<p>Finally, add the plugin in the editor configuration.</p>
-<pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        initialData: appData.initialData,
-        extraPlugins: [ CommentsIntegration ],
-        licenseKey: 'your-license-key',
-        sidebar: {
-            container: document.querySelector( '#sidebar' )
-        },
-        toolbar: {
-            items: [
-                'undo', 'redo',
-                '|', 'comment', 'commentsArchive',
-                '|', 'heading',
-                '|', 'bold', 'italic',
-                '|', 'link',
-                '|', 'bulletedList', 'numberedList'
-            ]
-        }
-    } )
-    .catch( error =&gt; console.error( error ) );
+<p>Update the <code>editorConfig.initialData</code> property to use the <code>appData.initialData</code> value:</p>
+<pre class="highlight"><code class="js">const editorConfig = {
+    // ...
+
+    initialData: appData.initialData
+
+    // ...
+};
 </code></pre>
+<p>And build the project:</p>
+<pre class="highlight"><code class="">npm run dev
+</code></pre>
+<p>You should now we see an editor instance with one comment thread.</p>
 <h3 id="saving-the-data"><a class="headerlink" href="#saving-the-data">#</a> Saving the data</h3>
-<p>To save the comments data, you need to get it using the <code>CommentsRepository</code> API first. To do this, use the <code>getCommentThreads()</code> method.</p>
+<p>To save the comments data, you need to get it using the <code>CommentsRepository</code> API first. To do this, use the <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#function-getCommentThreads"><code>getCommentThreads()</code></a> method.</p>
 <p>Then, use the comment threads data to save it in your database in the way you prefer. See the example below.</p>
+<p>In <code>index.html</code> add:</p>
+<pre class="highlight"><code class="html">&lt;button id="get-data"&gt;Get data&lt;/button&gt;
+</code></pre>
+<p>In <code>main.js</code> update the <code>ClassicEditor.create()</code> call with a chained <code>then()</code>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        initialData,
-        extraPlugins: [ CommentsIntegration ],
-        licenseKey: 'your-license-key',
-        sidebar: {
-            container: document.querySelector( '#sidebar' )
-        },
-        toolbar: {
-            items: [
-                'undo', 'redo',
-                '|', 'comment', 'commentsArchive',
-                '|', 'heading',
-                '|', 'bold', 'italic',
-                '|', 'link',
-                '|', 'bulletedList', 'numberedList'
-            ]
-        }
-    } )
+    .create( /* ... */ )
     .then( editor =&gt; {
         // After the editor is initialized, add an action to be performed after a button is clicked.
         const commentsRepository = editor.plugins.get( 'CommentsRepository' );
@@ -828,10 +771,9 @@ const appData = {
             console.log( editorData );
             console.log( commentThreadsData );
         } );
-    } )
-    .catch( error =&gt; console.error( error ) );
+    } );
 </code></pre>
-<div class="info-box notice"><p>It is recommended to stringify the <code>attributes</code> value to JSON and save it as a string in your database and then to parse the value from JSON when loading comments.</p></div>
+<div class="info-box notice notice__info"><p>It is recommended to stringify the <code>attributes</code> value to JSON, save it as a string in your database, and then parse the value from JSON when loading comments.</p></div>
 <h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
 <div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
 <div class="live-snippet__container loaded comments-integration">
@@ -904,13 +846,14 @@ const appData = {
 </style>
 </div>
 <h2 id="adapter-integration"><a class="headerlink" href="#adapter-integration">#</a> Adapter integration</h2>
-<p>Adapter integration uses an adapter object – provided by you – to immediately save changes in comments in your data store. This is the recommended way of integrating comments with your application because it lets you handle the client-server communication more securely. For example, you can check user permissions, validate sent data, or update the data with information obtained on the server side, like the comment creation date. You will see how to handle the server response in the following steps.</p>
-<div class="info-box notice"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or as a starting point for your own integration.</p></div>
+<p>Adapter integration uses an adapter object – provided by you – to immediately save changes in comments in your data store. It is the recommended way of integrating comments with your application because it lets you handle client-server communication more securely. For example, you can check user permissions, validate sent data, or update the data with information obtained on the server side, like the comment creation date. You will see how to handle the server response in the following steps.</p>
+<div class="info-box notice notice__info"><p>Complementary to this guide, we provide <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/comments-integration">ready-to-use <strong>samples</strong> available for download</a>. You may use the samples as an example or as a starting point for your own integration.</p></div>
 <h3 id="implementation"><a class="headerlink" href="#implementation">#</a> Implementation</h3>
 <p>First, define the adapter using the <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#member-adapter"><code>CommentsRepository#adapter</code></a> property. <a href="../../../api/module_comments_comments_commentsrepository-CommentsAdapter.html">Adapter methods</a> are called after the user makes a change in the comments. The adapter allows you to save the change in your database immediately. Each comment action has a separate adapter method that you should implement.</p>
 <p>On the UI side, each change in comments is performed immediately, however, all adapter actions are asynchronous and are performed in the background. Because of this, all adapter methods need to return a <code>Promise</code>. When the promise is resolved, it means that everything went fine and a local change was successfully saved in the data store. When the promise is rejected, the editor throws a <a href="../../../api/module_utils_ckeditorerror-CKEditorError.html"><code>CKEditorError</code></a> error, which works nicely together with the <a href="../../watchdog.html">watchdog</a> feature. When you handle the server response you can decide if the promise should be resolved or rejected.</p>
 <p>While any adapter action is being performed, a pending action is automatically added to the editor <a href="../../../api/module_core_pendingactions-PendingActions.html"><code>PendingActions</code></a> plugin, so you do not have to worry that the editor will be destroyed before the adapter action has finished.</p>
 <p>Now you are ready to implement the adapter.</p>
+<p>If you have set up the sample project as <a href="#before-you-start">recommended in the “Before you start” section</a>, open the <code>main.js</code> file and add this variable right after the imports:</p>
 <pre class="highlight"><code class="js">// Application data will be available under a global variable `appData`.
 const appData = {
     // Users data.
@@ -950,19 +893,19 @@ const appData = {
         &lt;/p&gt;`
 
 };
-
-class CommentsAdapter {
-    constructor( editor ) {
-        this.editor = editor;
+</code></pre>
+<p>The Builder’s output sample already provides templates of two plugins <code>UsersIntegration</code> and <code>CommentsIntegration</code>. Replace them with ones that read the data from <code>appData</code> and use the <a href="../../../api/module_collaboration-core_users-Users.html"><code>Users</code></a> and <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html"><code>CommentsRepository</code></a> API:</p>
+<pre class="highlight"><code class="js">class UsersIntegration extends Plugin {
+    static get requires() {
+        return ['Users'];
     }
 
-    static get requires() {
-        return [ 'CommentsRepository' ];
+    static get pluginName() {
+        return 'UsersIntegration';
     }
 
     init() {
         const usersPlugin = this.editor.plugins.get( 'Users' );
-        const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
 
         // Load the users data.
         for ( const user of appData.users ) {
@@ -971,6 +914,20 @@ class CommentsAdapter {
 
         // Set the current user.
         usersPlugin.defineMe( appData.userId );
+    }
+}
+
+class CommentsIntegration extends Plugin {
+    static get requires() {
+        return [ 'CommentsRepository', 'UsersIntegration' ];
+    }
+
+    static get pluginName() {
+        return 'CommentsIntegration';
+    }
+
+    init() {
+        const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
 
         // Set the adapter on the `CommentsRepository#adapter` property.
         commentsRepositoryPlugin.adapter = {
@@ -1081,262 +1038,21 @@ class CommentsAdapter {
         };
     }
 }
-
-ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        initialData: appData.initialData,
-        extraPlugins: [ CommentsAdapter ],
-        licenseKey: 'your-license-key',
-        sidebar: {
-            container: document.querySelector( '#sidebar' )
-        },
-        toolbar: {
-            items: [
-                'undo', 'redo',
-                '|', 'comment', 'commentsArchive',
-                '|', 'heading',
-                '|', 'bold', 'italic',
-                '|', 'link',
-                '|', 'bulletedList', 'numberedList'
-            ]
-        }
-    } )
-    .catch( error =&gt; console.error( error ) );
 </code></pre>
-<div class="info-box notice"><p>It is recommended to stringify the <code>attributes</code> value to JSON and save it as a string in your database and then to parse the value from JSON when loading comments.</p></div>
-<p>The adapter is now ready to use with your rich text editor.</p>
-<p>Below is the final solution.</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;CKEditor&amp;nbsp;5 Collaboration with comments&lt;/title&gt;
-        &lt;style type="text/css"&gt;
-        #container {
-            /* To create the column layout. */
-            display: flex;
+<p>Update the <code>editorConfig.initialData</code> property to use <code>appData.initialData</code> value:</p>
+<pre class="highlight"><code class="js">const editorConfig = {
+    // ...
 
-            /* To make the container relative to its children. */
-            position: relative;
-        }
+    initialData: appData.initialData
 
-        #container .ck.ck-editor {
-            /* To stretch the editor to max 700px
-                (just to look nice for this example but it can be any size). */
-            width: 100%;
-            max-width: 700px;
-        }
-
-        #sidebar {
-            /* Set some size for the sidebar (it can be any). */
-            min-width: 300px;
-
-            /* Add some distance. */
-            padding: 0 10px;
-        }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id="container"&gt;
-            &lt;div id="editor"&gt;&lt;/div&gt;
-            &lt;div id="sidebar"&gt;&lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-    &lt;script src="../build/ckeditor.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-        // Application data will be available under a global variable `appData`.
-        const appData = {
-            // Users data.
-            users: [
-                {
-                    id: 'user-1',
-                    name: 'Mex Haddox'
-                },
-                {
-                    id: 'user-2',
-                    name: 'Zee Croce'
-                }
-            ],
-
-            // The ID of the current user.
-            userId: 'user-1',
-
-            // Editor initial data.
-            initialData:
-                `&lt;h2&gt;
-                    &lt;comment-start name="thread-1"&gt;&lt;/comment-start&gt;
-                    Bilingual Personality Disorder
-                    &lt;comment-end name="thread-1"&gt;&lt;/comment-end&gt;
-                &lt;/h2&gt;
-                &lt;p&gt;
-                    This may be the first time you hear about this made-up disorder but it actually isn’t so far from the truth.
-                    As recent studies show, the language you speak has more effects on you than you realize.
-                    According to the studies, the language a person speaks affects their cognition,
-                    behavior, emotions and hence &lt;strong&gt;their personality&lt;/strong&gt;.
-                &lt;/p&gt;
-                &lt;p&gt;
-                    This shouldn’t come as a surprise
-                    &lt;a href="https://en.wikipedia.org/wiki/Lateralization_of_brain_function"&gt;since we already know&lt;/a&gt;
-                    that different regions of the brain become more active depending on the activity.
-                    The structure, information and especially &lt;strong&gt;the culture&lt;/strong&gt; of languages varies substantially
-                    and the language a person speaks is an essential element of daily life.
-                &lt;/p&gt;`
-        };
-
-        class CommentsAdapter {
-            constructor( editor ) {
-                this.editor = editor;
-            }
-
-            static get requires() {
-                return [ 'CommentsRepository' ];
-            }
-
-            init() {
-                const usersPlugin = this.editor.plugins.get( 'Users' );
-                const commentsRepositoryPlugin = this.editor.plugins.get( 'CommentsRepository' );
-
-                // Load the users data.
-                for ( const user of appData.users ) {
-                    usersPlugin.addUser( user );
-                }
-
-                // Set the current user.
-                usersPlugin.defineMe( appData.userId );
-
-                // Set the adapter on the `CommentsRepository#adapter` property.
-                commentsRepositoryPlugin.adapter = {
-                    addComment( data ) {
-                        console.log( 'Comment added', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        // When the promise resolves with the comment data object, it
-                        // will update the editor comment using the provided data.
-                        return Promise.resolve( {
-                            createdAt: new Date()       // Should be set on the server side.
-                        } );
-                    },
-
-                    updateComment( data ) {
-                        console.log( 'Comment updated', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve();
-                    },
-
-                    removeComment( data ) {
-                        console.log( 'Comment removed', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve();
-                    },
-
-                    addCommentThread( data ) {
-                        console.log( 'Comment thread added', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve( {
-                            threadId: data.threadId,
-                            comments: data.comments.map( ( comment ) =&gt; ( { commentId: comment.commentId, createdAt: new Date() } ) ) // Should be set on the server side.
-                        } );
-                    },
-
-                    getCommentThread( data ) {
-                        console.log( 'Getting comment thread', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should resolve with the comment thread data.
-                        return Promise.resolve( {
-                            threadId: data.threadId,
-                            comments: [
-                                {
-                                    commentId: 'comment-1',
-                                    authorId: 'user-2',
-                                    content: '&lt;p&gt;Are we sure we want to use a made-up disorder name?&lt;/p&gt;',
-                                    createdAt: new Date(),
-                                    attributes: {}
-                                }
-                            ],
-                            // It defines the value on which the comment has been created initially.
-                            // If it is empty it will be set based on the comment marker.
-                            context: {
-                                type: 'text',
-                                value: 'Bilingual Personality Disorder'
-                            },
-                            unlinkedAt: null,
-                            resolvedAt: null,
-                            resolvedBy: null,
-                            attributes: {},
-                            isFromAdapter: true
-                        } );
-                    },
-
-                    updateCommentThread( data ) {
-                        console.log( 'Comment thread updated', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve();
-                    },
-
-                    resolveCommentThread( data ) {
-                        console.log( 'Comment thread resolved', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve( {
-                            resolvedAt: new Date(), // Should be set on the server side.
-                            resolvedBy: usersPlugin.me.id // Should be set on the server side.
-                        } );
-                    },
-
-                    reopenCommentThread( data ) {
-                        console.log( 'Comment thread reopened', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve();
-                    },
-
-
-                    removeCommentThread( data ) {
-                        console.log( 'Comment thread removed', data );
-
-                        // Write a request to your database here. The returned `Promise`
-                        // should be resolved when the request has finished.
-                        return Promise.resolve();
-                    }
-                };
-            }
-        }
-
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                initialData: appData.initialData,
-                extraPlugins: [ CommentsAdapter ],
-                licenseKey: 'your-license-key',
-                sidebar: {
-                    container: document.querySelector( '#sidebar' )
-                },
-                toolbar: {
-                    items: [
-                        'undo', 'redo',
-                        '|', 'comment', 'commentsArchive',
-                        '|', 'heading',
-                        '|', 'bold', 'italic',
-                        '|', 'link',
-                        '|', 'bulletedList', 'numberedList'
-                    ]
-                }
-            } )
-            .catch( error =&gt; console.error( error ) );
-    &lt;/script&gt;
-&lt;/html&gt;
+    // ...
+};
 </code></pre>
+<p>And build the project:</p>
+<pre class="highlight"><code class="">npm run dev
+</code></pre>
+<p>You should now we see an editor instance with one comment thread. Observe the browser console while you interact with the comments feature in the editor (add/remove threads and comments).</p>
+<div class="info-box notice notice__info"><p>It is recommended to stringify the <code>attributes</code> value to JSON, save it as a string in your database, and then parse the value from JSON when loading comments.</p></div>
 <h3 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h3>
 <div class="live-snippet"><div class="live-snippet__container loaded comments-adapter">
 	<div class="row">
@@ -1392,7 +1108,7 @@ ClassicEditor
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcomments%2Fcomments-integration.html%22&amp;project-version=41.4.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fcollaboration%2Fcomments%2Fcomments-integration.html%22&amp;project-version=42.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
