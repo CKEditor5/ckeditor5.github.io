@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jun 28 2024 01:32:24 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Jun 29 2024 01:30:39 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Customized installation | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -279,7 +279,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.2/img/book.svg" alt="guide">(Legacy) Customized installation
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction" title="Introduction">Introduction</a></li><li><a href="#creating-custom-builds-with-online-builder" title="Creating custom builds with online builder">Creating custom builds with online builder</a><ol><li><a href="#choosing-the-editor-type" title="Choosing the editor type">Choosing the editor type</a></li><li><a href="#choosing-plugins" title="Choosing plugins">Choosing plugins</a></li><li><a href="#toolbar-composition" title="Toolbar composition">Toolbar composition</a></li><li><a href="#choosing-the-default-language" title="Choosing the default language">Choosing the default language</a></li><li><a href="#download-the-customized-build" title="Download the customized build">Download the customized build</a></li></ol></li><li><a href="#customizing-builds" title="Customizing builds">Customizing builds</a><ol><li><a href="#requirements" title="Requirements">Requirements</a></li><li><a href="#build-anatomy" title="Build anatomy">Build anatomy</a></li><li><a href="#installing-dependencies" title="Installing dependencies">Installing dependencies</a></li><li><a href="#updating-build-configuration" title="Updating build configuration">Updating build configuration</a></li><li><a href="#rebuilding-the-bundle" title="Rebuilding the bundle">Rebuilding the bundle</a></li><li><a href="#running-the-editor" title="Running the editor">Running the editor</a></li></ol></li><li><a href="#building-the-editor-from-source" title="Building the editor from source">Building the editor from source</a><ol><li><a href="#setting-up-the-environment" title="Setting up the environment">Setting up the environment</a></li><li><a href="#creating-an-editor" title="Creating an editor">Creating an editor</a></li><li><a href="#running-the-editor-2" title="Running the editor">Running the editor</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction" title="Introduction">Introduction</a></li><li><a href="#creating-custom-builds-with-online-builder" title="Creating custom builds with online builder">Creating custom builds with online builder</a><ol><li><a href="#build-anatomy" title="Build anatomy">Build anatomy</a></li><li><a href="#installing-dependencies" title="Installing dependencies">Installing dependencies</a></li><li><a href="#updating-packages" title="Updating packages">Updating packages</a></li><li><a href="#updating-build-configuration" title="Updating build configuration">Updating build configuration</a></li><li><a href="#rebuilding-the-bundle" title="Rebuilding the bundle">Rebuilding the bundle</a></li><li><a href="#running-the-editor" title="Running the editor">Running the editor</a></li></ol></li><li><a href="#building-the-editor-from-source" title="Building the editor from source">Building the editor from source</a><ol><li><a href="#setting-up-the-environment" title="Setting up the environment">Setting up the environment</a></li><li><a href="#creating-an-editor" title="Creating an editor">Creating an editor</a></li><li><a href="#running-the-editor-2" title="Running the editor">Running the editor</a></li></ol></li></ol></nav>
 <div class="info-box notice notice__warning"><p>⚠️  We changed installation methods and this legacy guide is kept for users’ convenience. If you want to learn more about these changes, please refer to the <a href="../../../updating/nim-migration/customized-builds.html">Migrating from customized builds</a> guide.</p></div>
 <h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
 <p>This guide will teach you how to run your own CKEditor&nbsp;5 instance. Below you can find two unique paths describing the installation process. Choose one (or both!) and start your CKEditor&nbsp;5 journey!</p>
@@ -289,73 +289,8 @@
 <li><a href="#building-the-editor-from-source">Building from the source path</a> – An advanced path including using <code>npm</code> and webpack.</li>
 </ul>
 <h2 id="creating-custom-builds-with-online-builder"><a class="headerlink" href="#creating-custom-builds-with-online-builder">#</a> Creating custom builds with online builder</h2>
-<p>Although the CKEditor&nbsp;5 WYSIWYG editor comes with handy <a href="predefined-builds.html">predefined builds</a>, sometimes you need more flexibility. A need for more customized editors arises. Some of the reasons for creating custom builds are:</p>
-<ul>
-<li>Adding <a href="../../../framework/architecture/plugins.html">plugin-driven features</a> not included in the existing builds.</li>
-<li>Removing unnecessary features present in a build.</li>
-<li>Designing a <a href="../../setup/toolbar.html">customized toolbar experience</a>.</li>
-<li>Changing the <a href="predefined-builds.html#available-builds">editor type build</a>.</li>
-<li>Changing the <a href="../../setup/ui-language.html">localization language</a> of the editor.</li>
-</ul>
-<p>The <a href="https://ckeditor.com/ckeditor-5/online-builder/">online builder</a> is an application that lets you design and download custom CKEditor&nbsp;5 builds. It allows you to create your bundles with your desired editor type, toolbar, and plugins in a few easy steps through a simple and intuitive UI.</p>
-<h3 id="choosing-the-editor-type"><a class="headerlink" href="#choosing-the-editor-type">#</a> Choosing the editor type</h3>
-<p>The following editor types are currently available to choose from:</p>
-<ul>
-<li><a href="predefined-builds.html#classic-editor">Classic editor</a></li>
-<li><a href="predefined-builds.html#inline-editor">Inline editor</a></li>
-<li><a href="predefined-builds.html#balloon-editor">Balloon editor</a></li>
-<li><a href="predefined-builds.html#balloon-block-editor">Balloon block editor</a></li>
-<li><a href="predefined-builds.html#document-editor">Document editor</a></li>
-</ul>
-<p>Refer to the predefined builds documentation and <a href="../../../examples/index.html">examples</a> to check what kind of WYSIWYG editor suits your needs best. Once you choose the desired editor type, select it to move to the next step.</p>
-<p>For clarity, this guide will use the classic build as an example.</p>
-<p><img src="../../../assets/img/online-builder-01-editor-type-choice.png" data-lightbox="true" alt="Editor type selection." width="778"></p>
-<h3 id="choosing-plugins"><a class="headerlink" href="#choosing-plugins">#</a> Choosing plugins</h3>
-<p>The basic build comes with a predefined set of plugins grouped in a bar at the top of the page. Take a moment to check these options out. You can freely remove the ones unnecessary in your build.</p>
-<p><img src="../../../assets/img/online-builder-02-predefined-plugins.png" data-lightbox="true" alt="Predefined plugins. Feel free to remove unneeded ones." width="778"></p>
-<p>Below the top bar with preselected plugins, you will find a sizable collection of features. You can add them to your custom build. Choose the ones that best suit your needs. Some plugins may not work well with others or may require dependencies. Online builder will provide information in such cases.</p>
-<p><img src="../../../assets/img/online-builder-03-plugin-choice.png" data-lightbox="true" alt="Predefined plugins. Some plugins to choose from." width="778"></p>
-<div class="info-box notice notice__hint"><p>Some plugins require other plugins to work. These dependencies are mentioned in the <strong>Requires plugins</strong> section of the description box for each plugin. If this section is not present, the plugin does not need any other plugin to work.</p><p>Some of these plugins are <strong>premium features</strong> which require an additional license to run. They are marked with an appropriate <span class="tree__item__badge tree__item__badge_premium"><span class="tree__item__badge__text">Premium feature</span></span> badge.</p></div>
-<p>Once you have chosen all the desired plugins, press the <strong>Next step</strong> button on the top right.</p>
-<h3 id="toolbar-composition"><a class="headerlink" href="#toolbar-composition">#</a> Toolbar composition</h3>
-<p>The next step allows you to compose the toolbar. A simple drag-and-drop workspace allows adding buttons (representing the plugins chosen in the previous step) to the toolbar. You may also change the order of the buttons and dropdowns and group them accordingly. Online builder allows you to create a multiline toolbar layout, too. Just drag any button below the already placed ones to create a new toolbar line.</p>
-<p><img src="../../../assets/img/online-builder-04-toolbar-configurator.gif" data-lightbox="true" alt="The toolbar drag-and-drop configurator." width="753"></p>
-<p>Some buttons are pre-placed on the layout and thus grayed out in the workspace with available toolbar items. If you want to remove any buttons from your toolbar setup, drag them back to the upper workspace.</p>
-<p>Once you finish designing the toolbar, press the <strong>Next step</strong> button on the top right.</p>
-<h3 id="choosing-the-default-language"><a class="headerlink" href="#choosing-the-default-language">#</a> Choosing the default language</h3>
-<p>Scroll the list of available languages and check the one you want to be the default language of your editor build.</p>
-<p><img src="../../../assets/img/online-builder-05-language-selection.png" data-lightbox="true" alt="Language selector list." width="367"></p>
-<div class="info-box notice notice__hint"><p>All other languages will still be available in the <code>translations</code> folder.</p></div>
-<h3 id="download-the-customized-build"><a class="headerlink" href="#download-the-customized-build">#</a> Download the customized build</h3>
-<p>This is as simple as it gets: just press the <strong>Start</strong> button to download your customized package.</p>
-<p>Now you have two options: to <a href="#customizing-builds">customize your build</a> or <a href="#running-the-editor">run it</a> in a browser.</p>
-<h2 id="customizing-builds"><a class="headerlink" href="#customizing-builds">#</a> Customizing builds</h2>
-<p>Every build comes with a default set of features and their default configuration. Although the builds try to fit many use cases, you may still need to adjust them in some integrations. The following modifications are possible:</p>
-<ul>
-<li>You can override the default <strong>configuration of features</strong> (for example, define different image styles or heading levels).</li>
-<li>You can change the default <strong>toolbar configuration</strong> (for example, remove the undo and redo buttons).</li>
-<li>You can also <strong>remove features</strong> (plugins).</li>
-</ul>
-<p>Read more in the <a href="../../setup/configuration.html">Configuration guide</a>.</p>
-<p>A build may not provide all the necessary features. You may also want to create an optimized one with limited functionality. In such cases, customize the build or create a new one.</p>
-<p>A build is a simple npm package (usually developed in a Git repository) with a predefined list of dependencies. You can generate distribution files through the build process using that repository.</p>
-<p>Some of the reasons for creating custom builds are:</p>
-<ul>
-<li>Adding features not included in the existing builds, either from a third party or custom-developed.</li>
-<li>Removing unnecessary features present in a build.</li>
-<li>Changing the <a href="../../setup/editor-lifecycle.html#creating-an-editor-with-create">editor creator</a>.</li>
-<li>Changing the <a href="../../../framework/deep-dive/ui/theme-customization.html">editor theme</a>.</li>
-<li>Changing the <a href="../../setup/ui-language.html">localization language</a> of the editor.</li>
-<li>Enabling bug fixes that are still not a part of any public release.</li>
-</ul>
-<div class="info-box notice notice__hint"><p>If you are looking for an easy way to create a custom build of CKEditor&nbsp;5, check the <a href="https://ckeditor.com/ckeditor-5/online-builder/">online builder</a>. It allows you to create a custom build through a simple and intuitive UI.</p></div>
-<h3 id="requirements"><a class="headerlink" href="#requirements">#</a> Requirements</h3>
-<p>To start developing CKEditor&nbsp;5 you will require:</p>
-<ul>
-<li><a href="https://nodejs.org/en/">Node.js</a> 18.0.0+</li>
-<li><a href="https://www.npmjs.com">npm</a> 5.7.1+ (<strong>note:</strong> some npm 5+ versions were known to cause <a href="https://github.com/npm/npm/issues/16991">problems</a>, especially with deduplicating packages; upgrade npm when in doubt)</li>
-<li><a href="https://git-scm.com/">Git</a></li>
-</ul>
+<div class="info-box notice notice__warning"><p>The old online builder was deprecated in favour of the new <a href="https://ckeditor.com/ckeditor-5/builder?redir=docs">Builder</a> with live preview and new installation methods setup. We encourage the <a href="../../../updating/nim-migration/customized-builds.html">migration to the new methods</a>.<br>
+If you still want to use the old setup, check the <a href="#updating-packages">updating packages</a> section on how to update packages in the setup you have from the old online builder.</p></div>
 <h3 id="build-anatomy"><a class="headerlink" href="#build-anatomy">#</a> Build anatomy</h3>
 <p>Every build contains the following files:</p>
 <ul>
@@ -378,6 +313,29 @@
 <p>Then, you can add missing dependencies (that is, packages you want to add to your build). The easiest way to do so is by typing:</p>
 <pre class="highlight"><code class="bash">npm install @ckeditor/ckeditor5-alignment
 </code></pre>
+<h3 id="updating-packages"><a class="headerlink" href="#updating-packages">#</a> Updating packages</h3>
+<ol>
+<li>
+<p>Open the folder from the old online builder.</p>
+</li>
+<li>
+<p>Open the <code>package.json</code> file.</p>
+</li>
+<li>
+<p>Update all CKEditor packages in the <code>dependencies</code> (<code>@ckeditor/ckeditor5-*</code>) to the latest version. For example:</p>
+<pre class="highlight"><code class="diff">- "@ckeditor/ckeditor5-basic-styles": "39.0.2",
++ "@ckeditor/ckeditor5-basic-styles": "42.0.0",
+</code></pre>
+<p>Make sure all packages have <strong>the same version</strong>, you will run into errors in the runtime otherwise.</p>
+</li>
+<li>
+<p>Run <code>npm update</code> in the root dir.</p>
+</li>
+<li>
+<p>Run <code>npm run build</code> in the root dir.</p>
+</li>
+</ol>
+<p>The updated build file is ready in <code>build/ckeditor.js</code>.</p>
 <h3 id="updating-build-configuration"><a class="headerlink" href="#updating-build-configuration">#</a> Updating build configuration</h3>
 <p>If you installed or uninstalled dependencies, you need to modify the <code>src/ckeditor.ts</code> file too. At this stage, you should have a complete list of plugins for the bundle. You can also change the editor creator and specify the default editor configuration. For instance, your webpack entry file (<code>src/ckeditor.ts</code>) may look like this:</p>
 <pre class="highlight"><code class="ts">// The editor creator to use.

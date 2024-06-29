@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jun 28 2024 01:31:56 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Jun 29 2024 01:30:09 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integrating comments with your application | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -1100,6 +1100,7 @@ class CommentsIntegration extends Plugin {
 <h3 id="why-is-there-no-event-when-i-remove-comment-thread-markers-from-the-content"><a class="headerlink" href="#why-is-there-no-event-when-i-remove-comment-thread-markers-from-the-content">#</a> Why is there no event when I remove comment thread markers from the content?</h3>
 <p>Note that no remove event is fired when you remove the marker corresponding to the comment thread. Instead, the comment thread is resolved which triggers <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#event-resolveCommentThread"><code>CommentsRepository#resolveCommentThread</code> event</a>. This operation can be restored using undo (<kbd>Cmd+Z</kbd> or <kbd>Ctrl+Z</kbd>), which will fire <a href="../../../api/module_comments_comments_commentsrepository-CommentsRepository.html#event-reopenCommentThread"><code>CommentsRepository#reopenCommentThread</code> event</a>.</p>
 <p>However, you can still remove the comment thread by using available buttons in an annotation. Remember that the removal operation cannot be undone.</p>
+<div class="info-box notice"><p>When implementing adapter methods (<code>getCommentThread()</code> and <code>getComment()</code>), ensure they do not return deleted data, as removal is considered a permanent operation.</p></div>
 <h3 id="php-integration-example"><a class="headerlink" href="#php-integration-example">#</a> PHP integration example</h3>
 <p>Please refer to <a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/php">Collaboration integration examples for CKEditor&nbsp;5</a> repository to find a working end-to-end integration example of collaboration features in a PHP application. Note that it includes both comments and <a href="../track-changes/track-changes-integration.html#adapter-integration">track changes</a> adapters working together.</p>
 <h2 id="comments-samples"><a class="headerlink" href="#comments-samples">#</a> Comments samples</h2>
