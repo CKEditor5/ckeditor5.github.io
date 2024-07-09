@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 08 2024 01:28:58 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 09 2024 01:29:08 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Menu bar | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -378,8 +378,8 @@
 </div>
 <p>You can easily remove some presets or add more items, including menu items for custom features. The structure can also be arranged to suit particular needs.</p>
 <h2 id="enabling-the-menu-bar"><a class="headerlink" href="#enabling-the-menu-bar">#</a> Enabling the menu bar</h2>
-<p>The menu bar is currently available in the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html">Classic editor</a>, <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html">Decoupled editor</a>, and <a href="../../api/module_editor-multi-root_multirooteditor-MultiRootEditor.html">Multi-root editor</a>.</p>
-<h3 id="classic-editor"><a class="headerlink" href="#classic-editor">#</a> Classic editor</h3>
+<p>The menu bar is available in all editor types. Usage will vary depending on used editor type.</p>
+<h3 id="classic-editor-and-inline-editor"><a class="headerlink" href="#classic-editor-and-inline-editor">#</a> Classic editor and Inline editor</h3>
 <p>The menu bar is disabled by default. To make it available in your editor, set the <code>config.menuBar.isVisible</code> property to <code>true</code>. This will turn on the menu bar with a default set of features. The menu bar is located right above the editor toolbar.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
@@ -389,8 +389,8 @@
         }
     } );
 </code></pre>
-<h3 id="decoupled-editor"><a class="headerlink" href="#decoupled-editor">#</a> Decoupled editor</h3>
-<p>When using the Decoupled editor, you will need to insert the menu bar in a desired place yourself. The menu bar HTML element is available under the <code>editor.ui.menuBarView.element</code> property.</p>
+<h3 id="decoupled-editor-balloon-editor-and-multi-root-editor"><a class="headerlink" href="#decoupled-editor-balloon-editor-and-multi-root-editor">#</a> Decoupled editor, Balloon editor and Multi-root editor</h3>
+<p>When using the Decoupled, Balloon or Multi-root editor, you will need to insert the menu bar in a desired place yourself. The menu bar HTML element is available under the <code>editor.ui.menuBarView.element</code> property.</p>
 <pre class="highlight"><code class="html">    &lt;div id="menuBarContainer"&gt;&lt;/div&gt;
     &lt;div id="editor"&gt;&lt;p&gt;Document content.&lt;/p&gt;&lt;/div&gt;
 </code></pre>
