@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 09 2024 01:28:57 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 10 2024 01:41:09 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Track changes integration | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -569,22 +569,22 @@
 <p>Once you finish the setup, the Builder will provide you with the necessary HTML, CSS, and JavaScript code snippets. We will use those code snippets in the next step.</p>
 <h3 id="setting-up-a-sample-project"><a class="headerlink" href="#setting-up-a-sample-project">#</a> Setting up a sample project</h3>
 <p>Once we have a custom editor setup we need a simple JavaScript project to run it. For this, we recommend cloning the basic project template from our repository:</p>
-<pre class="highlight"><code class="">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
+<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
 cd ckeditor5-tutorials-examples/sample-project
 npm install
 </code></pre>
 <p>Then, install the necessary dependencies:</p>
-<pre class="highlight"><code class="">npm install ckeditor5
+<pre class="highlight"><code class="bash">npm install ckeditor5
 npm install ckeditor5-premium-features
 </code></pre>
 <p>This project template uses <a href="https://vitejs.dev/">Vite</a> under the hood and contains 3 source files that we will use: <code>index.html</code>, <code>style.css</code>, and <code>main.js</code>.</p>
 <p>It is now the time to use our custom editor setup. <strong>Go to the “Installation” section</strong> of the Builder and copy the generated code snippets to those 3 files.</p>
 <h3 id="activating-the-feature"><a class="headerlink" href="#activating-the-feature">#</a> Activating the feature</h3>
 <p>To use this premium feature, you need to activate it with a license key. Refer to the <a href="../../../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</p>
-<p>After you have successfully obtained the license key open the <code>main.js</code> file and update the <code>&lt;YOUR_LICENSE_KEY&gt;</code> string with your license key.</p>
+<p>After you have successfully obtained the license key open the <code>main.js</code> file and update the <code>your-license-key</code> string with your license key.</p>
 <h3 id="building-the-project"><a class="headerlink" href="#building-the-project">#</a> Building the project</h3>
 <p>Finally, build the project by running:</p>
-<pre class="highlight"><code class="">npm run dev
+<pre class="highlight"><code class="bash">npm run dev
 </code></pre>
 <p>When you open the sample in the browser you should see the WYSIWYG editor with the track changes plugin. However, it still does not load or save any data. You will learn how to add data to the track changes plugin later in this guide.</p>
 <p>Let’s now dive deeper into the structure of this setup.</p>
@@ -812,7 +812,7 @@ class TrackChangesIntegration extends Plugin {
 };
 </code></pre>
 <p>And build the project:</p>
-<pre class="highlight"><code class="">npm run dev
+<pre class="highlight"><code class="bash">npm run dev
 </code></pre>
 <p>You should now we see an editor instance with one comment thread and several track changes suggestions.</p>
 <h3 id="saving-the-data"><a class="headerlink" href="#saving-the-data">#</a> Saving the data</h3>
@@ -1148,7 +1148,7 @@ class TrackChangesIntegration extends Plugin {
 };
 </code></pre>
 <p>And build the project:</p>
-<pre class="highlight"><code class="">npm run dev
+<pre class="highlight"><code class="bash">npm run dev
 </code></pre>
 <p>You should now we see an editor instance with one comment thread and several track changes suggestions. The adapter is now ready to use with your rich text editor.</p>
 <div class="info-box notice notice__info"><p>It is recommended to stringify the <code>attributes</code> value to JSON, save it as a string in your database, and then parse the value from JSON when loading suggestions.</p></div>
