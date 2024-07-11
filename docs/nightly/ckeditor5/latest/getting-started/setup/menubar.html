@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jul 10 2024 01:41:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jul 11 2024 05:06:52 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Menu bar | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/4.2.2/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/4.2.3/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../snippets/features/menubar/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -59,7 +59,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/4.2.2/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/4.2.3/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -277,11 +277,11 @@
     <main class="main">
       <section class="main__content formatted main__content--no-toc">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/getting-started/setup/menubar.md" title="Contribute to this guide"><img src="../../../../assets/4.2.2/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/getting-started/setup/menubar.md" title="Contribute to this guide"><img src="../../../../assets/4.2.3/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/4.2.2/img/book.svg" alt="guide">Menu bar
+          <h1 class="main__content-title"><img src="../../../../assets/4.2.3/img/book.svg" alt="guide">Menu bar
           </h1>
 <p>The menu bar is a user interface component that gives you access to all features provided by the editor, organized in menus and categories. This familiar experience popular in large editing desktop and online packages improves usability of the editor.</p>
 <p>As the menu bar gathers all the editor features, the toolbar can be simple and tidy, providing only the most essential and commonly used features. This is especially welcome in heavily-featured editor integrations.</p>
@@ -380,7 +380,7 @@
 <h2 id="enabling-the-menu-bar"><a class="headerlink" href="#enabling-the-menu-bar">#</a> Enabling the menu bar</h2>
 <p>The menu bar is available in all editor types. Usage will vary depending on used editor type.</p>
 <h3 id="classic-editor-and-inline-editor"><a class="headerlink" href="#classic-editor-and-inline-editor">#</a> Classic editor and Inline editor</h3>
-<p>The menu bar is disabled by default. To make it available in your editor, set the <code>config.menuBar.isVisible</code> property to <code>true</code>. This will turn on the menu bar with a default set of features. The menu bar is located right above the editor toolbar.</p>
+<p>The menu bar is disabled by default. To make it available in your editor, set the <a href="../../api/module_ui_menubar_menubarview-MenuBarConfig.html"><code>config.menuBar.isVisible</code></a> property to <code>true</code>. This will turn on the menu bar with a default set of features. The menu bar is located right above the editor toolbar.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         toolbar: [ 'undo', 'redo', 'bold', 'italic', 'numberedList', 'bulletedList' ],
@@ -389,8 +389,8 @@
         }
     } );
 </code></pre>
-<h3 id="decoupled-editor-balloon-editor-and-multi-root-editor"><a class="headerlink" href="#decoupled-editor-balloon-editor-and-multi-root-editor">#</a> Decoupled editor, Balloon editor and Multi-root editor</h3>
-<p>When using the Decoupled, Balloon or Multi-root editor, you will need to insert the menu bar in a desired place yourself. The menu bar HTML element is available under the <code>editor.ui.menuBarView.element</code> property.</p>
+<h3 id="other-editor-types"><a class="headerlink" href="#other-editor-types">#</a> Other editor types</h3>
+<p>When using the Decoupled, Balloon or Multi-root editor, you will need to insert the menu bar in a desired place yourself. The menu bar HTML element is available under the <a href="../../api/module_ui_editorui_editoruiview-EditorUIView.html#member-menuBarView"><code>editor.ui.view.menuBarView.element</code></a> property.</p>
 <pre class="highlight"><code class="html">    &lt;div id="menuBarContainer"&gt;&lt;/div&gt;
     &lt;div id="editor"&gt;&lt;p&gt;Document content.&lt;/p&gt;&lt;/div&gt;
 </code></pre>
@@ -405,6 +405,46 @@
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>The menu bar can be configured using the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-menuBar"><code>config.menuBar</code></a> option and its <code>config.menuBar.removeItems</code> and <code>config.menuBar.addItems</code> properties. Please refer to the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-menuBar"><code>config.menuBar</code> API documentation</a> for details on how to do it.</p>
 <div class="info-box notice notice__warning"><p>Before adding a feature to the menu bar, make sure the plugin for that feature is added in the editor configuration.</p></div>
+<h2 id="adding-custom-buttons-to-the-menu-bar"><a class="headerlink" href="#adding-custom-buttons-to-the-menu-bar">#</a> Adding custom buttons to the menu bar</h2>
+<p>To add custom buttons or other components to the menu bar, follow these steps:</p>
+<ol>
+<li>Create a new UI component using <a href="../../api/module_ui_componentfactory-ComponentFactory.html"><code>editor.ui.componentFactory</code></a>. Define its behavior and appearance.</li>
+<li>Use <a href="../../api/module_ui_editorui_editorui-EditorUI.html#function-extendMenuBar"><code>editor.ui.extendMenuBar()</code></a> method to add your component to the menu bar at a desired position.</li>
+</ol>
+<p>Here’s an example of a custom plugin that adds a button to the menu bar inside the “Format” menu, after the “Bold” button:</p>
+<pre class="highlight"><code class="js">import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
+
+class MyCustomPlugin extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        // Register the toolbar button.
+        editor.ui.componentFactory.add( 'menuBar:myCustomButton', locale =&gt; {
+            const view = new ButtonView(locale);
+
+            view.set( {
+                label: 'My Custom Button',
+                withText: true,
+                tooltip: true
+            } );
+
+            // Execute a command when the button is clicked.
+            view.on( 'execute', () =&gt; {
+                editor.execute('myCustomCommand');
+            } );
+
+            return view;
+        } );
+
+        // Add your component in the preferred position.
+        editor.ui.extendMenuBar( {
+            item: 'menuBar:myCustomButton',
+            position: 'after:menuBar:bold'
+        } );
+    }
+}
+</code></pre>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
 <p>The source code of the feature is available on GitHub at <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-ui">https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-ui</a>.</p>
 
@@ -621,7 +661,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'getting-started', 'features', 'examples', 'framework', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'getting-started' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'getting-started' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'getting-started' ] );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../assets/4.2.2/scripts/app.js"></script>
+    <script src="../../../../assets/4.2.3/scripts/app.js"></script>
     <script src="../../assets/snippet.js"></script>
     <script src="../../snippets/assets.js"></script>
     <script src="../../snippets/features/menubar/snippet.js"></script>
