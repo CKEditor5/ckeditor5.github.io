@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Jul 12 2024 01:29:46 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sun Jul 14 2024 01:29:59 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Compatibility with .NET | CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -146,7 +146,7 @@
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbars</span>
                                       </div></a></li>
                                   <li><a href="../setup/menubar.html" title="Menu bar">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span>
                                       </div></a></li>
                                   <li><a href="../setup/ui-language.html" title="UI language">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
@@ -279,8 +279,8 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.3/img/book.svg" alt="guide">Compatibility with .NET
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#using-ckeditor-5-builder" title="Using CKEditor&nbsp;5 Builder">Using CKEditor&nbsp;5 Builder</a></li><li><a href="#setting-up-the-project" title="Setting up the project">Setting up the project</a></li><li><a href="#integrating-from-cdn" title="Integrating from CDN">Integrating from CDN</a></li></ol></nav>
-<p>As a pure JavaScript/TypeScript application, CKEditor&nbsp;5 will work inside any environment that supports such components. While we do not offer official integrations for any non-JavaScript frameworks, you can include a custom build of CKEditor&nbsp;5 in a non-JS framework of your choice, for example, Microsoft’s <a href="https://dotnet.microsoft.com/">.NET</a>.</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#using-ckeditor-5-builder" title="Using CKEditor&nbsp;5 Builder">Using CKEditor&nbsp;5 Builder</a></li><li><a href="#setting-up-the-project" title="Setting up the project">Setting up the project</a></li><li><a href="#integrating-from-cdn" title="Integrating from CDN">Integrating from CDN</a></li><li><a href="#integrating-using-zip" title="Integrating using ZIP">Integrating using ZIP</a></li></ol></nav>
+<p>As a pure JavaScript/TypeScript application, CKEditor&nbsp;5 will work inside any environment that supports such components. While we do not offer official integrations for any non-JavaScript frameworks, you can include a custom configuration of CKEditor&nbsp;5 in a non-JS framework of your choice, for example, Microsoft’s <a href="https://dotnet.microsoft.com/">.NET</a>.</p>
 <h2 id="using-ckeditor-5-builder"><a class="headerlink" href="#using-ckeditor-5-builder">#</a> Using CKEditor&nbsp;5 Builder</h2>
 <p>The easiest way to use CKEditor&nbsp;5 in your .NET project is preparing an editor preset with <a href="https://ckeditor.com/builder?redirect=docs">CKEditor&nbsp;5 Builder</a> and including it into your project. Builder offers an easy-to-use user interface to help you configure, preview, and download the editor suited to your needs. You can easily select:</p>
 <ul>
@@ -296,11 +296,13 @@
 <pre class="highlight"><code class="plain">├── bin
 ├── obj
 ├── Pages
+│   ├── Index.cshtml
+│   └── ...
 ├── Properties
 ├── wwwroot
 │   ├── assets
 |      ├── vendor
-|          └── ckeditor.js
+|          └── ckeditor5.js
 │   ├── css
 │   ├── js
 │   ├── lib
@@ -375,8 +377,103 @@ ClassicEditor
             }
         }
     &lt;/script&gt;
-    &lt;script type="module" src="assets/vendor/ckeditor.js"&gt;&lt;/script&gt;
+    &lt;script type="module" src="assets/vendor/ckeditor5.js"&gt;&lt;/script&gt;
 &lt;/div&gt;
+</code></pre>
+<p>Finally, in the root directory of your .NET project, run <code>dotnet watch run</code> to see the app in action.</p>
+<h2 id="integrating-using-zip"><a class="headerlink" href="#integrating-using-zip">#</a> Integrating using ZIP</h2>
+<div class="info-box notice"><p>Our new CKEditor&nbsp;5 Builder does not provide ZIP output yet – but it will in the future. In the meantime, you can use one of the generic ZIP packages provided <a href="https://ckeditor.com/ckeditor-5/download/#zip">on the download page</a>.</p></div>
+<p>After downloading and unpacking the ZIP archive, copy the <code>ckeditor5.js</code> and <code>ckeditor5.css</code> files in the <code>wwwroot/assets/vendor/</code> directory. The folder structure of your app should resemble this one.</p>
+<pre class="highlight"><code class="plain">├── bin
+├── obj
+├── Pages
+│   ├── Index.cshtml
+│   └── ...
+├── Properties
+├── wwwroot
+│   ├── assets
+|      ├── vendor
+|          ├── ckeditor5.js
+|          └── ckeditor5.css
+│   ├── css
+│   ├── js
+│   ├── lib
+│   └── favicon.ico
+├── appsettings.Development.json
+├── appsettings.json
+└── ...
+</code></pre>
+<p>Having all the dependencies of CKEditor&nbsp;5, modify the <code>Index.cshtml</code> file in the <code>Pages</code> directory to import them. All the necessary markup is in the <code>index.html</code> file from the ZIP archive. You can copy and paste it into your page. Pay attention to the paths of the import map and CSS link - they should reflect your folder structure. The template should look similar to the one below:</p>
+<pre class="highlight"><code class="html">@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;CKEditor 5 - Quick start ZIP&lt;/title&gt;
+        &lt;link rel="stylesheet" href="../../assets/vendor/ckeditor5.css"&gt;
+        &lt;style&gt;
+            .main-container {
+                width: 795px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="main-container"&gt;
+            &lt;div id="editor"&gt;
+                &lt;p&gt;Hello from CKEditor 5!&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;script type="importmap"&gt;
+            {
+                "imports": {
+                    "ckeditor5": "../../assets/vendor/ckeditor5.js",
+                    "ckeditor5/": "../../assets/vendor/"
+                }
+            }
+        &lt;/script&gt;
+        &lt;script type="module"&gt;
+            import {
+                ClassicEditor,
+                Essentials,
+                Paragraph,
+                Bold,
+                Italic,
+                Font
+            } from 'ckeditor5';
+
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+                    toolbar: [
+                        'undo', 'redo', '|', 'bold', 'italic', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                    ]
+                } )
+                .then( editor =&gt; {
+                    window.editor = editor;
+                } )
+                .catch( error =&gt; {
+                    console.error( error );
+                } );
+        &lt;/script&gt;
+        &lt;!-- A friendly reminder to run on a server, remove this during the integration. --&gt;
+        &lt;script&gt;
+                window.onload = function() {
+                    if ( window.location.protocol === "file:" ) {
+                        alert( "This sample requires an HTTP server. Please serve this file with a web server." );
+                    }
+                };
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p>Finally, in the root directory of your .NET project, run <code>dotnet watch run</code> to see the app in action.</p>
 
@@ -473,7 +570,7 @@ ClassicEditor
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbars</span>
                                         </div></a></li>
                                     <li><a href="../setup/menubar.html" title="Menu bar">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Menu bar</span>
                                         </div></a></li>
                                     <li><a href="../setup/ui-language.html" title="UI language">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
