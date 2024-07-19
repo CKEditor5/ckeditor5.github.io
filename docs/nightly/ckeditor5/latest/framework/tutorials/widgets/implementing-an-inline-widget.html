@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Implementing an inline widget tutorial | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
-    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Jul 18 2024 01:30:42 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jul 19 2024 01:30:18 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Implementing an inline widget tutorial | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/implementing-an-inline-widget.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Implementing an inline widget tutorial | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/implementing-an-inline-widget.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -360,7 +360,7 @@
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.4/img/book.svg" alt="guide">Implementing an inline widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#bootstrapping-the-project" title="Bootstrapping the project">Bootstrapping the project</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a></li><li><a href="#feature-styles" title="Feature styles">Feature styles</a></li><li><a href="#command" title="Command">Command</a></li><li><a href="#lets-see-it" title="Let’s see it!">Let’s see it!</a></li><li><a href="#fixing-position-mapping" title="Fixing position mapping">Fixing position mapping</a></li></ol></li><li><a href="#creating-the-ui" title="Creating the UI">Creating the UI</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an inline widget. You will build a “placeholder” feature that allows the users to insert predefined placeholders, like a date or a surname, into the document.</p>
-<div class="info-box notice notice__warning"><p><strong>Please be advised that we are currently working on the official implementation of this feature!</strong></p><p>The official feature will be much more robust than the solution presented here, and will offer many configuration options. If you plan to implement a custom placeholder feature based on this tutorial, we strongly advise waiting for the official solution. In case of any questions, feel free to <a href="https://ckeditor.com/contact/">contact us</a>.</p></div>
+<div class="info-box notice notice__warning"><p><strong>We have an official implementation of this feature!</strong></p><p>While this tutorial was created for learning purposes, it only offers a basic, simplified solution. We have an official implementation of this mechanism, called the <a href="../../../features/merge-fields.html">merge fields</a> feature. It is much more robust than the solution presented here, and offers many configuration options.</p></div>
 <p>First, you will use widget utilities and conversion to define the behavior of this feature. Later on, you will use dropdown utilities to create a dropdown that will allow for inserting new placeholders. You will also learn how to use the editor configuration to define allowed placeholder names.</p>
 <div class="info-box notice"><p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p></div>
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
