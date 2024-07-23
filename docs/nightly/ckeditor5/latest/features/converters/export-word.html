@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 22 2024 01:29:35 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 23 2024 01:28:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Export to Word | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -625,13 +625,12 @@
   </div>
 </div>
 </div>
-<div class="info-box notice notice__info"><p>This demo presents a limited set of features. Visit the <a href="../../examples/builds-custom/full-featured-editor.html">feature-rich editor example</a> to see more in action.</p></div>
 <div class="info-box notice"><p>If you have already tried the export to Word feature, <strong>help us develop it by sharing your feedback</strong> with <a href="https://www.surveymonkey.com/r/ZYJBCZT">this short survey</a>. It only takes about 2 minutes, but will be invaluable for the development team. Thank you!</p></div>
 <h2 id="how-it-works"><a class="headerlink" href="#how-it-works">#</a> How it works</h2>
 <p>The export to Microsoft Word feature collects the HTML generated with the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> method and the <a href="../../getting-started/legacy/advanced/content-styles.html#the-full-list-of-content-styles">default editor content styles</a> combined with the styles provided by you in the configuration. It then sends them to the CKEditor Cloud Services HTML to DOCX converter service. The service generates a Word file and returns it to the user’s browser so they can save it in the Word format on their disk.<br>
 You can read more about the converter and the plugin in a <a href="https://ckeditor.com/blog/feature-spotlight-html-to-word-converter/">dedicated Feature spotlight blog post</a>.</p>
 <div class="info-box notice"><p>The generated <code>.docx</code> file may not be fully compatible with older versions of Word. At the time of writing this guide, the generated document was fully compatible with Word in Office 365.</p></div>
-<p>The complementary <a href="../pagination/pagination.html">pagination feature</a> allows you to see where page breaks would be after you export the document to Word. Thanks to the live preview, the user can fine-tune the structure of the output document when editing it. The pagination feature also shows you the page count and lets you navigate between the document pages.</p>
+<p>You can use the complementary <a href="../pagination/pagination.html">pagination feature</a> to see where page breaks would be (after exporting your document to Word). However, due to the <a href="../pagination/pagination.html#automatic-page-breaks">known issue</a>, the result may be inconsistent. That’s why we disabled this feature by default. But you can enable it back by setting the <code>auto_pagination: true</code> option. You can also fine-tune the structure of the output document by using live preview. The pagination feature also shows the page count and lets you navigate between the document pages.</p>
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <div class="info-box notice"><p>This is a premium feature and you need a license for it. If you do not have one yet, <a href="ttps://ckeditor.com/contact/?sales=true#contact-form">contact us</a>.</p><p>You can also sign up for the <a href="https://orders.ckeditor.com/trial/premium-features">CKEditor Premium Features 30-day free trial</a> to test the feature.</p></div>
 <p>After you purchase a license, follow the steps below, as explained in the {@link @cs guides/export-to-word/quick-start Export to Word quick start guide}:</p>
@@ -981,6 +980,8 @@ const converterOptions = {
 </ul>
 <h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
 <p>Not all CKEditor&nbsp;5 plugins and features are compatible with export to Word at the moment. Feel free to <a href="https://ckeditor.com/contact/">contact us</a> if you are interested in any of these features specifically. Here is a list of known issues:</p>
+<h3 id="automatic-page-breaks"><a class="headerlink" href="#automatic-page-breaks">#</a> Automatic page breaks</h3>
+<p>Browser engines and Microsoft Word differ significantly. Because of that, the automatic prediction of page breaks in <a href="">Export to Word</a> is problematic and error-prone. We recommend reviewing your document’s structure during the exporting and manually applying the page breaks to maintain the preferred structure. You can also use <a href="export-pdf.html">Export to PDF</a>, where predicting page breaks is more straightforward and works more consistently.</p>
 <h3 id="unsupported-plugins"><a class="headerlink" href="#unsupported-plugins">#</a> Unsupported plugins</h3>
 <ul>
 <li><a href="../media-embed.html">Media embed</a> – Embedded media will not be included in the exported document.</li>

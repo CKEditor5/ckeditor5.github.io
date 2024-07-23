@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 22 2024 01:29:59 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 23 2024 01:28:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Content styles | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -311,7 +311,7 @@
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use it straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
 <pre class="highlight"><code class="css">/*
  * CKEditor 5 (v42.0.1) content styles.
- * Generated on Mon, 22 Jul 2024 01:28:38 GMT.
+ * Generated on Tue, 23 Jul 2024 01:27:17 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/installation/legacy/advanced/content-styles.html
  */
 
@@ -804,6 +804,13 @@ margin-left: -15px;
     background: var(--ck-color-mention-background);
     color: var(--ck-color-mention-text);
 }
+/* @ckeditor/ckeditor5-horizontal-line/theme/horizontalline.css */
+.ck-content hr {
+    margin: 15px 0;
+    height: 4px;
+    background: hsl(0, 0%, 87%);
+    border: 0;
+}
 /* @ckeditor/ckeditor5-table/theme/tablecaption.css */
 .ck-content .table &gt; figcaption {
     display: table-caption;
@@ -816,12 +823,16 @@ margin-left: -15px;
     font-size: .75em;
     outline-offset: -1px;
 }
-/* @ckeditor/ckeditor5-horizontal-line/theme/horizontalline.css */
-.ck-content hr {
-    margin: 15px 0;
-    height: 4px;
-    background: hsl(0, 0%, 87%);
-    border: 0;
+/* @ckeditor/ckeditor5-image/theme/imagecaption.css */
+.ck-content .image &gt; figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    word-break: break-word;
+    color: var(--ck-color-image-caption-text);
+    background-color: var(--ck-color-image-caption-background);
+    padding: .6em;
+    font-size: .75em;
+    outline-offset: -1px;
 }
 /* @ckeditor/ckeditor5-code-block/theme/codeblock.css */
 .ck-content pre {
@@ -842,17 +853,6 @@ margin-left: -15px;
     background: unset;
     padding: 0;
     border-radius: 0;
-}
-/* @ckeditor/ckeditor5-image/theme/imagecaption.css */
-.ck-content .image &gt; figcaption {
-    display: table-caption;
-    caption-side: bottom;
-    word-break: break-word;
-    color: var(--ck-color-image-caption-text);
-    background-color: var(--ck-color-image-caption-background);
-    padding: .6em;
-    font-size: .75em;
-    outline-offset: -1px;
 }
 @media print {
     /* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */

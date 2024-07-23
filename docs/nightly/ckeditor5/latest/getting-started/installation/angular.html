@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 22 2024 01:30:01 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jul 23 2024 01:28:42 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Angular rich text editor component | CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -388,21 +388,22 @@
 <p>Then, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular">CKEditor&nbsp;5 WYSIWYG editor component for Angular</a>:</p>
 <pre class="highlight"><code class="bash">npm install @ckeditor/ckeditor5-angular
 </code></pre>
-<p>The following setup differs depending on the type of component you use.</p>
+<p>The following setup differs depending on the type of components you use.</p>
 <h4 id="standalone-components"><a class="headerlink" href="#standalone-components">#</a> Standalone components</h4>
 <p>Standalone components provide a simplified way to build Angular applications. They are enabled in Angular 17 by default. Standalone components aim to simplify the setup and reduce the need for <code>NGModules</code>. That is why you do not need such a module in this case.</p>
-<p>Instead, add the <code>CKEditorModule</code> to the imports in your app component. The component needs the <code>standalone</code> option set to <code>true</code>.</p>
-<pre class="highlight"><code class="ts">import { Component } from '@angular/core';
+<p>Instead, add the <code>CKEditorModule</code> to the imports in your app component. The component needs the <code>standalone</code> option set to <code>true</code>. The example below shows how to use the component with open-source and premium plugins.</p>
+<pre class="highlight"><code class="ts">// app.component.ts
+
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
 import { SlashCommand } from 'ckeditor5-premium-features';
 
-import 'ckeditor5/ckeditor5.css';
-import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
-
 @Component( {
     selector: 'app-root',
     templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    encapsulation: ViewEncapsulation.None,
     imports: [ CKEditorModule ],
     standalone: true
 } )
@@ -416,11 +417,17 @@ export class AppComponent {
             Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
         ],
         licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
-        mention: {
-            // Mention configuration
-        }
+        // mention: {
+        //     Mention configuration
+        // }
     }
 }
+</code></pre>
+<p>Depending on the plugins used (open source only or premium too), you may need to import the first or both CSS files. Angular, by default, scopes styles to a particular component. Because of that, the editor may not detect attached styles. You must set the encapsulation option to <code>ViewEncapsulation.None</code> to turn this scoping off.</p>
+<pre class="highlight"><code class="css">/* app.component.css */
+
+@import 'ckeditor5/ckeditor5.css';
+@import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 </code></pre>
 <p>Then, use the <code>&lt;ckeditor&gt;</code> tag in the template to run the rich text editor:</p>
 <pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
@@ -453,17 +460,15 @@ export class AppModule { }
 <p>Then, import the editor in your Angular component and assign it to a <code>public</code> property to make it accessible from the template. The below example shows how to use the component with open-source and premium plugins.</p>
 <pre class="highlight"><code class="ts">// app.component.ts
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
 import { SlashCommand } from 'ckeditor5-premium-features';
-
-import 'ckeditor5/ckeditor5.css';
-import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 
 @Component( {
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: [ './app.component.css' ]
+    styleUrls: [ './app.component.css' ],
+    encapsulation: ViewEncapsulation.None
 } )
 export class AppComponent {
     title = 'angular';
@@ -475,11 +480,17 @@ export class AppComponent {
             Bold, Essentials, Italic, Mention, Paragraph, SlashCommand, Undo
         ],
         licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
-        mention: {
-            // Mention configuration
-        }
+        // mention: {
+        //     Mention configuration
+        // }
     }
 }
+</code></pre>
+<p>Depending on the plugins you used, you may need to import the first or both CSS files. Angular, by default, scope styles to a particular component. Because of that, the editor may not detect attached styles. You must set the encapsulation option to <code>ViewEncapsulation.None</code> to turn this scoping off.</p>
+<pre class="highlight"><code class="css">/* app.component.css */
+
+@import 'ckeditor5/ckeditor5.css';
+@import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 </code></pre>
 <p>Finally, use the <code>&lt;ckeditor&gt;</code> tag in the template to run the rich text editor:</p>
 <pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
@@ -713,15 +724,15 @@ export class MyComponent {
 <p>If you want to use the <a href="../../framework/deep-dive/ui/document-editor.html">document (decoupled) editor</a>, you need to <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create">add the toolbar to the DOM manually</a>:</p>
 <pre class="highlight"><code class="ts">// app.component.ts
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { DecoupledEditor, Essentials, Italic, Paragraph, Bold, Undo } from 'ckeditor5';
-
-import 'ckeditor5/ckeditor5.css';
 
 @Component( {
     selector: 'app-root',
     templateUrl: './app.component.html',
+    styleUrls: [ './app.component.css' ],
+    encapsulation: ViewEncapsulation.None
     imports: [ CKEditorModule ],
     standalone: true
 } )
@@ -744,6 +755,11 @@ export class AppComponent {
     }
 }
 </code></pre>
+<p>Import the needed CSS style sheet:</p>
+<pre class="highlight"><code class="css">/* app.component.css */
+
+@import 'ckeditor5/ckeditor5.css';
+</code></pre>
 <p>And then, link the method in the template:</p>
 <pre class="highlight"><code class="html">&lt;!-- app.component.html --&gt;
 
@@ -760,8 +776,10 @@ export class AppComponent {
 <p>It is not mandatory to build applications on top of the above samples, however, they should help you get started.</p>
 <h3 id="localization"><a class="headerlink" href="#localization">#</a> Localization</h3>
 <p>CKEditor 5 supports multiple UI languages, and so does the official Angular component. Follow the instructions below to translate CKEditor 5 in your Angular application.</p>
-<p>Similarly to CSS style sheets, both packages have separate translations. Import them as shown in the example below. Then, pass them to the translations array of the <code>config</code> property.</p>
-<pre class="highlight"><code class="ts">import { Component } from '@angular/core';
+<p>Similarly to CSS style sheets, both packages have separate translations. Import them as shown in the example below. Then, pass them to the <code>translations</code> array of the <code>config</code> property.</p>
+<pre class="highlight"><code class="ts">// app.component.ts
+
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ClassicEditor } from 'ckeditor5';
 // More imports...
@@ -769,11 +787,11 @@ import { ClassicEditor } from 'ckeditor5';
 import coreTranslations from 'ckeditor5/translations/es.js';
 import premiumFeaturesTranslations from 'ckeditor5-premium-features/translations/es.js';
 
-// style sheets imports...
-
 @Component( {
     selector: 'app-root',
     templateUrl: './app.component.html',
+    styleUrls: [ './app.component.css' ],
+    encapsulation: ViewEncapsulation.None
     imports: [ CKEditorModule ],
     standalone: true
 } )
@@ -781,7 +799,8 @@ export class AppComponent {
     title = 'angular';
     public Editor = ClassicEditor;
     public config = {
-        translations: [ coreTranslations, premiumFeaturesTranslations ]
+        translations: [ coreTranslations, premiumFeaturesTranslations ],
+        // More configuration options...
     }
 }
 </code></pre>
