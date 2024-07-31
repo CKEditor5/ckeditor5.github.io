@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 30 2024 01:30:19 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 31 2024 01:32:16 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Pagination | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -794,7 +794,6 @@
 	@import url( '../../assets/pagination.css' );
 </style>
 </div>
-<div class="info-box notice notice__info"><p>This demo presents a limited set of features. Visit the <a href="../../examples/builds-custom/full-featured-editor.html">feature-rich editor example</a> to see more in action.</p></div>
 <h2 id="additional-feature-information"><a class="headerlink" href="#additional-feature-information">#</a> Additional feature information</h2>
 <p>In addition to page breaks, the pagination feature shows you page numbers and the total number of pages in the document. The feature also introduces a dedicated toolbar that lets you easily go to the next or previous page of the document or jump straight to a particular page.</p>
 <p>The pagination feature is complementary to the <a href="../converters/export-pdf.html">export to PDF</a> and <a href="../converters/export-word.html">export to Word</a> features of CKEditor&nbsp;5, ensuring the proper output every time. Combined with other CKEditor&nbsp;5 features, these plugins allow for advanced editing and document creation implementations. This kind of practical application is shown in the <a href="https://ckeditor.com/blog/How-to-create-ready-to-print-documents-with-page-structure-in-WYSIWYG-editor---CKEditor-5-pagination-feature/">How to create ready-to-print documents with CKEditor&nbsp;5 pagination feature</a> blog post.</p>
@@ -961,6 +960,8 @@ DecoupledEditor
     } );
 </code></pre>
 <h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
+<h3 id="automatic-page-breaks-in-export-to-word"><a class="headerlink" href="#automatic-page-breaks-in-export-to-word">#</a> Automatic page breaks in Export to Word</h3>
+<p>Browser engines and Microsoft Word differ significantly. Because of that, the automatic prediction of page breaks in <a href="../converters/export-word.html#how-it-works">Export to Word</a> is problematic and error-prone. We recommend reviewing your document’s structure during the exporting and manually applying the page breaks to maintain the preferred structure. You can also use <a href="../converters/export-pdf.html">Export to PDF</a>, where predicting page breaks is more straightforward and works more consistently.</p>
 <h3 id="unsupported-plugins"><a class="headerlink" href="#unsupported-plugins">#</a> Unsupported plugins</h3>
 <p>Not all CKEditor&nbsp;5 plugins and features are compatible with pagination and export to PDF or Word at the moment. Refer to the documentation of the export features to learn more:</p>
 <ul>
@@ -999,10 +1000,14 @@ DecoupledEditor
 </code></pre>
 <p>This option enables downcast conversion of the calculated page breaks.</p>
 <ul>
-<li>At the beginning of the element:<pre class="highlight"><code class="html">&lt;p style="page-break-before:always;" data-pagination-page="4"&gt; ... &lt;/p&gt;
+<li>
+<p>At the beginning of the element:</p>
+<pre class="highlight"><code class="html">&lt;p style="page-break-before:always;" data-pagination-page="4"&gt; ... &lt;/p&gt;
 </code></pre>
 </li>
-<li>Inside the text:<pre class="highlight"><code class="html">&lt;p&gt; ... &lt;span style="page-break-before:always;" data-pagination-page="8"&gt;&lt;/span&gt; ... &lt;/p&gt;
+<li>
+<p>Inside the text:</p>
+<pre class="highlight"><code class="html">&lt;p&gt; ... &lt;span style="page-break-before:always;" data-pagination-page="8"&gt;&lt;/span&gt; ... &lt;/p&gt;
 </code></pre>
 </li>
 </ul>

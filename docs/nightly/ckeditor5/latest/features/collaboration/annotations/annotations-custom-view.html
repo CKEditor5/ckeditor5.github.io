@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 30 2024 01:30:08 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 31 2024 01:32:07 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Custom view for annotations | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -615,7 +615,9 @@ ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 <p>Your view is passed a model object that is available under the <code>_model</code> property. It should be used to set (or bind to) the initial data of your view’s properties.</p>
 <p>Some of your view’s properties may be used to control the view template. For example, you can bind a view property so that when it is set to <code>true</code>, the template main element will receive an additional CSS class. To bind view properties with a template, the properties need to be <a href="../../../api/module_utils_observablemixin-Observable.html#function-set:KEY_VALUE">observable</a>. Of course, you can bind already existing observable properties with your template.</p>
 <p>You can <a href="../../../api/module_utils_observablemixin-Observable.html#function-bind:SINGLE_BIND">bind two observable properties</a> in a way that the value of one property will depend on the other. You can also directly <a href="../../../api/module_utils_observablemixin-Observable.html#event-change:%7Bproperty%7D">listen to the changes of an observable property</a>.</p>
-<pre class="highlight"><code class="js">// Set an observable property.
+<pre class="highlight"><code class="js">const bind = this.bindTemplate;
+
+// Set an observable property.
 this.set( 'isImportant', false );
 
 // More code.
@@ -627,9 +629,9 @@ this.setTemplate( {
     attributes: {
         class: [
             // Bind the new observable property with the template.
-            this.bindTemplate.if( 'isImportant', 'ck-comment--important' ),
+            bind.if( 'isImportant', 'ck-comment--important' ),
             // Bind an existing observable property with the template.
-            this.bindTemplate.if( 'isDirty', 'ck-comment--unsaved' )
+            bind.if( 'isDirty', 'ck-comment--unsaved' )
         ]
     }
 } );
@@ -653,17 +655,25 @@ class CustomCommentThreadView extends BaseCommentThreadView {
     constructor( ...args ) {
         super( ...args );
 
+        const bind = this.bindTemplate;
+
         // This template definition is partially based on the default comment thread view.
         this.setTemplate( {
             tag: 'div',
 
             attributes: {
                 class: [
+                    'ck',
                     'ck-thread',
-                    this.bindTemplate.if( 'isActive', 'ck-thread--active' )
+                    'ck-reset_all-excluded',
+                    'ck-rounded-corners',
+                    bind.if( 'isActive', 'ck-thread--active' )
                 ],
-                // Needed for managing focus after adding a new comment.
-                tabindex: -1
+                // Needed for the native DOM Tab key navigation.
+                tabindex: 0,
+                role: 'listitem',
+                'aria-label': bind.to( 'ariaLabel' ),
+                'aria-describedby': this.ariaDescriptionView.id
             },
 
             children: [
@@ -770,6 +780,9 @@ class CustomCommentThreadView extends BaseCommentThreadView {
             // ...
         } );
 
+        // Enable tab key navigation for the dropdown.
+        this.focusables.add( dropdownView, 0 );
+
         return dropdownView;
     }
 
@@ -788,17 +801,25 @@ class CustomCommentThreadView extends BaseCommentThreadView {
     constructor( ...args ) {
         super( ...args );
 
+        const bind = this.bindTemplate;
+
         // The template definition is partially based on the default comment thread view.
         const templateDefinition = {
             tag: 'div',
 
             attributes: {
                 class: [
+                    'ck',
                     'ck-thread',
-                    this.bindTemplate.if( 'isActive', 'ck-thread--active' )
+                    'ck-reset_all-excluded',
+                    'ck-rounded-corners',
+                    bind.if( 'isActive', 'ck-thread--active' )
                 ],
-                // Needed for managing focus after adding a new comment.
-                tabindex: -1
+                // Needed for the native DOM Tab key navigation.
+                tabindex: 0,
+                role: 'listitem',
+                'aria-label': bind.to( 'ariaLabel' ),
+                'aria-describedby': this.ariaDescriptionView.id
             },
 
             children: [
@@ -1070,17 +1091,25 @@ class CustomCommentThreadView extends BaseCommentThreadView {
     constructor( ...args ) {
         super( ...args );
 
+        const bind = this.bindTemplate;
+
         // The template definition is partially based on the default comment thread view.
         const templateDefinition = {
             tag: 'div',
 
             attributes: {
                 class: [
+                    'ck',
                     'ck-thread',
-                    this.bindTemplate.if( 'isActive', 'ck-thread--active' )
+                    'ck-reset_all-excluded',
+                    'ck-rounded-corners',
+                    bind.if( 'isActive', 'ck-thread--active' )
                 ],
-                // Needed for managing focus after adding a new comment.
-                tabindex: -1
+                // Needed for the native DOM Tab key navigation.
+                tabindex: 0,
+                role: 'listitem',
+                'aria-label': bind.to( 'ariaLabel' ),
+                'aria-describedby': this.ariaDescriptionView.id
             },
 
             children: [
@@ -1224,6 +1253,9 @@ class CustomCommentThreadView extends BaseCommentThreadView {
             }
         } );
 
+        // Enable tab key navigation for the dropdown.
+        this.focusables.add( dropdownView, 0 );
+
         return dropdownView;
     }
 
@@ -1268,7 +1300,8 @@ ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 		<div class="editor"></div>
 		<div class="sidebar"></div>
 	</div>
-</div></div>
+</div>
+</div>
 
           <div class="info-box notice notice__feedback">
             <p>

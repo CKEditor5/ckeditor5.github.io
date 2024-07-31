@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Interface AnnotationMainView (comments/annotations/view/annotationview~AnnotationMainView) | CKEditor 5 API docs</title>
-    <meta name="description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. The basic view class, which represents an HTML element created out of a template. Views are building blocks of the user interface and handle interaction Views aggregate children in collections and manage the life cycle of DOM listeners ">
-    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. The basic view class, which represents an HTML element created out of a template. Views are building blocks of the user interface and handle interaction Views aggregate children in collections and manage the life cycle of DOM listeners e.g. by handling rendering and destruction. See the TemplateDefinition syntax to learn more about shaping view elements, attributes and listeners.">
+    <meta name="description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. A View that can be focused (e.g. has focus() method).">
+    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. A View that can be focused (e.g. has focus() method).">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 30 2024 01:29:23 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 31 2024 01:31:29 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Interface AnnotationMainView (comments/annotations/view/annotationview~AnnotationMainView) | CKEditor 5 API docs">
-    <meta property="og:description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. The basic view class, which represents an HTML element created out of a template. Views are building blocks of the user interface and handle interaction Views aggregate children in collections and manage the life cycle of DOM listeners e.g. by handling rendering and destruction. See the TemplateDefinition syntax to learn more about shaping view elements, attributes and listeners.">
+    <meta property="og:description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. A View that can be focused (e.g. has focus() method).">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/api/module_comments_annotations_view_annotationview-AnnotationMainView.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Interface AnnotationMainView (comments/annotations/view/annotationview~AnnotationMainView) | CKEditor 5 API docs">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. The basic view class, which represents an HTML element created out of a template. Views are building blocks of the user interface and handle interaction Views aggregate children in collections and manage the life cycle of DOM listeners e.g. by handling rendering and destruction. See the TemplateDefinition syntax to learn more about shaping view elements, attributes and listeners.">
+    <meta property="DC.description" content="CKEditor 5 API Documentation. The Interface AnnotationMainView. A View that can be focused (e.g. has focus() method).">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/api/module_comments_annotations_view_annotationview-AnnotationMainView.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
@@ -127,7 +127,6 @@
               <ul>
                 <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="properties">Properties</li>
                 <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="methods">Methods</li>
-                <li class="api-subheader__navigation-category api-subheader__navigation-dropdown--hidden" data-type="events">Events</li>
               </ul>
             </nav>
           </div>
@@ -136,7 +135,7 @@
                         <dt>Hierarchy</dt>
                         <dd>
                           <ul class="hierarchy-list">
-                                      <li title="@ckeditor/ckeditor5-ui/src/view~View"><code><span><a href="module_ui_view-View.html">View</a></span></code>
+                                      <li title="@ckeditor/ckeditor5-ui/src/focuscycler~FocusableView"><code><span><a href="module_ui_focuscycler-FocusableView.html">FocusableView</a></span></code>
                                         <ul>
                                                     <li title="@ckeditor/ckeditor5-comments/src/annotations/view/annotationview~AnnotationMainView"><code><span><a href="module_comments_annotations_view_annotationview-AnnotationMainView.html">AnnotationMainView</a></span></code>
                                                     </li>
@@ -147,65 +146,7 @@
             </dl>
           </nav>
           <div class="main-description__outer hidden-loading">
-            <div class="main-description"><p>The basic view class, which represents an HTML element created out of a
-<a href="module_ui_view-View.html#member-template"><code>template</code></a>. Views are building blocks of the user interface and handle
-interaction</p>
-<p>Views <a href="module_ui_view-View.html#function-registerChild">aggregate</a> children in
-<a href="module_ui_view-View.html#function-createCollection">collections</a> and manage the life cycle of DOM
-listeners e.g. by handling rendering and destruction.</p>
-<p>See the <a href="module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> syntax to learn more about shaping view
-elements, attributes and listeners.</p>
-<pre><code class="language-ts">class SampleView extends View {
-	constructor( locale ) {
-		super( locale );
-
-		const bind = this.bindTemplate;
-
-		// Views define their interface (state) using observable attributes.
-		this.set( 'elementClass', 'bar' );
-
-		this.setTemplate( {
-			tag: 'p',
-
-			// The element of the view can be defined with its children.
-			children: [
-				'Hello',
-				{
-					tag: 'b',
-					children: [ 'world!' ]
-				}
-			],
-			attributes: {
-				class: [
-					'foo',
-
-					// Observable attributes control the state of the view in DOM.
-					bind.to( 'elementClass' )
-				]
-			},
-			on: {
-				// Views listen to DOM events and propagate them.
-				click: bind.to( 'clicked' )
-			}
-		} );
-	}
-}
-
-const view = new SampleView( locale );
-
-view.render();
-
-// Append &lt;p class="foo bar"&gt;Hello&lt;b&gt;world&lt;/b&gt;&lt;/p&gt; to the &lt;body&gt;
-document.body.appendChild( view.element );
-
-// Change the class attribute to &lt;p class="foo baz"&gt;Hello&lt;b&gt;world&lt;/b&gt;&lt;/p&gt;
-view.elementClass = 'baz';
-
-// Respond to the "click" event in DOM by executing a custom action.
-view.on( 'clicked', () =&gt; {
-	console.log( 'The view has been clicked!' );
-} );
-</code></pre></div>
+            <div class="main-description"><p>A <a href="module_ui_view-View.html"><code>View</code></a> that can be focused (e.g. has <code>focus()</code> method).</p></div>
           </div>
 <div class="notice notice__filter api-props-filter hidden-loading">
   <div class="api-props-filter__inner">
@@ -498,7 +439,7 @@ must be enabled for the button to become enabled, use the following code:</p>
                                       <dl>
                                         <dt><code>bindProperties
                                             :
- Array&lt;<span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span>&gt;</code></dt>
+ Array&lt;<span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'focus'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span>&gt;</code></dt>
                                         <dd><p>Observable properties that will be bound to other observable(s).</p>
                                         </dd>
                                       </dl>
@@ -774,7 +715,7 @@ foo.method( 1, 2 ); // -&gt; '3, 2'
                                       <dl>
                                         <dt><code>methodName
                                             :
- <span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span></code></dt>
+ <span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'focus'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span></code></dt>
                                         <dd><p>Name of the method to decorate.</p>
                                         </dd>
                                       </dl>
@@ -950,6 +891,40 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
 through modification of the <a href="module_utils_eventinfo-EventInfo.html#member-return"><code>evt.return</code></a>'s property (the event info
 is the first param of every callback).</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-focus">
+                          <h3>
+                            <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                            </p><code><a class="member-name" href="#function-focus">focus</a>( [ direction ] ) &rarr;  <span>void</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/annotations/view/annotationview~AnnotationMainView#focus"><code>module:comments/annotations/view/annotationview~AnnotationMainView#focus</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Focuses the view.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ direction ]
+                                            :
+ <span>1</span> | <span>1</span></code></dt>
+                                        <dd><p>This optional parameter helps improve the UX by providing additional information about the direction the focus moved
+(e.g. in a complex view or a form). It is useful for views that host multiple focusable children (e.g. lists, toolbars):</p>
+<ul>
+<li><code>1</code> indicates that the focus moved forward and, in most cases, the first child of the focused view should get focused,</li>
+<li><code>-1</code> indicates that the focus moved backwards, and the last focusable child should get focused</li>
+</ul>
+<p>See <a href="module_ui_focuscycler-FocusCycler.html#event-forwardCycle">event-forwardCycle</a> and <a href="module_ui_focuscycler-FocusCycler.html#event-backwardCycle">event-backwardCycle</a>
+to learn more.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>void</span></code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
                           </div>
@@ -1668,7 +1643,7 @@ A.unbind();
                                       <dl>
                                         <dt><code>unbindProperties
                                             :
- Array&lt;<span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span>&gt;</code></dt>
+ Array&lt;<span>'off'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'stopListening'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'element'</span> | <span>'template'</span> | <span>'focus'</span> | <span>'destroy'</span> | <span>'render'</span> | <span>'isRendered'</span> | <span>'locale'</span> | <span>'t'</span> | <span>'viewUid'</span> | <span>'bindTemplate'</span> | <span>'createCollection'</span> | <span>'registerChild'</span> | <span>'deregisterChild'</span> | <span>'setTemplate'</span> | <span>'extendTemplate'</span> | <span>'isActive'</span>&gt;</code></dt>
                                         <dd><p>Observable properties to be unbound. All the bindings will
 be released if no properties are provided.</p>
                                         </dd>
@@ -1679,159 +1654,6 @@ be released if no properties are provided.</p>
                                         <dd>
                                         </dd>
                             </dl>
-                          </div>
-                        </div>
-                      </li>
-          </ul>
-          <h2 class="hidden-loading" id="events">Events</h2>
-          <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="events">
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event-change:%7Bproperty%7D">
-                          <h3>
-                            <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                            </p><code><a class="member-name" href="#event-change:%7Bproperty%7D">change:{property}</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/annotations/view/annotationview~AnnotationMainView#event:change:{property}"><code>module:comments/annotations/view/annotationview~AnnotationMainView#event:change:{property}</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__content"><p>Fired when a property changed value.</p>
-<pre><code class="language-ts">observable.set( 'prop', 1 );
-
-observable.on&lt;ObservableChangeEvent&lt;number&gt;&gt;( 'change:prop', ( evt, propertyName, newValue, oldValue ) =&gt; {
-	console.log( `${ propertyName } has changed from ${ oldValue } to ${ newValue }` );
-} );
-
-observable.prop = 2; // -&gt; 'prop has changed from 1 to 2'
-</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code>name
-                                            :
- <span>string</span></code></dt>
-                                        <dd><p>The property name.</p>
-                                        </dd>
-                                        <dt><code>value
-                                            :
- <span>TValue</span></code></dt>
-                                        <dd><p>The new property value.</p>
-                                        </dd>
-                                        <dt><code>oldValue
-                                            :
- <span>TValue</span></code></dt>
-                                        <dd><p>The previous property value.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event-render">
-                          <h3>
-                            <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                            </p><code><a class="member-name" href="#event-render">render</a>( eventInfo, &lt;anonymous&gt; )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/annotations/view/annotationview~AnnotationMainView#event:render"><code>module:comments/annotations/view/annotationview~AnnotationMainView#event:render</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__content"><p>Event fired by the <a href="module_ui_view-View.html#function-render"><code>render</code></a> method. Actual rendering is executed as a listener to
-this event with the default priority.</p>
-<p>See <a href="module_utils_observablemixin-Observable.html#function-decorate"><code>decorate</code></a> for more information and samples.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code>&lt;anonymous&gt;
-                                            :
- <span>Parameters</span>&lt;<span>TObservable</span>&lsqb; <span>TName</span> &rsqb;&gt;</code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event-set:%7Bproperty%7D">
-                          <h3>
-                            <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                            </p><code><a class="member-name" href="#event-set:%7Bproperty%7D">set:{property}</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/annotations/view/annotationview~AnnotationMainView#event:set:{property}"><code>module:comments/annotations/view/annotationview~AnnotationMainView#event:set:{property}</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__content"><p>Fired when a property value is going to be set but is not set yet (before the <code>change</code> event is fired).</p>
-<p>You can control the final value of the property by using
-the <a href="module_utils_eventinfo-EventInfo.html#member-return">event's <code>return</code> property</a>.</p>
-<pre><code class="language-ts">observable.set( 'prop', 1 );
-
-observable.on&lt;ObservableSetEvent&lt;number&gt;&gt;( 'set:prop', ( evt, propertyName, newValue, oldValue ) =&gt; {
-	console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-	console.log( `Current property value is ${ observable[ propertyName ] }` );
-
-	// Let's override the value.
-	evt.return = 3;
-} );
-
-observable.on&lt;ObservableChangeEvent&lt;number&gt;&gt;( 'change:prop', ( evt, propertyName, newValue, oldValue ) =&gt; {
-	console.log( `Value has changed from ${ oldValue } to ${ newValue }` );
-} );
-
-observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
-                     // -&gt; 'Current property value is 1'
-                     // -&gt; 'Value has changed from 1 to 3'
-</code></pre>
-<p><strong>Note:</strong> The event is fired even when the new value is the same as the old value.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code>name
-                                            :
- <span>string</span></code></dt>
-                                        <dd><p>The property name.</p>
-                                        </dd>
-                                        <dt><code>value
-                                            :
- <span>TValue</span></code></dt>
-                                        <dd><p>The new property value.</p>
-                                        </dd>
-                                        <dt><code>oldValue
-                                            :
- <span>TValue</span></code></dt>
-                                        <dd><p>The previous property value.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event-submit">
-                          <h3>
-                            <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                            </p><code><a class="member-name" href="#event-submit">submit</a>( eventInfo )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/annotations/view/annotationview~AnnotationMainView#event:submit"><code>module:comments/annotations/view/annotationview~AnnotationMainView#event:submit</code></span>
-                          </h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__content"><p>Fired by <a href="module_ui_bindings_submithandler.html#function-submitHandler"><code>submitHandler</code></a> helper.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -2952,6 +2774,39 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
           </div>
           <ul>
             <li class="toggler--collapsed">
+              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">suggestions</span>
+              </div>
+              <ul>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">view</span>
+                  </div>
+                  <ul>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:collaboration-core/suggestions/view/ariadescriptionview"><a class="tree__item--module tree__item__text" href="module_collaboration-core_suggestions_view_ariadescriptionview.html">ariadescriptionview</a>
+                      </div>
+                      <ul>
+                        <li data-public="true"><a href="module_collaboration-core_suggestions_view_ariadescriptionview-AriaDescriptionView.html">
+                            <div class="tree__item__wrapper" data-ln="module:collaboration-core/suggestions/view/ariadescriptionview~AriaDescriptionView"><span class="tree__item--class tree__item__text">AriaDescriptionView</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:collaboration-core/suggestions/view/latefocusbuttonview"><a class="tree__item--module tree__item__text" href="module_collaboration-core_suggestions_view_latefocusbuttonview.html">latefocusbuttonview</a>
+                      </div>
+                      <ul>
+                        <li data-public="true"><a href="module_collaboration-core_suggestions_view_latefocusbuttonview-LateFocusButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:collaboration-core/suggestions/view/latefocusbuttonview~LateFocusButtonView"><span class="tree__item--class tree__item__text">LateFocusButtonView</span></div></a>
+                        </li>
+                        <li data-public="true"><a href="module_collaboration-core_suggestions_view_latefocusbuttonview-LateFocusDropdownButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:collaboration-core/suggestions/view/latefocusbuttonview~LateFocusDropdownButtonView"><span class="tree__item--class tree__item__text">LateFocusDropdownButtonView</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
               <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
               </div>
               <ul>
@@ -3351,6 +3206,9 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                     </li>
                     <li><a href="module_comments_comments_commentsrepository-CommentThreadDataJSON.html">
                         <div class="tree__item__wrapper" data-ln="module:comments/comments/commentsrepository~CommentThreadDataJSON"><span class="tree__item--typedef tree__item__text">CommentThreadDataJSON</span></div></a>
+                    </li>
+                    <li><a href="module_comments_comments_commentsrepository-CommentThreadEscapeEvent.html">
+                        <div class="tree__item__wrapper" data-ln="module:comments/comments/commentsrepository~CommentThreadEscapeEvent"><span class="tree__item--typedef tree__item__text">CommentThreadEscapeEvent</span></div></a>
                     </li>
                     <li><a href="module_comments_comments_commentsrepository-RemoveCommentEvent.html">
                         <div class="tree__item__wrapper" data-ln="module:comments/comments/commentsrepository~RemoveCommentEvent"><span class="tree__item--typedef tree__item__text">RemoveCommentEvent</span></div></a>
@@ -8316,8 +8174,20 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                 <li><a href="module_merge-fields_mergefieldsconfig-GroupDefinition.html">
                     <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefieldsconfig~GroupDefinition"><span class="tree__item--typedef tree__item__text">GroupDefinition</span></div></a>
                 </li>
+                <li><a href="module_merge-fields_mergefieldsconfig-MergeFieldDataSetValue.html">
+                    <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefieldsconfig~MergeFieldDataSetValue"><span class="tree__item--typedef tree__item__text">MergeFieldDataSetValue</span></div></a>
+                </li>
                 <li><a href="module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html">
                     <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefieldsconfig~MergeFieldDefinition"><span class="tree__item--typedef tree__item__text">MergeFieldDefinition</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefieldsediting"><a class="tree__item--module tree__item__text" href="module_merge-fields_mergefieldsediting.html">mergefieldsediting</a>
+              </div>
+              <ul>
+                <li data-public="true"><a href="module_merge-fields_mergefieldsediting-MergeFieldsEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefieldsediting~MergeFieldsEditing"><span class="tree__item--class tree__item__text">MergeFieldsEditing</span></div></a>
                 </li>
               </ul>
             </li>
@@ -11865,11 +11735,11 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                 <li data-public="true"><a href="module_ui_focuscycler-FocusCycler.html">
                     <div class="tree__item__wrapper" data-ln="module:ui/focuscycler~FocusCycler"><span class="tree__item--class tree__item__text">FocusCycler</span></div></a>
                 </li>
-                <li><a href="module_ui_focuscycler-FocusCyclerActions.html">
-                    <div class="tree__item__wrapper" data-ln="module:ui/focuscycler~FocusCyclerActions"><span class="tree__item--interface tree__item__text">FocusCyclerActions</span></div></a>
-                </li>
                 <li><a href="module_ui_focuscycler-FocusableView.html">
                     <div class="tree__item__wrapper" data-ln="module:ui/focuscycler~FocusableView"><span class="tree__item--typedef tree__item__text">FocusableView</span></div></a>
+                </li>
+                <li><a href="module_ui_focuscycler-FocusCyclerActions.html">
+                    <div class="tree__item__wrapper" data-ln="module:ui/focuscycler~FocusCyclerActions"><span class="tree__item--typedef tree__item__text">FocusCyclerActions</span></div></a>
                 </li>
                 <li><a href="module_ui_focuscycler-FocusCyclerBackwardCycleEvent.html">
                     <div class="tree__item__wrapper" data-ln="module:ui/focuscycler~FocusCyclerBackwardCycleEvent"><span class="tree__item--typedef tree__item__text">FocusCyclerBackwardCycleEvent</span></div></a>
@@ -12467,6 +12337,9 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
               <ul>
                 <li data-public="true"><a href="module_utils_keystrokehandler-KeystrokeHandler.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/keystrokehandler~KeystrokeHandler"><span class="tree__item--class tree__item__text">KeystrokeHandler</span></div></a>
+                </li>
+                <li><a href="module_utils_keystrokehandler-KeystrokeHandlerOptions.html">
+                    <div class="tree__item__wrapper" data-ln="module:utils/keystrokehandler~KeystrokeHandlerOptions"><span class="tree__item--interface tree__item__text">KeystrokeHandlerOptions</span></div></a>
                 </li>
               </ul>
             </li>

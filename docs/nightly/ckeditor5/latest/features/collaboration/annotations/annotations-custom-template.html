@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 30 2024 01:30:08 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jul 31 2024 01:32:06 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Custom template for annotations | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -662,7 +662,7 @@ ClassicEditor.create(document.querySelector('#editor'), editorConfig);
 // ...
 
 import { CommentView } from 'ckeditor5-premium-features';
-import { ButtonView } from 'ckeditor5';
+import { LateFocusButtonView } from 'ckeditor5-premium-features';
 
 export default class ImportantCommentView extends CommentView {
     constructor( ...args ) {
@@ -688,7 +688,7 @@ export default class ImportantCommentView extends CommentView {
 
     _createImportantButtonView() {
         // Create a new button view.
-        const button = new ButtonView( this.locale );
+        const button = new LateFocusButtonView( this.locale );
 
         // Create an icon for the button view.
         const starIcon = '&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"&gt;&lt;path d="M15.22 18.36c.18-.02.35-.1.46-.25a.6.6 0 00.11-.5l-1.12-5.32 4.12-3.66a.6.6 0 00.18-.65.63.63 0 00-.54-.42l-5.54-.6L10.58 2a.64.64 0 00-.58-.37.64.64 0 00-.58.37l-2.3 4.94-5.55.6a.63.63 0 00-.54.43.6.6 0 00.18.65l4.12 3.66-1.12 5.32c-.05.24.04.49.25.63.2.14.47.16.68.04L10 15.59l4.86 2.69c.1.06.23.09.36.08zm-.96-1.83l-3.95-2.19a.65.65 0 00-.62 0l-3.95 2.19.91-4.33a.6.6 0 00-.2-.58L3.1 8.64l4.51-.5a.64.64 0 00.51-.36L10 3.76l1.88 4.02c.09.2.28.34.5.36l4.52.5-3.35 2.98a.6.6 0 00-.2.58l.91 4.33z"/&gt;&lt;/svg&gt;';
