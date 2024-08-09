@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:14 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:29:50 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Merge fields | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/4.2.5/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
-    <link rel="stylesheet" href="../snippets/features/merge-fields/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../snippets/features/build-merge-fields-source/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../snippets/assets.css" type="text/css" data-cke="true">
     <link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com">
@@ -59,7 +59,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -554,34 +554,61 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/4.2.5/img/book.svg" alt="guide">Merge fields
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#installation" title="Installation">Installation</a><ol><li><a href="#activating-the-feature" title="Activating the feature">Activating the feature</a></li></ol></li><li><a href="#configuration" title="Configuration">Configuration</a><ol><li><a href="#merge-fields" title="Merge fields">Merge fields</a></li><li><a href="#data-sets" title="Data sets">Data sets</a></li><li><a href="#preview-modes" title="Preview modes">Preview modes</a><ol><li><a href="#initial-preview-mode" title="Initial preview mode">Initial preview mode</a></li><li><a href="#available-preview-modes" title="Available preview modes">Available preview modes</a></li></ol></li><li><a href="#prefix-and-suffix" title="Prefix and suffix">Prefix and suffix</a></li></ol></li><li><a href="#integration" title="Integration">Integration</a><ol><li><a href="#getting-data-with-the-actual-values" title="Getting data with the actual values">Getting data with the actual values</a></li><li><a href="#document-export-and-import-features" title="Document export and import features">Document export and import features</a></li></ol></li><li><a href="#related-features" title="Related features">Related features</a></li><li><a href="#common-api" title="Common API">Common API</a></li></ol></nav><p>The merge fields feature allows for inserting placeholder elements into the document. They can be used to mark what kind of value should be placed at given position in text, rather than using the value itself. They can be used to prepare templates for e-mails or documents and later export them as Word or PDF files holding the actual content.</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#template-editing" title="Template editing">Template editing</a></li><li><a href="#preview-mode" title="Preview mode">Preview mode</a></li><li><a href="#data-only-setup" title="Data-only setup">Data-only setup</a></li><li><a href="#installation" title="Installation">Installation</a><ol><li><a href="#activating-the-feature" title="Activating the feature">Activating the feature</a></li></ol></li><li><a href="#configuration" title="Configuration">Configuration</a><ol><li><a href="#merge-fields-definitions" title="Merge fields definitions">Merge fields definitions</a></li><li><a href="#prefix-and-suffix" title="Prefix and suffix">Prefix and suffix</a></li><li><a href="#preview-modes" title="Preview modes">Preview modes</a><ol><li><a href="#available-preview-modes" title="Available preview modes">Available preview modes</a></li><li><a href="#initial-preview-mode" title="Initial preview mode">Initial preview mode</a></li></ol></li><li><a href="#data-sets" title="Data sets">Data sets</a></li><li><a href="#using-html-tags-in-merge-fields-values" title="Using HTML tags in merge fields values">Using HTML tags in merge fields values</a></li></ol></li><li><a href="#integration" title="Integration">Integration</a><ol><li><a href="#editor-data-output" title="Editor data output">Editor data output</a></li><li><a href="#data-output-with-filled-in-merge-fields" title="Data output with filled-in merge fields">Data output with filled-in merge fields</a></li><li><a href="#custom-merge-fields" title="Custom merge fields">Custom merge fields</a></li><li><a href="#document-export-plugins" title="Document export plugins">Document export plugins</a></li><li><a href="#import-from-word" title="Import from Word">Import from Word</a></li><li><a href="#using-merge-fields-with-templates" title="Using merge fields with templates">Using merge fields with templates</a></li></ol></li><li><a href="#common-api" title="Common API">Common API</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script></div>
+<p>Merge fields are visually distinct placeholder elements, which you may put into the content to mark places, where real values should be inserted. This is perfect for creating document templates and other kinds of personalized content. The feature is highly customizable, it offers a preview mode, and integrates with our document export and import plugins.</p>
+<p>Below we present the typical use cases for the feature. Choose the setup that fits your needs the best.</p>
 <div class="info-box notice"><p>This premium feature is a part of the <a href="productivity-pack.html">Productivity Pack</a>. The Productivity Pack is included in our commercial license. If you have an active CKEditor&nbsp;5 license, please contact your Account Manager to check your eligibility. Some legacy licenses are not eligible for the exclusive Productivity Pack even if they are active. <a href="https://ckeditor.com/contact/?sales=true#contact-form">Contact us</a> for more details.</p><p>You can also sign up for the <a href="https://orders.ckeditor.com/trial/premium-features">CKEditor Premium Features 30-day free trial</a> to test the feature.</p></div>
-<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<p>Insert a merge field element into the document using one of the possible ways:</p>
-<ul>
-<li>Use the “Insert merge field” <span class="editor-icon"><img src="../assets/icons/e588d40e42.svg" class="editor-icon__image" alt="Insert merge field"></span> toolbar dropdown.</li>
-<li>Use the “Insert” → “Merge field” menu bar dropdown.</li>
-<li>Start typing the merge field opening bracket (<code>{{</code> by default), and choose a merge field from the suggestion list that pops up.</li>
-<li>Type or paste the entire merge field name, such as <code>{{clientName}}</code>.</li>
-</ul>
-<p>Then, switch the preview mode to see the actual values configured for a given merge field. Use the “Merge fields preview” <span class="editor-icon"><img src="../assets/icons/eb7d47ecfb.svg" class="editor-icon__image" alt="Merge fields preview"></span> dropdown located in the toolbar or inside “View” menu.</p>
-<div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
-<div id="toolbar-container" class="toolbar-container"></div>
+<h2 id="template-editing"><a class="headerlink" href="#template-editing">#</a> Template editing</h2>
+<p>The most popular use case is creating templates of documents, e-mails, invoices, and other kinds of personalized content.</p>
+<div class="live-snippet"><div id="toolbar-container" class="toolbar-container"></div>
 <div class="editor-container">
-	<div class="ck ck-content" id="snippet-merge-fields">
-		<p style="text-align:right;"><i>Warsaw</i>, {{today}}</p>
-		<p>{{clientAddress}}</p>
-		<h2>Dear {{clientName}},</h2>
-		<p>we're sorry to inform you that the order number {{orderId}} was
-			cancelled due to {{orderCancelationReason}}.
-		</p>
-		<p style="text-align:right;">Kind regards,</p>
-		<p style="text-align:right;">{{authorsName}}</p>
-		<p>PS Please see the attachments.</p>
+	<div class="ck ck-content" id="snippet-merge-fields-labels">
+		<p style="text-align: center;">Dear {{guestTitle}} {{guestName}}</p>
+		<p>This email confirms your reservation at Serenity Springs Resort for a relaxing <strong>{{roomType}}</strong> experience. We're delighted to welcome you on <strong>{{guestArrivalDate}}</strong>!</p>
+		<p><em>Sincerely</em><br /><em>The Team at Serenity Springs Resort</em></p>
+		<p><em>P.S. Mention this email to receive {{guestDiscount}} off your first spa treatment!</em></p>
 	</div>
 </div>
 </div>
-<div class="info-box notice notice__info"><p>This demo presents a limited set of features. Visit the <a href="../examples/builds-custom/full-featured-editor.html">feature-rich editor example</a> to see more in action.</p></div>
+<p>The user can insert one of the pre-configured merge field elements in various ways:</p>
+<ul>
+<li>from a toolbar dropdown <span class="editor-icon"><img src="../assets/icons/e588d40e42.svg" class="editor-icon__image"></span>,</li>
+<li>from the menu bar, under “Insert” → “Merge field”,</li>
+<li>or by typing the opening bracket (<code>{{</code> by default), and choosing one of the merge fields from the list.</li>
+</ul>
+<p>To enable this use case, simply configure the merge fields definitions and add a button to the toolbar.</p>
+<p>You can learn more about configuring the feature in the Configuration section of this guide.</p>
+<div class="info-box notice notice__info"><p>Presented demos show a limited set of features. Visit the <a href="../examples/builds-custom/full-featured-editor.html">feature-rich editor example</a> to see more in action.</p></div>
+<h2 id="preview-mode"><a class="headerlink" href="#preview-mode">#</a> Preview mode</h2>
+<p>Enhance the template creation experience by defining example preview data sets.</p>
+<p>As the user prepares the template, they will be able to switch to a data preview mode. In this mode, merge fields labels are replaced with values taken from the chosen data set. This way, the user will have a better understanding how the actual, final content may look like.</p>
+<div class="live-snippet"><div id="toolbar-container" class="toolbar-container"></div>
+<div class="editor-container">
+	<div class="ck ck-content" id="snippet-merge-fields-datasets">
+		<p style="text-align: center;">Dear {{guestTitle}} {{guestName}}</p>
+		<p>This email confirms your reservation at Serenity Springs Resort for a relaxing <strong>{{roomType}}</strong> experience. We're delighted to welcome you on <strong>{{guestArrivalDate}}</strong>!</p>
+		<p><em>Sincerely</em><br /><em>The Team at Serenity Springs Resort</em></p>
+		<p><em>P.S. Mention this email to receive {{guestDiscount}} off your first spa treatment!</em></p>
+	</div>
+</div>
+</div>
+<p>The default initial preview mode is “labels”. When the data for other preview modes is provided, the preview modes can be switched using a toolbar dropdown <span class="editor-icon"><img src="../assets/icons/eb7d47ecfb.svg" class="editor-icon__image"></span>, or through the menu bar (“View” → “Merge fields preview”).</p>
+<h2 id="data-only-setup"><a class="headerlink" href="#data-only-setup">#</a> Data-only setup</h2>
+<p>Instead of showing the labels, the editor can be configured to always display the merge fields values, without a way to switch it. The user will insert the merge fields into the content as previously, but they will always see the defined data.</p>
+<p>This setup is perfect when you want to use a previously prepared template to create a concrete piece of content, in the context of a specific data set (e.g. customer data), possibly editing it along the way to further personalize the content.</p>
+<p>Using merge fields in this configuration is useful even when you start from scratch! The user avoids typos and has convenient access to correct values, while the created document is always up-to-date, in case the related data set changes.</p>
+<div class="live-snippet"><div id="toolbar-container" class="toolbar-container"></div>
+<div class="editor-container">
+	<div class="ck ck-content" id="snippet-merge-fields-variables">
+		<p style="text-align: center;">Dear {{guestTitle}} {{guestName}}</p>
+		<p>This email confirms your reservation at Serenity Springs Resort for a relaxing <strong>{{roomType}}</strong> experience. We're delighted to welcome you on <strong>{{guestArrivalDate}}</strong>!</p>
+		<p><em>Sincerely</em><br /><em>The Team at Serenity Springs Resort</em></p>
+		<p><em>P.S. Mention this email to receive {{guestDiscount}} off your first spa treatment!</em></p>
+	</div>
+</div>
+</div>
+<p>To enable this use case, use feature configuration to provide a data set, set the initial preview mode and disable other preview modes.</p>
+<p>Apart from providing data sets, you can also define default values for the merge fields. The default value is used when the data set is missing a value for a given merge field. Additionally, an error indicator is displayed, to make the user aware of a possible problem. This is useful when you cannot guarantee that your data sets are always complete.</p>
 <h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
 <div class="info-box notice notice__info"><p>⚠️ <strong>New import paths</strong></p><p>Starting with <a href="../updating/guides/update-to-42.html">version 42.0.0</a>, we changed the format of import paths. This guide uses the new, shorter format. Refer to the <a href="../getting-started/legacy/legacy-imports.html">Packages in the legacy setup</a> guide if you use an older version of CKEditor&nbsp;5.</p></div>
 <div class="info-box notice notice__info"><p>The merge fields feature uses the <a href="mentions.html">mentions feature</a> under the hood, so ensure you <a href="mentions.html#installation">install it</a> too.</p></div>
@@ -594,7 +621,7 @@ ClassicEditor
         plugins: [ MergeFields, Mention, /* ... */ ],
 
         // Provide the license key (see explanation below).
-        licenseKey: '&lt;YOUR_LICENCE_KEY&gt;',
+        licenseKey: '&lt;YOUR_LICENSE_KEY&gt;',
 
         // ...
     } )
@@ -605,17 +632,17 @@ ClassicEditor
 <p>To use this premium feature, you need to activate it with proper credentials. Refer to the <a href="../getting-started/setup/license-key-and-activation.html">License key and activation</a> guide for details.</p>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <div class="info-box notice"><p>For more technical details, check the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html">plugin configuration reference</a>.</p></div>
-<p>To make the most out of the merge fields feature, it has to be properly configured. Some options (such as prefix and suffix or preview modes) have a reasonable default set, but it is essential to define the list of the available merge fields.</p>
-<h3 id="merge-fields"><a class="headerlink" href="#merge-fields">#</a> Merge fields</h3>
-<p>To make the merge fields appear in the toolbar dropdown you have to specify them in the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-definitions"><code>mergeFields.definitions</code></a> property.</p>
+<p>To make the most out of the merge fields feature, it has to be properly configured. Some options (such as prefix and suffix or preview modes) have a reasonable default set, but it is essential to at least define the list of the available merge fields.</p>
+<h3 id="merge-fields-definitions"><a class="headerlink" href="#merge-fields-definitions">#</a> Merge fields definitions</h3>
+<p>To make the merge fields appear in the editor UI you have to specify them in the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-definitions"><code>mergeFields.definitions</code></a> property.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         mergeFields: {
             definitions: [
                 {
-                    id: 'clientName',
-                    label: 'Client Name',
-                    defaultValue: 'Cookoo'
+                    id: 'guestName',
+                    label: 'Guest name', // Optional.
+                    defaultValue: 'Guest' // Optional.
                 },
                 // More merge field definitions.
             ]
@@ -624,92 +651,42 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
+<p>The merge field id is the only required value, and it is used in the document data returned by the editor. It may include letters, numbers and <code>_</code>, <code>.</code>, <code>-</code> special characters.</p>
+<p>The merge field label is displayed in the editor, if defined. If not, the id is used instead.</p>
+<p><a href="#custom-merge-fields">Custom (non-defined) merge fields</a> may be inserted into the document as well.</p>
+<p>Use “Source editing” feature in the <a href="#template-editing">presented demos</a> to see an example of the editor output.</p>
 <p>To better organize the merge fields in the dropdown, you can divide the definitions into groups.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         mergeFields: {
-            definitions: [ {
-                groupId: 'client',
-                groupLabel: 'Client',
-                definitions: [ {
-                    id: 'clientName',
-                    label: 'Client Name',
-                    defaultValue: 'Cookoo'
-                }, {
-                    // More merge field definitions.
-                } ]
-            }, {
+            definitions: [
+                {
+                    groupId: 'guest',
+                    groupLabel: 'Guest',
+                    definitions: [
+                        {
+                            id: 'guestName',
+                            label: 'Guest name',
+                            defaultValue: 'Guest'
+                        },
+                        {
+                            id: 'guestTitle',
+                            label: 'Guest title',
+                            defaultValue: 'Ms./Mr.'
+                        },
+                        // More merge field definitions
+                        // inside the "Guest" group.
+                    ]
+                },
                 // More merge field groups.
-            }
             ]
         }
     } )
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
-<p>A list of characters allowed in the merge field id includes: <code>a-z</code>, <code>A-Z</code>, <code>0-9</code> and <code>_.-</code> characters.</p>
-<h3 id="data-sets"><a class="headerlink" href="#data-sets">#</a> Data sets</h3>
-<p>To be able to preview the actual data in the editor, you must define at least one <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-dataSets">data set</a>. If some merge field is present in the document but not specified in the data set, its <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html#member-defaultValue">default value</a> will be used. If it is missing as well, the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html#member-label">label</a> or the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html#member-id">id</a> will fill in instead.</p>
-<pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        mergeFields: {
-            dataSets: [ {
-                id: 'first-data-set',
-                label: 'Client: Our dearest customer',
-                values: {
-                    clientName: 'Our dearest customer',
-                    clientAddress: 'Oak Street 4403',
-                    clientId: 158673,
-                    // Other values in this data set.
-                }
-            }, {
-                // Another data set.
-            } ]
-        }
-    } )
-    .then( /* ... */ )
-    .catch( /* ... */ );
-</code></pre>
-<h3 id="preview-modes"><a class="headerlink" href="#preview-modes">#</a> Preview modes</h3>
-<p>The preview modes allow to temporarily substitute the merge fields with their actual values.</p>
-<h4 id="initial-preview-mode"><a class="headerlink" href="#initial-preview-mode">#</a> Initial preview mode</h4>
-<p>The <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-initialPreviewMode"><code>mergeFields.initialPreviewMode</code></a> option specifies which preview mode should be active when the editor is loaded. By default, the merge field labels will be visible.</p>
-<pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        mergeFields: {
-            initialPreviewMode: '$defaultValues' // The editor will display the configured default values in the merge fields.
-        }
-    } )
-    .then( /* ... */ )
-    .catch( /* ... */ );
-</code></pre>
-<h4 id="available-preview-modes"><a class="headerlink" href="#available-preview-modes">#</a> Available preview modes</h4>
-<p>It can be specified which preview modes should be available for the user through the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-previewModes"><code>mergeFields.previewModes</code></a> configuration option. It should be specified as any combination of the three possible values:</p>
-<ul>
-<li>The “labels” view (the <code>$labels</code> option).</li>
-<li>The “default values” view (the <code>$defaultValues</code> option).</li>
-<li>All the configured data sets (the <code>$dataSets</code> option). If none is configured, no option is added to the dropdown.</li>
-</ul>
-<p>The chosen options should be passed together in the array:</p>
-<pre class="highlight"><code class="js">ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        mergeFields: {
-            // The user will be allowed only to switch between defined data sets,
-            // and the merge fields will always display the data related to one of the defined data sets.
-            previewModes: [ '$dataSets' ]
-        }
-    } )
-    .then( /* ... */ )
-    .catch( /* ... */ );
-</code></pre>
-<p>Please note that there are several restrictions related to this configuration option:</p>
-<ul>
-<li>At least one preview mode has to be specified. Otherwise, the editor will throw an error.</li>
-<li>If the initial preview mode specified in the <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-initialPreviewMode"><code>mergeFields.initialPreviewMode</code></a> option <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-previewModes">is not available</a>, the editor will throw an error.</li>
-<li>If only one preview mode is available (so the passed value is <code>[ $labels ]</code>, <code>[ $defaultValues ]</code> or <code>[ $dataSets ]</code> with only one data set defined in <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-dataSets"><code>mergeFields.dataSets</code></a>), the “Merge fields preview” button will not be added to the “View” menu.</li>
-</ul>
 <h3 id="prefix-and-suffix"><a class="headerlink" href="#prefix-and-suffix">#</a> Prefix and suffix</h3>
-<p>The <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-prefix"><code>mergeFields.prefix</code></a> and <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-suffix"><code>mergeFields.suffix</code></a> (characters combinations used to indicate the start and end of the merge field) can be configured as well. These values will be used in the data returned from the <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method.</p>
+<p>The <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-prefix"><code>mergeFields.prefix</code></a> and <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-suffix"><code>mergeFields.suffix</code></a> (characters combinations used to indicate the start and end of the merge field) can be configured as well. The defined values will be returned in the editor uutput.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         // Use different kind of brackets for merge fields indicators.
@@ -721,38 +698,141 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
-<p>Default values for merge fields brackets are <code>{{</code> and <code>}}</code>. The following characters are allowed in prefix/suffix: <code>'"`!#%:;=@{}~$()*+/?[\]^|</code>.</p>
+<p>The default merge fields brackets are <code>{{</code> and <code>}}</code>. The following characters are allowed in prefix and suffix: <code>'"`!#%:;=@{}~$()*+/?[\]^|</code>. Additionally, they cannot be longer than 8 characters.</p>
 <p><strong>Note:</strong> The prefix and suffix must be different.</p>
-<p><strong>Note:</strong> The brackets that already exist in the document data will not automatically update after you change the <code>prefix</code> and <code>suffix</code> configuration. The change will affect only the newly inserted merge fields. Additionally, old merge fields will not be recognized and will be displayed as plain text. If you would need to change the brackets configuration, you should also process the document data for all documents created in your application.</p>
+<p><strong>Note:</strong> The brackets that are used in the stored document data will not automatically update after you change the <code>prefix</code> or <code>suffix</code> configuration. The change will affect only the newly inserted merge fields. Additionally, old merge fields will not be recognized and will be displayed as plain text. If you need to change brackets configuration, you should also process the  document data for all documents created in your application so far.</p>
+<h3 id="preview-modes"><a class="headerlink" href="#preview-modes">#</a> Preview modes</h3>
+<p>The preview modes change how the merge fields are displayed in the editor area. The editor may display either merge fields labels (or ids), or data values, for preview purposes.</p>
+<p>To be able to change preview modes, you will need to define either <a href="#merge-fields-definitions">merge fields default values</a> or <a href="#data-sets">data sets</a> (described later on).</p>
+<h4 id="available-preview-modes"><a class="headerlink" href="#available-preview-modes">#</a> Available preview modes</h4>
+<p>Use <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-previewModes"><code>mergeFields.previewModes</code></a> configuration option to specify which preview modes should be available for the user. It should be specified as any combination of the three possible values:</p>
+<ul>
+<li>The “labels” view (<code>'$labels'</code> value) - displays labels (or ids, if not specified).</li>
+<li>The “default values” view (<code>'$defaultValues'</code>) - displays default values, if specified.</li>
+<li>All the configured data sets (<code>'$dataSets'</code>) - displays values for a chosen data set.</li>
+</ul>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        mergeFields: {
+            // The user will be allowed only to switch between defined data sets,
+            // and the merge fields will always display the data related to one of
+            // the defined data sets. If there is only one data set, the user will
+            // be forced to see the data from that set and will not be able to switch.
+            previewModes: [ '$dataSets' ]
+        }
+    } )
+    .then( /* ... */ )
+    .catch( /* ... */ );
+</code></pre>
+<p><strong>Note:</strong> At least one option must be defined.</p>
+<p><strong>Note:</strong> If only one preview mode is available (i.e. the passed value is <code>[ '$labels' ]</code>, or <code>[ '$defaultValues' ]</code>, or <code>[ '$dataSets' ]</code> with only one data set defined), the “Merge fields preview” button will not be added to the “View” menu.</p>
+<h4 id="initial-preview-mode"><a class="headerlink" href="#initial-preview-mode">#</a> Initial preview mode</h4>
+<p>The <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-initialPreviewMode"><code>mergeFields.initialPreviewMode</code></a> option specifies which preview mode should be active when the editor is loaded. By default, merge field labels will be shown.</p>
+<p>The passed value can be either of: <code>'$labels'</code>, <code>'$defaultValues'</code>, or one of the IDs of the defined data sets.</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        mergeFields: {
+            // ID of a data set (see an example below).
+            initialPreviewMode: '158673'
+        }
+    } )
+    .then( /* ... */ )
+    .catch( /* ... */ );
+</code></pre>
+<p><strong>Note:</strong> The initial preview mode must be also specified as one of the <a href="#available-preview-modes">available preview modes</a>. Otherwise, an error will be thrown.</p>
+<h3 id="data-sets"><a class="headerlink" href="#data-sets">#</a> Data sets</h3>
+<p>To be able to preview data in place of merge fields, you must define at least one <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-dataSets">data set</a>. A data set should define values according to defined merge fields ids. If some values are not available, the merge fields default value will be used instead (if defined).</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        mergeFields: {
+            dataSets: [
+                {
+                    id: '158673',
+                    label: 'David Lee',
+                    values: {
+                        guestName: 'David Lee',
+                        guestTitle: 'Mr.'
+                        // Other values in this data set.
+                    }
+                },
+                // More data sets.
+            ]
+        }
+    } )
+    .then( /* ... */ )
+    .catch( /* ... */ );
+</code></pre>
+<h3 id="using-html-tags-in-merge-fields-values"><a class="headerlink" href="#using-html-tags-in-merge-fields-values">#</a> Using HTML tags in merge fields values</h3>
+<p>It is possible to use HTML code inside merge fields values, both in default values and the data set values.</p>
+<p>By default, this behavior is disabled and merge fields values will be treated as plain text (HTML tags will get encoded). To enable HTML merge fields values:</p>
+<ul>
+<li>set <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-previewHtmlValues"><code>previewHtmlValues</code></a> configuration flag to <code>true</code>,</li>
+<li>provide an HTML sanitization method in <a href="../api/module_core_editor_editorconfig-EditorConfig.html#member-sanitizeHtml"><code>config.sanitizeHtml</code></a> property.</li>
+</ul>
+<p>If you do not provide an HTML sanitization function, the HTML merge fields values will be previewed in the editor as specified. This may lead to a security vulnerability if the merge fields values are provided from an external source that cannot be fully trusted (e.g. users provide them in a different part of your application). Additionally, a warning will be logged to the console.</p>
 <h2 id="integration"><a class="headerlink" href="#integration">#</a> Integration</h2>
-<h3 id="getting-data-with-the-actual-values"><a class="headerlink" href="#getting-data-with-the-actual-values">#</a> Getting data with the actual values</h3>
-<p>By default, the <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> editor method will return the merge fields in the template form: <code>[PREFIX][MERGE_FIELD_ID][SUFFIX]</code>, for example<code>{{clientName}}</code>. To get the data filled with the actual values, use the <code>mergeFieldsData</code> option:</p>
-<pre class="highlight"><code class="js">const data = editor.getData( { mergeFieldsData: { /* ... */ } } );
+<h3 id="editor-data-output"><a class="headerlink" href="#editor-data-output">#</a> Editor data output</h3>
+<p>Merge fields are returned by <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>editor.getData()</code></a> as the merge field id enclosed in the specified prefix and suffix, for example: <code>&lt;p&gt;Dear {{guestTitle}} {{guestName}}&lt;/p&gt;</code>. It is an industry standard format for representing merge fields, which makes it convenient to replace the merge fields with actual data.</p>
+<p>Use “Source editing” feature in the <a href="#template-editing">presented demos</a> to see an example of the editor output.</p>
+<p><strong>Note:</strong> Switching preview mode to display data set values <strong>does not</strong> affect the editor output. In most regular cases, you will always want to save the document data with the merge fields placeholders, not the values. The data replacement should happen in your application logic when needed.</p>
+<h3 id="data-output-with-filled-in-merge-fields"><a class="headerlink" href="#data-output-with-filled-in-merge-fields">#</a> Data output with filled-in merge fields</h3>
+<p>In some cases, it may be useful to get the document data with the merge fields replaced by some actual data.</p>
+<p>You may pass the values as an option to <code>editor.getData()</code> call:</p>
+<pre class="highlight"><code class="js">const data = editor.getData( {
+    mergeFieldsData: {
+        guestName: 'Joe Doe',
+        guestTitle: 'Mr.'
+    }
+} );
 </code></pre>
-<p>This option replaces the merge fields patterns (<code>[PREFIX][MERGE_FIELD_ID][SUFFIX]</code>) with the provided values.</p>
-<p>This way, for the following editor contents: <code>&lt;p&gt;This is a letter for {{companyName}}.&lt;/p&gt;</code> you can call:</p>
-<pre class="highlight"><code class="js">const data = editor.getData( { mergeFieldsData: { companyName: 'CKEditor5' } } );
+<p>And the editor will use these values in place of given merge fields.</p>
+<p>If data for a given merge field is not specified, the default data form will be used (<code>[PREFIX][MERGE_FIELD_ID][SUFFIX]</code>, e.g. <code>{{guestName}}</code>).</p>
+<p>Most likely, you will want to save the data with merge fields replaced by values from the currently previewed data set:</p>
+<pre class="highlight"><code class="js">const mergeFieldsEditing = editor.plugins.get( 'MergeFieldsEditing' );
+
+const mergeFieldsData = mergeFieldsEditing.getDataSetValues(
+    mergeFieldsEditing.previewMode, true
+);
+
+const data = editor.getData( { mergeFieldsData } );
 </code></pre>
-<p>And the output data will be: <code>&lt;p&gt;This is a letter for CKEditor5.&lt;/p&gt;</code>.</p>
-<h3 id="document-export-and-import-features"><a class="headerlink" href="#document-export-and-import-features">#</a> Document export and import features</h3>
-<p>Using the <a href="converters/export-word.html">export to Word</a> or <a href="converters/export-pdf.html">export to PDF</a> features for a document with merge fields will produce different results depending on the active <a href="#preview-modes">preview mode</a>. While used in the “labels” preview mode:</p>
+<h3 id="custom-merge-fields"><a class="headerlink" href="#custom-merge-fields">#</a> Custom merge fields</h3>
+<p>The editor will <strong>convert every piece of text matching the merge field pattern to a merge field element</strong>. This behavior cannot be currently turned off.</p>
+<p>Please note, that from the point of view of the editour output, it is indifferent whether the merge field matching text is recognized by the editor, as both defined and custom merge fields are represented the same in the editor output.</p>
+<p>Custom merge fields can be added to the editor content by:</p>
 <ul>
-<li>Exported Word document will contain the corresponding merge fields.</li>
-<li>In the exported PDF file, the merge fields template form (<code>[PREFIX][MERGE_FIELD_ID][SUFFIX]</code>, for example <code>{{clientName}}</code>) will be used.</li>
+<li>typing the merge field pattern, e.g. typing <code>{{myMergeField}}</code>,</li>
+<li>loading the document data with merge fields that were not specified in the <a href="#merge-fields-definitions">merge fields definitions</a> (including situations where previously existing merge field definition was later removed from the configuration),</li>
+<li>pasting an external content that includes text matching the merge field pattern.</li>
 </ul>
-<p>In the “default values” preview, the export features will return configured <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html#member-defaultValue">default values</a> for each merge field (or their <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldDefinition.html#member-id">ids</a> if default is missing). And if any “data set” preview mode is active, the document will contain the actual merge fields values specified in the given <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-dataSets">data set</a>, or default values (if the merge field value is not configured in the given data set), or ids (if the default value is also unavailable).</p>
-<p>Import from Word will seamlessly turn Word merge fields into editor ones.</p>
-<h2 id="related-features"><a class="headerlink" href="#related-features">#</a> Related features</h2>
-<p>Here are some more CKEditor&nbsp;5 features that you can use together with the merge fields plugin to create a full document templating workflow:</p>
+<p>Custom merge field will behave like a merge field for which only an id was defined.</p>
+<h3 id="document-export-plugins"><a class="headerlink" href="#document-export-plugins">#</a> Document export plugins</h3>
+<p>Using the <a href="converters/export-word.html">export to Word</a> or <a href="converters/export-pdf.html">export to PDF</a> features for a document with merge fields will produce different results, depending on the current <a href="#preview-modes">preview mode</a>. The export features will follow “what you see is what you export” logic.</p>
+<p>While export is used in the “labels” preview mode:</p>
 <ul>
-<li>The <a href="pagination/pagination.html">pagination</a> feature will allow you to see where page breaks would be after the document is <a href="https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-pdf.html">exported to PDF</a> or <a href="https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-word.html">to Word</a>.</li>
-<li>The <a href="template.html">templates</a> feature will allow you to insert the predefined content structures (which can also contain the merge fields).</li>
+<li>The exported Word document will contain Word document merge fields (it will be exported as a “template” document).</li>
+<li>The exported PDF file will contain merge fields in the default data form <code>[PREFIX][MERGE_FIELD_ID][SUFFIX]</code>, e.g. <code>{{guestName}}</code>).</li>
 </ul>
+<p>While export is used when default values or data set values are previewed, the merge fields will be replaced by corresponding values, as previewed in the editor area.</p>
+<h3 id="import-from-word"><a class="headerlink" href="#import-from-word">#</a> Import from Word</h3>
+<p>Import from Word feature will recognize Word document merge fields and will seamlessly convert them to the editor merge fields.</p>
+<h3 id="using-merge-fields-with-templates"><a class="headerlink" href="#using-merge-fields-with-templates">#</a> Using merge fields with templates</h3>
+<p>Merge fields can be used together with the template feature. Use the “Insert template” <span class="editor-icon"><img src="../assets/icons/cc2f213e35.svg" class="editor-icon__image" alt="Insert template"></span> dropdown to add a template into the editor.</p>
+<div class="live-snippet"><div id="toolbar-container" class="toolbar-container"></div>
+<div class="editor-container">
+	<div class="ck ck-content" id="snippet-merge-fields-template">
+		<p style="text-align: center;">Dear {{guestTitle}} {{guestName}}</p>
+		<p>This email confirms your reservation at Serenity Springs Resort for a relaxing <strong>{{roomType}}</strong> experience. We're delighted to welcome you on <strong>{{guestArrivalDate}}</strong>!</p>
+		<p><em>Sincerely</em><br /><em>The Team at Serenity Springs Resort</em></p>
+	</div>
+</div>
+</div>
+<div class="info-box notice notice__info"><p>For more information about creating and using templates, visit the <a href="template.html">templates documentation</a>.</p></div>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../api/module_merge-fields_mergefields-MergeFields.html"><code>MergeFields</code></a> plugin registers:</p>
 <ul>
 <li>The <code>'insertMergeField'</code> and <code>'previewMergeFields'</code> toolbar and menu bar buttons.</li>
-<li>The <code>'mergeFieldsData'</code> option for the <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method (see the <a href="#getting-data-with-the-actual-values">Getting data with the actual values</a> section for the details).</li>
+<li>The <code>'mergeFieldsData'</code> option for the <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method (see the <a href="#data-output-with-filled-in-merge-fields">Data output with filled-in merge fields</a> section for the details).</li>
 </ul>
 <div class="info-box notice"><p>If you have any further comments or suggestions about this feature, we will be happy if you <a href="https://ckeditor.com/contact/">contact us</a> and share them!</p></div>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/develpment-tools/inspector.html">CKEditor&nbsp;5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
@@ -760,7 +840,7 @@ ClassicEditor
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fmerge-fields.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fmerge-fields.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -1237,7 +1317,11 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../../../assets/4.2.5/scripts/app.js"></script>
     <script src="../assets/snippet.js"></script>
     <script src="../snippets/assets.js"></script>
-    <script src="../snippets/features/merge-fields/snippet.js"></script>
+    <script src="../snippets/features/build-merge-fields-source/snippet.js"></script>
+    <script src="../snippets/features/merge-fields-labels-preview/snippet.js"></script>
+    <script src="../snippets/features/merge-fields-datasets-preview/snippet.js"></script>
+    <script src="../snippets/features/merge-fields-data-only-setup/snippet.js"></script>
+    <script src="../snippets/features/merge-fields-template-preview/snippet.js"></script>
     <script src="../assets/buildwarningbanner.js" async></script>
   </body>
 </html>

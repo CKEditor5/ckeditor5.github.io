@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:29 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 41.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -159,8 +159,11 @@
                                   <li><a href="changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="update-to-43.html" title="Update to v43.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-42.html" title="Update to v42.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                       </div></a></li>
                                   <li><a href="" title="Update to v41.x">
                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
@@ -236,17 +239,17 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.5/img/book.svg" alt="guide">Update to CKEditor 5 v41.x
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4130" title="Update to CKEditor&nbsp;5 v41.3.0">Update to CKEditor&nbsp;5 v41.3.0</a><ol><li><a href="#legacy-lists-compatibility" title="Legacy lists compatibility">Legacy lists compatibility</a></li></ol></li><li><a href="#update-to-ckeditor-5-v4100" title="Update to CKEditor&nbsp;5 v41.0.0">Update to CKEditor&nbsp;5 v41.0.0</a><ol><li><a href="#breaking-changes-to-the-list-plugin" title="Breaking changes to the list plugin">Breaking changes to the list plugin</a><ol><li><a href="#renaming-of-the-plugins" title="Renaming of the plugins">Renaming of the plugins</a></li><li><a href="#details-of-plugin-renames" title="Details of plugin renames">Details of plugin renames</a></li><li><a href="#changes-to-list-merging" title="Changes to list merging">Changes to list merging</a></li></ol></li><li><a href="#icon-paths-changed" title="Icon paths changed">Icon paths changed</a></li><li><a href="#exports-renamed" title="Exports renamed">Exports renamed</a></li><li><a href="#making-ckeditor-npm-packages-valid-ecmascript-modules-esm" title="Making CKEditor npm packages valid ECMAScript modules (ESM)">Making CKEditor npm packages valid ECMAScript modules (ESM)</a></li><li><a href="#added-validation-to-the-url-field-in-the-link-form" title="Added validation to the URL field in the link form">Added validation to the URL field in the link form</a></li><li><a href="#ui-migration-to-dialogs" title="UI migration to dialogs">UI migration to dialogs</a><ol><li><a href="#the-find-and-replace-feature" title="The find and replace feature">The find and replace feature</a><ol><li><a href="#changes-to-the-dom-structure" title="Changes to the DOM structure">Changes to the DOM structure</a></li></ol></li><li><a href="#the-ai-assistant-feature" title="The AI Assistant feature">The AI Assistant feature</a><ol><li><a href="#changes-to-the-dom-structure-2" title="Changes to the DOM structure">Changes to the DOM structure</a></li></ol></li></ol></li></ol></li></ol></nav>
-<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installations, make sure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
+<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v4130"><a class="headerlink" href="#update-to-ckeditor-5-v4130">#</a> Update to CKEditor&nbsp;5 v41.3.0</h2>
 <p><em>Released on April 10, 2024.</em></p>
 <p>For the entire list of changes introduced in version 41.3.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v41.3.0">release notes for CKEditor&nbsp;5 v41.3.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v41.3.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v41.3.0.</p>
 <h3 id="legacy-lists-compatibility"><a class="headerlink" href="#legacy-lists-compatibility">#</a> Legacy lists compatibility</h3>
 <p>As of this release, due to a bug that needed fixing, the <a href="../../api/module_list_legacylist-LegacyList.html">legacy lists plugin</a> (lists v1 ) is no longer compatible with the <a href="../../features/pasting/paste-from-office.html">paste from Office</a> feature. List items will be added as paragraphs instead. Please consider <a href="#breaking-changes-to-the-list-plugin">upgrading to the modern list plugin</a> to avoid it.</p>
 <h2 id="update-to-ckeditor-5-v4100"><a class="headerlink" href="#update-to-ckeditor-5-v4100">#</a> Update to CKEditor&nbsp;5 v41.0.0</h2>
 <p><em>Released on January 17, 2024.</em></p>
 <p>For the entire list of changes introduced in version 41.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v41.0.0">release notes for CKEditor&nbsp;5 v41.0.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v41.0.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v41.0.0.</p>
 <h3 id="breaking-changes-to-the-list-plugin"><a class="headerlink" href="#breaking-changes-to-the-list-plugin">#</a> Breaking changes to the list plugin</h3>
 <p>As of the latest release, we replaced the existing list plugin (often referred to as “list v1”) with the <a href="../../features/lists/lists.html">newer and more advanced document list plugin</a>, formerly known as document list (“list v2”).</p>
 <p>We implemented the list v2 (document list) feature in 2022 to add support for block content in list items. It supported extending list markup via General HTML Support (GHS). It did not, however, support to-do lists. Since then we concentrated on bringing full list v1 functionality to this plugin. The newest release brings in the complete list functionality so we were ready to switch.</p>
@@ -446,7 +449,7 @@
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-41.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-41.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -529,8 +532,11 @@
                                     <li><a href="changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
+                                    <li><a href="update-to-43.html" title="Update to v43.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="update-to-42.html" title="Update to v42.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                         </div></a></li>
                                     <li><a href="" title="Update to v41.x">
                                         <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v41.x</span>

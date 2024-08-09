@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:29 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 40.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -159,8 +159,11 @@
                                   <li><a href="changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="update-to-43.html" title="Update to v43.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-42.html" title="Update to v42.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                       </div></a></li>
                                   <li><a href="update-to-41.html" title="Update to v41.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
@@ -236,11 +239,11 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.5/img/book.svg" alt="guide">Update to CKEditor 5 v40.x
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4020" title="Update to CKEditor&nbsp;5 v40.2.0">Update to CKEditor&nbsp;5 v40.2.0</a><ol><li><a href="#ai-assistant-integration" title="AI Assistant integration">AI Assistant integration</a></li><li><a href="#ckbox-image-editing" title="CKBox image editing">CKBox image editing</a><ol><li><a href="#adding-ckbox-image-editing-to-ckeditor-5" title="Adding CKBox image editing to CKEditor&nbsp;5">Adding CKBox image editing to CKEditor&nbsp;5</a></li></ol></li><li><a href="#expanded-image-insert-dropdown" title="Expanded image insert dropdown">Expanded image insert dropdown</a><ol><li><a href="#image-upload-plugins" title="Image upload plugins">Image upload plugins</a></li><li><a href="#new-image-upload-icons" title="New image upload icons">New image upload icons</a></li></ol></li><li><a href="#removal-of-the-insertimageviaurl-option" title="Removal of the insertImageViaUrl option">Removal of the insertImageViaUrl option</a></li></ol></li><li><a href="#update-to-ckeditor-5-v4010" title="Update to CKEditor&nbsp;5 v40.1.0">Update to CKEditor&nbsp;5 v40.1.0</a><ol><li><a href="#changes-to-the-default-insert-image-action" title="Changes to the default insert image action">Changes to the default insert image action</a></li><li><a href="#updated-image-text-alternative-icon" title="Updated image text alternative icon">Updated image text alternative icon</a></li></ol></li><li><a href="#update-to-ckeditor-5-v4000" title="Update to CKEditor&nbsp;5 v40.0.0">Update to CKEditor&nbsp;5 v40.0.0</a><ol><li><a href="#changes-to-the-image-feature" title="Changes to the image feature">Changes to the image feature</a><ol><li><a href="#width-and-height-attributes" title="Width and height attributes">Width and height attributes</a></li><li><a href="#changes-to-the-model" title="Changes to the model">Changes to the model</a></li><li><a href="#changes-to-the-srcset-attribute" title="Changes to the srcset attribute">Changes to the srcset attribute</a></li><li><a href="#changes-to-content-styles" title="Changes to content styles">Changes to content styles</a></li></ol></li><li><a href="#changes-to-the-comments-feature" title="Changes to the comments feature">Changes to the comments feature</a><ol><li><a href="#unlinked-comment-threads-and-uxui-changes" title="Unlinked comment threads and UX/UI changes">Unlinked comment threads and UX/UI changes</a></li><li><a href="#new-commentthreadunlinkedat-property" title="New CommentThread#unlinkedAt property">New CommentThread#unlinkedAt property</a></li><li><a href="#changes-impacting-custom-features" title="Changes impacting custom features">Changes impacting custom features</a></li></ol></li><li><a href="#new-balloon-block-editor-icon" title="New balloon block editor icon">New balloon block editor icon</a></li><li><a href="#a-new-default-lists-plugin-coming" title="A new default lists plugin coming">A new default lists plugin coming</a></li></ol></li></ol></nav>
-<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, make sure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
+<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v4020"><a class="headerlink" href="#update-to-ckeditor-5-v4020">#</a> Update to CKEditor&nbsp;5 v40.2.0</h2>
 <p><em>Released on December 12, 2023.</em></p>
 <p>For the entire list of changes introduced in version 40.2.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v40.2.0">release notes for CKEditor&nbsp;5 v40.2.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.2.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.2.0.</p>
 <h3 id="ai-assistant-integration"><a class="headerlink" href="#ai-assistant-integration">#</a> AI Assistant integration</h3>
 <p>The below information affects all editor integrations that use the <a href="../../features/ai-assistant/ai-assistant-integration.html">AI Assistant</a> feature.</p>
 <p>We added support for the Amazon Bedrock service and for providing custom adapters that may extend our solutions or connect to a custom model. To enable this, we needed to refactor the feature’s plugin architecture and configuration structure. However, we hope it makes CKEditor ready to provide new AI-related features in the future without introducing more breaking changes.</p>
@@ -396,7 +399,7 @@ ClassicEditor
 <h2 id="update-to-ckeditor-5-v4010"><a class="headerlink" href="#update-to-ckeditor-5-v4010">#</a> Update to CKEditor&nbsp;5 v40.1.0</h2>
 <p><em>Released on November 15, 2023.</em></p>
 <p>For the entire list of changes introduced in version 40.1.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v40.1.0">release notes for CKEditor&nbsp;5 v40.1.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.1.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.1.0.</p>
 <h3 id="changes-to-the-default-insert-image-action"><a class="headerlink" href="#changes-to-the-default-insert-image-action">#</a> Changes to the default insert image action</h3>
 <p>We changed how the images are inserted by default. For a long time, the image insert action detected where the user placed the selection. Depending on that, the editor inserted an inline image or a block one. This sometimes caused confusion and led to suboptimal experiences. From now on, the images will be inserted as block ones by default.</p>
 <p>Changes introduced in the latest version affect the <a href="../../api/module_image_imageconfig-ImageInsertConfig.html#member-type"><code>image.insert.type</code></a> configuration setting. It lets the integrators set up how to handle newly uploaded or pasted images in the editor content.</p>
@@ -424,7 +427,7 @@ ClassicEditor
 <h2 id="update-to-ckeditor-5-v4000"><a class="headerlink" href="#update-to-ckeditor-5-v4000">#</a> Update to CKEditor&nbsp;5 v40.0.0</h2>
 <p><em>Released on October 4, 2023.</em></p>
 <p>For the entire list of changes introduced in version 40.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v40.0.0">release notes for CKEditor&nbsp;5 v40.0.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.0.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v40.0.0.</p>
 <h3 id="changes-to-the-image-feature"><a class="headerlink" href="#changes-to-the-image-feature">#</a> Changes to the image feature</h3>
 <h4 id="width-and-height-attributes"><a class="headerlink" href="#width-and-height-attributes">#</a> Width and height attributes</h4>
 <p>This release introduces changes to the <a href="../../features/images/images-overview.html">image feature</a> connected with the image <code>width</code> and <code>height</code> attributes. The changes include:</p>
@@ -563,7 +566,7 @@ commentsRepository.on( 'addCommentThread', ( evt, data ) =&gt; {
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-40.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-40.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -646,8 +649,11 @@ commentsRepository.on( 'addCommentThread', ( evt, data ) =&gt; {
                                     <li><a href="changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
+                                    <li><a href="update-to-43.html" title="Update to v43.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="update-to-42.html" title="Update to v42.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                         </div></a></li>
                                     <li><a href="update-to-41.html" title="Update to v41.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>

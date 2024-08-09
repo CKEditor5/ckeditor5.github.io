@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:39 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:10 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Content styles | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -310,8 +310,8 @@
 <h2 id="the-full-list-of-content-styles"><a class="headerlink" href="#the-full-list-of-content-styles">#</a> The full list of content styles</h2>
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use it straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
 <pre class="highlight"><code class="css">/*
- * CKEditor 5 (v42.0.2) content styles.
- * Generated on Wed, 07 Aug 2024 01:29:17 GMT.
+ * CKEditor 5 (v43.0.0) content styles.
+ * Generated on Fri, 09 Aug 2024 01:28:45 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/installation/legacy/advanced/content-styles.html
  */
 
@@ -573,6 +573,42 @@ margin-left: -15px;
 .ck-editor__editable.ck-content .todo-list .todo-list__label.todo-list__label_without-description input[type=checkbox] {
     position: absolute;
 }
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol {
+    list-style-type: decimal;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol {
+    list-style-type: lower-latin;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol {
+    list-style-type: lower-roman;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol ol {
+    list-style-type: upper-latin;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol ol ol {
+    list-style-type: upper-roman;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul {
+    list-style-type: disc;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul {
+    list-style-type: circle;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul ul {
+    list-style-type: square;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul ul ul {
+    list-style-type: square;
+}
 /* @ckeditor/ckeditor5-image/theme/imageresize.css */
 .ck-content img.image_resized {
     height: auto;
@@ -628,42 +664,6 @@ margin-left: -15px;
     flex-grow: 1;
     flex-shrink: 1;
     max-width: 100%;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol {
-    list-style-type: decimal;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol {
-    list-style-type: lower-latin;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol {
-    list-style-type: lower-roman;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol ol {
-    list-style-type: upper-latin;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol ol ol {
-    list-style-type: upper-roman;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul {
-    list-style-type: disc;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul {
-    list-style-type: circle;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul ul {
-    list-style-type: square;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul ul ul {
-    list-style-type: square;
 }
 /* @ckeditor/ckeditor5-image/theme/imagestyle.css */
 .ck-content .image.image-style-block-align-left,
@@ -799,11 +799,6 @@ margin-left: -15px;
 .ck-content .text-huge {
     font-size: 1.8em;
 }
-/* @ckeditor/ckeditor5-mention/theme/mention.css */
-.ck-content .mention {
-    background: var(--ck-color-mention-background);
-    color: var(--ck-color-mention-text);
-}
 /* @ckeditor/ckeditor5-table/theme/tablecaption.css */
 .ck-content .table &gt; figcaption {
     display: table-caption;
@@ -815,6 +810,11 @@ margin-left: -15px;
     padding: .6em;
     font-size: .75em;
     outline-offset: -1px;
+}
+/* @ckeditor/ckeditor5-mention/theme/mention.css */
+.ck-content .mention {
+    background: var(--ck-color-mention-background);
+    color: var(--ck-color-mention-text);
 }
 /* @ckeditor/ckeditor5-image/theme/imagecaption.css */
 .ck-content .image &gt; figcaption {
@@ -855,6 +855,10 @@ margin-left: -15px;
     border-radius: 0;
 }
 @media print {
+    /* @ckeditor/ckeditor5-table/theme/table.css */
+    .ck-content .table table {
+        height: initial;
+    }
     /* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
     .ck-content .page-break {
         padding: 0;
@@ -895,7 +899,7 @@ margin-left: -15px;
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Flegacy%2Fadvanced%2Fcontent-styles.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Flegacy%2Fadvanced%2Fcontent-styles.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

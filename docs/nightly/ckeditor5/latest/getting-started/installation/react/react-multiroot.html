@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:41 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:14 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="React rich text editor component | CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -58,7 +58,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -291,7 +291,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.2.5/img/book.svg" alt="guide">React rich text multi-root editor hook
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start" title="Quick start">Quick start</a></li><li><a href="#hook-properties" title="Hook properties">Hook properties</a></li><li><a href="#hook-values" title="Hook values">Hook values</a></li><li><a href="#context-feature" title="Context feature">Context feature</a></li><li><a href="#two-way-data-binding" title="Two-way data binding">Two-way data binding</a></li><li><a href="#contributing-and-reporting-issues" title="Contributing and reporting issues">Contributing and reporting issues</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start" title="Quick start">Quick start</a></li><li><a href="#hook-properties" title="Hook properties">Hook properties</a></li><li><a href="#hook-values" title="Hook values">Hook values</a></li><li><a href="#context-feature" title="Context feature">Context feature</a></li><li><a href="#two-way-data-binding" title="Two-way data binding">Two-way data binding</a></li><li><a href="#how-to" title="How to?">How to?</a><ol><li><a href="#using-the-editor-with-collaboration-plugins" title="Using the editor with collaboration plugins">Using the editor with collaboration plugins</a></li></ol></li><li><a href="#contributing-and-reporting-issues" title="Contributing and reporting issues">Contributing and reporting issues</a></li></ol></nav>
 
 <p>
 	<a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-react" target="_blank" rel="noopener">
@@ -397,13 +397,20 @@ Error details is an object that contains two properties:
 <h2 id="two-way-data-binding"><a class="headerlink" href="#two-way-data-binding">#</a> Two-way data binding</h2>
 <p>By default, the two-way data binding is enabled. It means that every change done in the editor is automatically applied in the <code>data</code> object returned from the <code>useMultiRootEditor</code> hook. Additionally, if you want to change or set data in the editor, you can simply use <code>setData</code> method provided by the hook. It works the same way in case of attributes – the hook provides the <code>attributes</code> object and the <code>setAttributes</code> method to update them. It ensures that if you want to use or save the state of the editor, these objects are always up-to-date.</p>
 <div class="info-box notice"><p>Two-way data binding may lead to performance issues with large editor content. In such cases, it is recommended to disable it by setting the <code>disableTwoWayDataBinding</code> property to <code>true</code> when using the <code>useMultiRootEditor</code> hook. When this is disabled, you will need to handle data synchronization manually if it is needed.</p><p>The recommended approach for achieving this is based on utilizing the <a href="../../../features/autosave.html">autosave plugin</a>. The second approach involves providing the <code>onChange</code> callback, which is called on each editor update.</p></div>
+<h2 id="how-to"><a class="headerlink" href="#how-to">#</a> How to?</h2>
+<h3 id="using-the-editor-with-collaboration-plugins"><a class="headerlink" href="#using-the-editor-with-collaboration-plugins">#</a> Using the editor with collaboration plugins</h3>
+<p>We provide several <strong>ready-to-use integration</strong> featuring collaborative editing with multi-root in React applications:</p>
+<ul>
+<li><a href="https://github.com/ckeditor/ckeditor5-collaboration-samples/tree/master/real-time-collaboration-editor-multi-root-for-react">CKEditor&nbsp;5 multi-root with real-time collaboration features and revision history features</a></li>
+</ul>
+<p>It is not necessary to build applications on top of the above samples, however, they should help you get started.</p>
 <h2 id="contributing-and-reporting-issues"><a class="headerlink" href="#contributing-and-reporting-issues">#</a> Contributing and reporting issues</h2>
 <p>The source code of rich text editor component for React is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-react">https://github.com/ckeditor/ckeditor5-react</a>.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Finstallation%2Freact%2Freact-multiroot.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Finstallation%2Freact%2Freact-multiroot.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

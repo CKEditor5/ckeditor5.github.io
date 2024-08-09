@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:28 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:02 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 35.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -159,8 +159,11 @@
                                   <li><a href="changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="update-to-43.html" title="Update to v43.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-42.html" title="Update to v42.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                       </div></a></li>
                                   <li><a href="update-to-41.html" title="Update to v41.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
@@ -236,11 +239,11 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.5/img/book.svg" alt="guide">Update to CKEditor 5 v35.x
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v3520" title="Update to CKEditor&nbsp;5 v35.2.0">Update to CKEditor&nbsp;5 v35.2.0</a><ol><li><a href="#introducing-external-comments" title="Introducing external comments">Introducing external comments</a><ol><li><a href="#saving-external-comments-and-suggestions-data" title="Saving external comments and suggestions data">Saving external comments and suggestions data</a></li><li><a href="#templates-for-link-modulecommentscommentsuiviewcommentview~commentviewgettemplate-commentview-and-link-moduletrack-changesuiviewsuggestionthreadview~suggestionthreadviewgettemplate-suggestionthreadview-have-changed" title="Templates for CommentView and SuggestionThreadView have changed">Templates for CommentView and SuggestionThreadView have changed</a></li></ol></li><li><a href="#comment-input-editor-is-now-loaded-on-demand" title="Comment input editor is now loaded on demand">Comment input editor is now loaded on demand</a></li><li><a href="#you-must-register-custom-annotations-in-the-link-modulecommentsannotationseditorannotations~editorannotations-editorannotations-plugin" title="You must register custom annotations in the EditorAnnotations plugin">You must register custom annotations in the EditorAnnotations plugin</a></li><li><a href="#icons-paths-changed" title="Icons paths changed">Icons paths changed</a></li></ol></li><li><a href="#update-to-ckeditor-5-v3510" title="Update to CKEditor&nbsp;5 v35.1.0">Update to CKEditor&nbsp;5 v35.1.0</a><ol><li><a href="#changes-to-api-providing-accessible-navigation-between-editing-roots-and-toolbars-on-kbdaltkbdkbdf10kbd-and-kbdesckbd-keystrokes" title="Changes to API providing accessible navigation between editing roots and toolbars on Alt+F10 and Esc keystrokes">Changes to API providing accessible navigation between editing roots and toolbars on Alt+F10 and Esc keystrokes</a></li><li><a href="#removal-of-the-tooltipview-class-and-changes-to-the-tooltip-system" title="Removal of the TooltipView class and changes to the tooltip system">Removal of the TooltipView class and changes to the tooltip system</a></li><li><a href="#changes-to-the-color-palette-in-the-ui" title="Changes to the color palette in the UI">Changes to the color palette in the UI</a></li><li><a href="#renaming-the-properties-of-balloonpanelview" title="Renaming the properties of BalloonPanelView">Renaming the properties of BalloonPanelView</a></li></ol></li><li><a href="#update-to-ckeditor-5-v3500" title="Update to CKEditor&nbsp;5 v35.0.0">Update to CKEditor&nbsp;5 v35.0.0</a><ol><li><a href="#the-source-element-is-not-updated-automatically-after-the-editor-destruction" title="The source element is not updated automatically after the editor destruction">The source element is not updated automatically after the editor destruction</a></li><li><a href="#dropdown-focus-is-moved-back-to-the-dropdown-button-after-choosing-an-option" title="Dropdown focus is moved back to the dropdown button after choosing an option">Dropdown focus is moved back to the dropdown button after choosing an option</a></li><li><a href="#there-is-now-typescript-code-on-github-and-how-it-affects-your-build" title="There is now TypeScript code on GitHub (and how it affects your build)">There is now TypeScript code on GitHub (and how it affects your build)</a><ol><li><a href="#whom-does-it-affect" title="Whom does it affect">Whom does it affect</a></li><li><a href="#how-does-it-affect-you" title="How does it affect you">How does it affect you</a></li></ol></li></ol></li></ol></nav>
-<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, make sure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
+<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v3520"><a class="headerlink" href="#update-to-ckeditor-5-v3520">#</a> Update to CKEditor&nbsp;5 v35.2.0</h2>
 <p><em>Released on October 5, 2022.</em></p>
 <p>For the entire list of changes introduced in version 35.2.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v35.2.0">release notes for CKEditor&nbsp;5 v35.2.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.2.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.2.0.</p>
 <h3 id="introducing-external-comments"><a class="headerlink" href="#introducing-external-comments">#</a> Introducing external comments</h3>
 <p>In this release, we are introducing external comments and suggestions. Currently, they are used by the import from Word feature. However, other features may use them in the future as well.</p>
 <p>External comments and suggestions display their content, author name, and date as provided by an external source (like a Word document).</p>
@@ -284,7 +287,7 @@ editor.plugins.get( 'Annotations' ).add( annotation );
 <h2 id="update-to-ckeditor-5-v3510"><a class="headerlink" href="#update-to-ckeditor-5-v3510">#</a> Update to CKEditor&nbsp;5 v35.1.0</h2>
 <p><em>Released on August 31, 2022.</em></p>
 <p>For the entire list of changes introduced in version 35.1.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v35.1.0">release notes for CKEditor&nbsp;5 v35.1.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.1.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.1.0.</p>
 <h3 id="changes-to-api-providing-accessible-navigation-between-editing-roots-and-toolbars-on-kbdaltkbdkbdf10kbd-and-kbdesckbd-keystrokes"><a class="headerlink" href="#changes-to-api-providing-accessible-navigation-between-editing-roots-and-toolbars-on-kbdaltkbdkbdf10kbd-and-kbdesckbd-keystrokes">#</a> Changes to API providing accessible navigation between editing roots and toolbars on <kbd>Alt</kbd>+<kbd>F10</kbd> and <kbd>Esc</kbd> keystrokes</h3>
 <div class="info-box notice"><p>This information applies only to integrators who develop custom editor creators from scratch by using the <a href="../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../api/module_ui_editorui_editorui-EditorUI.html"><code>EditorUI</code></a> classes as building blocks.</p></div>
 <ul>
@@ -416,7 +419,7 @@ DOMElementThatNeedsTooltip.dataset.ckeTooltipPosition = 'sw';
 <h2 id="update-to-ckeditor-5-v3500"><a class="headerlink" href="#update-to-ckeditor-5-v3500">#</a> Update to CKEditor&nbsp;5 v35.0.0</h2>
 <p><em>Released on August 3, 2022.</em></p>
 <p>For the entire list of changes introduced in version 35.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v35.0.0">release notes for CKEditor&nbsp;5 v35.0.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.0.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v35.0.0.</p>
 <h3 id="the-source-element-is-not-updated-automatically-after-the-editor-destruction"><a class="headerlink" href="#the-source-element-is-not-updated-automatically-after-the-editor-destruction">#</a> The source element is not updated automatically after the editor destruction</h3>
 <p>The last version of CKEditor&nbsp;5 changes the default behavior of the source element after the editor is destroyed (when <code>editor.destroy()</code> is called). Before, the source element was updated with the output coming from <code>editor.getData()</code>. Now, the source element becomes empty after the editor is destroyed and it is not updated anymore.</p>
 <p>However, this behavior is configurable. You can enable it with the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-updateSourceElementOnDestroy"><code>updateSourceElementOnDestroy</code></a> configuration option:</p>
@@ -460,7 +463,7 @@ dropdownView.on( 'execute', () =&gt; {
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-35.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-35.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -543,8 +546,11 @@ dropdownView.on( 'execute', () =&gt; {
                                     <li><a href="changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
+                                    <li><a href="update-to-43.html" title="Update to v43.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="update-to-42.html" title="Update to v42.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                         </div></a></li>
                                     <li><a href="update-to-41.html" title="Update to v41.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>

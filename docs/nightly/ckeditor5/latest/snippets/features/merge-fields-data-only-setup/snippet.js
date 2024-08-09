@@ -1,0 +1,5 @@
+/*!
+ * @license Copyright (c) 2003-2024, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */(()=>{const e={initialPreviewMode:"78900",previewModes:["$dataSets"],dataSets:[{id:"78900",label:"David Lee",values:{guestName:"David Lee",reservationNumber:"Y2JKH5G1Z",guestArrivalDate:new Date(2024,7,22).toLocaleDateString(),guestDepartureDate:new Date(2024,8,22).toLocaleDateString(),numberOfGuests:2,roomType:"Double Room",guestPhoneNumber:"567-890-1234"}}]};window.ClassicEditor.create(document.querySelector("#snippet-merge-fields-variables"),{mergeFields:{...window.ClassicEditor.defaultConfig.mergeFields,...e},toolbar:{items:["insertMergeField"].concat(window.ClassicEditor.defaultConfig.toolbar.items)}}).then((e=>{window.editor=e,window.preventPasteFromOfficeNotification=!0})).catch((e=>{console.error(e.stack)}))})();
+//# sourceMappingURL=snippet.js.map

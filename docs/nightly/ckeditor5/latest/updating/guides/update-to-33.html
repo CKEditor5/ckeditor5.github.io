@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:28 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:02 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 33.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -159,8 +159,11 @@
                                   <li><a href="changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="update-to-43.html" title="Update to v43.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-42.html" title="Update to v42.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                       </div></a></li>
                                   <li><a href="update-to-41.html" title="Update to v41.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
@@ -236,11 +239,11 @@
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.2.5/img/book.svg" alt="guide">Update to CKEditor 5 v33.x
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v3300" title="Update to CKEditor&nbsp;5 v33.0.0">Update to CKEditor&nbsp;5 v33.0.0</a><ol><li><a href="#new-import-paths-in-the-ckeditor5-list-package" title="New import paths in the ckeditor5-list package">New import paths in the ckeditor5-list package</a></li><li><a href="#additional-dependencies-in-ckeditor-5-collaboration-features" title="Additional dependencies in CKEditor&nbsp;5 collaboration features">Additional dependencies in CKEditor&nbsp;5 collaboration features</a></li><li><a href="#mandatory-consumption-of-all-model-items-in-the-downcast-conversion-pipeline" title="Mandatory consumption of all model items in the downcast conversion pipeline">Mandatory consumption of all model items in the downcast conversion pipeline</a></li><li><a href="#the-triggerby-option-in-the-downcast-pipeline-is-now-obsolete" title="The triggerBy option in the downcast pipeline is now obsolete">The triggerBy option in the downcast pipeline is now obsolete</a></li><li><a href="#new-downcast-converters-for-the-link-featurestables-table-feature" title="New downcast converters for the table feature">New downcast converters for the table feature</a></li><li><a href="#responsibility-shift-in-the-lowlevel-downcast-converters" title="Responsibility shift in the low–level downcast converters">Responsibility shift in the low–level downcast converters</a></li><li><a href="#the-differrefreshitem-method-is-now-obsolete" title="The Differ#refreshItem() method is now obsolete">The Differ#refreshItem() method is now obsolete</a></li><li><a href="#comments-editor-configuration-is-now-required" title="Comments editor configuration is now required">Comments editor configuration is now required</a></li></ol></li><li><a href="#new-api" title="New API">New API</a><ol><li><a href="#new-elementtostructure-downcast-helper" title="New elementToStructure() downcast helper">New elementToStructure() downcast helper</a></li><li><a href="#new-api-to-trigger-downcast-reconversion" title="New API to trigger downcast (re)conversion">New API to trigger downcast (re)conversion</a></li><li><a href="#improved-api-of-downcastwritercreatecontainerelement" title="Improved API of DowncastWriter#createContainerElement()">Improved API of DowncastWriter#createContainerElement()</a></li></ol></li></ol></nav>
-<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, make sure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
+<div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>For custom builds, you may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v3300"><a class="headerlink" href="#update-to-ckeditor-5-v3300">#</a> Update to CKEditor&nbsp;5 v33.0.0</h2>
 <p><em>Released on March 9, 2022.</em></p>
 <p>For the entire list of changes introduced in version 33.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v33.0.0">release notes for CKEditor&nbsp;5 v33.0.0</a>.</p>
-<p>Listed below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v33.0.0.</p>
+<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v33.0.0.</p>
 <h3 id="new-import-paths-in-the-ckeditor5-list-package"><a class="headerlink" href="#new-import-paths-in-the-ckeditor5-list-package">#</a> New import paths in the <code>ckeditor5-list</code> package</h3>
 <p>Starting with v33.0.0, some import paths have changed in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list"><code>ckeditor5-list</code></a> package. If your application imports individual plugins to integrate or build CKEditor&nbsp;5, you should update the paths accordingly:</p>
 <pre class="highlight"><code class="js">// ❌ Old import paths:
@@ -475,7 +478,7 @@ writer.createContainerElement( 'p', { id: '1234' }, [
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-33.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-33.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -558,8 +561,11 @@ writer.createContainerElement( 'p', { id: '1234' }, [
                                     <li><a href="changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
+                                    <li><a href="update-to-43.html" title="Update to v43.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="update-to-42.html" title="Update to v42.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
                                         </div></a></li>
                                     <li><a href="update-to-41.html" title="Update to v41.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>

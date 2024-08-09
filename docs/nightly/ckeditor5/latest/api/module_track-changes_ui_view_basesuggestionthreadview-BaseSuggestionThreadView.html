@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class BaseSuggestionThreadView. An abstract suggestion thread view class that should be used as a base for suggestion thread view implementations. It provides some behaviors, flags and building blocks to use when creating a custom suggestion thread view class.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class BaseSuggestionThreadView. An abstract suggestion thread view class that should be used as a base for suggestion thread view implementations. It provides some behaviors, flags and building blocks to use when creating a custom suggestion thread view class. All events fired by BaseCommentView are delegated to BaseSuggestionThreadView. This means that BaseSuggestionThreadView can also fire these events to communicate with CKEditor 5 collaboration features. For the usage examples check the Annotations custom view guide.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:29:25 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:28:54 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class BaseSuggestionThreadView (track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class BaseSuggestionThreadView. An abstract suggestion thread view class that should be used as a base for suggestion thread view implementations. It provides some behaviors, flags and building blocks to use when creating a custom suggestion thread view class. All events fired by BaseCommentView are delegated to BaseSuggestionThreadView. This means that BaseSuggestionThreadView can also fire these events to communicate with CKEditor 5 collaboration features. For the usage examples check the Annotations custom view guide.">
     <meta property="og:type" content="website">
@@ -55,7 +55,7 @@
       	gtag( 'config', 'G-H2PK3PSE3F' );
       }
     </script>
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   </head>
   <body>
@@ -1903,7 +1903,7 @@ be released if no properties are provided.</p>
           <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="events">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-acceptSuggestion">
-                          <h3><code><a class="member-name" href="#event-acceptSuggestion">acceptSuggestion</a>( eventInfo )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:acceptSuggestion"><code>module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:acceptSuggestion</code></span>
+                          <h3><code><a class="member-name" href="#event-acceptSuggestion">acceptSuggestion</a>( eventInfo, id )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:acceptSuggestion"><code>module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:acceptSuggestion</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
@@ -1917,6 +1917,11 @@ a UI element that will fire this event.</p>
                                             :
  <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>id
+                                            :
+ <span>string</span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
                           </div>
@@ -2232,7 +2237,7 @@ observable.prop = 2; // -&gt; 'prop has changed from 1 to 2'
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-discardSuggestion">
-                          <h3><code><a class="member-name" href="#event-discardSuggestion">discardSuggestion</a>( eventInfo )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:discardSuggestion"><code>module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:discardSuggestion</code></span>
+                          <h3><code><a class="member-name" href="#event-discardSuggestion">discardSuggestion</a>( eventInfo, id )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:discardSuggestion"><code>module:track-changes/ui/view/basesuggestionthreadview~BaseSuggestionThreadView#event:discardSuggestion</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
@@ -2246,6 +2251,11 @@ a UI element that will fire this event.</p>
                                             :
  <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>id
+                                            :
+ <span>string</span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
                           </div>
@@ -2625,7 +2635,7 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_track-changes_ui_view_basesuggestionthreadview-BaseSuggestionThreadView.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_track-changes_ui_view_basesuggestionthreadview-BaseSuggestionThreadView.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -4311,6 +4321,9 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                     </li>
                     <li><a href="module_core_editor_editorconfig-PoweredByConfig.html">
                         <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~PoweredByConfig"><span class="tree__item--interface tree__item__text">PoweredByConfig</span></div></a>
+                    </li>
+                    <li><a href="module_core_editor_editorconfig-SanitizedOutput.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~SanitizedOutput"><span class="tree__item--interface tree__item__text">SanitizedOutput</span></div></a>
                     </li>
                     <li><a href="module_core_editor_editorconfig-UiConfig.html">
                         <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~UiConfig"><span class="tree__item--interface tree__item__text">UiConfig</span></div></a>
@@ -9120,9 +9133,6 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                 <li data-public="true"><a href="module_merge-fields_mergefields-MergeFields.html">
                     <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefields~MergeFields"><span class="tree__item--class tree__item__text">MergeFields</span></div></a>
                 </li>
-                <li><a href="module_merge-fields_mergefields-MergeFieldsValues.html">
-                    <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefields~MergeFieldsValues"><span class="tree__item--typedef tree__item__text">MergeFieldsValues</span></div></a>
-                </li>
               </ul>
             </li>
             <li class="toggler--collapsed">
@@ -11164,6 +11174,18 @@ observable.prop = 2; // -&gt; 'Value is going to be changed from 1 to 2'
                       <ul>
                         <li data-public="true"><a href="module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html">
                             <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionthreadview~SuggestionThreadView"><span class="tree__item--class tree__item__text">SuggestionThreadView</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview"><a class="tree__item--module tree__item__text" href="module_track-changes_ui_view_suggestionview.html">suggestionview</a>
+                      </div>
+                      <ul>
+                        <li data-public="true"><a href="module_track-changes_ui_view_suggestionview-SuggestionView.html">
+                            <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview~SuggestionView"><span class="tree__item--class tree__item__text">SuggestionView</span></div></a>
+                        </li>
+                        <li><a href="module_track-changes_ui_view_suggestionview-SuggestionConfig.html">
+                            <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview~SuggestionConfig"><span class="tree__item--interface tree__item__text">SuggestionConfig</span></div></a>
                         </li>
                       </ul>
                     </li>

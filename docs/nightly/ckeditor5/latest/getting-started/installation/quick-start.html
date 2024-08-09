@@ -7,7 +7,7 @@
     <meta name="description" content="Learn the fastest way to install and use CKEditor 5 - the powerful, rich text WYSIWYG editor in your web application using npm or CDN.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:31 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:30:00 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Quick start | CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -309,6 +309,7 @@
 </ul>
 <p>You get ready-to-use code tailored to your needs!</p>
 <h2 id="installing-ckeditor-5-using-npm"><a class="headerlink" href="#installing-ckeditor-5-using-npm">#</a> Installing CKEditor&nbsp;5 using npm</h2>
+<div class="info-box notice"><p>To set up the editor from npm, you need a bundler to build the JavaScript files correctly. CKEditor 5 is compatible with all modern JavaScript bundlers. For a quick project setup, we recommend using <a href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project">Vite</a>.</p></div>
 <p>First, install the necessary package. The command below will install the main CKEditor&nbsp;5 package containing all open-source plugins.</p>
 <pre class="highlight"><code class="bash">npm install ckeditor5
 </code></pre>
@@ -341,14 +342,14 @@ ClassicEditor
 <h2 id="installing-ckeditor-5-from-cdn"><a class="headerlink" href="#installing-ckeditor-5-from-cdn">#</a> Installing CKEditor&nbsp;5 from CDN</h2>
 <p>CDN is an alternative method of running CKEditor&nbsp;5. You can start using it in just a few steps and with a few tags.</p>
 <p>Start by attaching a link to style sheets. They contain all styles for the editor’s UI and content. You can also include your styles if you like. Refer to the <a href="../setup/css.html#styling-the-published-content">content styles</a> guide for more information.</p>
-<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" /&gt;
+<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" /&gt;
 </code></pre>
 <p>Then, you need to attach the script with the JavaScript code. To simplify imports, you can use the feature available in browsers – the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import map</a>. It allows us to map an easy-to-remember specifier (like <code>ckeditor5</code>) to the full URL of the file from the CDN. We use this browser feature to share an editor engine code between plugins.</p>
 <pre class="highlight"><code class="html">&lt;script type="importmap"&gt;
     {
         "imports": {
-            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
-            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"
         }
     }
 &lt;/script&gt;
@@ -392,7 +393,7 @@ ClassicEditor
         &lt;meta charset="UTF-8" /&gt;
         &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
         &lt;title&gt;CKEditor 5 - Quick start CDN&lt;/title&gt;
-        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" /&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" /&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;div id="editor"&gt;
@@ -402,8 +403,8 @@ ClassicEditor
         &lt;script type="importmap"&gt;
             {
                 "imports": {
-                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
-                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"
                 }
             }
         &lt;/script&gt;
@@ -437,7 +438,7 @@ ClassicEditor
 <h2 id="installing-ckeditor-5-from-a-zip-file"><a class="headerlink" href="#installing-ckeditor-5-from-a-zip-file">#</a> Installing CKEditor&nbsp;5 from a ZIP file</h2>
 <p>If you do not want to build your project using npm and cannot rely on the CDN delivery, you can download ready-to-run files with CKEditor&nbsp;5 and all its plugins.</p>
 <ol>
-<li><a href="https://cdn.ckeditor.com/ckeditor5/42.0.2/zip/ckeditor5-42.0.2.zip">Download the ZIP archive with the latest CKEditor&nbsp;5 distribution.</a></li>
+<li><a href="https://cdn.ckeditor.com/ckeditor5/43.0.0/zip/ckeditor5-43.0.0.zip">Download the ZIP archive with the latest CKEditor&nbsp;5 distribution.</a></li>
 <li>Extract the ZIP archive into a dedicated directory inside your project (for example, <code>vendor/</code>). Include the editor version in the directory name to ensure proper cache invalidation whenever you install a new version of CKEditor&nbsp;5.</li>
 </ol>
 <p>Files included in the ZIP archive:</p>
@@ -453,7 +454,7 @@ ClassicEditor
 </ul>
 <p>The easiest way to see the editor in action is to serve the <code>index.html</code> file via an HTTP server.</p>
 <div class="info-box notice notice__warning"><p>You must run your code on a local server to use import maps. Opening the HTML file directly in your browser will trigger security rules. These rules (CORS policy) ensure loading modules from the same source. Therefore, set up a local server, like <code>nginx</code>, <code>caddy</code>, <code>http-server</code>, to serve your files over HTTP or HTTPS.</p></div>
-<p>All three installation methods – npm, CDN, ZIP – work similarly. So, you can also use the <a href="https://ckeditor.com/ckeditor-5/builder/">CKEditor&nbsp;5 Builder</a> with a ZIP archive. Create a custom preset with the Builder and combine it with the editor loaded from ZIP files.</p>
+<p>All three installation methods – npm, CDN, ZIP – work similarly. Therefore, you can also use the <a href="https://ckeditor.com/ckeditor-5/builder/">CKEditor&nbsp;5 Builder</a> with a ZIP archive. Create a custom preset with the Builder and combine it with the editor loaded from ZIP files.</p>
 <h2 id="installing-premium-features"><a class="headerlink" href="#installing-premium-features">#</a> Installing premium features</h2>
 <h3 id="installing-premium-features-using-npm"><a class="headerlink" href="#installing-premium-features-using-npm">#</a> Installing premium features using npm</h3>
 <p>All premium features are available as a separate package. You can install it the same as the open-source one.</p>
@@ -490,25 +491,25 @@ ClassicEditor
 <p>That is all the code you need to see a bare-bone editor running in your web browser.</p>
 <h3 id="installing-premium-features-from-cdn"><a class="headerlink" href="#installing-premium-features-from-cdn">#</a> Installing premium features from CDN</h3>
 <p>Just like with open-source features, start by attaching a link to style sheets. They contain all styles for the editor’s UI and content. The styles are in two separate style sheets – for open-source and premium plugins. You can also include your styles if you like. Refer to the content styles guide for more information.</p>
-<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" /&gt;
+<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" /&gt;
 
 &lt;!-- If you are using premium features: --&gt;
-&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/ckeditor5-premium-features.css" /&gt;
+&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/ckeditor5-premium-features.css" /&gt;
 </code></pre>
 <p>Then, you need to attach the script with the JavaScript code. To simplify imports, you can use the feature available in browsers – the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import map</a>. It allows us to map an easy-to-remember specifier (like <code>ckeditor5</code>) to the full URL of the file from the CDN. We use this browser feature to share an editor engine code between plugins.</p>
 <pre class="highlight"><code class="html">&lt;script type="importmap"&gt;
     {
         "imports": {
-            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
-            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/",
-            "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/ckeditor5-premium-features.js",
-            "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/"
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/",
+            "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/ckeditor5-premium-features.js",
+            "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/"
         }
     }
 &lt;/script&gt;
 </code></pre>
 <p>Once you have added the import map, you can access the editor and its plugins using the <code>ckeditor5</code> specifier. Import them from the <code>ckeditor5-premium-features</code> package. Please note that to use premium features, you need to activate them with a proper license key, as mentioned in the final section of this guide.</p>
-<p>In the following script tag, import the desired plugins and add them to the <code>plugins</code> array and add toolbar items where applicable. Note that both script tags (this and previous) have the appropriate <code>type</code> values.</p>
+<p>In the following script tag, import the desired plugins, add them to the <code>plugins</code> array, and add toolbar items where applicable. Note that both script tags (this and previous) have the appropriate <code>type</code> values.</p>
 <pre class="highlight"><code class="html">&lt;script type="module"&gt;
     import {
         ClassicEditor,
@@ -548,9 +549,9 @@ ClassicEditor
         &lt;meta charset="UTF-8" /&gt;
         &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
         &lt;title&gt;CKEditor 5 - Quick start CDN&lt;/title&gt;
-        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css" /&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css" /&gt;
         &lt;!-- If you are using premium features: --&gt;
-        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/ckeditor5-premium-features.css" /&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/ckeditor5-premium-features.css" /&gt;
     &lt;/head&gt;
     &lt;body&gt;
         &lt;div id="editor"&gt;
@@ -560,10 +561,10 @@ ClassicEditor
         &lt;script type="importmap"&gt;
             {
                 "imports": {
-                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
-                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/",
-                    "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/ckeditor5-premium-features.js",
-                    "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/"
+                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",
+                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/",
+                    "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/ckeditor5-premium-features.js",
+                    "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/"
                 }
             }
         &lt;/script&gt;
@@ -598,7 +599,7 @@ ClassicEditor
 </code></pre>
 <h3 id="installing-premium-features-from-a-zip-file"><a class="headerlink" href="#installing-premium-features-from-a-zip-file">#</a> Installing premium features from a ZIP file</h3>
 <ol>
-<li><a href="https://cdn.ckeditor.com/ckeditor5-premium-features/42.0.2/zip/ckeditor5-premium-features-42.0.2.zip">Download the ZIP archive with the latest CKEditor&nbsp;5 distribution and premium features.</a></li>
+<li><a href="https://cdn.ckeditor.com/ckeditor5-premium-features/43.0.0/zip/ckeditor5-premium-features-43.0.0.zip">Download the ZIP archive with the latest CKEditor&nbsp;5 distribution and premium features.</a></li>
 <li>Extract the ZIP archive into a dedicated directory inside your project (for example, <code>vendor/</code>). Include the editor version in the directory name to ensure proper cache invalidation whenever you install a new version of CKEditor&nbsp;5.</li>
 </ol>
 <p>Files in the ZIP archive:</p>
@@ -623,7 +624,7 @@ ClassicEditor
 </ul>
 <p>The easiest way to see the editor in action is to serve the <code>index.html</code> file via an HTTP server.</p>
 <div class="info-box notice notice__warning"><p>You must run your code on a local server to use import maps. Opening the HTML file directly in your browser will trigger security rules. These rules (CORS policy) ensure loading modules from the same source. Therefore, set up a local server, like <code>nginx</code>, <code>caddy</code>, <code>http-server</code>, to serve your files over HTTP or HTTPS.</p></div>
-<p>All three installation methods – npm, CDN, ZIP – work similarly. So, you can also use the <a href="https://ckeditor.com/ckeditor-5/builder/">CKEditor&nbsp;5 Builder</a> with a ZIP archive. Create a custom preset with the Builder and combine it with the editor loaded from ZIP files.</p>
+<p>All three installation methods – npm, CDN, ZIP – work similarly. Therefore, you can also use the <a href="https://ckeditor.com/ckeditor-5/builder/">CKEditor&nbsp;5 Builder</a> with a ZIP archive. Create a custom preset with the Builder and combine it with the editor loaded from ZIP files.</p>
 <h3 id="obtaining-a-license-key"><a class="headerlink" href="#obtaining-a-license-key">#</a> Obtaining a license key</h3>
 <p>To activate CKEditor&nbsp;5 premium features, you will need a commercial license. The easiest way to get one is to sign up for the <a href="https://orders.ckeditor.com/trial/premium-features">CKEditor Premium Features 30-day free trial</a> to test the premium features.</p>
 <p>You can also <a href="https://ckeditor.com/contact/?sales=true#contact-form">contact us</a> to receive an offer tailored to your needs. To obtain an activation key, please follow the <a href="../setup/license-key-and-activation.html">License key and activation</a> guide.</p>
@@ -637,7 +638,7 @@ ClassicEditor
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Finstallation%2Fquick-start.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Finstallation%2Fquick-start.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

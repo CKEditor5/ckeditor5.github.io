@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Interface ExportWordConfig. The configuration of the export to Word feature. It is used by the Word export features from the @ckeditor/ckeditor5-export-word package. See all editor options.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface ExportWordConfig. The configuration of the export to Word feature. It is used by the Word export features from the @ckeditor/ckeditor5-export-word package. See all editor options.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:29:32 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:29:01 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Interface ExportWordConfig (export-word/exportword~ExportWordConfig) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Interface ExportWordConfig. The configuration of the export to Word feature. It is used by the Word export features from the @ckeditor/ckeditor5-export-word package. See all editor options.">
     <meta property="og:type" content="website">
@@ -55,7 +55,7 @@
       	gtag( 'config', 'G-H2PK3PSE3F' );
       }
     </script>
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   </head>
   <body>
@@ -189,18 +189,22 @@ the <code>@ckeditor/ckeditor5-export-word</code> package.</p>
 }
 </code></pre>
                             <p>Defaults to <code>`{
-	format: 'A4',
-	margin_top: '1in',
-	margin_bottom: '1in',
-	margin_right: '1in',
-	margin_left: '1in',
-	header: undefined,
-	footer: undefined,
-	comments: undefined,
-	suggestions: undefined,
-	orientation: 'portrait',
-	auto_pagination: true,
+ document: {
+		size: 'A4',
+		orientation: 'portrait',
+		language: editor.locale.contentLanguage,
+		margin: {
+			top: '1in',
+			bottom: '1in',
+			right: '1in',
+			left: '1in'
+		}
+	}
+	headers: undefined,
+	footers: undefined,
+	auto_pagination: false,
 	base_url: undefined,
+	extra_http_headers: undefined
 }`</code></p>
                           </div>
                         </div>
@@ -213,12 +217,12 @@ the <code>@ckeditor/ckeditor5-export-word</code> package.</p>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__content"><p>A URL to the Docx converter.</p>
 <pre><code class="language-ts">const exportWordConfig = {
-	converterUrl: 'https://myconverter.com/v1/'
+	converterUrl: 'https://myconverter.com/v2/'
 }
 </code></pre>
 <p><strong>NOTE:</strong> The plugin uses the default HTML to Word converter delivered by CKEditor Cloud Services.
 You can provide a URL to an on-premises converter instead.</p>
-                            <p>Defaults to <code>'https://docx-converter.cke-cs.com/v1/convert'</code></p>
+                            <p>Defaults to <code>'https://docx-converter.cke-cs.com/v2/convert/html-docx'</code></p>
                           </div>
                         </div>
                       </li>
@@ -335,7 +339,7 @@ the export to Word feature.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__content"><p>The version of <code>Export to Word</code> API.</p>
-                            <p>Defaults to <code>'1'</code></p>
+                            <p>Defaults to <code>'2'</code></p>
                           </div>
                         </div>
                       </li>
@@ -343,7 +347,7 @@ the export to Word feature.</p>
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_export-word_exportword-ExportWordConfig.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22api%2Fmodule_export-word_exportword-ExportWordConfig.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -2029,6 +2033,9 @@ the export to Word feature.</p>
                     </li>
                     <li><a href="module_core_editor_editorconfig-PoweredByConfig.html">
                         <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~PoweredByConfig"><span class="tree__item--interface tree__item__text">PoweredByConfig</span></div></a>
+                    </li>
+                    <li><a href="module_core_editor_editorconfig-SanitizedOutput.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~SanitizedOutput"><span class="tree__item--interface tree__item__text">SanitizedOutput</span></div></a>
                     </li>
                     <li><a href="module_core_editor_editorconfig-UiConfig.html">
                         <div class="tree__item__wrapper" data-ln="module:core/editor/editorconfig~UiConfig"><span class="tree__item--interface tree__item__text">UiConfig</span></div></a>
@@ -6838,9 +6845,6 @@ the export to Word feature.</p>
                 <li data-public="true"><a href="module_merge-fields_mergefields-MergeFields.html">
                     <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefields~MergeFields"><span class="tree__item--class tree__item__text">MergeFields</span></div></a>
                 </li>
-                <li><a href="module_merge-fields_mergefields-MergeFieldsValues.html">
-                    <div class="tree__item__wrapper" data-ln="module:merge-fields/mergefields~MergeFieldsValues"><span class="tree__item--typedef tree__item__text">MergeFieldsValues</span></div></a>
-                </li>
               </ul>
             </li>
             <li class="toggler--collapsed">
@@ -8882,6 +8886,18 @@ the export to Word feature.</p>
                       <ul>
                         <li data-public="true"><a href="module_track-changes_ui_view_suggestionthreadview-SuggestionThreadView.html">
                             <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionthreadview~SuggestionThreadView"><span class="tree__item--class tree__item__text">SuggestionThreadView</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview"><a class="tree__item--module tree__item__text" href="module_track-changes_ui_view_suggestionview.html">suggestionview</a>
+                      </div>
+                      <ul>
+                        <li data-public="true"><a href="module_track-changes_ui_view_suggestionview-SuggestionView.html">
+                            <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview~SuggestionView"><span class="tree__item--class tree__item__text">SuggestionView</span></div></a>
+                        </li>
+                        <li><a href="module_track-changes_ui_view_suggestionview-SuggestionConfig.html">
+                            <div class="tree__item__wrapper" data-ln="module:track-changes/ui/view/suggestionview~SuggestionConfig"><span class="tree__item--interface tree__item__text">SuggestionConfig</span></div></a>
                         </li>
                       </ul>
                     </li>

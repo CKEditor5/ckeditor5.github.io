@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Aug 07 2024 01:30:09 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Aug 09 2024 01:29:45 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Export to Word | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -59,7 +59,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="42.0.2">
+    <meta name="project-version" content="43.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -676,7 +676,7 @@ ClassicEditor
 <pre class="highlight"><code class="js">{
     exportWord: {
         fileName: 'document.docx',
-        converterUrl: 'https://docx-converter.cke-cs.com/v1/convert',
+        converterUrl: 'https://docx-converter.cke-cs.com/v2/convert/html-docx',
         stylesheets: [
             'EDITOR_STYLES'
         ],
@@ -689,11 +689,8 @@ ClassicEditor
                     bottom: '1in',
                     right: '1in',
                     left: '1in',
-                }
-            },
-            collaboration_features: {
-                comment_threads: undefined,
-                suggestions: undefined
+                },
+                language: 'en' // By default it is set to editor content language.
             },
         },
         dataCallback: ( editor ) =&gt; editor.getData( { pagination: true } )
@@ -714,24 +711,6 @@ ClassicEditor
 }
 </code></pre>
 <p>In the snippet above, we assume both style sheets are available via the relative path on the client side. For example, some frameworks allow to place files in the <code>public</code> folder.</p>
-<h3 id="export-to-word-v1"><a class="headerlink" href="#export-to-word-v1">#</a> Export to Word v1</h3>
-<p><strong>Note:</strong> Export to Word uses the new version of the converter by default, the old one will no longer receive updates. It is highly recommended to migrate to the <a href="https://docx-converter.cke-cs.com/v2/convert/docs">latest version</a>. For more details on migrating from <code>v1</code> to <code>v2</code> see the <a href="https://docx-converter.cke-cs.com/v2/convert/docs#section/Export-to-Word/Migrating-from-v1">migration guide</a>. To use <code>v1</code>, you need to specify the version in the <code>version</code> property of the configuration, as shown in the snippet below.</p>
-<pre class="highlight"><code class="js">{
-    exportWord: {
-        // ...
-        version: 1, // by default this is set to 2.
-        converterOptions: {
-            format: 'A4',
-            orientation: 'portrait',
-            margin_top: '1in',
-            margin_bottom: '1in',
-            margin_right: '1in',
-            margin_left: '1in'
-        },
-        // ...
-    }
-}
-</code></pre>
 <h3 id="plugin-options"><a class="headerlink" href="#plugin-options">#</a> Plugin options</h3>
 <p>For some use cases the default configuration will suffice. As you can see in the example above, you can improve how your Word file will look by adjusting the Word export plugin configuration.</p>
 <ul>
@@ -776,6 +755,53 @@ const exportWordConfig = {
 <li>The <a href="../collaboration/track-changes/track-changes.html#saving-the-data-with-suggestion-highlights">track changes suggestions preview</a>.</li>
 </ul>
 </div>
+<h3 id="export-to-word-v1"><a class="headerlink" href="#export-to-word-v1">#</a> Export to Word V1</h3>
+<p><strong>Note:</strong> Export to Word uses the new version of the converter by default, the old one will no longer receive updates. It is highly recommended to migrate to the <a href="https://docx-converter.cke-cs.com/v2/convert/docs">latest version</a>. For more details on migrating from <code>v1</code> to <code>v2</code> see the <a href="https://docx-converter.cke-cs.com/v2/convert/docs#section/Export-to-Word/Migrating-from-v1">migration guide</a>. To use <code>v1</code>, you need to specify the version in the <code>version</code> property of the configuration, as shown in the snippet below.</p>
+<pre class="highlight"><code class="js">{
+    exportWord: {
+        // ...
+        version: 1, // by default this is set to 2.
+        converterOptions: {
+            format: 'A4',
+            orientation: 'portrait',
+            margin_top: '1in',
+            margin_bottom: '1in',
+            margin_right: '1in',
+            margin_left: '1in'
+        },
+        // ...
+    }
+}
+</code></pre>
+<details>
+  <summary>View V1 headers and footers example</summary>
+<pre class="highlight"><code class="js">// Let's keep the CSS string as a variable to avoid unnecessary string duplication.
+const templateCSS = '.styled { color: #4b22aa; text-align: center; }'
+
+const converterOptions = {
+    header: [
+        // Header template for all headers (without the `type` property).
+        { html: '&lt;p class="styled"&gt;Default header content&lt;/p&gt;', css: templateCSS },
+        // Header template only for the first page of the document.
+        { html: '&lt;p class="styled"&gt;First document page header content&lt;/p&gt;', css: templateCSS, type: 'first' },
+        // Header template for every even page of the document.
+        { html: '&lt;p class="styled"&gt;Every even page header content&lt;/p&gt;', css: templateCSS, type: 'even' },
+        // Header template for every odd page of the document.
+        { html: '&lt;p class="styled"&gt;Every odd page header content&lt;/p&gt;', css: templateCSS, type: 'odd' }
+    ],
+    footer: [
+        // Footer template for all footers (without the `type` property).
+        { html: '&lt;p class="styled"&gt;Default footer content&lt;/p&gt;', css: templateCSS },
+        // Footer template only for the first page of the document.
+        { html: '&lt;p class="styled"&gt;First document page footer content&lt;/p&gt;', css: templateCSS, type: 'first' },
+        // Footer template for every even page of the document.
+        { html: '&lt;p class="styled"&gt;Every even page footer content&lt;/p&gt;', css: templateCSS, type: 'even' },
+        // Footer template for every odd page of the document.
+        { html: '&lt;p class="styled"&gt;Every odd page footer content&lt;/p&gt;', css: templateCSS, type: 'odd' }
+    ],
+}
+</code></pre>
+</details>
 <h2 id="html-to-word-converter-features"><a class="headerlink" href="#html-to-word-converter-features">#</a> HTML to Word converter features</h2>
 <h3 id="styling-a-document"><a class="headerlink" href="#styling-a-document">#</a> Styling a document</h3>
 <p>By default, the <a href="../../api/module_export-word_exportword-ExportWord.html">export to Word</a> plugin takes editor content styles and sends them to the CKEditor Cloud Services HTML to DOCX Converter. You can also add custom styles by providing the paths to the external CSS files.</p>
@@ -783,7 +809,7 @@ const exportWordConfig = {
 // ...
 exportWord: {
     fileName: 'document.docx',
-    converterUrl: 'https://docx-converter.cke-cs.com/v1/convert',
+    converterUrl: 'https://docx-converter.cke-cs.com/v2/convert/html-docx',
     stylesheets: [
         'path/to/editor-styles.css',
         'path/to/my-styles.css'
@@ -827,29 +853,7 @@ ClassicEditor
                 document: {
                     size: 'Letter',
                     // Document format settings with proper margins.
-                    top: '19mm',
-                    bottom: '19mm',
-                    right: '19mm',
-                    left: '19mm'
-                }
-            }
-        }
-    } )
-    .then( /* ... */ )
-    .catch( /* ... */ );
-</code></pre>
-<div class="info-box notice"><p>This example focuses only on preparing the editable to match the converter settings. Please keep in mind that as a result, the appearance of your editor may change. Depending on your editor type and implementation or even some inherited global styles like <code>box-sizing</code>, applying new <code>padding</code> values may change the size of the editor on your website.</p><p>For the purpose of this example, <code>box-sizing: border-box</code> was implemented to make sure that the editor’s width will not change.</p></div>
-<p>Here is the example for V2 API.</p>
-<pre class="highlight"><code class="js">// ...
-ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        // ...
-        exportWord: {
-            // ...
-            converterOptions: {
-                document: {
-                    size: 'Letter',
-                    margins: {
+                    margin: {
                         top: '19mm',
                         bottom: '19mm',
                         right: '19mm',
@@ -862,6 +866,7 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
+<div class="info-box notice"><p>This example focuses only on preparing the editable to match the converter settings. Please keep in mind that as a result, the appearance of your editor may change. Depending on your editor type and implementation or even some inherited global styles like <code>box-sizing</code>, applying new <code>padding</code> values may change the size of the editor on your website.</p><p>For the purpose of this example, <code>box-sizing: border-box</code> was implemented to make sure that the editor’s width will not change.</p></div>
 <p>Now set the corresponding editor styles:</p>
 <pre class="highlight"><code class="css">/* format.css */
 
@@ -931,34 +936,7 @@ const converterOptions = {
 <p>There are only the <code>headers</code> and <code>footers</code> objects which contain other objects where the key is a <code>type</code> of your header/footer.</p>
 <p>Regarding CSS, you can style the <code>headers</code> and <code>footers</code> using the same <a href="#supported-css-properties">supported properties</a> as used for styling the whole document.</p>
 <p>For more details, refer to the <a href="https://docx-converter.cke-cs.com/docs#section/Options">CKEditor Cloud Services HTML to DOCX converter’s documentation</a>.</p>
-<p>Let’s discover what it looks like in V1 API.</p>
-<pre class="highlight"><code class="js">// Let's keep the CSS string as a variable to avoid unnecessary string duplication.
-const templateCSS = '.styled { color: #4b22aa; text-align: center; }'
-
-const converterOptions = {
-    header: [
-        // Header template for all headers (without the `type` property).
-        { html: '&lt;p class="styled"&gt;Default header content&lt;/p&gt;', css: templateCSS },
-        // Header template only for the first page of the document.
-        { html: '&lt;p class="styled"&gt;First document page header content&lt;/p&gt;', css: templateCSS, type: 'first' },
-        // Header template for every even page of the document.
-        { html: '&lt;p class="styled"&gt;Every even page header content&lt;/p&gt;', css: templateCSS, type: 'even' },
-        // Header template for every odd page of the document.
-        { html: '&lt;p class="styled"&gt;Every odd page header content&lt;/p&gt;', css: templateCSS, type: 'odd' }
-    ],
-    footer: [
-        // Footer template for all footers (without the `type` property).
-        { html: '&lt;p class="styled"&gt;Default footer content&lt;/p&gt;', css: templateCSS },
-        // Footer template only for the first page of the document.
-        { html: '&lt;p class="styled"&gt;First document page footer content&lt;/p&gt;', css: templateCSS, type: 'first' },
-        // Footer template for every even page of the document.
-        { html: '&lt;p class="styled"&gt;Every even page footer content&lt;/p&gt;', css: templateCSS, type: 'even' },
-        // Footer template for every odd page of the document.
-        { html: '&lt;p class="styled"&gt;Every odd page footer content&lt;/p&gt;', css: templateCSS, type: 'odd' }
-    ],
-}
-</code></pre>
-<p>As you can see, the <code>header</code> and <code>footer</code> options take an array of objects that define templates for the particular type of page. If you want to have consistent templates no matter the page, you can define only the <code>default</code> <code>headers/footers</code> template (<strong>Note:</strong> This setting misses the <code>type</code> property on purpose).</p>
+<p>As you can see, the <code>headers</code> and <code>footers</code> options take an array of objects that define templates for the particular type of page. If you want to have consistent templates no matter the page, you can define only the <code>default</code> <code>headers/footers</code> template (<strong>Note:</strong> This setting misses the <code>type</code> property on purpose).</p>
 <h3 id="setting-the-base-url"><a class="headerlink" href="#setting-the-base-url">#</a> Setting the base URL</h3>
 <p>To enable proper resolution of relative URLs for images and links, you need to pass the <code>base_url</code> option:</p>
 <pre class="highlight"><code class="js">const conversionOptions = {
@@ -984,7 +962,7 @@ const converterOptions = {
 <h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
 <p>Not all CKEditor&nbsp;5 plugins and features are compatible with export to Word at the moment. Feel free to <a href="https://ckeditor.com/contact/">contact us</a> if you are interested in any of these features specifically. Here is a list of known issues:</p>
 <h3 id="automatic-page-breaks-with-the-pagination-feature"><a class="headerlink" href="#automatic-page-breaks-with-the-pagination-feature">#</a> Automatic page breaks with the pagination feature</h3>
-<p>Browser engines and Microsoft Word differ significantly. Because of that, the automatic prediction of page breaks provided by the <a href="../pagination/pagination.html">pagination feature</a> in <a href="">Export to Word</a> is problematic and error-prone. We recommend reviewing your document’s structure during the exporting and manually applying the page breaks to maintain the preferred structure. If you still want to enforce the page breaks, set the <code>auto_pagination: true</code> option in the Export to Word config. You can also use <a href="export-pdf.html">Export to PDF</a>, where predicting page breaks is more straightforward and works more consistently.</p>
+<p>Browser engines and Microsoft Word differ significantly. Because of that, the automatic prediction of page breaks provided by the <a href="../pagination/pagination.html">pagination feature</a> in <a href="">Export to Word</a> is problematic and error-prone. We recommend reviewing your document’s structure during the exporting and manually applying the page breaks to maintain the preferred structure. If you still want to enforce the page breaks, set the <code>auto_pagination: true</code> option in the Export to Word configuration. You can also use <a href="export-pdf.html">Export to PDF</a>, where predicting page breaks is more straightforward and works more consistently.</p>
 <h3 id="unsupported-plugins"><a class="headerlink" href="#unsupported-plugins">#</a> Unsupported plugins</h3>
 <ul>
 <li><a href="../media-embed.html">Media embed</a> – Embedded media will not be included in the exported document.</li>
@@ -1065,7 +1043,7 @@ editor.execute( 'exportWord', config );
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fconverters%2Fexport-word.html%22&amp;project-version=42.0.2" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fconverters%2Fexport-word.html%22&amp;project-version=43.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
