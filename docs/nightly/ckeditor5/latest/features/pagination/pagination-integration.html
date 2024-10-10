@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:09 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:23 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Pagination integration with Export to PDF/Word | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -576,15 +576,16 @@
 <p>For the export plugins, you will need a special <a href="https://ckeditor.com/docs/cs/latest/guides/security/token-endpoint.html">token endpoint</a>. To get it, log into your CKEditor Ecosystem Dashboard account and <a href="https://ckeditor.com/docs/trial/latest/guides/export-to-pdf/quick-start.html#account-dashboard">follow the guide on creating a token URL</a>. If the export features are used without this token, all generated documents will contain a watermark at the bottom of every page.</p>
 <p>After obtaining all the credentials needed, create a custom editor and configure it.</p>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
-<p>The easiest way to set up your project is to grab the starter files from the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/pagination-and-exports">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor&nbsp;5 packages and other files needed to start the editor.</p>
-<p>The editor has already been created in the <code>src/main.js</code> file with some basic plugins. All you need to do is clone the repository, navigate to the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/pagination-and-exports/starter-files">starter-files directory</a>, run the <code>npm install</code> command, and you can start coding right away.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/pagination-and-exports/starter-files
+<p>The easiest way to get started is to grab the starter project using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/pagination-and-exports/starter-files pagination-and-exports
+cd pagination-and-exports
 
 npm install
 npm run dev
 </code></pre>
-<p>After starting up the project, you will see a strangely looking editor. That is ok. In the next steps we will bring it to life!</p>
+<p>This will create a new directory called <code>pagination-and-exports</code> with the necessary files. The <code>npm install</code> command will install all the dependencies, and <code>npm run dev</code> will start the development server.</p>
+<p>The editor with some basic plugins is created in the <code>main.js</code> file.</p>
+<p>Open the URL displayed in your terminal. If everything goes well, you will see an initial text on the screen and errors in the console. It is expected, and we will fix it in the following steps.</p>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <h3 id="adding-licenses"><a class="headerlink" href="#adding-licenses">#</a> Adding licenses</h3>
 <p>You need to provide a license key for the pagination feature as well as the Cloud Services configuration for the export plugins (which you obtained in <a href="#activating-the-feature">step one</a>).</p>

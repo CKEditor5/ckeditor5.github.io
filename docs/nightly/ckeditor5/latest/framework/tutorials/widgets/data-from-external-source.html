@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:28 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:45 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Data from an external source tutorial | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -366,14 +366,15 @@
 <p>This guide assumes that you are familiar with the widgets concept introduced in the <a href="implementing-a-block-widget.html">Implementing a block widget</a> and <a href="implementing-an-inline-widget.html">Implementing an inline widget</a> tutorials. The tutorial also references various concepts concerning the <a href="../../architecture/intro.html">CKEditor&nbsp;5 architecture</a>.</p>
 <h2 id="bootstrapping-the-project"><a class="headerlink" href="#bootstrapping-the-project">#</a> Bootstrapping the project</h2>
 <p>The overall project structure will be similar to one described in the <a href="implementing-an-inline-widget.html#bootstrapping-the-project">Bootstrapping the project</a> section of the “Implementing an inline widget” tutorial.</p>
-<p>The easiest way to set up your project is to grab the starter files from the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/data-from-external-source">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor&nbsp;5 packages and other files needed to start the editor.</p>
-<p>The editor has already been created in the <code>main.js</code> file with some basic plugins. All you need to do is clone the repository, navigate to the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/data-from-external-source/starter-files">starter-files directory</a>, run the <code>npm install</code> command, and you can start coding right away.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/data-from-external-source/starter-files
+<p>The easiest way to get started is to grab the starter project using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/data-from-external-source/starter-files data-from-external-source
+cd data-from-external-source
 
 npm install
 npm run dev
 </code></pre>
+<p>This will create a new directory called <code>data-from-external-source</code> with the necessary files. The <code>npm install</code> command will install all the dependencies, and <code>npm run dev</code> will start the development server.</p>
+<p>The editor with some basic plugins is created in the <code>main.js</code> file.</p>
 <p>First, lets define the <code>ExternalDataWidget</code> plugin. The project structure should be as follows:</p>
 <pre class="highlight"><code class="plain">├── main.js
 ├── index.html
@@ -428,27 +429,12 @@ export default class ExternalDataWidgetEditing extends Plugin {
 <p>Finally, you need to load the <code>ExternalDataWidget</code> plugin in your <code>main.js</code> file:</p>
 <pre class="highlight"><code class="js">// main.js
 
-import { ClassicEditor, Bold, Italic, Essentials, Heading, List, Paragraph } from 'ckeditor5';
 import ExternalDataWidget from './external-data-widget/externaldatawidget';
-import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-
-import 'ckeditor5/ckeditor5.css';
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
         plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic, ExternalDataWidget ],
         toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList', '|', 'undo', 'redo' ]
-    } )
-    .then( editor =&gt; {
-        console.log( 'Editor was initialized', editor );
-
-        CKEditorInspector.attach( { editor: 'editor' } );
-
-        // Expose for playing in the console.
-        window.editor = editor;
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
     } );
 </code></pre>
 <p>At this stage you can run the project and open it in the browser to verify if it is loading correctly.</p>
@@ -872,8 +858,8 @@ ClassicEditor
 </div>
 <h2 id="final-solution"><a class="headerlink" href="#final-solution">#</a> Final solution</h2>
 <p>If you got lost at any point in the tutorial or want to go straight to the solution, there is a repository with the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/data-from-external-source/final-project">final project</a> available.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/data-from-external-source/final-project
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/data-from-external-source/final-project final-project
+cd final-project
 
 npm install
 npm run dev

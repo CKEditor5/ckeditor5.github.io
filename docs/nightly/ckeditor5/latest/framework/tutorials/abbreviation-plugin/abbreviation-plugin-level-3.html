@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:26 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:43 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Creating an advanced plugin tutorial pt. 3 | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -360,7 +360,13 @@
           <h1 class="main__content-title"><img src="../../../../../assets/4.4.0/img/book.svg" alt="guide">Improving accessibility and adding a command
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#improving-accessibility" title="Improving accessibility">Improving accessibility</a><ol><li><a href="#adding-a-keystroke-handler-and-a-focus-tracker" title="Adding a keystroke handler and a focus tracker">Adding a keystroke handler and a focus tracker</a></li><li><a href="#adding-a-focus-cycler" title="Adding a focus cycler">Adding a focus cycler</a></li></ol></li><li><a href="#improving-the-ui-functionalities" title="Improving the UI functionalities">Improving the UI functionalities</a></li><li><a href="#adding-a-command" title="Adding a command">Adding a command</a><ol><li><a href="#creating-a-command" title="Creating a command">Creating a command</a></li><li><a href="#refreshing-the-state" title="Refreshing the state">Refreshing the state</a></li><li><a href="#improving-the-execute-method" title="Improving the execute() method">Improving the execute() method</a></li></ol></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-code" title="Final code">Final code</a></li></ol></nav>
 <p>You made it to the final part of the abbreviation plugin tutorial. In this part, we will improve accessibility of our plugin. We will also work on a command, which will additionally grab the text from user’s selection, and insert it into our form. And more!</p>
-<p>We pick up where we left off in the <a href="abbreviation-plugin-level-2.html">second part</a>, so make sure you finished it, or grab our <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-2">starter files for this part</a>.</p>
+<p>We pick up where we left off in the <a href="abbreviation-plugin-level-2.html">second part</a>, so make sure you finished it, or grab our starter files for this part using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/abbreviation-plugin/part-2 abbreviation-plugin
+cd abbreviation-plugin
+
+npm install
+npm run dev
+</code></pre>
 <p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a>.</p>
 <h2 id="improving-accessibility"><a class="headerlink" href="#improving-accessibility">#</a> Improving accessibility</h2>
 <p>First, we make our plugin accessible for users who rely on keyboards for navigation. We want to ensure that pressing <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> will move focus around in the form view, and pressing <kbd>Esc</kbd> will close it.</p>

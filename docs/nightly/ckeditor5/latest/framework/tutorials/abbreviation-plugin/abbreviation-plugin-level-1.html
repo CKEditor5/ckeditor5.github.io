@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:26 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:42 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -364,14 +364,15 @@
 <p>This first part of the tutorial will cover the basics. We will just insert one possible abbreviation: “WYSIWYG.” We will get user input in the <a href="abbreviation-plugin-level-2.html">next part of this tutorial series</a>.</p>
 <p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a>.</p>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
-<p>The easiest way to set up your project is to grab the starter files from the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor&nbsp;5 packages and other files needed to start the editor.</p>
-<p>The editor has already been created in the <code>main.js</code> file with some basic plugins. All you need to do is clone the repository, navigate to the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/starter-files">starter-files directory</a>, run the <code>npm install</code> command, and you can start coding right away.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/abbreviation-plugin/starter-files
+<p>The easiest way to get started is to grab the starter project using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/abbreviation-plugin/starter-files abbreviation-plugin
+cd abbreviation-plugin
 
 npm install
 npm run dev
 </code></pre>
+<p>This will create a new directory called <code>abbreviation-plugin</code> with the necessary files. The <code>npm install</code> command will install all the dependencies, and <code>npm run dev</code> will start the development server.</p>
+<p>The editor with some basic plugins is created in the <code>main.js</code> file.</p>
 <div class="info-box notice"><p>The starter files come with the <a href="../../develpment-tools/inspector.html">CKEditor&nbsp;5 Inspector</a> attached to the editor, so you can debug and observe what is happening in the model and the view layers. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="plugin-structure"><a class="headerlink" href="#plugin-structure">#</a> Plugin structure</h2>
 <p>Our abbreviation plugin is divided into three components – <code>Abbreviation</code>, <code>AbbreviationUI</code>, and <code>AbbreviationEditing</code>:</p>
@@ -428,18 +429,6 @@ export default class Abbreviation extends Plugin {
 <p>Now, we need to load the <code>Abbreviation</code> plugin in our <code>main.js</code> file. The editor will load the <code>AbbreviationUI</code> and the <code>AbbreviationEditing</code> components by itself, as they are required by our “glue” plugin.</p>
 <pre class="highlight"><code class="js">// main.js
 
-import { 
-    ClassicEditor,
-    Essentials,
-    Paragraph,
-    Heading,
-    List,
-    Bold,
-    Italic
-} from 'ckeditor5';
-
-import 'ckeditor5/ckeditor5.css';
-
 import Abbreviation from './abbreviation/abbreviation';					// ADDED
 
 ClassicEditor
@@ -449,12 +438,6 @@ ClassicEditor
             Abbreviation												// ADDED
         ],
         toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList' ]
-    } )
-    .then( editor =&gt; {
-        console.log( 'Editor was initialized', editor );
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
     } );
 </code></pre>
 <p>You should see that the <code>AbbreviationEditing</code> and <code>AbbreviationUI</code> plugins were loaded.</p>
@@ -605,18 +588,6 @@ export default class AbbreviationUI extends Plugin {
 <p>We passed the name of the button in the <code>componentFactory.add</code>, so it is now available to use in the toolbar configuration. We can now simply add it to the toolbar in <code>main.js</code>:</p>
 <pre class="highlight"><code class="js">// main.js
 
-import { 
-    ClassicEditor,
-    Essentials,
-    Paragraph,
-    Heading,
-    List,
-    Bold,
-    Italic
-} from 'ckeditor5';
-
-import 'ckeditor5/ckeditor5.css';
-
 import Abbreviation from './abbreviation/abbreviation';
 
 ClassicEditor
@@ -629,12 +600,6 @@ ClassicEditor
             '|',
             'abbreviation'												 // ADDED
         ]
-    } )
-    .then( editor =&gt; {
-        console.log( 'Editor was initialized', editor );
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
     } );
 </code></pre>
 <p>We have the button, so let’s define what should happen after the user clicks it.</p>

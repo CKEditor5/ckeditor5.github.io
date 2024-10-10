@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:28 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:45 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Implementing a block widget tutorial | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -367,15 +367,16 @@
 <p>This tutorial will reference various parts of the <a href="../../architecture/intro.html">CKEditor&nbsp;5 architecture</a> section as you go. While reading them is not necessary to finish this tutorial, it is recommended to read these guides at some point to get a better understanding of the mechanisms used in this tutorial.</p>
 <div class="info-box notice"><p>If you want to use your own event handler for events triggered by your widget, you must wrap it with a container that has a <code>data-cke-ignore-events</code> attribute to exclude it from the editor’s default handlers. Refer to <a href="../../deep-dive/ui/widget-internals.html#exclude-dom-events-from-default-handlers">Exclude DOM events from default handlers</a> for more details.</p></div>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start</h2>
-<p>The easiest way to set up your project is to grab the starter files from the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/block-widget">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor&nbsp;5 packages and other files needed to start the editor.</p>
-<p>The editor has already been created in the <code>main.js</code> file with some basic plugins. All you need to do is clone the repository, navigate to the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/block-widget/starter-files">starter-files directory</a>, run the <code>npm install</code> command, and you can start coding right away.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/block-widget/starter-files
+<p>The easiest way to get started is to grab the starter project using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/block-widget/starter-files block-widget
+cd block-widget
 
 npm install
 npm run dev
 </code></pre>
-<p>You should see a CKEditor&nbsp;5 instance in your browser like this:</p>
+<p>This will create a new directory called <code>block-widget</code> with the necessary files. The <code>npm install</code> command will install all the dependencies, and <code>npm run dev</code> will start the development server.</p>
+<p>The editor with some basic plugins is created in the <code>main.js</code> file.</p>
+<p>Open the URL displayed in your terminal. If everything went well, you should see a CKEditor&nbsp;5 instance in your browser like this:</p>
 <p><img src="../../../assets/img/tutorial-implementing-a-widget-1.png" data-lightbox="true" alt="Screenshot of a classic editor initialized from source."></p>
 <h2 id="plugin-structure"><a class="headerlink" href="#plugin-structure">#</a> Plugin structure</h2>
 <p>Once the editor is up and running you can start implementing the plugin. You can keep the entire plugin code in a single file, however, it is recommended to split its “editing” and “UI” layers and create a master plugin which loads both. This way, you ensure better separation of concerns and allow for recomposing the features (for example, picking the editing part of an existing feature but writing your own UI for it). All official CKEditor&nbsp;5 plugins follow this pattern.</p>
@@ -428,16 +429,6 @@ export default class SimpleBoxEditing extends Plugin {
 <p>Finally, you need to load the <code>SimpleBox</code> plugin in your <code>main.js</code> file:</p>
 <pre class="highlight"><code class="js">// main.js
 
-import {
-    ClassicEditor,
-    Bold,
-    Italic,
-    Essentials,
-    Heading,
-    List,
-    Paragraph
-} from 'ckeditor5';
-
 import SimpleBox from './simplebox/simplebox';                                 // ADDED
 
 ClassicEditor
@@ -447,15 +438,6 @@ ClassicEditor
             SimpleBox                                                          // ADDED
         ],
         toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList' ]
-    } )
-    .then( editor =&gt; {
-        console.log( 'Editor was initialized', editor );
-
-        // Expose for playing in the console.
-        window.editor = editor;
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
     } );
 </code></pre>
 <p>Your page will refresh and you should see that the <code>SimpleBoxEditing</code> and <code>SmpleBoxUI</code> plugins were loaded:</p>
@@ -635,16 +617,6 @@ export default class SimpleBoxEditing extends Plugin {
 <p>To learn that, use the official <a href="../../develpment-tools/inspector.html">CKEditor&nbsp;5 inspector</a>. Once <a href="../../develpment-tools/inspector.html#importing-the-inspector">installed</a>, you need to load it in the <code>main.js</code> file:</p>
 <pre class="highlight"><code class="js">// main.js
 
-import {
-    ClassicEditor,
-    Bold,
-    Italic,
-    Essentials,
-    Heading,
-    List,
-    Paragraph
-} from 'ckeditor5';
-
 import SimpleBox from './simplebox/simplebox';
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';                 // ADDED
@@ -663,9 +635,6 @@ ClassicEditor
         CKEditorInspector.attach( { 'editor': editor } );
 
         window.editor = editor;
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
     } );
 </code></pre>
 <p>After refreshing the page, you will see the inspector:</p>
@@ -1070,8 +1039,8 @@ export default class SimpleBoxUI extends Plugin {
 </div>
 <h2 id="final-solution"><a class="headerlink" href="#final-solution">#</a> Final solution</h2>
 <p>If you got lost at any point in the tutorial or want to go straight to the solution, there is a repository with the <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/block-widget/final-project">final project</a> available.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/block-widget/final-project
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/block-widget/final-project final-project
+cd final-project
 
 npm install
 npm run dev

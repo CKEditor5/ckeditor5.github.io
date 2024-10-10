@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 09 2024 01:08:15 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 10 2024 01:07:30 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Creating a basic plugin tutorial | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -362,31 +362,24 @@
 <p>This guide will show you how to create a simple, basic plugin that will let the users insert timestamps into their content. This is a beginner-friendly tutorial, perfect for your first interaction with the CKEditor 5 framework. While it is not necessary to be familiar with the <a href="crash-course/editor.html">CKEditor 5 Crash course</a> to follow it, you should consider reading that one, too.</p>
 <p>We will create a toolbar button that will insert the current date and time at the caret position into the document. If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a> below.</p>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
-<p>The easiest way to set up your project is to grab the starter files from our <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/timestamp-plugin">GitHub repository for this tutorial</a>. We gathered all the necessary dependencies there, including some CKEditor 5 packages and other files needed to run the editor.</p>
-<p>The editor has already been created in the <code>main.js</code> file with some basic plugins. All you need to do is clone the repository, run the <code>npm install</code> command, and you can start coding right away.</p>
-<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5-tutorials-examples
-cd ckeditor5-tutorials-examples/timestamp-plugin/starter-files
+<p>The easiest way to get started is to grab the starter project using the commands below.</p>
+<pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/timestamp-plugin/starter-files timestamp-plugin
+cd timestamp-plugin
 
 npm install
 npm run dev
 </code></pre>
+<p>This will create a new directory called <code>timestamp-plugin</code> with the necessary files. The <code>npm install</code> command will install all the dependencies, and <code>npm run dev</code> will start the development server.</p>
+<p>The editor with some basic plugins is created in the <code>main.js</code> file.</p>
 <h2 id="creating-a-plugin"><a class="headerlink" href="#creating-a-plugin">#</a> Creating a plugin</h2>
-<p>All features in the CKEditor 5 are powered by plugins. To create our custom timestamp plugin, we need to import the base <code>Plugin</code> class.</p>
-<p>We can now create a <code>Timestamp</code> class that extends the basic <code>Plugin</code> class. After we define it, we can add it to the editor’s plugins array.</p>
-<pre class="highlight"><code class="js">import { 
-    ClassicEditor,
-    Essentials,
-    Paragraph,
-    Heading,
-    List,
-    Bold,
-    Italic,
+<p>All features in the CKEditor 5 are powered by plugins. To create our custom timestamp plugin, we need to import the base <code>Plugin</code> class from the <code>ckeditor5</code>. Be careful not to remove the other imports from this package.</p>
+<pre class="highlight"><code class="js">import {
+    // Other imports
     Plugin
 } from 'ckeditor5';
-
-import 'ckeditor5/ckeditor5.css';
-
-class Timestamp extends Plugin {
+</code></pre>
+<p>We can now create a <code>Timestamp</code> class that extends the basic <code>Plugin</code> class. After we define it, we can add it to the editor’s plugins array.</p>
+<pre class="highlight"><code class="js">class Timestamp extends Plugin {
     init() {
         console.log( 'Timestamp was initialized.' );
     }
@@ -397,14 +390,7 @@ ClassicEditor
         // Add the Timestamp plugin to config.plugins array.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic, Timestamp
-        ],
-        toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList' ]
-    } )
-    .then( editor =&gt; {
-        console.log( 'Editor was initialized', editor );
-    } )
-    .catch( error =&gt; {
-        console.error( error.stack );
+        ]
     } );
 </code></pre>
 <p>The development server will refresh. The initialization of the timestamp plugin should be visible. You should see this in the browser (on the left) and the browser’s development console (on the right):</p>
@@ -414,14 +400,7 @@ ClassicEditor
 <p>Once we create a new instance of <code>ButtonView</code>, we will be able to customize it by setting its properties. We will create a label, which will be visible on the button thanks to the <code>withText</code> property.</p>
 <p>We also need to register our button in the editor’s UI <code>componentFactory</code>, so it can be displayed in the toolbar. To do it, we will pass the name of the button in the <code>componentFactory.add</code> method, to be able to add it into the <a href="../../getting-started/setup/toolbar.html">toolbar</a> array.</p>
 <pre class="highlight"><code class="js">import { 
-    ClassicEditor,
-    Essentials,
-    Paragraph,
-    Heading,
-    List,
-    Bold,
-    Italic,
-    Plugin,
+    // Other imports
     ButtonView
 } from 'ckeditor5';
 
