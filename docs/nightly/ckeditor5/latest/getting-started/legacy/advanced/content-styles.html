@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Sun Oct 13 2024 01:07:53 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Mon Oct 14 2024 01:07:36 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Content styles | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -311,7 +311,7 @@
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use it straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
 <pre class="highlight"><code class="css">/*
  * CKEditor 5 (v43.2.0) content styles.
- * Generated on Sun, 13 Oct 2024 01:06:51 GMT.
+ * Generated on Mon, 14 Oct 2024 01:06:35 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/installation/legacy/advanced/content-styles.html
  */
 
@@ -379,6 +379,42 @@
 .ck-content .table th {
     overflow-wrap: break-word;
     position: relative;
+}
+/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break {
+    position: relative;
+    clear: both;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break::after {
+    content: '';
+    position: absolute;
+    border-bottom: 2px dashed hsl(0, 0%, 77%);
+    width: 100%;
+}
+/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break__label {
+    position: relative;
+    z-index: 1;
+    padding: .3em .6em;
+    display: block;
+    text-transform: uppercase;
+    border: 1px solid hsl(0, 0%, 77%);
+    border-radius: 2px;
+    font-family: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: hsl(0, 0%, 20%);
+    background: hsl(0, 0%, 100%);
+    box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.15);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 /* @ckeditor/ckeditor5-media-embed/theme/mediaembed.css */
 .ck-content .media {
@@ -536,42 +572,6 @@
 /* @ckeditor/ckeditor5-list/theme/todolist.css */
 .ck-editor__editable.ck-content .todo-list .todo-list__label.todo-list__label_without-description input[type=checkbox] {
     position: absolute;
-}
-/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
-.ck-content .page-break {
-    position: relative;
-    clear: both;
-    padding: 5px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
-.ck-content .page-break::after {
-    content: '';
-    position: absolute;
-    border-bottom: 2px dashed hsl(0, 0%, 77%);
-    width: 100%;
-}
-/* @ckeditor/ckeditor5-page-break/theme/pagebreak.css */
-.ck-content .page-break__label {
-    position: relative;
-    z-index: 1;
-    padding: .3em .6em;
-    display: block;
-    text-transform: uppercase;
-    border: 1px solid hsl(0, 0%, 77%);
-    border-radius: 2px;
-    font-family: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: hsl(0, 0%, 20%);
-    background: hsl(0, 0%, 100%);
-    box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.15);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 /* @ckeditor/ckeditor5-list/theme/list.css */
 .ck-content ol {
@@ -762,6 +762,27 @@
     color: var(--ck-highlight-pen-green);
     background-color: transparent;
 }
+/* @ckeditor/ckeditor5-block-quote/theme/blockquote.css */
+.ck-content blockquote {
+    overflow: hidden;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    border-left: solid 5px hsl(0, 0%, 80%);
+}
+/* @ckeditor/ckeditor5-block-quote/theme/blockquote.css */
+.ck-content[dir="rtl"] blockquote {
+    border-left: 0;
+    border-right: solid 5px hsl(0, 0%, 80%);
+}
+/* @ckeditor/ckeditor5-basic-styles/theme/code.css */
+.ck-content code {
+    background-color: hsla(0, 0%, 78%, 0.3);
+    padding: .15em;
+    border-radius: 2px;
+}
 /* @ckeditor/ckeditor5-font/theme/fontsize.css */
 .ck-content .text-tiny {
     font-size: .7em;
@@ -777,27 +798,6 @@
 /* @ckeditor/ckeditor5-font/theme/fontsize.css */
 .ck-content .text-huge {
     font-size: 1.8em;
-}
-/* @ckeditor/ckeditor5-basic-styles/theme/code.css */
-.ck-content code {
-    background-color: hsla(0, 0%, 78%, 0.3);
-    padding: .15em;
-    border-radius: 2px;
-}
-/* @ckeditor/ckeditor5-block-quote/theme/blockquote.css */
-.ck-content blockquote {
-    overflow: hidden;
-    padding-right: 1.5em;
-    padding-left: 1.5em;
-    margin-left: 0;
-    margin-right: 0;
-    font-style: italic;
-    border-left: solid 5px hsl(0, 0%, 80%);
-}
-/* @ckeditor/ckeditor5-block-quote/theme/blockquote.css */
-.ck-content[dir="rtl"] blockquote {
-    border-left: 0;
-    border-right: solid 5px hsl(0, 0%, 80%);
 }
 /* @ckeditor/ckeditor5-mention/theme/mention.css */
 .ck-content .mention {
@@ -815,6 +815,13 @@
     padding: .6em;
     font-size: .75em;
     outline-offset: -1px;
+}
+/* @ckeditor/ckeditor5-horizontal-line/theme/horizontalline.css */
+.ck-content hr {
+    margin: 15px 0;
+    height: 4px;
+    background: hsl(0, 0%, 87%);
+    border: 0;
 }
 /* @ckeditor/ckeditor5-code-block/theme/codeblock.css */
 .ck-content pre {
@@ -835,13 +842,6 @@
     background: unset;
     padding: 0;
     border-radius: 0;
-}
-/* @ckeditor/ckeditor5-horizontal-line/theme/horizontalline.css */
-.ck-content hr {
-    margin: 15px 0;
-    height: 4px;
-    background: hsl(0, 0%, 87%);
-    border: 0;
 }
 /* @ckeditor/ckeditor5-image/theme/imagecaption.css */
 .ck-content .image &gt; figcaption {
