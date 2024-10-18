@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 17 2024 01:07:36 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 18 2024 01:08:15 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Media embed | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -587,6 +587,12 @@
 		<oembed url="https://vimeo.com/1084537"></oembed>
 	</figure>
 
+	<h3>X (form. Twitter)</h3>
+
+	<figure>
+		<oembed url="https://x.com/ckeditor/status/1430561610494627841"></oembed>
+	</figure>
+
 	<h3>Google Maps</h3>
 
 	<figure class="media">
@@ -670,7 +676,7 @@ ClassicEditor
     &lt;/div&gt;
 &lt;/figure&gt;
 </code></pre>
-<p>Currently, the preview is only available for content providers for which CKEditor&nbsp;5 can predict the <code>&lt;iframe&gt;</code> code: YouTube, Vimeo, Dailymotion, Spotify, etc. For other providers like Twitter (X) or Instagram, the editor cannot produce an <code>&lt;iframe&gt;</code> code. It also does not allow retrieving this code from an external oEmbed service. Therefore, for non-previewable media, it produces the default semantic output:</p>
+<p>Currently, the preview is only available for content providers for which CKEditor&nbsp;5 can predict the <code>&lt;iframe&gt;</code> code: YouTube, Vimeo, Dailymotion, Spotify, etc. For other providers like X (Twitter) or Instagram, the editor cannot produce an <code>&lt;iframe&gt;</code> code. It also does not allow retrieving this code from an external oEmbed service. Therefore, for non-previewable media, it produces the default semantic output:</p>
 <pre class="highlight"><code class="html">&lt;figure class="media"&gt;
     &lt;oembed url="https://media-url"&gt;&lt;/oembed&gt;
 &lt;/figure&gt;
@@ -739,6 +745,10 @@ ClassicEditor
 <p>To get around the limitations of showing media embed previews, you can use services like <a href="https://iframely.com/">Iframely</a>. This will allow a rich preview of the content inside CKEditor&nbsp;5. By inserting an Iframely-hosted <code>&lt;iframe&gt;</code>, you can preview the content from hundreds of media providers.</p>
 <p>Follow the <a href="https://iframely.com/docs/ckeditor">Iframely integration with CKEditor&nbsp;5</a> page for a detailed explanation. You can also check the final result in the demo below. If you are using ad-blocking software, it might also block the previews inside the editor.</p>
 <div class="live-snippet"><div class="ck ck-content" id="snippet-media-embed-preview">
+	<h3>Follow us on X for the latest news:</h3>
+	<figure class="media">
+		<oembed url="https://x.com/ckeditor/status/1441013225554948096"></oembed>
+	</figure>
 	<h3>And check our latest posts on Facebook:</h3>
 	<figure class="media">
 		<oembed
@@ -773,9 +783,9 @@ ClassicEditor
 &lt;/head&gt;
 </code></pre>
 <h4 id="semantic-data"><a class="headerlink" href="#semantic-data">#</a> Semantic data</h4>
-<p>You can convert all <code>&lt;oembed&gt;</code> elements like the following Twitter (X) post produced by CKEditor&nbsp;5:</p>
+<p>You can convert all <code>&lt;oembed&gt;</code> elements like the following X (Twitter) post produced by CKEditor&nbsp;5:</p>
 <pre class="highlight"><code class="html">&lt;figure class="media"&gt;
-    &lt;oembed url="https://twitter.com/ckeditor/status/1021777799844126720"&gt;&lt;/oembed&gt;
+    &lt;oembed url="https://x.com/ckeditor/status/1021777799844126720"&gt;&lt;/oembed&gt;
 &lt;/figure&gt;
 </code></pre>
 <p>using this short code snippet:</p>
@@ -788,7 +798,7 @@ ClassicEditor
 <h4 id="non-semantic-data"><a class="headerlink" href="#non-semantic-data">#</a> Non-semantic data</h4>
 <p>When you configure the feature to <a href="#including-previews-in-data">include media previews</a> in the output, you can still use Iframely for media embeds like the following one:</p>
 <pre class="highlight"><code class="html">&lt;figure class="media"&gt;
-    &lt;div data-oembed-url="https://twitter.com/ckeditor/status/1021777799844126720"&gt;
+    &lt;div data-oembed-url="https://x.com/ckeditor/status/1021777799844126720"&gt;
         [Media preview]
     &lt;/div&gt;
 &lt;/figure&gt;
@@ -818,7 +828,7 @@ ClassicEditor
 <h4 id="semantic-data-2"><a class="headerlink" href="#semantic-data-2">#</a> Semantic data</h4>
 <p>You can convert <code>&lt;oembed&gt;</code> elements like the following Twitter (X) post produced by CKEditor&nbsp;5:</p>
 <pre class="highlight"><code class="html">&lt;figure class="media"&gt;
-    &lt;oembed url="https://twitter.com/ckeditor/status/1021777799844126720"&gt;&lt;/oembed&gt;
+    &lt;oembed url="https://x.com/ckeditor/status/1021777799844126720"&gt;&lt;/oembed&gt;
 &lt;/figure&gt;
 </code></pre>
 <p>using this code snippet:</p>
@@ -862,7 +872,7 @@ ClassicEditor
 <div class="info-box notice"><p>The media URL must be the only content pasted to be properly embedded. Multiple links (<code>"http://media.url http://another.media.url"</code>) as well as bigger chunks of content (<code>"This link http://media.url will not be auto–embedded when pasted."</code>) are ignored.</p></div>
 <p>If the automatic embedding was unexpected, for instance when the link was meant to remain in the content as text, undo the action (by clicking the “Undo” button in the toolbar or using the <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Z</kbd> keystrokes).</p>
 <h2 id="styling-media-in-the-editor-content"><a class="headerlink" href="#styling-media-in-the-editor-content">#</a> Styling media in the editor content</h2>
-<p>While the editor comes with default styles for popular media providers like Facebook, Instagram or Twitter, you can create additional styles for non-previewable media in your editor content to help users identify them.</p>
+<p>While the editor comes with default styles for popular media providers like Facebook, Instagram or X, you can create additional styles for non-previewable media in your editor content to help users identify them.</p>
 <h3 id="styling-non-previewable-media"><a class="headerlink" href="#styling-non-previewable-media">#</a> Styling non-previewable media</h3>
 <p>The HTML structure of every non-previewable media in the editor is as follows:</p>
 <pre class="highlight"><code class="html">&lt;figure class="media ck-widget" contenteditable="false"&gt;

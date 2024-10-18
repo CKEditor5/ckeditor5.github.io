@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Interface AIAssistantConfig. The configuration of the AI Assistant feature. The properties defined in this config are set in the config.ai.aiAssistant namespace. See the full AI configuration. See all editor options.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Interface AIAssistantConfig. The configuration of the AI Assistant feature. The properties defined in this config are set in the config.ai.aiAssistant namespace. See the full AI configuration. See all editor options.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 17 2024 01:07:01 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 18 2024 01:07:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Interface AIAssistantConfig (ai/aiassistant~AIAssistantConfig) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Interface AIAssistantConfig. The configuration of the AI Assistant feature. The properties defined in this config are set in the config.ai.aiAssistant namespace. See the full AI configuration. See all editor options.">
     <meta property="og:type" content="website">
@@ -181,12 +181,14 @@
           <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="properties">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-commands">
-                          <h3><code><a class="member-name" href="#member-commands">commands</a> : Array&lt;<span><a class="collapsing-list__type" href="module_ai_aiassistant-GroupDefinition.html">GroupDefinition</a></span>&gt; | <span>undefined</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:ai/aiassistant~AIAssistantConfig#commands"><code>module:ai/aiassistant~AIAssistantConfig#commands</code></span>
+                          <h3><code><a class="member-name" href="#member-commands">commands</a> : Array&lt;<span><a class="collapsing-list__type" href="module_ai_aiassistant-GroupDefinition.html">GroupDefinition</a></span>&gt; | Array&lt;<span><a class="collapsing-list__type" href="module_ai_aiassistant-CommandDefinition.html">CommandDefinition</a></span>&gt; | <span>undefined</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:ai/aiassistant~AIAssistantConfig#commands"><code>module:ai/aiassistant~AIAssistantConfig#commands</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__content"><p>A list of all AI commands groups definitions to be displayed in the <code>'aiCommands'</code> UI dropdown.</p>
 <p>Setting this property will overwrite the default list of predefined commands.</p>
+<p>You can avoid creating any groups by providing a list of command definitions directly. In this case,
+commands will render as a flat list in the user interface.</p>
 <p>The default configuration is as follows. It can be obtained through <a href="module_ai_aiassistant.html#function-getDefaultCommands"><code>getDefaultCommands</code></a>:</p>
 <pre><code class="language-json">[ {
 	groupId: 'editOrReview',
