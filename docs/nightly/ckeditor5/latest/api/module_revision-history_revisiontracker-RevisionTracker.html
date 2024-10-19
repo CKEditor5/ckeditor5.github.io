@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: the initial revision and the current revision.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: the initial revision and the current revision. If those revisions have not been created for the document yet, they are created when the editor data is loaded. The initial revision contains the initial document data from when the document was loaded for the first time. The current revision contains all the unsaved document changes, that is changes which have not been saved yet as a specific revision.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Fri Oct 18 2024 01:07:37 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Sat Oct 19 2024 01:08:15 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class RevisionTracker (revision-history/revisiontracker~RevisionTracker) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class RevisionTracker. Creates and updates revisions based on changes of the editor content. There are always at least two revisions available for the document: the initial revision and the current revision. If those revisions have not been created for the document yet, they are created when the editor data is loaded. The initial revision contains the initial document data from when the document was loaded for the first time. The current revision contains all the unsaved document changes, that is changes which have not been saved yet as a specific revision.">
     <meta property="og:type" content="website">
@@ -824,6 +824,71 @@ so the plugin might be still disabled after <a href="module_revision-history_rev
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>void</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getRevisionDocumentData">
+                          <h3><code><a class="member-name" href="#function-getRevisionDocumentData">getRevisionDocumentData</a>( revision ) &rarr;  <span>Promise</span>&lt;<span>Record</span>&lt;<span>string</span>, <span>string</span>&gt;&gt;</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:revision-history/revisiontracker~RevisionTracker#getRevisionDocumentData"><code>module:revision-history/revisiontracker~RevisionTracker#getRevisionDocumentData</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Returns document data for given revision.</p>
+<p>The document data is HTML or other format, depending on the editor configuration.</p>
+<p>This method returns a promise which resolves with an object, where keys are root names and values are these roots' data. Most
+editor setups use just one root, which has the default name <code>main</code>. In this case, the promise will resolve with an object
+similar to this:</p>
+<pre><code class="language-ts">{ main: "&lt;p&gt;Sample document data.&lt;/p&gt;" }
+</code></pre>
+<p>Please note, that the data returned by this method uses
+<a href="module_engine_dataprocessor_dataprocessor-DataProcessor.html#function-useFillerType">marked fillers mode</a>. This means that some <code>&amp;nbsp;</code>
+characters in the returned data may be wrapped with <code>&lt;span data-cke-filler="true"&gt;&amp;nbsp;&lt;/span&gt;</code>. Take this difference into
+consideration if you plan to compare revision data with the data returned by <code>editor.getData()</code>.</p>
+<p>See also <a href="module_revision-history_revisiontracker-RevisionTracker.html#function-getRevisionRootsAttributes"><code>getRevisionRootsAttributes</code></a>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>revision
+                                            :
+ <span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span>&lt;<span>Record</span>&lt;<span>string</span>, <span>string</span>&gt;&gt;</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getRevisionRootsAttributes">
+                          <h3><code><a class="member-name" href="#function-getRevisionRootsAttributes">getRevisionRootsAttributes</a>( revision ) &rarr;  <span>Promise</span>&lt;<span>Record</span>&lt;<span>string</span>, <span>Record</span>&lt;<span>string</span>, <span>unknown</span>&gt;&gt;&gt;</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:revision-history/revisiontracker~RevisionTracker#getRevisionRootsAttributes"><code>module:revision-history/revisiontracker~RevisionTracker#getRevisionRootsAttributes</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Returns roots attributes for given revision.</p>
+<p>This method returns a promise which resolves with an object, where keys are root names and values are these roots' attributes.
+Most editor setups use just one root, which has the default name <code>main</code>. In this case, the promise will resolve with an object
+similar to this:</p>
+<pre><code class="language-ts">{ main: {} }
+</code></pre>
+<p>See also <a href="module_revision-history_revisiontracker-RevisionTracker.html#function-getRevisionDocumentData"><code>getRevisionDocumentData</code></a>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>revision
+                                            :
+ <span><a class="collapsing-list__type" href="module_revision-history_revision-Revision.html">Revision</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span>&lt;<span>Record</span>&lt;<span>string</span>, <span>Record</span>&lt;<span>string</span>, <span>unknown</span>&gt;&gt;&gt;</code></dt>
                                         <dd>
                                         </dd>
                             </dl>
