@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Oct 23 2024 01:08:29 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:14 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Content styles | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
     <meta property="og:type" content="website">
@@ -311,7 +311,7 @@
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use it straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
 <pre class="highlight"><code class="css">/*
  * CKEditor 5 (v43.2.0) content styles.
- * Generated on Wed, 23 Oct 2024 01:07:25 GMT.
+ * Generated on Thu, 24 Oct 2024 01:08:15 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/installation/legacy/advanced/content-styles.html
  */
 
@@ -573,23 +573,41 @@
 .ck-editor__editable.ck-content .todo-list .todo-list__label.todo-list__label_without-description input[type=checkbox] {
     position: absolute;
 }
-/* @ckeditor/ckeditor5-image/theme/imageresize.css */
-.ck-content img.image_resized {
-    height: auto;
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol {
+    list-style-type: decimal;
 }
-/* @ckeditor/ckeditor5-image/theme/imageresize.css */
-.ck-content .image.image_resized {
-    max-width: 100%;
-    display: block;
-    box-sizing: border-box;
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol {
+    list-style-type: lower-latin;
 }
-/* @ckeditor/ckeditor5-image/theme/imageresize.css */
-.ck-content .image.image_resized img {
-    width: 100%;
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol {
+    list-style-type: lower-roman;
 }
-/* @ckeditor/ckeditor5-image/theme/imageresize.css */
-.ck-content .image.image_resized &gt; figcaption {
-    display: block;
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol ol {
+    list-style-type: upper-latin;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ol ol ol ol ol {
+    list-style-type: upper-roman;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul {
+    list-style-type: disc;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul {
+    list-style-type: circle;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul ul {
+    list-style-type: square;
+}
+/* @ckeditor/ckeditor5-list/theme/list.css */
+.ck-content ul ul ul ul {
+    list-style-type: square;
 }
 /* @ckeditor/ckeditor5-image/theme/image.css */
 .ck-content .image {
@@ -629,41 +647,23 @@
     flex-shrink: 1;
     max-width: 100%;
 }
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol {
-    list-style-type: decimal;
+/* @ckeditor/ckeditor5-image/theme/imageresize.css */
+.ck-content img.image_resized {
+    height: auto;
 }
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol {
-    list-style-type: lower-latin;
+/* @ckeditor/ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized {
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
 }
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol {
-    list-style-type: lower-roman;
+/* @ckeditor/ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized img {
+    width: 100%;
 }
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol ol {
-    list-style-type: upper-latin;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ol ol ol ol ol {
-    list-style-type: upper-roman;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul {
-    list-style-type: disc;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul {
-    list-style-type: circle;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul ul {
-    list-style-type: square;
-}
-/* @ckeditor/ckeditor5-list/theme/list.css */
-.ck-content ul ul ul ul {
-    list-style-type: square;
+/* @ckeditor/ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized &gt; figcaption {
+    display: block;
 }
 /* @ckeditor/ckeditor5-image/theme/imagestyle.css */
 .ck-content .image.image-style-block-align-left,
@@ -762,6 +762,12 @@
     color: var(--ck-highlight-pen-green);
     background-color: transparent;
 }
+/* @ckeditor/ckeditor5-basic-styles/theme/code.css */
+.ck-content code {
+    background-color: hsla(0, 0%, 78%, 0.3);
+    padding: .15em;
+    border-radius: 2px;
+}
 /* @ckeditor/ckeditor5-block-quote/theme/blockquote.css */
 .ck-content blockquote {
     overflow: hidden;
@@ -776,12 +782,6 @@
 .ck-content[dir="rtl"] blockquote {
     border-left: 0;
     border-right: solid 5px hsl(0, 0%, 80%);
-}
-/* @ckeditor/ckeditor5-basic-styles/theme/code.css */
-.ck-content code {
-    background-color: hsla(0, 0%, 78%, 0.3);
-    padding: .15em;
-    border-radius: 2px;
 }
 /* @ckeditor/ckeditor5-font/theme/fontsize.css */
 .ck-content .text-tiny {
@@ -799,6 +799,11 @@
 .ck-content .text-huge {
     font-size: 1.8em;
 }
+/* @ckeditor/ckeditor5-mention/theme/mention.css */
+.ck-content .mention {
+    background: var(--ck-color-mention-background);
+    color: var(--ck-color-mention-text);
+}
 /* @ckeditor/ckeditor5-table/theme/tablecaption.css */
 .ck-content .table &gt; figcaption {
     display: table-caption;
@@ -810,11 +815,6 @@
     padding: .6em;
     font-size: .75em;
     outline-offset: -1px;
-}
-/* @ckeditor/ckeditor5-mention/theme/mention.css */
-.ck-content .mention {
-    background: var(--ck-color-mention-background);
-    color: var(--ck-color-mention-text);
 }
 /* @ckeditor/ckeditor5-horizontal-line/theme/horizontalline.css */
 .ck-content hr {
