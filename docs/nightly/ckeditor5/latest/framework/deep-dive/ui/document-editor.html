@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document editor | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:08:49 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:01:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Document editor | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/document-editor.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Document editor | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/document-editor.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -595,27 +595,26 @@
 <h2 id="the-editor"><a class="headerlink" href="#the-editor">#</a> The editor</h2>
 <p>Document editor can be created using the existing data container in the DOM. It can also accept a raw data string and create the editable by itself. To get the output data, use the <a href="../../../api/module_core_editor_editor-Editor.html#function-getData"><code>getData()</code></a> method.</p>
 <div class="info-box notice"><p>See the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method to learn about different approaches to the initialization of the editor.</p></div>
-<pre class="highlight"><code class="js">import { DecoupledEditor } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { DecoupledEditor } from 'ckeditor5';
 
 DecoupledEditor.create( document.querySelector( '.document-editor__editable' ), {
-    cloudServices: {
-        // A configuration of CKEditor Cloud Services.
-        // ...
-    }
+	cloudServices: {
+		// A configuration of CKEditor Cloud Services.
+		// ...
+	}
 } )
 .then( editor =&gt; {
-    const toolbarContainer = document.querySelector( '.document-editor__toolbar' );
+	const toolbarContainer = document.querySelector( '.document-editor__toolbar' );
 
-    toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+	toolbarContainer.appendChild( editor.ui.view.toolbar.element );
 
-    window.editor = editor;
+	window.editor = editor;
 } )
 .catch( err =&gt; {
-    console.error( err );
+	console.error( err );
 } );
-</code></pre>
+</code></pre></div>
 <p>You may have noticed that you have to make sure the editor UI is injected into your application after it fires the <a href="../../../api/module_ui_editorui_editorui-EditorUI.html#event-ready"><code>EditorUI#ready</code></a> event. The toolbar element can be found under <code>editor.ui.view.toolbar.element</code>.</p>
-<div class="info-box notice"><p>Document editor supports the Easy Image plugin provided by <a href="https://ckeditor.com/ckeditor-cloud-services/">CKEditor Cloud Services</a> out of the box. Please refer to the <a href="../../../features/images/image-upload/easy-image.html">Easy Image documentation</a> to learn more.</p></div>
 <h2 id="the-user-interface"><a class="headerlink" href="#the-user-interface">#</a> The user interface</h2>
 <p>The code you have just created will run the editor but the user interface is still missing. Start off with a basic HTML structure to host the editor components (the toolbar and the editable).</p>
 <h3 id="html"><a class="headerlink" href="#html">#</a> HTML</h3>

@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UI library | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:10 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:00 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="UI library | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/architecture/ui-library.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="UI library | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/architecture/ui-library.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -539,8 +539,8 @@ view.element.placeholder = 'A new placeholder';
 <h2 id="using-the-existing-components"><a class="headerlink" href="#using-the-existing-components">#</a> Using the existing components</h2>
 <p>The framework provides some common <a href="../../api/ui.html">components</a> like <a href="../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or <a href="../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a>. They can be helpful when developing a new user interface.</p>
 <p>For example, to create a toolbar with some buttons inside, you need to import the <code>ToolbarView</code> and <code>ButtonView</code> classes first:</p>
-<pre class="highlight"><code class="js">import { ButtonView, ToolbarView } from 'ckeditor5';
-</code></pre>
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ButtonView, ToolbarView } from 'ckeditor5';
+</code></pre></div>
 <p>Create the toolbar and a couple of buttons with labels first. Then append the buttons to the toolbar:</p>
 <pre class="highlight"><code class="js">const toolbar = new ToolbarView();
 const buttonFoo = new ButtonView();
@@ -589,10 +589,10 @@ toolbar.on( 'execute', evt =&gt; {
 </ul>
 <p>The framework provides a set of helpers to make the dropdown creation process easier. It is still possible to compose a custom dropdown from scratch using the base classes. However, for most needs, we highly recommend using provided helper functions.</p>
 <p>The <a href="../../api/module_ui_dropdown_utils.html#function-createDropdown"><code>createDropdown</code></a> helper creates a <a href="../../api/module_ui_dropdown_dropdownview-DropdownView.html"><code>DropdownView</code></a> with either a <a href="../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or a <a href="../../api/module_ui_dropdown_button_splitbuttonview-SplitButtonView.html"><code>SplitButtonView</code></a>.</p>
-<pre class="highlight"><code class="js">import { createDropdown, SplitButtonView } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { createDropdown, SplitButtonView } from 'ckeditor5';
 
 const dropdownView = createDropdown( locale, SplitButtonView );
-</code></pre>
+</code></pre></div>
 <p>This kind of (default) dropdown comes with a set of behaviors:</p>
 <ul>
 <li>It closes the panel when it loses the focus, for example, when the user moved the focus elsewhere.</li>
@@ -639,7 +639,7 @@ dropdownView.buttonView.set( {
 </code></pre>
 <h4 id="adding-a-list-to-a-dropdown"><a class="headerlink" href="#adding-a-list-to-a-dropdown">#</a> Adding a list to a dropdown</h4>
 <p>The <a href="../../api/module_ui_list_listview-ListView.html"><code>ListView</code></a> can be added to a dropdown using the <a href="../../api/module_ui_dropdown_utils.html#function-addListToDropdown"><code>addListToDropdown</code></a> helper.</p>
-<pre class="highlight"><code class="js">import { ViewModel, addListToDropdown, createDropdown, Collection } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ViewModel, addListToDropdown, createDropdown, Collection } from 'ckeditor5';
 
 // The default dropdown.
 const dropdownView = createDropdown( locale );
@@ -648,27 +648,27 @@ const dropdownView = createDropdown( locale );
 const items = new Collection();
 
 items.add( {
-    type: 'button',
-    model: new ViewModel( {
-        withText: true,
-        label: 'Foo'
-    } )
+	type: 'button',
+	model: new ViewModel( {
+		withText: true,
+		label: 'Foo'
+	} )
 } );
 
 items.add( {
-    type: 'button',
-    model: new ViewModel( {
-        withText: true,
-        label: 'Bar'
-    } )
+	type: 'button',
+	model: new ViewModel( {
+		withText: true,
+		label: 'Bar'
+	} )
 } );
 
 // Create a dropdown with a list inside the panel.
 addListToDropdown( dropdownView, items );
-</code></pre>
+</code></pre></div>
 <h4 id="adding-a-toolbar-to-a-dropdown"><a class="headerlink" href="#adding-a-toolbar-to-a-dropdown">#</a> Adding a toolbar to a dropdown</h4>
 <p>A <a href="../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> can be added to a dropdown using the <a href="../../api/module_ui_dropdown_utils.html#function-addToolbarToDropdown"><code>addToolbarToDropdown</code></a> helper.</p>
-<pre class="highlight"><code class="js">import { ButtonView, SplitButtonView, addToolbarToDropdown, createDropdown } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ButtonView, SplitButtonView, addToolbarToDropdown, createDropdown } from 'ckeditor5';
 
 const buttons = [];
 
@@ -682,7 +682,7 @@ const dropdownView = createDropdown( locale, SplitButtonView );
 
 // Create a dropdown with a toolbar inside the panel.
 addToolbarToDropdown( dropdownView, buttons );
-</code></pre>
+</code></pre></div>
 <p>A common practice is making the main dropdown button <a href="../../api/module_ui_dropdown_dropdownview-DropdownView.html#member-isEnabled">enabled</a> when one of the toolbar items is enabled:</p>
 <pre class="highlight"><code class="js">// Enable the dropdown's button when any of the toolbar items is enabled.
 dropdownView.bind( 'isEnabled' ).toMany( buttons, 'isEnabled',
@@ -691,39 +691,39 @@ dropdownView.bind( 'isEnabled' ).toMany( buttons, 'isEnabled',
 </code></pre>
 <h4 id="adding-a-menu-to-a-dropdown"><a class="headerlink" href="#adding-a-menu-to-a-dropdown">#</a> Adding a menu to a dropdown</h4>
 <p>A multi-level menu can be added to a dropdown using the <a href="../../api/module_ui_dropdown_utils.html#function-addMenuToDropdown"><code>addMenuToDropdown</code></a> helper.</p>
-<pre class="highlight"><code class="js">import { addMenuToDropdown, createDropdown } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { addMenuToDropdown, createDropdown } from 'ckeditor5';
 
 // The default dropdown.
 const dropdownView = createDropdown( editor.locale );
 
 // The menu items definitions.
 const definition = [
-    {
-        id: 'menu_1',
-        menu: 'Menu 1',
-        children: [
-            {
-                id: 'menu_1_a',
-                label: 'Item A'
-            },
-            {
-                id: 'menu_1_b',
-                label: 'Item B'
-            }
-        ]
-    },
-    {
-        id: 'top_a',
-        label: 'Top Item A'
-    },
-    {
-        id: 'top_b',
-        label: 'Top Item B'
-    }
+	{
+		id: 'menu_1',
+		menu: 'Menu 1',
+		children: [
+			{
+				id: 'menu_1_a',
+				label: 'Item A'
+			},
+			{
+				id: 'menu_1_b',
+				label: 'Item B'
+			}
+		]
+	},
+	{
+		id: 'top_a',
+		label: 'Top Item A'
+	},
+	{
+		id: 'top_b',
+		label: 'Top Item B'
+	}
 ];
 
 addMenuToDropdown( dropdownView, editor.body.ui.view, definition );
-</code></pre>
+</code></pre></div>
 <p>Most probably you will want to perform some action when one of the defined buttons is pressed:</p>
 <pre class="highlight"><code class="js">dropdownView.on( 'execute', evt =&gt; {
     const id = evt.source.id;
@@ -771,19 +771,19 @@ addMenuToDropdown( dropdownView, editor.body.ui.view, definition );
 <li>The “Close” button.</li>
 </ul>
 <p>By default, the “Close” button (“X”) is added to the header as long as you provide an icon or a title. To hide it, set the <code>hasCloseButton</code> flag to <code>false</code>:</p>
-<pre class="highlight"><code class="js">import { icons } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { icons } from 'ckeditor5';
 
 // ...
 
 editor.plugins.get( 'Dialog' ).show( {
-    icon: icons.pencil,
-    title: 'My first dialog',
-    // Do not display the "Close" button.
-    hasCloseButton: false,
+	icon: icons.pencil,
+	title: 'My first dialog',
+	// Do not display the "Close" button.
+	hasCloseButton: false,
 
-    // The rest of the dialog definition.
+	// The rest of the dialog definition.
 } );
-</code></pre>
+</code></pre></div>
 <div class="info-box notice"><p>If you decide to hide the “Close” button, remember to leave some other way to close the dialog. The <kbd>Esc</kbd> keystroke also closes the dialog but it may not be available, for example, for touch screen users.</p></div>
 <h5 id="content"><a class="headerlink" href="#content">#</a> Content</h5>
 <p>This part can be a single <a href="#views">view</a> or a collection of views. They will be displayed directly inside the body of the dialog. Below, you can find an example of how to insert a block of text into the dialog.</p>
@@ -935,14 +935,14 @@ editor.plugins.get( 'Dialog' ).show( {
 <h5 id="the-dialogshowid-event"><a class="headerlink" href="#the-dialogshowid-event">#</a> The <code>Dialog#show:[id]</code> event</h5>
 <p>When the <a href="#the-dialogshow-method"><code>Dialog#show()</code></a> function gets called, a namespaced <a href="../../api/module_ui_dialog_dialog-DialogShowEvent.html"><code>show:[id]</code></a> event is fired. This allows for customizing the dialog’s behavior.</p>
 <p>For example, you can change the default position of the “Find and replace” dialog from the editor corner to the bottom with the following code:</p>
-<pre class="highlight"><code class="js">import { DialogViewPosition } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { DialogViewPosition } from 'ckeditor5';
 
 // ...
 
 editor.plugins.get( 'Dialog' ).on( 'show:findAndReplace', ( evt, data ) =&gt; {
-    Object.assign( data, { position: DialogViewPosition.EDITOR_BOTTOM_CENTER } );
+	Object.assign( data, { position: DialogViewPosition.EDITOR_BOTTOM_CENTER } );
 }, { priority: 'high' } );
-</code></pre>
+</code></pre></div>
 <p>You can also listen to the general <code>'show'</code> event to customize all dialogs at once.</p>
 <h5 id="the-dialoghide-method"><a class="headerlink" href="#the-dialoghide-method">#</a> The <code>Dialog#hide()</code> method</h5>
 <p>Executing the <a href="../../api/module_ui_dialog_dialog-Dialog.html#function-hide"><code>Dialog#hide()</code></a> method will hide the dialog. It will also call the <a href="#using-the-onshow-and-onhide-callbacks"><code>onHide()</code></a> callback if it was provided in the respective <a href="../../api/module_ui_dialog_dialog-Dialog.html#function-show"><code>Dialog#show()</code></a> method call.</p>
@@ -979,7 +979,7 @@ editor.plugins.get( 'Dialog' ).on( 'hide:findAndReplace', () =&gt; {
 <h5 id="using-the-onshow-and-onhide-callbacks"><a class="headerlink" href="#using-the-onshow-and-onhide-callbacks">#</a> Using the <code>onShow</code> and <code>onHide</code> callbacks</h5>
 <p>The <a href="../../api/module_ui_dialog_dialog-DialogDefinition.html"><code>DialogDefinition</code></a> accepts two callbacks. They allow customizing the actions after the dialog is shown (<a href="../../api/module_ui_dialog_dialog-DialogDefinition.html#member-onShow"><code>onShow()</code></a>) and hidden (<a href="../../api/module_ui_dialog_dialog-DialogDefinition.html#member-onHide"><code>onHide()</code></a>).</p>
 <p>The <code>onShow</code> callback allows you to manipulate the dialog values or set additional listeners. In the <a href="#the-dialogviewclose-event"><code>DialogView#event:close</code> event</a> section you can find an example of how to disable the <kbd>Esc</kbd> key with it. The code below shows how to bootstrap the dynamic field filling.</p>
-<pre class="highlight"><code class="js">// Import necessary classes.
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">// Import necessary classes.
 import { View, InputTextView } from 'ckeditor5';
 
 // Create an input.
@@ -987,22 +987,22 @@ const input = new InputTextView();
 const dialogBody = new View();
 
 dialogBody.setTemplate( {
-    tag: 'div',
-    children: [
-        // Other elements of the view.
-        input
-    ]
-    // The rest of the template.
+	tag: 'div',
+	children: [
+		// Other elements of the view.
+		input
+	]
+	// The rest of the template.
 } );
 
 editor.plugins.get( 'Dialog' ).show( {
-    onShow: () =&gt; {
-        // Set the dynamic initial input value.
-        input.value = getDataFromExternalSource();
-    },
-    // The rest of the dialog definition.
+	onShow: () =&gt; {
+		// Set the dynamic initial input value.
+		input.value = getDataFromExternalSource();
+	},
+	// The rest of the dialog definition.
 } );
-</code></pre>
+</code></pre></div>
 <p>The <code>onHide</code> callback will be particularly helpful to reset the state of the component or its controller once the dialog is closed.</p>
 <pre class="highlight"><code class="js">// Executing inside a class with the "controller" property that has the state connected to the dialog.
 editor.plugins.get( 'Dialog' ).show( {
@@ -1018,19 +1018,19 @@ editor.plugins.get( 'Dialog' ).show( {
 <ul>
 <li>When you develop your dialog, specify the <a href="../../api/module_ui_dialog_dialog-DialogDefinition.html#member-position"><code>position</code></a> property in a definition passed to the <a href="../../api/module_ui_dialog_dialog-Dialog.html#function-show"><code>Dialog#show()</code></a> method, for instance:</li>
 </ul>
-<pre class="highlight"><code class="js">import { DialogViewPosition } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { DialogViewPosition } from 'ckeditor5';
 
 // ...
 
 const dialog = editor.plugins.get( 'Dialog' );
 
 dialog.show( {
-    // ...
+	// ...
 
-    // Change the default position of the dialog.
-    position: DialogViewPosition.EDITOR_BOTTOM_CENTER
+	// Change the default position of the dialog.
+	position: DialogViewPosition.EDITOR_BOTTOM_CENTER
 } );
-</code></pre>
+</code></pre></div>
 <ul>
 <li>To change the position of an existing dialog or manage positions dynamically, use the <a href="../../api/module_ui_dialog_dialog-DialogShowEvent.html"><code>show</code></a> event listener (see the <a href="#the-dialogshowid-event">example code</a>).</li>
 </ul>
@@ -1050,13 +1050,13 @@ dropdownView.buttonView.on( 'execute', () =&gt; {
 <div class="info-box notice"><p>If you want to know how the editor handles focus under the hood and what tools make it possible, check out the <a href="../deep-dive/ui/focus-tracking.html">Deep dive into focus tracking</a> guide.</p></div>
 <h3 id="focus-tracker"><a class="headerlink" href="#focus-tracker">#</a> Focus tracker</h3>
 <p>The <a href="../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe some HTML elements and determine if one of them is focused either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
-<pre class="highlight"><code class="js">import { FocusTracker } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { FocusTracker } from 'ckeditor5';
 
 // More imports.
 // ...
 
 const focusTracker = new FocusTracker();
-</code></pre>
+</code></pre></div>
 <p>To register elements in the tracker, use the <a href="../../api/module_utils_focustracker-FocusTracker.html#function-add"><code>add()</code></a> method:</p>
 <pre class="highlight"><code class="js">focusTracker.add( document.querySelector( '.some-element' ) );
 focusTracker.add( viewInstance.element );
@@ -1074,13 +1074,13 @@ focusTracker.add( viewInstance.element );
 <p>Learn more about the focus tracker class in the <a href="../deep-dive/ui/focus-tracking.html#using-the-focustracker-class">Deep dive into focus tracking</a> guide.</p>
 <h3 id="keystroke-handler"><a class="headerlink" href="#keystroke-handler">#</a> Keystroke handler</h3>
 <p>The <a href="../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants. It executes pre-defined actions when the keystroke is pressed. Usually, each <a href="#views">view</a> creates its keystroke handler instance. It takes care of the keystrokes fired by the elements the view has rendered.</p>
-<pre class="highlight"><code class="js">import { KeystrokeHandler } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { KeystrokeHandler } from 'ckeditor5';
 
 // More imports.
 // ...
 
 const keystrokeHandler = new KeystrokeHandler();
-</code></pre>
+</code></pre></div>
 <p>To define the scope of the keystroke handler in the DOM, use the <a href="../../api/module_utils_keystrokehandler-KeystrokeHandler.html#function-listenTo"><code>listenTo()</code></a> method:</p>
 <pre class="highlight"><code class="js">keystrokeHandler.listenTo( document.querySelector( '.some-element' ) );
 keystrokeHandler.listenTo( viewInstance.element );

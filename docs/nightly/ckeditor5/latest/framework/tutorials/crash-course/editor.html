@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation</title>
     <meta name="description" content="Learn how to use CKEditor 5 APIs to create a custom editor plugin.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:17 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:09 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/crash-course/editor.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/crash-course/editor.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -355,7 +355,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.4.0/img/book.svg" alt="guide">Editor and configuration
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#test-environment" title="Test environment">Test environment</a></li><li><a href="#creating-an-editor" title="Creating an editor">Creating an editor</a></li><li><a href="#configuration" title="Configuration">Configuration</a></li><li><a href="#editor-methods" title="Editor methods">Editor methods</a><ol><li><a href="#getdata-and-setdata" title="getData() and setData()">getData() and setData()</a></li><li><a href="#execute" title="execute()">execute()</a></li><li><a href="#destroy" title="destroy()">destroy()</a></li></ol></li><li><a href="#whats-next" title="What’s next">What’s next</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#test-environment" title="Test environment">Test environment</a></li><li><a href="#creating-an-editor" title="Creating an editor">Creating an editor</a></li><li><a href="#configuration" title="Configuration">Configuration</a></li><li><a href="#editor-methods" title="Editor methods">Editor methods</a><ol><li><a href="#getdata-and-setdata" title="getData() and setData()">getData() and setData()</a></li><li><a href="#execute" title="execute()">execute()</a></li><li><a href="#destroy" title="destroy()">destroy()</a></li></ol></li><li><a href="#adapt-this-tutorial-to-cdn" title="Adapt this tutorial to CDN">Adapt this tutorial to CDN</a></li><li><a href="#whats-next" title="What’s next">What’s next</a></li></ol></nav>
 <h2 id="test-environment"><a class="headerlink" href="#test-environment">#</a> Test environment</h2>
 <p>For this tutorial, we have created a minimal setup required to use the editor. To follow along, run the commands below:</p>
 <pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/crash-course crash-course
@@ -366,6 +366,7 @@ npm run dev
 </code></pre>
 <p>Open the URL displayed in your terminal. If everything went well, you should see a “Hello world!” text displayed on the page.</p>
 <p>We encourage you to follow the steps in the tutorial and type the code yourself to build the muscle and mental memory.</p>
+<div class="info-box notice"><p>If you want to use this tutorial with CDN, follow the steps in the <a href="#adapt-this-tutorial-to-cdn">Adapt this tutorial to CDN</a> section.</p></div>
 <h2 id="creating-an-editor"><a class="headerlink" href="#creating-an-editor">#</a> Creating an editor</h2>
 <p>The test environment you set up displays the “Hello world!” on the page. Let’s learn the first editor method that replaces this element with the editor.</p>
 <p>Open the <code>src/main.js</code> file and add the following code:</p>
@@ -400,6 +401,7 @@ const editor = await ClassicEditor.create( element, {
 <p>When the page refreshes, you should see the “Hello world!” text in the editor and be able to type in it.</p>
 <p>The <code>Essentials</code> plugin adds the <code>Undo</code> and <code>Redo</code> operations. Let’s add them to the editor’s toolbar.</p>
 <pre class="highlight"><code class="js">const editor = await ClassicEditor.create( element, {
+    licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
     plugins: [
         Essentials,
         Paragraph
@@ -416,6 +418,7 @@ const editor = await ClassicEditor.create( element, {
 </code></pre>
 <p>After refreshing the page, the editor should have two buttons at the top. If you type something into the editor and click the “back arrow” button, your changes should be removed. Clicking the “forward arrow” button should restore those changes.</p>
 <p>The configuration object we have just updated controls the features, appearance, and behavior of the editor. If you want to change any aspect of the editor, it is most likely through this object.</p>
+<p>The <code>licenseKey</code> option is needed for the editor to run. You can learn more about it in the <a href="../../../getting-started/licensing/license-key-and-activation.html">License key and activation</a> guide.</p>
 <h2 id="editor-methods"><a class="headerlink" href="#editor-methods">#</a> Editor methods</h2>
 <p>Now that you can type in the editor, let’s test other editor methods besides <code>create()</code>. Add the following to the bottom of the <code>src/main.js</code> file. It will allow us to access the editor instance globally for testing purposes.</p>
 <pre class="highlight"><code class="js">// Add the global `editor` variable (only needed for debugging).
@@ -451,6 +454,42 @@ window.editor = editor;
 <pre class="highlight"><code class="js">editor.destroy();
 </code></pre>
 <p>The editor and its contents should disappear. <strong>This method returns a promise, so you need to <code>await</code> it</strong> if you want to execute more logic after the editor is destroyed.</p>
+<h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
+<p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
+<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;CKEditor 5 Framework – tutorial CDN&lt;/title&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+            &lt;p&gt;Hello world!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+
+        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The CSS file contains the editor and content styles. Therefore, you do not need to import styles into your JavaScript file.</p>
+<pre class="highlight"><code class="js">// Before:
+import 'ckeditor5/ckeditor5.css';
+
+// After:
+// No need to import the styles.
+</code></pre>
+<p>The script tag loads the editor from the CDN. It exposes the global variable <code>CKEDITOR</code>. You can use it in your project to access the editor class and plugins. That is why you must change the import statements to destructuring in the JavaScript files:</p>
+<pre class="highlight"><code class="js">// Before:
+import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
+
+// After:
+const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
+</code></pre>
+<p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in the browser.</p>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What’s next</h2>
 <p>In the next chapter you will <a href="plugins.html">learn more about plugins</a> and we will start creating a new one from scratch.</p>
 

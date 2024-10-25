@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Schema | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Schema | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/schema.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Schema | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/schema.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -421,7 +421,7 @@ schema.register( 'extendedChild', { inheritAllFrom: 'baseChild' } );
 schema.register( 'extendedParent', { inheritAllFrom: 'baseParent', disallowChildren: [ 'baseChild' ] } );
 </code></pre>
 <p>In this case, <code>extendedChild</code> will be allowed in <code>baseParent</code> (thanks to inheriting from <code>baseChild</code>) and in <code>extendedParent</code> (as it inherits <code>baseParent</code>).</p>
-<p>But <code>baseChild</code> will be allowed only in <code>baseParent</code>. Although <code>extendedParent</code> inherits all rules from <code>baseParent</code> it specifically disallows <code>baseChild</code> as the part of its definition.</p>
+<p>However, <code>baseChild</code> will be allowed only in <code>baseParent</code>. Although <code>extendedParent</code> inherits all rules from <code>baseParent</code>, it specifically disallows <code>baseChild</code> as part of its definition.</p>
 <p>Below is a different example, where instead <code>baseChild</code> is extended with <code>disallowIn</code> rule:</p>
 <pre class="highlight"><code class="js">schema.register( 'baseParent' );
 schema.register( 'baseChild', { allowIn: 'baseParent' } );
@@ -430,7 +430,7 @@ schema.register( 'extendedParent', { inheritAllFrom: 'baseParent' } );
 schema.register( 'extendedChild', { inheritAllFrom: 'baseChild' } );
 schema.extend( 'baseChild', { disallowIn: 'extendedParent' } );
 </code></pre>
-<p>This changes how schema rules are resolved. <code>baseChild</code> will still be disallowed in <code>extendedParent</code> as before. But now, <code>extendedChild</code> will be disallowed in <code>extendedParent</code> as well. That’s because it will inherit this rule from <code>baseChild</code>, and there is no other rule that would allow <code>extendedChild</code> in <code>extendedParent</code>.</p>
+<p>This changes how schema rules are resolved. <code>baseChild</code> will still be disallowed in <code>extendedParent</code> as before. But now, <code>extendedChild</code> will be disallowed in <code>extendedParent</code> as well. That is because it will inherit this rule from <code>baseChild</code>, and there is no other rule that would allow <code>extendedChild</code> in <code>extendedParent</code>.</p>
 <p>Of course, you can mix <code>allowIn</code> with <code>disallowChildren</code> as well as <code>allowChildren</code> with <code>disallowIn</code>.</p>
 <p>Finally, a situation may come up, when you want to inherit from an item which is already disallowed, but the new element should be re-allowed again. In this case, the definitions should look like this:</p>
 <pre class="highlight"><code class="js">schema.register( 'baseParent', { inheritAllFrom: 'paragraph', disallowChildren: [ 'imageInline' ] } );
@@ -898,7 +898,7 @@ schema.register( '$text', {
 <p>These callbacks can be set both for child checks (model structure checks) and attribute checks.</p>
 <p>Note that the callbacks take precedence over the rules defined through the declarative API and can overwrite these rules.</p>
 <h3 id="child-checks-structure-checks"><a class="headerlink" href="#child-checks-structure-checks">#</a> Child checks (structure checks)</h3>
-<p>Using <a href="../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> you can provide function callbacks in order to implement specific advanced rules for checking the model structure.</p>
+<p>Using <a href="../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> you can provide function callbacks to implement specific advanced rules for checking the model structure.</p>
 <p>You can provide callbacks that are fired only when a specific child is checked, or generic callbacks fired for all checks performed by the schema.</p>
 <p>Below is an example of a specific callback, that disallows inline images inside code blocks:</p>
 <pre class="highlight"><code class="js">schema.addChildCheck( context =&gt; {
@@ -913,7 +913,7 @@ schema.register( '$text', {
 </code></pre>
 <p>Note that a callback may return <code>true</code>, <code>false</code>, or no value (<code>undefined</code>). If <code>true</code> or <code>false</code> is returned, the decision was made and further callbacks or declarative rules will not be checked. The item will be allowed or disallowed. If no value is returned, further checks will decide whether the item is allowed or not.</p>
 <p>In some cases, you may need to define a generic listener that will be fired on every schema check.</p>
-<p>For instance, to disallow all block objects (e.g. tables) inside a block quotes, you can define following callback:</p>
+<p>For instance, to disallow all block objects (for example tables) inside a block quotes, you can define following callback:</p>
 <pre class="highlight"><code class="js">schema.addChildCheck( ( context, childDefinition ) =&gt; {
     if ( context.endsWith( 'blockQuote' ) &amp;&amp; childDefinition.isBlock &amp;&amp; childDefinition.isObject ) {
         return false;

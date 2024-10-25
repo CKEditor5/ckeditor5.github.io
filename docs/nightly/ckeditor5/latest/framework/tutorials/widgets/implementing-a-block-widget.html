@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Implementing a block widget tutorial | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:19 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:10 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Implementing a block widget tutorial | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/implementing-a-block-widget.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Implementing a block widget tutorial | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/implementing-a-block-widget.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -358,10 +358,11 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.4.0/img/book.svg" alt="guide">Implementing a block widget
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#lets-start" title="Let’s start">Let’s start</a></li><li><a href="#plugin-structure" title="Plugin structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a></li><li><a href="#what-is-in-the-model" title="What is in the model?">What is in the model?</a></li><li><a href="#behavior-before-turning-simple-box-into-a-widget" title="Behavior before turning simple box into a widget">Behavior before turning simple box into a widget</a></li><li><a href="#making-simple-box-a-widget" title="Making simple box a widget">Making simple box a widget</a></li><li><a href="#behavior-after-turning-simple-box-into-a-widget" title="Behavior after turning simple box into a widget">Behavior after turning simple box into a widget</a></li></ol></li><li><a href="#creating-a-command" title="Creating a command">Creating a command</a></li><li><a href="#creating-a-button" title="Creating a button">Creating a button</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#lets-start" title="Let’s start">Let’s start</a></li><li><a href="#plugin-structure" title="Plugin structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a></li><li><a href="#what-is-in-the-model" title="What is in the model?">What is in the model?</a></li><li><a href="#behavior-before-turning-simple-box-into-a-widget" title="Behavior before turning simple box into a widget">Behavior before turning simple box into a widget</a></li><li><a href="#making-simple-box-a-widget" title="Making simple box a widget">Making simple box a widget</a></li><li><a href="#behavior-after-turning-simple-box-into-a-widget" title="Behavior after turning simple box into a widget">Behavior after turning simple box into a widget</a></li></ol></li><li><a href="#creating-a-command" title="Creating a command">Creating a command</a></li><li><a href="#creating-a-button" title="Creating a button">Creating a button</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li><li><a href="#adapt-this-tutorial-to-cdn" title="Adapt this tutorial to CDN">Adapt this tutorial to CDN</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement a more complex CKEditor&nbsp;5 plugin.</p>
 <p>You will build a “Simple box” feature which will allow the user to insert a custom box with a title and body fields into the document. You will use the widget utilities and work with the model-view conversion to properly set up the behavior of this feature. Later on, you will create a UI which will allow for inserting new simple boxes into the document with the toolbar button.</p>
-<div class="info-box notice"><p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p></div>
+<p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p>
+<div class="info-box notice"><p>If you want to use this tutorial with CDN, follow the steps in the <a href="#adapt-this-tutorial-to-cdn">Adapt this tutorial to CDN</a> section.</p></div>
 <!-- TODO: and allow controlling simple box properties such as alignment and width. -->
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <p>This tutorial will reference various parts of the <a href="../../architecture/intro.html">CKEditor&nbsp;5 architecture</a> section as you go. While reading them is not necessary to finish this tutorial, it is recommended to read these guides at some point to get a better understanding of the mechanisms used in this tutorial.</p>
@@ -433,6 +434,7 @@ import SimpleBox from './simplebox/simplebox';                                 /
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic,
             SimpleBox                                                          // ADDED
@@ -623,6 +625,7 @@ import CKEditorInspector from '@ckeditor/ckeditor5-inspector';                 /
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic,
             SimpleBox
@@ -982,6 +985,7 @@ export default class SimpleBoxUI extends Plugin {
 <p>The last thing you need to do is tell the editor to display the button in the toolbar. To do that, you will need to slightly modify the code that runs the editor instance and include the button in the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-toolbar">toolbar configuration</a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic, SimpleBox ],
         // Insert the "simpleBox" button into the editor toolbar.
         toolbar: [ 'heading', 'bold', 'italic', 'numberedList', 'bulletedList', 'simpleBox' ]
@@ -1045,6 +1049,42 @@ cd final-project
 npm install
 npm run dev
 </code></pre>
+<h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
+<p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
+<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;CKEditor 5 Framework – tutorial CDN&lt;/title&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+            &lt;p&gt;Hello world!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+
+        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The CSS file contains the editor and content styles. Consequentially, you do not need to import styles into your JavaScript file.</p>
+<pre class="highlight"><code class="js">// Before:
+import 'ckeditor5/ckeditor5.css';
+
+// After:
+// No need to import the styles.
+</code></pre>
+<p>The script tag loads the editor from the CDN. It exposes the global variable <code>CKEDITOR</code>. You can use it in your project to access the editor class and plugins. That is why you must change the import statements to destructuring in the JavaScript files:</p>
+<pre class="highlight"><code class="js">// Before:
+import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
+
+// After:
+const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
+</code></pre>
+<p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in browser.</p>
 
           <div class="info-box notice notice__feedback">
             <p>

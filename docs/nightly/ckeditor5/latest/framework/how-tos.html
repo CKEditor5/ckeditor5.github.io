@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CKEditor 5 How-tos | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:08:50 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:01:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 How-tos | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/how-tos.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="CKEditor 5 How-tos | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/how-tos.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
@@ -414,7 +414,6 @@ editorInstance.editing.view.change( writer =&gt; {
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
-        // If you're using builds, this is going to be extraPlugins property.
         plugins: [
             MyPlugin,
             // Other plugins.
@@ -578,19 +577,19 @@ for ( const range of wordRanges ) {
 }
 </code></pre>
 <h3 id="how-to-listen-on-a-double-click-for-example-link-elements"><a class="headerlink" href="#how-to-listen-on-a-double-click-for-example-link-elements">#</a> How to listen on a double-click (for example, link elements)?</h3>
-<pre class="highlight"><code class="js">// Add observer for double click and extend a generic DomEventObserver class by a native DOM dblclick event:
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">// Add observer for double click and extend a generic DomEventObserver class by a native DOM dblclick event:
 import { DomEventObserver } from 'ckeditor5';
 
 class DoubleClickObserver extends DomEventObserver {
-    constructor( view ) {
-        super( view );
+	constructor( view ) {
+		super( view );
 
-        this.domEventType = 'dblclick';
-    }
+		this.domEventType = 'dblclick';
+	}
 
-    onDomEvent( domEvent ) {
-        this.fire( domEvent.type, domEvent );
-    }
+	onDomEvent( domEvent ) {
+		this.fire( domEvent.type, domEvent );
+	}
 }
 
 // Then use in the editor:
@@ -600,180 +599,180 @@ const viewDocument = view.document;
 view.addObserver( DoubleClickObserver );
 
 editor.listenTo(
-    viewDocument,
-    'dblclick',
-    ( evt, data ) =&gt; {
-        console.log( 'clicked' );
-        // Fire your custom actions here.
-    },
-    { context: 'a' }
+	viewDocument,
+	'dblclick',
+	( evt, data ) =&gt; {
+		console.log( 'clicked' );
+		// Fire your custom actions here.
+	},
+	{ context: 'a' }
 );
-</code></pre>
+</code></pre></div>
 <p>There are many observers provided with our features, and you should check if there is no conflicting observer that already fires for the given DOM event.</p>
 <h3 id="how-to-create-a-widget-with-a-single-view-element-and-multiplenested-model-elements"><a class="headerlink" href="#how-to-create-a-widget-with-a-single-view-element-and-multiplenested-model-elements">#</a> How to create a widget with a single view element and multiple/nested model elements?</h3>
-<pre class="highlight"><code class="js">import { Plugin, toWidget, toWidgetEditable } from 'ckeditor5'
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { Plugin, toWidget, toWidgetEditable } from 'ckeditor5'
 
 class Forms extends Plugin {
-    init() {
-        const editor = this.editor;
-        const schema = editor.model.schema;
+	init() {
+		const editor = this.editor;
+		const schema = editor.model.schema;
 
-        schema.register( 'forms', {
-            inheritAllFrom: '$inlineObject',
-            allowAttributes: 'type'
-        } );
+		schema.register( 'forms', {
+			inheritAllFrom: '$inlineObject',
+			allowAttributes: 'type'
+		} );
 
-        schema.register( 'formName', {
-            allowIn: 'forms',
-            allowChildren: '$text',
-            isLimit: true
-        } );
+		schema.register( 'formName', {
+			allowIn: 'forms',
+			allowChildren: '$text',
+			isLimit: true
+		} );
 
-        // Disallow all attributes on $text inside `formName` (there won't be any bold/italic etc. inside).
-        schema.addAttributeCheck( context =&gt; {
-            if ( context.endsWith( 'formName $text' ) ) {
-                return false;
-            }
-        } );
+		// Disallow all attributes on $text inside `formName` (there won't be any bold/italic etc. inside).
+		schema.addAttributeCheck( context =&gt; {
+			if ( context.endsWith( 'formName $text' ) ) {
+				return false;
+			}
+		} );
 
-        // Allow only text nodes inside `formName` (without any elements that could be down-casted to HTML elements).
-        schema.addChildCheck( ( context, childDefinition ) =&gt; {
-            if (
-                context.endsWith( 'formName' ) &amp;&amp;
-                childDefinition.name !== '$text'
-            ) {
-                return false;
-            }
-        } );
+		// Allow only text nodes inside `formName` (without any elements that could be down-casted to HTML elements).
+		schema.addChildCheck( ( context, childDefinition ) =&gt; {
+			if (
+				context.endsWith( 'formName' ) &amp;&amp;
+				childDefinition.name !== '$text'
+			) {
+				return false;
+			}
+		} );
 
-        // Data upcast. Convert a single element loaded by the editor to a structure of model elements.
-        editor.conversion.for( 'upcast' ).elementToElement( {
-            view: {
-                name: 'input',
-                attributes: [ 'type', 'name' ]
-            },
-            model: ( viewElement, { writer } ) =&gt; {
-                const modelElement = writer.createElement( 'forms', {
-                    type: viewElement.getAttribute( 'type' )
-                } );
-                const nameModelElement = writer.createElement( 'formName' );
+		// Data upcast. Convert a single element loaded by the editor to a structure of model elements.
+		editor.conversion.for( 'upcast' ).elementToElement( {
+			view: {
+				name: 'input',
+				attributes: [ 'type', 'name' ]
+			},
+			model: ( viewElement, { writer } ) =&gt; {
+				const modelElement = writer.createElement( 'forms', {
+					type: viewElement.getAttribute( 'type' )
+				} );
+				const nameModelElement = writer.createElement( 'formName' );
 
-                // Build model structure out of a single view element.
-                writer.insert( nameModelElement, modelElement, 0 );
-                writer.insertText(
-                    viewElement.getAttribute( 'name' ),
-                    nameModelElement,
-                    0
-                );
+				// Build model structure out of a single view element.
+				writer.insert( nameModelElement, modelElement, 0 );
+				writer.insertText(
+					viewElement.getAttribute( 'name' ),
+					nameModelElement,
+					0
+				);
 
-                return modelElement;
-            }
-        } );
+				return modelElement;
+			}
+		} );
 
-        // Editing downcast. Convert model elements separately to widget and to widget-editable nested inside.
-        editor.conversion
-            .for( 'editingDowncast' )
-            .elementToElement( {
-                model: 'forms',
-                view: ( modelElement, { writer } ) =&gt; {
-                    const viewElement = writer.createContainerElement( 'span', {
-                        'data-type': modelElement.getAttribute( 'type' ),
-                        style: 'display: inline-block'
-                    } );
+		// Editing downcast. Convert model elements separately to widget and to widget-editable nested inside.
+		editor.conversion
+			.for( 'editingDowncast' )
+			.elementToElement( {
+				model: 'forms',
+				view: ( modelElement, { writer } ) =&gt; {
+					const viewElement = writer.createContainerElement( 'span', {
+						'data-type': modelElement.getAttribute( 'type' ),
+						style: 'display: inline-block'
+					} );
 
-                    return toWidget( viewElement, writer );
-                }
-            } )
-            .elementToElement( {
-                model: 'formName',
-                view: ( modelElement, { writer } ) =&gt; {
-                    const viewElement = writer.createEditableElement( 'span' );
+					return toWidget( viewElement, writer );
+				}
+			} )
+			.elementToElement( {
+				model: 'formName',
+				view: ( modelElement, { writer } ) =&gt; {
+					const viewElement = writer.createEditableElement( 'span' );
 
-                    return toWidgetEditable( viewElement, writer );
-                }
-            } );
+					return toWidgetEditable( viewElement, writer );
+				}
+			} );
 
-        // Data downcast. Convert the outermost model element and all its content into a single view element.
-        editor.conversion.for( 'dataDowncast' ).elementToElement( {
-            model: 'forms',
-            view: ( modelElement, { writer, consumable } ) =&gt; {
-                let nameModelElement;
+		// Data downcast. Convert the outermost model element and all its content into a single view element.
+		editor.conversion.for( 'dataDowncast' ).elementToElement( {
+			model: 'forms',
+			view: ( modelElement, { writer, consumable } ) =&gt; {
+				let nameModelElement;
 
-                // Find the `formName` model element and consume everything inside the model element range,
-                // so it won't get converted by any other downcast converters.
-                for ( const { item } of editor.model.createRangeIn( modelElement ) ) {
-                    if ( item.is( 'element', 'formName' ) ) {
-                        nameModelElement = modelElement.getChild( 0 );
-                    }
+				// Find the `formName` model element and consume everything inside the model element range,
+				// so it won't get converted by any other downcast converters.
+				for ( const { item } of editor.model.createRangeIn( modelElement ) ) {
+					if ( item.is( 'element', 'formName' ) ) {
+						nameModelElement = modelElement.getChild( 0 );
+					}
 
-                    consumable.consume( item, 'insert' );
-                }
+					consumable.consume( item, 'insert' );
+				}
 
-                return writer.createContainerElement( 'input', {
-                    type: modelElement.getAttribute( 'type' ),
-                    name: nameModelElement.getChild( 0 ).data
-                } );
-            }
-        } );
-    }
+				return writer.createContainerElement( 'input', {
+					type: modelElement.getAttribute( 'type' ),
+					name: nameModelElement.getChild( 0 ).data
+				} );
+			}
+		} );
+	}
 }
-</code></pre>
+</code></pre></div>
 <h3 id="how-to-add-a-custom-button-to-the-link-dialog"><a class="headerlink" href="#how-to-add-a-custom-button-to-the-link-dialog">#</a> How to add a custom button to the link dialog?</h3>
-<pre class="highlight"><code class="js">import { ButtonView, Plugin, LinkUI } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ButtonView, Plugin, LinkUI } from 'ckeditor5';
 
 class InternalLink extends Plugin {
-    init() {
-        const editor = this.editor;
-        const linkUI = editor.plugins.get( LinkUI );
-        const contextualBalloonPlugin = editor.plugins.get( 'ContextualBalloon' );
+	init() {
+		const editor = this.editor;
+		const linkUI = editor.plugins.get( LinkUI );
+		const contextualBalloonPlugin = editor.plugins.get( 'ContextualBalloon' );
 
-        this.listenTo( contextualBalloonPlugin, 'change:visibleView', ( evt, name, visibleView ) =&gt; {
-            if ( visibleView === linkUI.formView ) {
-                // Detach the listener.
-                this.stopListening( contextualBalloonPlugin, 'change:visibleView' );
+		this.listenTo( contextualBalloonPlugin, 'change:visibleView', ( evt, name, visibleView ) =&gt; {
+			if ( visibleView === linkUI.formView ) {
+				// Detach the listener.
+				this.stopListening( contextualBalloonPlugin, 'change:visibleView' );
 
-                this.linkFormView = linkUI.formView;
-                this.button = this._createButton();
+				this.linkFormView = linkUI.formView;
+				this.button = this._createButton();
 
-                console.log( 'The link form view has been displayed', this.linkFormView );
+				console.log( 'The link form view has been displayed', this.linkFormView );
 
-                // Render the button template.
-                this.button.render();
+				// Render the button template.
+				this.button.render();
 
-                // Register the button under the link form view, it will handle its destruction.
-                this.linkFormView.registerChild( this.button );
+				// Register the button under the link form view, it will handle its destruction.
+				this.linkFormView.registerChild( this.button );
 
-                // Inject the element into DOM.
-                this.linkFormView.element.insertBefore( this.button.element, this.linkFormView.saveButtonView.element );
-            }
-        } );
-    }
+				// Inject the element into DOM.
+				this.linkFormView.element.insertBefore( this.button.element, this.linkFormView.saveButtonView.element );
+			}
+		} );
+	}
 
-    _createButton() {
-        const editor = this.editor;
-        const button = new ButtonView( this.locale );
-        const linkCommand = editor.commands.get( 'link' );
+	_createButton() {
+		const editor = this.editor;
+		const button = new ButtonView( this.locale );
+		const linkCommand = editor.commands.get( 'link' );
 
-        button.set( {
-            label: 'Internal link',
-            withText: true,
-            tooltip: true
-        } );
+		button.set( {
+			label: 'Internal link',
+			withText: true,
+			tooltip: true
+		} );
 
-        // This button should be also disabled when the link command is disabled.
-        // Try setting editor.isReadOnly = true to see it in action.
-        button.bind( 'isEnabled' ).to( linkCommand );
+		// This button should be also disabled when the link command is disabled.
+		// Try setting editor.isReadOnly = true to see it in action.
+		button.bind( 'isEnabled' ).to( linkCommand );
 
-        button.on( 'execute', () =&gt; {
-            // Do something (for emaple, open the popup), then update the link URL field's value.
-            // The line below will be executed inside some callback.
-            this.linkFormView.urlInputView.value = 'http://some.internal.link';
-        } );
+		button.on( 'execute', () =&gt; {
+			// Do something (for emaple, open the popup), then update the link URL field's value.
+			// The line below will be executed inside some callback.
+			this.linkFormView.urlInputView.value = 'http://some.internal.link';
+		} );
 
-        return button;
-    }
+		return button;
+	}
 }
-</code></pre>
+</code></pre></div>
 <h2 id="framework-integrations"><a class="headerlink" href="#framework-integrations">#</a> Framework integrations</h2>
 <h3 id="the-javascript-heap-out-of-memory-error"><a class="headerlink" href="#the-javascript-heap-out-of-memory-error">#</a> The <code>JavaScript heap out of memory</code> error</h3>
 <p>When building the React application for the production using the <code>yarn build</code> command, there is a faint chance it may produce an error related to the memory available on the build machine:</p>

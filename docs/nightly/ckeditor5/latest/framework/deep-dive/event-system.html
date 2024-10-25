@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Event system | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:02 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Event system | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/event-system.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Event system | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/event-system.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -359,15 +359,15 @@
 <p><a href="../../api/module_utils_emittermixin-Emitter.html">Emitters</a> are objects that can fire events. They also provide means to listen to other emitters’ events.</p>
 <p>Emitters are heavily used throughout the entire editor architecture. They are the building blocks for mechanisms such as the <a href="observables.html">observables</a>, <a href="../architecture/editing-engine.html#observers">engine’s view observers</a>, and <a href="../architecture/editing-engine.html#conversion">conversion</a>.</p>
 <p>Any class can become an event emitter. All you need to do is mix the <a href="../../api/module_utils_emittermixin-Emitter.html"><code>Emitter</code></a> into it:</p>
-<pre class="highlight"><code class="js">import { EmitterMixin, mix } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { EmitterMixin, mix } from 'ckeditor5';
 
 class AnyClass {
-    // Class's code.
-    // ...
+	// Class's code.
+	// ...
 }
 
 mix( AnyClass, EmitterMixin );
-</code></pre>
+</code></pre></div>
 <h2 id="listening-to-events"><a class="headerlink" href="#listening-to-events">#</a> Listening to events</h2>
 <p>Adding a callback to an event is simple. You can listen directly on the emitter object and use an anonymous function:</p>
 <pre class="highlight"><code class="js">emitter.on( 'eventName', ( eventInfo, ...args ) =&gt; { /* ... */ } );
@@ -448,7 +448,7 @@ this.on( 'foo:bar:baz', () =&gt; { /* ... */ } );
 <p><strong>Note</strong>: Most base classes (like <a href="../../api/module_core_command-Command.html"><code>Command</code></a> or <a href="../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a>) are <a href="../../api/module_utils_emittermixin-Emitter.html">emitters</a> already and fire their own events.</p>
 <h3 id="stopped-events"><a class="headerlink" href="#stopped-events">#</a> Stopped events</h3>
 <p>It is sometimes useful to know if an event was stopped by any of the listeners. There is an alternative way of firing an event just for that:</p>
-<pre class="highlight"><code class="js">import { EventInfo } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { EventInfo } from 'ckeditor5';
 
 // Prepare the event info...
 const eventInfo = new EventInfo( this, 'eventName' );
@@ -458,9 +458,9 @@ this.fire( eventInfo, argA, argB, /* ... */ );
 
 // Here you can check if the event was stopped.
 if ( eventInfo.stop.called ) {
-    // The event was stopped.
+	// The event was stopped.
 }
-</code></pre>
+</code></pre></div>
 <p>Note that <a href="../../api/module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> expects the source object in the first parameter as the origin of the event.</p>
 <h3 id="event-return-value"><a class="headerlink" href="#event-return-value">#</a> Event return value</h3>
 <p>If any handler set the <a href="../../api/module_utils_eventinfo-EventInfo.html#member-return"><code>eventInfo.return</code></a> field, this value will be returned by <a href="../../api/module_utils_emittermixin-Emitter.html#function-fire"><code>fire()</code></a> after all callbacks are processed.</p>
@@ -546,18 +546,18 @@ this.listenTo( view.document, 'arrowKey', ( evt, data ) =&gt; {
 }, { context: '$capture' } );
 </code></pre>
 <p>Listeners registered in the context of a custom callback function:</p>
-<pre class="highlight"><code class="js">import { isWidget } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { isWidget } from 'ckeditor5';
 
 this.listenTo( view.document, 'arrowKey', ( evt, data ) =&gt; {
-    // Listener's code.
-    // ...
+	// Listener's code.
+	// ...
 }, { context: isWidget } );
 
 this.listenTo( view.document, 'arrowKey', ( evt, data ) =&gt; {
-    // Listener's code.
-    // ...
+	// Listener's code.
+	// ...
 }, { context: isWidget, priority: 'high' } );
-</code></pre>
+</code></pre></div>
 <p><strong>Note</strong>: Without specifying the <code>context</code>, events are bound to the <code>'$document'</code> context.</p>
 <h3 id="bubbling-events-flow"><a class="headerlink" href="#bubbling-events-flow">#</a> Bubbling events flow</h3>
 <p>Bubbling always starts from the virtual <code>'$capture'</code> context. All listeners attached to this context are triggered first (and in the order of their priorities).</p>

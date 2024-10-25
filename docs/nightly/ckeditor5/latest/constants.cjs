@@ -8,7 +8,7 @@
 const csConfig = require( '../scripts/presets/production.json' );
 const { execSync } = require( 'child_process' );
 const path = require( 'path' );
-const CKEDITOR5_ROOT_DIRECTORY = path.join( __dirname, '..', '..', '..' );
+const CKEDITOR5_COMMERCIAL_DIRECTORY = path.join( __dirname, '..' );
 
 module.exports = {
 	LICENSE_KEY: generateInternalLicenseKey(),
@@ -27,12 +27,11 @@ module.exports = {
  */
 function generateInternalLicenseKey() {
 	return execSync(
-		'yarn --silent ckeditor5-dev-private-generate-license-key ' +
-		'--name "Collaboration documentation" ' +
-		'--no-trial ' +
-		'--internal',
+		'yarn --silent ckeditor5-dev-private-generate-license-key3 ' +
+		'--licensedHosts 127.0.0.1 ckeditor.com *.ckeditor.com ckeditor5.github.io ' +
+		'--licenseType production',
 		{
-			cwd: CKEDITOR5_ROOT_DIRECTORY,
+			cwd: CKEDITOR5_COMMERCIAL_DIRECTORY,
 			encoding: 'utf8'
 		}
 	).toString().trim();

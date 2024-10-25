@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Creating a basic plugin tutorial | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:06 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:01:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Creating a basic plugin tutorial | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/creating-simple-plugin-timestamp.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Creating a basic plugin tutorial | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/creating-simple-plugin-timestamp.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -358,9 +358,10 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/4.4.0/img/book.svg" alt="guide">Creating a basic plugin
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start" title="Let’s start!">Let’s start!</a></li><li><a href="#creating-a-plugin" title="Creating a plugin">Creating a plugin</a></li><li><a href="#registering-a-toolbar-button" title="Registering a toolbar button">Registering a toolbar button</a></li><li><a href="#inserting-a-timestamp" title="Inserting a timestamp">Inserting a timestamp</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#full-code" title="Full code">Full code</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start" title="Let’s start!">Let’s start!</a></li><li><a href="#creating-a-plugin" title="Creating a plugin">Creating a plugin</a></li><li><a href="#registering-a-toolbar-button" title="Registering a toolbar button">Registering a toolbar button</a></li><li><a href="#inserting-a-timestamp" title="Inserting a timestamp">Inserting a timestamp</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#full-code" title="Full code">Full code</a></li><li><a href="#adapt-this-tutorial-to-cdn" title="Adapt this tutorial to CDN">Adapt this tutorial to CDN</a></li></ol></nav>
 <p>This guide will show you how to create a simple, basic plugin that will let the users insert timestamps into their content. This is a beginner-friendly tutorial, perfect for your first interaction with the CKEditor 5 framework. While it is not necessary to be familiar with the <a href="crash-course/editor.html">CKEditor 5 Crash course</a> to follow it, you should consider reading that one, too.</p>
 <p>We will create a toolbar button that will insert the current date and time at the caret position into the document. If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a> below.</p>
+<div class="info-box notice"><p>If you want to use this tutorial with CDN, follow the steps in the <a href="#adapt-this-tutorial-to-cdn">Adapt this tutorial to CDN</a> section.</p></div>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
 <p>The easiest way to get started is to grab the starter project using the commands below.</p>
 <pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/timestamp-plugin/starter-files timestamp-plugin
@@ -387,6 +388,7 @@ npm run dev
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         // Add the Timestamp plugin to config.plugins array.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic, Timestamp
@@ -427,6 +429,7 @@ class Timestamp extends Plugin {
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic, Timestamp
         ],
@@ -492,6 +495,42 @@ ClassicEditor
 </div>
 <h2 id="full-code"><a class="headerlink" href="#full-code">#</a> Full code</h2>
 <p>If you got lost at any point, see <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/timestamp-plugin/final-project">the final implementation of the plugin</a>. You can paste the code from <code>main.js</code>, or clone and install the whole thing, and it will run out of the box.</p>
+<h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
+<p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
+<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;CKEditor 5 Framework – tutorial CDN&lt;/title&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+            &lt;p&gt;Hello world!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+
+        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The CSS file contains the editor and content styles. Therefore, you do not need to import styles into your JavaScript file.</p>
+<pre class="highlight"><code class="js">// Before:
+import 'ckeditor5/ckeditor5.css';
+
+// After:
+// No need to import the styles.
+</code></pre>
+<p>The script tag loads the editor from the CDN. It exposes the global variable <code>CKEDITOR</code>. You can it in your project to access the editor class and plugins. That is why you must change the import statements to destructuring in the JavaScript files:</p>
+<pre class="highlight"><code class="js">// Before:
+import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
+
+// After:
+const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
+</code></pre>
+<p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in browser.</p>
 <div class="info-box notice"><p><strong>What’s next</strong></p><p>If you want to continue learning, move on to our more advanced tutorials, where we will create <a href="abbreviation-plugin/abbreviation-plugin-level-1.html">an abbreviation plugin</a> or read more about the <a href="../index.html">CKEditor 5 framework</a>.</p></div>
 
           <div class="info-box notice notice__feedback">

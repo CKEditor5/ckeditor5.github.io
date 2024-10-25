@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Deep dive into focus tracking | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:02 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Deep dive into focus tracking | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/focus-tracking.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Deep dive into focus tracking | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/focus-tracking.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -488,61 +488,61 @@ These users not only write text using the keyboard but also use it to navigate a
 <h3 id="implementing-focusable-ui-components"><a class="headerlink" href="#implementing-focusable-ui-components">#</a> Implementing focusable UI components</h3>
 <p>Any UI <a href="../../architecture/ui-library.html#views">view</a> can be focusable. To become one, a view must implement the <code>focus()</code> method that focuses the DOM <a href="../../../api/module_ui_view-View.html#member-element">element</a> and the <code>tabindex="-1"</code> attribute set on the element that prevents the native navigation using the keyboard (which should be handled by the <a href="#using-the-focuscycler-class">focus cycler</a> on the parent–level):</p>
 <div class="info-box notice"><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex"><code>tabindex="-1"</code></a> is a native DOM attribute that controls whether a DOM element can be focused (and in which order). Setting its value to <code>"-1"</code> tells the web browser that it should exclude it from the native keyboard navigation and allow it only to be focused using JavaScript. Because your component will belong to the editor focus management system, you should do that if you want to avoid collisions with the web browser.</p></div>
-<pre class="highlight"><code class="js">import { View } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { View } from 'ckeditor5';
 
 class MyListItemView extends View {
-    constructor( locale, text ) {
-        super( locale );
+	constructor( locale, text ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        this.setTemplate( {
-            tag: 'li',
-            attributes: {
-                tabindex: -1
-            },
-            children: [ text ]
-        } );
-    }
+		this.setTemplate( {
+			tag: 'li',
+			attributes: {
+				tabindex: -1
+			},
+			children: [ text ]
+		} );
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 
-    focus() {
-        this.element.focus();
-    }
+	focus() {
+		this.element.focus();
+	}
 }
-</code></pre>
+</code></pre></div>
 <p>If a view has many focusable children (like a list), the <code>focus()</code> method should focus the first child:</p>
-<pre class="highlight"><code class="js">import { View } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { View } from 'ckeditor5';
 
 class MyListView extends View {
-    constructor( locale ) {
-        super( locale );
+	constructor( locale ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        this.items = this.createCollection();
+		this.items = this.createCollection();
 
-        this.setTemplate( {
-            tag: 'ul',
-            children: this.items
-        } );
-    }
+		this.setTemplate( {
+			tag: 'ul',
+			children: this.items
+		} );
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 
-    focus() {
-        if ( this.items.length ) {
-            // This will call MyListItemView#focus().
-            this.items.first.focus();
-        }
-    }
+	focus() {
+		if ( this.items.length ) {
+			// This will call MyListItemView#focus().
+			this.items.first.focus();
+		}
+	}
 }
-</code></pre>
+</code></pre></div>
 <p>Focusable views are what make it possible to navigate the interface of CKEditor using the keyboard. In the <a href="#using-the-focustracker-class">next section</a>, you will learn how parent views keep track of focus among their children using the <code>FocusTracker</code> class.</p>
 <h3 id="using-the-focustracker-class"><a class="headerlink" href="#using-the-focustracker-class">#</a> Using the <code>FocusTracker</code> class</h3>
 <p>One of the key focus management helpers in the CKEditor&nbsp;5 UI is the <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class and its instances. They work at the DOM level and offer a fairly simple API:</p>
@@ -566,29 +566,29 @@ class MyListView extends View {
 <div class="info-box notice"><p>Check out the <a href="#focus-state-analysis">Focus state analysis section </a> to see the global focus tracker working in a real–life scenario.</p></div>
 <h4 id="a-practical-example"><a class="headerlink" href="#a-practical-example">#</a> A practical example</h4>
 <p>Take a look at the following example of a list that has multiple items, a classic use case for a focus tracker:</p>
-<pre class="highlight"><code class="js">import { View, FocusTracker } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { View, FocusTracker } from 'ckeditor5';
 
 class MyListView extends View {
-    constructor( locale ) {
-        super( locale );
+	constructor( locale ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        // A view collection containing items of the list.
-        this.items = this.createCollection();
+		// A view collection containing items of the list.
+		this.items = this.createCollection();
 
-        // Setting the template.
-        // ...
+		// Setting the template.
+		// ...
 
-        // The instance of the focus tracker that tracks focus in #items.
-        this.focusTracker = new FocusTracker();
-    }
+		// The instance of the focus tracker that tracks focus in #items.
+		this.focusTracker = new FocusTracker();
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 }
-</code></pre>
+</code></pre></div>
 <p>To make sure your focus tracker instance and the <code>items</code> view collection stay synchronized, create  listeners that will update the tracker when a new child view is added or some are removed (<a href="../../../api/module_ui_viewcollection-ViewCollection.html">view collections fire events</a>). The best way to do that is inside the <a href="../../../api/module_ui_view-View.html#function-render"><code>render()</code></a> method:</p>
 <pre class="highlight"><code class="js">// Previously imported packages.
 // ...
@@ -629,80 +629,80 @@ class MyListView extends View {
 <h3 id="using-the-keystrokehandler-class"><a class="headerlink" href="#using-the-keystrokehandler-class">#</a> Using the <code>KeystrokeHandler</code> class</h3>
 <p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> helper class allows registering callbacks for the keystrokes. It is used in many views across the UI of the editor for many purposes. For instance, it is responsible for focusing the toolbar on the <kbd>Alt</kbd>+<kbd>F10</kbd> key press or it opens the link pop-up form when you hit <kbd>Ctrl</kbd>+<kbd>L</kbd> on a selected text.</p>
 <p>However, in the context of focus management, it is used by the <a href="#using-the-focuscycler-class">focus cycler</a> you will get familiar with in the next section. You can learn more about the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> class in the API documentation but for now, you should only know how to create and initialize it before moving forward:</p>
-<pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
 
 export default class MyListView extends View {
-    constructor( locale ) {
-        super( locale );
+	constructor( locale ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        // The keystroke handler that will help the focus cycler respond to the keystrokes.
-        this.keystrokes = new KeystrokeHandler();
-    }
+		// The keystroke handler that will help the focus cycler respond to the keystrokes.
+		this.keystrokes = new KeystrokeHandler();
+	}
 
-    render() {
-        super.render();
+	render() {
+		super.render();
 
-        // Setting the focus tracker.
-        // ...
+		// Setting the focus tracker.
+		// ...
 
-        // Start listening for the keystrokes coming from #element, which will allow
-        // the focus cycler to handle the keyboard navigation.
-        this.keystrokes.listenTo( this.element );
-    }
+		// Start listening for the keystrokes coming from #element, which will allow
+		// the focus cycler to handle the keyboard navigation.
+		this.keystrokes.listenTo( this.element );
+	}
 
-    destroy() {
-        // Stop listening to all keystrokes when the view is destroyed.
-        this.keystrokes.destroy();
-    }
+	destroy() {
+		// Stop listening to all keystrokes when the view is destroyed.
+		this.keystrokes.destroy();
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 }
-</code></pre>
+</code></pre></div>
 <h3 id="using-the-focuscycler-class"><a class="headerlink" href="#using-the-focuscycler-class">#</a> Using the <code>FocusCycler</code> class</h3>
 <p><a href="../../../api/module_ui_focuscycler-FocusCycler.html"><code>FocusCycler</code></a> helps the user navigate the user interface using the keystrokes (arrow keys, <kbd>Tab</kbd>, <kbd>Return</kbd>, <kbd>Esc</kbd>, etc.). This helper class was created with components hosting multiple children in mind, for instance, lists, toolbars or forms. It <em>cycles</em> over their children so, for instance, if the last child is focused and the user wants to move forward, the focus is moved back to the first child. It also supports components that have a variable (dynamic) number of focusable children.</p>
 <p>Each focus cycler instance works together with a <a href="#using-the-focustracker-class">focus tracker</a> and a <a href="#using-the-keystrokehandler-class">keystroke handler</a>. The former delivers the current state of the focus, while the latter helps the cycler integrate with keystrokes, for instance, to focus the next item in the list on the down arrow key press.</p>
 <p>Take a look at the example list class using focus cycler, keystroke handler and focus tracker instances together to enable the keyboard navigation. First, all the helpers must be created:</p>
-<pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
 
 class MyListView extends View {
-    constructor( locale ) {
-        super( locale );
+	constructor( locale ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        // The view collection containing items of the list.
-        this.items = this.createCollection();
+		// The view collection containing items of the list.
+		this.items = this.createCollection();
 
-        // The instance of the focus tracker that tracks focus in #items.
-        this.focusTracker = new FocusTracker();
+		// The instance of the focus tracker that tracks focus in #items.
+		this.focusTracker = new FocusTracker();
 
-        // The keystroke handler that will help the focus cycler respond to the keystrokes.
-        this.keystrokes = new KeystrokeHandler();
+		// The keystroke handler that will help the focus cycler respond to the keystrokes.
+		this.keystrokes = new KeystrokeHandler();
 
-        // The focus cycler that glues it all together.
-        this.focusCycler = new FocusCycler( {
-            focusables: this.items,
-            focusTracker: this.focusTracker,
-            keystrokeHandler: this.keystrokes,
-            actions: {
-                // Navigate list items backward using the arrow up key.
-                focusPrevious: 'arrowup',
+		// The focus cycler that glues it all together.
+		this.focusCycler = new FocusCycler( {
+			focusables: this.items,
+			focusTracker: this.focusTracker,
+			keystrokeHandler: this.keystrokes,
+			actions: {
+				// Navigate list items backward using the arrow up key.
+				focusPrevious: 'arrowup',
 
-                // Navigate toolbar items forward using the arrow down key.
-                focusNext: 'arrowdown'
-            }
-        } );
-    }
+				// Navigate toolbar items forward using the arrow down key.
+				focusNext: 'arrowdown'
+			}
+		} );
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 }
-</code></pre>
+</code></pre></div>
 <p>Similarly to the previous sections of this guide, feed the focus tracker and synchronize it with the list items collection in the <code>render()</code> method. Since the <a href="../../../api/module_ui_view-View.html#member-element"><code>MyListView#element</code></a> has already been rendered at that stage, this is also the right moment to start listening to the keyboard events:</p>
 <pre class="highlight"><code class="js">// Previously imported packages.
 // ...
@@ -754,104 +754,104 @@ class MyListView extends View {
 </code></pre>
 <h3 id="using-all-focus-helpers-together"><a class="headerlink" href="#using-all-focus-helpers-together">#</a> Using all focus helpers together</h3>
 <p>The complete code of a list class that hosts multiple item views and supports the keyboard navigation across them (when it gets focused) looks as follows:</p>
-<pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { FocusCycler, View, FocusTracker, KeystrokeHandler } from 'ckeditor5';
 
 class MyListView extends View {
-    constructor( locale ) {
-        super( locale );
+	constructor( locale ) {
+		super( locale );
 
-        // The view collection containing items of the list.
-        this.items = this.createCollection();
+		// The view collection containing items of the list.
+		this.items = this.createCollection();
 
-        // The instance of the focus tracker that tracks focus in #items.
-        this.focusTracker = new FocusTracker();
+		// The instance of the focus tracker that tracks focus in #items.
+		this.focusTracker = new FocusTracker();
 
-        // The keystroke handler that will help the focus cycler respond to the keystrokes.
-        this.keystrokes = new KeystrokeHandler();
+		// The keystroke handler that will help the focus cycler respond to the keystrokes.
+		this.keystrokes = new KeystrokeHandler();
 
-        // The focus cycler that glues it all together.
-        this.focusCycler = new FocusCycler( {
-            focusables: this.items,
-            focusTracker: this.focusTracker,
-            keystrokeHandler: this.keystrokes,
-            actions: {
-                // Navigate list items backward using the arrow up key.
-                focusPrevious: 'arrowup',
+		// The focus cycler that glues it all together.
+		this.focusCycler = new FocusCycler( {
+			focusables: this.items,
+			focusTracker: this.focusTracker,
+			keystrokeHandler: this.keystrokes,
+			actions: {
+				// Navigate list items backward using the arrow up key.
+				focusPrevious: 'arrowup',
 
-                // Navigate toolbar items forward using the arrow down key.
-                focusNext: 'arrowdown'
-            }
-        } );
+				// Navigate toolbar items forward using the arrow down key.
+				focusNext: 'arrowdown'
+			}
+		} );
 
-        // More intializations.
-        // ...
+		// More intializations.
+		// ...
 
-        this.setTemplate( {
-                tag: 'ul',
-                children: this.items
-        } );
-    }
+		this.setTemplate( {
+				tag: 'ul',
+				children: this.items
+		} );
+	}
 
-    render() {
-        super.render();
+	render() {
+		super.render();
 
-        // Items added before rendering should be known to the #focusTracker.
-        for ( const item of this.items ) {
-            this.focusTracker.add( item.element );
-        }
+		// Items added before rendering should be known to the #focusTracker.
+		for ( const item of this.items ) {
+			this.focusTracker.add( item.element );
+		}
 
-        // Make sure items added to the collection are recognized by the #focusTracker.
-        this.items.on( 'add', ( evt, item ) =&gt; {
-            this.focusTracker.add( item.element );
-        } );
+		// Make sure items added to the collection are recognized by the #focusTracker.
+		this.items.on( 'add', ( evt, item ) =&gt; {
+			this.focusTracker.add( item.element );
+		} );
 
-        // Make sure items removed from the collection are ignored by the #focusTracker.
-        this.items.on( 'remove', ( evt, item ) =&gt; {
-            this.focusTracker.remove( item.element );
-        } );
+		// Make sure items removed from the collection are ignored by the #focusTracker.
+		this.items.on( 'remove', ( evt, item ) =&gt; {
+			this.focusTracker.remove( item.element );
+		} );
 
-        // Start listening for the keystrokes coming from #element, which will allow
-        // the #focusCycler to handle the keyboard navigation.
-        this.keystrokes.listenTo( this.element );
-    }
+		// Start listening for the keystrokes coming from #element, which will allow
+		// the #focusCycler to handle the keyboard navigation.
+		this.keystrokes.listenTo( this.element );
+	}
 
-    focus() {
-        if ( this.items.length ) {
-            // This will call MyListItemView#focus().
-            this.items.first.focus();
-        }
-    }
+	focus() {
+		if ( this.items.length ) {
+			// This will call MyListItemView#focus().
+			this.items.first.focus();
+		}
+	}
 
-    destroy() {
-        // Stop listening to all keystrokes when the view is destroyed.
-        this.keystrokes.destroy();
-    }
+	destroy() {
+		// Stop listening to all keystrokes when the view is destroyed.
+		this.keystrokes.destroy();
+	}
 }
 
 class MyListItemView extends View {
-    constructor( locale, text ) {
-        super( locale );
+	constructor( locale, text ) {
+		super( locale );
 
-        // More initializations.
-        // ...
+		// More initializations.
+		// ...
 
-        this.setTemplate( {
-            tag: 'li',
-            attributes: {
-                tabindex: -1
-            },
-            children: [ text ]
-        } );
-    }
+		this.setTemplate( {
+			tag: 'li',
+			attributes: {
+				tabindex: -1
+			},
+			children: [ text ]
+		} );
+	}
 
-    // More methods.
-    // ...
+	// More methods.
+	// ...
 
-    focus() {
-        this.element.focus();
-    }
+	focus() {
+		this.element.focus();
+	}
 }
-</code></pre>
+</code></pre></div>
 <p>You can quickly run it in the context of an existing editor in the following way:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {

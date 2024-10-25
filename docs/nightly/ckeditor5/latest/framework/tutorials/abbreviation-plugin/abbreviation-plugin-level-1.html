@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:17 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:08 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/abbreviation-plugin/abbreviation-plugin-level-1.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Creating an advanced plugin tutorial pt. 1 | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/abbreviation-plugin/abbreviation-plugin-level-1.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -358,11 +358,12 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.4.0/img/book.svg" alt="guide">Defining a model and a view
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start" title="Let’s start!">Let’s start!</a></li><li><a href="#plugin-structure" title="Plugin structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a><ol><li><a href="#downcast-conversion" title="Downcast conversion">Downcast conversion</a></li><li><a href="#upcast-conversion" title="Upcast conversion">Upcast conversion</a></li></ol></li></ol></li><li><a href="#creating-a-toolbar-button" title="Creating a toolbar button">Creating a toolbar button</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-code" title="Final code">Final code</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#lets-start" title="Let’s start!">Let’s start!</a></li><li><a href="#plugin-structure" title="Plugin structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers" title="The model and the view layers">The model and the view layers</a><ol><li><a href="#defining-the-schema" title="Defining the schema">Defining the schema</a></li><li><a href="#defining-converters" title="Defining converters">Defining converters</a><ol><li><a href="#downcast-conversion" title="Downcast conversion">Downcast conversion</a></li><li><a href="#upcast-conversion" title="Upcast conversion">Upcast conversion</a></li></ol></li></ol></li><li><a href="#creating-a-toolbar-button" title="Creating a toolbar button">Creating a toolbar button</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-code" title="Final code">Final code</a></li><li><a href="#adapt-this-tutorial-to-cdn" title="Adapt this tutorial to CDN">Adapt this tutorial to CDN</a></li></ol></nav>
 <p>This guide will show you how to create a simple abbreviation plugin for CKEditor&nbsp;5.</p>
 <p>We will create a toolbar button that lets the users insert abbreviations into their document. These abbreviations will use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr"><code>&lt;abbr&gt;</code>&nbsp;<abbr title="HyperText Markup Language">HTML</abbr> element</a> with a ‘title’ attribute that will show up in a tooltip when the user hovers over the&nbsp;element. You can check the mechanism hovering over the underlined “HTML” text in the previous sentence.</p>
 <p>This first part of the tutorial will cover the basics. We will just insert one possible abbreviation: “WYSIWYG.” We will get user input in the <a href="abbreviation-plugin-level-2.html">next part of this tutorial series</a>.</p>
 <p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">live demo</a>.</p>
+<div class="info-box notice"><p>If you want to use this tutorial with CDN, follow the steps in the <a href="#adapt-this-tutorial-to-cdn">Adapt this tutorial to CDN</a> section.</p></div>
 <h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let’s start!</h2>
 <p>The easiest way to get started is to grab the starter project using the commands below.</p>
 <pre class="highlight"><code class="bash">npx -y degit ckeditor/ckeditor5-tutorials-examples/abbreviation-plugin/starter-files abbreviation-plugin
@@ -433,6 +434,7 @@ import Abbreviation from './abbreviation/abbreviation';					// ADDED
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic,
             Abbreviation												// ADDED
@@ -592,6 +594,7 @@ import Abbreviation from './abbreviation/abbreviation';
 
 ClassicEditor
     .create( document.querySelector( '#editor' ), {
+        licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
         plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic, Abbreviation
         ],
@@ -651,6 +654,42 @@ export default class AbbreviationUI extends Plugin {
 </div>
 <h2 id="final-code"><a class="headerlink" href="#final-code">#</a> Final code</h2>
 <p>If you got lost at any point, this is <a href="https://github.com/ckeditor/ckeditor5-tutorials-examples/tree/main/abbreviation-plugin/part-1">the final implementation of the plugin</a>. You can paste the code from different files into your project, or clone and install the whole thing, and it will run out-of-the-box.</p>
+<h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
+<p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
+<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;CKEditor 5 Framework – tutorial CDN&lt;/title&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+            &lt;p&gt;Hello world!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+
+        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The CSS file contains the editor and content styles. Therefore, you do not need to import styles into your JavaScript file.</p>
+<pre class="highlight"><code class="js">// Before:
+import 'ckeditor5/ckeditor5.css';
+
+// After:
+// No need to import the styles.
+</code></pre>
+<p>The script tag loads the editor from the CDN. It exposes the global variable <code>CKEDITOR</code>. You can use it in your project to access the editor class and plugins. That is why you must change the import statements to destructuring in the JavaScript files:</p>
+<pre class="highlight"><code class="js">// Before:
+import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
+
+// After:
+const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
+</code></pre>
+<p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in browser.</p>
 <div class="info-box notice"><p><strong>What’s next</strong></p><p>That’s it for the first part of this tutorial! Your plugin should now work (at least in its most basic form). Move on to the <a href="abbreviation-plugin-level-2.html">second part</a>, where you will create a balloon with a form to get user’s input, replacing our hard-coded “WYSIWYG” abbreviation.</p></div>
 
           <div class="info-box notice notice__feedback">

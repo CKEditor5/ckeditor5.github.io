@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Third party UI | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:08:50 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:01:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Third party UI | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/external-ui.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Third party UI | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/external-ui.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -372,36 +372,36 @@
 </div>
 <h2 id="readying-the-editor-side"><a class="headerlink" href="#readying-the-editor-side">#</a> Readying the editor side</h2>
 <p>The editor types, such as the <a href="../../../getting-started/setup/editor-types.html#classic-editor">classic</a> or <a href="../../../getting-started/setup/editor-types.html#inline-editor">inline editor</a>, have a dedicated default user interface and a theme. However, only a limited subset of features is required to create an editor instance bound to a Bootstrap UI. You need to import them first:</p>
-<pre class="highlight"><code class="js">// Basic classes to create an editor.
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">// Basic classes to create an editor.
 import {
-    Editor,
-    ComponentFactory,
-    EditorUI,
-    EditorUIView,
-    InlineEditableUIView,
-    ElementReplacer,
-    FocusTracker,
-    // Interfaces to extend the basic Editor API.
-    ElementApiMixin,
-    // Helper function for adding interfaces to the Editor class.
-    mix,
-    // Helper function that gets the data from an HTML element that the Editor is attached to.
-    getDataFromElement,
-    // Helper function that binds the editor with an HTMLForm element.
-    attachToForm,
-    // Basic features that every editor should enable.
-    Clipboard,
-    Enter,
-    Paragraph,
-    Typing,
-    UndoEditing,
-    // Basic features associated with the edited content.
-    BoldEditing,
-    ItalicEditing,
-    UnderlineEditing,
-    HeadingEditing
+	Editor,
+	ComponentFactory,
+	EditorUI,
+	EditorUIView,
+	InlineEditableUIView,
+	ElementReplacer,
+	FocusTracker,
+	// Interfaces to extend the basic Editor API.
+	ElementApiMixin,
+	// Helper function for adding interfaces to the Editor class.
+	mix,
+	// Helper function that gets the data from an HTML element that the Editor is attached to.
+	getDataFromElement,
+	// Helper function that binds the editor with an HTMLForm element.
+	attachToForm,
+	// Basic features that every editor should enable.
+	Clipboard,
+	Enter,
+	Paragraph,
+	Typing,
+	UndoEditing,
+	// Basic features associated with the edited content.
+	BoldEditing,
+	ItalicEditing,
+	UnderlineEditing,
+	HeadingEditing
 } from 'ckeditor5';
-</code></pre>
+</code></pre></div>
 <div class="info-box notice notice__info"><p>Note that instead of <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a>, which loads the default bold UI and bold editing feature, just the <a href="../../../api/module_basic-styles_bold_boldediting-BoldEditing.html"><code>BoldEditing</code></a> is imported. It provides the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a> features associated with editing any bold text but does not come with the actual UI.</p><p>Respectively, <code>ItalicEditing</code>, <code>UnderlineEditing</code>, <code>HeadingEditing</code>, and <code>UndoEditing</code> are also imported.</p></div>
 <p>After importing the basic editor components, you can define the custom <code>BootstrapEditor</code> class that extends the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a>:</p>
 <pre class="highlight"><code class="js">// Extending the Editor class, which brings the base editor API.

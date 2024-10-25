@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Custom image upload adapter | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:13 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Custom image upload adapter | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Custom image upload adapter | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/upload-adapter.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -649,7 +649,6 @@
 </code></pre>
 <div class="info-box notice"><p>When returning multiple images, the widest returned one should be the default one. It is essential to correctly set the <code>width</code> attribute of the image in the rich-text editor content.</p></div>
 <p>The <a href="../../api/module_image_imageupload-ImageUpload.html">image upload</a> plugin is capable of handling multiple image sizes returned by the upload adapter. It will automatically add the URLs to other images sizes to the <code>srcset</code> attribute of the image in the content.</p>
-<div class="info-box notice"><p>The <a href="../../features/images/image-upload/easy-image.html">Easy Image</a> feature provides responsive image support <a href="../../features/images/image-upload/easy-image.html#responsive-images">out of the box</a>.</p></div>
 <p>Knowing that, you can implement the <code>XMLHttpRequest#load</code> listener that resolves the upload promise in the <a href="#using-xmlhttprequest-in-an-adapter">previous section</a> so that it passes the entire <code>urls</code> property of the server response to the image upload plugin:</p>
 <pre class="highlight"><code class="js">// The rest of the MyUploadAdapter class definition.
 // ...
@@ -688,20 +687,20 @@ xhr.addEventListener( 'load', () =&gt; {
 <h3 id="activating-a-custom-upload-adapter"><a class="headerlink" href="#activating-a-custom-upload-adapter">#</a> Activating a custom upload adapter</h3>
 <p>Having implemented the adapter, you must figure out how to enable it in the WYSIWYG editor. The good news is that it is pretty easy, and you do not need to <a href="../../getting-started/legacy/installation-methods/quick-start-other.html#building-the-editor-from-source">rebuild the editor</a> to do that!</p>
 <p>You are going to extend the basic implementation presented in <a href="#the-anatomy-of-the-adapter">“The anatomy of the adapter”</a> section of this guide so your custom adapter becomes an editor plugin. To do that, create a simple standalone plugin (<code>MyCustomUploadAdapterPlugin</code>) that will <a href="../../api/module_upload_filerepository-FileRepository.html#function-createLoader">create an instance of the file loader</a> and glue it with your custom <code>MyUploadAdapter</code>.</p>
-<pre class="highlight"><code class="js">import { ClassicEditor, Essentials, Paragraph, Image, ImageUpload } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ClassicEditor, Essentials, Paragraph, Image, ImageUpload } from 'ckeditor5';
 
 class MyUploadAdapter {
-    // MyUploadAdapter class definition.
-    // ...
+	// MyUploadAdapter class definition.
+	// ...
 }
 
 function MyCustomUploadAdapterPlugin( editor ) {
-    editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) =&gt; {
-        // Configure the URL to the upload script in your backend here!
-        return new MyUploadAdapter( loader );
-    };
+	editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) =&gt; {
+		// Configure the URL to the upload script in your backend here!
+		return new MyUploadAdapter( loader );
+	};
 }
-</code></pre>
+</code></pre></div>
 <p>Enable the <code>MyCustomUploadAdapterPlugin</code> in the editor by using the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-extraPlugins"><code>config.extraPlugins</code></a> option:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
@@ -716,121 +715,121 @@ function MyCustomUploadAdapterPlugin( editor ) {
 <p>Run the editor and see if your implementation works. Drop an image into the WYSIWYG editor content and it should be uploaded to the server thanks to the <code>MyUploadAdapter</code>.</p>
 <h3 id="the-complete-implementation"><a class="headerlink" href="#the-complete-implementation">#</a> The complete implementation</h3>
 <p>Here is what the complete implementation of an <code>XMLHttpRequest</code>–based upload adapter looks like. You can use this code as a foundation to build custom upload adapters for your applications.</p>
-<pre class="highlight"><code class="js">import { ClassicEditor, Essentials, Paragraph, Image, ImageUpload } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ClassicEditor, Essentials, Paragraph, Image, ImageUpload } from 'ckeditor5';
 
 class MyUploadAdapter {
-    constructor( loader ) {
-        // The file loader instance to use during the upload.
-        this.loader = loader;
-    }
+	constructor( loader ) {
+		// The file loader instance to use during the upload.
+		this.loader = loader;
+	}
 
-    // Starts the upload process.
-    upload() {
-        return this.loader.file
-            .then( file =&gt; new Promise( ( resolve, reject ) =&gt; {
-                this._initRequest();
-                this._initListeners( resolve, reject, file );
-                this._sendRequest( file );
-            } ) );
-    }
+	// Starts the upload process.
+	upload() {
+		return this.loader.file
+			.then( file =&gt; new Promise( ( resolve, reject ) =&gt; {
+				this._initRequest();
+				this._initListeners( resolve, reject, file );
+				this._sendRequest( file );
+			} ) );
+	}
 
-    // Aborts the upload process.
-    abort() {
-        if ( this.xhr ) {
-            this.xhr.abort();
-        }
-    }
+	// Aborts the upload process.
+	abort() {
+		if ( this.xhr ) {
+			this.xhr.abort();
+		}
+	}
 
-    // Initializes the XMLHttpRequest object using the URL passed to the constructor.
-    _initRequest() {
-        const xhr = this.xhr = new XMLHttpRequest();
+	// Initializes the XMLHttpRequest object using the URL passed to the constructor.
+	_initRequest() {
+		const xhr = this.xhr = new XMLHttpRequest();
 
-        // Note that your request may look different. It is up to you and your editor
-        // integration to choose the right communication channel. This example uses
-        // a POST request with JSON as a data structure but your configuration
-        // could be different.
-        xhr.open( 'POST', 'http://example.com/image/upload/path', true );
-        xhr.responseType = 'json';
-    }
+		// Note that your request may look different. It is up to you and your editor
+		// integration to choose the right communication channel. This example uses
+		// a POST request with JSON as a data structure but your configuration
+		// could be different.
+		xhr.open( 'POST', 'http://example.com/image/upload/path', true );
+		xhr.responseType = 'json';
+	}
 
-    // Initializes XMLHttpRequest listeners.
-    _initListeners( resolve, reject, file ) {
-        const xhr = this.xhr;
-        const loader = this.loader;
-        const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+	// Initializes XMLHttpRequest listeners.
+	_initListeners( resolve, reject, file ) {
+		const xhr = this.xhr;
+		const loader = this.loader;
+		const genericErrorText = `Couldn't upload file: ${ file.name }.`;
 
-        xhr.addEventListener( 'error', () =&gt; reject( genericErrorText ) );
-        xhr.addEventListener( 'abort', () =&gt; reject() );
-        xhr.addEventListener( 'load', () =&gt; {
-            const response = xhr.response;
+		xhr.addEventListener( 'error', () =&gt; reject( genericErrorText ) );
+		xhr.addEventListener( 'abort', () =&gt; reject() );
+		xhr.addEventListener( 'load', () =&gt; {
+			const response = xhr.response;
 
-            // This example assumes the XHR server's "response" object will come with
-            // an "error" which has its own "message" that can be passed to reject()
-            // in the upload promise.
-            //
-            // Your integration may handle upload errors in a different way so make sure
-            // it is done properly. The reject() function must be called when the upload fails.
-            if ( !response || response.error ) {
-                return reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
-            }
+			// This example assumes the XHR server's "response" object will come with
+			// an "error" which has its own "message" that can be passed to reject()
+			// in the upload promise.
+			//
+			// Your integration may handle upload errors in a different way so make sure
+			// it is done properly. The reject() function must be called when the upload fails.
+			if ( !response || response.error ) {
+				return reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
+			}
 
-            // If the upload is successful, resolve the upload promise with an object containing
-            // at least the "default" URL, pointing to the image on the server.
-            // This URL will be used to display the image in the content. Learn more in the
-            // UploadAdapter#upload documentation.
-            resolve( {
-                default: response.url
-            } );
-        } );
+			// If the upload is successful, resolve the upload promise with an object containing
+			// at least the "default" URL, pointing to the image on the server.
+			// This URL will be used to display the image in the content. Learn more in the
+			// UploadAdapter#upload documentation.
+			resolve( {
+				default: response.url
+			} );
+		} );
 
-        // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
-        // properties which are used e.g. to display the upload progress bar in the editor
-        // user interface.
-        if ( xhr.upload ) {
-            xhr.upload.addEventListener( 'progress', evt =&gt; {
-                if ( evt.lengthComputable ) {
-                    loader.uploadTotal = evt.total;
-                    loader.uploaded = evt.loaded;
-                }
-            } );
-        }
-    }
+		// Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
+		// properties which are used e.g. to display the upload progress bar in the editor
+		// user interface.
+		if ( xhr.upload ) {
+			xhr.upload.addEventListener( 'progress', evt =&gt; {
+				if ( evt.lengthComputable ) {
+					loader.uploadTotal = evt.total;
+					loader.uploaded = evt.loaded;
+				}
+			} );
+		}
+	}
 
-    // Prepares the data and sends the request.
-    _sendRequest( file ) {
-        // Prepare the form data.
-        const data = new FormData();
+	// Prepares the data and sends the request.
+	_sendRequest( file ) {
+		// Prepare the form data.
+		const data = new FormData();
 
-        data.append( 'upload', file );
+		data.append( 'upload', file );
 
-        // Important note: This is the right place to implement security mechanisms
-        // like authentication and CSRF protection. For instance, you can use
-        // XMLHttpRequest.setRequestHeader() to set the request headers containing
-        // the CSRF token generated earlier by your application.
+		// Important note: This is the right place to implement security mechanisms
+		// like authentication and CSRF protection. For instance, you can use
+		// XMLHttpRequest.setRequestHeader() to set the request headers containing
+		// the CSRF token generated earlier by your application.
 
-        // Send the request.
-        this.xhr.send( data );
-    }
+		// Send the request.
+		this.xhr.send( data );
+	}
 }
 
 function MyCustomUploadAdapterPlugin( editor ) {
-    editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) =&gt; {
-        // Configure the URL to the upload script in your back-end here!
-        return new MyUploadAdapter( loader );
-    };
+	editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) =&gt; {
+		// Configure the URL to the upload script in your back-end here!
+		return new MyUploadAdapter( loader );
+	};
 }
 
 ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        plugins: [ MyCustomUploadAdapterPlugin, Essentials, Paragraph, Image, ImageUpload, /* ... */ ],
+	.create( document.querySelector( '#editor' ), {
+		plugins: [ MyCustomUploadAdapterPlugin, Essentials, Paragraph, Image, ImageUpload, /* ... */ ],
 
-        // More configuration options.
-        // ...
-    } )
-    .catch( error =&gt; {
-        console.log( error );
-    } );
-</code></pre>
+		// More configuration options.
+		// ...
+	} )
+	.catch( error =&gt; {
+		console.log( error );
+	} );
+</code></pre></div>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What’s next</h2>
 <p>Check out the comprehensive <a href="../../features/images/image-upload/image-upload.html">image upload overview</a> guide to learn more about different ways of uploading images in CKEditor&nbsp;5. See the <a href="../../features/images/images-overview.html">image feature</a> guide to find out more about handling images in CKEditor&nbsp;5.</p>
 <style>

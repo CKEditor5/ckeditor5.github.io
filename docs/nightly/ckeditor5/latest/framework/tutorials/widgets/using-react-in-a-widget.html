@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Using a React component in a block widget tutorial | CKEditor 5 Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:19 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:10 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Using a React component in a block widget tutorial | CKEditor 5 Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/using-react-in-a-widget.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Using a React component in a block widget tutorial | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/tutorials/widgets/using-react-in-a-widget.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -358,15 +358,16 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/4.4.0/img/book.svg" alt="guide">Using a React component in a block widget
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#lets-start" title="Let’s start">Let’s start</a></li><li><a href="#application-structure" title="Application structure">Application structure</a></li><li><a href="#ckeditor-classes" title="CKEditor classes">CKEditor classes</a><ol><li><a href="#editing-plugin" title="Editing plugin">Editing plugin</a></li><li><a href="#command" title="Command">Command</a></li></ol></li><li><a href="#react-components" title="React components">React components</a><ol><li><a href="#product-list" title="Product list">Product list</a></li><li><a href="#product-preview" title="Product preview">Product preview</a></li><li><a href="#main-application-component" title="Main application component">Main application component</a></li></ol></li><li><a href="#styles-and-assets" title="Styles and assets">Styles and assets</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start" title="Before you start">Before you start</a></li><li><a href="#lets-start" title="Let’s start">Let’s start</a></li><li><a href="#application-structure" title="Application structure">Application structure</a></li><li><a href="#ckeditor-classes" title="CKEditor classes">CKEditor classes</a><ol><li><a href="#editing-plugin" title="Editing plugin">Editing plugin</a></li><li><a href="#command" title="Command">Command</a></li></ol></li><li><a href="#react-components" title="React components">React components</a><ol><li><a href="#product-list" title="Product list">Product list</a></li><li><a href="#product-preview" title="Product preview">Product preview</a></li><li><a href="#main-application-component" title="Main application component">Main application component</a></li></ol></li><li><a href="#styles-and-assets" title="Styles and assets">Styles and assets</a></li><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#final-solution" title="Final solution">Final solution</a></li><li><a href="#adapt-this-tutorial-to-cdn" title="Adapt this tutorial to CDN">Adapt this tutorial to CDN</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an editor plugin that uses the power of the <a href="https://reactjs.org/">React</a> library inside the CKEditor&nbsp;5 widget ecosystem. You will build a “Product preview” feature which renders an actual React component inside the editor to display some useful information about the product.</p>
 <p>Later on, you will use the “Product preview” feature to build a simple React application that displays an editor next to the list of available products. The application will allow the user to insert the product into the editor content by clicking it on the list.</p>
-<div class="info-box notice"><p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p></div>
+<p>If you want to see the final product of this tutorial before you plunge in, check out the <a href="#demo">demo</a>.</p>
+<div class="info-box notice"><p>If you want to use this tutorial with CDN, follow the steps in the <a href="#adapt-this-tutorial-to-cdn">Adapt this tutorial to CDN</a> section.</p></div>
 <!-- TODO: dynamic controls in React to change the appearance of the widget https://github.com/ckeditor/ckeditor5-widget/issues/81 -->
 <h2 id="before-you-start"><a class="headerlink" href="#before-you-start">#</a> Before you start</h2>
 <p>There are a couple of things you should know before you start:</p>
 <ul>
-<li>Since you are here, you probably have at least some basic understanding of what React is and how it works. But what you might not know is that CKEditor&nbsp;5 has an official <a href="../../../getting-started/installation/react/react.html"><strong>rich text editor component for React</strong></a> and it will be one of the key features used in this tutorial. Learning how to use it in your project is a good place to start.</li>
+<li>Since you are here, you probably have at least some basic understanding of what React is and how it works. But what you might not know is that CKEditor&nbsp;5 has an official <a href="../../../getting-started/installation/self-hosted/react/react-default-npm.html"><strong>rich text editor component for React</strong></a> and it will be one of the key features used in this tutorial. Learning how to use it in your project is a good place to start.</li>
 <li>In this tutorial, you are going to implement a block editor widget and that itself could give you a headache. It is recommended to at least skim through the <a href="implementing-a-block-widget.html">Implementing a block widget</a> tutorial to get a grip on editor widgets, their API, and possible use cases.</li>
 <li>Various parts of the <a href="../../architecture/intro.html">CKEditor&nbsp;5 architecture</a> section will be referenced as you go. While reading them is not necessary to finish this tutorial, it is recommended to read those guides at some point to get a better understanding of the mechanisms used in this tutorial.</li>
 </ul>
@@ -643,7 +644,7 @@ export default function ProductPreview( props ) {
 </code></pre>
 <h3 id="main-application-component"><a class="headerlink" href="#main-application-component">#</a> Main application component</h3>
 <p>At the moment, you have CKEditor classes that bring the product preview into the content, a list of products, and a product component ready. It is time to glue things together in the <code>App</code> component.</p>
-<p>You are going to extend the <a href="#lets-start">main application file</a> skeleton that you created earlier in this tutorial so it renders the <a href="../../../getting-started/installation/react/react.html">official <code>&lt;CKEditor&gt;</code> React component</a> on the left side, and the list of available products on the right.</p>
+<p>You are going to extend the <a href="#lets-start">main application file</a> skeleton that you created earlier in this tutorial so it renders the <a href="../../../getting-started/installation/self-hosted/react/react-default-npm.html">official <code>&lt;CKEditor&gt;</code> React component</a> on the left side, and the list of available products on the right.</p>
 <p>Have a look at the full source code of the <code>App</code> function:</p>
 <pre class="highlight"><code class="jsx html">// app.jsx
 
@@ -731,6 +732,7 @@ export default function App( props ) {
                         editor={ ClassicEditor }
                         // The configuration of the &lt;CKEditor&gt; instance.
                         config={ {
+                            licenseKey: 'GPL', // Or '&lt;YOUR_LICENSE_KEY&gt;'.
                             plugins: [
                                 // A set of editor features to be enabled and made available to the user.
                                 Essentials, Heading, Bold, Italic, Underline,
@@ -1300,7 +1302,8 @@ class App extends React.Component {
                         <ProductPreview id={id} {...product} />
                     );
                 }
-            }
+            },
+            licenseKey: 'GPL'
         };
 
         this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
@@ -1404,6 +1407,42 @@ cd final-project
 npm install
 npm run dev
 </code></pre>
+<h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
+<p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
+<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;CKEditor 5 Framework – tutorial CDN&lt;/title&gt;
+        &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="editor"&gt;
+            &lt;p&gt;Hello world!&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;script src="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+
+        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The CSS file contains the editor and content styles. Consequentially, you do not need to import styles into your JavaScript file.</p>
+<pre class="highlight"><code class="js">// Before:
+import 'ckeditor5/ckeditor5.css';
+
+// After:
+// No need to import the styles.
+</code></pre>
+<p>The script tag loads the editor from the CDN. It exposes the global variable <code>CKEDITOR</code>. You can use it in your project to access the editor class and plugins. That is why you must change the import statements to destructuring in the JavaScript files:</p>
+<pre class="highlight"><code class="js">// Before:
+import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
+
+// After:
+const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
+</code></pre>
+<p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in browser.</p>
 
           <div class="info-box notice notice__feedback">
             <p>

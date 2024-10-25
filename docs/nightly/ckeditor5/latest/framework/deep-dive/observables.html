@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Observables | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
-    <meta name="twitter:card" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Oct 24 2024 01:09:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Oct 25 2024 12:02:02 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Observables | CKEditor 5 Framework Documentation">
-    <meta property="og:description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Observables | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="Learn how to install, integrate, configure, and develop CKEditor 5. Get to know the CKEditor 5 Framework. Browse through the API documentation and online samples.">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -359,15 +359,15 @@
 <p><a href="../../api/module_utils_observablemixin-Observable.html">Observables</a> are objects which have properties that can be observed. That means when the value of such property changes, an event is fired by the observable and the change can be reflected in other pieces of the code that listen to that event.</p>
 <p>Observables are common building blocks of the <a href="../index.html">CKEditor&nbsp;5 Framework</a>. They are particularly popular in the UI, the <a href="../../api/module_ui_view-View.html"><code>View</code></a> class and its subclasses  benefiting from the observable interface the most: it is the <a href="../architecture/ui-library.html#interaction">templates bound to the observables</a> what makes the user interface dynamic and interactive. Some of the basic classes like <a href="../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> or <a href="../../api/module_core_command-Command.html"><code>Command</code></a> are observables too.</p>
 <p>Any class can become observable; all you need to do is mix the <a href="../../api/module_utils_observablemixin-Observable.html"><code>Observable</code></a> into it:</p>
-<pre class="highlight"><code class="js">import { ObservableMixin, mix } from 'ckeditor5';
+<div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ObservableMixin, mix } from 'ckeditor5';
 
 class AnyClass {
-    // Any class definition.
-    // ...
+	// Any class definition.
+	// ...
 }
 
 mix( AnyClass, ObservableMixin );
-</code></pre>
+</code></pre></div>
 <p>Observables are useful when it comes to managing the state of the application, which can be dynamic and, more often than not, centralized and shared between components of the application. One observable can also propagate its state (or its part) to another using <a href="#property-bindings">property bindings</a>.</p>
 <p>Observables can also <a href="#decorating-object-methods">decorate their methods</a> which makes it possible to control their execution using event listeners, giving external code some control over their behavior.</p>
 <div class="info-box notice"><p>Since the observables are just another layer on top of the event <a href="../../api/module_utils_emittermixin-Emitter.html">emitters</a>, check out the <a href="event-system.html">event system deep dive guide</a> to learn more about the advanced usage of events with some additional examples.</p></div>
