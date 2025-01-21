@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to upgrade your CKEditor5 project to the new installation methods.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jan 20 2025 02:12:45 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jan 21 2025 02:13:42 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Migrating to new installation methods | CKEditor5 documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -262,7 +262,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">Migrating to new installation methods
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#legacy-installation-methods" title="Legacy installation methods">Legacy installation methods</a></li><li><a href="#new-installation-methods" title="New installation methods">New installation methods</a><ol><li><a href="#npm-packages" title="npm packages">npm packages</a></li><li><a href="#browser-builds" title="Browser builds">Browser builds</a></li><li><a href="#whats-new" title="What’s new?">What’s new?</a></li><li><a href="#feature-comparison" title="Feature comparison">Feature comparison</a></li></ol></li><li><a href="#sunset-of-old-installation-methods-and-deprecation-timelines" title="Sunset of old installation methods and deprecation timelines">Sunset of old installation methods and deprecation timelines</a><ol><li><a href="#deprecation-of-the-predefined-builds-and-custom-builds" title="Deprecation of the predefined builds and custom builds">Deprecation of the predefined builds and custom builds</a></li><li><a href="#deprecation-of-dlls" title="Deprecation of DLLs">Deprecation of DLLs</a></li></ol></li><li><a href="#migrating-from-the-old-installation-methods" title="Migrating from the old installation methods">Migrating from the old installation methods</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#legacy-installation-methods" title="Legacy installation methods">Legacy installation methods</a></li><li><a href="#new-installation-methods" title="New installation methods">New installation methods</a><ol><li><a href="#npm-packages" title="npm packages">npm packages</a></li><li><a href="#browser-builds" title="Browser builds">Browser builds</a></li><li><a href="#whats-new" title="What’s new?">What’s new?</a></li><li><a href="#feature-comparison" title="Feature comparison">Feature comparison</a></li></ol></li><li><a href="#sunset-of-old-installation-methods-and-deprecation-timelines" title="Sunset of old installation methods and deprecation timelines">Sunset of old installation methods and deprecation timelines</a><ol><li><a href="#deprecation-of-the-predefined-builds" title="Deprecation of the predefined builds">Deprecation of the predefined builds</a></li><li><a href="#deprecation-of-the-custom-builds" title="Deprecation of the custom builds">Deprecation of the custom builds</a></li><li><a href="#deprecation-of-dlls" title="Deprecation of DLLs">Deprecation of DLLs</a></li></ol></li><li><a href="#migrating-from-the-old-installation-methods" title="Migrating from the old installation methods">Migrating from the old installation methods</a></li></ol></nav>
 <p>In this guide, we will explore the new installation methods introduced in CKEditor&nbsp;5 v42.0.0. These methods make CKEditor&nbsp;5 much easier to use by reducing the number of possible installation paths and removing most of the limitations of the old methods. Links to migration guides for specific installation methods can be found in the table of contents on the left <span class="navigation-hint_mobile">or under the <strong>main menu button in the upper-left corner</strong> on mobile </span>and at the end of this document.</p>
 <p>Let’s start by comparing the new installation methods to the old ones to better understand what has changed.</p>
 <h2 id="legacy-installation-methods"><a class="headerlink" href="#legacy-installation-methods">#</a> Legacy installation methods</h2>
@@ -533,15 +533,21 @@ ClassicEditor
 <h2 id="sunset-of-old-installation-methods-and-deprecation-timelines"><a class="headerlink" href="#sunset-of-old-installation-methods-and-deprecation-timelines">#</a> Sunset of old installation methods and deprecation timelines</h2>
 <p>With the release of version 42.0.0, we have decided to deprecate the older methods of setting up CKEditor&nbsp;5. The new experience introduced in v42.0.0 is far superior.</p>
 <p>However, we understand that migrating to a new setup, even if easy, requires planning and work allocation. We would rather not block anyone from receiving bug fixes and improvements due to a deprecated update path. Therefore, we will support all existing methods according to the timelines given below.</p>
-<h3 id="deprecation-of-the-predefined-builds-and-custom-builds"><a class="headerlink" href="#deprecation-of-the-predefined-builds-and-custom-builds">#</a> Deprecation of the predefined builds and custom builds</h3>
-<p>The setup methods, which were “webpack-first” or provided predefined editors without the possibility of extending them will be supported until <strong>the end of Q1 (March), 2025</strong>.</p>
+<h3 id="deprecation-of-the-predefined-builds"><a class="headerlink" href="#deprecation-of-the-predefined-builds">#</a> Deprecation of the predefined builds</h3>
+<p>Our provided predefined editor builds, such as <code>ckeditor5-build-classic</code>, will be supported until <strong>the end of Q1 (March), 2025</strong>.</p>
 <p>What we will sunset on this date:</p>
 <ol>
-<li>The documentation for the predefined builds, superbuild, and custom builds will be removed.</li>
+<li>The documentation for the predefined builds and superbuild will be removed.</li>
 <li>No more new versions of predefined builds packages will be published to npm.</li>
+<li>We will update our environment to target ES2022 (or newer), thus dropping the support for webpack 4.</li>
+</ol>
+<h3 id="deprecation-of-the-custom-builds"><a class="headerlink" href="#deprecation-of-the-custom-builds">#</a> Deprecation of the custom builds</h3>
+<p>The setup method which was “webpack-first”, in which you imported from specific packages from <code>src</code> folder, will be supported until <strong>the end of 2025</strong>.</p>
+<p>What we will sunset on this date:</p>
+<ol>
+<li>The documentation for the custom builds will be removed.</li>
 <li>New versions of npm packages published after this date will not have the <code>src</code> directory. It will not be possible to import files from those destinations, as <code>dist</code> will become the main folder.</li>
 <li>Deprecation of <code>@ckeditor/ckeditor5-dev-translations</code> package, as it will not be needed anymore.</li>
-<li>We will update our environment to target ES2022 (or newer), thus dropping the support for webpack 4.</li>
 </ol>
 <h3 id="deprecation-of-dlls"><a class="headerlink" href="#deprecation-of-dlls">#</a> Deprecation of DLLs</h3>
 <p>This is an advanced setup method that we provided, that was used to dynamically create the editor and its configuration on the browser side. As this is now provided out-of-the-box with our browser builds, this method will also be deprecated. As DLLs are used in complex CMSes, this deprecation timeline is significantly longer.</p>
@@ -551,7 +557,7 @@ ClassicEditor
 <li>The documentation for DLLs will be removed.</li>
 <li>New versions of npm packages published after this date will not have <code>build</code> directory. It will not be possible to import files from those destinations.</li>
 </ol>
-<div class="info-box notice"><p>If any of the above worries you, reach out to our support or inform us via the <a href="https://github.com/ckeditor/ckeditor5/issues/new?assignees=&amp;labels=type:question&amp;projects=&amp;template=8-question.md&amp;title=">GitHub issue tracker</a>. We are open to discussing the timelines or potential cases that you would need us to support.</p></div>
+<div class="info-box notice"><p>We have an <a href="https://github.com/ckeditor/ckeditor5/issues/17779">active GitHub issue</a> which goes into details, and also documents improvements we planned for new installation methods.</p><p>If any of the above worries you, comment on the above issue or reach out to our support. We are open to discussing the timelines or potential cases that you would need us to support.</p></div>
 <h2 id="migrating-from-the-old-installation-methods"><a class="headerlink" href="#migrating-from-the-old-installation-methods">#</a> Migrating from the old installation methods</h2>
 <p>To migrate your project to the new installation methods, you can follow the instructions below.</p>
 <p>First, if you maintain any CKEditor&nbsp;5 custom plugins as separate packages, whether in a monorepo setup or published to npm, you need to migrate them:</p>
