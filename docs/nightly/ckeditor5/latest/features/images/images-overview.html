@@ -7,7 +7,7 @@
     <meta name="description" content="Find out all about images in CKEditor 5 - available image features, attributes, or the image toolbar.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 12 2025 02:15:34 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Feb 13 2025 02:14:43 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Image features overview | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -59,7 +59,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.1.0">
+    <meta name="project-version" content="44.2.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -361,6 +361,9 @@
                                   <li><a href="images-captions.html" title="Image captions">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image captions</span>
                                       </div></a></li>
+                                  <li><a href="images-image-optimizer.html" title="Image optimizer">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image optimizer</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
+                                      </div></a></li>
                                   <li><a href="images-resizing.html" title="Resizing images">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Resizing images</span>
                                       </div></a></li>
@@ -454,11 +457,11 @@
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span>
                             </div>
                             <ul class="tree__item-nested-list" data-id="features-pasting">
-                                  <li><a href="../pasting/paste-from-office-enhanced.html" title="Paste from Office enhanced">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office enhanced</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
-                                      </div></a></li>
                                   <li><a href="../pasting/paste-from-office.html" title="Paste from Office">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office</span>
+                                      </div></a></li>
+                                  <li><a href="../pasting/paste-from-office-enhanced.html" title="Enhanced paste from Office">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Enhanced paste from Office</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
                                       </div></a></li>
                                   <li><a href="../pasting/paste-from-google-docs.html" title="Paste from Google Docs">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span>
@@ -645,8 +648,8 @@
 <li><a href="images-resizing.html">Image resizing</a> lets the user control the dimensions of images in the content.</li>
 <li><a href="images-linking.html">Linking images</a> makes it possible to use them as URL anchors.</li>
 <li>A selection of <a href="image-upload/image-upload.html">image upload methods</a> allows for the most convenient way of adding images. These include support for <a href="images-inserting.html#inserting-images-via-pasting-a-url-into-the-editor">inserting an image via a URL</a> and even <a href="images-inserting.html#inserting-images-via-a-source-url">via pasting a URL into the editor</a> along with custom integrations.</li>
-<li>The <a href="../file-management/ckbox.html">CKBox management platform</a> provides support for <a href="images-responsive.html">responsive images</a> in CKEditor&nbsp;5. Responsive images will display correctly on any viewport, enhancing the accessibility, reach, and user experience.</li>
-<li>CKBox also provides basic editing capabilities, like cropping, resizing, rotating, and flipping right from the image contextual toolbar.</li>
+<li>The <a href="../file-management/ckbox.html">CKBox</a> and Uploadcare <a href="../file-management/uploadcare.html">features/uploadcare</a> management platforms provide support for <a href="images-responsive.html">responsive images</a> in CKEditor&nbsp;5. Responsive images will display correctly on any viewport, enhancing the accessibility, reach, and user experience.</li>
+<li>Both Uploadcare and CKBox provide <a href="images-image-optimizer.html">editing and optimization capabilities</a>, like cropping, resizing, rotating, and flipping right from the image contextual toolbar.</li>
 </ul>
 <h2 id="image-contextual-toolbar"><a class="headerlink" href="#image-contextual-toolbar">#</a> Image contextual toolbar</h2>
 <p>The <a href="../../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> plugin introduces a contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the <a href="images-text-alternative.html">text alternative</a> button, the <a href="images-captions.html">image caption</a> button, and <a href="images-styles.html">image styles</a> buttons. The toolbar can also host the image editing button introduced by the <a href="../file-management/ckbox.html">CKBox asset manager</a>. Shown below is an example contextual toolbar with an extended set of buttons.</p>
@@ -680,14 +683,14 @@
 <p>You can also use the <strong>Insert paragraph</strong> handles on the bottom or top edge of the selected image to add a paragraph below or above the image, respectively.</p>
 <p><img src="../../assets/img/image-insert-paragraph.png" data-lightbox="true" alt="Paragraph insertion handles." width="640"></p>
 <h2 id="image-editing"><a class="headerlink" href="#image-editing">#</a> Image editing</h2>
-<p>While the image feature does not provide native image editing support, the <a href="../file-management/ckbox.html">CKBox premium feature</a> provides basic editing capabilities such as cropping to presets, flipping, or rotating. By default, images hosted in CKBox are always editable. You can also enable <a href="../file-management/ckbox.html#editing-external-images">editing external images</a>.</p>
+<p>While the image feature does not provide native image editing support, the <a href="../file-management/ckbox.html">CKBox</a> and Uploadcare <a href="../file-management/uploadcare.html">features/uploadcare</a> premium features provide <a href="images-image-optimizer.html">editing capabilities</a> such as cropping to presets, flipping, or rotating.</p>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
 <p>The source code of the feature is available on GitHub at <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-image">https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-image</a>.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fimages%2Fimages-overview.html%22&amp;project-version=44.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Fimages%2Fimages-overview.html%22&amp;project-version=44.2.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -977,6 +980,9 @@
                                     <li><a href="images-captions.html" title="Image captions">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image captions</span>
                                         </div></a></li>
+                                    <li><a href="images-image-optimizer.html" title="Image optimizer">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image optimizer</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
+                                        </div></a></li>
                                     <li><a href="images-resizing.html" title="Resizing images">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Resizing images</span>
                                         </div></a></li>
@@ -1070,11 +1076,11 @@
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span>
                             </div>
                             <ul class="tree__item-nested-list" data-id="features-pasting">
-                                    <li><a href="../pasting/paste-from-office-enhanced.html" title="Paste from Office enhanced">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office enhanced</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
-                                        </div></a></li>
                                     <li><a href="../pasting/paste-from-office.html" title="Paste from Office">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office</span>
+                                        </div></a></li>
+                                    <li><a href="../pasting/paste-from-office-enhanced.html" title="Enhanced paste from Office">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Enhanced paste from Office</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
                                         </div></a></li>
                                     <li><a href="../pasting/paste-from-google-docs.html" title="Paste from Google Docs">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span>

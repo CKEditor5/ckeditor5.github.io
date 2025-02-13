@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 12 2025 02:15:31 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Feb 13 2025 02:14:40 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Emoji | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -59,7 +59,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.1.0">
+    <meta name="project-version" content="44.2.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -361,6 +361,9 @@
                                   <li><a href="images/images-captions.html" title="Image captions">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image captions</span>
                                       </div></a></li>
+                                  <li><a href="images/images-image-optimizer.html" title="Image optimizer">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image optimizer</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
+                                      </div></a></li>
                                   <li><a href="images/images-resizing.html" title="Resizing images">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Resizing images</span>
                                       </div></a></li>
@@ -454,11 +457,11 @@
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span>
                             </div>
                             <ul class="tree__item-nested-list" data-id="features-pasting">
-                                  <li><a href="pasting/paste-from-office-enhanced.html" title="Paste from Office enhanced">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office enhanced</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
-                                      </div></a></li>
                                   <li><a href="pasting/paste-from-office.html" title="Paste from Office">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office</span>
+                                      </div></a></li>
+                                  <li><a href="pasting/paste-from-office-enhanced.html" title="Enhanced paste from Office">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Enhanced paste from Office</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
                                       </div></a></li>
                                   <li><a href="pasting/paste-from-google-docs.html" title="Paste from Google Docs">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span>
@@ -577,12 +580,12 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#installation" title="Installation">Installation</a></li><li><a href="#configuration" title="Configuration">Configuration</a></li><li><a href="#related-features" title="Related features">Related features</a></li><li><a href="#common-api" title="Common API">Common API</a></li><li><a href="#contribute" title="Contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
 </div>
 
-<p>The emoji feature lets you insert emojis into the document from the editor toolbar, or on the go while writing the content.</p>
-<p>Since the is a large number of emojis, they have been conveniently divided into several categories for easier use, such as “Smileys &amp; Expressions” or “Objects”. You may also search for a specific emoji using the search field.</p>
+<p>The emoji feature lets you insert emojis into the document from the editor toolbar or while writing the content. The emojis are pulled from the CDN to lessen the editor load.</p>
+<p>Since there is a large number of emojis, they have been conveniently divided into several categories for easier use, such as “Smileys &amp; Expressions” or “Objects.” You may also search for a specific emoji using the search field.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<p>Use the emoji toolbar button <span class="editor-icon"><img src="../assets/icons/fa8b1c1de8.svg" class="editor-icon__image" alt="Emoji"></span> in the editor below to open a panel with a table of selectable emojis. You may also trigger the emoji UI while writing the content by typing the pre-configured <code>:</code> marker followed by at least two letters of desired emoji name. Then, you can either choose which emoji to insert from the suggestion list, or choose the <code>Show all emoji...</code> option to open the full panel. The marker must be preceded by a space to work.</p>
+<p>Use the emoji toolbar button <span class="editor-icon"><img src="../assets/icons/fa8b1c1de8.svg" class="editor-icon__image" alt="Emoji"></span> in the editor below to open a panel with a table of selectable emojis. You may also trigger the emoji UI while writing the content by typing the pre-configured <code>:</code> marker followed by at least two letters of desired emoji name. Then, you can either choose which emoji to insert from the suggestion list or select the <code>Show all emoji...</code> option to open the full panel. The marker must be preceded by a space to work.</p>
 <p>There is an option to set the skin tone of the emojis next to the search field, too.</p>
-<p>The selected emoji category and skin tone are remembered by the feature, so next time you invoke the panel you can quickly insert an emoji of similar type.</p>
+<p>The selected emoji category and skin tone are remembered by the feature, so next time you invoke the panel, you can quickly insert an emoji of similar type.</p>
 <div class="live-snippet"><div class="ck ck-content" id="snippet-emoji">
 	<h3>Overview of Emojis</h3>
 
@@ -614,8 +617,7 @@
 		Emojis have revolutionized digital communication, adding nuance and clarity to messages. They help users express
 		emotions in a way that text alone may not capture. For instance, a simple sentence like "I'm excited" might feel flat
 		without an emoji, but adding an emoji like 🎉 (party popper) or 😄 (grinning face) helps to convey enthusiasm more
-		effectively. Emojis also play a role in shaping culture and trends, as their meanings can evolve and new emojis are
-		regularly introduced to reflect societal changes.
+		effectively. Emojis also shape culture and trends, as their meanings can evolve, and new emojis are regularly introduced to reflect societal changes.
 	</p>
 </div>
 
@@ -648,15 +650,15 @@ ClassicEditor
 <div class="info-box notice"><p>The emoji feature requires the <a href="mentions.html">mentions feature</a> to be installed to work properly.</p></div>
 <p>The <a href="../api/module_emoji_emoji-Emoji.html">emoji plugin</a> consists of two sub-plugins:</p>
 <ul>
-<li><a href="../api/module_emoji_emojimention-EmojiMention.html"><code>EmojiMention</code></a> – Adds support for triggering the emoji UI dropdown while writing the content when you type a pre-configured <code>:</code> marker followed by at least two letters of desired emoji name.</li>
-<li><a href="../api/module_emoji_emojipicker-EmojiPicker.html"><code>EmojiPicker</code></a> – Registers the UI button component which opens a panel with a table of selectable emojis.</li>
+<li><a href="../api/module_emoji_emojimention-EmojiMention.html"><code>EmojiMention</code></a> – Adds support for triggering the emoji UI dropdown while writing the content when you type a pre-configured <code>:</code> marker followed by at least two letters of the desired emoji name.</li>
+<li><a href="../api/module_emoji_emojipicker-EmojiPicker.html"><code>EmojiPicker</code></a> – Registers the UI button component, which opens a panel with a table of selectable emojis.</li>
 </ul>
-<p>You can freely choose how to load the feature: either as a whole (as shown in the example above), or select one of the sub-plugins if you need only one of the ways of inserting emojis into the document.</p>
+<p>You can freely choose how to load the feature: either as a whole (as shown in the example above) or select one of the sub-plugins if you need only one of the ways of inserting emojis into the document.</p>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>The feature can be configured via the <a href="../api/module_emoji_emojiconfig-EmojiConfig.html"><code>config.emoji</code></a> object.</p>
 <ul>
-<li><code>dropdownLimit</code> – the number of items to appear in the emoji dropdown.</li>
-</ul>
+<li>
+<p><code>dropdownLimit</code> – the number of items to appear in the emoji dropdown.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         // ... Other configuration options ...
@@ -667,9 +669,9 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
-<ul>
-<li><code>skinTone</code> – the initial skin tone for the emojis that support skin tones.</li>
-</ul>
+</li>
+<li>
+<p><code>skinTone</code> – the initial skin tone for the emojis that support skin tones.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         // ... Other configuration options ...
@@ -680,9 +682,23 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
-<ul>
-<li><code>version</code> – the emoji database version.</li>
-</ul>
+</li>
+<li>
+<p><code>definitionsUrl</code> – the URL to the emoji definitions file. The URL should return a JSON array with emoji definitions specified by the <a href="../api/module_emoji_emojirepository-EmojiCdnResource.html"><code>EmojiCdnResource</code></a> interface.</p>
+  <div class="info-box notice notice__warning"><p>If the <code>definitionsUrl</code> is not provided, the feature will fetch the emoji definitions from the CKEditor&nbsp;5 CDN.</p></div>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        // ... Other configuration options ...
+        emoji: {
+            definitionsUrl: 'https://example.com/emoji-definitions.json'
+        }
+    } )
+    .then( /* ... */ )
+    .catch( /* ... */ );
+</code></pre>
+</li>
+<li>
+<p><code>version</code> – the emoji database version.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         // ... Other configuration options ...
@@ -693,23 +709,25 @@ ClassicEditor
     .then( /* ... */ )
     .catch( /* ... */ );
 </code></pre>
+</li>
+</ul>
 <div class="info-box notice notice__info"><p>The emoji feature uses the <code>:</code> marker that opens a panel with a table of selectable emojis. If you are using <a href="mentions.html">mentions</a> or <a href="merge-fields.html">merge fields</a> features, they can also show UI panels by pressing a pre-configured key, and it may conflict with the emoji feature. In such a case, the <a href="../api/module_emoji_emojimention-EmojiMention.html"><code>EmojiMention</code></a> plugin will not integrate the autocompletion mechanism.</p><p>To prevent conflicts, make sure that <a href="../api/module_mention_mentionconfig-MentionFeed.html#member-marker">mention’s <code>marker</code></a> and <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-prefix">merge field’s <code>prefix</code></a> configuration options are defined differently than <code>:</code>.</p></div>
 <h2 id="related-features"><a class="headerlink" href="#related-features">#</a> Related features</h2>
-<p>In addition to enabling emoji feature, you may want to check the following related features:</p>
+<p>In addition to enabling the emoji feature, you may want to check the following related features:</p>
 <ul>
 <li><a href="special-characters.html">Special characters</a> – Allows inserting <strong>mathematical operators</strong>, <strong>currency symbols</strong>, <strong>punctuation</strong>, <strong>graphic symbols</strong> (such as arrows or bullets), or Unicode letters typically not accessible from the keyboard (such as <strong>umlauts</strong> or <strong>other diacritics</strong>).</li>
 <li><a href="mentions.html">Mentions</a> – Brings support for smart autocompletion.</li>
 </ul>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../api/module_emoji_emojipicker-EmojiPicker.html"><code>EmojiPicker</code></a> plugin registers the UI button component (<code>'emoji'</code>) and the command (<code>'emoji'</code>) that allows opening the emoji picker UI.</p>
-<div class="info-box notice"><p>We recommend using the official <a href="../framework/develpment-tools/inspector.html">CKEditor&nbsp;5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<div class="info-box notice"><p>We recommend using the official <a href="../framework/develpment-tools/inspector.html">CKEditor&nbsp;5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor, such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
 <p>The source code of the feature is available at GitHub in <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-emoji">https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-emoji</a>.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Femoji.html%22&amp;project-version=44.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22features%2Femoji.html%22&amp;project-version=44.2.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -999,6 +1017,9 @@ ClassicEditor
                                     <li><a href="images/images-captions.html" title="Image captions">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image captions</span>
                                         </div></a></li>
+                                    <li><a href="images/images-image-optimizer.html" title="Image optimizer">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image optimizer</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
+                                        </div></a></li>
                                     <li><a href="images/images-resizing.html" title="Resizing images">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Resizing images</span>
                                         </div></a></li>
@@ -1092,11 +1113,11 @@ ClassicEditor
                             <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span>
                             </div>
                             <ul class="tree__item-nested-list" data-id="features-pasting">
-                                    <li><a href="pasting/paste-from-office-enhanced.html" title="Paste from Office enhanced">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office enhanced</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
-                                        </div></a></li>
                                     <li><a href="pasting/paste-from-office.html" title="Paste from Office">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Office</span>
+                                        </div></a></li>
+                                    <li><a href="pasting/paste-from-office-enhanced.html" title="Enhanced paste from Office">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Enhanced paste from Office</span><span class="tree__item__badge tree__item__badge_premium" data-badge-tooltip="Premium feature"><span class="tree__item__badge__text">Premium feature</span></span>
                                         </div></a></li>
                                     <li><a href="pasting/paste-from-google-docs.html" title="Paste from Google Docs">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span>

@@ -1,0 +1,5 @@
+/*!
+ * @license Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */window.ClassicEditor.create(document.querySelector("#snippet-merge-fields-refresh-values"),{mergeFields:{...window.ClassicEditor.defaultConfig.mergeFields,previewModes:["$defaultValues"],initialPreviewMode:"$defaultValues",definitions:[{id:"bitcoinRate",label:"Bitcoin rate",defaultValue:e=>e.plugins.has("IntervalFetcher")?e.plugins.get("IntervalFetcher").mergeFieldsData.bitcoinRate||"Fetching data...":"Data not available."}]},toolbar:{items:["insertMergeField"].concat(window.ClassicEditor.defaultConfig.toolbar.items)},extraPlugins:[window.CKEditorPlugins.IntervalFetcher]}).then((e=>{window.editor=e,window.preventPasteFromOfficeNotification=!0,window.attachTourBalloon({target:window.findToolbarItem(e.ui.view.toolbar,(e=>e.buttonView&&"Insert merge field"===e.buttonView.label)),text:'"Bitcoin rate" merge field value refreshes every 5 seconds.',editor:e,tippyOptions:{placement:"bottom-start"}})})).catch((e=>{console.error(e.stack)}));
+//# sourceMappingURL=snippet.js.map

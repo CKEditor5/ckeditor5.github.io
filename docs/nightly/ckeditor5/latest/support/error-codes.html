@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Feb 12 2025 02:15:26 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Feb 13 2025 02:14:35 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.1.0">
+    <meta name="project-version" content="44.2.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -1931,13 +1931,38 @@ editable element and therefore <code>&lt;textarea&gt;</code> is not appropriate 
     </div>
   </li>
   <li class="collapsing-list__item collapsing-list__item--visible">
-    <div class="collapsing-list__term toggler--collapsed" id="error-emoji-database-load-failed">
-      <h3><code><a class="member-name" href="#error-emoji-database-load-failed">emoji-database-load-failed</a></code></h3>
+    <div class="collapsing-list__term toggler--collapsed" id="error-emoji-repository-cdn-use">
+      <h3><code><a class="member-name" href="#error-emoji-repository-cdn-use">emoji-repository-cdn-use</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Unable to load the emoji database from CDN.</p>
-<p>TODO: It could be a problem of CKEditor 5 CDN, but also, Content Security Policy that disallow the request.
-It would be good to explain what to do in such a case.</p>
+      <div class="collapsing-list__content"><p>By default, the Emoji plugin fetches the emoji repository from CKEditor 5 CDN. To avoid this,
+you can use the <a href="../api/module_emoji_emojiconfig-EmojiConfig.html#member-definitionsUrl"><code>emoji.definitionsUrl</code></a>
+configuration option to provide a URL to your own emoji repository.</p>
+<p>If you only want to suppress this warning, set this configuration option to <code>cdn</code>.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-emoji-repository-load-failed">
+      <h3><code><a class="member-name" href="#error-emoji-repository-load-failed">emoji-repository-load-failed</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <div class="collapsing-list__content"><p>Unable to load the emoji repository from the URL.</p>
+<p>If the URL works properly and there is no disruption of communication, please check your
+<a href="../getting-started/setup/csp.html" data-glink="">Content Security Policy (CSP)</a> setting and make sure
+the URL connection is allowed by the editor.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-emoji-repository-redundant-version">
+      <h3><code><a class="member-name" href="#error-emoji-repository-redundant-version">emoji-repository-redundant-version</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <div class="collapsing-list__content"><p>Both <a href="../api/module_emoji_emojiconfig-EmojiConfig.html#member-definitionsUrl"><code>emoji.definitionsUrl</code></a> and
+<a href="../api/module_emoji_emojiconfig-EmojiConfig.html#member-version"><code>emoji.version</code></a> configuration options
+are set. Only the <code>emoji.definitionsUrl</code> option will be used.</p>
+<p>The <code>emoji.version</code> option will be ignored and should be removed from the configuration.</p>
       </div>
     </div>
   </li>
@@ -5563,7 +5588,7 @@ instead.</p>
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22support%2Ferror-codes.html%22&amp;project-version=44.1.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22support%2Ferror-codes.html%22&amp;project-version=44.2.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
