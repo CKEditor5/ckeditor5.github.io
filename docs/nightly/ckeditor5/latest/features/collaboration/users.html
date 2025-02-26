@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Feb 25 2025 02:14:32 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Feb 26 2025 02:15:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Users | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -574,7 +574,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title">Users
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#additional-feature-information" title="Additional feature information">Additional feature information</a></li><li><a href="#local-user-me-user" title="Local user (“me” user)">Local user (“me” user)</a></li><li><a href="#anonymous-user" title="Anonymous user">Anonymous user</a></li><li><a href="#user-permissions" title="User permissions">User permissions</a></li><li><a href="#operation-authors" title="Operation authors">Operation authors</a></li><li><a href="#theme-customization" title="Theme customization">Theme customization</a><ol><li><a href="#user-avatar" title="User avatar">User avatar</a></li><li><a href="#user-colors" title="User colors">User colors</a></li><li><a href="#adding-more-user-colors" title="Adding more user colors">Adding more user colors</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#additional-feature-information" title="Additional feature information">Additional feature information</a></li><li><a href="#local-user-me-user" title="Local user (“me” user)">Local user (“me” user)</a></li><li><a href="#anonymous-user" title="Anonymous user">Anonymous user</a></li><li><a href="#user-permissions" title="User permissions">User permissions</a></li><li><a href="#operation-authors" title="Operation authors">Operation authors</a></li><li><a href="#customize-initials" title="Customize initials">Customize initials</a></li><li><a href="#theme-customization" title="Theme customization">Theme customization</a><ol><li><a href="#user-avatar" title="User avatar">User avatar</a></li><li><a href="#user-colors" title="User colors">User colors</a></li><li><a href="#adding-more-user-colors" title="Adding more user colors">Adding more user colors</a></li></ol></li></ol></nav>
 <p>The <a href="../../api/module_collaboration-core_users-Users.html"><code>Users</code></a> plugin and related plugins let you manage user data and permissions. This is essential when many users are working on the same document.</p>
 <h2 id="additional-feature-information"><a class="headerlink" href="#additional-feature-information">#</a> Additional feature information</h2>
 <p>The users plugin is automatically provided if you load any collaboration features plugins.</p>
@@ -629,7 +629,7 @@ ClassicEditor
     const user = editor.plugins.get( 'Users' ).getUser( id );
 
     // It is `true` if it is the "me" user, `false` otherwise.
-    const isOwnUser = user.isMe; 
+    const isOwnUser = user.isMe;
 </code></pre>
 <p>The local user’s avatar is highlighted in all places it is displayed. You can easily override this behavior using the <code>.ck-user_me</code> CSS class selector.</p>
 <pre class="highlight"><code class="css">    /* Display the local user the same as other users. */
@@ -725,6 +725,20 @@ editor.model.on( 'applyOperation', ( evt, args ) =&gt; {
         return operation.type != 'noop' &amp;&amp; ( operation.type != 'marker' || operation.affectsData );
     }
 } );
+</code></pre>
+<h2 id="customize-initials"><a class="headerlink" href="#customize-initials">#</a> Customize initials</h2>
+<p>To customize how <a href="../../api/module_collaboration-core_users-User.html#member-initials"><code>user initials</code></a> are generated, set the <a href="../../api/module_collaboration-core_config-UsersConfig.html#member-getInitialsCallback"><code>getInitialsCallback</code></a> configuration option when initializing the editor:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        // More editor's configuration.
+        // ...
+        users: {
+            getInitialsCallback: ( name: string ) =&gt; {
+                // Custom logic to generate initials.
+                return name.split( ' ' )[ 0 ].charAt( 0 ) + name.split( ' ' )[ 1 ].charAt( 0 );
+            }
+        }
+    } );
 </code></pre>
 <h2 id="theme-customization"><a class="headerlink" href="#theme-customization">#</a> Theme customization</h2>
 <h3 id="user-avatar"><a class="headerlink" href="#user-avatar">#</a> User avatar</h3>

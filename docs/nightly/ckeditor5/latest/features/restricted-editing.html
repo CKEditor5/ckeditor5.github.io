@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Feb 25 2025 02:14:27 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Feb 26 2025 02:15:16 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Restricted editing | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -582,7 +582,7 @@
 <p>The demo below lets you emulate both the standard editing mode and the restricted editing mode.</p>
 <p>Start by creating a template of the document in the standard editing mode. Select a section of the text and use the enable editing toolbar button <span class="editor-icon"><img src="../assets/icons/25abdd958a.svg" class="editor-icon__image" alt="Enable editing"></span> to turn a selected area into an editable region or remove an existing one.</p>
 <p>Then switch to the restricted editing mode to see how the editable and non-editable regions behave.</p>
-<div class="info-box notice"><p>Tip: Use <kbd>Tab</kbd> to navigate from one editable region to another (and <kbd>Shift</kbd>+<kbd>Tab</kbd> to move back) in the restricted mode.</p></div>
+<div class="info-box notice notice__info"><p>Tip: Use <kbd>Tab</kbd> to navigate from one editable region to another (and <kbd>Shift</kbd>+<kbd>Tab</kbd> to move back) in the restricted mode.</p></div>
 <div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
 <p>
 	<b>Mode</b>:
@@ -607,7 +607,7 @@
 <p>The restricted editing feature enables two editing modes:</p>
 <ul>
 <li><strong>Standard editing mode</strong> – In this mode the user can edit the content and choose regions that should be editable in the restricted editing mode.</li>
-<li><strong>Restricted editing mode</strong> – When you initialize the editor in this mode, the user can edit the content only within the regions chosen by the user in the standard editing mode.</li>
+<li><strong>Restricted editing mode</strong> – When you initialize the editor in this mode, the user can edit the content only within the regions chosen by the user in the standard editing mode. This mode supports only inline-type changes. Users can type, delete content, and format the text. However, no block-type editions are available. This means no splitting paragraphs (striking the <kbd>Enter</kbd> key) is allowed. Tables or block images cannot be added in this mode, too.</li>
 </ul>
 <p>You can imagine a workflow where a certain group of users is responsible for creating templates of documents. At the same time, a second group of users can only fill the gaps (for example, fill in the missing data, like names, dates, product names, etc.).</p>
 <p>By using this feature, the users of your application will be able to create template documents. In a certain way, you can use this feature to generate forms with rich-text capabilities. This kind of practical application is shown in the <a href="https://ckeditor.com/blog/How-to-create-ready-to-print-documents-with-page-structure-in-WYSIWYG-editor---CKEditor-5-pagination-feature/">How to create ready-to-print documents with CKEditor&nbsp;5 pagination feature</a> blog post.</p>
@@ -654,6 +654,7 @@ ClassicEditor
     .catch( /* ... */ );
 </code></pre>
 <p><strong>Note</strong>: Typing and deleting text is always possible in restricted editing regions. For more information, check out the <a href="../api/module_restricted-editing_restrictededitingconfig-RestrictedEditingConfig.html"><code>config.restrictedEditing</code></a> documentation.</p>
+<div class="info-box notice notice__warning"><p>Only inline content inserting or editing commands are allowed in this setting. Block content commands such as <code>insertTable</code> or <code>enter</code> cannot be allowed via this setting, as they are not supported in the restricted editing mode.</p></div>
 <h3 id="enabling-commands-in-the-restricted-editing-mode"><a class="headerlink" href="#enabling-commands-in-the-restricted-editing-mode">#</a> Enabling commands in the restricted editing mode</h3>
 <p>The restricted editing mode allows modifying the editor content only in designated regions. Outside these regions, most of the editor commands are turned off by default. If you wish to enable some commands outside the restricted editing regions, you can use the <a href="../api/module_restricted-editing_restrictededitingmodeediting-RestrictedEditingModeEditing.html#function-enableCommand"><code>RestrictedEditingModeEditing.enableCommand()</code></a> method. You must execute this method in the <a href="../api/module_core_plugin-PluginInterface.html#function-afterInit"><code>afterInit()</code></a> callback of an editor plugin.</p>
 <div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { ClassicEditor, Plugin } from 'ckeditor5';

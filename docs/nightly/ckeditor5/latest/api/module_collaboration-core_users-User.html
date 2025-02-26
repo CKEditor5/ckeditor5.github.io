@@ -7,7 +7,7 @@
     <meta name="description" content="CKEditor 5 API Documentation. The Class User. The representation of a single user that is involved in document editing.">
     <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class User. The representation of a single user that is involved in document editing.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Feb 25 2025 02:13:46 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Feb 26 2025 02:14:39 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class User (collaboration-core/users~User) | CKEditor 5 API docs">
     <meta property="og:description" content="CKEditor 5 API Documentation. The Class User. The representation of a single user that is involved in document editing.">
     <meta property="og:type" content="website">
@@ -207,13 +207,16 @@
                         </div>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__content"><p>The initials of the user.</p>
-<p>The initials are composed from the user name's first and last words:</p>
+<p>By default, the initials are composed of the user name's first and last words ignoring non-characters parts:</p>
 <ul>
 <li>for <code>Joe Doe</code>, the initials are <code>JD</code>,</li>
+<li>for <code>Joe Doe (admin)</code>, the initials are <code>JD</code>,</li>
 <li>for <code>Anonymous</code> the initials are <code>A</code>,</li>
 <li>for <code>Katie John-Newman</code> the initials are <code>KJ</code>,</li>
 <li>for <code>Adam Daniel Smith</code> the initials are <code>AS</code>.</li>
 </ul>
+<p>The initials can be configured by
+<a href="module_collaboration-core_config-UsersConfig.html#member-getInitialsCallback"><code>UserConfig#getInitialsCallback</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -261,7 +264,7 @@ used by &quot;guest&quot; users of your application, or when the original user's
           <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="methods">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( data )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:collaboration-core/users~User#constructor"><code>module:collaboration-core/users~User#constructor</code></span>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( data, [ getInitialsCallback ] )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:collaboration-core/users~User#constructor"><code>module:collaboration-core/users~User#constructor</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
@@ -272,6 +275,11 @@ used by &quot;guest&quot; users of your application, or when the original user's
                                             :
  <span>UserData</span></code></dt>
                                         <dd><p>User data.</p>
+                                        </dd>
+                                        <dt><code>[ getInitialsCallback ]
+                                            :
+ ( <span>string</span> ) =&gt;  <span>string</span></code></dt>
+                                        <dd><p>The custom callback configured via the editor configuration to calculate the initials.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1585,6 +1593,9 @@ used by &quot;guest&quot; users of your application, or when the original user's
                 </li>
                 <li><a href="module_collaboration-core_config-RealTimeCollaborationConfig.html">
                     <div class="tree__item__wrapper" data-ln="module:collaboration-core/config~RealTimeCollaborationConfig"><span class="tree__item--interface tree__item__text">RealTimeCollaborationConfig</span></div></a>
+                </li>
+                <li><a href="module_collaboration-core_config-UsersConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:collaboration-core/config~UsersConfig"><span class="tree__item--interface tree__item__text">UsersConfig</span></div></a>
                 </li>
               </ul>
             </li>

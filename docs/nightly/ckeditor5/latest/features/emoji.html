@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Feb 25 2025 02:14:19 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Feb 26 2025 02:15:09 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Emoji | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -577,7 +577,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title">Emoji
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#installation" title="Installation">Installation</a></li><li><a href="#configuration" title="Configuration">Configuration</a></li><li><a href="#related-features" title="Related features">Related features</a></li><li><a href="#common-api" title="Common API">Common API</a></li><li><a href="#contribute" title="Contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo" title="Demo">Demo</a></li><li><a href="#installation" title="Installation">Installation</a></li><li><a href="#configuration" title="Configuration">Configuration</a><ol><li><a href="#emoji-source" title="Emoji source">Emoji source</a></li><li><a href="#marker-conflicts" title="Marker conflicts">Marker conflicts</a></li></ol></li><li><a href="#related-features" title="Related features">Related features</a></li><li><a href="#common-api" title="Common API">Common API</a></li><li><a href="#contribute" title="Contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>
 </div>
 
 <p>The emoji feature lets you insert emojis into the document from the editor toolbar or while writing the content. The emojis are pulled from the CDN to lessen the editor load.</p>
@@ -698,7 +698,7 @@ ClassicEditor
 </code></pre>
 </li>
 <li>
-<p><code>version</code> – the emoji database version.</p>
+<p><code>version</code> – the emoji database version. By default, version 16 is used. This option is ignored if the <code>definitionsUrl</code> setting is provided.</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( document.querySelector( '#editor' ), {
         // ... Other configuration options ...
@@ -711,7 +711,18 @@ ClassicEditor
 </code></pre>
 </li>
 </ul>
-<div class="info-box notice notice__info"><p>The emoji feature uses the <code>:</code> marker that opens a panel with a table of selectable emojis. If you are using <a href="mentions.html">mentions</a> or <a href="merge-fields.html">merge fields</a> features, they can also show UI panels by pressing a pre-configured key, and it may conflict with the emoji feature. In such a case, the <a href="../api/module_emoji_emojimention-EmojiMention.html"><code>EmojiMention</code></a> plugin will not integrate the autocompletion mechanism.</p><p>To prevent conflicts, make sure that <a href="../api/module_mention_mentionconfig-MentionFeed.html#member-marker">mention’s <code>marker</code></a> and <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-prefix">merge field’s <code>prefix</code></a> configuration options are defined differently than <code>:</code>.</p></div>
+<h3 id="emoji-source"><a class="headerlink" href="#emoji-source">#</a> Emoji source</h3>
+<p>The database of English emoji is loaded by default from our CDN. Make sure that your <a href="../getting-started/setup/csp.html">CSP rules</a> are correctly set up.</p>
+<p>If you do not want to use our distribution and prefer to self-host emoji, you can use the <a href="../api/module_emoji_emojiconfig-EmojiConfig.html#member-definitionsUrl"><code>definitionsUrl</code></a> option. You can download the data directly from the package mentioned above or from our CDN, and place it under a static assets URL, for example:</p>
+<ol>
+<li>Download the latest emoji database from <a href="https://cdn.ckeditor.com/ckeditor5/data/emoji/16/en.json">https://cdn.ckeditor.com/ckeditor5/data/emoji/16/en.json</a>, or download version 15 for older Unicode versions.</li>
+<li>Place the downloaded file in your application’s assets folder, for example <code>public/emoji/en.json</code>. The specific location may vary depending on your framework and setup.</li>
+<li>Update the configuration option <code>definitionsUrl</code> to point to the URL of your assets, for example: <code>https://example.com/emoji/en.json</code>.</li>
+</ol>
+<p>You can prepare your own database with a different emoji set, but it must have an identical structure as ours. Otherwise, the emoji feature will not work.</p>
+<h3 id="marker-conflicts"><a class="headerlink" href="#marker-conflicts">#</a> Marker conflicts</h3>
+<p>The emoji feature uses the <code>:</code> marker that opens a panel with a table of selectable emojis. If you are using the <a href="mentions.html">mentions</a> or <a href="merge-fields.html">merge fields</a> features, they can also show UI panels by pressing a pre-configured key, and it may conflict with the emoji feature. In such a case, the <a href="../api/module_emoji_emojimention-EmojiMention.html"><code>EmojiMention</code></a> plugin will not integrate the autocompletion mechanism.</p>
+<p>To prevent conflicts, make sure that the <a href="../api/module_mention_mentionconfig-MentionFeed.html#member-marker">mention’s <code>marker</code></a> and <a href="../api/module_merge-fields_mergefieldsconfig-MergeFieldsConfig.html#member-prefix">merge field’s <code>prefix</code></a> configuration options are not defined as <code>:</code>.</p>
 <h2 id="related-features"><a class="headerlink" href="#related-features">#</a> Related features</h2>
 <p>In addition to enabling the emoji feature, you may want to check the following related features:</p>
 <ul>
