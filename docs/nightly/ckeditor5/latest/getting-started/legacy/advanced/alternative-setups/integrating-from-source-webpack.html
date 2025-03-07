@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Mar 05 2025 02:14:52 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Mar 07 2025 02:12:34 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integrating CKEditor 5 from source using Webpack | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.2.1">
+    <meta name="project-version" content="44.3.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -208,6 +208,9 @@
                                       </div></a></li>
                                   <li><a href="../../../setup/css.html" title="Editor and content styles">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and content styles</span>
+                                      </div></a></li>
+                                  <li><a href="../../../setup/customizing-icons.html" title="Customizing icons">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customizing icons</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="../../../setup/typescript-support.html" title="TypeScript support">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span>
@@ -415,7 +418,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                test: /\.svg$/,
                 use: [ 'raw-loader' ]
             },
             {
@@ -485,7 +488,7 @@ module.exports = {
                 use: [ 'ts-loader' ]
             },
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                test: /\.svg$/,
 
                 use: [ 'raw-loader' ]
             },
@@ -536,13 +539,13 @@ Encore.
 
     // Use raw-loader for CKEditor 5 SVG files.
     .addRule( {
-        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+        test: /\.svg$/,
         loader: 'raw-loader'
     } )
 
     // Configure other image loaders to exclude CKEditor 5 SVG files.
     .configureLoaderRule( 'images', loader =&gt; {
-        loader.exclude = /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/;
+        loader.exclude = /\.svg$/;
     } )
 
     // Configure PostCSS loader.
@@ -850,7 +853,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                test: /\.svg$/,
                 use: [ 'raw-loader' ]
             },
             {
@@ -916,7 +919,7 @@ module.exports = {
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Flegacy%2Fadvanced%2Falternative-setups%2Fintegrating-from-source-webpack.html%22&amp;project-version=44.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22getting-started%2Flegacy%2Fadvanced%2Falternative-setups%2Fintegrating-from-source-webpack.html%22&amp;project-version=44.3.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -1058,6 +1061,9 @@ module.exports = {
                                         </div></a></li>
                                     <li><a href="../../../setup/css.html" title="Editor and content styles">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor and content styles</span>
+                                        </div></a></li>
+                                    <li><a href="../../../setup/customizing-icons.html" title="Customizing icons">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Customizing icons</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="../../../setup/typescript-support.html" title="TypeScript support">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">TypeScript support</span>

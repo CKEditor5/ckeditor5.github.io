@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Mar 05 2025 02:14:45 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Mar 07 2025 02:12:26 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 recent changelog | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.2.1">
+    <meta name="project-version" content="44.3.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -180,6 +180,9 @@
                                   <li><a href="" title="Changelog">
                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="update-to-45.html" title="Update to v45.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
                                       </div></a></li>
@@ -262,27 +265,69 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">CKEditor 5 changelog
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ckeditor-5-4421-release" title="CKEditor 5 44.2.1 release">CKEditor 5 44.2.1 release</a></li><li><a href="#ckeditor-5-4420-release" title="CKEditor 5 44.2.0 release">CKEditor 5 44.2.0 release</a></li><li><a href="#ckeditor-5-4410-release" title="CKEditor 5 44.1.0 release">CKEditor 5 44.1.0 release</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ckeditor-5-4430-release" title="CKEditor 5 44.3.0 release">CKEditor 5 44.3.0 release</a></li><li><a href="#ckeditor-5-4421-release" title="CKEditor 5 44.2.1 release">CKEditor 5 44.2.1 release</a></li><li><a href="#ckeditor-5-4420-release" title="CKEditor 5 44.2.0 release">CKEditor 5 44.2.0 release</a></li></ol></nav>
 <p>This is the CKEditor&nbsp;5 changelog guide. Here you will find information about the most important changes introduced in the release, new features, and bug fixes.</p>
 <p>Information about both major and minor breaking changes is available, too, if the release introduces them. You can read more about breaking changes in CKEditor&nbsp;5 in the <a href="https://ckeditor.com/docs/ckeditor5/latest/support/versioning-policy.html#major-and-minor-breaking-changes">Versioning policy</a> guide.</p>
 <p>You can find more information about each release in the blog posts linked at the start of each entry.</p>
 <p>This guide provides the changelog information for the 3 latest releases of CKEditor&nbsp;5. For older releases, refer to the <a href="https://github.com/ckeditor/ckeditor5/releases">release notes on GitHub</a>.</p>
+<h2 id="ckeditor-5-4430-release"><a class="headerlink" href="#ckeditor-5-4430-release">#</a> CKEditor 5 44.3.0 release</h2>
+<p>We are happy to announce the release of CKEditor 5 v44.3.0.</p>
+<h3 id="release-highlights"><a class="headerlink" href="#release-highlights">#</a> Release Highlights</h3>
+<p>This release brings a couple of minor improvements and bug fixes:</p>
+<ul>
+<li><strong>Link Decorators:</strong> We fixed the behavior of the multiple manual link decorators that set the <code>rel</code> attribute. The fix happened so deep in the engine that we improved the overall performance of the editor slightly as well.</li>
+<li><strong>Added a new <code>EmptyBlock</code> plugin:</strong> From now on, new plugin prevents adding <code>&amp;nbsp;</code> to the output data of blocks, works similarly to the <a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fillEmptyBlocks"><code>fillEmptyBlocks</code></a> configuration in CKEditor 4.</li>
+<li><strong>Support for the <code>&lt;hr&gt;</code> element in the <a href="https://ckeditor.com/docs/ckeditor5/latest/features/html/general-html-support.html">General HTML Support</a> plugin enhanced:</strong> attributes of the <code>&lt;hr&gt;</code> element are now properly preserved if configuration allows it.</li>
+<li><strong>Emoji:</strong> We enhanced emoji support for better compatibility with users’ older devices.</li>
+</ul>
+<p>For more details, see the changelog below.</p>
+<h3 id="minor-breaking-changes"><a class="headerlink" href="#minor-breaking-changes">#</a> MINOR BREAKING CHANGES</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The <code>ViewConsumable.consumablesFromElement()</code> is removed and replaced with the <code>view.Element#_getConsumables()</code> internal method. You should use <code>ViewConsumable.createFrom()</code> to create consumables if needed.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The <code>ViewElementConsumables</code> now accepts and outputs only normalized data. The <code>ViewConsumable</code> still accepts normalized or non-normalized input.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The <code>Matcher#match()</code> and <code>Matcher#matchAll()</code> output is now normalized. The <code>MatchResult#match</code> now contains normalized data compatible with changes in the <code>ViewConsumable</code>.</li>
+</ul>
+<h3 id="features"><a class="headerlink" href="#features">#</a> Features</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Export the <code>SchemaContext</code> class from package. Closes https://github.com/ckeditor/ckeditor5/issues/18003. (<a href="https://github.com/ckeditor/ckeditor5/commit/4d64fda926e490151ef84eb8dc1c6d86d8eb69ad">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-html-support">html-support</a></strong>: Added support for the <code>&lt;hr&gt;</code> element. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/12973">#12973</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/d6e50d1317d9290fe14fd8a63ff024888f7a84ee">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-html-support">html-support</a></strong>: Add the <code>EmptyBlock</code> plugin that prevents adding <code>&amp;nbsp;</code> to output data. (<a href="https://github.com/ckeditor/ckeditor5/commit/602d4e1fcbe78ce9fd2fa02435995346aaea70eb">commit</a>)</li>
+</ul>
+<h3 id="bug-fixes"><a class="headerlink" href="#bug-fixes">#</a> Bug fixes</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-collaboration-core">collaboration-core</a></strong>: User initials will now be generated based on the words that start with letters, ensuring that only valid alphabetic characters are used in the initials.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: Annotations will no longer be lost during real-time collaboration when a user removes and immediately reverts (undo) content containing comment markers.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: The editor will no longer crash when one user removes content containing a comment that another user is editing.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The link <code>[rel]</code> attribute will now allow mixing manual link decorators for the same attribute, as it will be now handled as a token list. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/13985">#13985</a>, Closes <a href="https://github.com/ckeditor/ckeditor5/issues/6436">#6436</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/3107be3d8485898621796b1e85d18472a8d64bb3">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-mention">mention</a></strong>: Mention should not be wrapped with an additional <code>&lt;span&gt;</code> when GHS is enabled. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/15329">#15329</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/3107be3d8485898621796b1e85d18472a8d64bb3">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Fixed an issue where the first selected color was applied instead of the second selected color when using the font color picker for the first time after loading the page. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17069">#17069</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/a0b28c0dcd0d324ea33ee6fd55989fa95a079437">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-typing">typing</a></strong>: Removing a nested editable does not remove an entire widget when the selection is placed at the beginning of that element. (<a href="https://github.com/ckeditor/ckeditor5/commit/1ef174c225aa9564472053713fe0933c49b35441">commit</a>)</li>
+</ul>
+<h3 id="other-changes"><a class="headerlink" href="#other-changes">#</a> Other changes</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-clipboard">clipboard</a></strong>: Export the <code>viewToPlainText()</code> function. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17950">#17950</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/5616486488353c9f872b3a5e52d4cd4af2de08fc">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-collaboration-core">collaboration-core</a></strong>: Introduced a new configuration option: <code>config.users.getInitialsCallback</code>. It allows providing a custom callback function for user initials generation.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-emoji">emoji</a></strong>: Improved emoji support by expanding the range of versions compatible with users’ devices. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18014">#18014</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/73193609a468a256e3b7bf300311ba94dad74cb0">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-emoji">emoji</a></strong>: Icons representing categories in the grid come from the same Unicode version to avoid rendering the non-supported ones. (<a href="https://github.com/ckeditor/ckeditor5/commit/73193609a468a256e3b7bf300311ba94dad74cb0">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-emoji">emoji</a></strong>: Introduced the <code>emoji.useCustomFont</code> option to disable the filtering mechanism. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18029">#18029</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/1bff10827168e85766835ad9e5776929ddd4ce08">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The whitespaces around a block filler (<code>&amp;nbsp;</code>) are ignored while loading editor data. (<a href="https://github.com/ckeditor/ckeditor5/commit/602d4e1fcbe78ce9fd2fa02435995346aaea70eb">commit</a>)</li>
+</ul>
 <h2 id="ckeditor-5-4421-release"><a class="headerlink" href="#ckeditor-5-4421-release">#</a> CKEditor 5 44.2.1 release</h2>
 <p>We are happy to announce the release of CKEditor 5 v44.2.1.</p>
 <p>During a recent internal audit, we identified a cross-site scripting (XSS) vulnerability in the CKEditor 5 real-time collaboration package (<a href="https://github.com/ckeditor/ckeditor5/security/advisories/GHSA-j3mm-wmfm-mwvh"><code>CVE-2025-25299</code></a>). This vulnerability can lead to unauthorized JavaScript code execution and affects user markers, which represent users’ positions within the document.</p>
 <p>This vulnerability affects only installations with <a href="https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/real-time-collaboration/real-time-collaboration.html">real-time collaborative editing</a> enabled.</p>
 <p>You can read more details in the relevant <a href="https://github.com/ckeditor/ckeditor5/security/advisories/GHSA-j3mm-wmfm-mwvh">security advisory</a> and <a href="mailto:security@cksource.com">contact us</a> if you have more questions.</p>
-<h3 id="bug-fixes"><a class="headerlink" href="#bug-fixes">#</a> Bug fixes</h3>
+<h3 id="bug-fixes-2"><a class="headerlink" href="#bug-fixes-2">#</a> Bug fixes</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: Fixed a few scenarios for which creating a new comment thread was impossible (for example, when a selection was made on multiple table cells). This was a regression introduced in <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v44.2.0">v44.2.0</a>.</li>
 </ul>
-<h3 id="other-changes"><a class="headerlink" href="#other-changes">#</a> Other changes</h3>
+<h3 id="other-changes-2"><a class="headerlink" href="#other-changes-2">#</a> Other changes</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-real-time-collaboration">real-time-collaboration</a></strong>: Improved displaying usernames in the user marker.</li>
 </ul>
 <h2 id="ckeditor-5-4420-release"><a class="headerlink" href="#ckeditor-5-4420-release">#</a> CKEditor 5 44.2.0 release</h2>
 <p>We are happy to announce the release of CKEditor 5 v44.2.0.</p>
-<h3 id="release-highlights"><a class="headerlink" href="#release-highlights">#</a> Release Highlights</h3>
+<h3 id="release-highlights-2"><a class="headerlink" href="#release-highlights-2">#</a> Release Highlights</h3>
 <h4 id="️-enhanced-source-code-editing"><a class="headerlink" href="#️-enhanced-source-code-editing">#</a> 🖥️ Enhanced Source Code Editing (⭐)</h4>
 <p>Introducing new premium feature: <a href="https://ckeditor.com/docs/ckeditor5/latest/features/source-editing/source-editing-enhanced.html">Enhanced Source Code Editing</a>. It displays the source code in a dialog and is compatible with all editor types. It offers syntax highlighting, code completion, code folding, and other advanced functionalities. Additionally, it supports both HTML and Markdown formats.</p>
 <h4 id="uploadcare-and-image-optimizer"><a class="headerlink" href="#uploadcare-and-image-optimizer">#</a> 📤 Uploadcare and image optimizer (⭐)</h4>
@@ -300,7 +345,7 @@
 <li>Images with specified height and width automatically use <code>[loading="lazy"]</code> in the editing area, optimizing the loading time (<a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading#images_and_iframes">read more on MDN</a>). This attribute is only applied during editing to enhance the loading efficiency of images, and it does not reflect in the final data output.</li>
 </ul>
 <p>We are greatly satisfied with the improved editor loading times. At the same time, we acknowledge some other problematic areas, and we will keep delivering more performance-related improvements in the future.</p>
-<h3 id="minor-breaking-changes"><a class="headerlink" href="#minor-breaking-changes">#</a> MINOR BREAKING CHANGES</h3>
+<h3 id="minor-breaking-changes-2"><a class="headerlink" href="#minor-breaking-changes-2">#</a> MINOR BREAKING CHANGES</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: <code>Mapper#registerViewToModelLength()</code> is now deprecated and will be removed in one of the upcoming releases. This method is useful only in obscure and complex converters, where model element, or a group of model elements, are represented very differently in the view. We believe that every feature using a custom view-to-model length callback can be rewritten in a way that this mechanism is no longer necessary. Note: if this method is used, the caching mechanism for <code>Mapper</code> will be turned off which may degrade performance when handling big documents. Note: this method is used by the deprecated legacy lists feature. As a result, you will not experience the performance improvements if you are still using the deprecated legacy lists feature.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image">image</a></strong>: Starting this release, images that have <code>[height]</code> and <code>[width]</code> attributes set will automatically receive the <code>[loading="lazy"]</code> attribute in the editing area. This happens only for the content loaded into the editor, the data output produced by the editor remains the same. The reason for this change is to improve user experience in documents that may contain hundreds of images.</li>
@@ -308,7 +353,7 @@
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-merge-fields">merge-fields</a></strong>: The <code>MergeFieldsEditing#getLabel()</code> method will now return <code>null</code> instead of the merge field id if the merge field definition was not found or it did not contain the <code>label</code> property.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-basic-styles">basic-styles</a></strong>: Elements which contains the <code>[style]</code> attribute with <code>word-wrap: break-word</code> will not be converted to <code>&lt;code&gt;</code>. See <a href="https://github.com/ckeditor/ckeditor5/issues/17789">#17789</a>.</li>
 </ul>
-<h3 id="features"><a class="headerlink" href="#features">#</a> Features</h3>
+<h3 id="features-2"><a class="headerlink" href="#features-2">#</a> Features</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ai">ai</a></strong>: Comment threads will now be preserved when AI Assistant processes selected content with comments. This can be disabled through the <a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_ai_aiassistant-AIAssistantConfig.html#member-preserveComments"><code>ai.aiAssistant.preserveComments</code></a> flag. Note, that the actual result depends on the response provided by the AI model (AI model has to keep the comments markup in the response). Additionally, the copy-paste comments functionality must be enabled (configured by <a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_comments_config-CommentsConfig.html#member-copyMarkers"><code>comments.copyMarkers</code></a>).</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ai">ai</a></strong>: The <a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_ai_aiassistant-AIAssistantConfig.html#member-removeCommands"><code>ai.aiAssistant.removeCommands</code></a> configuration now allows removing entire command groups.</li>
@@ -332,7 +377,7 @@
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-uploadcare">uploadcare</a></strong>: Introduced the Uploadcare integration.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Added a <code>collectStylesheets()</code> helper function to retrieve style sheets from the provided URLs. (<a href="https://github.com/ckeditor/ckeditor5/commit/5cda75f9dba03138e9d483e0287ef33f7fe59017">commit</a>)</li>
 </ul>
-<h3 id="bug-fixes-2"><a class="headerlink" href="#bug-fixes-2">#</a> Bug fixes</h3>
+<h3 id="bug-fixes-3"><a class="headerlink" href="#bug-fixes-3">#</a> Bug fixes</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ai">ai</a></strong>: The content generated by the AI Assistant will now be correctly inserted into tables when both “Replace” and “Insert below” actions are used.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-basic-styles">basic-styles</a></strong>: The <code>Code</code> feature should not convert element with the <code>word-wrap: break-word</code>  style into the <code>&lt;code&gt;</code> tag. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17789">#17789</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/0b637cdda6fd13e0808fcbd43ea7ccc6d37de974">commit</a>)</li>
@@ -360,7 +405,7 @@
 <li>Treat types as production dependencies. Fixes <a href="https://github.com/ckeditor/ckeditor5/issues/17213">#17213</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/9e9f49c6983d157aee99c0151cf81816cce8ff44">commit</a>)</li>
 <li>Unify TypeScript declaration files. Fixes <a href="https://github.com/ckeditor/ckeditor5/issues/17575">#17575</a> and <a href="https://github.com/ckeditor/ckeditor5/issues/17533">#17533</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/417c26173aabfc94e542e716b0a1343d2bf5015d">commit</a>)</li>
 </ul>
-<h3 id="other-changes-2"><a class="headerlink" href="#other-changes-2">#</a> Other changes</h3>
+<h3 id="other-changes-3"><a class="headerlink" href="#other-changes-3">#</a> Other changes</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ai">ai</a></strong>: Exported the <code>AIAssistantUI</code> class and the <code>AIAssistantConfig</code>, <code>CommandDefinition</code> and <code>GroupDefinition</code> types.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-clipboard">clipboard</a></strong>: Exported the <code>ViewDocumentPasteEvent</code> type from the <code>@ckeditor/ckeditor5-clipboard</code> package. (<a href="https://github.com/ckeditor/ckeditor5/commit/a6f927e4a3334e6b13dc2e642c618163b6d39375">commit</a>)</li>
@@ -392,61 +437,11 @@
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Extended key codes with the <code>End</code> and <code>Home</code> keys, enabling the use and display of shortcuts containing these keys in the UI. (<a href="https://github.com/ckeditor/ckeditor5/commit/c7e22bdcaaa1e513c49b17be422d5619e3a01689">commit</a>)</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Exported the <code>add()</code> function. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17783">#17783</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/2877d4b59b912e71a63187af9cfd68f5b6849148">commit</a>)</li>
 </ul>
-<h2 id="ckeditor-5-4410-release"><a class="headerlink" href="#ckeditor-5-4410-release">#</a> CKEditor 5 44.1.0 release</h2>
-<p>We are pleased to announce the latest CKEditor 5 release, focusing on performance enhancements and key bug fixes to improve your editing and collaboration experience.</p>
-<h3 id="release-highlights-2"><a class="headerlink" href="#release-highlights-2">#</a> Release Highlights</h3>
-<h4 id="performance-enhancements-part-3"><a class="headerlink" href="#performance-enhancements-part-3">#</a> ⚡ <strong>Performance enhancements: Part 3</strong></h4>
-<p>This release introduces another set of performance related improvements, focused on faster editor initialization for huge documents. The initialization time was lowered by further 15% to 45%, depending on the tested sample.</p>
-<p>The combined improvements introduced in recent releases amount to around 65%-80% lower loading time in total, which means the editor will load 3-5x faster. As the gain is not linear, bigger documents see even better improvement (more than 10x faster).</p>
-<p>Moreover, all these improvements positively impact document save time (<code>editor.getData()</code>), which should help with autosave issues, among others.</p>
-<p>We still actively work in this area, so you may expect even more editor load and save efficiency improvements in the upcoming releases.</p>
-<h4 id="bug-fixes-and-improvements"><a class="headerlink" href="#bug-fixes-and-improvements">#</a> 🔨 <strong>Bug Fixes and improvements</strong></h4>
-<ul>
-<li><strong>Comments enhancements</strong>:
-<ul>
-<li><strong>Data export options</strong>: We introduced the <code>showCommentHighlights</code> option in <code>editor.getData()</code>, that changes the comment marker conversion, allowing for styling comments in the output. Perfect for showing what was commented in <a href="https://ckeditor.com/docs/ckeditor5/latest/features/converters/export-pdf.html">Export to PDF</a>, for example.</li>
-<li><strong>Inline mode improvements</strong>: We addressed a problem where comment annotations in inline mode did not close properly when clicking elsewhere in the content.</li>
-<li><strong>Thread management</strong>: We resolved an issue where creating a new thread was not interrupted when the corresponding marker was removed from the content, ensuring better stability during collaborative editing.</li>
-</ul>
-</li>
-<li><strong>Revision History update</strong>:
-<ul>
-<li><strong>Restore functionality</strong>: We disabled the ability to restore the current (edited, not saved) revision, as it represents current content, so there is nothing to restore. At the same time, using it led to some non-obvious behaviors.</li>
-</ul>
-</li>
-<li><strong>Image handling</strong>: We resolved an issue where images in the uploading state could be deleted when dragged and dropped within the editor. Keep dragging, even when it is not there 🙈.</li>
-</ul>
-<h3 id="happy-holidays"><a class="headerlink" href="#happy-holidays">#</a> 🎄 <strong>Happy holidays!</strong></h3>
-<p>As the holiday season approaches, we extend our warmest wishes to our community and users. Thank you for your continued support, and we look forward to bringing you further enhancements and exciting features in the coming year.</p>
-<h3 id="minor-breaking-changes-2"><a class="headerlink" href="#minor-breaking-changes-2">#</a> MINOR BREAKING CHANGES</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: <code>spliceArray</code> now modifies the target array and does not accept a fourth (<code>count</code>) argument.</li>
-</ul>
-<h3 id="features-2"><a class="headerlink" href="#features-2">#</a> Features</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: Introduced the <code>showCommentHighlights</code> option in <code>editor.getData()</code> method that changes the comment marker conversion and allows styling the comments in the output.</li>
-</ul>
-<h3 id="bug-fixes-3"><a class="headerlink" href="#bug-fixes-3">#</a> Bug fixes</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: Resolved an issue where creating a new thread was not interrupted when the corresponding marker was removed from the content, for example, by another user in real-time collaboration.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: When adding a comment in inline mode, the comment annotation will now close properly if you click elsewhere in the content.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-find-and-replace">find-and-replace</a></strong>: It should be possible to search within content of inline widgets. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/11162">#11162</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f11133513d5dff837e71a4ba97b5b7d7ec7aa4e8">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image">image</a></strong>: Copying and pasting images in the uploading state is now possible. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/16967">#16967</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/6c8c6bc8b4fb0a1b3a851258421f81fc8f41b312">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Surrounding spaces are no longer added to colors produced by hex inputs. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17386">#17386</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/e639cb6904b0459f239d84fedc2045b712019dd8">commit</a>)</li>
-</ul>
-<h3 id="other-changes-3"><a class="headerlink" href="#other-changes-3">#</a> Other changes</h3>
-<ul>
-<li>Introduced multiple general performance improvements in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine"><code>@ckeditor/ckeditor5-engine</code></a>, <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list"><code>@ckeditor/ckeditor5-list</code></a>, and <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils"><code>@ckeditor/ckeditor5-utils</code></a> packages, leading to 15%-45% lower editor loading time. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17641">#17641</a>.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: Exported the <code>ensureSafeUrl()</code> function from the <code>@ckeditor/ckeditor5-link</code> package. (<a href="https://github.com/ckeditor/ckeditor5/commit/6e1d2898cda7ab518baaab77ef02360eb02a3284">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Disabled the ability to restore a currently edited (not saved) revision.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Icons (<code>IconView</code>) are no longer individually accessible by assistive technologies, improving overall accessibility. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17554">#17554</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/513f8d3f52b7ff3fdc80b89d4ca0cab06e65578a">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Change the implementation of <code>spliceArray()</code> to modify the target array for better performance. (<a href="https://github.com/ckeditor/ckeditor5/commit/fbf4a17f95bb48d8054c70e05012181edc766444">commit</a>)</li>
-</ul>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fchangelog.html%22&amp;project-version=44.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fchangelog.html%22&amp;project-version=44.3.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -549,6 +544,9 @@
                                         </div></a></li>
                                     <li><a href="" title="Changelog">
                                         <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog</span>
+                                        </div></a></li>
+                                    <li><a href="update-to-45.html" title="Update to v45.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>

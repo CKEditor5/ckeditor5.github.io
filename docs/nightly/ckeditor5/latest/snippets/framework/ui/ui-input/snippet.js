@@ -1,5 +1,1 @@
-/*!
- * @license Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
- */(()=>{const e=new Locale,t=new LabeledFieldView(e,createLabeledInputText);t.set({label:"Text input",value:"Value of the input"}),t.render();const n=new LabeledFieldView(e,createLabeledInputNumber);n.set({label:"Number input",value:"Value of the input"}),n.render();const l=[t,n],a=new ToolbarView(e);l.forEach((e=>a.items.add(e))),a.render(),document.querySelector(".ui-input").append(a.element)})();
-//# sourceMappingURL=snippet.js.map
+import{LabeledFieldView as l,ToolbarView as o,createLabeledInputNumber as r,createLabeledInputText as p,Locale as c}from"ckeditor5";var e=new c,t=new l(e,p);t.set({label:"Text input",value:"Value of the input"});t.render();var n=new l(e,r);n.set({label:"Number input",value:"Value of the input"});n.render();var i=[t,n],u=new o(e);i.forEach(a=>u.items.add(a));u.render();document.querySelector(".ui-input").append(u.element);

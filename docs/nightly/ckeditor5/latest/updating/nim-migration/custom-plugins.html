@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to upgrade custom plugins to the new installation methods.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Mar 05 2025 02:14:59 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Mar 07 2025 02:12:41 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Migrating custom plugins to new installation methods | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.2.1">
+    <meta name="project-version" content="44.3.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -179,6 +179,9 @@
                                       </div></a></li>
                                   <li><a href="../guides/changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-45.html" title="Update to v45.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
@@ -319,14 +322,14 @@ import { Plugin } from 'ckeditor5/src/core.js';
 <h3 id="remove-theme-folders-from-the-import-paths"><a class="headerlink" href="#remove-theme-folders-from-the-import-paths">#</a> Remove <code>theme</code> folders from the import paths</h3>
 <p>The same rule applies to the <code>theme</code> folder in the <code>@ckeditor/ckeditor5-*</code> packages. If you need to use icons from this folder, you can likely import them from the package root.</p>
 <pre class="highlight"><code class="js">// ❌
-import undo from '@ckeditor/ckeditor5-core/theme/icons/undo.svg';
+import undo from '@ckeditor/ckeditor5-icons/theme/undo.svg';
 
 console.log( undo );
 
 // ✅
-import { icons } from '@ckeditor/ckeditor5-core';
+import { IconUndo } from '@ckeditor/ckeditor5-icons';
 
-console.log( icons.undo );
+console.log( IconUndo );
 </code></pre>
 <p>If you run the following command, the <code>ckeditor5-rules/allow-imports-only-from-main-package-entry-point</code> eslint rule will list all the places where you need to update the imports.</p>
 <pre class="highlight"><code class="bash">npm run lint
@@ -399,7 +402,7 @@ import pluginTranslations from '&lt;PACKAGE_NAME&gt;/translations/&lt;LANGUAGE&g
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fcustom-plugins.html%22&amp;project-version=44.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fcustom-plugins.html%22&amp;project-version=44.3.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -502,6 +505,9 @@ import pluginTranslations from '&lt;PACKAGE_NAME&gt;/translations/&lt;LANGUAGE&g
                                         </div></a></li>
                                     <li><a href="../guides/changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-45.html" title="Update to v45.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>

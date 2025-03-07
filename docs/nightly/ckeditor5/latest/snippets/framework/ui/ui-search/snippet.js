@@ -1,5 +1,1 @@
-/*!
- * @license Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
- */(()=>{const e=new Locale,t=new ListView;t.filter=()=>({resultsCount:1,totalItemsCount:5});const n=new SearchTextView(e,{filteredView:t,queryView:{label:"Label"}});n.render(),document.querySelector(".ui-search").append(n.element)})();
-//# sourceMappingURL=snippet.js.map
+import{ListView as r,SearchTextView as n,Locale as l}from"ckeditor5";var o=new l,e=new r;e.filter=()=>({resultsCount:1,totalItemsCount:5});var t=new n(o,{filteredView:e,queryView:{label:"Label"}});t.render();document.querySelector(".ui-search").append(t.element);
