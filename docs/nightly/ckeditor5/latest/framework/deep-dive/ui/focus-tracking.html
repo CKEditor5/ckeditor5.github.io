@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Mar 05 2025 02:14:50 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Mar 07 2025 02:12:31 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Deep dive into focus tracking | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="44.2.1">
+    <meta name="project-version" content="44.3.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 6.3.0"></head>
   <body>
@@ -891,19 +891,19 @@ class MyListItemView extends View {
 <p>And here are the steps of the scenario:</p>
 <ol>
 <li>The editor is not focused (the focus is somewhere else on the web page).</li>
-<li>The <a href="../../../api/module_ui_editableui_inline_inlineeditableuiview-InlineEditableUIView.html">editable area</a> gets focused using the mouse. The main toolbar shows up and because the link was clicked, the <a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html">link actions view</a> also pops up.</li>
-<li>The <kbd>Tab</kbd> key is used to focus the <a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html#member-previewButtonView">link preview</a> in the balloon (a child of <a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html"><code>LinkActionsView</code></a>).</li>
-<li>The <kbd>Tab</kbd> key is used to focus the <a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html#member-editButtonView">“Edit link” button</a>.</li>
+<li>The <a href="../../../api/module_ui_editableui_inline_inlineeditableuiview-InlineEditableUIView.html">editable area</a> gets focused using the mouse. The main toolbar shows up and because the link was clicked, the <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html">toolbar view</a> also pops up.</li>
+<li>The <kbd>Tab</kbd> key is used to focus the <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html">link preview</a> in the balloon.</li>
+<li>The <kbd>→</kbd> key is used to focus the <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html">“Edit link” button</a>.</li>
 <li>The <kbd>Space</kbd> key is used to execute the “Edit link” button. The focus moves to the <a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-urlInputView">input</a> in the <a href="../../../api/module_link_ui_linkformview-LinkFormView.html"><code>LinkFormView</code></a>.</li>
-<li>The <kbd>Tab</kbd> key is used to move from the link URL field to the <a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-saveButtonView">“Save” button</a>.</li>
-<li>The <kbd>Tab</kbd> key is used to move from the “Save” button to the <a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-cancelButtonView">“Cancel” button</a>.</li>
-<li>The <kbd>Space</kbd> key is used to execute the “Cancel” button and close the editing form.</li>
+<li>The <kbd>Tab</kbd> key is used to move from the link URL field to the <a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-saveButtonView">“Update” button</a>.</li>
+<li>The <kbd>Tab</kbd> key is used to move from the “Update” button to the <a href="../../../features/bookmarks.html">“Bookmarks” button</a>.</li>
+<li>The <kbd>Esc</kbd> key is used to close the editing form.</li>
 <li>The <kbd>Esc</kbd> key is used to close the link balloon and go back to the editable.</li>
 </ol>
 <p>There are 3 focus tracker instances at play in the scenario:</p>
 <ol>
 <li>The <a href="../../../api/module_ui_editorui_editorui-EditorUI.html#member-focusTracker"><code>EditorUI#focusTracker</code></a> (the <a href="#a-note-about-the-global-focus-tracker">“global” focus tracker</a>),</li>
-<li>The <a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html#member-focusTracker"><code>LinkActionsView#focusTracker</code></a>,</li>
+<li>The <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html#member-focusTracker"><code>ToolbarView#focusTracker</code></a>,</li>
 <li>The <a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-focusTracker"><code>LinkFormView#focusTracker</code></a>.</li>
 </ol>
 <p>Let’s see how they react to the user actions (states were recorded <strong>after</strong> each step):</p>
@@ -912,7 +912,7 @@ class MyListItemView extends View {
 		<tr>
 			<th rowspan="2">Step</th>
 			<th colspan="2"><a href="../../../api/module_ui_editorui_editorui-EditorUI.html#member-focusTracker"><code>EditorUI#focusTracker</code></a></th>
-			<th colspan="2"><a href="../../../api/module_link_ui_linkactionsview-LinkActionsView.html#member-focusTracker"><code>LinkActionsView#focusTracker</code></a></th>
+			<th colspan="2"><a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html#member-focusTracker"><code>ToolbarView#focusTracker</code></a></th>
 			<th colspan="2"><a href="../../../api/module_link_ui_linkformview-LinkFormView.html#member-focusTracker"><code>LinkFormView#focusTracker</code></a></th>
 		</tr>
 		<tr>
@@ -1019,8 +1019,8 @@ class MyListItemView extends View {
 <li>All editor features <strong>can always depend on the global focus tracker</strong> when necessary. For instance, the main editor toolbar is displayed as long as the global focus tracker knows the focus is somewhere in the editor.</li>
 </ul>
 </li>
-<li>You can see that the focus management is modular: <code>LinkActionsView</code> and <code>LinkFormView</code> only know about the focus as long as one of their children has it.</li>
-<li>Focus trackers belonging to <code>LinkActionsView</code> and <code>LinkFormView</code> know precisely which element has focus. This is their region of interest and, unlike the global focus tracker of the editor, they need that information to allow navigation using the keyboard.</li>
+<li>You can see that the focus management is modular: <code>ToolbarView</code> and <code>LinkFormView</code> only know about the focus as long as one of their children has it.</li>
+<li>Focus trackers belonging to <code>ToolbarView</code> and <code>LinkFormView</code> know precisely which element has focus. This is their region of interest and, unlike the global focus tracker of the editor, they need that information to allow navigation using the keyboard.</li>
 </ul>
 <style>
 .focus-tracking table {
@@ -1035,7 +1035,7 @@ class MyListItemView extends View {
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fdeep-dive%2Fui%2Ffocus-tracking.html%22&amp;project-version=44.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fdeep-dive%2Fui%2Ffocus-tracking.html%22&amp;project-version=44.3.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.

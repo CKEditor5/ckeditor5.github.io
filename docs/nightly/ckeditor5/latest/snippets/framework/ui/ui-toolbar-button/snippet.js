@@ -1,5 +1,1 @@
-/*!
- * @license Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
- */(()=>{const e=new Locale,t=new ButtonView;t.set({label:"Button",withText:!0});const n=new ToolbarView(e);n.items.add(t),n.render(),document.querySelector(".ui-toolbar-button").append(n.element)})();
-//# sourceMappingURL=snippet.js.map
+import{ButtonView as o,ToolbarView as n,Locale as l}from"ckeditor5";var r=new l,e=new o;e.set({label:"Button",withText:!0});var t=new n(r);t.items.add(e);t.render();document.querySelector(".ui-toolbar-button").append(t.element);
