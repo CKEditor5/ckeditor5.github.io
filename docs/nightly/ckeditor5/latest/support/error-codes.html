@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Mar 10 2025 02:13:23 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Mar 11 2025 02:13:09 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -609,14 +609,14 @@ compatibility, and mixing them may result in module duplication.</p>
 <ul>
 <li><strong>New installation methods (NIM)</strong> – Imports from the <code>ckeditor5</code> and <code>ckeditor5-premium-features</code> packages.</li>
 <li><strong>Optimized build</strong> for the new installation methods – Imports from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;/dist/index.js</code>.</li>
-<li><strong>Predefined builds</strong> (legacy) – Imports from the <code>@ckeditor/ckeditor5-build-&lt;NAME&gt;</code> packages.</li>
+<li><strong>Predefined builds</strong> (no longer supported) – Imports from the <code>@ckeditor/ckeditor5-build-&lt;NAME&gt;</code> packages.</li>
 <li><strong>Default imports</strong> (legacy) – Imports from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages (default export).</li>
 <li><strong><code>src</code></strong> (legacy) – Imports from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;/src/*</code>.</li>
 <li><strong>DLL builds</strong> (legacy) – Imports from the <code>ckeditor5/build/&lt;NAME&gt;</code> and <code>@ckeditor/ckeditor5-&lt;NAME&gt;/build/*</code>.</li>
 </ul>
 <p>The best way to avoid duplicate modules is to avoid mixing these installation methods. For example, if you use imports
 specific to the optimized build, you should use them for all CKEditor&nbsp;5 packages. In addition, since
-the Predefined and DLL builds already include the core of the editor, they cannot be used with other types of imports.</p>
+the DLL builds already include the core of the editor, they cannot be used with other types of imports.</p>
 <p>Here is a matrix showing which installation methods are compatible with each other:</p>
 <table>
 <thead>
@@ -706,10 +706,13 @@ import '@ckeditor/ckeditor5-highlight/build/highlight.js'; // ❌
 </code></pre>
 </details>
 <details>
-<summary>(Legacy) Predefined builds</summary>
-<p>If you use the <a href="../getting-started/legacy/installation-methods/predefined-builds.html" data-glink="">Predefined builds</a>,
-you cannot import any additional plugins. These builds already include the editor's core
-and selected plugins and importing additional ones will cause some modules to be bundled and loaded twice.</p>
+<summary>(Deprecated) Predefined builds</summary>
+<p><strong>As of April, 2025 predefined build are no longer supported. Please refer to the
+<a href="../getting-started/index.html" data-glink="">Quick Start</a> guide
+to choose one of the modern installation and integration methods available</strong>.</p>
+<p>If you use the predefined builds, you cannot import any additional plugins.
+These builds already include the editor's core and selected plugins and importing additional
+ones will cause some modules to be bundled and loaded twice.</p>
 <p>Examples of valid and invalid import paths:</p>
 <pre><code class="language-js">import ClassicEditor from '@ckeditor/ckeditor5-build-classic'; // ✅
 import { Highlight } from 'ckeditor5'; // ❌
@@ -718,13 +721,9 @@ import { Highlight } from '@ckeditor/ckeditor5-highlight'; // ❌
 import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight'; // ❌
 import '@ckeditor/ckeditor5-highlight/build/highlight'; // ❌
 </code></pre>
-<p>If you are missing some features from the
-<a href="../getting-started/legacy/installation-methods/predefined-builds.html#plugins-included-in-the-predefined-builds" data-glink="">list of plugins</a>,
-you should switch to the <a href="../updating/nim-migration/migration-to-new-installation-methods.html" data-glink="">new installation methods</a>
-which do not have this limitation.
-If you cannot migrate to the new installation methods, try the
-<a href="../getting-started/legacy/installation-methods/predefined-builds.html#superbuild" data-glink="">superbuild</a> instead.
-This build contains all the editor features.</p>
+<p>If you are missing some features from the list of plugins, you should switch to the
+<a href="../updating/nim-migration/migration-to-new-installation-methods.html" data-glink="">new installation methods</a>
+which do not have this limitation.</p>
 </details>
 <details>
 <summary>(Legacy) Default imports and `src` imports</summary>
@@ -3887,11 +3886,11 @@ of the plugin you are installing.</p>
 <p>Plugin classes (constructors) need to be provided to the editor before they can be loaded by name.
 This is usually done in CKEditor 5 builds by setting the <a href="../api/module_core_editor_editor-Editor.html#static-member-builtinPlugins"><code>builtinPlugins</code></a>
 property.</p>
-<p>**If you see this warning when using one of the CKEditor 5 Builds},
-it means that you try to enable a plugin which was not included in that build. This may be due to a typo
-in the plugin name or simply because that plugin is not a part of this build.</p>
-<p>Predefined builds are a deprecated solution and we strongly advise
-<a href="../updating/nim-migration/migration-to-new-installation-methods.html" data-glink="">migrating to new installation methods</a>.</p>
+<p><strong>If you see this warning when using one of the deprecated CKEditor 5 Builds</strong>,
+it means that you tried to enable a plugin that was not included in that build. This may be due to a typo
+in the plugin name or simply because that plugin was not a part of this build.</p>
+<p><strong>Predefined builds are no longer supported and you need to
+<a href="../updating/nim-migration/migration-to-new-installation-methods.html" data-glink="">migrate to new installation methods</a></strong>.</p>
 <p><strong>If you see this warning when using one of the editor creators directly</strong> (not a build), then it means
 that you tried loading plugins by name. However, unlike CKEditor 4, CKEditor 5 does not implement a "plugin loader".
 This means that CKEditor 5 does not know where to load the plugin modules from. Therefore, you need to

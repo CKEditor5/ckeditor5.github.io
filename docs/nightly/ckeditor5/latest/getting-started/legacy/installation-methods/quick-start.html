@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Mar 10 2025 02:13:52 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Mar 11 2025 02:13:35 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Quick start | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -258,8 +258,8 @@
                                           <li><a href="" title="(Legacy) Quick start">
                                               <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">(Legacy) Quick start</span>
                                               </div></a></li>
-                                          <li><a href="predefined-builds.html" title="(Legacy) Predefined builds">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Legacy) Predefined builds</span>
+                                          <li><a href="predefined-builds.html" title="(Deprecated) Predefined builds">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Deprecated) Predefined builds</span>
                                               </div></a></li>
                                           <li><a href="quick-start-other.html" title="(Legacy) Customized installation">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Legacy) Customized installation</span>
@@ -352,63 +352,18 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title">(Legacy) Quick start
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction" title="Introduction">Introduction</a></li><li><a href="#running-a-simple-editor" title="Running a simple editor">Running a simple editor</a><ol><li><a href="#sample-implementation" title="Sample implementation">Sample implementation</a></li></ol></li><li><a href="#running-a-full-featured-editor-from-cdn" title="Running a full-featured editor from CDN">Running a full-featured editor from CDN</a><ol><li><a href="#using-the-ckeditor-5-superbuild" title="Using the CKEditor&nbsp;5 superbuild">Using the CKEditor&nbsp;5 superbuild</a></li><li><a href="#sample-implementation-2" title="Sample implementation">Sample implementation</a></li><li><a href="#the-ckeditor-5-superbuild-limitations" title="The CKEditor&nbsp;5 superbuild limitations">The CKEditor&nbsp;5 superbuild limitations</a></li></ol></li><li><a href="#running-a-full-featured-editor-with-premium-features" title="Running a full-featured editor with Premium features">Running a full-featured editor with Premium features</a></li><li><a href="#adjusting-plugins-included-in-the-ckeditor-5-superbuild" title="Adjusting plugins included in the CKEditor&nbsp;5 superbuild">Adjusting plugins included in the CKEditor&nbsp;5 superbuild</a></li></ol></nav>
-<div class="info-box notice notice__warning"><p>⚠️  We changed installation methods and this legacy guide is kept for users’ convenience. If you are looking for current CKEditor 5 installation instructions, please refer to the newest version of the <a href="../../installation/cloud/quick-start.html">CKEditor&nbsp;5 Quick Start</a> guide.</p></div>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction" title="Introduction">Introduction</a></li><li><a href="#running-a-full-featured-editor-from-cdn" title="Running a full-featured editor from CDN">Running a full-featured editor from CDN</a><ol><li><a href="#using-the-ckeditor-5-superbuild" title="Using the CKEditor&nbsp;5 superbuild">Using the CKEditor&nbsp;5 superbuild</a></li><li><a href="#sample-implementation" title="Sample implementation">Sample implementation</a></li><li><a href="#the-ckeditor-5-superbuild-limitations" title="The CKEditor&nbsp;5 superbuild limitations">The CKEditor&nbsp;5 superbuild limitations</a></li></ol></li><li><a href="#running-a-full-featured-editor-with-premium-features" title="Running a full-featured editor with Premium features">Running a full-featured editor with Premium features</a></li><li><a href="#adjusting-plugins-included-in-the-ckeditor-5-superbuild" title="Adjusting plugins included in the CKEditor&nbsp;5 superbuild">Adjusting plugins included in the CKEditor&nbsp;5 superbuild</a></li></ol></nav>
+<div class="info-box notice notice__warning"><p>⚠️  We changed installation methods and kept this guide for users’ convenience. If you are looking for current CKEditor 5 installation instructions, please refer to the newest version of the <a href="../../installation/cloud/quick-start.html">CKEditor&nbsp;5 Quick Start</a> guide.</p></div>
 <h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
 <p>In this guide, you will find the quickest and easiest way to run ready-to-use CKEditor&nbsp;5 with minimal effort – by running the editor from <a href="https://cdn.ckeditor.com/">CDN</a>.</p>
-<h2 id="running-a-simple-editor"><a class="headerlink" href="#running-a-simple-editor">#</a> Running a simple editor</h2>
-<p>Creating an editor using a CKEditor&nbsp;5 build is simple and can be described in two steps:</p>
-<ol>
-<li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
-<li>Call the static <code>create()</code> method to create the editor.</li>
-</ol>
-<p>Let us run a classic editor build as an example. In your HTML page add an element that will serve as a placeholder for a CKEditor instance:</p>
-<pre class="highlight"><code class="html">&lt;div id="editor"&gt;&lt;/div&gt;
-</code></pre>
-<p>Load the classic editor build (here a <a href="https://cdn.ckeditor.com/">CDN</a> location is used).</p>
-<pre class="highlight"><code class="html">&lt;script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"&gt;&lt;/script&gt;
-</code></pre>
-<p>Call the <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a> method to display the editor.</p>
-<pre class="highlight"><code class="html">&lt;script&gt;
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error =&gt; {
-            console.error( error );
-        } );
-&lt;/script&gt;
-</code></pre>
-<h3 id="sample-implementation"><a class="headerlink" href="#sample-implementation">#</a> Sample implementation</h3>
-<p>A full web page with embedded CKEditor&nbsp;5 from this example would look like this:</p>
-<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;title&gt;CKEditor 5 – Classic editor&lt;/title&gt;
-    &lt;script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Classic editor&lt;/h1&gt;
-    &lt;div id="editor"&gt;
-        &lt;p&gt;This is some sample content.&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;script&gt;
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error =&gt; {
-                console.error( error );
-            } );
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<div class="info-box notice"><p>This kind of installation will only provide features available in the build used.</p><p>You can learn more about other available predefined editor builds in the <a href="predefined-builds.html">dedicated builds guide</a>.</p></div>
 <h2 id="running-a-full-featured-editor-from-cdn"><a class="headerlink" href="#running-a-full-featured-editor-from-cdn">#</a> Running a full-featured editor from CDN</h2>
 <p>The fastest way to run an advanced editor using the <a href="../../../features/index.html">rich editing features offered by CKEditor&nbsp;5</a> is using a superbuild. The superbuild, available instantly from CDN, is a pre-configured package that offers access to almost all available plugins and all predefined editor types.</p>
-<div class="info-box notice"><p>The superbuild contains a lot of code. A good portion of that code may not be needed in your implementation. Using the superbuild should be considered for evaluation purposes and tests rather than for the production environment.</p><p>We strongly advise using the <a href="quick-start-other.html#creating-custom-builds-with-online-builder">Online builder</a> approach or <a href="quick-start-other.html#building-the-editor-from-source">building the editor from source</a> to create customized and efficient production-environment solutions. You can also try out the <a href="predefined-builds.html">predefined builds</a> tailored for specific needs.</p></div>
+<div class="info-box notice"><p>The superbuild contains a lot of code. A good portion of that code may not be needed in your implementation. Using the superbuild should be considered for evaluation purposes and tests rather than for the production environment.</p></div>
 <h3 id="using-the-ckeditor-5-superbuild"><a class="headerlink" href="#using-the-ckeditor-5-superbuild">#</a> Using the CKEditor&nbsp;5 superbuild</h3>
-<p>In the superbuild, all editor classes are stored under the <code>CKEDITOR</code> object. Apart from that exception, the editor initialization is no different than the one described in the <a href="predefined-builds.html#available-builds">available builds documentation</a>.</p>
+<p>In the superbuild, all editor classes are stored under the <code>CKEDITOR</code> object.</p>
 <p>Because the superbuild contains a lot of plugins, you may need to remove the plugins you do not need with the <code>removePlugins</code> configuration option and adjust the toolbar configuration. There are also some plugins that require a license to run. You can learn more about obtaining and activating license keys in the <a href="../../licensing/license-key-and-activation.html">License key and activation</a> guide. Observe the configuration below to see this implemented.</p>
-<h3 id="sample-implementation-2"><a class="headerlink" href="#sample-implementation-2">#</a> Sample implementation</h3>
+<h3 id="sample-implementation"><a class="headerlink" href="#sample-implementation">#</a> Sample implementation</h3>
+<div class="info-box notice notice__warning"><p>⚠️  Please note that, due to the deprecation of predefined build, the superbuild only provides and outdated version of CKEditor&nbsp;5. By using it, you are missing crucial updates and various new developments of the editor. We strongly suggest <a href="../../../updating/nim-migration/migration-to-new-installation-methods.html">migrating CKEditor&nbsp;5 to new installation methods</a>.</p></div>
 <p>In this example, you remove the premium collaboration features and several other plugins that require credentials to work. You need to do this, otherwise, the editor will throw an error.</p>
 <pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -614,7 +569,7 @@
 <p>If you would like to quickly evaluate CKEditor&nbsp;5 with premium features such as real-time collaboration, track changes, and revision history, sign up for a <a href="https://portal.ckeditor.com/checkout?plan=free">14-day free trial</a>.</p>
 <p>After you sign up, in the customer dashboard you will find the full code snippet to run the editor with premium features with all the necessary configurations.</p>
 <h2 id="adjusting-plugins-included-in-the-ckeditor-5-superbuild"><a class="headerlink" href="#adjusting-plugins-included-in-the-ckeditor-5-superbuild">#</a> Adjusting plugins included in the CKEditor&nbsp;5 superbuild</h2>
-<p>You may turn off any features available in the superbuild using the <code>removePlugins</code> configuration option. For a full list of features currently available in the superbuild, consult the <a href="predefined-builds.html#plugins-included-in-the-predefined-builds">predefined editor builds</a> guide. Removing certain features may make the editor unusable.</p>
+<p>You may turn off any features available in the superbuild using the <code>removePlugins</code> configuration option. Removing certain features may make the editor unusable.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
@@ -811,8 +766,8 @@
                                               <li><a href="" title="(Legacy) Quick start">
                                                   <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">(Legacy) Quick start</span>
                                                   </div></a></li>
-                                              <li><a href="predefined-builds.html" title="(Legacy) Predefined builds">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Legacy) Predefined builds</span>
+                                              <li><a href="predefined-builds.html" title="(Deprecated) Predefined builds">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Deprecated) Predefined builds</span>
                                                   </div></a></li>
                                               <li><a href="quick-start-other.html" title="(Legacy) Customized installation">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">(Legacy) Customized installation</span>

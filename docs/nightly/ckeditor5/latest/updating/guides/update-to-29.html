@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Mar 10 2025 02:13:43 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Mar 11 2025 02:13:27 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 29.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -343,14 +343,14 @@ ClassicEditor
 <li><a href="../../features/images/images-styles.html#presentational-styles">Images in the document-like content</a></li>
 </ul>
 <h3 id="inline-images"><a class="headerlink" href="#inline-images">#</a> Inline images</h3>
-<p>Starting from v29.0.0, the existing <a href="../../api/module_image_image-Image.html"><code>Image</code></a> plugin loads two independent plugins: <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> and <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a>, therefore both of them are included in all of the <a href="../../getting-started/legacy/installation-methods/predefined-builds.html#available-builds">predefined editor builds</a> by default.</p>
+<p>Starting from v29.0.0, the existing <a href="../../api/module_image_image-Image.html"><code>Image</code></a> plugin loads two independent plugins: <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> and <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a>.</p>
 <ul>
 <li>The <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> is a newly introduced plugin supporting the inline <code>&lt;img&gt;</code> tag nested in text (for example inside a paragraph).</li>
 <li>The <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> maintains the functionality of the previous <a href="../../api/module_image_image-Image.html"><code>Image</code></a> plugin before v29.0.0. In the model, it uses the <code>imageBlock</code> element (known as <code>image</code> before v29.0.0).</li>
 </ul>
 <div class="info-box notice"><p><strong>Note:</strong> It is possible to load only one of these plugins, but only when <a href="../../getting-started/legacy/advanced/alternative-setups/integrating-from-source-webpack.html">building the editor from source</a>.</p></div>
 <h3 id="image-caption"><a class="headerlink" href="#image-caption">#</a> Image caption</h3>
-<p>An image caption is no longer automatically shown when selecting the image widget. You can now toggle its visibility with a <a href="../../api/module_image_imagecaption_toggleimagecaptioncommand-ToggleImageCaptionCommand.html"><code>ToggleImageCaptionCommand</code></a> executed by the <code>'toggleImageCaption'</code> toolbar button, both registered by the <a href="../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin. The button is added to the default image toolbar in all the <a href="../../getting-started/legacy/installation-methods/predefined-builds.html#available-builds">predefined editor builds</a>.</p>
+<p>An image caption is no longer automatically shown when selecting the image widget. You can now toggle its visibility with a <a href="../../api/module_image_imagecaption_toggleimagecaptioncommand-ToggleImageCaptionCommand.html"><code>ToggleImageCaptionCommand</code></a> executed by the <code>'toggleImageCaption'</code> toolbar button, both registered by the <a href="../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin.</p>
 <div class="info-box notice"><p>To provide a valid data output, you can only add captions to block images. Adding a caption to an inline image will automatically convert it to a block image (which can be undone by the user).</p></div>
 <h3 id="image-styles"><a class="headerlink" href="#image-styles">#</a> Image styles</h3>
 <p>Since the appearance of the image in the document depends on the image type (block/inline), the <a href="../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin is now in charge of switching between these types. Thus, we introduced the following changes:</p>
@@ -440,11 +440,10 @@ Editor.create( document.querySelector( '#editor' ), {
 <p>Until v29.0.0, custom editor builds without <a href="../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> and <a href="../../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> plugins were possible. Only block images were supported and captions were added by the user upon selecting the image.</p>
 <p>Since v29.0.0, <a href="../../features/images/images-styles.html">image styles</a> and <a href="../../features/images/images-overview.html#image-contextual-toolbar">toolbar</a> allow users to choose the type of image (inline or block) and give them a way to add or remove captions from block images via configurable buttons.</p>
 <p>The user experience will degrade if either of these features is missing and this makes the <a href="../../api/module_image_imageconfig-ImageConfig.html#member-toolbar">image toolbar</a> configuration essential.</p>
-<div class="info-box notice"><p><a href="../../getting-started/legacy/installation-methods/predefined-builds.html">Pre-configured editor builds</a> come with <a href="../../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> and <a href="../../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> plugins (and configuration) out-of-the-box. This information is mainly for developers who use <a href="../../getting-started/legacy/installation-methods/quick-start-other.html">custom editor builds</a> in their integrations.</p></div>
 <p>We recommend one of the following configurations as the minimum setup for the image toolbar:</p>
 <ul>
 <li>
-<p>For structured content editing (implemented by default in the classic, balloon, balloon block, and inline <a href="../../getting-started/legacy/installation-methods/predefined-builds.html">editor builds</a>):</p>
+<p>For structured content editing:</p>
 <pre class="highlight"><code class="js">Editor.create( document.querySelector( '#editor' ), {
     ...
     image: {
@@ -461,7 +460,7 @@ Editor.create( document.querySelector( '#editor' ), {
 </code></pre>
 </li>
 <li>
-<p>For document-like editing (implemented by default in the <a href="../../getting-started/legacy/installation-methods/predefined-builds.html#document-editor">decoupled document build</a>).</p>
+<p>For document-like editing:</p>
 <pre class="highlight"><code class="js">Editor.create( document.querySelector( '#editor' ), {
     ...
     image: {
@@ -547,7 +546,7 @@ imageUtils.insertImage( { src }, selection, imageType );
 </ul>
 <h3 id="easyimage-plugin"><a class="headerlink" href="#easyimage-plugin">#</a> <code>EasyImage</code> plugin</h3>
 <p>The <a href="../../api/module_easy-image_easyimage-EasyImage.html"><code>EasyImage</code></a> plugin is no longer automatically importing the <a href="../../api/module_image_image-Image.html"><code>Image</code></a> plugin as a dependency. This allows using it alone with either <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> without loading the other one.</p>
-<p>This decoupling does not have an impact on integrations based on <a href="../../getting-started/legacy/installation-methods/predefined-builds.html">predefined builds</a> or using the <a href="https://ckeditor.com/ckeditor-5/builder/?redirect=docs">CKEditor&nbsp;5 Builder</a>.</p>
+<p>This decoupling does not have an impact on integrations using the <a href="https://ckeditor.com/ckeditor-5/builder/?redirect=docs">CKEditor&nbsp;5 Builder</a>.</p>
 <p>However, for integrations that <a href="../../getting-started/legacy/advanced/alternative-setups/integrating-from-source-webpack.html">build the editor from source</a>, this means that to get Easy Image working properly, the <code>Image</code> plugin (or either the <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> plugin) must be imported separately:</p>
 <pre class="highlight"><code class="js">import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Image from '@ckeditor/ckeditor5-image/src/image';
@@ -565,7 +564,7 @@ ClassicEditor
 <p>Check out the comprehensive <a href="../../features/images/images-installation.html">installation guide to images</a> in CKEditor&nbsp;5 to learn more.</p>
 <h3 id="ckfinder-plugin"><a class="headerlink" href="#ckfinder-plugin">#</a> <code>CKFinder</code> plugin</h3>
 <p>The <a href="../../api/module_ckfinder_ckfinder-CKFinder.html"><code>CKFinder</code></a> plugin is no longer automatically importing the <a href="../../api/module_image_image-Image.html"><code>Image</code></a> plugin as a dependency. This allows using it alone with either <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> without loading the other one.</p>
-<p>This decoupling does not have an impact on integrations based on <a href="../../getting-started/legacy/installation-methods/predefined-builds.html">predefined builds</a> or using the <a href="https://ckeditor.com/ckeditor-5/builder/?redirect=docs">CKEditor&nbsp;5 Builder</a>.</p>
+<p>This decoupling does not have an impact on integrations using the <a href="https://ckeditor.com/ckeditor-5/builder/?redirect=docs">CKEditor&nbsp;5 Builder</a>.</p>
 <p>However, for integrations that <a href="../../getting-started/legacy/advanced/alternative-setups/integrating-from-source-webpack.html">build the editor from source</a>, this means that to get CKFinder working properly, you must import the <code>Image</code> plugin (or either the <a href="../../api/module_image_imageblock-ImageBlock.html"><code>ImageBlock</code></a> or <a href="../../api/module_image_imageinline-ImageInline.html"><code>ImageInline</code></a> plugin) separately:</p>
 <pre class="highlight"><code class="js">import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfider';
 import Image from '@ckeditor/ckeditor5-image/src/image';
