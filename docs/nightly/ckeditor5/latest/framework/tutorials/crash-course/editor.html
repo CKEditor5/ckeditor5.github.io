@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to use CKEditor 5 APIs to create a custom editor plugin.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Mar 17 2025 02:15:21 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Mar 18 2025 02:18:14 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 crash course - Editor and configuration | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -106,7 +106,7 @@
                                     </div>
                                     <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="crash-course">
                                           <li><a href="" title="Editor and configuration">
-                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="plugins.html" title="Plugins">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
@@ -118,19 +118,19 @@
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
                                               </div></a></li>
                                           <li><a href="commands.html" title="Commands">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="view.html" title="Editor UI">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="events-and-observables.html" title="Events and observables">
                                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
                                               </div></a></li>
                                           <li><a href="keystrokes.html" title="Handling keystrokes">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                           <li><a href="plugin-configuration.html" title="Plugin configuration">
-                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                               </div></a></li>
                                     </ul>
                                   </li>
@@ -388,8 +388,8 @@ const editor = await ClassicEditor.create( element, {
 <p>However, you may have noticed that the “Hello world!” text does not appear in the editor, and you cannot write anything in it. This may seem strange at first, but it is by design. Let’s fix this with the right configuration.</p>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>The editor itself does not do much - it is just an empty shell at this stage. What gives the editor almost all of its functionality are the plugins. We will talk more about plugins in the next chapter, but for now, let’s just install two plugins that provide the bare minimum needed to type in the editor.</p>
-<pre class="highlight"><code class="js">// Import plugins.
-import { Essentials, Paragraph } from 'ckeditor5';
+<pre class="highlight"><code class="js">// Import plugins by adding them to the previously added import.
+import { ClassicEditor, Essentials, Paragraph } from 'ckeditor5';
 
 // Update the call to the `create()` method.
 const editor = await ClassicEditor.create( element, {
@@ -459,7 +459,10 @@ window.editor = editor;
 <p>The editor and its contents should disappear. <strong>This method returns a promise, so you need to <code>await</code> it</strong> if you want to execute more logic after the editor is destroyed.</p>
 <h2 id="adapt-this-tutorial-to-cdn"><a class="headerlink" href="#adapt-this-tutorial-to-cdn">#</a> Adapt this tutorial to CDN</h2>
 <p>If you want to use the editor from CDN, you can adapt this tutorial by following these steps.</p>
-<p>First, clone the repository the same way as before. But do not install the dependencies. Instead, open the <code>index.html</code> file and add the following tags:</p>
+<p>First, clone the repository the same way as before. But do not install all the dependencies. Instead, run:</p>
+<pre class="highlight"><code class="">npm install vite
+</code></pre>
+<p>After that, open the <code>index.html</code> file and add the following tags:</p>
 <pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
     &lt;head&gt;
@@ -469,12 +472,12 @@ window.editor = editor;
         &lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css" /&gt;
     &lt;/head&gt;
     &lt;body&gt;
-        &lt;div id="editor"&gt;
+        &lt;div id="app"&gt;
             &lt;p&gt;Hello world!&lt;/p&gt;
         &lt;/div&gt;
         &lt;script src="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
 
-        &lt;script type="module" src="/main.js"&gt;&lt;/script&gt;
+        &lt;script type="module" src="/src/main.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -492,6 +495,7 @@ import { ClassicEditor, Essentials, Bold, Italic, Paragraph } from 'ckeditor5';
 // After:
 const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
 </code></pre>
+<p>Also, since the <code>GPL</code> key can’t be used for CDN integration, you need to go to our <a href="https://ckeditor.com/pricing/">pricing page</a> and select a plan that best suits your needs to obtain a license key that can be used in cloud integration. In <code>src/main.js</code> set <code>licenseKey</code> to your license key.</p>
 <p>After following these steps and running the <code>npm run dev</code> command, you should be able to open the editor in the browser.</p>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What’s next</h2>
 <p>In the next chapter you will <a href="plugins.html">learn more about plugins</a> and we will start creating a new one from scratch.</p>
@@ -533,7 +537,7 @@ const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
                                       </div>
                                       <ul class="tree__item-nested-list tree__item-nested-list--hidden" data-id="crash-course">
                                               <li><a href="" title="Editor and configuration">
-                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editor and configuration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="plugins.html" title="Plugins">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span>
@@ -545,19 +549,19 @@ const { ClassicEditor, Essentials, Bold, Italic, Paragraph } = CKEDITOR;
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Data conversion</span>
                                                   </div></a></li>
                                               <li><a href="commands.html" title="Commands">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Commands</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="view.html" title="Editor UI">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor UI</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="events-and-observables.html" title="Events and observables">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Events and observables</span>
                                                   </div></a></li>
                                               <li><a href="keystrokes.html" title="Handling keystrokes">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Handling keystrokes</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                               <li><a href="plugin-configuration.html" title="Plugin configuration">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span>
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin configuration</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                                   </div></a></li>
                                       </ul>
                                     </li>
