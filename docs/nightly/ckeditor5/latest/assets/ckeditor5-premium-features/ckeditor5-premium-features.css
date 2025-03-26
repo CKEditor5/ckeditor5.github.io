@@ -2604,11 +2604,6 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			color: var(--ck-document-outline-item-active-color);
 		}
 
-.ck.ck-document-outline .ck-document-outline__item.ck-document-outline__item_level-1 {
-			font-size: 1.1em;
-			font-weight: bold;
-		}
-
 .ck.ck-document-outline[dir="ltr"] .ck-document-outline__item.ck-document-outline__item_level-1 {
 		padding-left: var(--ck-document-outline-indent-level-1);
 	}
@@ -3295,37 +3290,6 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-.ck.ck-pagination-view-line {
-	position: absolute;
-	height: 0;
-	border-top: 1px dotted var(--ck-color-pagination-divider);
-	pointer-events: none;
-}
-
-.ck.ck-pagination-view-line::after {
-		content: attr(data-page-number);
-		font-size: 10px;
-		background: hsl(0, 0%, 77%);
-		color: var(--ck-color-base-background);
-		display: inline-block;
-		position: absolute;
-		right: -1px;
-		transform: translateX(100%);
-		min-width: 18px;
-		text-align: center;
-		top: -1px;
-		padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
-	}
-
-/*
- * What you're currently looking at is the source code of a legally protected, proprietary software.
- * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
- * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
- *
- * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
- */
-
 :root {
 	--ck-color-pagination-divider: hsl(0, 0%, 67%);
 }
@@ -3488,6 +3452,37 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 .ck.ck-page-navigator > span::before {
 		content: '/';
 		margin: 0 var(--ck-spacing-standard);
+	}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+.ck.ck-pagination-view-line {
+	position: absolute;
+	height: 0;
+	border-top: 1px dotted var(--ck-color-pagination-divider);
+	pointer-events: none;
+}
+
+.ck.ck-pagination-view-line::after {
+		content: attr(data-page-number);
+		font-size: 10px;
+		background: hsl(0, 0%, 77%);
+		color: var(--ck-color-base-background);
+		display: inline-block;
+		position: absolute;
+		right: -1px;
+		transform: translateX(100%);
+		min-width: 18px;
+		text-align: center;
+		top: -1px;
+		padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
 	}
 
 /*
@@ -3665,7 +3660,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 }
 
 .ck.ck-presence-list {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	margin-right: var(--ck-spacing-standard);
 	transition: margin-right 200ms ease-in-out;
@@ -3679,15 +3674,21 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 .ck.ck-presence-list__list {
 	display: flex;
 	flex-direction: row;
+	position: relative;
 
 	/* Taking care about margin animation in collapsed mode. */
 	justify-content: flex-end;
 }
 
-.ck.ck-presence-list__counter {
-	color: var(--ck-color-base-text);
-	margin-right: var(--ck-spacing-large);
-}
+.ck.ck-presence-list__list::after {
+		content: "";
+		position: absolute;
+		bottom: -15px;
+		left: 0;
+		width: 100%;
+		height: 15px;
+		background: transparent;
+	}
 
 .ck.ck-presence-list__counter--hidden {
 	display: none;
@@ -3703,9 +3704,10 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 	border: 1px solid transparent;
 	outline: none;
 	background: none;
+	padding: 0;
 
 	position: relative;
-	margin-left: var(--ck-spacing-small);
+	margin-left: var(--ck-spacing-medium);
 }
 
 .ck.ck-presence-list__list-item:focus {
@@ -3731,6 +3733,10 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		width: 0px;
 	}
 
+.ck.ck-presence-list__list-item:first-child {
+		margin-left: 0;
+	}
+
 .ck.ck-tooltip.ck-presence-list__list-item__tooltip > .ck-tooltip__text {
 		display: inline-block;
 		max-width: var(--ck-presence-list-users-tooltip-max-width);
@@ -3745,7 +3751,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 	display: block;
 	width: 100%;
 	height: 3px;
-	margin-top: 3px;
+	margin-top: 5px;
 }
 
 /**
@@ -3759,6 +3765,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 
 .ck.ck-presence-list--collapsed .ck-presence-list__list {
 		border: 1px solid transparent;
+		padding-left: 1px;
 
 		/* Because of moving avatars to the right with margin-left we need to set min-width of container. */
 		min-width: calc( var(--ck-user-avatar-size) * 2 );
@@ -3783,36 +3790,32 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 	}
 
 .ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item {
-		/* Adding extra px to create collapsed effect. */
-		margin-left: calc( var(--ck-user-avatar-size) * -1 + 7px);
+		/* Adding negative margin (35% of avatar) to create collapsed effect. */
+		margin-left: calc( var(--ck-user-avatar-size) * -0.35);
 
 		/* Reset focus borders */
 		border: 0;
 		padding: 0;
 	}
 
+.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:first-child {
+			margin-left: 0;
+		}
+
 .ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:last-child {
 			order: unset;
 		}
 
-.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:nth-last-child(2) {
-			opacity: .75;
+.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item .ck-user {
+			--ck-presence-list-avatar-border-color: var(--ck-color-base-foreground);
+			border: 2px solid var(--ck-presence-list-avatar-border-color);
+			margin-left: 0;
+			margin-right: 0;
 		}
 
-.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:nth-last-child(3) {
-			opacity: .55;
-		}
-
-.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:nth-last-child(4) {
-			opacity: .35;
-		}
-
-.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:nth-last-child(5) {
-			opacity: .15;
-		}
-
-.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item:nth-last-child(n+6) {
-			display: none;
+.ck.ck-presence-list--collapsed .ck.ck-presence-list__list-item.ck-presence-list__users-counter {
+			margin-left: 0;
+			margin-right: 0;
 		}
 
 .ck.ck-presence-list__balloon {
@@ -3831,6 +3834,10 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 .ck.ck-presence-list__balloon {
 		animation: none;
 }
+	}
+
+.ck.ck-presence-list__balloon ul {
+		background-color: var(--ck-color-presence-list-dropdown-background);
 	}
 
 .ck.ck-presence-list__balloon .ck.ck-presence-list__dropdown-list-wrapper {
@@ -3900,6 +3907,36 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			width: 3px;
 		}
 
+.ck.ck-presence-list__users-counter {
+	--ck-presence-list-counter-border-color: var(--ck-user-avatar-background);
+	--ck-presence-list-counter-background-color: var(--ck-user-avatar-color);
+
+	border: 2px solid var(--ck-presence-list-counter-border-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	border-radius: 50%;
+	background-color: var(--ck-presence-list-counter-background-color);
+	box-sizing: border-box;
+	height: calc(var(--ck-user-avatar-size) - 4px);
+	width: calc(var(--ck-user-avatar-size) - 4px);
+	line-height: 100%;
+	margin: 2px;
+	margin-top: 4px;
+}
+
+.ck.ck-presence-list__users-counter__text {
+	--ck-presence-list-counter-text-color: var(--ck-user-avatar-background);
+
+	color: var(--ck-presence-list-counter-text-color);
+	cursor: default;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 @keyframes fadeIn {
 	from {
 		opacity: 0;
@@ -3909,23 +3946,6 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		opacity: 1;
 	}
 }
-
-/*
- * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
- */
-
-.ck.ck-editor {
-	/* All the elements within `.ck-editor` are positioned relatively to it.
-	 If any element needs to be positioned with respect to the <body>, etc.,
-	 it must land outside of the `.ck-editor` in DOM. */
-	position: relative;
-}
-
-.ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
-		/* https://github.com/ckeditor/ckeditor5-editor-classic/issues/62 */
-		z-index: var(--ck-z-panel);
-	}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -4712,6 +4732,23 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 
 .ck.ck-editor__editable_inline.ck-revision-history-root-remove.ck-revision-history-root--active {
 		border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+	}
+
+/*
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+.ck.ck-editor {
+	/* All the elements within `.ck-editor` are positioned relatively to it.
+	 If any element needs to be positioned with respect to the <body>, etc.,
+	 it must land outside of the `.ck-editor` in DOM. */
+	position: relative;
+}
+
+.ck.ck-editor .ck-editor__top .ck-sticky-panel .ck-toolbar {
+		/* https://github.com/ckeditor/ckeditor5-editor-classic/issues/62 */
+		z-index: var(--ck-z-panel);
 	}
 
 /*
