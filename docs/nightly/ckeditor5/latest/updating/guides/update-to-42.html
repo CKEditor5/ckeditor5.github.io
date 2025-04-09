@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Apr 08 2025 01:52:15 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Apr 09 2025 01:51:46 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 42.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -265,15 +265,29 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">Update to CKEditor 5 v42.x
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4200" title="Update to CKEditor&nbsp;5 v42.0.0">Update to CKEditor&nbsp;5 v42.0.0</a><ol><li><a href="#new-installation-methods" title="New installation methods">New installation methods</a><ol><li><a href="#javascript-target-changed" title="JavaScript target changed">JavaScript target changed</a></li><li><a href="#removal-of-superbuild-and-predefined-builds-from-the-cdn" title="Removal of superbuild and predefined builds from the CDN">Removal of superbuild and predefined builds from the CDN</a></li><li><a href="#deprecation-of-the-vite-plugin" title="Deprecation of the Vite plugin">Deprecation of the Vite plugin</a></li></ol></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4200" title="Update to CKEditor&nbsp;5 v42.0.0">Update to CKEditor&nbsp;5 v42.0.0</a><ol><li><a href="#new-installation-methods" title="New installation methods">New installation methods</a><ol><li><a href="#migration-paths" title="Migration paths">Migration paths</a></li><li><a href="#javascript-target-changed" title="JavaScript target changed">JavaScript target changed</a></li><li><a href="#removal-of-superbuild-and-predefined-builds-from-the-cdn" title="Removal of superbuild and predefined builds from the CDN">Removal of superbuild and predefined builds from the CDN</a></li><li><a href="#deprecation-of-the-vite-plugin" title="Deprecation of the Vite plugin">Deprecation of the Vite plugin</a></li></ol></li><li><a href="#new-builder" title="New Builder">New Builder</a></li><li><a href="#minor-breaking-changes-in-this-release" title="Minor breaking changes in this release">Minor breaking changes in this release</a></li></ol></li></ol></nav>
 <div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>You may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v4200"><a class="headerlink" href="#update-to-ckeditor-5-v4200">#</a> Update to CKEditor&nbsp;5 v42.0.0</h2>
-<p><em>Released on June 26, 2024.</em></p>
-<p>For the entire list of changes introduced in version 42.0.0, see the <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v42.0.0">release notes for CKEditor&nbsp;5 v42.0.0</a>.</p>
+<p>Released on June 26, 2024. (<a href="https://github.com/ckeditor/ckeditor5/releases/tag/v42.0.0">See full release notes</a>)</p>
 <p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v42.0.0.</p>
 <h3 id="new-installation-methods"><a class="headerlink" href="#new-installation-methods">#</a> New installation methods</h3>
 <p>This release introduces new installation methods. We simplified dependency management, made CKEditor&nbsp;5 bundler-agnostic, and improved the startup performance through separate CSS distribution.</p>
-<p>Read more about the details in the <a href="../nim-migration/migration-to-new-installation-methods.html">migration guides</a>. These guides provide step-by-step instructions and examples to help you seamlessly transition to the new installation methods.</p>
+<p>The most prominent changes:</p>
+<ul>
+<li>All plugins and core features are now available from the unified <a href="https://www.npmjs.com/package/ckeditor5"><code>ckeditor5</code></a> and <a href="https://www.npmjs.com/package/ckeditor5-premium-features"><code>ckeditor5-premium-features</code></a> packages, reducing dependency management complexity.</li>
+<li>Our packages became bundler-agnostic. You can use whatever bundler you want (such as Vite or esbuild) to integrate CKEditor 5.</li>
+<li>CSS files are now distributed separately from JavaScript, allowing for parallel downloading, easier customization, and improved performance.</li>
+<li>All the new distribution methods (available via npm, CDN, and ZIP downloads) allow dynamic plugin registration making it easy to add or remove plugins dynamically.</li>
+</ul>
+<h4 id="migration-paths"><a class="headerlink" href="#migration-paths">#</a> Migration paths</h4>
+<p>The old installation methods are still supported, but we put them on the deprecation path. Detailed <a href="../nim-migration/migration-to-new-installation-methods.html">migration guides</a> can be found in our documentation. These guides provide step-by-step instructions and examples to help you seamlessly transition to the new installation methods:</p>
+<ul>
+<li><a href="../nim-migration/migration-to-new-installation-methods.html">Overview and details of the new installation methods</a>.</li>
+<li><a href="../nim-migration/predefined-builds.html">Predefined builds migration guide</a>.</li>
+<li><a href="../nim-migration/customized-builds.html">Custom builds migration guide</a>.</li>
+<li><a href="../nim-migration/dll-builds.html">DLLs migration guide</a>.</li>
+<li><a href="../nim-migration/custom-plugins.html">Migration guide for custom plugins published as libraries</a>.</li>
+</ul>
 <p>Our legacy installation methods are still supported, but we put them on the deprecation path. You can learn more about this in the migration guide’s <a href="../nim-migration/migration-to-new-installation-methods.html#sunset-of-old-installation-methods-and-deprecation-timelines">deprecation timelines</a> section.</p>
 <h4 id="javascript-target-changed"><a class="headerlink" href="#javascript-target-changed">#</a> JavaScript target changed</h4>
 <p>The predefined and DLL builds are targeting the ES2022 syntax to make use of native support for class fields and methods.</p>
@@ -281,6 +295,16 @@
 <p>We have stopped publishing the superbuild and predefined builds to our CDN. Predefined builds can still be accessed as an npm package. If you want to keep using our CDN with new versions of the editor, we recommend <a href="../nim-migration/migration-to-new-installation-methods.html#browser-builds">migrating to the new installation methods</a>.</p>
 <h4 id="deprecation-of-the-vite-plugin"><a class="headerlink" href="#deprecation-of-the-vite-plugin">#</a> Deprecation of the Vite plugin</h4>
 <p>We have deprecated the Vite plugin, <a href="https://www.npmjs.com/package/@ckeditor/vite-plugin-ckeditor5"><code>@ckeditor/vite-plugin-ckeditor5</code></a>, as it remained experimental and did not fully support features such as translations handling. The newly introduced installation methods resolve this issues, as they work with any bundler out-of-the-box.</p>
+<h3 id="new-builder"><a class="headerlink" href="#new-builder">#</a> New Builder</h3>
+<p>Along with the new release, we present you the brand new <a href="https://ckeditor.com/ckeditor-5/builder/">CKEditor 5 Builder</a>.</p>
+<p>The new Builder allows you to start with one of the predefined presets, customize it by adding and removing features, and observe the changes live in an editor preview (and play with the editor!). Once you are happy with your custom setup, you get ready-to-use code snippets for React, Angular, Vue, and VanillaJS setups for both npm and CDN distributions.</p>
+<h3 id="minor-breaking-changes-in-this-release"><a class="headerlink" href="#minor-breaking-changes-in-this-release">#</a> Minor breaking changes in this release</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image">image</a></strong>: The <code>Insert image via URL</code> UI component form has been moved to a modal dialog instead of being available directly in the insert image dropdown.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image">image</a></strong>: Increased specificity of the <code>.image-style-block-align-[right/left]</code>, <code>.image-style-align-[right/left]</code>, and <code>.image-style-side</code> CSS classes by adding the <code>.image</code> class. See <a href="https://github.com/ckeditor/ckeditor5/issues/16317">#16317</a>.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-media-embed">media-embed</a></strong>: The media embed feature now uses a modal dialog (instead of a toolbar dropdown) for inserting media.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-pagination">pagination</a></strong>: If you have custom CSS styles that override the default styling of the <code>Pagination</code> elements, they might stop working after this change. The reason is that a stricter CSS selector with <code>ck-pagination-loaded</code> is now used to hide or show these elements.</li>
+</ul>
 
           <div class="info-box notice notice__feedback">
             <p>
