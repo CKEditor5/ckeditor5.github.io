@@ -1,0 +1,1 @@
+import{ButtonView as r,ToolbarLineBreakView as i,ToolbarView as l,Locale as a}from"ckeditor5";var n=new a;function o(){let e=new r;return e.set({label:"Button",withText:!0}),e}var c=new i(n),u=[o(),c,o()],t=new l(n);u.forEach(e=>t.items.add(e));t.render();document.querySelector(".ui-toolbar-multirow").append(t.element);
