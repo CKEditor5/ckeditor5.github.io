@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to customize editor icons.">
     <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Apr 17 2025 01:52:21 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Apr 18 2025 01:52:20 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Customizing icons | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/6.1.0/gloria/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/6.1.1/gloria/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com">
     <script id="vwoCode" type="text/javascript">
@@ -66,7 +66,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/6.1.0/gloria/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/6.1.1/gloria/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -359,14 +359,14 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/getting-started/setup/customizing-icons.md" title="Contribute to this guide"><img src="../../../../assets/6.1.0/gloria/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/getting-started/setup/customizing-icons.md" title="Contribute to this guide"><img src="../../../../assets/6.1.1/gloria/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title">Customizing icons
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overriding-icons-using-package-manager" title="Overriding icons using package manager">Overriding icons using package manager</a><ol><li><a href="#prepare-custom-icons-package" title="Prepare custom icons package">Prepare custom icons package</a></li><li><a href="#override-the-icons-package" title="Override the icons package">Override the icons package</a><ol><li><a href="#npm" title="npm">npm</a></li><li><a href="#yarn-classic" title="Yarn Classic">Yarn Classic</a></li><li><a href="#yarn-berry" title="Yarn Berry">Yarn Berry</a></li><li><a href="#pnpm" title="pnpm">pnpm</a></li></ol></li></ol></li><li><a href="#overriding-icons-using-a-bundler-plugin" title="Overriding icons using a bundler plugin">Overriding icons using a bundler plugin</a><ol><li><a href="#prepare-custom-icons-file" title="Prepare custom icons file">Prepare custom icons file</a></li><li><a href="#create-a-plugin" title="Create a plugin">Create a plugin</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overriding-icons-using-package-manager" title="Overriding icons using package manager">Overriding icons using package manager</a><ol><li><a href="#prepare-custom-icons-package" title="Prepare custom icons package">Prepare custom icons package</a></li><li><a href="#override-the-icons-package" title="Override the icons package">Override the icons package</a><ol><li><a href="#npm" title="npm">npm</a></li><li><a href="#yarn-classic" title="Yarn Classic">Yarn Classic</a></li><li><a href="#yarn-berry" title="Yarn Berry">Yarn Berry</a></li><li><a href="#pnpm" title="pnpm">pnpm</a></li></ol></li></ol></li><li><a href="#override-icons-using-resolve-aliases" title="Override icons using resolve aliases">Override icons using resolve aliases</a><ol><li><a href="#prepare-custom-icon-file" title="Prepare custom icon file">Prepare custom icon file</a></li><li><a href="#add-resolve-alias" title="Add resolve alias">Add resolve alias</a><ol><li><a href="#vite" title="Vite">Vite</a></li><li><a href="#webpack" title="Webpack">Webpack</a></li><li><a href="#esbuild" title="esbuild">esbuild</a></li><li><a href="#rollup" title="Rollup">Rollup</a></li><li><a href="#rolldown" title="Rolldown">Rolldown</a></li></ol></li></ol></li></ol></nav>
 <p>CKEditor&nbsp;5 comes with a set of icons that are used in the editor UI. If you are using self-hosted installation method like npm or ZIP, you can customize the icons by overriding the default npm package that contains them.</p>
-<p>There are two ways to do this and both require overriding the <code>@ckeditor/ckeditor5-icons</code> package. One way is to create a custom icons package and override the default icons package in your project using a package manager. The other one is to create a bundler plugin that replaces the icons during the build process.</p>
+<p>There are two ways to do this, and both require overriding the <code>@ckeditor/ckeditor5-icons</code> package. One way is to create a custom icons package and override the default icons package in your project using a package manager. The other is to use resolve aliases to replace the icons during the build process.</p>
 <p>Let’s start with the first method.</p>
 <h2 id="overriding-icons-using-package-manager"><a class="headerlink" href="#overriding-icons-using-package-manager">#</a> Overriding icons using package manager</h2>
 <h3 id="prepare-custom-icons-package"><a class="headerlink" href="#prepare-custom-icons-package">#</a> Prepare custom icons package</h3>
@@ -436,33 +436,77 @@
 </code></pre>
 <p>Then, run <code>pnpm install</code> to install the custom icons package.</p>
 <p>You can read more about the <code>resolutions</code> field in the <a href="https://pnpm.io/package_json#pnpmoverrides">pnpm documentation</a>.</p>
-<h2 id="overriding-icons-using-a-bundler-plugin"><a class="headerlink" href="#overriding-icons-using-a-bundler-plugin">#</a> Overriding icons using a bundler plugin</h2>
-<p>If you are using a bundler like Vite, you can create a plugin to replace the icons during the build process. This document uses Vite as an example, and does not cover the specifics of creating plugins in other bundlers.</p>
-<h3 id="prepare-custom-icons-file"><a class="headerlink" href="#prepare-custom-icons-file">#</a> Prepare custom icons file</h3>
-<p>Open the <code>node_modules</code> directory and look for the <code>@ckeditor/ckeditor5-icons</code> package. You will find the <code>dist/index.js</code> file inside. Copy the contents of this file.</p>
-<p>Create a new file outside the rest of the code (usually the <code>src</code> folder) and paste the content you copied before. You can modify the JavaScript strings containing SVG icons in this file to customize the icons.</p>
-<h3 id="create-a-plugin"><a class="headerlink" href="#create-a-plugin">#</a> Create a plugin</h3>
-<p>Open the <code>vite.config.js</code> or <code>rollup.config.js</code> file and add the following code:</p>
-<pre class="highlight"><code class="js">import { readFileSync } from 'fs';
-import { defineConfig } from 'vite';
+<h2 id="override-icons-using-resolve-aliases"><a class="headerlink" href="#override-icons-using-resolve-aliases">#</a> Override icons using resolve aliases</h2>
+<p>If you are using a bundler, you can use resolve aliases to replace the default <code>@ckeditor/ckeditor5-icons</code> package with your custom icon file. This method is similar to the one described above, but does not require creating a custom package.</p>
+<p>This section only shows selected bundlers as examples, but other bundlers support similar functionality out of the box or with first-party plugins.</p>
+<h3 id="prepare-custom-icon-file"><a class="headerlink" href="#prepare-custom-icon-file">#</a> Prepare custom icon file</h3>
+<p>Open the <code>node_modules</code> directory and look for the <code>@ckeditor/ckeditor5-icons</code> package. Inside you will find the <code>dist/index.js</code> file. Make a copy of this file, move it to your project and rename it if necessary. Then remove the <code>//# sourceMappingURL=index.js.map</code> comment at the bottom.</p>
+<p>You can modify the JavaScript strings containing SVG icons in this file to customize the icons.</p>
+<h3 id="add-resolve-alias"><a class="headerlink" href="#add-resolve-alias">#</a> Add resolve alias</h3>
+<p>Now that you have a custom icon file, you can add a resolve alias to your bundler configuration. This will cause all imports from the <code>@ckeditor/ckeditor5-icons</code> package to resolve to your custom icon file.</p>
+<p>Follow the instruction below depending on the bundler you are using.</p>
+<div class="info-box notice"><p>The examples below assume that the custom icons are located in the <code>src/icons.js</code> file and that the bundler configuration file is in ES Modules format. If the configuration file is in CommonJS format instead, you may need to replace <code>import.meta.dirname</code> with <code>__dirname</code>.</p></div>
+<h4 id="vite"><a class="headerlink" href="#vite">#</a> Vite</h4>
+<p>Open the <code>vite.config.js</code> file and add the following code:</p>
+<pre class="highlight"><code class="js">import { resolve } from 'path';
 
-export default defineConfig({
-    optimizeDeps: {
-        exclude: [ '@ckeditor/ckeditor5-icons' ]
-    },
-    plugins: [
-        {
-            name: 'override-ckeditor5-icons',
-            load( id ) {
-                if ( id.includes( '@ckeditor/ckeditor5-icons' ) ) {
-                    return readFileSync( './icons.js', { encoding: 'utf-8' } );
-                }
-            }
+export default {
+    resolve: {
+        alias: {
+            '@ckeditor/ckeditor5-icons/dist/index.js': resolve( import.meta.dirname, './src/icons.js' )
         }
-    ]
-});
+    }
+};
 </code></pre>
-<p>This code will replace the <code>@ckeditor/ckeditor5-icons</code> package with the <code>icons.js</code> file you created.</p>
+<h4 id="webpack"><a class="headerlink" href="#webpack">#</a> Webpack</h4>
+<p>Open the <code>webpack.config.js</code> file and add the following code:</p>
+<pre class="highlight"><code class="js">import { resolve } from 'path';
+
+export default {
+    resolve: {
+        alias: {
+            '@ckeditor/ckeditor5-icons/dist/index.js': resolve( import.meta.dirname, './src/icons.js' )
+        }
+    }
+};
+</code></pre>
+<h4 id="esbuild"><a class="headerlink" href="#esbuild">#</a> esbuild</h4>
+<p>Open the esbuild configuration file and add the following code:</p>
+<pre class="highlight"><code class="js">import { resolve } from 'path';
+
+build( {
+    alias: {
+        '@ckeditor/ckeditor5-icons/dist/index.js': resolve( import.meta.dirname, './src/icons.js' )
+    }
+} );
+</code></pre>
+<h4 id="rollup"><a class="headerlink" href="#rollup">#</a> Rollup</h4>
+<p>Rollup does not support aliases by default, so you need to install the first-party <code>@rollup/plugin-alias</code> plugin if you do not already have it. Then add the following code to the <code>rollup.config.js</code> file:</p>
+<pre class="highlight"><code class="js">import { resolve } from 'path';
+import alias from '@rollup/plugin-alias';
+
+export default {
+    plugins: [
+        alias( {
+            entries: {
+                '@ckeditor/ckeditor5-icons/dist/index.js': resolve( import.meta.dirname, './src/icons.js' )
+            }
+        } )
+    ]
+};
+</code></pre>
+<h4 id="rolldown"><a class="headerlink" href="#rolldown">#</a> Rolldown</h4>
+<p>Open the <code>rolldown.config.js</code> file and add the following code:</p>
+<pre class="highlight"><code class="js">import { resolve } from 'path';
+
+export default {
+    resolve: {
+        alias: {
+            '@ckeditor/ckeditor5-icons/dist/index.js': resolve( import.meta.dirname, './src/icons.js' )
+        }
+    }
+};
+</code></pre>
 
           <div class="info-box notice notice__feedback">
             <p>
@@ -752,7 +796,7 @@ apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSele
 transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'getting-started', 'features', 'examples', 'framework', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'getting-started' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'getting-started' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'getting-started' ] );tags.forEach( function( tag ) {if ( tag !== 'getting-started' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
 });
 </script>
-    <script src="../../../../assets/6.1.0/gloria/scripts/app.js"></script>
+    <script src="../../../../assets/6.1.1/gloria/scripts/app.js"></script>
     <script src="../../assets/buildwarningbanner.js" async></script>
   </body>
 </html>
