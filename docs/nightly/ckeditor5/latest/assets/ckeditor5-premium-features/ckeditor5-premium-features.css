@@ -3307,6 +3307,19 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		}
 
 /*
+		 * Chrome ignores padding-top on the first paragraph at the beginning of the page,
+		 * causing incorrect page calculations. In documents consisting solely of paragraphs
+		 * (especially those with soft line breaks), this may cause the last paragraph to be
+		 * unexpectedly pushed to the next page.
+		 *
+		 * See more: https://github.com/cksource/ckeditor5-commercial/issues/7316
+		 */
+
+.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view p:first-child {
+			padding-top: 0;
+		}
+
+/*
 		 * From time to time placing page-break directly after a block element with margin causes appending a new blank page in pagination mode.
 		 * Removing margin-bottom from the block element fixes that issue and the margin is not being moved to the next blank page.
 		 *
