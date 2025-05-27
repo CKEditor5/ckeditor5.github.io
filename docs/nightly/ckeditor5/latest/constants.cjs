@@ -3,8 +3,6 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-/* eslint-env node */
-
 const csConfig = require( '../scripts/presets/production.json' );
 const { execSync } = require( 'child_process' );
 const path = require( 'path' );
