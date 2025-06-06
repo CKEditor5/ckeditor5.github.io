@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Jun 05 2025 01:52:21 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jun 06 2025 01:52:27 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Integrating CKEditor 5 from source using Webpack | Legacy CKEditor 5 documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -388,7 +388,7 @@
 <p>Therefore, a prerequisite to this guide is that you are using webpack as your build tool.</p>
 <p>This scenario allows you to fully control the building process of CKEditor&nbsp;5. This means that you will not actually use the builds anymore, but instead build CKEditor&nbsp;5 from the source directly into your project. This integration method gives you full control over which features will be included and how webpack will be configured.</p>
 <p>You can achieve similar results to what this method allows by <a href="../../installation-methods/quick-start-other.html#building-the-editor-from-source">customizing an existing build</a> and integrating your custom build. This will give faster build times (since CKEditor&nbsp;5 will be built once and committed), however, it requires maintaining a separate repository and installing the code from that repository into your project (for example, by publishing a new npm package or using tools like <a href="https://github.com/lerna/lerna">Lerna</a>). This makes it less convenient than the method described in this scenario.</p>
-<p>First of all, you need to install the source packages that you will use in your existing project. If you base your integration on one of the existing builds, you can take them from that build’s <code>package.json</code> file (see, for example, <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-build-classic/package.json">classic build’s <code>package.json</code></a>). At this moment you can choose the editor type and the features you want. Keep in mind, however, that all packages (excluding <code>@ckeditor/ckeditor5-dev-*</code>) must have the same version as the base editor package.</p>
+<p>First of all, you need to install the source packages that you will use in your existing project. If you base your integration on one of the existing builds, you can take them from that build’s <code>package.json</code> file. At this moment you can choose the editor type and the features you want. Keep in mind, however, that all packages (excluding <code>@ckeditor/ckeditor5-dev-*</code>) must have the same version as the base editor package.</p>
 <p>Copy these dependencies to your <code>package.json</code> and call <code>npm install</code> to install them. You can also install them individually. An example list of plugins may look like this:</p>
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-theme-lark \
   @ckeditor/ckeditor5-autoformat \

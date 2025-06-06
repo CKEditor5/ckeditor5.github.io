@@ -7,6 +7,9 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
 /* CSS from merge-fields demos to ensure pdf exporting looks the same. */
 
 :root {
@@ -16,7 +19,7 @@
 		ui-monospace, monospace;
 	--body-line-height: 1.4;
 	--dense-text-line-height: 1.55;
-	--headline-line-height: 1.1;
+	--headline-line-height: 1.4;
 	--color-seal-1: hsl(0, 0%, 100%);
 	--color-seal-2: hsl(228, 100%, 98%);
 	--color-seal-3: hsl(227, 66%, 95%);
@@ -71,7 +74,6 @@
 	--scroll-top: calc(var(--header-height) + var(--space-s));
 	--step-0: 16px;
 	--step--1: 12px;
-	--headline-line-height: 1.4;
 }
 
 .ck-config-layers-stratosphere {
@@ -211,6 +213,7 @@ button:focus-visible {
 	box-shadow: 0 0 0 2px var(--color-seal-1), 0 0 0 4px var(--color-tang-5);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 a:has(sup) {
 	-webkit-text-decoration: underline dashed currentColor 1px;
 	text-decoration: underline dashed currentColor 1px;
@@ -325,9 +328,6 @@ h6 {
 }
 
 /* ---- Cross-editor content styles. --------------------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
-
 /* Make sure all content containers are distinguishable on a web page even of not focused. */
 .ck.ck-content:not(:focus) {
 	border: 1px solid var(--ck-color-base-border);

@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Jun 05 2025 01:51:57 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jun 06 2025 01:52:03 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -733,15 +733,15 @@ the way you import CKEditor&nbsp;5.</p>
 <details>
 <summary>New installation methods and optimized builds</summary>
 <p>If you use the <a href="../updating/nim-migration/migration-to-new-installation-methods.html" data-glink="">new installation methods</a>,
-you should only import code from the <code>ckeditor5</code> and <code>ckeditor5-premium-features</code> packages.
-Do not import code from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages unless you follow
+you should only import { code } from the <code>ckeditor5</code> and <code>ckeditor5-premium-features</code> packages.
+Do not import { code } from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages unless you follow
 the <a href="../getting-started/setup/optimizing-build-size.html" data-glink="">Optimizing build size</a> guide and the imports from
 the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages end with <code>/dist/index.js</code>.</p>
 <p>If you use a CDN, ensure that some files are not included twice in your project.</p>
 <p>Examples of valid and invalid import paths:</p>
 <pre><code class="language-js">import { ClassicEditor, Highlight } from 'ckeditor5'; // ✅
 import { Highlight } from '@ckeditor/ckeditor5-highlight/dist/index.js'; // ✅
-import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ❌
+import { Highlight } from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight'; // ❌
 import '@ckeditor/ckeditor5-highlight/build/highlight.js'; // ❌
 </code></pre>
@@ -755,11 +755,11 @@ to choose one of the modern installation and integration methods available</stro
 These builds already include the editor's core and selected plugins and importing additional
 ones will cause some modules to be bundled and loaded twice.</p>
 <p>Examples of valid and invalid import paths:</p>
-<pre><code class="language-js">import ClassicEditor from '@ckeditor/ckeditor5-build-classic'; // ✅
+<pre><code class="language-js">import { ClassicEditor } from '@ckeditor/ckeditor5-build-classic'; // ✅
 import { Highlight } from 'ckeditor5'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight/dist/index.js'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight'; // ❌
-import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight'; // ❌
+import { Highlight } from '@ckeditor/ckeditor5-highlight/src/highlight'; // ❌
 import '@ckeditor/ckeditor5-highlight/build/highlight'; // ❌
 </code></pre>
 <p>If you are missing some features from the list of plugins, you should switch to the
@@ -769,14 +769,14 @@ which do not have this limitation.</p>
 <details>
 <summary>(Legacy) Default imports and `src` imports</summary>
 <p>If you use the <a href="../getting-started/legacy/installation-methods/quick-start-other.html" data-glink="">legacy customized installation</a>
-method, you should only import code from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages. While you can import code from
+method, you should only import { code from the <code>@ckeditor/ckeditor5-&lt;NAME&gt;</code> packages. While you can import code } from
 the <code>@ckeditor/ckeditor5-&lt;NAME&gt;/src/*</code> files, it is not recommended as it can make migration to the new installation
 methods more difficult.</p>
-<p>If you use this installation method, you should not import code from the <code>ckeditor5</code> or <code>ckeditor5-premium-features</code> packages.</p>
+<p>If you use this installation method, you should not import { code } from the <code>ckeditor5</code> or <code>ckeditor5-premium-features</code> packages.</p>
 <p>Examples of valid and invalid import paths:</p>
 <pre><code class="language-js">import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic'; // ✅
 import { Highlight } from '@ckeditor/ckeditor5-highlight'; // ✅
-import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ✅ (not recommended)
+import { Highlight } from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ✅ (not recommended)
 import { Highlight } from 'ckeditor5'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight/dist/index.js'; // ❌
 import '@ckeditor/ckeditor5-highlight/build/highlight'; // ❌
@@ -793,7 +793,7 @@ import '@ckeditor/ckeditor5-highlight/build/highlight.js';// ✅
 import { Highlight } from 'ckeditor5'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight/dist/index.js'; // ❌
 import { Highlight } from '@ckeditor/ckeditor5-highlight'; // ❌
-import Highlight from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ❌
+import { Highlight } from '@ckeditor/ckeditor5-highlight/src/highlight.js'; // ❌
 </code></pre>
 </details>
 <h4>Reinstall <code>node_modules</code></h4>

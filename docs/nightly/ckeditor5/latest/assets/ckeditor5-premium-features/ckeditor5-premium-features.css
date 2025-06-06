@@ -1611,7 +1611,8 @@ With track-changes feature enabled, we need to distinguish various types of anno
 	}
 
 .ck .ck-comment__content {
-	word-break: break-word;
+	word-break: normal;
+	overflow-wrap: anywhere;
 }
 
 .ck .ck-comment--info .ck-comment__content {
@@ -2073,7 +2074,8 @@ We are styling resetting list-style because of parent <ul> element. */
 		overflow: visible;
 		border: 0;
 		background-color: transparent;
-		word-break: break-word;
+		word-break: normal;
+		overflow-wrap: anywhere;
 	}
 
 /* Overwrite default CKEditor 5 margin of editable children.
@@ -3983,7 +3985,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		opacity: 0;
 		content: '';
 		position: absolute;
-		transition-delay: 0;
+		transition-delay: 0s;
 	}
 
 @media (prefers-reduced-motion: reduce) {
@@ -4865,6 +4867,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 
 :root {
 	/* Keep the editor as big as possible within the limits of the dialog system geometry. */
+	/* stylelint-disable function-calc-no-unspaced-operator */
 	--ck-source-editing-enhanced-height: calc(
 		var(--ck-dialog-max-height)            /* ─▶   Total max height of the dialog     */
 		- var(--ck-form-header-height)         /* ─▶   Height of the dialog header        */
@@ -4872,6 +4875,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		- var(--ck-ui-component-min-height)    /*  ├─▶ Height of the dialog actions bar   */
 		- 2 * var(--ck-spacing-tiny)           /* ─┘                                       */
 	);
+	/* stylelint-enable function-calc-no-unspaced-operator */
 	--ck-source-editing-enhanced-width: min(80vw, 1200px);
 }
 
