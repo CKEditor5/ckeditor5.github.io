@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:37 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:51 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Testing helpers | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -356,10 +356,10 @@
           </div>
           <h1 class="main__content-title">Testing helpers
           </h1>
-<p>The <code>getData()</code> and <code>setData()</code> functions exposed by <a href="../../api/module_engine_dev-utils_model.html">model developer utilities</a> and <a href="../../api/module_engine_dev-utils_view.html">view developer utilities</a> are useful development helpers.</p>
+<p>The <code>_getModelData()</code> and <code>_setModelData()</code> functions exposed by <a href="../../api/module_engine_dev-utils_model.html">model developer utilities</a> and <a href="../../api/module_engine_dev-utils_view.html">view developer utilities</a> are useful development helpers.</p>
 <p>They allow for “stringifying” the <a href="../architecture/editing-engine.html#model">model</a> and <a href="../architecture/editing-engine.html#view">view</a> structures, selections, ranges, and positions as well as for loading them from a string. They are often used when writing tests.</p>
 <div class="info-box notice"><p>Both tools are designed for prototyping, debugging, and testing purposes. Do not use them in production-grade code.</p></div>
-<p>For instance, to take a peek at the editor model, you could use the <a href="../../api/module_engine_dev-utils_model.html#function-getData"><code>getData()</code></a> helper:</p>
+<p>For instance, to take a peek at the editor model, you could use the <a href="../../api/module_engine_dev-utils_model.html#function-_getModelData"><code>_getModelData()</code></a> helper:</p>
 <div class="code-switcher selfhosted"><div class="code-switcher__toolbar"></div><pre class="highlight"><code class="js">import { _getModelData } from 'ckeditor5';
 
 // More imports.
@@ -368,11 +368,11 @@
 ClassicEditor
 	.create( '&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;' )
 	.then( editor =&gt; {
-		console.log( getData( editor.model ) );
+		console.log( _getModelData( editor.model ) );
 		// -&gt; '&lt;paragraph&gt;[]Hello &lt;$text bold="true"&gt;world&lt;/$text&gt;!&lt;/paragraph&gt;'
 	} );
 </code></pre></div>
-<p>See the <a href="../../api/module_engine_dev-utils_model.html#function-getData">helper documentation</a> to learn more about useful options.</p>
+<p>See the <a href="../../api/module_engine_dev-utils_model.html#function-_getModelData">helper documentation</a> to learn more about useful options.</p>
 
           <div class="info-box notice notice__feedback">
             <p>

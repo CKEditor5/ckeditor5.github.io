@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:35 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:49 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Event system | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -515,7 +515,7 @@ emitterA.fire( 'foo' );
 //   event "baz" emitted by C; source: emitterA; path: [ emitterA, emitterB, emitterC ]
 </code></pre>
 <h2 id="view-events-bubbling"><a class="headerlink" href="#view-events-bubbling">#</a> View events bubbling</h2>
-<p>The <a href="../../api/module_engine_view_document-Document.html"><code>view.Document</code></a> is not only an <a href="../../api/module_utils_observablemixin-Observable.html">Observable</a> and an <a href="../../api/module_utils_emittermixin-Emitter.html">emitter</a> but it also implements the special <a href="../../api/module_engine_view_observer_bubblingemittermixin-BubblingEmitter.html"><code>BubblingEmitter</code></a> interface (implemented by <a href="../../api/module_engine_view_observer_bubblingemittermixin.html#function-BubblingEmitterMixin"><code>BubblingEmitterMixin</code></a>). It provides a mechanism for bubbling events over the virtual DOM tree.</p>
+<p>The <a href="../../api/module_engine_view_document-ViewDocument.html"><code>view.Document</code></a> is not only an <a href="../../api/module_utils_observablemixin-Observable.html">Observable</a> and an <a href="../../api/module_utils_emittermixin-Emitter.html">emitter</a> but it also implements the special <a href="../../api/module_engine_view_observer_bubblingemittermixin-BubblingEmitter.html"><code>BubblingEmitter</code></a> interface (implemented by <a href="../../api/module_engine_view_observer_bubblingemittermixin.html#function-BubblingEmitterMixin"><code>BubblingEmitterMixin</code></a>). It provides a mechanism for bubbling events over the virtual DOM tree.</p>
 <p>It is different from the bubbling that you know from the DOM tree event bubbling. You do not register listeners on specific instances of the elements in the view document tree. Instead, you can register handlers for specific contexts. A context is either a name of an element, or one of the virtual contexts (<code>'$capture'</code>, <code>'$text'</code>, <code>'$root'</code>, <code>'$document'</code>), or a callback to match desired nodes.</p>
 <h3 id="listening-to-bubbling-events"><a class="headerlink" href="#listening-to-bubbling-events">#</a> Listening to bubbling events</h3>
 <p>Listeners registered in the context of the view element names:</p>
@@ -633,9 +633,9 @@ this.listenTo( view.document, 'arrowKey', ( evt, data ) =&gt; {
 <p>In some events the first parameter is not the standard <code>EventInfo</code>, but <a href="../../api/module_engine_view_observer_bubblingeventinfo-BubblingEventInfo.html"><code>BubblingEventInfo</code></a>. This is an extension that provides the current <a href="../../api/module_engine_view_observer_bubblingeventinfo-BubblingEventInfo.html#member-eventPhase"><code>eventPhase</code></a> and <a href="../../api/module_engine_view_observer_bubblingeventinfo-BubblingEventInfo.html#member-currentTarget"><code>currentTarget</code></a>.</p>
 <p>Currently, this information is available for the following events:</p>
 <ul>
-<li><a href="../../api/module_engine_view_document-Document.html#event-enter"><code>enter</code></a>,</li>
-<li><a href="../../api/module_engine_view_document-Document.html#event-delete"><code>delete</code></a>,</li>
-<li><a href="../../api/module_engine_view_document-Document.html#event-arrowKey"><code>arrowKey</code></a>.</li>
+<li><a href="../../api/module_engine_view_document-ViewDocument.html#event-enter"><code>enter</code></a>,</li>
+<li><a href="../../api/module_engine_view_document-ViewDocument.html#event-delete"><code>delete</code></a>,</li>
+<li><a href="../../api/module_engine_view_document-ViewDocument.html#event-arrowKey"><code>arrowKey</code></a>.</li>
 </ul>
 <p>Hence the events from the above example would be extended with the following <code>eventPhase</code> data:</p>
 <ol>

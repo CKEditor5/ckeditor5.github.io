@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:31 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:45 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 27.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -183,6 +183,9 @@
                                   <li><a href="update-to-45.html" title="Update to v45.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
+                                  <li><a href="update-to-46.html" title="Update to v45.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
                                       </div></a></li>
@@ -290,13 +293,13 @@
 </ul>
 <p>The <a href="../../api/module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> plugin became a “glue” plugin that loads the ones listed above.</p>
 <p>From v27.0.0, the <a href="../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html"><code>ClipboardPipeline</code></a> plugin is responsible for firing the <a href="../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-inputTransformation"><code>ClipboardPipeline#inputTransformation</code></a> event and also the new <a href="../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-contentInsertion"><code>ClipboardPipeline#contentInsertion</code></a> event.</p>
-<p>The <a href="../../api/module_engine_view_document-Document.html#event-clipboardInput"><code>view.Document#clipboardInput</code></a> and <a href="../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-inputTransformation"><code>ClipboardPipeline#inputTransformation</code></a> events should not be fired nor stopped in your feature code. The <code>data.content</code> property should be assigned to override the default content instead. You can stop this event only if you want to completely disable pasting/dropping of some specific content.</p>
+<p>The <a href="../../api/module_engine_view_document-ViewDocument.html#event-clipboardInput"><code>view.Document#clipboardInput</code></a> and <a href="../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-inputTransformation"><code>ClipboardPipeline#inputTransformation</code></a> events should not be fired nor stopped in your feature code. The <code>data.content</code> property should be assigned to override the default content instead. You can stop this event only if you want to completely disable pasting/dropping of some specific content.</p>
 <p>You can read about the whole input pipeline in detail in the <a href="../../framework/deep-dive/clipboard.html#input-pipeline">Clipboard deep-dive guide</a>.</p>
 <h3 id="the-viewdocument-event-bubbling"><a class="headerlink" href="#the-viewdocument-event-bubbling">#</a> The <code>view.Document</code> event bubbling</h3>
-<p>CKEditor v27.0.0 introduces bubbling of the <a href="../../api/module_engine_view_document-Document.html"><code>view.Document</code></a> events, similar to how bubbling works in the DOM. This allowed us to re-prioritize many listeners that relied on the <code>priority</code> property before. However, it means that existing listeners that use priorities may now be executed at the wrong time (in a different order). You should review these listeners in terms of when to execute them (in what context/element/phase).</p>
+<p>CKEditor v27.0.0 introduces bubbling of the <a href="../../api/module_engine_view_document-ViewDocument.html"><code>view.Document</code></a> events, similar to how bubbling works in the DOM. This allowed us to re-prioritize many listeners that relied on the <code>priority</code> property before. However, it means that existing listeners that use priorities may now be executed at the wrong time (in a different order). You should review these listeners in terms of when to execute them (in what context/element/phase).</p>
 <p>Read more about bubbling events in the <a href="../../framework/deep-dive/event-system.html#view-events-bubbling">Event system guide</a>.</p>
 <h4 id="the-delete-event"><a class="headerlink" href="#the-delete-event">#</a> The <code>delete</code> event</h4>
-<p>Before, the <a href="../../api/module_engine_view_document-Document.html#event-delete"><code>delete</code></a> event was handled by different features on different priority levels to, for example, ensure the precedence of the list item over the block quote that is wrapping it. From v27.0.0 on, this precedence is handled by the events bubbling over the view document tree. Listeners registered for the view elements deeper in the view tree are now triggered before listeners for elements closer to the <a href="../../api/module_engine_view_rooteditableelement-RootEditableElement.html">root element</a>.</p>
+<p>Before, the <a href="../../api/module_engine_view_document-ViewDocument.html#event-delete"><code>delete</code></a> event was handled by different features on different priority levels to, for example, ensure the precedence of the list item over the block quote that is wrapping it. From v27.0.0 on, this precedence is handled by the events bubbling over the view document tree. Listeners registered for the view elements deeper in the view tree are now triggered before listeners for elements closer to the <a href="../../api/module_engine_view_rooteditableelement-ViewRootEditableElement.html">root element</a>.</p>
 <p>Take a look at the list of <code>delete</code> listeners across the core editor features and their <a href="../../api/module_utils_priorities-PriorityString.html">priorities</a>:</p>
 <table>
 <thead>
@@ -348,7 +351,7 @@ this.listenTo( view.document, 'delete', ( evt, data ) =&gt; {
 </code></pre>
 <p>We recommend reviewing your integration if you attached some of your listeners to the <code>delete</code> event.</p>
 <h4 id="the-enter-event"><a class="headerlink" href="#the-enter-event">#</a> The <code>enter</code> event</h4>
-<p>The case for the <a href="../../api/module_engine_view_document-Document.html#event-enter"><code>enter</code></a> event is similar to the <code>delete</code> event.</p>
+<p>The case for the <a href="../../api/module_engine_view_document-ViewDocument.html#event-enter"><code>enter</code></a> event is similar to the <code>delete</code> event.</p>
 <p>Here is an example of changes you may need for proper integration with the widget system:</p>
 <pre class="highlight"><code class="js">// Old code.
 this.listenTo( view.document, 'enter', ( evt, data ) =&gt; {
@@ -369,7 +372,7 @@ this.listenTo( view.document, 'enter', ( evt, data ) =&gt; {
 </code></pre>
 <p>We recommend reviewing your integration if you attached some of your listeners to the <code>enter</code> event.</p>
 <h4 id="the-arrowkey-event"><a class="headerlink" href="#the-arrowkey-event">#</a> The <code>arrowKey</code> event</h4>
-<p>This is a new event type introduced by the <a href="../../api/module_engine_view_observer_arrowkeysobserver-ArrowKeysObserver.html"><code>ArrowKeysObserver</code></a>. It listens to the <code>keydown</code> events at the <code>normal</code> priority and fires the <a href="../../api/module_engine_view_document-Document.html#event-arrowKey"><code>arrowKey</code></a> events that bubble down the view document tree. This is similar behavior to the <a href="../../api/module_enter_enterobserver-EnterObserver.html"><code>EnterObserver</code></a> and <a href="../../api/module_typing_deleteobserver-DeleteObserver.html"><code>DeleteObserver</code></a>.</p>
+<p>This is a new event type introduced by the <a href="../../api/module_engine_view_observer_arrowkeysobserver-ArrowKeysObserver.html"><code>ArrowKeysObserver</code></a>. It listens to the <code>keydown</code> events at the <code>normal</code> priority and fires the <a href="../../api/module_engine_view_document-ViewDocument.html#event-arrowKey"><code>arrowKey</code></a> events that bubble down the view document tree. This is similar behavior to the <a href="../../api/module_enter_enterobserver-EnterObserver.html"><code>EnterObserver</code></a> and <a href="../../api/module_typing_deleteobserver-DeleteObserver.html"><code>DeleteObserver</code></a>.</p>
 <p>You should review your integration if you attached some of your listeners to the <code>keydown</code> event to handle arrow key presses.</p>
 
           <div class="info-box notice notice__feedback">
@@ -480,6 +483,9 @@ this.listenTo( view.document, 'enter', ( evt, data ) =&gt; {
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
                                     <li><a href="update-to-45.html" title="Update to v45.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="update-to-46.html" title="Update to v45.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="update-to-44.html" title="Update to v44.x">

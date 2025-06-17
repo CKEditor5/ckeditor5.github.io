@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:11 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:26 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 How-tos | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -378,7 +378,7 @@ plugins: [
 </code></pre>
 <p>Learn more about <a href="../getting-started/legacy/advanced/alternative-setups/integrating-from-source-webpack.html#webpack-configuration">building CKEditor 5 using webpack</a>.</p>
 <h3 id="how-to-add-an-attribute-to-the-editor-editable-in-dom"><a class="headerlink" href="#how-to-add-an-attribute-to-the-editor-editable-in-dom">#</a> How to add an attribute to the editor editable in DOM?</h3>
-<p>If you have a reference to the editor instance, use the <a href="architecture/editing-engine.html#changing-the-view"><code>change()</code></a> method of the view and set the new attribute via the <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html">view downcast writer</a>:</p>
+<p>If you have a reference to the editor instance, use the <a href="architecture/editing-engine.html#changing-the-view"><code>change()</code></a> method of the view and set the new attribute via the <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html">view downcast writer</a>:</p>
 <pre class="highlight"><code class="js">editor.editing.view.change( writer =&gt; {
     const viewEditableRoot = editor.editing.view.document.getRoot();
 
@@ -462,8 +462,8 @@ editorInstance.setData( '&lt;p&gt;Hello world!&lt;p&gt;' );
     editor.model.insertContent( writer.createText( 'Plain text' ), insertPosition );
 } );
 </code></pre>
-<p>You may have noticed that a link is represented as a text with an attribute in the editor model. See the API of the <a href="../api/module_engine_model_writer-Writer.html">model writer</a> to learn about other useful methods that can help you modify the editor model. <a href="../api/module_engine_model_model-Model.html#function-insertContent">model.insertContent</a> will ensure that the content can be inserted to the selected place according to the schema.</p>
-<p>To insert some longer HTML code, you can parse it to the <a href="../api/module_engine_model_documentfragment-DocumentFragment.html">model fragment</a> first and then <a href="../api/module_engine_model_model-Model.html#function-insertContent">insert</a> it into the editor model:</p>
+<p>You may have noticed that a link is represented as a text with an attribute in the editor model. See the API of the <a href="../api/module_engine_model_writer-ModelWriter.html">model writer</a> to learn about other useful methods that can help you modify the editor model. <a href="../api/module_engine_model_model-Model.html#function-insertContent">model.insertContent</a> will ensure that the content can be inserted to the selected place according to the schema.</p>
+<p>To insert some longer HTML code, you can parse it to the <a href="../api/module_engine_model_documentfragment-ModelDocumentFragment.html">model fragment</a> first and then <a href="../api/module_engine_model_model-Model.html#function-insertContent">insert</a> it into the editor model:</p>
 <pre class="highlight"><code class="js">const content =
     '&lt;p&gt;A paragraph with &lt;a href="https://ckeditor.com"&gt;some link&lt;/a&gt;.&lt;/p&gt;';
 const viewFragment = editor.data.processor.toView( content );

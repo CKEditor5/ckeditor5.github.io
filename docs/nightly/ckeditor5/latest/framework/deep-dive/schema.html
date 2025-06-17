@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:36 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:50 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Schema | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -359,10 +359,10 @@
 <p>This article assumes that you have already read the <a href="../architecture/editing-engine.html#schema">“Schema”</a> section of the <a href="../architecture/editing-engine.html">introduction to the editing engine architecture</a>.</p>
 <h2 id="quick-recap"><a class="headerlink" href="#quick-recap">#</a> Quick recap</h2>
 <p>The editor’s schema is available in the <a href="../../api/module_engine_model_model-Model.html#member-schema"><code>editor.model.schema</code></a> property. It defines allowed model structures (how model elements can be nested), allowed attributes (of both elements and text nodes), and other characteristics (inline vs. block, atomicity in regards of external actions). This information is later used by editing features and the editing engine to decide how to process the model, where to enable features, etc.</p>
-<p>Schema rules can be defined by using the <a href="../../api/module_engine_model_schema-Schema.html#function-register"><code>Schema#register()</code></a> or the <a href="../../api/module_engine_model_schema-Schema.html#function-extend"><code>Schema#extend()</code></a> methods. The former can be used only once for a given item name which ensures that only a single editing feature can introduce this item. Similarly, <code>extend()</code> can only be used for defined items.</p>
-<p>Elements and attributes are checked by features separately by using the <a href="../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> and the <a href="../../api/module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> methods.</p>
+<p>Schema rules can be defined by using the <a href="../../api/module_engine_model_schema-ModelSchema.html#function-register"><code>Schema#register()</code></a> or the <a href="../../api/module_engine_model_schema-ModelSchema.html#function-extend"><code>Schema#extend()</code></a> methods. The former can be used only once for a given item name which ensures that only a single editing feature can introduce this item. Similarly, <code>extend()</code> can only be used for defined items.</p>
+<p>Elements and attributes are checked by features separately by using the <a href="../../api/module_engine_model_schema-ModelSchema.html#function-checkChild"><code>Schema#checkChild()</code></a> and the <a href="../../api/module_engine_model_schema-ModelSchema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> methods.</p>
 <h2 id="defining-allowed-structures"><a class="headerlink" href="#defining-allowed-structures">#</a> Defining allowed structures</h2>
-<p>When a feature introduces a model element, it should register it in the schema. Besides defining that such an element may exist in the model, the feature also needs to define where this element can be placed. This information is provided by the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a> property of the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>:</p>
+<p>When a feature introduces a model element, it should register it in the schema. Besides defining that such an element may exist in the model, the feature also needs to define where this element can be placed. This information is provided by the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a> property of the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html"><code>ModelSchemaItemDefinition</code></a>:</p>
 <pre class="highlight"><code class="js">schema.register( 'myElement', {
     allowIn: '$root'
 } );
@@ -380,7 +380,7 @@
     &lt;/foo&gt;
 &lt;/$root&gt;
 </code></pre>
-<p>To declare which nodes are allowed inside the registered element, the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a> property could be used:</p>
+<p>To declare which nodes are allowed inside the registered element, the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a> property could be used:</p>
 <pre class="highlight"><code class="js">schema.register( 'myElement', {
     allowIn: '$root',
     allowChildren: '$text'
@@ -393,11 +393,11 @@
     &lt;/myElement&gt;
 &lt;/$root&gt;
 </code></pre>
-<p>Both the <code><a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a></code> and <code><a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a></code> properties can also be inherited from other <code>SchemaItemDefinition</code> items.</p>
-<div class="info-box notice"><p>You can read more about the format of the item definition in the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> API guide.</p></div>
+<p>Both the <code><a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a></code> and <code><a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a></code> properties can also be inherited from other <code>SchemaItemDefinition</code> items.</p>
+<div class="info-box notice"><p>You can read more about the format of the item definition in the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html"><code>ModelSchemaItemDefinition</code></a> API guide.</p></div>
 <h2 id="disallowing-structures"><a class="headerlink" href="#disallowing-structures">#</a> Disallowing structures</h2>
 <p>The schema, in addition to allowing certain structures, can also be used to ensure some structures are explicitly disallowed. This can be achieved with the use of disallow rules.</p>
-<p>Typically, you will use <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-disallowChildren"><code>disallowChildren</code></a> property for that. It can be used to define which nodes are disallowed inside given element:</p>
+<p>Typically, you will use <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-disallowChildren"><code>disallowChildren</code></a> property for that. It can be used to define which nodes are disallowed inside given element:</p>
 <pre class="highlight"><code class="js">schema.register( 'myElement', {
     inheritAllFrom: '$block',
     disallowChildren: 'imageInline'
@@ -768,54 +768,54 @@ schema.register( 'extendedParent', { inheritAllFrom: 'baseParent', allowChildren
 <li>Pressing <kbd>Backspace</kbd> or <kbd>Delete</kbd> should not delete the area. Pressing <kbd>Enter</kbd> should not split the area.</li>
 </ul>
 <p>It should also act as a boundary for external actions. This is mostly enforced by a selection post-fixer that ensures that a selection that starts outside, should not end inside. It means that most actions will either apply to the “outside” of such an element or to the content inside it.</p>
-<p>Taken these characteristics, the image caption should be defined as a limit element by using the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isLimit"><code>isLimit</code></a> property.</p>
+<p>Taken these characteristics, the image caption should be defined as a limit element by using the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isLimit"><code>isLimit</code></a> property.</p>
 <pre class="highlight"><code class="js">schema.register( 'myCaption', {
     isLimit: true
 } );
 </code></pre>
-<p>The engine and various features then check it via <a href="../../api/module_engine_model_schema-Schema.html#function-isLimit"><code>Schema#isLimit()</code></a> and can act accordingly.</p>
-<div class="info-box notice"><p>“Limit element” does not mean “editable element.” The concept of “editable element” is reserved for the view and expressed by the <a href="../../api/module_engine_view_editableelement-EditableElement.html"><code>EditableElement</code> class</a>.</p></div>
+<p>The engine and various features then check it via <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isLimit"><code>Schema#isLimit()</code></a> and can act accordingly.</p>
+<div class="info-box notice"><p>“Limit element” does not mean “editable element.” The concept of “editable element” is reserved for the view and expressed by the <a href="../../api/module_engine_view_editableelement-ViewEditableElement.html"><code>ViewEditableElement</code> class</a>.</p></div>
 <h3 id="object-elements"><a class="headerlink" href="#object-elements">#</a> Object elements</h3>
 <p>For an image caption like in the example above it does not make much sense to select the caption box, then copy or drag it somewhere else.</p>
-<p>A caption without the image it describes makes little sense. The image, however, is more self-sufficient. Most likely users should be able to select the entire image (with all its internals), then copy or move it around. The <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isObject"><code>isObject</code></a> property should be used to mark such behavior.</p>
+<p>A caption without the image it describes makes little sense. The image, however, is more self-sufficient. Most likely users should be able to select the entire image (with all its internals), then copy or move it around. The <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isObject"><code>isObject</code></a> property should be used to mark such behavior.</p>
 <pre class="highlight"><code class="js">schema.register( 'myImage', {
     isObject: true
 } );
 </code></pre>
-<p>The <a href="../../api/module_engine_model_schema-Schema.html#function-isObject"><code>Schema#isObject()</code></a> can later be used to check this property.</p>
+<p>The <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isObject"><code>Schema#isObject()</code></a> can later be used to check this property.</p>
 <div class="info-box notice"><p>There are also the <code>$blockObject</code> and the <code>$inlineObject</code> generic items which have the <code>isObject</code> property set to <code>true</code>. Most object-type items will inherit from <code>$blockObject</code> or <code>$inlineObject</code> (through <code>inheritAllFrom</code>).</p></div>
 <div class="info-box notice"><p>Every object is automatically also:</p><ul>
-<li>A <a href="#limit-elements">limit element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-Schema.html#function-isLimit"><code>Schema#isLimit( element )</code></a> will always return <code>true</code>.</li>
-<li>A <a href="#selectable-elements">selectable element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-Schema.html#function-isSelectable"><code>Schema#isSelectable( element )</code></a> will always return <code>true</code>.</li>
-<li>A <a href="#content-elements">content element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-Schema.html#function-isContent"><code>Schema#isContent( element )</code></a> will always return <code>true</code>.</li>
+<li>A <a href="#limit-elements">limit element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isLimit"><code>Schema#isLimit( element )</code></a> will always return <code>true</code>.</li>
+<li>A <a href="#selectable-elements">selectable element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isSelectable"><code>Schema#isSelectable( element )</code></a> will always return <code>true</code>.</li>
+<li>A <a href="#content-elements">content element</a> – For every element with <code>isObject</code> set to <code>true</code>, <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isContent"><code>Schema#isContent( element )</code></a> will always return <code>true</code>.</li>
 </ul>
 </div>
 <h3 id="block-elements"><a class="headerlink" href="#block-elements">#</a> Block elements</h3>
-<p>Generally speaking, content is usually made out of blocks like paragraphs, list items, images, headings, etc. All these elements should be marked as blocks by using <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isBlock"><code>isBlock</code></a>.</p>
-<p>Schema items with the <code>isBlock</code> property set are (among others) affecting the <a href="../../api/module_engine_model_documentselection-DocumentSelection.html#function-getSelectedBlocks"><code>Selection#getSelectedBlocks()</code></a> behavior and by that allow setting block level attributes like <code>alignment</code> to appropriate elements.</p>
+<p>Generally speaking, content is usually made out of blocks like paragraphs, list items, images, headings, etc. All these elements should be marked as blocks by using <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isBlock"><code>isBlock</code></a>.</p>
+<p>Schema items with the <code>isBlock</code> property set are (among others) affecting the <a href="../../api/module_engine_model_documentselection-ModelDocumentSelection.html#function-getSelectedBlocks"><code>Selection#getSelectedBlocks()</code></a> behavior and by that allow setting block level attributes like <code>alignment</code> to appropriate elements.</p>
 <p>It is important to remember that a block should not allow another block inside. Container elements like <code>&lt;blockQuote&gt;</code>, which can contain other block elements, should not be marked as blocks.</p>
 <div class="info-box notice"><p>There are also the <code>$block</code> and the <code>$blockObject</code> generic items which have the <code>isBlock</code> property set to <code>true</code>. Most block-type items will inherit from <code>$block</code> or <code>$blockObject</code> (through <code>inheritAllFrom</code>).</p><p>Note that every item that inherits from <code>$block</code> has <code>isBlock</code> set, but not every item with <code>isBlock</code> set has to be a <code>$block</code>.</p></div>
 <h3 id="inline-elements"><a class="headerlink" href="#inline-elements">#</a> Inline elements</h3>
 <p>In the editor, all HTML formatting elements such as <code>&lt;strong&gt;</code> or <code>&lt;code&gt;</code> are represented by text attributes. Therefore, inline model elements are not supposed to be used for these scenarios.</p>
-<p>Currently, the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isInline"><code>isInline</code></a> property is used for the <code>$text</code> token (so, text nodes) and elements such as <code>&lt;softBreak&gt;</code>, <code>&lt;imageInline&gt;</code> or placeholder elements such as described in the <a href="../tutorials/widgets/implementing-an-inline-widget.html">Implementing an inline widget</a> tutorial.</p>
+<p>Currently, the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isInline"><code>isInline</code></a> property is used for the <code>$text</code> token (so, text nodes) and elements such as <code>&lt;softBreak&gt;</code>, <code>&lt;imageInline&gt;</code> or placeholder elements such as described in the <a href="../tutorials/widgets/implementing-an-inline-widget.html">Implementing an inline widget</a> tutorial.</p>
 <p>The support for inline elements in CKEditor&nbsp;5 is so far limited to self-contained elements. Because of this, all elements marked with <code>isInline</code> should also be marked with <code>isObject</code>.</p>
 <div class="info-box notice"><p>There is also the <code>$inlineObject</code> generic item which has the <code>isInline</code> property set to <code>true</code>. Most inline object type items will inherit from <code>$inlineObject</code> (through <code>inheritAllFrom</code>).</p></div>
 <h3 id="selectable-elements"><a class="headerlink" href="#selectable-elements">#</a> Selectable elements</h3>
-<p>Elements that users can select as a whole (with all their internals) and then, for instance, copy them or apply formatting, are marked with the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isSelectable"><code>isSelectable</code></a> property in the schema:</p>
+<p>Elements that users can select as a whole (with all their internals) and then, for instance, copy them or apply formatting, are marked with the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isSelectable"><code>isSelectable</code></a> property in the schema:</p>
 <pre class="highlight"><code class="js">schema.register( 'mySelectable', {
     isSelectable: true
 } );
 </code></pre>
-<p>The <a href="../../api/module_engine_model_schema-Schema.html#function-isSelectable"><code>Schema#isSelectable()</code></a> method can later be used to check this property.</p>
+<p>The <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isSelectable"><code>Schema#isSelectable()</code></a> method can later be used to check this property.</p>
 <div class="info-box notice"><p>All <a href="#object-elements">object elements</a> are selectable by default. There are other selectable elements registered in the editor, though. For instance, there is also the <code>tableCell</code> model element (rendered as a <code>&lt;td&gt;</code> in the editing view) that is selectable while <strong>not</strong> registered as an object. The <a href="../../features/tables/tables.html#table-selection">table selection</a> plugin takes advantage of this fact and allows users to create rectangular selections made of multiple table cells.</p></div>
 <h3 id="content-elements"><a class="headerlink" href="#content-elements">#</a> Content elements</h3>
 <p>You can tell content model elements from other elements by looking at their representation in the editor data (you can use <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> or <a href="../../api/module_engine_model_model-Model.html#function-hasContent"><code>Model#hasContent()</code></a> to check this out).</p>
-<p>Elements such as images or media will <strong>always</strong> find their way into the editor data and this is what makes them content elements. They are marked with the <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html#member-isContent"><code>isContent</code></a> property in the schema:</p>
+<p>Elements such as images or media will <strong>always</strong> find their way into the editor data and this is what makes them content elements. They are marked with the <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isContent"><code>isContent</code></a> property in the schema:</p>
 <pre class="highlight"><code class="js">schema.register( 'myImage', {
     isContent: true
 } );
 </code></pre>
-<p>The <a href="../../api/module_engine_model_schema-Schema.html#function-isContent"><code>Schema#isContent()</code></a> method can later be used to check this property.</p>
+<p>The <a href="../../api/module_engine_model_schema-ModelSchema.html#function-isContent"><code>Schema#isContent()</code></a> method can later be used to check this property.</p>
 <p>At the same time, elements like paragraphs, list items, or headings <strong>are not</strong> content elements because they are skipped in the editor output when they are empty. From the data perspective, they are transparent unless they contain other content elements (an empty paragraph is as good as no paragraph).</p>
 <div class="info-box notice"><p><a href="#object-elements">Object elements</a> and <a href="#generic-items"><code>$text</code></a> are content by default.</p></div>
 <h2 id="generic-items"><a class="headerlink" href="#generic-items">#</a> Generic items</h2>
@@ -879,7 +879,7 @@ schema.register( '$text', {
 </code></pre>
 <p>Because <code>&lt;$block&gt;</code> is allowed in <code>&lt;$container&gt;</code> (see <code>schema.register( '$block' ...)</code>), despite the fact that the block quote and paragraph features know nothing about each other, paragraphs will be allowed in block quotes: the schema rules allow chaining.</p>
 <p>Taking this even further, if anyone registers a <code>&lt;section&gt;</code> element (with the <code>allowContentOf: '$root'</code> rule), because <code>&lt;$container&gt;</code> is also allowed in <code>&lt;$root&gt;</code> (see <code>schema.register( '$container' ...)</code>) the <code>&lt;section&gt;</code> elements will allow block quotes out–of–the–box.</p>
-<div class="info-box notice"><p>You can read more about the format of the item definition in <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.</p></div>
+<div class="info-box notice"><p>You can read more about the format of the item definition in <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html"><code>ModelSchemaItemDefinition</code></a>.</p></div>
 <h3 id="relations-between-generic-items"><a class="headerlink" href="#relations-between-generic-items">#</a> Relations between generic items</h3>
 <p>Relations between generic items (which one can be used where) can be visualized by the following abstract structure:</p>
 <pre class="highlight"><code class="xml html">&lt;$root&gt;
@@ -956,12 +956,12 @@ schema.register( '$text', {
 &lt;/$root&gt;
 </code></pre>
 <h2 id="defining-advanced-rules-using-callbacks"><a class="headerlink" href="#defining-advanced-rules-using-callbacks">#</a> Defining advanced rules using callbacks</h2>
-<p>The base <a href="../../api/module_engine_model_schema-SchemaItemDefinition.html">declarative <code>SchemaItemDefinition</code> API</a> is by its nature limited, and some custom rules might not be possible to be implemented this way.</p>
+<p>The base <a href="../../api/module_engine_model_schema-ModelSchemaItemDefinition.html">declarative <code>SchemaItemDefinition</code> API</a> is by its nature limited, and some custom rules might not be possible to be implemented this way.</p>
 <p>For this reason, it is also possible to define schema checks by providing callbacks. This gives you flexibility to implement any logic that you need.</p>
 <p>These callbacks can be set both for child checks (model structure checks) and attribute checks.</p>
 <p>Note that the callbacks take precedence over the rules defined through the declarative API and can overwrite these rules.</p>
 <h3 id="child-checks-structure-checks"><a class="headerlink" href="#child-checks-structure-checks">#</a> Child checks (structure checks)</h3>
-<p>Using <a href="../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> you can provide function callbacks to implement specific advanced rules for checking the model structure.</p>
+<p>Using <a href="../../api/module_engine_model_schema-ModelSchema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> you can provide function callbacks to implement specific advanced rules for checking the model structure.</p>
 <p>You can provide callbacks that are fired only when a specific child is checked, or generic callbacks fired for all checks performed by the schema.</p>
 <p>Below is an example of a specific callback, that disallows inline images inside code blocks:</p>
 <pre class="highlight"><code class="js">schema.addChildCheck( context =&gt; {
@@ -986,11 +986,11 @@ schema.register( '$text', {
 <p>The above will trigger on every <code>checkChild()</code> call giving you more flexibility. However, please keep in mind that using multiple generic callbacks might negatively impact the editor performance.</p>
 <h3 id="attribute-checks"><a class="headerlink" href="#attribute-checks">#</a> Attribute checks</h3>
 <p>Similarly, you can define callbacks to check whether given attribute is or is not allowed on given item.</p>
-<p>This time, you will use <a href="../../api/module_engine_model_schema-Schema.html#function-addAttributeCheck"><code>Schema#addAttributeCheck()</code></a> to provide the callback.</p>
+<p>This time, you will use <a href="../../api/module_engine_model_schema-ModelSchema.html#function-addAttributeCheck"><code>Schema#addAttributeCheck()</code></a> to provide the callback.</p>
 <p>For example, allow custom attribute <code>headingMarker</code> on all headings:</p>
 <pre class="highlight"><code class="js">schema.addAttributeCheck( ( context, attributeName ) =&gt; {
     const isHeading = context.last.name.startsWith( 'heading' );
-    
+
     if ( isHeading ) {
         return true;
     }
@@ -1000,7 +1000,7 @@ schema.register( '$text', {
 <pre class="highlight"><code class="js">schema.addAttributeCheck( ( context, attributeName ) =&gt; {
     const parent = context.getItem( context.length - 2 );
     const insideHeading = parent &amp;&amp; parent.name.startsWith( 'heading' );
-    
+
     if ( insideHeading &amp;&amp; context.endsWith( '$text' ) &amp;&amp; schema.getAttributeProperties( attributeName ).isFormatting ) {
         return false;
     }
@@ -1008,7 +1008,7 @@ schema.register( '$text', {
 </code></pre>
 <p>All notes related to child check callbacks apply to attribute callbacks as well.</p>
 <h2 id="implementing-additional-constraints"><a class="headerlink" href="#implementing-additional-constraints">#</a> Implementing additional constraints</h2>
-<p>Schema’s capabilities are limited to simple (and atomic) <a href="../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> and <a href="../../api/module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> checks on purpose. One may imagine that the schema should support defining more complex rules such as “element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>.” While it is feasible to create an API that would enable feeding the schema with such definitions, it is unfortunately unrealistic to then expect that every editing feature will consider these rules when processing the model. It is also unrealistic to expect that it will be done automatically by the schema and the editing engine themselves.</p>
+<p>Schema’s capabilities are limited to simple (and atomic) <a href="../../api/module_engine_model_schema-ModelSchema.html#function-checkChild"><code>Schema#checkChild()</code></a> and <a href="../../api/module_engine_model_schema-ModelSchema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> checks on purpose. One may imagine that the schema should support defining more complex rules such as “element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>.” While it is feasible to create an API that would enable feeding the schema with such definitions, it is unfortunately unrealistic to then expect that every editing feature will consider these rules when processing the model. It is also unrealistic to expect that it will be done automatically by the schema and the editing engine themselves.</p>
 <p>For instance, let’s get back to the “element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>” rule and this initial content:</p>
 <pre class="highlight"><code class="xml html">&lt;$root&gt;
     &lt;x&gt;foo&lt;/x&gt;
@@ -1028,7 +1028,7 @@ schema.register( '$text', {
 <p>However, it turns out that this creates an incorrect structure – <code>&lt;x&gt;</code> is not followed by <code>&lt;y&gt;</code> anymore.</p>
 <p>What should happen instead? There are at least 4 possible solutions: the block quote feature should not be applicable in such a context, someone should create a new <code>&lt;y&gt;</code> right after <code>&lt;x&gt;</code>, <code>&lt;x&gt;</code> should be moved inside <code>&lt;blockQuote&gt;</code> together with <code>&lt;y&gt;</code> or vice versa.</p>
 <p>While this is a relatively simple scenario (unlike most real-time collaborative editing scenarios), it turns out that it is already hard to say what should happen and who should react to fix this content.</p>
-<p>Therefore, if your editor needs to implement such rules, you should do that through <a href="../../api/module_engine_model_document-Document.html#function-registerPostFixer">model’s post-fixers</a> fixing incorrect content or actively prevent such situations (for example, by disabling certain features). It means that these constraints will be defined specifically for your scenario by your code which makes their implementation much easier.</p>
+<p>Therefore, if your editor needs to implement such rules, you should do that through <a href="../../api/module_engine_model_document-ModelDocument.html#function-registerPostFixer">model’s post-fixers</a> fixing incorrect content or actively prevent such situations (for example, by disabling certain features). It means that these constraints will be defined specifically for your scenario by your code which makes their implementation much easier.</p>
 <p>To sum up, the answer to who and how should implement additional constraints is: your features or your editor through the CKEditor&nbsp;5 API.</p>
 <h2 id="who-checks-the-schema"><a class="headerlink" href="#who-checks-the-schema">#</a> Who checks the schema?</h2>
 <p>The CKEditor&nbsp;5 API exposes many ways to work on (change) the model. It can be done <a href="../architecture/editing-engine.html#changing-the-model">through the writer</a>, via methods like <a href="../../api/module_engine_model_model-Model.html#function-insertContent"><code>Model#insertContent()</code></a>, via commands, and so on.</p>
@@ -1041,7 +1041,7 @@ schema.register( '$text', {
 <li>How to fix the content after a transaction is committed? It is impossible to implement a reasonable heuristic that would not break the content from the user’s perspective.</li>
 <li>The model can become invalid during real-time collaborative changes. Operational Transformation, while implemented by us in a rich form (with 11 types of operations instead of the base 3), ensures conflict resolution and eventual consistency, but not the model’s validity.</li>
 </ul>
-<p>Therefore, we chose to handle such situations on a case-by-case basis, using more expressive and flexible <a href="../../api/module_engine_model_document-Document.html#function-registerPostFixer">model’s post-fixers</a>. Additionally, we moved the responsibility of checking the schema to features. They can make a lot better decisions before making changes. You can read more about this in the <a href="#implementing-additional-constraints">“Implementing additional constraints”</a> section above.</p>
+<p>Therefore, we chose to handle such situations on a case-by-case basis, using more expressive and flexible <a href="../../api/module_engine_model_document-ModelDocument.html#function-registerPostFixer">model’s post-fixers</a>. Additionally, we moved the responsibility of checking the schema to features. They can make a lot better decisions before making changes. You can read more about this in the <a href="#implementing-additional-constraints">“Implementing additional constraints”</a> section above.</p>
 <h3 id="high-level-apis"><a class="headerlink" href="#high-level-apis">#</a> High-level APIs</h3>
 <p>What about other, higher-level methods? <strong>We recommend that all APIs built on top of the writer should check the schema.</strong></p>
 <p>For instance, the <a href="../../api/module_engine_model_model-Model.html#function-insertContent"><code>Model#insertContent()</code></a> method will make sure that inserted nodes are allowed in the place of their insertion. It may also attempt to split the insertion container (if allowed by the schema) if that will make the element to insert allowed, and so on.</p>

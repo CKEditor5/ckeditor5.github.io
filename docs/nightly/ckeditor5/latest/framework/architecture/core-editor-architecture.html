@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:33 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:47 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Core editor architecture | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -435,7 +435,7 @@ class MyPlugin extends Plugin {
     );
 }
 </code></pre>
-<p>This method is called automatically (by the command itself) when <a href="../../api/module_engine_model_document-Document.html#event-change">any changes are applied to the model</a>. This means that the command automatically refreshes its own state when anything changes in the editor.</p>
+<p>This method is called automatically (by the command itself) when <a href="../../api/module_engine_model_document-ModelDocument.html#event-change">any changes are applied to the model</a>. This means that the command automatically refreshes its own state when anything changes in the editor.</p>
 <p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fire events. Some examples of these are <a href="../../api/module_core_command-Command.html#event-set:%7Bproperty%7D"><code>#set:value</code></a> and <a href="../../api/module_core_command-Command.html#event-change:%7Bproperty%7D"><code>#change:value</code></a> when you change the <code>#value</code> property and <a href="../../api/module_core_command-Command.html#event-execute"><code>#execute</code></a> when you execute the command.</p>
 <div class="info-box notice"><p>Read more about this mechanism in the <a href="../deep-dive/observables.html">Observables</a> deep dive guide.</p></div>
 <p>These events make it possible to control the command from the outside. For instance, if you want to block specific commands when some condition is true (for example, according to your application logic, they should be temporarily unavailable) and there is no other, cleaner way to do that, you can block the command manually:</p>

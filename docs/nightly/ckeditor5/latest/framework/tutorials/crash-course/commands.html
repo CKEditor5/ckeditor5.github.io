@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:42 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:56 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 crash course - Commands | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -428,7 +428,7 @@ class HighlightCommand extends Command {
     } );
 }
 </code></pre>
-<p>All changes to the model are made using the <a href="../../../api/module_engine_model_writer-Writer.html">model writer</a>. Its instance is available in the callback passed to the <a href="../../../api/module_engine_model_model-Model.html#function-change"><code>model.change()</code></a> method, so we will use it.</p>
+<p>All changes to the model are made using the <a href="../../../api/module_engine_model_writer-ModelWriter.html">model writer</a>. Its instance is available in the callback passed to the <a href="../../../api/module_engine_model_model-Model.html#function-change"><code>model.change()</code></a> method, so we will use it.</p>
 <p>In the callback, we first check if the selection is collapsed. Unlike a standard selection, which can span multiple letters, elements, or even blocks, a collapsed selection has a range of zero, meaning that it starts and ends at the same position. In other words, the collapsed selection is just a caret.</p>
 <p>If we are dealing with a standard (not collapsed) selection, we check for all the ranges where the <code>highlight</code> attribute can be used, loop over them, and either add or remove this attribute depending on the current state.</p>
 <p>If the selection is collapsed, we either add or remove the attribute based on the current state.</p>

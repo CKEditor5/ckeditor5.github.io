@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 16 2025 01:52:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 17 2025 01:52:26 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Error codes | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -439,7 +439,7 @@ that were passed to <a href="../api/module_comments_annotations_annotationsuis-A
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_item-Item.html">Item</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_item-ModelItem.html">ModelItem</a></span></code></dt>
           <dd><p>The item element.</p>
           </dd>
           <dt><code>key
@@ -470,7 +470,7 @@ that were passed to <a href="../api/module_comments_annotations_annotationsuis-A
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_item-Item.html">Item</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_item-ModelItem.html">ModelItem</a></span></code></dt>
           <dd><p>The item element.</p>
           </dd>
           <dt><code>key
@@ -517,10 +517,10 @@ future. Use <code>Batch#isLocal</code>, <code>Batch#isUndoable</code>, <code>Bat
 cause some unexpected behaviour and inconsistency between the DOM and the view.
 This may be caused by:</p>
 <ul>
-<li>calling <a href="../api/module_engine_view_view-View.html#function-change"><code>change</code></a> or <a href="../api/module_engine_view_view-View.html#function-forceRender"><code>forceRender</code></a> during rendering
-process,</li>
-<li>calling <a href="../api/module_engine_view_view-View.html#function-change"><code>change</code></a> or <a href="../api/module_engine_view_view-View.html#function-forceRender"><code>forceRender</code></a> inside of
-<a href="../api/module_engine_view_document-Document.html#function-registerPostFixer">post-fixer function</a>.</li>
+<li>calling <a href="../api/module_engine_view_view-EditingView.html#function-change"><code>change</code></a> or <a href="../api/module_engine_view_view-EditingView.html#function-forceRender"><code>forceRender</code></a>
+during rendering process,</li>
+<li>calling <a href="../api/module_engine_view_view-EditingView.html#function-change"><code>change</code></a> or <a href="../api/module_engine_view_view-EditingView.html#function-forceRender"><code>forceRender</code></a>
+inside of <a href="../api/module_engine_view_document-ViewDocument.html#function-registerPostFixer">post-fixer function</a>.</li>
 </ul>
       </div>
     </div>
@@ -1353,7 +1353,7 @@ is allowed to be used with a context.</p>
       <h3><code><a class="member-name" href="#error-conversion-attribute-to-attribute-on-text">conversion-attribute-to-attribute-on-text</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>This error occurs when a <a href="../api/module_engine_model_textproxy-TextProxy.html">text node's</a> attribute is to be downcasted
+      <div class="collapsing-list__content"><p>This error occurs when a <a href="../api/module_engine_model_textproxy-ModelTextProxy.html">text node's</a> attribute is to be downcasted
 by an <a href="../api/module_engine_conversion_conversion-Conversion.html#function-attributeToAttribute"><code>Attribute to Attribute converter</code></a>.
 In most cases it is caused by converters misconfiguration when only "generic" converter is defined:</p>
 <pre><code class="language-ts">editor.conversion.for( 'downcast' ).attributeToAttribute( {
@@ -1366,8 +1366,8 @@ In most cases it is caused by converters misconfiguration when only "generic" co
 	writer.insertText( 'Foo', { 'attribute-name': 'bar' }, parent, 0 );
 } );
 </code></pre>
-<p>In such cases, to convert the same attribute for both <a href="../api/module_engine_model_element-Element.html"><code>Element</code></a>
-and <a href="../api/module_engine_model_textproxy-TextProxy.html"><code>Text</code></a> nodes, text specific
+<p>In such cases, to convert the same attribute for both <a href="../api/module_engine_model_element-ModelElement.html"><code>ModelElement</code></a>
+and <a href="../api/module_engine_model_textproxy-ModelTextProxy.html"><code>Text</code></a> nodes, text specific
 <a href="../api/module_engine_conversion_conversion-Conversion.html#function-attributeToElement"><code>Attribute to Element converter</code></a>
 with higher <a href="../api/module_utils_priorities-PriorityString.html">priority</a> must also be defined:</p>
 <pre><code class="language-ts">editor.conversion.for( 'downcast' ).attributeToElement( {
@@ -1397,9 +1397,9 @@ with higher <a href="../api/module_utils_priorities-PriorityString.html">priorit
       <h3><code><a class="member-name" href="#error-conversion-element-to-structure-disallowed-text">conversion-element-to-structure-disallowed-text</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>This error occurs when a <a href="../api/module_engine_model_element-Element.html">model element</a> is downcasted
+      <div class="collapsing-list__content"><p>This error occurs when a <a href="../api/module_engine_model_element-ModelElement.html">model element</a> is downcasted
 via <a href="../api/module_engine_conversion_downcasthelpers-DowncastHelpers.html#function-elementToStructure"><code>elementToStructure</code></a> helper but the element was
-allowed to host <code>$text</code> by the <a href="../api/module_engine_model_schema-Schema.html">model schema</a>.</p>
+allowed to host <code>$text</code> by the <a href="../api/module_engine_model_schema-ModelSchema.html">model schema</a>.</p>
 <p>For instance, this may be the result of <code>myElement</code> allowing the content of
 <a href="../framework/deep-dive/schema.html#generic-items" data-glink=""><code>$block</code></a> in its schema definition:</p>
 <pre><code class="language-ts">// Element definition in schema.
@@ -1462,7 +1462,7 @@ can be used instead to get around this problem:</p>
       <h3><code><a class="member-name" href="#error-conversion-model-consumable-not-consumed">conversion-model-consumable-not-consumed</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Some of the <a href="../api/module_engine_model_item-Item.html">model items</a> were not consumed while downcasting the model to view.</p>
+      <div class="collapsing-list__content"><p>Some of the <a href="../api/module_engine_model_item-ModelItem.html">model items</a> were not consumed while downcasting the model to view.</p>
 <p>This might be the effect of:</p>
 <ul>
 <li>A missing converter for some model elements. Make sure that you registered downcast converters for all model elements.</li>
@@ -1477,7 +1477,7 @@ attributes and child nodes.</li>
         <dl>
           <dt><code>items
               :
- Array&lt;<span><a class="collapsing-list__type" href="../api/module_engine_model_item-Item.html">Item</a></span>&gt;</code></dt>
+ Array&lt;<span><a class="collapsing-list__type" href="../api/module_engine_model_item-ModelItem.html">ModelItem</a></span>&gt;</code></dt>
           <dd><p>Items that were not consumed.</p>
           </dd>
         </dl>
@@ -1495,7 +1495,7 @@ the children elements would not be assigned to any of the slots).</p>
         <dl>
           <dt><code>element
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_element-Element.html">Element</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_element-ModelElement.html">ModelElement</a></span></code></dt>
           <dd><p>The element of which children would not be properly</p>
           </dd>
         </dl>
@@ -1512,7 +1512,7 @@ the children elements would not be assigned to any of the slots).</p>
         <dl>
           <dt><code>element
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_element-Element.html">Element</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_element-ModelElement.html">ModelElement</a></span></code></dt>
           <dd><p>The element of which children would not be properly</p>
           </dd>
         </dl>
@@ -1589,9 +1589,9 @@ calling <a href="../api/module_engine_controller_datacontroller-DataController.h
       <h3><code><a class="member-name" href="#error-datacontroller-init-document-not-empty">datacontroller-init-document-not-empty</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Cannot set initial data to a non-empty <a href="../api/module_engine_model_document-Document.html"><code>Document</code></a>.
+      <div class="collapsing-list__content"><p>Cannot set initial data to a non-empty <a href="../api/module_engine_model_document-ModelDocument.html"><code>ModelDocument</code></a>.
 Initial data should be set once, during the <a href="../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> initialization,
-when the <a href="../api/module_engine_model_document-Document.html#member-version"><code>version</code></a> is equal 0.</p>
+when the <a href="../api/module_engine_model_document-ModelDocument.html#member-version"><code>version</code></a> is equal 0.</p>
       </div>
     </div>
   </li>
@@ -1678,7 +1678,7 @@ configuration option.</p>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Restoring gravity for an unknown UID is not possible. Make sure you are using a correct
-UID obtained from the <a href="../api/module_engine_model_writer-Writer.html#function-overrideSelectionGravity"><code>overrideSelectionGravity</code></a> to restore.</p>
+UID obtained from the <a href="../api/module_engine_model_writer-ModelWriter.html#function-overrideSelectionGravity"><code>overrideSelectionGravity</code></a> to restore.</p>
         <h4>Parameters</h4>
         <dl>
           <dt><code>uid
@@ -1695,13 +1695,13 @@ UID obtained from the <a href="../api/module_engine_model_writer-Writer.html#fun
       <h3><code><a class="member-name" href="#error-document-selection-wrong-position">document-selection-wrong-position</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Range from <a href="../api/module_engine_model_documentselection-DocumentSelection.html">document selection</a>
+      <div class="collapsing-list__content"><p>Range from <a href="../api/module_engine_model_documentselection-ModelDocumentSelection.html">document selection</a>
 starts or ends at incorrect position.</p>
         <h4>Parameters</h4>
         <dl>
           <dt><code>range
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_range-ModelRange.html">ModelRange</a></span></code></dt>
           <dd><p>The invalid range.</p>
           </dd>
         </dl>
@@ -1731,16 +1731,16 @@ starts or ends at incorrect position.</p>
       <h3><code><a class="member-name" href="#error-domconverter-unsafe-attribute-detected">domconverter-unsafe-attribute-detected</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>The <a href="../api/module_engine_view_domconverter-DomConverter.html"><code>DomConverter</code></a> detected an interactive attribute in the
+      <div class="collapsing-list__content"><p>The <a href="../api/module_engine_view_domconverter-ViewDomConverter.html"><code>ViewDomConverter</code></a> detected an interactive attribute in the
 <a href="../framework/architecture/editing-engine.html#editing-pipeline" data-glink="">editing pipeline</a>. For the best
 editing experience, the attribute was renamed to <code>data-ck-unsafe-attribute-[original attribute name]</code>.</p>
 <p>If you are the author of the plugin that generated this attribute and you want it to be preserved
 in the editing pipeline, you can configure this when creating the element
-using <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html"><code>DowncastWriter</code></a> during the
+using <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html"><code>ViewDowncastWriter</code></a> during the
 <a href="../framework/architecture/editing-engine.html#conversion" data-glink="">model–view conversion</a>. Methods such as
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createContainerElement:WITHOUT_CHILDREN"><code>createContainerElement</code></a>,
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createAttributeElement"><code>createAttributeElement</code></a>, or
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-createEmptyElement"><code>createEmptyElement</code></a>
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-createContainerElement:WITHOUT_CHILDREN"><code>createContainerElement</code></a>,
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-createAttributeElement"><code>createAttributeElement</code></a>, or
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-createEmptyElement"><code>createEmptyElement</code></a>
 accept an option that will disable filtering of specific attributes:</p>
 <pre><code class="language-ts">const paragraph = writer.createContainerElement( 'p',
 	{
@@ -1779,7 +1779,7 @@ accept an option that will disable filtering of specific attributes:</p>
       <h3><code><a class="member-name" href="#error-domconverter-unsafe-script-element-detected">domconverter-unsafe-script-element-detected</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>While rendering the editor content, the <a href="../api/module_engine_view_domconverter-DomConverter.html"><code>DomConverter</code></a> detected a <code>&lt;script&gt;</code> element that may
+      <div class="collapsing-list__content"><p>While rendering the editor content, the <a href="../api/module_engine_view_domconverter-ViewDomConverter.html"><code>ViewDomConverter</code></a> detected a <code>&lt;script&gt;</code> element that may
 disrupt the editing experience. To avoid this, the <code>&lt;script&gt;</code> element was replaced with <code>&lt;span data-ck-unsafe-element="script"&gt;&lt;/span&gt;</code>.</p>
       </div>
     </div>
@@ -1789,7 +1789,8 @@ disrupt the editing experience. To avoid this, the <code>&lt;script&gt;</code> e
       <h3><code><a class="member-name" href="#error-domconverter-unsafe-style-element-detected">domconverter-unsafe-style-element-detected</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>While rendering the editor content, the <a href="../api/module_engine_view_domconverter-DomConverter.html"><code>DomConverter</code></a> detected a <code>&lt;style&gt;</code> element that may affect
+      <div class="collapsing-list__content"><p>While rendering the editor content, the
+<a href="../api/module_engine_view_domconverter-ViewDomConverter.html"><code>ViewDomConverter</code></a> detected a <code>&lt;style&gt;</code> element that may affect
 the editing experience. To avoid this, the <code>&lt;style&gt;</code> element was replaced with <code>&lt;span data-ck-unsafe-element="style"&gt;&lt;/span&gt;</code>.</p>
       </div>
     </div>
@@ -2188,11 +2189,11 @@ are set. Only the <code>emoji.definitionsUrl</code> option will be used.</p>
     </div>
   </li>
   <li class="collapsing-list__item collapsing-list__item--visible">
-    <div class="collapsing-list__term toggler--collapsed" id="error-enableplaceholder-deprecated-text-option">
-      <h3><code><a class="member-name" href="#error-enableplaceholder-deprecated-text-option">enableplaceholder-deprecated-text-option</a></code></h3>
+    <div class="collapsing-list__term toggler--collapsed" id="error-enableViewPlaceholder-deprecated-text-option">
+      <h3><code><a class="member-name" href="#error-enableViewPlaceholder-deprecated-text-option">enableViewPlaceholder-deprecated-text-option</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>The "text" option in the <a href="../api/module_engine_view_placeholder.html#function-enablePlaceholder"><code>enablePlaceholder()</code></a>
+      <div class="collapsing-list__content"><p>The "text" option in the <a href="../api/module_engine_view_placeholder.html#function-enableViewPlaceholder"><code>enableViewPlaceholder()</code></a>
 function is deprecated and will be removed soon.</p>
 <p>See the <a href="../updating/guides/update-to-39.html#view-element-placeholder" data-glink="">Migration to v39</a> guide for
 more information on how to apply this change.</p>
@@ -2610,12 +2611,12 @@ with as many details as possible regarding the content being inserted and the in
         <dl>
           <dt><code>node
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_node-Node.html">Node</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_node-ModelNode.html">ModelNode</a></span></code></dt>
           <dd><p>Node to insert.</p>
           </dd>
           <dt><code>position
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_position-Position.html">Position</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_position-ModelPosition.html">ModelPosition</a></span></code></dt>
           <dd><p>Position to insert the node at.</p>
           </dd>
         </dl>
@@ -2629,7 +2630,7 @@ with as many details as possible regarding the content being inserted and the in
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Tried to insert an element with <a href="../api/module_engine_model_utils_insertobject.html">insertObject()</a> function
 that is not defined as an object in schema.
-See <a href="../api/module_engine_model_schema-SchemaItemDefinition.html#member-isObject"><code>SchemaItemDefinition</code></a>.
+See <a href="../api/module_engine_model_schema-ModelSchemaItemDefinition.html#member-isObject"><code>SchemaItemDefinition</code></a>.
 If you want to insert content that is not an object you might want to use
 <a href="../api/module_engine_model_utils_insertcontent.html">insertContent()</a> function.</p>
       </div>
@@ -3401,7 +3402,7 @@ requires the offset to be specified when the first parameter is a model item.</p
       <h3><code><a class="member-name" href="#error-model-liveposition-root-not-rootelement">model-liveposition-root-not-rootelement</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>LivePosition's root has to be an instance of RootElement.</p>
+      <div class="collapsing-list__content"><p>LivePosition's root has to be an instance of ModelRootElement.</p>
       </div>
     </div>
   </li>
@@ -3438,7 +3439,7 @@ requires the offset to be specified when the first parameter is a model item.</p
           </dd>
           <dt><code>nodeList
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_nodelist-NodeList.html">NodeList</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_nodelist-ModelNodeList.html">ModelNodeList</a></span></code></dt>
           <dd><p>Stringified node list.</p>
           </dd>
         </dl>
@@ -3455,7 +3456,7 @@ requires the offset to be specified when the first parameter is a model item.</p
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-ModelRootElement.html">ModelRootElement</a></span></code></dt>
           <dd><p>The root element..</p>
           </dd>
         </dl>
@@ -3472,7 +3473,7 @@ requires the offset to be specified when the first parameter is a model item.</p
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-ModelRootElement.html">ModelRootElement</a></span></code></dt>
           <dd><p>The root element..</p>
           </dd>
         </dl>
@@ -3513,8 +3514,9 @@ requires the offset to be specified when the first parameter is a model item.</p
       <div class="collapsing-list__content"><p>The position's path is incorrect. This means that a position does not point to
 a correct place in the tree and hence, some of its methods and getters cannot work correctly.</p>
 <p><strong>Note</strong>: Unlike DOM and view positions, in the model, the
-<a href="../api/module_engine_model_position-Position.html#member-parent">position's parent</a> is always an element or a document fragment.
-The last offset in the <a href="../api/module_engine_model_position-Position.html#member-path">position's path</a> is the point in this element
+<a href="../api/module_engine_model_position-ModelPosition.html#member-parent">position's parent</a> is always an element or a document fragment.
+The last offset in the
+<a href="../api/module_engine_model_position-ModelPosition.html#member-path">position's path</a> is the point in this element
 where this position points.</p>
 <p>Read more about model positions and offsets in
 the <a href="../framework/architecture/editing-engine.html#indexes-and-offsets" data-glink="">Editing engine architecture</a> guide.</p>
@@ -3522,7 +3524,7 @@ the <a href="../framework/architecture/editing-engine.html#indexes-and-offsets" 
         <dl>
           <dt><code>position
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_position-Position.html">Position</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_position-ModelPosition.html">ModelPosition</a></span></code></dt>
           <dd><p>The incorrect position.</p>
           </dd>
         </dl>
@@ -3566,12 +3568,12 @@ the <a href="../framework/architecture/editing-engine.html#indexes-and-offsets" 
         <dl>
           <dt><code>addedRange
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_range-ModelRange.html">ModelRange</a></span></code></dt>
           <dd><p>Range that was added to the selection.</p>
           </dd>
           <dt><code>intersectingRange
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_range-ModelRange.html">ModelRange</a></span></code></dt>
           <dd><p>Range in the selection that intersects with <code>addedRange</code>.</p>
           </dd>
         </dl>
@@ -3583,8 +3585,8 @@ the <a href="../framework/architecture/editing-engine.html#indexes-and-offsets" 
       <h3><code><a class="member-name" href="#error-model-selection-set-ranges-not-range">model-selection-set-ranges-not-range</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Selection range set to an object that is not an instance of <a href="../api/module_engine_model_range-Range.html"><code>Range</code></a>.</p>
-<p>Only <a href="../api/module_engine_model_range-Range.html"><code>Range</code></a> instances can be used to set a selection.
+      <div class="collapsing-list__content"><p>Selection range set to an object that is not an instance of <a href="../api/module_engine_model_range-ModelRange.html"><code>ModelRange</code></a>.</p>
+<p>Only <a href="../api/module_engine_model_range-ModelRange.html"><code>ModelRange</code></a> instances can be used to set a selection.
 Common mistakes leading to this error are:</p>
 <ul>
 <li>using DOM <code>Range</code> object,</li>
@@ -3610,8 +3612,8 @@ Common mistakes leading to this error are:</p>
       <div class="collapsing-list__content"><p>Cannot set the selection to the given place.</p>
 <p>Invalid parameters were specified when setting the selection. Common issues:</p>
 <ul>
-<li>A <a href="../api/module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> instance was passed instead of
-a real <a href="../api/module_engine_model_text-Text.html"><code>Text</code></a>.</li>
+<li>A <a href="../api/module_engine_model_textproxy-ModelTextProxy.html"><code>ModelTextProxy</code></a> instance was passed instead of
+a real <a href="../api/module_engine_model_text-ModelText.html"><code>ModelText</code></a>.</li>
 <li>View nodes were passed instead of model nodes.</li>
 <li><code>null</code>/<code>undefined</code> was passed.</li>
 </ul>
@@ -4343,7 +4345,7 @@ is set and refers to an existing DOM element.</p>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>At least one range has to be passed to
-<a href="../api/module_engine_model_range-Range.html#static-function-_createFromRanges"><code>Range._createFromRanges()</code></a>.</p>
+<a href="../api/module_engine_model_range-ModelRange.html#static-function-_createFromRanges"><code>Range._createFromRanges()</code></a>.</p>
       </div>
     </div>
   </li>
@@ -4447,7 +4449,7 @@ set up the plugin.</p>
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-ModelRootElement.html">ModelRootElement</a></span></code></dt>
           <dd><p>The root element.</p>
           </dd>
           <dt><code>key
@@ -4486,7 +4488,7 @@ set up the plugin.</p>
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-ModelRootElement.html">ModelRootElement</a></span></code></dt>
           <dd><p>The root element.</p>
           </dd>
           <dt><code>key
@@ -4508,7 +4510,7 @@ set up the plugin.</p>
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_model_rootelement-ModelRootElement.html">ModelRootElement</a></span></code></dt>
           <dd><p>The root element.</p>
           </dd>
           <dt><code>key
@@ -4527,7 +4529,7 @@ set up the plugin.</p>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Cannot extend an item which was not registered yet.</p>
 <p>This error happens when a plugin tries to extend the schema definition of an item which was not
-<a href="../api/module_engine_model_schema-Schema.html#function-register">registered</a> yet.</p>
+<a href="../api/module_engine_model_schema-ModelSchema.html#function-register">registered</a> yet.</p>
         <h4>Parameters</h4>
         <dl>
           <dt><code>itemName
@@ -4547,7 +4549,7 @@ set up the plugin.</p>
       <div class="collapsing-list__content"><p>A single item cannot be registered twice in the schema.</p>
 <p>This situation may happen when:</p>
 <ul>
-<li>Two or more plugins called <a href="../api/module_engine_model_schema-Schema.html#function-register"><code>register()</code></a> with the same name.
+<li>Two or more plugins called <a href="../api/module_engine_model_schema-ModelSchema.html#function-register"><code>register()</code></a> with the same name.
 This will usually mean that there is a collision between plugins which try to use the same element in the model.
 Unfortunately, the only way to solve this is by modifying one of these plugins to use a unique model element name.</li>
 <li>A single plugin was loaded twice. This happens when it is installed by npm/yarn in two versions
@@ -5303,7 +5305,7 @@ In case of such error (or any <a href="../api/module_utils_ckeditorerror-CKEdito
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Incorrect conversion result was dropped.</p>
-<p><a href="../api/module_engine_model_range-Range.html">Model range</a> should be a conversion result.</p>
+<p><a href="../api/module_engine_model_range-ModelRange.html">Model range</a> should be a conversion result.</p>
       </div>
     </div>
   </li>
@@ -5312,7 +5314,7 @@ In case of such error (or any <a href="../api/module_utils_ckeditorerror-CKEdito
       <h3><code><a class="member-name" href="#error-view-createpositionat-offset-required">view-createpositionat-offset-required</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p><a href="../api/module_engine_view_view-View.html#function-createPositionAt"><code>View#createPositionAt()</code></a>
+      <div class="collapsing-list__content"><p><a href="../api/module_engine_view_view-EditingView.html#function-createPositionAt"><code>View#createPositionAt()</code></a>
 requires the offset to be specified when the first parameter is a view item.</p>
       </div>
     </div>
@@ -5322,7 +5324,7 @@ requires the offset to be specified when the first parameter is a view item.</p>
       <h3><code><a class="member-name" href="#error-view-emptyelement-cannot-add">view-emptyelement-cannot-add</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Cannot add children to <a href="../api/module_engine_view_emptyelement-EmptyElement.html"><code>EmptyElement</code></a>.</p>
+      <div class="collapsing-list__content"><p>Cannot add children to <a href="../api/module_engine_view_emptyelement-ViewEmptyElement.html"><code>ViewEmptyElement</code></a>.</p>
       </div>
     </div>
   </li>
@@ -5345,7 +5347,7 @@ requires the offset to be specified when the first parameter is a view item.</p>
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_view_node-Node.html">Node</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_view_node-ViewNode.html">ViewNode</a></span></code></dt>
           <dd><p>A root item.</p>
           </dd>
         </dl>
@@ -5362,7 +5364,7 @@ requires the offset to be specified when the first parameter is a view item.</p>
         <dl>
           <dt><code>root
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_view_node-Node.html">Node</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_view_node-ViewNode.html">ViewNode</a></span></code></dt>
           <dd><p>A root item.</p>
           </dd>
         </dl>
@@ -5374,7 +5376,7 @@ requires the offset to be specified when the first parameter is a view item.</p>
       <h3><code><a class="member-name" href="#error-view-rawelement-cannot-add">view-rawelement-cannot-add</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Cannot add children to a <a href="../api/module_engine_view_rawelement-RawElement.html"><code>RawElement</code></a> instance.</p>
+      <div class="collapsing-list__content"><p>Cannot add children to a <a href="../api/module_engine_view_rawelement-ViewRawElement.html"><code>ViewRawElement</code></a> instance.</p>
       </div>
     </div>
   </li>
@@ -5402,7 +5404,7 @@ in the DOM.</p>
       <h3><code><a class="member-name" href="#error-view-selection-add-range-not-range">view-selection-add-range-not-range</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Selection range set to an object that is not an instance of <a href="../api/module_engine_view_range-Range.html"><code>Range</code></a>.</p>
+      <div class="collapsing-list__content"><p>Selection range set to an object that is not an instance of <a href="../api/module_engine_view_range-ViewRange.html"><code>ViewRange</code></a>.</p>
       </div>
     </div>
   </li>
@@ -5416,12 +5418,12 @@ in the DOM.</p>
         <dl>
           <dt><code>addedRange
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_view_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_view_range-ViewRange.html">ViewRange</a></span></code></dt>
           <dd><p>Range that was added to the selection.</p>
           </dd>
           <dt><code>intersectingRange
               :
- <span><a class="collapsing-list__type" href="../api/module_engine_view_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="../api/module_engine_view_range-ViewRange.html">ViewRange</a></span></code></dt>
           <dd><p>Range from selection that intersects with <code>addedRange</code>.</p>
           </dd>
         </dl>
@@ -5496,7 +5498,7 @@ in the DOM.</p>
       <h3><code><a class="member-name" href="#error-view-uielement-cannot-add">view-uielement-cannot-add</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>Cannot add children to <a href="../api/module_engine_view_uielement-UIElement.html"><code>UIElement</code></a>.</p>
+      <div class="collapsing-list__content"><p>Cannot add children to <a href="../api/module_engine_view_uielement-ViewUIElement.html"><code>ViewUIElement</code></a>.</p>
       </div>
     </div>
   </li>
@@ -5525,7 +5527,7 @@ in the DOM.</p>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Cannot break an <code>EmptyElement</code> instance.</p>
 <p>This error is thrown if
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-breakAttributes"><code>DowncastWriter#breakAttributes()</code></a>
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-breakAttributes"><code>ViewDowncastWriter#breakAttributes()</code></a>
 was executed in an incorrect position.</p>
       </div>
     </div>
@@ -5537,7 +5539,7 @@ was executed in an incorrect position.</p>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Cannot break a <code>RawElement</code> instance.</p>
 <p>This error is thrown if
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-breakAttributes"><code>DowncastWriter#breakAttributes()</code></a>
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-breakAttributes"><code>ViewDowncastWriter#breakAttributes()</code></a>
 was executed in an incorrect position.</p>
       </div>
     </div>
@@ -5549,7 +5551,7 @@ was executed in an incorrect position.</p>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Cannot break a <code>UIElement</code> instance.</p>
 <p>This error is thrown if
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-breakAttributes"><code>DowncastWriter#breakAttributes()</code></a>
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-breakAttributes"><code>ViewDowncastWriter#breakAttributes()</code></a>
 was executed in an incorrect position.</p>
       </div>
     </div>
@@ -5560,15 +5562,15 @@ was executed in an incorrect position.</p>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>One of the nodes to be inserted is of an invalid type.</p>
-<p>Nodes to be inserted with <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-insert"><code>DowncastWriter#insert()</code></a> should be
-of the following types:</p>
+<p>Nodes to be inserted with <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-insert"><code>ViewDowncastWriter#insert()</code></a>
+should be of the following types:</p>
 <ul>
-<li><a href="../api/module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a>,</li>
-<li><a href="../api/module_engine_view_containerelement-ContainerElement.html">ContainerElement</a>,</li>
-<li><a href="../api/module_engine_view_emptyelement-EmptyElement.html">EmptyElement</a>,</li>
-<li><a href="../api/module_engine_view_uielement-UIElement.html">UIElement</a>,</li>
-<li><a href="../api/module_engine_view_rawelement-RawElement.html">RawElement</a>,</li>
-<li><a href="../api/module_engine_view_text-Text.html">Text</a>.</li>
+<li><a href="../api/module_engine_view_attributeelement-ViewAttributeElement.html">ViewAttributeElement</a>,</li>
+<li><a href="../api/module_engine_view_containerelement-ViewContainerElement.html">ViewContainerElement</a>,</li>
+<li><a href="../api/module_engine_view_emptyelement-ViewEmptyElement.html">ViewEmptyElement</a>,</li>
+<li><a href="../api/module_engine_view_uielement-ViewUIElement.html">UIElement</a>,</li>
+<li><a href="../api/module_engine_view_rawelement-ViewRawElement.html">RawElement</a>,</li>
+<li><a href="../api/module_engine_view_text-ViewText.html">Text</a>.</li>
 </ul>
       </div>
     </div>
@@ -5597,13 +5599,13 @@ of the following types:</p>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>The container of the given range is invalid.</p>
-<p>This may happen if <a href="../api/module_engine_view_range-Range.html#member-start">range start</a> and
-<a href="../api/module_engine_view_range-Range.html#member-end">range end</a> positions are not placed inside the same container element or
+<p>This may happen if <a href="../api/module_engine_view_range-ViewRange.html#member-start">range start</a> and
+<a href="../api/module_engine_view_range-ViewRange.html#member-end">range end</a> positions are not placed inside the same container element or
 a parent container for these positions cannot be found.</p>
-<p>Methods like <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-wrap"><code>DowncastWriter#remove()</code></a>,
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-wrap"><code>DowncastWriter#clean()</code></a>,
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-wrap"><code>DowncastWriter#wrap()</code></a>,
-<a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-wrap"><code>DowncastWriter#unwrap()</code></a> need to be called
+<p>Methods like <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-wrap"><code>ViewDowncastWriter#remove()</code></a>,
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-wrap"><code>ViewDowncastWriter#clean()</code></a>,
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-wrap"><code>ViewDowncastWriter#wrap()</code></a>,
+<a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-wrap"><code>ViewDowncastWriter#unwrap()</code></a> need to be called
 on a range that has its start and end positions located in the same container element. Both positions can be
 nested within other elements (e.g. an attribute element) but the closest container ancestor must be the same.</p>
       </div>
@@ -5623,8 +5625,8 @@ nested within other elements (e.g. an attribute element) but the closest contain
       <h3><code><a class="member-name" href="#error-view-writer-unwrap-invalid-attribute">view-writer-unwrap-invalid-attribute</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>The <code>attribute</code> passed to <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-unwrap"><code>DowncastWriter#unwrap()</code></a>
-must be an instance of <a href="../api/module_engine_view_attributeelement-AttributeElement.html"><code>AttributeElement</code></a>.</p>
+      <div class="collapsing-list__content"><p>The <code>attribute</code> passed to <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-unwrap"><code>ViewDowncastWriter#unwrap()</code></a>
+must be an instance of <a href="../api/module_engine_view_attributeelement-ViewAttributeElement.html"><code>AttributeElement</code></a>.</p>
       </div>
     </div>
   </li>
@@ -5633,8 +5635,8 @@ must be an instance of <a href="../api/module_engine_view_attributeelement-Attri
       <h3><code><a class="member-name" href="#error-view-writer-wrap-invalid-attribute">view-writer-wrap-invalid-attribute</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>The <code>attribute</code> passed to <a href="../api/module_engine_view_downcastwriter-DowncastWriter.html#function-wrap"><code>DowncastWriter#wrap()</code></a>
-must be an instance of <a href="../api/module_engine_view_attributeelement-AttributeElement.html"><code>AttributeElement</code></a>.</p>
+      <div class="collapsing-list__content"><p>The <code>attribute</code> passed to <a href="../api/module_engine_view_downcastwriter-ViewDowncastWriter.html#function-wrap"><code>ViewDowncastWriter#wrap()</code></a>
+must be an instance of <a href="../api/module_engine_view_attributeelement-ViewAttributeElement.html"><code>AttributeElement</code></a>.</p>
       </div>
     </div>
   </li>
@@ -5723,7 +5725,7 @@ in the real-time collaboration.</p>
       <h3><code><a class="member-name" href="#error-widget-to-widget-wrong-element-type">widget-to-widget-wrong-element-type</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <div class="collapsing-list__content"><p>The element passed to <code>toWidget()</code> must be a <a href="../api/module_engine_view_containerelement-ContainerElement.html"><code>ContainerElement</code></a>
+      <div class="collapsing-list__content"><p>The element passed to <code>toWidget()</code> must be a <a href="../api/module_engine_view_containerelement-ViewContainerElement.html"><code>ViewContainerElement</code></a>
 instance.</p>
         <h4>Parameters</h4>
         <dl>
@@ -5858,7 +5860,7 @@ can only be changed during such "sessions".</p>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
       <div class="collapsing-list__content"><p>Range is going to be moved within not the same document. Please use
-<a href="../api/module_engine_model_writer-Writer.html#function-insert">insert</a> instead.</p>
+<a href="../api/module_engine_model_writer-ModelWriter.html#function-insert">insert</a> instead.</p>
       </div>
     </div>
   </li>
