@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class AddCommentThreadCommand (comments/comments/addcommentthreadcommand~AddCommentThreadCommand) | CKEditor 5 API docs</title>
-    <meta name="description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new CommentMarker what automatically adds corresponding CommentThread to the CommentsEditing#threads collection.">
-    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new CommentMarker what automatically adds corresponding CommentThread to the CommentsEditing#threads collection. Note this command adds only a CommentThread draft, to make is public marker has to be changed to be managed using operation.">
+    <meta name="description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new comment marker, what also automatically adds a corresponding CommentThread in CommentsRepository. By default, this command creates an empty comment thread on content selected in the editor.">
+    <meta name="twitter:card" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new comment marker, what also automatically adds a corresponding CommentThread in CommentsRepository. By default, this command creates an empty comment thread on content selected in the editor. The related marker is &quot;local only&quot;, is not managed using operations, and it does not affect editor data. The user is expected to write and submit the first comment.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 23 2025 01:51:57 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 24 2025 01:51:38 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Class AddCommentThreadCommand (comments/comments/addcommentthreadcommand~AddCommentThreadCommand) | CKEditor 5 API docs">
-    <meta property="og:description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new CommentMarker what automatically adds corresponding CommentThread to the CommentsEditing#threads collection. Note this command adds only a CommentThread draft, to make is public marker has to be changed to be managed using operation.">
+    <meta property="og:description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new comment marker, what also automatically adds a corresponding CommentThread in CommentsRepository. By default, this command creates an empty comment thread on content selected in the editor. The related marker is &quot;local only&quot;, is not managed using operations, and it does not affect editor data. The user is expected to write and submit the first comment.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/api/module_comments_comments_addcommentthreadcommand-AddCommentThreadCommand.html">
     <meta property="DC.language" content="en">
@@ -18,7 +18,7 @@
     <meta property="DC.title" content="Class AddCommentThreadCommand (comments/comments/addcommentthreadcommand~AddCommentThreadCommand) | CKEditor 5 API docs">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
-    <meta property="DC.description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new CommentMarker what automatically adds corresponding CommentThread to the CommentsEditing#threads collection. Note this command adds only a CommentThread draft, to make is public marker has to be changed to be managed using operation.">
+    <meta property="DC.description" content="CKEditor 5 API Documentation. The Class AddCommentThreadCommand. Adds a new comment marker, what also automatically adds a corresponding CommentThread in CommentsRepository. By default, this command creates an empty comment thread on content selected in the editor. The related marker is &quot;local only&quot;, is not managed using operations, and it does not affect editor data. The user is expected to write and submit the first comment.">
     <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/api/module_comments_comments_addcommentthreadcommand-AddCommentThreadCommand.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
@@ -147,14 +147,30 @@
             </dl>
           </nav>
           <div class="main-description__outer hidden-loading">
-            <div class="main-description"><p>Adds a new CommentMarker what automatically adds corresponding CommentThread to the CommentsEditing#threads collection.
-Note this command adds only a CommentThread draft, to make is public marker has to be changed to be managed using operation.</p>
-<pre><code class="language-ts">// If `threadId` is not specified, `addCommentThread()` will generate a unique ID and use it:
+            <div class="main-description"><p>Adds a new comment marker, what also automatically adds a corresponding <a href="module_comments_comments_commentsrepository-CommentThread.html"><code>CommentThread</code></a>
+in <a href="module_comments_comments_commentsrepository-CommentsRepository.html"><code>CommentsRepository</code></a>.</p>
+<p>By default, this command creates an empty comment thread on content selected in the editor.
+The related marker is "local only", is not managed using operations, and it does not affect editor data.
+The user is expected to write and submit the first comment. When first comment is submitted, the marker is changed to use operations,
+which means that it is saved in data, and is propagated to other users in real-time-collaboration. This happens outside of this command.</p>
+<p>You can specify custom ranges by passing the <code>ranges</code> option to create the comment thread on specified content
+instead of the current selection.</p>
+<p>You can provide content for the first comment using the <code>comment</code> option. Then, the created thread will contain this initial comment.
+The thread will be automatically submitted, and the related marker will be propagated to other users and will affect editor data.</p>
+<p>Usage:</p>
+<pre><code class="language-ts">// Create a draft comment thread on the current selection.
+// If `threadId` is not specified, `addCommentThread()` will generate a unique ID and use it:
 editor.execute( 'addCommentThread' );
 
-// If you want to specify the exact thread ID, pass it through the optional `threadId` configuration parameter.
-editor.execute( 'addCommentThread', { threadId: 'thread-1' } );
-</code></pre></div>
+// Create a draft comment thread on custom ranges:
+editor.execute( 'addCommentThread', { ranges: [ myRange1, myRange2 ] } );
+
+// Create a public comment thread with an initial comment:
+editor.execute( 'addCommentThread', { comment: 'Initial comment text' } );
+</code></pre>
+<p>A comment thread can be added only on ranges that contain content. If the current document selection, or passed ranges
+do not contain any content, the command will throw an error.</p>
+<p>You can use <a href="module_comments_comments_addcommentthreadcommand-AddCommentThreadCommand.html#member-hasContent"><code>hasContent</code></a> observable property to check whether the current selection has any content.</p></div>
           </div>
 <div class="notice notice__filter api-props-filter hidden-loading">
   <div class="api-props-filter__inner">
@@ -228,6 +244,19 @@ the <a href="module_core_editor_editor-Editor.html#member-isReadOnly">read-only 
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-hasContent">
+                          <h3>
+                            <p class="badges">
+<span class="badge badge--gray badge--observable "><a href="module_utils_observablemixin-Observable.html">observable</a></span>
+                            </p><code><a class="member-name" href="#member-hasContent">hasContent</a> : <span>boolean</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#hasContent"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#hasContent</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Indicates whether the current selection contains content.</p>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-isEnabled">
                           <h3>
@@ -287,22 +316,19 @@ accordingly to the document selection.</p>
           </ul>
           <h2 class="hidden-loading" id="methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="methods">
-                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3>
-                            <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                            </p><code><a class="member-name" href="#function-constructor">constructor</a>( editor )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#constructor"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#constructor</code></span>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#constructor"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#constructor</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <div class="collapsing-list__content"><p>Creates a new <code>Command</code> instance.</p>
+                          <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>editor
                                             :
  <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
-                                        <dd><p>The editor on which this command will be used.</p>
+                                        <dd>
                                         </dd>
                                       </dl>
                           </div>
@@ -361,7 +387,7 @@ must be enabled for the button to become enabled, use the following code:</p>
                                       <dl>
                                         <dt><code>bindProperties
                                             :
- Array&lt;<span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span>&gt;</code></dt>
+ Array&lt;<span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'hasContent'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span>&gt;</code></dt>
                                         <dd><p>Observable properties that will be bound to other observable(s).</p>
                                         </dd>
                                       </dl>
@@ -610,7 +636,7 @@ foo.method( 1, 2 ); // -&gt; '3, 2'
                                       <dl>
                                         <dt><code>methodName
                                             :
- <span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span></code></dt>
+ <span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'hasContent'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span></code></dt>
                                         <dd><p>Name of the method to decorate.</p>
                                         </dd>
                                       </dl>
@@ -680,11 +706,11 @@ emitterA.delegate( 'eventX', 'eventY' ).to( emitterC );
                       </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-execute">
-                          <h3><code><a class="member-name" href="#function-execute">execute</a>( options = { [options.threadId] } ) &rarr;  <span>void</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#execute"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#execute</code></span>
+                          <h3><code><a class="member-name" href="#function-execute">execute</a>( options = { [options.comment], [options.ranges], [options.threadId] } ) &rarr;  <span>void</span></code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#execute"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#execute</code></span>
                           </h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <div class="collapsing-list__content">
+                          <div class="collapsing-list__content"><p>Executes the command to add a new comment thread.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>options
@@ -694,10 +720,21 @@ emitterA.delegate( 'eventX', 'eventY' ).to( emitterC );
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
+                                                      <dt><code>[ options.comment ]
+                                                          :
+ <span>string</span></code></dt>
+                                                      <dd><p>Initial comment text. If provided, the created comment thread will contain this comment as its first entry.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.ranges ]
+                                                          :
+ Array&lt;<span><a class="collapsing-list__type" href="module_engine_model_range-ModelRange.html">ModelRange</a></span>&gt;</code></dt>
+                                                      <dd><p>Array of ranges to use instead of current selection. If not provided,
+the current selection will be used.</p>
+                                                      </dd>
                                                       <dt><code>[ options.threadId ]
                                                           :
  <span>string</span></code></dt>
-                                                      <dd><p>Id of comment marker that will be added.</p>
+                                                      <dd><p>Id of comment marker that will be added. If not provided, a unique id will be generated.</p>
                                                         <p>Defaults to <code>...</code></p>
                                                       </dd>
                                                     </dl>
@@ -1206,7 +1243,7 @@ A.unbind();
                                       <dl>
                                         <dt><code>unbindProperties
                                             :
- Array&lt;<span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span>&gt;</code></dt>
+ Array&lt;<span>'off'</span> | <span>'set'</span> | <span>'bind'</span> | <span>'unbind'</span> | <span>'decorate'</span> | <span>'stopListening'</span> | <span>'on'</span> | <span>'once'</span> | <span>'listenTo'</span> | <span>'fire'</span> | <span>'delegate'</span> | <span>'stopDelegating'</span> | <span>'destroy'</span> | <span>'value'</span> | <span>'affectsData'</span> | <span>'refresh'</span> | <span>'hasContent'</span> | <span>'execute'</span> | <span>'isEnabled'</span> | <span>'editor'</span> | <span>'forceDisabled'</span> | <span>'clearForceDisabled'</span>&gt;</code></dt>
                                         <dd><p>Observable properties to be unbound. All the bindings will
 be released if no properties are provided.</p>
                                         </dd>
@@ -1223,6 +1260,39 @@ be released if no properties are provided.</p>
           </ul>
           <h2 class="hidden-loading" id="events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered hidden-loading" data-type="events">
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:hasContent">
+                          <h3><code><a class="member-name" href="#event-change:hasContent">change:hasContent</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#event:change:hasContent"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#event:change:hasContent</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Fired when the <code>hasContent</code> property changed value.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>name
+                                            :
+ <span>string</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>hasContent</code>).</p>
+                                        </dd>
+                                        <dt><code>value
+                                            :
+ <span>boolean</span></code></dt>
+                                        <dd><p>New value of the <code>hasContent</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code>oldValue
+                                            :
+ <span>boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>hasContent</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-change:isEnabled">
                           <h3>
@@ -1364,6 +1434,39 @@ by a high priority listener in order to prevent command execution.</p>
                                             :
  <span>Parameters</span>&lt;<span>TObservable</span>&lsqb; <span>TName</span> &rsqb;&gt;</code></dt>
                                         <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-set:hasContent">
+                          <h3><code><a class="member-name" href="#event-set:hasContent">set:hasContent</a>( eventInfo, name, value, oldValue )</code><span class="collapsing-list__dev-names" aria-hidden="true" title="module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#event:set:hasContent"><code>module:comments/comments/addcommentthreadcommand~AddCommentThreadCommand#event:set:hasContent</code></span>
+                          </h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__content"><p>Fired when the <code>hasContent</code> property is going to be set but is not set yet (before the <code>change</code> event is fired).</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>name
+                                            :
+ <span>string</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>hasContent</code>).</p>
+                                        </dd>
+                                        <dt><code>value
+                                            :
+ <span>boolean</span></code></dt>
+                                        <dd><p>New value of the <code>hasContent</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code>oldValue
+                                            :
+ <span>boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>hasContent</code> property with given key or <code>null</code>, if property was not set before.</p>
                                         </dd>
                                       </dl>
                           </div>

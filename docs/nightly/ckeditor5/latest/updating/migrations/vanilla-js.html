@@ -7,7 +7,7 @@
     <meta name="description" content="Migrate CKEditor 5 from npm to CDN in a few simple steps. Learn how to install CKEditor 5 in your project using the CDN.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jun 23 2025 01:53:04 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Tue Jun 24 2025 01:52:43 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Vanilla JS CKEditor 5 - migrate from npm to CDN | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -144,6 +144,9 @@
                                   <li><a href="../nim-migration/custom-plugins.html" title="Migrating custom plugins">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                       </div></a></li>
+                                  <li><a href="../nim-migration/migrating-exports.html" title="Migrating internal exports">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                             </ul>
                           </li>
                           <li>
@@ -268,7 +271,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">Migrating CKEditor 5 from npm to CDN
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#prerequisites" title="Prerequisites">Prerequisites</a></li><li><a href="#traditional-html-integration" title="Traditional HTML integration">Traditional HTML integration</a><ol><li><a href="#step-1-update-your-html-file" title="Step 1: Update your HTML file">Step 1: Update your HTML file</a></li><li><a href="#step-2-replace-ckeditor-5-imports-with-windowckeditor" title="Step 2: Replace CKEditor&nbsp;5 imports with window.CKEDITOR">Step 2: Replace CKEditor&nbsp;5 imports with window.CKEDITOR</a></li></ol></li><li><a href="#using-lazy-injection-of-ckeditor-5" title="Using lazy injection of CKEditor&nbsp;5">Using lazy injection of CKEditor&nbsp;5</a><ol><li><a href="#step-1-install-the-ckeditorckeditor5-integrations-common-package" title="Step 1: Install the @ckeditor/ckeditor5-integrations-common Package">Step 1: Install the @ckeditor/ckeditor5-integrations-common Package</a></li><li><a href="#step-2-replace-ckeditor-5-imports" title="Step 2: Replace CKEditor&nbsp;5 Imports">Step 2: Replace CKEditor&nbsp;5 Imports</a></li></ol></li><li><a href="#conclusion" title="Conclusion">Conclusion</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#prerequisites" title="Prerequisites">Prerequisites</a></li><li><a href="#traditional-html-integration" title="Traditional HTML integration">Traditional HTML integration</a><ol><li><a href="#step-1-update-your-html-file" title="Step 1: Update your HTML file">Step 1: Update your HTML file</a></li><li><a href="#step-2-replace-ckeditor-5-imports-with-windowckeditor" title="Step 2: Replace CKEditor&nbsp;5 imports with window.CKEDITOR">Step 2: Replace CKEditor&nbsp;5 imports with window.CKEDITOR</a></li></ol></li><li><a href="#using-lazy-injection-of-ckeditor-5" title="Using lazy injection of CKEditor&nbsp;5">Using lazy injection of CKEditor&nbsp;5</a><ol><li><a href="#step-1-install-the-ckeditorckeditor5-integrations-common-package" title="Step 1: Install the @ckeditor/ckeditor5-integrations-common Package">Step 1: Install the @ckeditor/ckeditor5-integrations-common Package</a></li><li><a href="#step-2-replace-ckeditor-5-imports" title="Step 2: Replace CKEditor&nbsp;5 Imports">Step 2: Replace CKEditor&nbsp;5 Imports</a></li></ol></li><li><a href="#migrating-custom-plugins" title="Migrating custom plugins">Migrating custom plugins</a></li><li><a href="#conclusion" title="Conclusion">Conclusion</a></li></ol></nav>
 <p>This guide will help you migrate CKEditor&nbsp;5 from an NPM-based installation to a CDN-based one. CDN-based installations can simplify the setup process by providing a bundler-agnostic way to lazy initialization of CKEditor&nbsp;5 scripts and styles injection. It reduces complexity in the project setup.</p>
 <h2 id="prerequisites"><a class="headerlink" href="#prerequisites">#</a> Prerequisites</h2>
 <p>If you use frameworks like <a href="https://laravel.com/">Laravel</a>, <a href="https://symfony.com/">Symfony</a>, or <a href="https://rubyonrails.org/">Ruby on Rails</a>, modify the head section in the main layout file and follow the traditional HTML integration to install CKEditor&nbsp;5.</p>
@@ -352,6 +355,15 @@ const { ClassicEditor } = await loadCKEditorCloud( {
     version: '45.2.0',
 } );
 </code></pre>
+<h2 id="migrating-custom-plugins"><a class="headerlink" href="#migrating-custom-plugins">#</a> Migrating custom plugins</h2>
+<p>If you are using custom plugins, you need to first <a href="../../framework/tutorials/creating-simple-plugin-timestamp.html#adapt-this-tutorial-to-cdn">adapt these to work with the CDN approach</a>. It will change the way imports and CSS files are handled.</p>
+<p>Next, refer to the <a href="../../getting-started/setup/loading-cdn-resources.html">Loading CDN resources</a> guide to learn about using the <a href="../../getting-started/setup/loading-cdn-resources.html#using-the-useckeditorcloud-function"><code>loadCKEditorCloud</code></a> function. This will be needed to include the custom plugin in the CDN configuration of CKEditor&nbsp;5. By employing these, you can dynamically import the plugin in a way similar to this one:</p>
+<pre class="highlight"><code class="js">plugins: {
+  CustomPlugin: () =&gt; import('./path/to/plugin.umd.js')
+}
+</code></pre>
+<p>If your plugin depends on core plugins already loaded via CDN, you can access them through the <code>window.CKEDITOR</code> and <code>window.CKEDITOR_PREMIUM_FEATURES</code> global variables.</p>
+<p>Also, <code>loadCKEditorCloud</code> uses caching, so you can call it to dynamically load dependencies. Find more details in the options section of the <a href="../../getting-started/setup/loading-cdn-resources.html#the-loadckeditorcloud-function-options">Loading CDN resources</a> guide.</p>
 <h2 id="conclusion"><a class="headerlink" href="#conclusion">#</a> Conclusion</h2>
 <p>Following these steps, you successfully migrated CKEditor&nbsp;5 from an NPM-based installation to a CDN-based installation using Vanilla JS. This approach simplifies the setup process and can help improve the performance of your application by reducing the bundle size.</p>
 
@@ -425,6 +437,9 @@ const { ClassicEditor } = await loadCKEditorCloud( {
                                         </div></a></li>
                                     <li><a href="../nim-migration/custom-plugins.html" title="Migrating custom plugins">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
+                                        </div></a></li>
+                                    <li><a href="../nim-migration/migrating-exports.html" title="Migrating internal exports">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                             </ul>
                           </li>
