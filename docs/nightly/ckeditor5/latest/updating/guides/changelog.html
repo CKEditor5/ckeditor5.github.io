@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jun 24 2025 01:52:28 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Wed Jun 25 2025 01:52:24 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="CKEditor 5 recent changelog | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="45.2.0">
+    <meta name="project-version" content="45.2.1">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 7.3.0"></head>
   <body>
@@ -183,10 +183,10 @@
                                   <li><a href="" title="Changelog">
                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
-                                  <li><a href="update-to-45.html" title="Update to v45.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                  <li><a href="update-to-46.html" title="Update to v46.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
-                                  <li><a href="update-to-46.html" title="Update to v45.x">
+                                  <li><a href="update-to-45.html" title="Update to v45.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="update-to-44.html" title="Update to v44.x">
@@ -271,14 +271,27 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">CKEditor 5 changelog
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ckeditor-5-4520-release" title="CKEditor 5 45.2.0 release">CKEditor 5 45.2.0 release</a></li><li><a href="#ckeditor-5-4510-release" title="CKEditor 5 45.1.0 release">CKEditor 5 45.1.0 release</a></li><li><a href="#ckeditor-5-4500-release" title="CKEditor 5 45.0.0 release">CKEditor 5 45.0.0 release</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ckeditor-5-4521-release" title="CKEditor 5 45.2.1 release">CKEditor 5 45.2.1 release</a></li><li><a href="#ckeditor-5-4520-release" title="CKEditor 5 45.2.0 release">CKEditor 5 45.2.0 release</a></li><li><a href="#ckeditor-5-4510-release" title="CKEditor 5 45.1.0 release">CKEditor 5 45.1.0 release</a></li></ol></nav>
 <p>This is the CKEditor&nbsp;5 changelog guide. Here you will find information about the most important changes introduced in the release, new features, and bug fixes.</p>
 <p>Information about both major and minor breaking changes is available, too, if the release introduces them. You can read more about breaking changes in CKEditor&nbsp;5 in the <a href="https://ckeditor.com/docs/ckeditor5/latest/support/versioning-policy.html#major-and-minor-breaking-changes">Versioning policy</a> guide.</p>
 <p>You can find more information about each release in the blog posts linked at the start of each entry.</p>
 <p>This guide provides the changelog information for the 3 latest releases of CKEditor&nbsp;5. For older releases, refer to the <a href="https://github.com/ckeditor/ckeditor5/releases">release notes on GitHub</a>.</p>
+<h2 id="ckeditor-5-4521-release"><a class="headerlink" href="#ckeditor-5-4521-release">#</a> CKEditor 5 45.2.1 release</h2>
+<p>We are happy to announce the release of CKEditor 5 v45.2.1.</p>
+<h3 id="release-highlights"><a class="headerlink" href="#release-highlights">#</a> Release highlights</h3>
+<p>This hotfix release brings fixes for certain regressions in the field of text selection (with balloon toolbars enabled), multi-level lists, and pagination.</p>
+<h3 id="bug-fixes"><a class="headerlink" href="#bug-fixes">#</a> Bug fixes</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Fixed editor crash that happened in a specific scenario, when editing heavily formatted text, text with multiple comments, or text with comments and formatting. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18727">#18727</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bcb74fe09917f9a5738ad22798c40801e18965ba">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Fixed incorrect cache invalidation in <code>Mapper</code>, which could lead to crashes when editing heavily formatted content or when using complex features like multi-level lists. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18678">#18678</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/170a9ed1565bebacf490adf8ca47b2cd5ae8c5f9">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Fixed editor crash that happened when typing over a table content with the balloon toolbar enabled. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18648">#18648</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/613e8e81131925f664c1d4741522dc19856df3ba">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list-multi-level">list-multi-level</a></strong>: Fixed editor crash that happened when editing deeply nested multi-level lists. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18678">#18678</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/170a9ed1565bebacf490adf8ca47b2cd5ae8c5f9">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Improved calculation of pagination page-breaks on documents with long tables. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18600">#18600</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/2b73ed881e12502f6700fba1bfb89dbc950543ed">commit</a>)</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-typing">typing</a></strong>: Typing over multiple selected blocks next to a code block or a block quote should not crash the editor. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18722">#18722</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/51eaabcdbf1392c29cd8a9d34f65845bf6c8749d">commit</a>)</li>
+</ul>
 <h2 id="ckeditor-5-4520-release"><a class="headerlink" href="#ckeditor-5-4520-release">#</a> CKEditor 5 45.2.0 release</h2>
 <p>We are happy to announce the release of CKEditor 5 v45.2.0.</p>
-<h3 id="release-highlights"><a class="headerlink" href="#release-highlights">#</a> Release highlights</h3>
+<h3 id="release-highlights-2"><a class="headerlink" href="#release-highlights-2">#</a> Release highlights</h3>
 <p>CKEditor 5 v45.2.0 offers the following improvements and bug fixes.</p>
 <ul>
 <li>We fixed the copy-paste scenario in the read-only mode.</li>
@@ -293,7 +306,7 @@
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-fullscreen">fullscreen</a></strong>: Empty sidebars will no longer lock empty space around the editable in fullscreen mode. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18474">#18474</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/9db81ae27a16562b7b67e41cb177d1d9c755c6b7">commit</a>)</li>
 </ul>
-<h3 id="bug-fixes"><a class="headerlink" href="#bug-fixes">#</a> Bug fixes</h3>
+<h3 id="bug-fixes-2"><a class="headerlink" href="#bug-fixes-2">#</a> Bug fixes</h3>
 <ul>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The editor should not crash while using Mac text replacement in the Track changes mode. (<a href="https://github.com/ckeditor/ckeditor5/commit/42ea203c753519cb2b80d41b78e55f08f7700a31">commit</a>)</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Copying content in read-only mode should use the current document selection. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18514">#18514</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/39c7c09cc0adf20110cce5da79ed62aa0a4e2d7c">commit</a>)</li>
@@ -316,7 +329,7 @@
 </ul>
 <h2 id="ckeditor-5-4510-release"><a class="headerlink" href="#ckeditor-5-4510-release">#</a> CKEditor 5 45.1.0 release</h2>
 <p>We are happy to announce the release of CKEditor 5 v45.1.0.</p>
-<h3 id="release-highlights-2"><a class="headerlink" href="#release-highlights-2">#</a> Release highlights</h3>
+<h3 id="release-highlights-3"><a class="headerlink" href="#release-highlights-3">#</a> Release highlights</h3>
 <h4 id="typing-improvements"><a class="headerlink" href="#typing-improvements">#</a> Typing Improvements</h4>
 <p>The typing behavior has been improved for plain text typing. This adjustment allows the web browser to handle text insertion before the editor processes it, enhancing typing reliability across various scenarios, especially on Safari and iOS devices. Issues related to track changes, autocorrect, automatic text replacement, and other input methods have been addressed.</p>
 <h4 id="track-changes-enhancements"><a class="headerlink" href="#track-changes-enhancements">#</a> Track Changes Enhancements</h4>
@@ -349,7 +362,7 @@
 <p>Thanks to <a href="https://github.com/smtaha512">@smtaha512</a>!</p>
 </li>
 </ul>
-<h3 id="bug-fixes-2"><a class="headerlink" href="#bug-fixes-2">#</a> Bug fixes</h3>
+<h3 id="bug-fixes-3"><a class="headerlink" href="#bug-fixes-3">#</a> Bug fixes</h3>
 <ul>
 <li>
 <p><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: Fixed a crash happening for some asynchronous collaboration integrations, when the <code>TrackChangesData</code> plugin was used while there was a resolved comment thread in the document’s initial data.</p>
@@ -432,123 +445,11 @@
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-track-changes">track-changes</a></strong>: Fixed an incorrect French translation in the Track changes feature.</li>
 <li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-typing">typing</a></strong>: Improved typing performance in large documents. (<a href="https://github.com/ckeditor/ckeditor5/commit/45a8182b9f216fcc905daad1ad2c3cf46ab33d2d">commit</a>)</li>
 </ul>
-<h2 id="ckeditor-5-4500-release"><a class="headerlink" href="#ckeditor-5-4500-release">#</a> CKEditor 5 45.0.0 release</h2>
-<p>The CKEditor 5 v45.0.0 release brings powerful new features and improvements, making content creation smoother and more versatile. From enhanced email editing to a refined linking experience and a brand-new full-screen mode, this update is packed with valuable upgrades.</p>
-<h3 id="release-highlights-3"><a class="headerlink" href="#release-highlights-3">#</a> Release highlights</h3>
-<h4 id="email-editing-enhancements"><a class="headerlink" href="#email-editing-enhancements">#</a> Email editing enhancements</h4>
-<p>We are making it easier to create and edit emails directly in CKEditor 5 with several enhancements. This release introduces the following new features:</p>
-<ul>
-<li><a href="https://ckeditor.com/docs/ckeditor5/latest/features/export-with-inline-styles.html"><strong>Export with Inline Styles</strong></a> (⭐) provides the ability to export email content with automatically inlined styles, ensuring compatibility and proper rendering across different email clients.</li>
-<li><a href="https://ckeditor.com/docs/ckeditor5/latest/features/email-editing/email-configuration-helper.html"><strong>Email Configuration Helper</strong></a> (⭐) is a new configuration helper plugin that provides guidance for integrators to correctly set up an email-friendly editor while avoiding common pitfalls.</li>
-<li><a href="https://ckeditor.com/docs/ckeditor5/latest/features/tables/layout-tables.html"><strong>Layout tables:</strong></a> are a new type of tables that has been introduced to simplify the creation of structured email designs, offering better control over layout, alignment and spacing.</li>
-</ul>
-<p>Apart from these new features, this update also brings various fixes and improvements related to table behavior, enhanced HTML support, and better handling of complex email structures. These refinements help ensure a more seamless email editing experience, reducing inconsistencies and improving compatibility with external email clients.</p>
-<h4 id="the-fullscreen-feature"><a class="headerlink" href="#the-fullscreen-feature">#</a> The fullscreen feature</h4>
-<p>A long-requested feature has finally arrived with the <a href="https://ckeditor.com/docs/ckeditor5/latest/features/fullscreen.html">introduction of full-screen editing</a> for the classic and decoupled editor types. This new mode provides a focused writing experience by making the editor the centerpiece of the screen. The expanded screen space allows for better visibility of content in sidebars such as comments, suggestions, and document outlines, enhancing your overall workflow.</p>
-<h4 id="improved-linking-experience"><a class="headerlink" href="#improved-linking-experience">#</a> Improved linking experience</h4>
-<p>Linking in CKEditor 5 has been significantly <a href="https://ckeditor.com/docs/ckeditor5/latest/features/link.html">upgraded with a redesigned user interface</a>, making adding and editing links more intuitive. We added the possibility to add and edit the display text of a link. Users can now easily link to bookmarks within the document and select links from predefined lists (defined by the developer). These improvements make inserting and managing links faster and more flexible than ever before.</p>
-<p>During this initiative, we also aligned visual and technical components of the editor. Each balloon got a header with the tile, we also unified the toolbar behavior and keystrokes of Link and Bookmarks with other widget’s toolbars like image and tables.</p>
-<blockquote>
-<p>[!NOTE]<br>
-The UI got updated in several places: main view, link properties (decorators), and also its technical implementation changed. Make sure to give special attention to the update if you did any customizations to the link interface.</p>
-</blockquote>
-<h4 id="new-installation-methods-improvements-icons-replacement"><a class="headerlink" href="#new-installation-methods-improvements-icons-replacement">#</a> New installation methods improvements: icons replacement</h4>
-<p>We are continuing to strengthen the new installation methods while phasing out older solutions. We added one of the key components you asked for: replacing our icons with your custom ones. It is now possible to replace the icons via the <a href="https://ckeditor.com/docs/ckeditor5/latest/getting-started/setup/customizing-icons.html">package’s override mechanism</a>.</p>
-<blockquote>
-<p>[!NOTE]<br>
-To achieve a proper solution for icons replacement for the npm builds, we needed to introduce a breaking change. If you used our icons for any purposes, make sure to update their paths.</p>
-</blockquote>
-<h4 id="️-deprecations-in-old-installation-methods-stage-1-completed"><a class="headerlink" href="#️-deprecations-in-old-installation-methods-stage-1-completed">#</a> ⚠️ Deprecations in old installation methods: stage 1 completed</h4>
-<p>We are progressing with deprecation according to <a href="https://github.com/ckeditor/ckeditor5/issues/17779">our sunset plan</a>. From this release, predefined builds’ packages, such as <code>@ckeditor/ckeditor-build-classic</code>, are now officially deprecated.</p>
-<p>We also dropped support for Webpack 4 in both the <strong>old and new</strong> installation methods. All packages and CDN from this version are now distributed with ES2022 as the target ECMAScript version, providing better compatibility with modern JavaScript features and improved performance.</p>
-<p>By the end of 2025, custom builds that rely on webpack and DLL builds will also be deprecated. Refer to <a href="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migration-to-new-installation-methods.html">our documentation and migration guides</a> to ensure a smooth transition.</p>
-<p>We are committed to making CKEditor 5 even better. Stay tuned for more improvements in upcoming releases! If you have any feedback, let us know — we are always listening.</p>
-<p>Please refer to the <a href="https://ckeditor.com/docs/ckeditor5/latest/updating/guides/update-to-45.html">update guide</a> to learn more about these changes.</p>
-<p>Happy editing!</p>
-<h3 id="major-breaking-changes"><a class="headerlink" href="#major-breaking-changes">#</a> MAJOR BREAKING CHANGES</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-bookmark">bookmark</a></strong>: The <code>BookmarkUI#actionsView</code> is no longer available. The bookmark feature is now using the <code>WidgetToolbarRepository</code> instead.</li>
-<li><strong><a href="https://www.npmjs.com/search?q=keywords%3Ackeditor5-build%20maintainer%3Ackeditor">build-*</a></strong>: CKEditor 5 predefined builds are no longer available.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: The <code>LinkUI#actionsView</code> is no longer available. The bookmark feature now uses the <code>LinkUI#toolbarView</code> (an instance of the <code>ToolbarView</code> class) instead of the custom <code>LinkActionsView</code>.</li>
-</ul>
-<h3 id="minor-breaking-changes-3"><a class="headerlink" href="#minor-breaking-changes-3">#</a> MINOR BREAKING CHANGES</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: The <code>createBookmarkCallbacks()</code> helper is now replaced by the <code>isScrollableToTarget()</code> and <code>scrollToTarget()</code> helpers.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: The <code>FormRowView</code> class was moved to the <code>@ckeditor/ckeditor5-ui</code> package.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: The <code>form.css</code> component was moved to the <code>@ckeditor/ckeditor5-theme-lark</code> package.</li>
-<li>All CKEditor 5 icons are now available in the <code>@ckeditor/ckeditor5-icons</code> package.</li>
-</ul>
-<h3 id="distribution-changes"><a class="headerlink" href="#distribution-changes">#</a> DISTRIBUTION CHANGES</h3>
-<ul>
-<li>All packages and CDN source code now target ES2022 as the ECMAScript version.</li>
-</ul>
-<h3 id="features-3"><a class="headerlink" href="#features-3">#</a> Features</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-email">email</a></strong>: Introduced a new package to validate the editor configuration for email compatibility. It helps prevent misconfigurations by enforcing best practices and future-proof rules. Added utilities for post-processing CSS, improving support across various email clients by adjusting styles for better rendering consistency.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-export-inline-styles">export-inline-styles</a></strong>: Added a new package for exporting content with inline styles. Ensures CSS classes (<code>[class]</code>) and IDs (<code>[id]</code>) are inlined within elements, improving compatibility with email clients that strip external styles. It helps maintain consistent formatting across different email clients, reducing rendering issues.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-fullscreen">fullscreen</a></strong>: Introduced the fullscreen mode feature. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18026">#18026</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f50514bc8fbeb6761348792911eab03983d8086c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-html-support">html-support</a></strong>: Introduced the ability to render the<code>&lt;style&gt;</code> elements from the <code>&lt;head&gt;</code> section of editor data content using the <code>FullPage</code> plugin. See <a href="https://github.com/ckeditor/ckeditor5/issues/13482">#13482</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/51ee6463cb292e31f5783ca5207feec2b3a557a6">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Added a new property <code>RevisionHistory#isRevisionViewerOpen</code> that indicates whether the revision history is opened or not.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-source-editing-enhanced">source-editing-enhanced</a></strong>: The <a href="https://www.npmjs.com/package/@codemirror/theme-one-dark">one-dark</a> theme is now built-in and available via <code>config.sourceEditingEnhanced.theme</code> by passing the <code>'dark'</code> value. This change enables the use of the dark theme with the CDN installation method, which does not support external <code>CodeMirror</code> dependencies. Additionally, if you previously used the <code>oneDark</code> extension directly, you can now switch to <code>theme: 'dark'</code> for built-in support.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Introduced the layout tables feature to enable constructing grids with tables, for example for email editing. These tables are designed for layout purposes, and include the <code>role="presentation"</code> parameter for accessibility. Users can insert layout tables via the editor toolbar and switch between content and layout tables. The editing view now closely matches the rendered output. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18132">#18132</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/51ee6463cb292e31f5783ca5207feec2b3a557a6">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Added the ability to toggle between content tables and layout tables. Users can switch table types using a split button in the table properties UI. While captions and <code>&lt;th&gt;</code> elements may be lost, table structure remains intact. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18131">#18131</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/51ee6463cb292e31f5783ca5207feec2b3a557a6">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Dragging and dropping a table into another table no longer merges them. Instead, the dropped table is placed as a whole inside the target cell. Pasting tables remains unchanged. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18126">#18126</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/51ee6463cb292e31f5783ca5207feec2b3a557a6">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-template">template</a></strong>: Inserting a template containing a table into another table no longer merges them. Instead, the template is placed as a whole inside the target cell. See <a href="https://github.com/ckeditor/ckeditor5/issues/18126">#18126</a>.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark">theme-lark</a></strong>: Introduced the <code>form.css</code> component . (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Added the <code>MenuBarView#disable()</code> and <code>MenuBarView#enable()</code> methods. They disable/enable all top-level menus in menu bar. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17940">#17940</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f50514bc8fbeb6761348792911eab03983d8086c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Added the <code>ToolbarView#switchBehavior()</code> method to switch toolbar behavior after the editor has been initialized. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18159">#18159</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f50514bc8fbeb6761348792911eab03983d8086c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Introduced the <code>FormRowView</code> class. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li>Moved all icons to the <code>@ckeditor/ckeditor5-icons</code> package. Related to <a href="https://github.com/ckeditor/ckeditor5/issues/16546">#16546</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li>Added the <code>@ckeditor/ckeditor5-icons</code> package to the core DLL package. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-</ul>
-<h3 id="bug-fixes-3"><a class="headerlink" href="#bug-fixes-3">#</a> Bug fixes</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ckbox">ckbox</a></strong>: Resolved an issue where images from private categories were not appearing in the selector. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18044">#18044</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/d7760d30194aef8e7af871e671ba2bc222ec3a24">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-emoji">emoji</a></strong>: Fixed the emoji panel not being visible while used in comments archive. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17964">#17964</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/ce9030014a6fcdde2c35e46f05f1e3d44655ae5a">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: The selection should not move to another table row while switching heading rows. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17962">#17962</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/81dd6e85e42861e0e58180734174752a092e5b5a">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-heading">heading</a></strong>: Added the missing <code>converterPriority</code> type definition to <code>HeadingOption</code> interface. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18182">#18182</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/de9e0520e3d756ae3d3acf60d7abf8d9e4c997a9">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-html-support">html-support</a></strong>: The floated tables are now loaded and showed as expected in the editor’s view. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18203">#18203</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/227ae01e6a4a2f92a3230a66a2fde511b60b8ed1">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: The <code>Autolink</code> feature will now correctly autolink <code>http://localhost</code> and <code>http://localhost:port</code>. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18185">#18185</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/aeb5747166f666fcd4acbe286bd923df89769825">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-mention">mention</a></strong>: Fixed the mention panel not being visible while used in comments archive. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17964">#17964</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/ce9030014a6fcdde2c35e46f05f1e3d44655ae5a">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Revisions will now correctly retain data for HTML embed widget, as well as <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags enabled by the General HTML Support feature. Before, when revision was saved, these elements were saved empty, and this lead to data loss when such revision was restored. Note, that this will not fix revisions that are already affected by this error.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Fixed a crash when viewing a revision which had an HTML comment node in its data (reproducible with General HTML Support plugin).</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Fixed handling <code>UIElement</code>s and <code>RawElement</code>s by revision history (may concern third-party custom plugins).</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: Fixed a crash when viewing a revision which had a collapsed marker in its data (may concern third-party custom plugins).</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Removed <code>[role="textbox"]</code> from the <code>&lt;td&gt;/</code>` editables. Windows Narrator no longer reads table dimensions as 0 by 0. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/16923">#16923</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/656d749880020f02a4b6c05571ce3a48038acc70">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-track-changes">track-changes</a></strong>: The editor no longer crashes during initialization when the <code>ShiftEnter</code> plugin is removed.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Do not open disabled menu bar menu items on arrow down press. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17915">#17915</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f50514bc8fbeb6761348792911eab03983d8086c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: The <code>ButtonView#icon</code> property can now be set/reset after the button’s first render. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Widgets UI elements should be visible when they are inside tables. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18268">#18268</a>.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Nested tables outline should not be cut of at the bottom during hovering. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18262">#18262</a>.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: Link balloon no longer disappears when scrolling the page slightly on iOS. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18022">#18022</a>.</li>
-</ul>
-<h3 id="other-changes-3"><a class="headerlink" href="#other-changes-3">#</a> Other changes</h3>
-<ul>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-bookmark">bookmark</a></strong>: The Bookmark feature now uses the <code>WidgetToolbarRepository</code> instead of a custom <code>ActionsView</code> to display the bookmark toolbar in the contextual balloon. The new toolbar uses components registered in the <code>ComponentFactory</code>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-bookmark">bookmark</a></strong>: Form styles and structure are now unified with use of <code>ck-form</code> and <code>ck-form__row</code>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-collaboration-core">collaboration-core</a></strong>: Translations are now supported in the date formatter used by comments and suggestions, allowing for localizing dates.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Added the read-only <code>DomConverter#domDocument</code> property. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/18146">#18146</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/83c9a956ad2736aace2d969dc07bea266541de9c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image">image</a></strong>: Image and custom resize form styles and structure now unified with use of <code>ck-form</code> and <code>ck-form__row</code>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: The link feature now uses the <code>ToolbarView</code> instead of a custom <code>LinkActionsView</code> to display the link toolbar in the contextual balloon. The new toolbar uses components registered in the <code>ComponentFactory</code>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-link">link</a></strong>: Form styles and structure are now unified with use of <code>ck-form</code> and <code>ck-form__row</code>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-real-time-collaboration">real-time-collaboration</a></strong>: Added a more modern look to the presence list collapsed view (used when many users are connected to the document).</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-revision-history">revision-history</a></strong>: The document outline will now be hidden when the revision history is opened.</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-source-editing">source-editing</a></strong>: Document outline and annotations will now be hidden when editor is in source editing mode. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17978">#17978</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/f50514bc8fbeb6761348792911eab03983d8086c">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Extracted the <code>form.css</code> to <code>@ckeditor/ckeditor5-theme-lark</code> package. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Extracted the <code>FormRowView</code> to <code>@ckeditor/ckeditor5-ui</code> package. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: The <code>IconView</code> now throws a meaningful error if the provided icon content is not a valid SVG. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-widget">widget</a></strong>: The <code>WidgetToolbarRepository#register()</code> now accepts a customized list of desired balloon positions. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li>Added the <code>Belarusian</code> language translations for CKEditor 5. Huge thanks to <a href="https://github.com/karavanjo">@karavanjo</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/49f5b1b08a66e3c68fea10ac84d3e5000ed8d479">commit</a>)</li>
-<li>Upgraded the minimal version of Node.js to 20.0.0 due to the end of LTS. (<a href="https://github.com/ckeditor/ckeditor5/commit/b47ca1e4fb7b014c1d52bc458d1dda9649e210fa">commit</a>)</li>
-<li>Updated TypeScript <code>target</code> to <code>es2022</code>. Closes <a href="https://github.com/ckeditor/ckeditor5/issues/17886">#17886</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li>Replaced <code>lodash-es</code> with <code>es-toolkit</code>. See <a href="https://github.com/ckeditor/ckeditor5/issues/16395">#16395</a>. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-<li>The <code>@ckeditor/ckeditor5-build-*</code> packages are no longer maintained. (<a href="https://github.com/ckeditor/ckeditor5/commit/bca09868577c34b8b1ee8d579dded0e21b5e506e">commit</a>)</li>
-</ul>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fchangelog.html%22&amp;project-version=45.2.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fchangelog.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -655,10 +556,10 @@ To achieve a proper solution for icons replacement for the npm builds, we needed
                                     <li><a href="" title="Changelog">
                                         <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
-                                    <li><a href="update-to-45.html" title="Update to v45.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                    <li><a href="update-to-46.html" title="Update to v46.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
-                                    <li><a href="update-to-46.html" title="Update to v45.x">
+                                    <li><a href="update-to-45.html" title="Update to v45.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="update-to-44.html" title="Update to v44.x">

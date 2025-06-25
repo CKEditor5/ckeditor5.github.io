@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Update to version 45.x | CKEditor 5 Documentation</title>
+    <title>Update to version 46.x | CKEditor 5 Documentation</title>
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jun 24 2025 01:52:31 GMT+0000 (Coordinated Universal Time)">
-    <meta property="og:title" content="Update to version 45.x | CKEditor 5 Documentation">
+    <meta name="x-generated-at" content="Wed Jun 25 2025 01:52:26 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Update to version 46.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/updating/guides/update-to-46.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
-    <meta property="DC.title" content="Update to version 45.x | CKEditor 5 Documentation">
+    <meta property="DC.title" content="Update to version 46.x | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="45.2.0">
+    <meta name="project-version" content="45.2.1">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 7.3.0"></head>
   <body>
@@ -183,11 +183,11 @@
                                   <li><a href="changelog.html" title="Changelog">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                       </div></a></li>
+                                  <li><a href="" title="Update to v46.x">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
                                   <li><a href="update-to-45.html" title="Update to v45.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
-                                      </div></a></li>
-                                  <li><a href="" title="Update to v45.x">
-                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
@@ -271,19 +271,152 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">Update to CKEditor 5 v46.x
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v460" title="Update to CKEditor&nbsp;5 v46.0">Update to CKEditor&nbsp;5 v46.0</a><ol><li><a href="#first-heading" title="First heading">First heading</a></li><li><a href="#major-breaking-changes-in-this-release" title="Major breaking changes in this release">Major breaking changes in this release</a></li><li><a href="#minor-breaking-changes-in-this-release" title="Minor breaking changes in this release">Minor breaking changes in this release</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4600" title="Update to CKEditor&nbsp;5 v46.0.0">Update to CKEditor&nbsp;5 v46.0.0</a><ol><li><a href="#new-internal-export-names" title="New internal export names">New internal export names</a></li><li><a href="#content-area-css-variables-renamed-to-ck-content-prefix" title="Content area CSS variables renamed to --ck-content-* prefix">Content area CSS variables renamed to --ck-content-* prefix</a></li><li><a href="#table-related-css-variables-renamed-for-better-clarity" title="Table-related CSS variables renamed for better clarity">Table-related CSS variables renamed for better clarity</a></li><li><a href="#major-breaking-changes-in-this-release" title="Major breaking changes in this release">Major breaking changes in this release</a></li><li><a href="#minor-breaking-changes-in-this-release" title="Minor breaking changes in this release">Minor breaking changes in this release</a></li></ol></li></ol></nav>
 <div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>You may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
-<h2 id="update-to-ckeditor-5-v460"><a class="headerlink" href="#update-to-ckeditor-5-v460">#</a> Update to CKEditor&nbsp;5 v46.0</h2>
+<h2 id="update-to-ckeditor-5-v4600"><a class="headerlink" href="#update-to-ckeditor-5-v4600">#</a> Update to CKEditor&nbsp;5 v46.0.0</h2>
 <p>Released on xxx, 2025. (<a href="https://github.com/ckeditor/ckeditor5/releases/tag/v46.0.0">See full release notes</a>)</p>
 <p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v46.0.0.</p>
-<h3 id="first-heading"><a class="headerlink" href="#first-heading">#</a> First heading</h3>
+<h3 id="new-internal-export-names"><a class="headerlink" href="#new-internal-export-names">#</a> New internal export names</h3>
+<p>As part of the transition to the New Installation Methods (NIM), we have standardized how public API elements are exposed in CKEditor&nbsp;5 and related packages. It now uses a unified export policy via index.ts, with clearer, standardized public API names introducing some breaking changes. Find all the changes and the new exports introduced with NIM in this <a href="../nim-migration/migrating-exports.html">dedicated migration guide</a>.</p>
+<div class="info-box notice notice__info"><p>Manually updating all these numerous imports could be time-consuming and error-prone. We recommend using the <a href="https://raw.githubusercontent.com/ckeditor/ckeditor5/refs/heads/master/docs/updating/nim-migration/migrating-exports.md">tables with the changed import/export names</a> as context for tools such as Copilot, ChatGPT, or other LLM-based services that can automatically update all imports in your project.</p></div>
+<h3 id="content-area-css-variables-renamed-to-ck-content-prefix"><a class="headerlink" href="#content-area-css-variables-renamed-to-ck-content-prefix">#</a> Content area CSS variables renamed to <code>--ck-content-*</code> prefix</h3>
+<p>To improve consistency, all CSS variables that affect the styles of the editor content area (“content styles”) have been renamed to use the <code>--ck-content-*</code> prefix. This change affects variables used for highlights, image captions, mentions, table captions, image style spacing, and to-do list checkmarks.</p>
+<table>
+<thead>
+<tr>
+<th>Old variable name</th>
+<th>New variable name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ck-highlight-marker-yellow</code></td>
+<td><code>--ck-content-highlight-marker-yellow</code></td>
+</tr>
+<tr>
+<td><code>--ck-highlight-marker-green</code></td>
+<td><code>--ck-content-highlight-marker-green</code></td>
+</tr>
+<tr>
+<td><code>--ck-highlight-marker-pink</code></td>
+<td><code>--ck-content-highlight-marker-pink</code></td>
+</tr>
+<tr>
+<td><code>--ck-highlight-marker-blue</code></td>
+<td><code>--ck-content-highlight-marker-blue</code></td>
+</tr>
+<tr>
+<td><code>--ck-highlight-pen-red</code></td>
+<td><code>--ck-content-highlight-pen-red</code></td>
+</tr>
+<tr>
+<td><code>--ck-highlight-pen-green</code></td>
+<td><code>--ck-content-highlight-pen-green</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-image-caption-background</code></td>
+<td><code>--ck-content-color-image-caption-background</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-image-caption-text</code></td>
+<td><code>--ck-content-color-image-caption-text</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-mention-background</code></td>
+<td><code>--ck-content-color-mention-background</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-mention-text</code></td>
+<td><code>--ck-content-color-mention-text</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-selector-caption-background</code></td>
+<td>⚠️ NEW NAME <code>--ck-content-color-table-caption-background</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-selector-caption-text</code></td>
+<td>⚠️ NEW NAME <code>--ck-content-color-table-caption-text</code></td>
+</tr>
+<tr>
+<td><code>--ck-image-style-spacing</code></td>
+<td><code>--ck-content-image-style-spacing</code></td>
+</tr>
+<tr>
+<td><code>--ck-inline-image-style-spacing</code></td>
+<td><code>--ck-content-inline-image-style-spacing</code></td>
+</tr>
+<tr>
+<td><code>--ck-todo-list-checkmark-size</code></td>
+<td><code>--ck-content-todo-list-checkmark-size</code></td>
+</tr>
+<tr>
+<td><code>--ck-table-of-contents-padding</code></td>
+<td><code>--ck-content-table-of-contents-padding</code></td>
+</tr>
+<tr>
+<td><code>--ck-table-of-contents-line-height</code></td>
+<td><code>--ck-content-table-of-contents-line-height</code></td>
+</tr>
+<tr>
+<td><code>--ck-table-of-contents-items-start-padding</code></td>
+<td><code>--ck-content-table-of-contents-items-start-padding</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Migration:</strong></p>
+<ul>
+<li>Update your custom style sheets, themes, and integrations to use the new variable names.</li>
+<li>The old variable names are no longer supported and will not have any effect.</li>
+</ul>
+<p>Example:</p>
+<pre class="highlight"><code class="css">:root {
+  --ck-content-highlight-marker-yellow: #fdfd77;
+  --ck-content-color-image-caption-background: hsl(0, 0%, 97%);
+}
+</code></pre>
+<h3 id="table-related-css-variables-renamed-for-better-clarity"><a class="headerlink" href="#table-related-css-variables-renamed-for-better-clarity">#</a> Table-related CSS variables renamed for better clarity</h3>
+<p>Some table-related CSS variables had improper naming with <code>-selector-</code> in their names, which was confusing and inconsistent. These variables have been renamed to use <code>-table-</code> for better clarity and consistency.</p>
+<table>
+<thead>
+<tr>
+<th>Old variable name</th>
+<th>New variable name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--ck-color-selector-caption-highlighted-background</code></td>
+<td><code>--ck-color-table-caption-highlighted-background</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-selector-column-resizer-hover</code></td>
+<td><code>--ck-color-table-column-resizer-hover</code></td>
+</tr>
+<tr>
+<td><code>--ck-color-selector-focused-cell-background</code></td>
+<td><code>--ck-color-table-focused-cell-background</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Migration:</strong></p>
+<ul>
+<li>Update your custom style sheets and themes to use the new variable names.</li>
+<li>The old variable names are no longer supported and will not have any effect.</li>
+</ul>
+<p>Example:</p>
+<pre class="highlight"><code class="css">:root {
+  --ck-color-table-caption-highlighted-background: hsl(52deg 100% 50%);
+  --ck-color-table-column-resizer-hover: var(--ck-color-base-active);
+  --ck-color-table-focused-cell-background: hsla(212, 90%, 80%, .3);
+}
+</code></pre>
 <h3 id="major-breaking-changes-in-this-release"><a class="headerlink" href="#major-breaking-changes-in-this-release">#</a> Major breaking changes in this release</h3>
 <h3 id="minor-breaking-changes-in-this-release"><a class="headerlink" href="#minor-breaking-changes-in-this-release">#</a> Minor breaking changes in this release</h3>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-46.html%22&amp;project-version=45.2.0" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-46.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -390,11 +523,11 @@
                                     <li><a href="changelog.html" title="Changelog">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
                                         </div></a></li>
+                                    <li><a href="" title="Update to v46.x">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
                                     <li><a href="update-to-45.html" title="Update to v45.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
-                                        </div></a></li>
-                                    <li><a href="" title="Update to v45.x">
-                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
