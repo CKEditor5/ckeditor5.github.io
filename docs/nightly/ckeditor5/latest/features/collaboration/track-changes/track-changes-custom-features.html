@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to integrate custom CKEditor 5 plugins with track changes. Enable commands, handle insertions and deletions, and track attribute changes.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Wed Jun 25 2025 01:52:22 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jun 26 2025 01:52:29 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Track changes custom features | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -613,7 +613,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Features</a>
           </div>
           <h1 class="main__content-title">Integrating track changes with custom features
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#enabling-commands" title="Enabling commands">Enabling commands</a></li><li><a href="#insertions-and-deletions" title="Insertions and deletions">Insertions and deletions</a></li><li><a href="#attribute-changes" title="Attribute changes">Attribute changes</a></li><li><a href="#other-formatting-changes" title="Other formatting changes">Other formatting changes</a></li><li><a href="#setting-custom-suggestion-description" title="Setting custom suggestion description">Setting custom suggestion description</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#enabling-commands" title="Enabling commands">Enabling commands</a></li><li><a href="#insertions-and-deletions" title="Insertions and deletions">Insertions and deletions</a></li><li><a href="#attribute-changes" title="Attribute changes">Attribute changes</a><ol><li><a href="#tracking-attribute-changes-in-custom-code" title="Tracking attribute changes in custom code">Tracking attribute changes in custom code</a></li></ol></li><li><a href="#other-formatting-changes" title="Other formatting changes">Other formatting changes</a></li><li><a href="#setting-custom-suggestion-description" title="Setting custom suggestion description">Setting custom suggestion description</a></li></ol></nav>
 <p>The track changes feature was designed with custom features in mind. In this guide, you will learn how to integrate your plugins with the track changes feature.</p>
 <h2 id="enabling-commands"><a class="headerlink" href="#enabling-commands">#</a> Enabling commands</h2>
 <p>CKEditor&nbsp;5 uses <a href="../../../framework/architecture/core-editor-architecture.html#commands">commands</a> to change the editor content. Most modifications of the editor content are done through command execution. Also, commands are usually connected with toolbar buttons that represent their state. For example, if a given command is disabled at the moment, the toolbar button is disabled as well.</p>
@@ -682,6 +682,22 @@ trackChangesEditing.registerInlineAttribute( 'customAttribute' );
 plugin.descriptionFactory.registerAttributeLabel( 'bold', t( 'bold' ) );
 </code></pre>
 <p>If you require more complex logic when evaluating the suggestion description, refer to <a href="#setting-custom-suggestion-description">Setting custom suggestion description</a> section below.</p>
+<h3 id="tracking-attribute-changes-in-custom-code"><a class="headerlink" href="#tracking-attribute-changes-in-custom-code">#</a> Tracking attribute changes in custom code</h3>
+<p>In case if some of your custom code makes changes on attributes outside of command execution, you can use the <a href="../../../api/module_track-changes_trackchangesediting-TrackChangesEditing.html#function-recordAttributeChanges"><code>recordAttributeChanges()</code></a> method. This method allows you to wrap any code that modifies attributes in a callback, and the track changes plugin will automatically create suggestions for all attribute changes that occur during the callback execution.</p>
+<p>Here’s an example of using <code>recordAttributeChanges()</code> with a custom callback:</p>
+<pre class="highlight"><code class="js">const trackChangesEditing = editor.plugins.get( 'TrackChangesEditing' );
+
+// Use `recordAttributeChanges` to track changes in your custom code.
+trackChangesEditing.recordAttributeChanges( () =&gt; {
+    editor.model.change( writer =&gt; {
+        const currentSelectionRange = editor.model.document.selection.getFirstRange();
+
+        // Set bold attribute on the current selection.
+        writer.setAttribute( 'bold', true, currentSelectionRange );
+    } );
+} );
+</code></pre>
+<p>Remember that for the changes to be tracked, the attributes must still be registered using either <code>registerInlineAttribute()</code> or <code>registerBlockAttribute()</code>.</p>
 <h2 id="other-formatting-changes"><a class="headerlink" href="#other-formatting-changes">#</a> Other formatting changes</h2>
 <p>The above sections cover typical custom plugins and commands, which simply add a new element or change some attributes.</p>
 <p>If your feature is more complex, for example, it introduces multiple attributes which values depend on each other, or you command performs multiple related changes at once, then you may need to use a different approach.</p>
