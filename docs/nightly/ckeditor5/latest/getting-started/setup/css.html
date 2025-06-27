@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to style the editor and content with CSS.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Thu Jun 26 2025 01:52:43 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Fri Jun 27 2025 01:52:47 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Editor and content styles | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -382,7 +382,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Getting started</a>
           </div>
           <h1 class="main__content-title">Editor and content styles
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#why-do-i-need-content-styles" title="Why do I need content styles?">Why do I need content styles?</a></li><li><a href="#customizing-the-editors-look" title="Customizing the editor’s look">Customizing the editor’s look</a></li><li><a href="#customizing-the-look-of-the-features" title="Customizing the look of the features">Customizing the look of the features</a></li><li><a href="#styling-the-published-content" title="Styling the published content">Styling the published content</a></li><li><a href="#optimizing-the-size-of-style-sheets" title="Optimizing the size of style sheets">Optimizing the size of style sheets</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#why-do-i-need-content-styles" title="Why do I need content styles?">Why do I need content styles?</a></li><li><a href="#customizing-the-editors-look" title="Customizing the editor’s look">Customizing the editor’s look</a></li><li><a href="#customizing-the-look-of-the-features" title="Customizing the look of the features">Customizing the look of the features</a><ol><li><a href="#general-content-styling" title="General content styling">General content styling</a></li><li><a href="#feature-specific-styling" title="Feature-specific styling">Feature-specific styling</a></li></ol></li><li><a href="#styling-the-published-content" title="Styling the published content">Styling the published content</a></li><li><a href="#optimizing-the-size-of-style-sheets" title="Optimizing the size of style sheets">Optimizing the size of style sheets</a></li></ol></nav>
 <p>CKEditor&nbsp;5 is distributed with two types of styles:</p>
 <ul>
 <li>Editor styles, used to style the editor’s user interface.</li>
@@ -414,11 +414,28 @@ import 'ckeditor5-premium-features/ckeditor5-premium-features.css';
 </code></pre>
 <div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-theme-lark/theme/ckeditor5-ui/globals/_colors.css">color sheet</a> for a full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-theme-lark/theme/ckeditor5-ui/globals">other files</a> to learn about other useful tools.</p></div>
 <h2 id="customizing-the-look-of-the-features"><a class="headerlink" href="#customizing-the-look-of-the-features">#</a> Customizing the look of the features</h2>
-<p>Similarly to the customizable editor look, some features also provide an interface to change their styles via <a href="https://www.w3.org/TR/css-variables/">native CSS variables</a>.</p>
-<p>For example, if you want to change the color of the mentions’ background and text, you can do the following override:</p>
+<p>Similarly to the customizable editor look, some features also provide an interface to change their styles via <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties">native CSS variables</a>.</p>
+<h3 id="general-content-styling"><a class="headerlink" href="#general-content-styling">#</a> General content styling</h3>
+<p>CKEditor&nbsp;5 provides CSS variables to standardize font and line height styling across the content. These variables control the default appearance of text the content. You can override them in the following way:</p>
 <pre class="highlight"><code class="css">:root {
-    --ck-color-mention-background: black;
-    --ck-color-mention-text: white;
+    /* Override the default font family */
+    --ck-content-font-family: "Roboto";
+    
+    /* Override the default font size */
+    --ck-content-font-size: 16px;
+    
+    /* Override the default font color */
+    --ck-content-font-color: hsl(225, 5%, 45.00%);
+
+    /* Override the default line height */
+    --ck-content-line-height: 2;
+}
+</code></pre>
+<h3 id="feature-specific-styling"><a class="headerlink" href="#feature-specific-styling">#</a> Feature-specific styling</h3>
+<p>Individual features also provide CSS variables for their specific styling needs. For example, if you want to change the color of the mentions’ background and text, you can do the following override:</p>
+<pre class="highlight"><code class="css">:root {
+    --ck-content-color-mention-background: black;
+    --ck-content-color-mention-text: white;
 }
 </code></pre>
 <div class="info-box notice notice__hint"><p>Find the available CSS variables in our <a href="https://www.npmjs.com/package/ckeditor5?activeTab=code">ckeditor5</a> and <a href="https://www.npmjs.com/package/ckeditor5-premium-features?activeTab=code">ckeditor5-premium-features</a> packages.</p></div>
