@@ -2780,6 +2780,33 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
+.ck.ck-line-height-dropdown .ck-dropdown__panel .ck-list {
+	/* Extend dropdown height for better UX */
+	max-height: 300px;
+}
+
+.ck.ck-line-height-dropdown .ck-dropdown__panel .ck-button.ck-line-height-option {
+	/* Add some minimum width to avoid too narrow buttons */
+	min-width: 6em;
+}
+
+.ck-content .line-height-single {
+	line-height: 1;
+}
+
+.ck-content .line-height-double {
+	line-height: 2;
+}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
 /*
  * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
@@ -2812,15 +2839,60 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 				background-color: transparent;
 			}
 
+.ck-content .multi-level-list li.ck-list-marker-bold > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-bold > * > .multi-level-list__marker {
+			font-weight: bold;
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-italic > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-italic > * > .multi-level-list__marker {
+			font-style: italic;
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-color > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-color > * > .multi-level-list__marker {
+			color: var(--ck-content-list-marker-color);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-family > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-family > * > .multi-level-list__marker {
+			font-family: var(--ck-content-list-marker-font-family);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-size > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-size > * > .multi-level-list__marker {
+			font-size: var(--ck-content-list-marker-font-size);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-size-tiny > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-size-tiny > * > .multi-level-list__marker {
+			font-size: var(--ck-content-font-size-tiny);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-size-small > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-size-small > * > .multi-level-list__marker {
+			font-size: var(--ck-content-font-size-small);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-size-big > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-size-big > * > .multi-level-list__marker {
+			font-size: var(--ck-content-font-size-big);
+		}
+
+.ck-content .multi-level-list li.ck-list-marker-font-size-huge > .multi-level-list__marker,
+		.ck-content .multi-level-list li.ck-list-marker-font-size-huge > * > .multi-level-list__marker {
+			font-size: var(--ck-content-font-size-huge);
+		}
+
 .ck-editor__editable .multi-level-list li .multi-level-list__marker::before {
 				/* Use CSS to display multi-level list markers to prevent breaking the composition.
 				See https://github.com/cksource/ckeditor5-commercial/issues/6873. */
 				content: attr(data-multi-level-list-marker);
 			}
 
-.ck-content[dir='rtl'] .multi-level-list .multi-level-list__marker {
-		transform: translate(100%, 0);
-	}
+.ck-content[dir='rtl'] .multi-level-list li .multi-level-list__marker {
+			transform: translate(100%, 0);
+		}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
