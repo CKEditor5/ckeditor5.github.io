@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Git commit message convention | CKEditor 5 Framework Documentation</title>
-    <meta name="description" content="Learn CKEditor 5's Git commit message convention to write clear, structured messages that improve project history and collaboration.">
+    <title>Changelog entries | CKEditor 5 Framework Documentation</title>
+    <meta name="description" content="Learn how to write structured, user-facing changelog entries for CKEditor 5 using a Markdown-based system designed for clarity, versioning, and long-term maintainability.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Tue Jul 01 2025 01:52:32 GMT+0000 (Coordinated Universal Time)">
-    <meta property="og:title" content="Git commit message convention | CKEditor 5 Framework Documentation">
+    <meta name="x-generated-at" content="Tue Jul 01 2025 08:58:50 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Changelog entries | CKEditor 5 Framework Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/contributing/git-commit-message-convention.html">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/contributing/changelog-entries.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
-    <meta property="DC.title" content="Git commit message convention | CKEditor 5 Framework Documentation">
+    <meta property="DC.title" content="Changelog entries | CKEditor 5 Framework Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
-    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/contributing/git-commit-message-convention.html">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/contributing/changelog-entries.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
@@ -329,8 +329,8 @@
                                   <li><a href="package-metadata.html" title="Package metadata">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Package metadata</span>
                                       </div></a></li>
-                                  <li><a href="" title="Git commit message convention">
-                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Git commit message convention</span>
+                                  <li><a href="" title="Changelog entries">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog entries</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                             </ul>
                           </li>
@@ -350,224 +350,233 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../assets/7.0.2/gloria/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/contributing/changelog-entries.md" title="Contribute to this guide"><img src="../../../../assets/7.0.2/gloria/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title">Git commit message convention
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention" title="Convention">Convention</a><ol><li><a href="#commit-types" title="Commit types">Commit types</a></li><li><a href="#package-name" title="Package name">Package name</a></li><li><a href="#referencing-issues" title="Referencing issues">Referencing issues</a></li><li><a href="#methods-name-syntax" title="Methods name syntax">Methods name syntax</a></li><li><a href="#order-of-entries" title="Order of entries">Order of entries</a></li><li><a href="#squash-commits" title="Squash commits">Squash commits</a></li><li><a href="#examples-of-correct-and-incorrect-message-formatting" title="Examples of correct and incorrect message formatting">Examples of correct and incorrect message formatting</a></li><li><a href="#example-commits" title="Example commits">Example commits</a></li><li><a href="#fixing-errors" title="Fixing errors">Fixing errors</a></li></ol></li><li><a href="#handling-pull-requests" title="Handling pull requests">Handling pull requests</a><ol><li><a href="#giving-credit" title="Giving credit">Giving credit</a></li></ol></li></ol></nav>
-<p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the convention below. Based on commits in the <code>master</code> branch CKEditor&nbsp;5 release tools will generate changelog entries for the current release.</p>
-<div class="info-box notice"><p>Commits in the ticket branches are not analyzed for the changelog and do not have to follow any specific convention (other than finishing sentences with periods). For ticket branches, <strong>only merge commits are analyzed</strong>.</p><p>Therefore, this guide is mainly targeted at core team members. However, it may help you understand how to write a suggested commit message when creating a pull request for CKEditor&nbsp;5.</p></div>
-<h2 id="convention"><a class="headerlink" href="#convention">#</a> Convention</h2>
-<p>Commit message template:</p>
-<pre class="highlight"><code class="">Type (package-name): A short sentence about the commit. Closes #XXX.
-
-Type (another-package-name): If the change affects more than one package, it is possible to put multiple entries at once. Closes #YYY.
-
-Optional description.
-
-MAJOR BREAKING CHANGE (package-name): If any breaking changes were done, they need to be listed here.
-MINOR BREAKING CHANGE (package-name): Another breaking change if needed. Closes #ZZZ.
-</code></pre>
-<h3 id="commit-types"><a class="headerlink" href="#commit-types">#</a> Commit types</h3>
+          <h1 class="main__content-title">Changelog entries
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#how-to-create-a-new-file" title="How to create a new file">How to create a new file</a></li><li><a href="#format-of-a-changelog-entry" title="Format of a changelog entry">Format of a changelog entry</a><ol><li><a href="#allowed-values-for-the-type-field" title="Allowed values for the type field">Allowed values for the type field</a></li><li><a href="#package-name-scope" title="Package name (scope)">Package name (scope)</a></li><li><a href="#referencing-issues" title="Referencing issues">Referencing issues</a></li><li><a href="#giving-credit" title="Giving credit">Giving credit</a></li><li><a href="#description" title="Description">Description</a></li><li><a href="#examples-of-correct-entry-formatting" title="Examples of correct entry formatting">Examples of correct entry formatting</a></li><li><a href="#fixing-errors" title="Fixing errors">Fixing errors</a></li></ol></li><li><a href="#handling-pull-requests" title="Handling pull requests">Handling pull requests</a></li></ol></nav>
+<p>CKEditor 5 uses Markdown file-based changelog system inspired by tools like Changesets. Contributions are noted in a human-readable Markdown files stored in the repository. These files describe the nature of the change (bug fix, feature, breaking change, etc.) and are committed alongside the actual code. These entries will be automatically compiled into the final changelog during the release process.</p>
+<h2 id="how-to-create-a-new-file"><a class="headerlink" href="#how-to-create-a-new-file">#</a> How to create a new file</h2>
+<p>Create a new Markdown file in the <code>.changelog/</code> directory to add a changelog entry. Each file <strong>must</strong> describe <strong>one change only</strong>. You can create as many files as you need to explain the changes.</p>
+<div class="info-box notice"><p>The easiest and preferred way to create a changelog entry is by running:</p><pre class="highlight"><code class="bash">yarn run nice
+</code></pre><p><code>nice</code> stands for <strong>N</strong>ew <strong>I</strong>ndividual <strong>C</strong>hangelog <strong>E</strong>ntry.</p></div>
+<p>This command creates a new Markdown file with a file name based on the current date and Git branch name: <code>YYYYMMDDHHMMSS_{branch-name}.md</code>. The branch name is automatically slugified (only letters, numbers, <code>-</code>, and <code>_</code> are allowed).</p>
+<p><em>Example: <code>20250617103000_fix-toolbar-alignment.md</code></em></p>
+<p>The file will include a predefined frontmatter template. <strong>You must manually fill in the details</strong> (like <code>type</code>, <code>scope</code>, <code>closes</code>, and the summary of your change).</p>
+<h2 id="format-of-a-changelog-entry"><a class="headerlink" href="#format-of-a-changelog-entry">#</a> Format of a changelog entry</h2>
+<p>Each changelog entry is a Markdown file with a frontmatter section followed by a summary and optional context. Here is a breakdown of all available fields:</p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Release</th>
-<th>Description</th>
-<th>Changelog</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Feature</td>
-<td><code>minor</code></td>
-<td>A new feature.</td>
-<td>Visible</td>
-</tr>
-<tr>
-<td>Fix</td>
-<td><code>patch</code></td>
-<td>A bug fix. Should also be used for enhancements if they do not introduce new features at the same time.</td>
-<td>Visible</td>
-</tr>
-<tr>
-<td>Other</td>
-<td><code>patch</code></td>
-<td>An enhancement – when it is neither a bug fix nor a feature. Example: public API refactoring. Use it also if you do not want to admit that it was a bug 😉.</td>
-<td>Visible</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><code>patch</code></td>
-<td>Updated documentation.</td>
-<td>Hidden</td>
-</tr>
-<tr>
-<td>Internal</td>
-<td><code>patch</code></td>
-<td>Other kinds of internal changes.</td>
-<td>Hidden</td>
-</tr>
-<tr>
-<td>Tests</td>
-<td><code>patch</code></td>
-<td>Changes in test files.</td>
-<td>Hidden</td>
-</tr>
-<tr>
-<td>Revert</td>
-<td><code>patch</code></td>
-<td>Revert of some commit.</td>
-<td>Hidden</td>
-</tr>
-<tr>
-<td>Release</td>
-<td><code>patch</code></td>
-<td>A special type of commit used by the release tools.</td>
-<td>Hidden</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Field</th>
+      <th style="width: 10%;">Required?</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>type</code></td>
+      <td>✅ Yes</td>
+      <td>
+        Type of the change. See the allowed values and their impact in the table below.
+      </td>
+    </tr>
+    <tr>
+      <td><code>scope</code></td>
+      <td>❌ No</td>
+      <td>Affected package(s), using short names like <code>ckeditor5-core</code>.</td>
+    </tr>
+    <tr>
+      <td><code>closes</code></td>
+      <td>❌ No</td>
+      <td>List of issues this change resolves. Use numbers (<code>123</code>), full references (<code>ckeditor/ckeditor5#123</code>), or full URLs.</td>
+    </tr>
+    <tr>
+      <td><code>see</code></td>
+      <td>❌ No</td>
+      <td>Related issues that provide context but are not directly resolved by this change. Same format as <code>closes</code>.</td>
+    </tr>
+    <tr>
+      <td><code>communityCredits</code></td>
+      <td>❌ No</td>
+      <td>GitHub usernames of external contributors who should be credited for this change.</td>
+    </tr>
+    <tr>
+      <td><em>(body)</em></td>
+      <td>✅ Yes</td>
+      <td>After the frontmatter, add a short and meaningful summary of the change. Optionally include extended context or rationale.</td>
+    </tr>
+  </tbody>
 </table>
-<p>Each commit can contain additional notes that will be inserted into the changelog:</p>
-<ul>
-<li><code>MAJOR BREAKING CHANGE</code>,</li>
-<li><code>MINOR BREAKING CHANGE</code>.</li>
-</ul>
-<p>If any change contains the <code>MAJOR BREAKING CHANGE</code> note, the next release will automatically be marked as <code>major</code>.</p>
-<p>For reference on how to identify minor or major breaking changes see the <a href="../../updating/versioning-policy.html">versioning policy guide</a>.</p>
-<p>Each <code>MAJOR BREAKING CHANGE</code> or <code>MINOR BREAKING CHANGE</code> note must be followed by the package name.</p>
-<div class="info-box notice"><p>Remember to always specify whether the breaking change is major or minor. If you fail to do so, the system will assume all unspecified breaking changes are major.</p></div>
-<h3 id="package-name"><a class="headerlink" href="#package-name">#</a> Package name</h3>
-<p>Most commits are related to one or more packages. Each affected package should be listed in parentheses following the commit type. You should list the package that was the most impacted by the change first.</p>
-<p>It is, however, possible to skip this part if many packages are affected. This usually indicates a generic change. In this case, having all the packages listed would reduce the changelog readability.</p>
-<p>The package name is based on the npm package name but it has the <code>@ckeditor/ckeditor5-</code> prefix stripped.</p>
+<div class="info-box notice"><p><strong>Tip</strong>: Keep the summary clear and user-facing – this is what will appear in the final changelog.</p></div>
+<p>The changelog entry format is designed to be both human-friendly and machine-readable. It uses a simple frontmatter structure followed by a short description of the change. Each field in the frontmatter serves a specific purpose, from determining the entry’s visibility to linking it with related issues or acknowledging community contributions.</p>
+<p>Using these fields correctly ensures that the changelog remains accurate, meaningful, and consistent across releases. The sections below explain the available fields in more detail and provide guidance on when and how to use them.</p>
+<h3 id="allowed-values-for-the-type-field"><a class="headerlink" href="#allowed-values-for-the-type-field">#</a> Allowed values for the <code>type</code> field</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Type</th>
+      <th style="width: 10%;">Release</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Feature</td>
+      <td><code>minor</code></td>
+      <td>A new feature. Introduces user-facing functionality.</td>
+    </tr>
+    <tr>
+      <td>Fix</td>
+      <td><code>patch</code></td>
+      <td>A bug fix. Use also for small improvements that do not qualify as new features.</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td><code>patch</code></td>
+      <td>Enhancement or refactor. It is not a fix or feature. Example: public API cleanup.</td>
+    </tr>
+    <tr>
+      <td>Major breaking change</td>
+      <td><code>major</code></td>
+      <td>A change in the integration layer or the plugin development API. See <a href="../../updating/versioning-policy.html">versioning policy</a> for details.</td>
+    </tr>
+    <tr>
+      <td>Minor breaking change</td>
+      <td><code>minor</code></td>
+      <td>Low-level customizable API layer. See <a href="../../updating/versioning-policy.html">versioning policy</a> for details.</td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="package-name-scope"><a class="headerlink" href="#package-name-scope">#</a> Package name (<code>scope</code>)</h3>
+<p>Changes affect one or more packages. List the package that was most impacted by the change first.</p>
+<p>However, it is possible to skip this part if many packages are affected. This usually indicates a generic change. In this case, having all the packages listed would reduce the readability of the changelog.</p>
+<p>The package name is based on the npm package name, but the <code>@ckeditor/</code> prefix is stripped.</p>
 <p>If your change is related to the main package, use <code>ckeditor5</code> as the package name.</p>
 <div class="info-box notice"><p>If the commit introduces a breaking change across the entire project (a generic change), you do not need to specify the package name.</p></div>
 <h3 id="referencing-issues"><a class="headerlink" href="#referencing-issues">#</a> Referencing issues</h3>
-<p>When creating PRs that address specific issues, use the following messages to indicate it. Add these in the same line with the merge message:</p>
+<p>When creating PRs that address specific issues, use the following messages to indicate them.</p>
 <ul>
-<li><code>Closes #123</code> – When the PR closes an issue.</li>
-<li><code>Closes #123</code> (outside the merge message) – When a PR in a public repository closes an issue from a private repository.</li>
-<li><code>See #123</code> – When the PR only references an issue but does not close it yet.</li>
-<li><em>No reference</em> – when the PR does not reference any issue.</li>
+<li><code>Closes</code> – When the PR resolves an issue.</li>
+<li><code>See</code> – When the PR references an issue but has not resolved it yet.</li>
 </ul>
-<h3 id="methods-name-syntax"><a class="headerlink" href="#methods-name-syntax">#</a> Methods name syntax</h3>
-<p>All methods mentioned in the Git commit message should use the <strong>#</strong> sign between the class name and the method name. An example of a properly named method:</p>
+<p>Both fields (<code>closes</code> and <code>see</code>) can contain multiple references, but they must follow the same format:</p>
+<ul>
+<li><code>14724</code> – A simple issue number.</li>
+<li><code>ckeditor/ckeditor5#14724</code> – A full reference to an issue in the CKEditor 5 repository.</li>
+<li><code>https://github.com/ckeditor/ckeditor5/issues/14724</code> – A full URL to an issue in the CKEditor 5 repository.</li>
+</ul>
+<h3 id="giving-credit"><a class="headerlink" href="#giving-credit">#</a> Giving credit</h3>
+<p>When closing a PR submitted by a non-core contributor, add information about the contributor to the changelog entry file using the <code>communityCredits</code> field. It should contain a list of GitHub usernames of contributors who should be credited for this change.</p>
+<h3 id="description"><a class="headerlink" href="#description">#</a> Description</h3>
+<p>Write a concise and meaningful summary of the change. This main message will appear in the public changelog, so keep it clear, user-facing, and relevant.</p>
+<p>Use the <code>ClassName#methodName()</code> format when referencing methods. This ensures consistency across all entries.</p>
+<p><strong>Example:</strong></p>
 <pre class="highlight"><code class="">MarkerCollection#has()
 </code></pre>
-<h3 id="order-of-entries"><a class="headerlink" href="#order-of-entries">#</a> Order of entries</h3>
-<p>The proper order of sections for a commit message is as follows:</p>
-<ul>
-<li>Entries that should be added to the changelog.</li>
-<li>Entries that will not be added to the changelog.</li>
-<li>Breaking change notes.</li>
-</ul>
-<p>All entries must be separated with a blank line, otherwise the lines will not be treated as separate entries.</p>
-<h3 id="squash-commits"><a class="headerlink" href="#squash-commits">#</a> Squash commits</h3>
-<p>The changelog generator understands squash commits created by GitHub when merging a pull request.</p>
-<p>When using the <em>“Squash and merge”</em> option, ensure the default commit title is not modified. It should contain the pull request title and its number, for example: <code>Sample pull request (#000)</code>. The changelog entries should be added as a commit description. They must follow the same rules as merge commits.</p>
-<h3 id="examples-of-correct-and-incorrect-message-formatting"><a class="headerlink" href="#examples-of-correct-and-incorrect-message-formatting">#</a> Examples of correct and incorrect message formatting</h3>
-<p>An example of a proper commit message:</p>
-<pre class="highlight"><code class="">Feature (package-name-1): Message 1. Closes: #123
-
-Fix (package-name-2): Message 2. Closes: #456
-
-Tests: A change across the entire project.
-</code></pre>
-<p>An example of an invalid commit message with incorrectly separated lines (the second line will be treated as a part of the first line):</p>
-<pre class="highlight"><code class="">Feature (package-name-1): Message 1.
-Fix (package-name-2): Message 2.
-Tests: Message 3.
-</code></pre>
-<p>An example of an invalid commit message with an incorrect section order (the “internal” message will be treated as a part of the breaking change message):</p>
-<pre class="highlight"><code class="">Feature (package-name): Message 1.
-
-MINOR BREAKING CHANGE (package-name): A description.
-
-Internal: Message 2.
-</code></pre>
-<h3 id="example-commits"><a class="headerlink" href="#example-commits">#</a> Example commits</h3>
+<p>You may include multiple sentences if additional context is helpful.</p>
+<h3 id="examples-of-correct-entry-formatting"><a class="headerlink" href="#examples-of-correct-entry-formatting">#</a> Examples of correct entry formatting</h3>
+<div class="info-box notice"><p>Unlike the previous Git-based system, which captured all commit types, including internal changes, the new file-based changelog focuses exclusively on public, user-facing changes, ensuring the final changelog remains clear and relevant to end users.</p></div>
 <p>A new feature without any breaking changes.</p>
-<pre class="highlight"><code class="">Feature (ui): Added support for RTL languages. Closes #1.
+<pre class="highlight"><code class="md">---
+type: Feature
+scope:
+  - ckeditor5-ui
+closes:
+  - 1
+---
+
+Added support for RTL languages.
 
 RTL content will now be rendered correctly.
 </code></pre>
 <p>A generic bug fix for an existing feature that affects many packages (closes two tickets):</p>
-<pre class="highlight"><code class="">Fix: The editor will be great again. Closes #3. Closes #4.
-</code></pre>
-<p>A commit with updated documentation:</p>
-<pre class="highlight"><code class="">Docs (link): Updated the README.
-</code></pre>
-<p>A commit that provides or changes the tests:</p>
-<pre class="highlight"><code class="">Tests (widget): Introduced missing tests. Closes #5.
+<pre class="highlight"><code class="md">---
+type: Fix
+closes:
+  - 2
+  - 3
+---
+
+The editor will be great again.
 </code></pre>
 <p>An improvement that is not backward compatible and sent by a non-core contributor. Public API was changed:</p>
-<pre class="highlight"><code class="">Other (utils): Extracted the `utils#foo()` to a separate package. Closes #9.
+<pre class="highlight"><code class="md">---
+type: Other
+scope:
+  - ckeditor5-utils
+closes:
+  - 9
+---
 
-Feature (engine): Introduced the `engine#foo()` method. Closes #9.
-
-MAJOR BREAKING CHANGE (utils): The `utils#foo()` method was moved to the `engine` package. See #9.
+Extracted the `utils#foo()` to a separate package.
 </code></pre>
-<p>For the commits shown above the changelog will look like this:</p>
+<pre class="highlight"><code class="md">---
+type: Feature
+scope:
+  - ckeditor5-engine
+closes:
+  - 9
+---
+
+Introduced the `engine#foo()` method.
+</code></pre>
+<pre class="highlight"><code class="md">---
+type: Major breaking change
+scope:
+  - ckeditor5-utils
+see:
+  - 9
+---
+
+The `utils#foo()` method was moved to the `engine` package.
+</code></pre>
+<p>For the entries shown above, the changelog will look like this:</p>
 <pre class="highlight"><code class="md">Changelog
 =========
 
-## [1.0.0](https://github.com/ckeditor/ckeditor5/compare/v1.0.0...v0.0.1) (2017-01-04)
+## [51.0.0](https://github.com/ckeditor/ckeditor5/compare/v50.1.1...v51.0.0) (June 17, 2025)
 
-### MAJOR BREAKING CHANGES [ℹ️](https://ckeditor.com/docs/ckeditor5/latest/support/versioning-policy.html#major-and-minor-breaking-changes)
+### MAJOR BREAKING CHANGES [ℹ️](https://ckeditor.com/docs/ckeditor5/latest/framework/guides/support/versioning-policy.html#major-and-minor-breaking-changes)
 
-* **[utils](http://npmjs.com/package/@ckeditor/ckeditor5-utils)**: The `utils#foo()` method was moved to the `engine` package. See [#9](https://github.com/ckeditor/ckeditor5/issue/9).
+* **[utils](https://www.npmjs.com/package/@ckeditor/ckeditor5-utils)**: The `utils#foo()` method was moved to the `engine` package. See [#9](https://github.com/ckeditor/ckeditor5/issues/9).
 
 ### Features
 
-* **[engine](http://npmjs.com/package/@ckeditor/ckeditor5-engine)**: Introduced the `engine#foo()` method. Thanks to [@CKEditor](https://github.com/CKEditor). Closes [#9](https://github.com/ckeditor/ckeditor5/issue/9). ([e8cc04f](https://github.com/ckeditor/ckeditor5/commit/e8cc04f))
-* **[ui](http://npmjs.com/package/@ckeditor/ckeditor5-ui)**: Added support for RTL languages. Closes [#1](https://github.com/ckeditor/ckeditor5/issue/1). ([adc59ed](https://github.com/ckeditor/ckeditor5/commit/adc59ed))
+* **[engine](https://www.npmjs.com/package/@ckeditor/ckeditor5-engine)**: Introduced the `engine#foo()` method. Closes [#9](https://github.com/ckeditor/ckeditor5/issues/9).
+* **[ui](https://www.npmjs.com/package/@ckeditor/ckeditor5-ui)**: Added support for RTL languages. Closes [#1](https://github.com/ckeditor/ckeditor5/issues/1).
 
-   RTL content will now be rendered correctly.
+  RTL content will now be rendered correctly.
 
 ### Bug fixes
 
-* The editor will be great again. Closes [#3](https://github.com/ckeditor/ckeditor5/issue/3). Closes [#4](https://github.com/ckeditor/ckeditor5/issue/4). ([a0b4ce8](https://github.com/ckeditor/ckeditor5/commit/a0b4ce8))
+* The editor will be great again. Closes [#2](https://github.com/ckeditor/ckeditor5/issues/2), [#3](https://github.com/ckeditor/ckeditor5/issues/3).
 
 ### Other changes
 
-* **[utils](http://npmjs.com/package/@ckeditor/ckeditor5-utils)**: Extracted the `utils#foo()` to a separate package. Thanks to [@CKEditor](https://github.com/CKEditor). ([e8cc04f](https://github.com/ckeditor/ckeditor5/commit/e8cc04f))
+* **[utils](https://www.npmjs.com/package/@ckeditor/ckeditor5-utils)**: Extracted the `utils#foo()` to a separate package. Closes [#9](https://github.com/ckeditor/ckeditor5/issues/9).
 </code></pre>
 <h3 id="fixing-errors"><a class="headerlink" href="#fixing-errors">#</a> Fixing errors</h3>
-<p>If the commit message was wrong but it was already too late to fix (for example, already merged into <code>master</code>), you can push an empty commit with the correct message straight to <code>master</code>:</p>
-<pre class="highlight"><code class="">git checkout master
-git commit --allow-empty # Fix the message in the commit
-git push origin master
-</code></pre>
-<div class="info-box notice"><p>Two commits for the same pull request will require <strong>manual deduplication</strong> during the changelog generation process. To reduce the noise, <strong>avoid this technique for minor errors</strong> like spelling or grammar: changelog entries will be checked and corrected anyway. Use it to add missing <code>BREAKING CHANGE</code> entries or fix wrong ticket numbers in <code>Closes #123</code> (critical information for integrators). You can also notify the team about the fix.</p></div>
+<p>If the entry message is wrong, you can fix it by editing the Markdown file in the <code>.changelog/</code> directory and preparing a new pull request.</p>
 <h2 id="handling-pull-requests"><a class="headerlink" href="#handling-pull-requests">#</a> Handling pull requests</h2>
-<p>When creating a pull request, you may (it is recommended in the pull request template) propose a merge commit message.</p>
-<p>The reviewer must validate the proposed message and apply necessary changes. The PR description can be edited.</p>
-<p>Things like:</p>
+<p>When creating a pull request, you may propose a changelog entry (as recommended in the pull request template).</p>
+<p>The reviewer must validate the proposed message and apply necessary changes. It can be done using the GitHub interface (as suggestions).</p>
+<p>As a reviewer, make sure to check the following aspects of the proposed changelog entry and add or correct them if needed:</p>
 <ul>
-<li>the language and grammar of the message,</li>
-<li>the type of the change,</li>
-<li>mentioned issue(s) number,</li>
-<li>breaking changes,</li>
-<li>and any additional information</li>
+<li>The language and grammar of the message</li>
+<li>The type of the change</li>
+<li>Mentioned issue(s) number</li>
+<li>Breaking changes</li>
+<li>Any additional relevant information</li>
 </ul>
-<p>should be checked and added if missing.</p>
-<p>As a reviewer, you must be aware that the message will end up in the changelog and must be understandable in the broad context of the entire editor. It is not for you – it is for other developers.</p>
-<p>When closing a PR, remember to copy the source of the message to the textarea with the merge commit message:</p>
-<p><img src="../../assets/img/closing-a-pr.gif" data-lightbox="true" alt="Screencast how to copy a source version of the suggested commit message when closing a PR." width="998"></p>
-<h3 id="giving-credit"><a class="headerlink" href="#giving-credit">#</a> Giving credit</h3>
-<p>When closing a non-core contributor’s PR make sure to add information about the contributor to the commit message. For example:</p>
-<pre class="highlight"><code class="">Feature (ui): Added support for RTL languages. Closes #1.
-
-Thanks to @someone!
-</code></pre>
+<p>You must be aware that the message will end up in the changelog and must be understandable in the broad context of the entire editor. It is not for you – it is for other developers.</p>
+<p>When closing a PR, you do not have to copy anything. Pick your merge strategy (for example, “Squash and merge”), and GitHub will handle the rest.</p>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fcontributing%2Fgit-commit-message-convention.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22framework%2Fcontributing%2Fchangelog-entries.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -824,8 +833,8 @@ Thanks to @someone!
                                     <li><a href="package-metadata.html" title="Package metadata">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Package metadata</span>
                                         </div></a></li>
-                                    <li><a href="" title="Git commit message convention">
-                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Git commit message convention</span>
+                                    <li><a href="" title="Changelog entries">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Changelog entries</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                             </ul>
                           </li>
