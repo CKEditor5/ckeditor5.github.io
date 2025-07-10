@@ -1,0 +1,1 @@
+var e=document.createElement("meta");e.name="x-cke-crawler-ignore-patterns";e.content=JSON.stringify({"console-error":["The Cross-Origin-Opener-Policy header has been ignored","<svg> attribute preserveAspectRatio","transparent NaN"]});document.head.appendChild(e);

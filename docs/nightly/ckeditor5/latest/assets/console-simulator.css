@@ -1,0 +1,143 @@
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:host {
+	--ck-color-base-foreground: hsl(60, 8%, 17%);
+	--ck-color-base-background: hsl(60, 8%, 15%);
+	--ck-color-base-border: hsl(60, 8%, 25%);
+	--ck-color-base-error: hsl(338, 95%, 56%);
+	--ck-color-text: hsl(60, 30%, 96%);
+	--ck-color-text-secondary: hsl(60, 11%, 65%);
+	--ck-color-base-border-subtle: hsl(60, 8%, 20%);
+	--ck-color-warning: hsl(54, 69%, 68%);
+	--ck-color-warning-subtle: hsla(54, 69%, 68%, 0.15);
+	--ck-color-warning-text: hsl(54, 85%, 75%);
+	--ck-color-error: hsl(338, 95%, 56%);
+	--ck-color-error-subtle: hsla(338, 95%, 56%, 0.15);
+	--ck-color-error-text: hsl(338, 100%, 70%);
+	--ck-color-info: hsl(190, 81%, 67%);
+	--ck-color-info-subtle: hsla(190, 81%, 67%, 0.15);
+	--ck-color-info-text: hsl(190, 95%, 75%);
+	--ck-color-focus-subtle: hsla(190, 81%, 67%, 0.15);
+	--ck-color-property-name: hsl(338, 95%, 70%);
+	--ck-color-string-value: hsl(80, 75%, 53%);
+	--ck-color-number-value: hsl(261, 100%, 75%);
+	--ck-color-link: hsl(190, 81%, 67%);
+
+	display: block;
+	border: 1px solid var(--ck-color-base-border);
+	font-family: Consolas, Lucida Console, monospace;
+	background-color: var(--ck-color-base-background);
+	max-width: 800px;
+	overflow: hidden;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+.console-header {
+	background-color: var(--ck-color-base-foreground);
+	padding: 8px 16px;
+	border-bottom: 1px solid var(--ck-color-base-border);
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+	color: var(--ck-color-text);
+	user-select: none;
+}
+
+.console-content {
+	background-color: var(--ck-color-base-background);
+	color: var(--ck-color-text);
+	padding: 0;
+	min-height: 120px;
+	max-height: 360px;
+	overflow-y: auto;
+	line-height: 1.4;
+}
+
+.icon {
+	margin-right: 8px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.log-entry {
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--ck-color-base-border-subtle);
+	font-size: 12px;
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	gap: 8px;
+
+	& .icon {
+		margin-right: 0;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		font-weight: bold;
+		font-size: 16px;
+		padding-top: 2px;
+	}
+
+	& .log-message-container {
+		color: var(--ck-color-text);
+		word-break: normal;
+		overflow-wrap: anywhere;
+	}
+
+	& .log-code {
+		display: inline-flex;
+		margin-right: 5px;
+		font-family: Consolas, Lucida Console, monospace;
+		vertical-align: top;
+	}
+
+	&.log-warning {
+		background-color: var(--ck-color-warning-subtle);
+
+		& .log-code {
+			color: var(--ck-color-warning-text);
+		}
+
+		& .icon {
+			color: var(--ck-color-warning);
+		}
+	}
+
+	&.log-error {
+		background-color: var(--ck-color-error-subtle);
+
+		& .log-code {
+			color: var(--ck-color-error-text);
+		}
+
+		& .icon {
+			color: var(--ck-color-error);
+		}
+	}
+
+	&.log-info {
+		background-color: var(--ck-color-info-subtle);
+
+		& .log-code {
+			color: var(--ck-color-info-text);
+		}
+
+		& .icon {
+			color: var(--ck-color-info);
+		}
+	}
+}
+
+.url {
+	color: var(--ck-color-link);
+	text-decoration: underline;
+	cursor: pointer;
+}

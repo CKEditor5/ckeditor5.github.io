@@ -1,0 +1,5183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Migrating internal exports | CKEditor 5 Documentation</title>
+    <meta name="description" content="Mihgrate CKEditor 5 to new, clearer, standardized public API names.">
+    <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta name="x-generated-at" content="Fri Jul 04 2025 01:52:50 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Migrating internal exports | CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-exports.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Migrating internal exports | CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-exports.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/7.0.2/gloria/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com">
+    <script id="vwoCode" type="text/javascript">
+      window._vwo_code || (function() {
+      var account_id='854367',
+      version=2.1,
+      settings_tolerance=2000,
+      hide_element='body',
+      hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important',
+      f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+'_settings',cc={};try{var c=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=c&&typeof c==='object'?c:{}}catch(e){}var stT=cc.stT==='session'?w.sessionStorage:w.localStorage;code={use_existing_jquery:function(){return typeof use_existing_jquery!=='undefined'?use_existing_jquery:undefined},library_tolerance:function(){return typeof library_tolerance!=='undefined'?library_tolerance:undefined},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){if(performance.getEntriesByName('first-contentful-paint')[0]){return''}return typeof cc.hE==='string'?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){if(!f){f=true;var t=d.getElementById('_vis_opt_path_hides');if(t)t.parentNode.removeChild(t);if(e)(new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e}},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript';if(e.src){t.src=e.src}else{t.text=e.text}d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){var i=this.getSettings(),n=d.createElement('script'),r=this;t=t||{};if(i){n.textContent=i;d.getElementsByTagName('head')[0].appendChild(n);if(!w.VWO||VWO.caE){stT.removeItem(cK);r.load(e)}}else{var o=new XMLHttpRequest;o.open('GET',e,true);o.withCredentials=!t.dSC;o.responseType=t.responseType||'text';o.onload=function(){if(t.onloadCb){return t.onloadCb(o,e)}if(o.status===200){_vwo_code.addScript({text:o.responseText})}else{_vwo_code.finish('&e=loading_failure:'+e)}};o.onerror=function(){if(t.onerrorCb){return t.onerrorCb(e)}_vwo_code.finish('&e=loading_failure:'+e)};o.send()}},getSettings:function(){try{var e=stT.getItem(cK);if(!e){return}e=JSON.parse(e);if(Date.now()>e.e){stT.removeItem(cK);return}return e.s}catch(e){return}},init:function(){if(d.URL.indexOf('__vwo_disable__')>-1)return;var e=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish();stT.removeItem(cK)},e);var t;if(this.hide_element()!=='body'){t=d.createElement('style');var i=this.hide_element(),n=i?i+this.hide_element_style():'',r=d.getElementsByTagName('head')[0];t.setAttribute('id','_vis_opt_path_hides');v&&t.setAttribute('nonce',v.nonce);t.setAttribute('type','text/css');if(t.styleSheet)t.styleSheet.cssText=n;else t.appendChild(d.createTextNode(n));r.appendChild(t)}else{t=d.getElementsByTagName('head')[0];var n=d.createElement('div');n.style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;';n.setAttribute('id','_vis_opt_path_hides');n.classList.add('_vis_hide_layer');t.parentNode.insertBefore(n,t.nextSibling)}var o='https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&vn='+version;if(w.location.search.indexOf('_vwo_xhr')!==-1){this.addScript({src:o})}else{this.load(o+'&x=true')}}};w._vwo_code=code;code.init();})();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	( function ( w, d, e, u, a, b ) {
+      		a = d.createElement( e );
+      		b = d.getElementsByTagName( e )[ 0 ];
+      		a.async = 1;
+      		a.src = u;
+      		b.parentNode.insertBefore( a, b )
+      	} )( window, document, 'script', 'https://www.googletagmanager.com/gtag/js?id=G-H2PK3PSE3F' );
+      	window.dataLayer = window.dataLayer || [];
+      
+      	function gtag() {
+      		dataLayer.push( arguments );
+      	}
+      
+      	gtag( 'js', new Date() );
+      	gtag( 'config', 'G-H2PK3PSE3F' );
+      }
+    </script>
+    <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
+    <meta name="project-version" content="45.2.1">
+    <meta name="project-slug" content="ckeditor5">
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/7.0.2/gloria/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a href="../../getting-started/index.html">Getting started</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a href="../../examples/index.html">Examples</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Updating</a></li>
+          <li><a href="../../support/index.html">Support</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="getting-started"><a href="../../getting-started/index.html">Getting started</a>
+              </li>
+              <li data-group="features"><a href="../../features/index.html">Features</a>
+              </li>
+              <li data-group="examples"><a href="../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+              </li>
+              <li data-group="api-reference"><a href="../../api/index.html">API</a>
+              </li>
+              <li data-group="updating"><a href="../index.html">Updating</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Migrations from npm to CDN</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="migrations">
+                                  <li><a href="../migrations/vanilla-js.html" title="Vanilla JS">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vanilla JS</span>
+                                      </div></a></li>
+                                  <li><a href="../migrations/testing-suite.html" title="Vanilla JS testing suite">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vanilla JS testing suite</span>
+                                      </div></a></li>
+                                  <li><a href="../migrations/react.html" title="React">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                      </div></a></li>
+                                  <li><a href="../migrations/vuejs-v3.html" title="Vue.js 3+">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                      </div></a></li>
+                                  <li><a href="../migrations/angular.html" title="Angular">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">New installation methods</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="nim-migration">
+                                  <li><a href="migration-to-new-installation-methods.html" title="Migrating to new installation methods">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating to new installation methods</span>
+                                      </div></a></li>
+                                  <li><a href="predefined-builds.html" title="Migrating from predefined builds">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from predefined builds</span>
+                                      </div></a></li>
+                                  <li><a href="online-builder.html" title="Migrating from legacy Online Builder">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from legacy Online Builder</span>
+                                      </div></a></li>
+                                  <li><a href="customized-builds.html" title="Migrating from customized builds">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from customized builds</span>
+                                      </div></a></li>
+                                  <li><a href="dll-builds.html" title="Migrating from DLL builds">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from DLL builds</span>
+                                      </div></a></li>
+                                  <li><a href="custom-plugins.html" title="Migrating custom plugins">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
+                                      </div></a></li>
+                                  <li><a href="" title="Migrating internal exports">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">CKEditor 4 migration</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="ckeditor4-migration">
+                                  <li><a href="../ckeditor4/migration-from-ckeditor-4.html" title="Migration from CKEditor 4">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                      </div></a></li>
+                                  <li><a href="../ckeditor4/ckeditor4-plugin-compatibility.html" title="Plugin equivalents">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin equivalents</span>
+                                      </div></a></li>
+                                  <li><a href="../ckeditor4/ckeditor4-configuration-compatibility.html" title="Configuration options compatibility">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration options compatibility</span>
+                                      </div></a></li>
+                                  <li><a href="../ckeditor4/ckeditor4-troubleshooting.html" title="Troubleshooting">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Troubleshooting</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../maintaining.html" title="Maintaining your editor">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Maintaining your editor</span>
+                              </div></a></li>
+                          <li><a href="../release-process.html" title="Release process">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Release process</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Update guides</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="update-guides">
+                                  <li><a href="../guides/updating-ckeditor-5.html" title="Updating CKEditor 5">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Updating CKEditor 5</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/changelog.html" title="Changelog">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-46.html" title="Update to v46.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-45.html" title="Update to v45.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-44.html" title="Update to v44.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-43.html" title="Update to v43.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-42.html" title="Update to v42.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-41.html" title="Update to v41.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-40.html" title="Update to v40.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v40.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-39.html" title="Update to v39.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v39.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-38.html" title="Update to v38.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v38.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-37.html" title="Update to v37.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v37.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-36.html" title="Update to v36.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v36.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-35.html" title="Update to v35.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v35.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-34.html" title="Update to v34.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v34.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-33.html" title="Update to v33.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v33.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-32.html" title="Update to v32.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v32.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-31.html" title="Update to v31.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v31.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-30.html" title="Update to v30.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v30.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-29.html" title="Update to v29.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v29.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-28.html" title="Update to v28.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v28.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-27.html" title="Update to v27.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v27.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-26.html" title="Update to v26.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v26.x</span>
+                                      </div></a></li>
+                                  <li><a href="../guides/update-to-25.html" title="Update to v25.x">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v25.x</span>
+                                      </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../versioning-policy.html" title="Versioning policy">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span>
+                              </div></a></li>
+                </ul>
+              </li>
+              <li data-group="support"><a href="../../support/index.html">Support</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/updating/nim-migration/migrating-exports.md" title="Contribute to this guide"><img src="../../../../assets/7.0.2/gloria/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
+          </div>
+          <h1 class="main__content-title">Migrating internal exports
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#internal-exports" title="Internal exports">Internal exports</a></li><li><a href="#changed-exports" title="Changed exports">Changed exports</a></li><li><a href="#new-exports" title="New exports">New exports</a></li></ol></nav>
+<p>As part of the transition to the New Installation Methods (NIM), we have standardized how public API elements are exposed in CKEditor&nbsp;5 and related packages. We introduced a unified export policy that ensures every public entity is exported via the package’s <code>index.ts</code> file. We also gave the exported classes, functions, and helpers more descriptive and context-appropriate names ensuring they are unambiguous and unique within the scope of CKEditor&nbsp;5. This includes renaming existing exports where needed. The changes are semantically equivalent but introduce breaking changes in naming.</p>
+<h2 id="internal-exports"><a class="headerlink" href="#internal-exports">#</a> Internal exports</h2>
+<p>All internal exports are now available directly from the <code>ckeditor5</code> (or <code>ckeditor5-premium-features</code>) package root with an underscore (<code>_</code>) prefix. This means you no longer need to specify the file path within a package to access these exports.</p>
+<h3 id="example-usage"><a class="headerlink" href="#example-usage">#</a> Example usage</h3>
+<p>Previously, importing internal exports required specifying the exact file path:</p>
+<pre class="highlight"><code class="ts">import { getCsrfToken } from '@ckeditor/ckeditor5-adapter-ckfinder/src/utils';
+</code></pre>
+<p>Now, you can import them from the package’s root entry point with the new name:</p>
+<pre class="highlight"><code class="ts">import { _getCKFinderCsrfToken } from 'ckeditor5';
+</code></pre>
+<p>This standardized approach simplifies imports while clearly distinguishing internal implementation details from the public API through the underscore prefix.</p>
+<h2 id="changed-exports"><a class="headerlink" href="#changed-exports">#</a> Changed exports</h2>
+<p>Below, you will find all name changes in packages listed alphabetically for convenience.</p>
+<div class="info-box notice notice__info"><p>The tables below list only these exports that have changed names and may introduce breaking changes. Newly exported methods that did not exist before NIM are <strong>not</strong> included here.</p></div>
+<h3 id="ckeditorckeditor5-adapter-ckfinder"><a class="headerlink" href="#ckeditorckeditor5-adapter-ckfinder">#</a> @ckeditor/ckeditor5-adapter-ckfinder</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utils.ts</td>
+<td>getCsrfToken</td>
+<td>_getCKFinderCsrfToken</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getCookie</td>
+<td>_getCKFinderCookie</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>setCookie</td>
+<td>_setCKFinderCookie</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-ai"><a class="headerlink" href="#ckeditorckeditor5-ai">#</a> @ckeditor/ckeditor5-ai</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adapters/aitextadapter.ts</td>
+<td>RequestHeaders</td>
+<td>AIRequestHeaders</td>
+</tr>
+<tr>
+<td>adapters/aitextadapter.ts</td>
+<td>RequestParameters</td>
+<td>AIRequestParameters</td>
+</tr>
+<tr>
+<td>adapters/awstextadapter.ts</td>
+<td>AWSTextAdapterConfig</td>
+<td>AIAWSTextAdapterConfig</td>
+</tr>
+<tr>
+<td>adapters/awstextadapter.ts</td>
+<td>AWSModelFamily</td>
+<td>AIAWSModelFamily</td>
+</tr>
+<tr>
+<td>aiasistant.ts</td>
+<td>getDefaultCommands</td>
+<td>getDefaultAICommands</td>
+</tr>
+<tr>
+<td>aiasistant.ts</td>
+<td>GroupDefinition</td>
+<td>AIGroupDefinition</td>
+</tr>
+<tr>
+<td>aiasistant.ts</td>
+<td>CommandDefinition</td>
+<td>AICommandDefinition</td>
+</tr>
+<tr>
+<td>aiconfig.ts</td>
+<td>AIConfig</td>
+<td>AIConfig</td>
+</tr>
+<tr>
+<td>ui/showaiassistantcommand.ts</td>
+<td>ShowAIAssistantCommand</td>
+<td>ShowAIAssistantCommand</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-alignment"><a class="headerlink" href="#ckeditorckeditor5-alignment">#</a> @ckeditor/ckeditor5-alignment</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alignmentconfig.ts</td>
+<td>SupportedOption</td>
+<td>AlignmentSupportedOption</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>supportedOptions</td>
+<td>_ALIGNMENT_SUPPORTED_OPTIONS</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>isSupported</td>
+<td>_isAlignmentSupported</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>isDefault</td>
+<td>_isDefaultAlignment</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>normalizeAlignmentOptions</td>
+<td>_normalizeAlignmentOptions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-autoformat"><a class="headerlink" href="#ckeditorckeditor5-autoformat">#</a> @ckeditor/ckeditor5-autoformat</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inlineautoformatediting.ts</td>
+<td>TestCallback</td>
+<td>AutoformatTestCallback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-basic-styles"><a class="headerlink" href="#ckeditorckeditor5-basic-styles">#</a> @ckeditor/ckeditor5-basic-styles</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utils.ts</td>
+<td>getButtonCreator</td>
+<td>_getBasicStylesButtonCreator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-bookmark"><a class="headerlink" href="#ckeditorckeditor5-bookmark">#</a> @ckeditor/ckeditor5-bookmark</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utils.ts</td>
+<td>isBookmarkIdValid</td>
+<td>_isBookmarkIdValid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-case-change"><a class="headerlink" href="#ckeditorckeditor5-case-change">#</a> @ckeditor/ckeditor5-case-change</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>casechange.ts</td>
+<td>ExcludeWordsCallback</td>
+<td>CaseChangeExcludeWordsCallback</td>
+</tr>
+<tr>
+<td>casechange.ts</td>
+<td>ExcludeWordsCallbackContext</td>
+<td>CaseChangeExcludeWordsCallbackContext</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-ckbox"><a class="headerlink" href="#ckeditorckeditor5-ckbox">#</a> @ckeditor/ckeditor5-ckbox</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ckboxcommand.ts</td>
+<td>prepareImageAssetAttributes</td>
+<td>_prepareCKBoxImageAssetAttributes</td>
+</tr>
+<tr>
+<td>ckboxconfig.ts</td>
+<td>CKBoxAssetDefinition</td>
+<td>_CKBoxAssetDefinition</td>
+</tr>
+<tr>
+<td>ckboxconfig.ts</td>
+<td>CKBoxAssetImageDefinition</td>
+<td>_CKBoxAssetImageDefinition</td>
+</tr>
+<tr>
+<td>ckboxconfig.ts</td>
+<td>CKBoxAssetLinkDefinition</td>
+<td>_CKBoxAssetLinkDefinition</td>
+</tr>
+<tr>
+<td>ckboxconfig.ts</td>
+<td>CKBoxAssetImageAttributesDefinition</td>
+<td>_CKBoxAssetImageAttributesDefinition</td>
+</tr>
+<tr>
+<td>ckboxconfig.ts</td>
+<td>CKBoxAssetLinkAttributesDefinition</td>
+<td>_CKBoxAssetLinkAttributesDefinition</td>
+</tr>
+<tr>
+<td>ckboximageedit/utils.ts</td>
+<td>createEditabilityChecker</td>
+<td>_createCKBoxEditabilityChecker</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getImageUrls</td>
+<td>_getCKBoxImageUrls</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getWorkspaceId</td>
+<td>_getCKBoxWorkspaceId</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>blurHashToDataUrl</td>
+<td>_ckboxBlurHashToDataUrl</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>sendHttpRequest</td>
+<td>_sendCKBoxHttpRequest</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>convertMimeTypeToExtension</td>
+<td>_ckBoxConvertMimeTypeToExtension</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getContentTypeOfUrl</td>
+<td>_getCKBoxContentTypeOfUrl</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getFileExtension</td>
+<td>_getCKBoxFileExtension</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-clipboard"><a class="headerlink" href="#ckeditorckeditor5-clipboard">#</a> @ckeditor/ckeditor5-clipboard</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clipboardmarkersutils.ts</td>
+<td>ClipboardMarkersUtils</td>
+<td>_ClipboardMarkersUtils</td>
+</tr>
+<tr>
+<td>clipboardmarkersutils.ts</td>
+<td>ClipboardMarkerRestrictedAction</td>
+<td>_ClipboardMarkerRestrictedAction</td>
+</tr>
+<tr>
+<td>clipboardmarkersutils.ts</td>
+<td>ClipboardMarkerConfiguration</td>
+<td>_ClipboardMarkerConfiguration</td>
+</tr>
+<tr>
+<td>dragdrop.ts</td>
+<td>DragDrop</td>
+<td>_DragDrop</td>
+</tr>
+<tr>
+<td>dragdropblocktoolbar.ts</td>
+<td>DragDropBlockToolbar</td>
+<td>_DragDropBlockToolbar</td>
+</tr>
+<tr>
+<td>dragdroptarget.ts</td>
+<td>DragDropTarget</td>
+<td>_DragDropTarget</td>
+</tr>
+<tr>
+<td>lineview.ts</td>
+<td>LineView</td>
+<td>_ClipboardLineView</td>
+</tr>
+<tr>
+<td>utils/normalizeclipboarddata.ts</td>
+<td>normalizeClipboardData</td>
+<td>_normalizeClipboardData</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-cloud-services"><a class="headerlink" href="#ckeditorckeditor5-cloud-services">#</a> @ckeditor/ckeditor5-cloud-services</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token/token.ts</td>
+<td>TokenOptions</td>
+<td>CloudServicesTokenOptions</td>
+</tr>
+<tr>
+<td>uploadgateway/fileuploader.ts</td>
+<td>FileUploaderErrorEvent</td>
+<td>CloudServicesFileUploaderErrorEvent</td>
+</tr>
+<tr>
+<td>uploadgateway/fileuploader.ts</td>
+<td>FileUploaderProgressErrorEvent</td>
+<td>CloudServicesFileUploaderProgressErrorEvent</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-code-block"><a class="headerlink" href="#ckeditorckeditor5-code-block">#</a> @ckeditor/ckeditor5-code-block</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>converters.ts</td>
+<td>modelToViewCodeBlockInsertion</td>
+<td>_modelToViewCodeBlockInsertion</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>modelToDataViewSoftBreakInsertion</td>
+<td>_modelToDataViewCodeBlockSoftBreakInsertion</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>dataViewToModelCodeBlockInsertion</td>
+<td>_dataViewToModelCodeBlockInsertion</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>dataViewToModelTextNewlinesInsertion</td>
+<td>_dataViewToModelCodeBlockTextNewlinesInsertion</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>dataViewToModelOrphanNodeConsumer</td>
+<td>_dataViewToModelCodeBlockOrphanNodeConsumer</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getNormalizedAndLocalizedLanguageDefinitions</td>
+<td>_getNormalizedAndLocalizedCodeBlockLanguageDefinitions</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getPropertyAssociation</td>
+<td>_getCodeBlockPropertyAssociation</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getLeadingWhiteSpaces</td>
+<td>_getCodeBlockLeadingWhiteSpaces</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>rawSnippetTextToViewDocumentFragment</td>
+<td>_rawCodeBlockSnippetTextToViewDocumentFragment</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getIndentOutdentPositions</td>
+<td>_getCodeBlockIndentOutdentPositions</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>isModelSelectionInCodeBlock</td>
+<td>_isModelSelectionInCodeBlock</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>canBeCodeBlock</td>
+<td>_canBeCodeBlock</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getCodeBlockAriaAnnouncement</td>
+<td>_getCodeBlockAriaAnnouncement</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getTextNodeAtLineStart</td>
+<td>_getCodeBlockTextNodeAtLineStart</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-collaboration-core"><a class="headerlink" href="#ckeditorckeditor5-collaboration-core">#</a> @ckeditor/ckeditor5-collaboration-core</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config.ts</td>
+<td>UsersConfig</td>
+<td>CollaborationUsersConfig</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-comments"><a class="headerlink" href="#ckeditorckeditor5-comments">#</a> @ckeditor/ckeditor5-comments</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sidebaritemview.ts</td>
+<td>SidebarItemView</td>
+<td>AnnotationsSidebarItemView</td>
+</tr>
+<tr>
+<td>sidebarview.ts</td>
+<td>SidebarView</td>
+<td>AnnotationsSidebarView</td>
+</tr>
+<tr>
+<td>basecommentthreadview.ts</td>
+<td>UISubmitCommentThreadEvent</td>
+<td>UISubmitCommentThreadEvent</td>
+</tr>
+<tr>
+<td>basecommentthreadview.ts</td>
+<td>UIRemoveCommentThreadEvent</td>
+<td>UIRemoveCommentThreadEvent</td>
+</tr>
+<tr>
+<td>basecommentthreadview.ts</td>
+<td>UIResolveCommentThreadEvent</td>
+<td>UIResolveCommentThreadEvent</td>
+</tr>
+<tr>
+<td>basecommentview.ts</td>
+<td>UIAddCommentEvent</td>
+<td>UIAddCommentEvent</td>
+</tr>
+<tr>
+<td>basecommentview.ts</td>
+<td>UIUpdateCommentEvent</td>
+<td>UIUpdateCommentEvent</td>
+</tr>
+<tr>
+<td>basecommentview.ts</td>
+<td>UIRemoveCommentEvent</td>
+<td>UIRemoveCommentEvent</td>
+</tr>
+<tr>
+<td>config.ts</td>
+<td>SidebarConfig</td>
+<td>AnnotationsSidebarConfig</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-core"><a class="headerlink" href="#ckeditorckeditor5-core">#</a> @ckeditor/ckeditor5-core</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accessibility.ts</td>
+<td>DEFAULT_GROUP_ID</td>
+<td>_DEFAULT_ACCESSIBILITY_GROUP_ID</td>
+</tr>
+<tr>
+<td>accessibility.ts</td>
+<td>KeystrokeInfos</td>
+<td>KeystrokeInfoDefinitions</td>
+</tr>
+<tr>
+<td>accessibility.ts</td>
+<td>KeystrokeInfoCategory</td>
+<td>KeystrokeInfoCategoryDefinition</td>
+</tr>
+<tr>
+<td>accessibility.ts</td>
+<td>KeystrokeInfoGroup</td>
+<td>KeystrokeInfoGroupDefinition</td>
+</tr>
+<tr>
+<td>editorusagedata.ts</td>
+<td>getEditorUsageData</td>
+<td>_getEditorUsageData</td>
+</tr>
+<tr>
+<td>editorusagedata.ts</td>
+<td>EditorUsageData</td>
+<td>_EditorUsageData</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-emoji"><a class="headerlink" href="#ckeditorckeditor5-emoji">#</a> @ckeditor/ckeditor5-emoji</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>emojiconfig.ts</td>
+<td>SkinToneId</td>
+<td>EmojiSkinToneId</td>
+</tr>
+<tr>
+<td>emojirepository.ts</td>
+<td>SkinTone</td>
+<td>EmojiSkinTone</td>
+</tr>
+<tr>
+<td>isemojisupported.ts</td>
+<td>isEmojiSupported</td>
+<td>_isEmojiSupported</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-engine"><a class="headerlink" href="#ckeditorckeditor5-engine">#</a> @ckeditor/ckeditor5-engine</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>originalName</th>
+<th>reExportedName</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conversion/downcastdispatcher.ts</td>
+<td>DiffItemReinsert</td>
+<td>DifferItemReinsert</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>insertText</td>
+<td>_downcastInsertText</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>insertAttributesAndChildren</td>
+<td>_downcastInsertAttributesAndChildren</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>remove</td>
+<td>_downcastRemove</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>createViewElementFromHighlightDescriptor</td>
+<td>_downcastCreateViewElementFromDowncastHighlightDescriptor</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>convertRangeSelection</td>
+<td>_downcastConvertRangeSelection</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>convertCollapsedSelection</td>
+<td>_downcastConvertCollapsedSelection</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>cleanSelection</td>
+<td>_downcastCleanSelection</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>wrap</td>
+<td>_downcastWrap</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>insertElement</td>
+<td>_downcastInsertElement</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>insertStructure</td>
+<td>_downcastInsertStructure</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>insertUIElement</td>
+<td>_downcastInsertUIElement</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>HighlightDescriptor</td>
+<td>DowncastHighlightDescriptor</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>SlotFilter</td>
+<td>DowncastSlotFilter</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>ElementCreatorFunction</td>
+<td>DowncastElementCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>StructureCreatorFunction</td>
+<td>DowncastStructureCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>AttributeElementCreatorFunction</td>
+<td>DowncastAttributeElementCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>AttributeCreatorFunction</td>
+<td>DowncastAttributeCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>AttributeDescriptor</td>
+<td>DowncastAttributeDescriptor</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>MarkerElementCreatorFunction</td>
+<td>DowncastMarkerElementCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>HighlightDescriptorCreatorFunction</td>
+<td>DowncastHighlightDescriptorCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>AddHighlightCallback</td>
+<td>DowncastAddHighlightCallback</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>RemoveHighlightCallback</td>
+<td>DowncastRemoveHighlightCallback</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>MarkerDataCreatorFunction</td>
+<td>DowncastMarkerDataCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/downcasthelpers.ts</td>
+<td>ConsumerFunction</td>
+<td>_DowncastConsumerFunction</td>
+</tr>
+<tr>
+<td>conversion/mapper.ts</td>
+<td>MapperCache</td>
+<td>_MapperCache</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>convertToModelFragment</td>
+<td>_upcastConvertToModelFragment</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>convertText</td>
+<td>_upcastConvertText</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>convertSelectionChange</td>
+<td>_upcastConvertSelectionChange</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>ElementCreatorFunction</td>
+<td>UpcastElementCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>AttributeCreatorFunction</td>
+<td>UpcastAttributeCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>MarkerFromElementCreatorFunction</td>
+<td>UpcastMarkerFromElementCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/upcasthelpers.ts</td>
+<td>MarkerFromAttributeCreatorFunction</td>
+<td>UpcastMarkerFromAttributeCreatorFunction</td>
+</tr>
+<tr>
+<td>conversion/viewconsumable.ts</td>
+<td>ViewElementConsumables</td>
+<td>_ViewElementConversionConsumables</td>
+</tr>
+<tr>
+<td>conversion/viewconsumable.ts</td>
+<td>normalizeConsumables</td>
+<td>_normalizeConversionConsumables</td>
+</tr>
+<tr>
+<td>dataprocessor/basichtmlwriter.ts</td>
+<td>BasicHtmlWriter</td>
+<td>_DataProcessorBasicHtmlWriter</td>
+</tr>
+<tr>
+<td>dataprocessor/htmlwriter.ts</td>
+<td>HtmlWriter</td>
+<td>DataProcessorHtmlWriter</td>
+</tr>
+<tr>
+<td>dev-utils/model.ts</td>
+<td>getData</td>
+<td>_getModelData</td>
+</tr>
+<tr>
+<td>dev-utils/model.ts</td>
+<td>setData</td>
+<td>_setModelData</td>
+</tr>
+<tr>
+<td>dev-utils/model.ts</td>
+<td>stringify</td>
+<td>_stringifyModel</td>
+</tr>
+<tr>
+<td>dev-utils/model.ts</td>
+<td>parse</td>
+<td>_parseModel</td>
+</tr>
+<tr>
+<td>dev-utils/operationreplayer.ts</td>
+<td>OperationReplayer</td>
+<td>_OperationReplayer</td>
+</tr>
+<tr>
+<td>dev-utils/utils.ts</td>
+<td>convertMapToTags</td>
+<td>_convertMapToTags</td>
+</tr>
+<tr>
+<td>dev-utils/utils.ts</td>
+<td>convertMapToStringifiedObject</td>
+<td>_convertMapToStringifiedObject</td>
+</tr>
+<tr>
+<td>dev-utils/utils.ts</td>
+<td>dumpTrees</td>
+<td>_dumpTrees</td>
+</tr>
+<tr>
+<td>dev-utils/utils.ts</td>
+<td>initDocumentDumping</td>
+<td>_initDocumentDumping</td>
+</tr>
+<tr>
+<td>dev-utils/utils.ts</td>
+<td>logDocument</td>
+<td>_logDocument</td>
+</tr>
+<tr>
+<td>dev-utils/view.ts</td>
+<td>getData</td>
+<td>_getViewData</td>
+</tr>
+<tr>
+<td>dev-utils/view.ts</td>
+<td>setData</td>
+<td>_setViewData</td>
+</tr>
+<tr>
+<td>dev-utils/view.ts</td>
+<td>stringify</td>
+<td>_stringifyView</td>
+</tr>
+<tr>
+<td>dev-utils/view.ts</td>
+<td>parse</td>
+<td>_parseView</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DifferSnapshot</td>
+<td>_DifferSnapshot</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DiffItem</td>
+<td>DifferItem</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DiffItemInsert</td>
+<td>DifferItemInsert</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DiffItemRemove</td>
+<td>DifferItemRemove</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DiffItemAttribute</td>
+<td>DifferItemAttribute</td>
+</tr>
+<tr>
+<td>model/differ.ts</td>
+<td>DiffItemRoot</td>
+<td>DifferItemRoot</td>
+</tr>
+<tr>
+<td>model/document.ts</td>
+<td>Document</td>
+<td>ModelDocument</td>
+</tr>
+<tr>
+<td>model/document.ts</td>
+<td>DocumentChangeEvent</td>
+<td>ModelDocumentChangeEvent</td>
+</tr>
+<tr>
+<td>model/documentfragment.ts</td>
+<td>DocumentFragment</td>
+<td>ModelDocumentFragment</td>
+</tr>
+<tr>
+<td>model/documentselection.ts</td>
+<td>DocumentSelection</td>
+<td>ModelDocumentSelection</td>
+</tr>
+<tr>
+<td>model/documentselection.ts</td>
+<td>DocumentSelectionChangeRangeEvent</td>
+<td>ModelDocumentSelectionChangeRangeEvent</td>
+</tr>
+<tr>
+<td>model/documentselection.ts</td>
+<td>DocumentSelectionChangeAttributeEvent</td>
+<td>ModelDocumentSelectionChangeAttributeEvent</td>
+</tr>
+<tr>
+<td>model/documentselection.ts</td>
+<td>DocumentSelectionChangeMarkerEvent</td>
+<td>ModelDocumentSelectionChangeMarkerEvent</td>
+</tr>
+<tr>
+<td>model/documentselection.ts</td>
+<td>DocumentSelectionChangeEvent</td>
+<td>ModelDocumentSelectionChangeEvent</td>
+</tr>
+<tr>
+<td>model/element.ts</td>
+<td>Element</td>
+<td>ModelElement</td>
+</tr>
+<tr>
+<td>model/item.ts</td>
+<td>Item</td>
+<td>ModelItem</td>
+</tr>
+<tr>
+<td>model/liveposition.ts</td>
+<td>LivePosition</td>
+<td>ModelLivePosition</td>
+</tr>
+<tr>
+<td>model/liveposition.ts</td>
+<td>LivePositionChangeEvent</td>
+<td>ModelLivePositionChangeEvent</td>
+</tr>
+<tr>
+<td>model/liverange.ts</td>
+<td>LiveRange</td>
+<td>ModelLiveRange</td>
+</tr>
+<tr>
+<td>model/liverange.ts</td>
+<td>LiveRangeChangeRangeEvent</td>
+<td>ModelLiveRangeChangeRangeEvent</td>
+</tr>
+<tr>
+<td>model/liverange.ts</td>
+<td>LiveRangeChangeContentEvent</td>
+<td>ModelLiveRangeChangeContentEvent</td>
+</tr>
+<tr>
+<td>model/liverange.ts</td>
+<td>LiveRangeChangeEvent</td>
+<td>ModelLiveRangeChangeEvent</td>
+</tr>
+<tr>
+<td>model/model.ts</td>
+<td>BeforeChangesEvent</td>
+<td>_ModelBeforeChangesEvent</td>
+</tr>
+<tr>
+<td>model/model.ts</td>
+<td>AfterChangesEvent</td>
+<td>_ModelAfterChangesEvent</td>
+</tr>
+<tr>
+<td>model/node.ts</td>
+<td>Node</td>
+<td>ModelNode</td>
+</tr>
+<tr>
+<td>model/node.ts</td>
+<td>NodeAttributes</td>
+<td>ModelNodeAttributes</td>
+</tr>
+<tr>
+<td>model/nodelist.ts</td>
+<td>NodeList</td>
+<td>ModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/detachoperation.ts</td>
+<td>DetachOperation</td>
+<td>_DetachOperation</td>
+</tr>
+<tr>
+<td>model/operation/transform.ts</td>
+<td>transform</td>
+<td>_operationTransform</td>
+</tr>
+<tr>
+<td>model/operation/transform.ts</td>
+<td>transformSets</td>
+<td>transformOperationSets</td>
+</tr>
+<tr>
+<td>model/operation/transform.ts</td>
+<td>TransformSetsResult</td>
+<td>TransformOperationSetsResult</td>
+</tr>
+<tr>
+<td>model/operation/transform.ts</td>
+<td>TransformationContext</td>
+<td>_OperationTransformationContext</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>_insert</td>
+<td>_insertIntoModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>_remove</td>
+<td>_removeFromModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>_move</td>
+<td>_moveInModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>_setAttribute</td>
+<td>_setAttributeInModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>_normalizeNodes</td>
+<td>_normalizeInModelNodeList</td>
+</tr>
+<tr>
+<td>model/operation/utils.ts</td>
+<td>NodeSet</td>
+<td>ModelNodeSet</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>Position</td>
+<td>ModelPosition</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>PositionRelation</td>
+<td>ModelPositionRelation</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>PositionOffset</td>
+<td>ModelPositionOffset</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>PositionStickiness</td>
+<td>ModelPositionStickiness</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>getTextNodeAtPosition</td>
+<td>_getModelTextNodeAtPosition</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>getNodeAfterPosition</td>
+<td>_getModelNodeAfterPosition</td>
+</tr>
+<tr>
+<td>model/position.ts</td>
+<td>getNodeBeforePosition</td>
+<td>_getModelNodeBeforePosition</td>
+</tr>
+<tr>
+<td>model/range.ts</td>
+<td>Range</td>
+<td>ModelRange</td>
+</tr>
+<tr>
+<td>model/rootelement.ts</td>
+<td>RootElement</td>
+<td>ModelRootElement</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>Schema</td>
+<td>ModelSchema</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaCheckChildEvent</td>
+<td>ModelSchemaCheckChildEvent</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaCheckAttributeEvent</td>
+<td>ModelSchemaCheckAttributeEvent</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaItemDefinition</td>
+<td>ModelSchemaItemDefinition</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaCompiledItemDefinition</td>
+<td>ModelSchemaCompiledItemDefinition</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaContext</td>
+<td>ModelSchemaContext</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaContextDefinition</td>
+<td>ModelSchemaContextDefinition</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaContextItem</td>
+<td>ModelSchemaContextItem</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>AttributeProperties</td>
+<td>ModelAttributeProperties</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaAttributeCheckCallback</td>
+<td>ModelSchemaAttributeCheckCallback</td>
+</tr>
+<tr>
+<td>model/schema.ts</td>
+<td>SchemaChildCheckCallback</td>
+<td>ModelSchemaChildCheckCallback</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>Selection</td>
+<td>ModelSelection</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>SelectionChangeEvent</td>
+<td>ModelSelectionChangeEvent</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>SelectionChangeRangeEvent</td>
+<td>ModelSelectionChangeRangeEvent</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>SelectionChangeAttributeEvent</td>
+<td>ModelSelectionChangeAttributeEvent</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>Selectable</td>
+<td>ModelSelectable</td>
+</tr>
+<tr>
+<td>model/selection.ts</td>
+<td>PlaceOrOffset</td>
+<td>ModelPlaceOrOffset</td>
+</tr>
+<tr>
+<td>model/text.ts</td>
+<td>Text</td>
+<td>ModelText</td>
+</tr>
+<tr>
+<td>model/textproxy.ts</td>
+<td>TextProxy</td>
+<td>ModelTextProxy</td>
+</tr>
+<tr>
+<td>model/treewalker.ts</td>
+<td>TreeWalker</td>
+<td>ModelTreeWalker</td>
+</tr>
+<tr>
+<td>model/treewalker.ts</td>
+<td>TreeWalkerValueType</td>
+<td>ModelTreeWalkerValueType</td>
+</tr>
+<tr>
+<td>model/treewalker.ts</td>
+<td>TreeWalkerValue</td>
+<td>ModelTreeWalkerValue</td>
+</tr>
+<tr>
+<td>model/treewalker.ts</td>
+<td>TreeWalkerDirection</td>
+<td>ModelTreeWalkerDirection</td>
+</tr>
+<tr>
+<td>model/treewalker.ts</td>
+<td>TreeWalkerOptions</td>
+<td>ModelTreeWalkerOptions</td>
+</tr>
+<tr>
+<td>model/typecheckable.ts</td>
+<td>TypeCheckable</td>
+<td>ModelTypeCheckable</td>
+</tr>
+<tr>
+<td>model/utils/autoparagraphing.ts</td>
+<td>autoParagraphEmptyRoots</td>
+<td>_autoParagraphEmptyModelRoots</td>
+</tr>
+<tr>
+<td>model/utils/autoparagraphing.ts</td>
+<td>isParagraphable</td>
+<td>_isParagraphableModelNode</td>
+</tr>
+<tr>
+<td>model/utils/autoparagraphing.ts</td>
+<td>wrapInParagraph</td>
+<td>_wrapInParagraphModelNode</td>
+</tr>
+<tr>
+<td>model/utils/deletecontent.ts</td>
+<td>deleteContent</td>
+<td>_deleteModelContent</td>
+</tr>
+<tr>
+<td>model/utils/getselectedcontent.ts</td>
+<td>getSelectedContent</td>
+<td>_getSelectedModelContent</td>
+</tr>
+<tr>
+<td>model/utils/insertcontent.ts</td>
+<td>insertContent</td>
+<td>_insertModelContent</td>
+</tr>
+<tr>
+<td>model/utils/insertobject.ts</td>
+<td>insertObject</td>
+<td>_insertModelObject</td>
+</tr>
+<tr>
+<td>model/utils/modifyselection.ts</td>
+<td>modifySelection</td>
+<td>_modifyModelSelection</td>
+</tr>
+<tr>
+<td>model/utils/selection-post-fixer.ts</td>
+<td>injectSelectionPostFixer</td>
+<td>_injectModelSelectionPostFixer</td>
+</tr>
+<tr>
+<td>model/utils/selection-post-fixer.ts</td>
+<td>tryFixingRange</td>
+<td>_tryFixingModelRange</td>
+</tr>
+<tr>
+<td>model/utils/selection-post-fixer.ts</td>
+<td>mergeIntersectingRanges</td>
+<td>_mergeIntersectingModelRanges</td>
+</tr>
+<tr>
+<td>model/writer.ts</td>
+<td>Writer</td>
+<td>ModelWriter</td>
+</tr>
+<tr>
+<td>view/attributeelement.ts</td>
+<td>AttributeElement</td>
+<td>ViewAttributeElement</td>
+</tr>
+<tr>
+<td>view/containerelement.ts</td>
+<td>ContainerElement</td>
+<td>ViewContainerElement</td>
+</tr>
+<tr>
+<td>view/containerelement.ts</td>
+<td>getFillerOffset</td>
+<td>getViewFillerOffset</td>
+</tr>
+<tr>
+<td>view/datatransfer.ts</td>
+<td>DataTransfer</td>
+<td>ViewDataTransfer</td>
+</tr>
+<tr>
+<td>view/datatransfer.ts</td>
+<td>EffectAllowed</td>
+<td>ViewEffectAllowed</td>
+</tr>
+<tr>
+<td>view/datatransfer.ts</td>
+<td>DropEffect</td>
+<td>ViewDropEffect</td>
+</tr>
+<tr>
+<td>view/document.ts</td>
+<td>Document</td>
+<td>ViewDocument</td>
+</tr>
+<tr>
+<td>view/document.ts</td>
+<td>ViewDocumentPostFixer</td>
+<td>ViewDocumentPostFixer</td>
+</tr>
+<tr>
+<td>view/document.ts</td>
+<td>ChangeType</td>
+<td>ViewDocumentChangeType</td>
+</tr>
+<tr>
+<td>view/documentfragment.ts</td>
+<td>DocumentFragment</td>
+<td>ViewDocumentFragment</td>
+</tr>
+<tr>
+<td>view/documentselection.ts</td>
+<td>DocumentSelection</td>
+<td>ViewDocumentSelection</td>
+</tr>
+<tr>
+<td>view/domconverter.ts</td>
+<td>DomConverter</td>
+<td>ViewDomConverter</td>
+</tr>
+<tr>
+<td>view/downcastwriter.ts</td>
+<td>DowncastWriter</td>
+<td>ViewDowncastWriter</td>
+</tr>
+<tr>
+<td>view/editableelement.ts</td>
+<td>EditableElement</td>
+<td>ViewEditableElement</td>
+</tr>
+<tr>
+<td>view/element.ts</td>
+<td>Element</td>
+<td>ViewElement</td>
+</tr>
+<tr>
+<td>view/element.ts</td>
+<td>ElementAttributeValue</td>
+<td>ViewElementAttributeValue</td>
+</tr>
+<tr>
+<td>view/element.ts</td>
+<td>ElementAttributes</td>
+<td>ViewElementAttributes</td>
+</tr>
+<tr>
+<td>view/element.ts</td>
+<td>NormalizedConsumables</td>
+<td>ViewNormalizedConsumables</td>
+</tr>
+<tr>
+<td>view/elementdefinition.ts</td>
+<td>ElementObjectDefinition</td>
+<td>ViewElementObjectDefinition</td>
+</tr>
+<tr>
+<td>view/elementdefinition.ts</td>
+<td>ElementDefinition</td>
+<td>ViewElementDefinition</td>
+</tr>
+<tr>
+<td>view/emptyelement.ts</td>
+<td>EmptyElement</td>
+<td>ViewEmptyElement</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>NBSP_FILLER</td>
+<td>_VIEW_NBSP_FILLER</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>MARKED_NBSP_FILLER</td>
+<td>_VIEW_MARKED_NBSP_FILLER</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>BR_FILLER</td>
+<td>_VIEW_BR_FILLER</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>INLINE_FILLER_LENGTH</td>
+<td>_VIEW_INLINE_FILLER_LENGTH</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>INLINE_FILLER</td>
+<td>_VIEW_INLINE_FILLER</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>startsWithFiller</td>
+<td>_startsWithViewFiller</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>isInlineFiller</td>
+<td>_isInlineViewFiller</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>getDataWithoutFiller</td>
+<td>_getDataWithoutViewFiller</td>
+</tr>
+<tr>
+<td>view/filler.ts</td>
+<td>injectQuirksHandling</td>
+<td>_injectViewQuirksHandling</td>
+</tr>
+<tr>
+<td>view/item.ts</td>
+<td>Item</td>
+<td>ViewItem</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>isPatternMatched</td>
+<td>_isViewPatternMatched</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>PropertyPatterns</td>
+<td>MatchPropertyPatterns</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>AttributePatterns</td>
+<td>MatchAttributePatterns</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>StylePatterns</td>
+<td>MatchStylePatterns</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>ClassPatterns</td>
+<td>MatchClassPatterns</td>
+</tr>
+<tr>
+<td>view/matcher.ts</td>
+<td>NormalizedPropertyPattern</td>
+<td>_ViewNormalizedPropertyPattern</td>
+</tr>
+<tr>
+<td>view/node.ts</td>
+<td>Node</td>
+<td>ViewNode</td>
+</tr>
+<tr>
+<td>view/observer/arrowkeysobserver.ts</td>
+<td>ArrowKeysObserver</td>
+<td>ViewDocumentArrowKeyEvent</td>
+</tr>
+<tr>
+<td>view/observer/bubblingeventinfo.ts</td>
+<td>EventPhase</td>
+<td>BubblingEventPhase</td>
+</tr>
+<tr>
+<td>view/observer/compositionobserver.ts</td>
+<td>CompositionEventData</td>
+<td>ViewDocumentCompositionEventData</td>
+</tr>
+<tr>
+<td>view/observer/domeventdata.ts</td>
+<td>DomEventData</td>
+<td>ViewDocumentDomEventData</td>
+</tr>
+<tr>
+<td>view/observer/inputobserver.ts</td>
+<td>InputEventData</td>
+<td>ViewDocumentInputEventData</td>
+</tr>
+<tr>
+<td>view/observer/keyobserver.ts</td>
+<td>KeyEventData</td>
+<td>ViewDocumentKeyEventData</td>
+</tr>
+<tr>
+<td>view/observer/mutationobserver.ts</td>
+<td>MutationsEventData</td>
+<td>ViewDocumentMutationEventData</td>
+</tr>
+<tr>
+<td>view/observer/mutationobserver.ts</td>
+<td>MutationData</td>
+<td>ObserverMutationData</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>enablePlaceholder</td>
+<td>enableViewPlaceholder</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>disablePlaceholder</td>
+<td>disableViewPlaceholder</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>showPlaceholder</td>
+<td>showViewPlaceholder</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>hidePlaceholder</td>
+<td>hideViewPlaceholder</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>needsPlaceholder</td>
+<td>needsViewPlacegolder</td>
+</tr>
+<tr>
+<td>view/placeholder.ts</td>
+<td>PlaceholderableElement</td>
+<td>PlaceholderableViewElement</td>
+</tr>
+<tr>
+<td>view/position.ts</td>
+<td>Position</td>
+<td>ViewPosition</td>
+</tr>
+<tr>
+<td>view/position.ts</td>
+<td>PositionRelation</td>
+<td>ViewPositionRelation</td>
+</tr>
+<tr>
+<td>view/position.ts</td>
+<td>PositionOffset</td>
+<td>ViewPositionOffset</td>
+</tr>
+<tr>
+<td>view/range.ts</td>
+<td>Range</td>
+<td>ViewRange</td>
+</tr>
+<tr>
+<td>view/rawelement.ts</td>
+<td>RawElement</td>
+<td>ViewRawElement</td>
+</tr>
+<tr>
+<td>view/renderer.ts</td>
+<td>Renderer</td>
+<td>ViewRenderer</td>
+</tr>
+<tr>
+<td>view/rooteditableelement.ts</td>
+<td>RootEditableElement</td>
+<td>ViewRootEditableElement</td>
+</tr>
+<tr>
+<td>view/selection.ts</td>
+<td>Selection</td>
+<td>ViewSelection</td>
+</tr>
+<tr>
+<td>view/selection.ts</td>
+<td>SelectionOptions</td>
+<td>ViewSelectionOptions</td>
+</tr>
+<tr>
+<td>view/selection.ts</td>
+<td>PlaceOrOffset</td>
+<td>ViewPlaceOrOffset</td>
+</tr>
+<tr>
+<td>view/selection.ts</td>
+<td>Selectable</td>
+<td>ViewSelectable</td>
+</tr>
+<tr>
+<td>view/styles/background.ts</td>
+<td>addBackgroundRules</td>
+<td>addBackgroundStylesRules</td>
+</tr>
+<tr>
+<td>view/styles/border.ts</td>
+<td>addBorderRules</td>
+<td>addBorderStylesRules</td>
+</tr>
+<tr>
+<td>view/styles/margin.ts</td>
+<td>addMarginRules</td>
+<td>addMarginStylesRules</td>
+</tr>
+<tr>
+<td>view/styles/padding.ts</td>
+<td>addPaddingRules</td>
+<td>addPaddingStylesRules</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isColor</td>
+<td>isColorStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isLineStyle</td>
+<td>isLineStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isLength</td>
+<td>isLengthStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isPercentage</td>
+<td>isPercentageStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isRepeat</td>
+<td>isRepeatStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isPosition</td>
+<td>isPositionStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isAttachment</td>
+<td>isAttachmentStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>isURL</td>
+<td>isURLStyleValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>getBoxSidesValues</td>
+<td>getBoxSidesStyleValues</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>getBoxSidesValueReducer</td>
+<td>getBoxSidesStyleValueReducer</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>getBoxSidesShorthandValue</td>
+<td>getBoxSidesStyleShorthandValue</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>getPositionShorthandNormalizer</td>
+<td>getPositionStyleShorthandNormalizer</td>
+</tr>
+<tr>
+<td>view/styles/utils.ts</td>
+<td>getShorthandValues</td>
+<td>getShorthandStylesValues</td>
+</tr>
+<tr>
+<td>view/stylesmap.ts</td>
+<td>PropertyDescriptor</td>
+<td>StylePropertyDescriptor</td>
+</tr>
+<tr>
+<td>view/stylesmap.ts</td>
+<td>BoxSides</td>
+<td>BoxStyleSides</td>
+</tr>
+<tr>
+<td>view/stylesmap.ts</td>
+<td>Normalizer</td>
+<td>StylesNormalizer</td>
+</tr>
+<tr>
+<td>view/stylesmap.ts</td>
+<td>Extractor</td>
+<td>StylesExtractor</td>
+</tr>
+<tr>
+<td>view/stylesmap.ts</td>
+<td>Reducer</td>
+<td>StylesReducer</td>
+</tr>
+<tr>
+<td>view/text.ts</td>
+<td>Text</td>
+<td>ViewText</td>
+</tr>
+<tr>
+<td>view/textproxy.ts</td>
+<td>TextProxy</td>
+<td>ViewTextProxy</td>
+</tr>
+<tr>
+<td>view/tokenlist.ts</td>
+<td>TokenList</td>
+<td>ViewTokenList</td>
+</tr>
+<tr>
+<td>view/treewalker.ts</td>
+<td>TreeWalker</td>
+<td>ViewTreeWalker</td>
+</tr>
+<tr>
+<td>view/treewalker.ts</td>
+<td>TreeWalkerValueType</td>
+<td>ViewTreeWalkerValueType</td>
+</tr>
+<tr>
+<td>view/treewalker.ts</td>
+<td>TreeWalkerValue</td>
+<td>ViewTreeWalkerValue</td>
+</tr>
+<tr>
+<td>view/treewalker.ts</td>
+<td>TreeWalkerDirection</td>
+<td>ViewTreeWalkerDirection</td>
+</tr>
+<tr>
+<td>view/treewalker.ts</td>
+<td>TreeWalkerOptions</td>
+<td>ViewTreeWalkerOptions</td>
+</tr>
+<tr>
+<td>view/typecheckable.ts</td>
+<td>TypeCheckable</td>
+<td>ViewTypeCheckable</td>
+</tr>
+<tr>
+<td>view/uielement.ts</td>
+<td>UIElement</td>
+<td>ViewUIElement</td>
+</tr>
+<tr>
+<td>view/uielement.ts</td>
+<td>injectUiElementHandling</td>
+<td>_injectViewUIElementHandling</td>
+</tr>
+<tr>
+<td>view/upcastwriter.ts</td>
+<td>UpcastWriter</td>
+<td>ViewUpcastWriter</td>
+</tr>
+<tr>
+<td>view/view.ts</td>
+<td>View</td>
+<td>EditingView</td>
+</tr>
+<tr>
+<td>view/view.ts</td>
+<td>AlwaysRegisteredObservers</td>
+<td>AlwaysRegisteredViewObservers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-enter"><a class="headerlink" href="#ckeditorckeditor5-enter">#</a> @ckeditor/ckeditor5-enter</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original_method_name</th>
+<th>re_exported_method_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enterobserver.ts</td>
+<td>EnterObserver</td>
+<td>EnterObserver</td>
+</tr>
+<tr>
+<td>enterobserver.ts</td>
+<td>EnterEventData</td>
+<td>ViewDocumentEnterEventData</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getCopyOnEnterAttributes</td>
+<td>_getCopyOnEnterAttributes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-export-word"><a class="headerlink" href="#ckeditorckeditor5-export-word">#</a> @ckeditor/ckeditor5-export-word</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original_method_name</th>
+<th>re_exported_method_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterInternalOptions</td>
+<td>_ExportWordConverterInternalOptions</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterInternalOptionsV2</td>
+<td>_ExportWordConverterInternalOptionsV2</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterCollaborationFeaturesOptionsV2</td>
+<td>_ExportWordConverterCollaborationFeaturesOptionsV2</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterCommentsThreadOptionsV2</td>
+<td>_ExportWordConverterCommentsThreadOptionsV2</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterCommentsV2</td>
+<td>_ExportWordConverterCommentsV2</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterSuggestionsOptionsV2</td>
+<td>_ExportWordConverterSuggestionsOptionsV2</td>
+</tr>
+<tr>
+<td>exportword.ts</td>
+<td>ExportWordConverterMergeFieldsOptionsV2</td>
+<td>_ExportWordConverterMergeFieldsOptionsV2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-find-and-replace"><a class="headerlink" href="#ckeditorckeditor5-find-and-replace">#</a> @ckeditor/ckeditor5-find-and-replace</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Original Method Name</th>
+<th>New Re-exported Method Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>findandreplace.ts</td>
+<td>ResultType</td>
+<td>FindResultType</td>
+</tr>
+<tr>
+<td>findandreplacestate.ts</td>
+<td>sortSearchResultsByMarkerPositions</td>
+<td>_sortFindResultsByMarkerPositions</td>
+</tr>
+<tr>
+<td>findandreplaceui.ts</td>
+<td>SearchResetedEvent</td>
+<td>FindResetedEvent</td>
+</tr>
+<tr>
+<td>replacecommandbase.ts</td>
+<td>ReplaceCommandBase</td>
+<td>FindReplaceCommandBase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-font"><a class="headerlink" href="#ckeditorckeditor5-font">#</a> @ckeditor/ckeditor5-font</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Original Method Name</th>
+<th>New Re-exported Method Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fontfamily/utils.ts</td>
+<td>normalizeOptions</td>
+<td>_normalizeFontFamilyOptions</td>
+</tr>
+<tr>
+<td>fontsize/utils.ts</td>
+<td>normalizeOptions</td>
+<td>_normalizeFontSizeOptions</td>
+</tr>
+<tr>
+<td>ui/colorui.ts</td>
+<td>ColorUI</td>
+<td>FontColorUIBase</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>buildDefinition</td>
+<td>_buildFontDefinition</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>renderUpcastAttribute</td>
+<td>_renderUpcastFontColorAttribute</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>renderDowncastElement</td>
+<td>_renderDowncastFontElement</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>addColorSelectorToDropdown</td>
+<td>_addFontColorSelectorToDropdown</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>ColorSelectorDropdownView</td>
+<td>FontColorSelectorDropdownView</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-fullscreen"><a class="headerlink" href="#ckeditorckeditor5-fullscreen">#</a> @ckeditor/ckeditor5-fullscreen</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Original Method Name</th>
+<th>New Re-exported Method Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>handlers/abstracteditorhandler.ts</td>
+<td>AbstractEditorHandler</td>
+<td>FullscreenAbstractEditorHandler</td>
+</tr>
+<tr>
+<td>handlers/classiceditorhandler.ts</td>
+<td>ClassicEditorHandler</td>
+<td>FullscreenClassicEditorHandler</td>
+</tr>
+<tr>
+<td>handlers/decouplededitorhandler.ts</td>
+<td>DecoupledEditorHandler</td>
+<td>FullscreenDecoupledEditorHandler</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-heading"><a class="headerlink" href="#ckeditorckeditor5-heading">#</a> @ckeditor/ckeditor5-heading</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Original Method Name</th>
+<th>New Re-exported Method Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title.ts</td>
+<td>TitleConfig</td>
+<td>HeadingTitleConfig</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getLocalizedOptions</td>
+<td>_getLocalizedHeadingOptions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-html-embed"><a class="headerlink" href="#ckeditorckeditor5-html-embed">#</a> @ckeditor/ckeditor5-html-embed</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Original Method Name</th>
+<th>New Re-exported Method Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>htmlembedediting.ts</td>
+<td>RawHtmlApi</td>
+<td>_RawHtmlEmbedApi</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-html-support"><a class="headerlink" href="#ckeditorckeditor5-html-support">#</a> @ckeditor/ckeditor5-html-support</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original_method</th>
+<th>reexported_method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>converters.ts</td>
+<td>viewToModelObjectConverter</td>
+<td>_viewToModelObjectContentHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>toObjectWidgetConverter</td>
+<td>_toObjectWidgetHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>createObjectView</td>
+<td>_createObjectHtmlSupportView</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>viewToAttributeInlineConverter</td>
+<td>_viewToAttributeInlineHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>emptyInlineModelElementToViewConverter</td>
+<td>_emptyInlineModelElementToViewHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>attributeToViewInlineConverter</td>
+<td>_attributeToInlineHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>viewToModelBlockAttributeConverter</td>
+<td>_viewToModelBlockAttributeHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>converters.ts</td>
+<td>modelToViewBlockAttributeConverter</td>
+<td>_modelToViewBlockAttributeHtmlSupportConverter</td>
+</tr>
+<tr>
+<td>datafilter.ts</td>
+<td>DataFilterRegisterEvent</td>
+<td>HtmlSupportDataFilterRegisterEvent</td>
+</tr>
+<tr>
+<td>dataschema.ts</td>
+<td>DataSchemaDefinition</td>
+<td>HtmlSupportDataSchemaDefinition</td>
+</tr>
+<tr>
+<td>dataschema.ts</td>
+<td>DataSchemaBlockElementDefinition</td>
+<td>HtmlSupportDataSchemaBlockElementDefinition</td>
+</tr>
+<tr>
+<td>dataschema.ts</td>
+<td>DataSchemaInlineElementDefinition</td>
+<td>HtmlSupportDataSchemaInlineElementDefinition</td>
+</tr>
+<tr>
+<td>generalhtmlsupportconfig.ts</td>
+<td>FullPageConfig</td>
+<td>GHSFullPageConfig</td>
+</tr>
+<tr>
+<td>generalhtmlsupportconfig.ts</td>
+<td>CssSanitizeOutput</td>
+<td>GHSCssSanitizeOutput</td>
+</tr>
+<tr>
+<td>integrations/integrationutils.ts</td>
+<td>getDescendantElement</td>
+<td>_getHtmlSupportDescendantElement</td>
+</tr>
+<tr>
+<td>schemadefinitions.ts</td>
+<td><default></default></td>
+<td>_HTML_SUPPORT_SCHEMA_DEFINITIONS</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>updateViewAttributes</td>
+<td>_updateHtmlSupportViewAttributes</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>setViewAttributes</td>
+<td>_setHtmlSupportViewAttributes</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>removeViewAttributes</td>
+<td>_removeHtmlSupportViewAttributes</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>mergeViewElementAttributes</td>
+<td>_mergeHtmlSupportViewElementAttributes</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>modifyGhsAttribute</td>
+<td>_modifyHtmlSupportGhsAttribute</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>toPascalCase</td>
+<td>_toHtmlSupportPascalCase</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getHtmlAttributeName</td>
+<td>_getHtmlSupportAttributeName</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-image"><a class="headerlink" href="#ckeditorckeditor5-image">#</a> @ckeditor/ckeditor5-image</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original_method</th>
+<th>reexported_method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image/converters.ts</td>
+<td>upcastImageFigure</td>
+<td>_upcastImageFigure</td>
+</tr>
+<tr>
+<td>image/converters.ts</td>
+<td>upcastPicture</td>
+<td>_upcastImagePicture</td>
+</tr>
+<tr>
+<td>image/converters.ts</td>
+<td>downcastSrcsetAttribute</td>
+<td>_downcastImageSrcsetAttribute</td>
+</tr>
+<tr>
+<td>image/converters.ts</td>
+<td>downcastSourcesAttribute</td>
+<td>_downcastImageSourcesAttribute</td>
+</tr>
+<tr>
+<td>image/converters.ts</td>
+<td>downcastImageAttribute</td>
+<td>_downcastImageAttribute</td>
+</tr>
+<tr>
+<td>image/imageloadobserver.ts</td>
+<td>ImageLoadObserver</td>
+<td>ImageLoadObserver</td>
+</tr>
+<tr>
+<td>image/ui/utils.ts</td>
+<td>repositionContextualBalloon</td>
+<td>_repositionImageContextualBalloon</td>
+</tr>
+<tr>
+<td>image/ui/utils.ts</td>
+<td>getBalloonPositionData</td>
+<td>_getImageBalloonPositionData</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>createInlineImageViewElement</td>
+<td>_createInlineImageViewElement</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>createBlockImageViewElement</td>
+<td>_createBlockImageViewElement</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>getImgViewElementMatcher</td>
+<td>_getImageViewElementMatcher</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>determineImageTypeForInsertionAtSelection</td>
+<td>_determineImageTypeForInsertionAtSelection</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>getSizeValueIfInPx</td>
+<td>_getImageSizeValueIfInPx</td>
+</tr>
+<tr>
+<td>image/utils.ts</td>
+<td>widthAndHeightStylesAreBothSet</td>
+<td>_checkIfImageWidthAndHeightStylesAreBothSet</td>
+</tr>
+<tr>
+<td>imageinsert/ui/imageinsertformview.ts</td>
+<td>ImageInsertFormView</td>
+<td>_ImageInsertFormView</td>
+</tr>
+<tr>
+<td>imageinsert/ui/imageinserturlview.ts</td>
+<td>ImageInsertUrlView</td>
+<td>_ImageInsertUrlView</td>
+</tr>
+<tr>
+<td>imageresize/ui/imagecustomresizeformview.ts</td>
+<td>ImageCustomResizeFormView</td>
+<td>_ImageCustomResizeFormView</td>
+</tr>
+<tr>
+<td>imageresize/ui/imagecustomresizeformview.ts</td>
+<td>ImageCustomResizeFormValidatorCallback</td>
+<td>_ImageCustomResizeFormValidatorCallback</td>
+</tr>
+<tr>
+<td>imageresize/utils/getselectedimageeditornodes.ts</td>
+<td>getSelectedImageEditorNodes</td>
+<td>_getSelectedImageEditorNodes</td>
+</tr>
+<tr>
+<td>imageresize/utils/getselectedimagepossibleresizerange.ts</td>
+<td>getSelectedImagePossibleResizeRange</td>
+<td>_getSelectedImagePossibleResizeRange</td>
+</tr>
+<tr>
+<td>imageresize/utils/getselectedimagepossibleresizerange.ts</td>
+<td>PossibleResizeImageRange</td>
+<td>_PossibleResizeImageRange</td>
+</tr>
+<tr>
+<td>imageresize/utils/getselectedimagewidthinunits.ts</td>
+<td>getSelectedImageWidthInUnits</td>
+<td>_getSelectedImageWidthInUnits</td>
+</tr>
+<tr>
+<td>imageresize/utils/tryparsedimensionwithunit.ts</td>
+<td>tryParseDimensionWithUnit</td>
+<td>_tryParseImageDimensionWithUnit</td>
+</tr>
+<tr>
+<td>imageresize/utils/tryparsedimensionwithunit.ts</td>
+<td>tryCastDimensionsToUnit</td>
+<td>_tryCastImageDimensionsToUnit</td>
+</tr>
+<tr>
+<td>imageresize/utils/tryparsedimensionwithunit.ts</td>
+<td>DimensionWithUnit</td>
+<td>_ImageDimensionWithUnit</td>
+</tr>
+<tr>
+<td>imagestyle/converters.ts</td>
+<td>modelToViewStyleAttribute</td>
+<td>_modelToViewImageStyleAttribute</td>
+</tr>
+<tr>
+<td>imagestyle/converters.ts</td>
+<td>viewToModelStyleAttribute</td>
+<td>_viewToModelImageStyleAttribute</td>
+</tr>
+<tr>
+<td>imagestyle/utils.ts</td>
+<td>DEFAULT_OPTIONS</td>
+<td>_IMAGE_DEFAULT_OPTIONS</td>
+</tr>
+<tr>
+<td>imagestyle/utils.ts</td>
+<td>DEFAULT_ICONS</td>
+<td>_IMAGE_DEFAULT_ICONS</td>
+</tr>
+<tr>
+<td>imagestyle/utils.ts</td>
+<td>DEFAULT_DROPDOWN_DEFINITIONS</td>
+<td>_IMAGE_DEFAULT_DROPDOWN_DEFINITIONS</td>
+</tr>
+<tr>
+<td>imagestyle/utils.ts</td>
+<td><default></default></td>
+<td>_ImageStyleUtils</td>
+</tr>
+<tr>
+<td>imagetextalternative/ui/textalternativeformview.ts</td>
+<td>TextAlternativeFormView</td>
+<td>_ImageTextAlternativeFormView</td>
+</tr>
+<tr>
+<td>imagetextalternative/ui/textalternativeformview.ts</td>
+<td>TextAlternativeFormViewSubmitEvent</td>
+<td>_ImageTextAlternativeFormViewSubmitEvent</td>
+</tr>
+<tr>
+<td>imagetextalternative/ui/textalternativeformview.ts</td>
+<td>TextAlternativeFormViewCancelEvent</td>
+<td>_ImageTextAlternativeFormViewCancelEvent</td>
+</tr>
+<tr>
+<td>imageupload/imageuploadediting.ts</td>
+<td>isHtmlIncluded</td>
+<td>isHtmlInDataTransfer</td>
+</tr>
+<tr>
+<td>imageupload/utils.ts</td>
+<td>fetchLocalImage</td>
+<td>_fetchLocalImage</td>
+</tr>
+<tr>
+<td>imageupload/utils.ts</td>
+<td>isLocalImage</td>
+<td>_isLocalImage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-import-word"><a class="headerlink" href="#ckeditorckeditor5-import-word">#</a> @ckeditor/ckeditor5-import-word</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original_method</th>
+<th>reexported_method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>importword.ts</td>
+<td>FormattingOptions</td>
+<td>ImportWordFormattingOptions</td>
+</tr>
+<tr>
+<td>importwordcommand.ts</td>
+<td>DataInsertEvent</td>
+<td>ImportWordDataInsertEvent</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-indent"><a class="headerlink" href="#ckeditorckeditor5-indent">#</a> @ckeditor/ckeditor5-indent</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indentcommandbehavior/indentusingclasses.ts</td>
+<td>IndentUsingClasses</td>
+<td>_IndentUsingClasses</td>
+</tr>
+<tr>
+<td>indentcommandbehavior/indentusingoffset.ts</td>
+<td>IndentUsingOffset</td>
+<td>_IndentUsingOffset</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-language"><a class="headerlink" href="#ckeditorckeditor5-language">#</a> @ckeditor/ckeditor5-language</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utils.ts</td>
+<td>stringifyLanguageAttribute</td>
+<td>_stringifyLanguageAttribute</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>parseLanguageAttribute</td>
+<td>_parseLanguageAttribute</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-link"><a class="headerlink" href="#ckeditorckeditor5-link">#</a> @ckeditor/ckeditor5-link</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ui/linkbuttonview.ts</td>
+<td>LinkButtonView</td>
+<td>_LinkButtonView</td>
+</tr>
+<tr>
+<td>ui/linkformview.ts</td>
+<td>SubmitEvent</td>
+<td>LinkFormSubmitEvent</td>
+</tr>
+<tr>
+<td>ui/linkformview.ts</td>
+<td>CancelEvent</td>
+<td>LinkFormCancelEvent</td>
+</tr>
+<tr>
+<td>ui/linkpreviewbuttonview.ts</td>
+<td>LinkPreviewButtonView</td>
+<td>_LinkPreviewButtonView</td>
+</tr>
+<tr>
+<td>ui/linkpropertiesview.ts</td>
+<td>BackEvent</td>
+<td>LinkPropertiesBackEvent</td>
+</tr>
+<tr>
+<td>ui/linkprovideritemsview.ts</td>
+<td>CancelEvent</td>
+<td>LinkProvidersCancelEvent</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>LINK_KEYSTROKE</td>
+<td>_LINK_KEYSTROKE</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>createLinkElement</td>
+<td>_createLinkElement</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>ensureSafeUrl</td>
+<td>_ensureSafeLinkUrl</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getLocalizedDecorators</td>
+<td>_getLocalizedLinkDecorators</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>normalizeDecorators</td>
+<td>_normalizeLinkDecorators</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>isEmail</td>
+<td>_isEmailLink</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>linkHasProtocol</td>
+<td>_hasLinkProtocol</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>openLink</td>
+<td>_openLink</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>extractTextFromLinkRange</td>
+<td>_extractTextFromLinkRange</td>
+</tr>
+<tr>
+<td>utils/manualdecorator.ts</td>
+<td>ManualDecorator</td>
+<td>LinkManualDecorator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-list"><a class="headerlink" href="#ckeditorckeditor5-list">#</a> @ckeditor/ckeditor5-list</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list/converters.ts</td>
+<td>listItemUpcastConverter</td>
+<td>_listItemUpcastConverter</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>reconvertItemsOnDataChange</td>
+<td>_reconvertListItemsOnDataChange</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>listItemDowncastConverter</td>
+<td>_listItemDowncastConverter</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>listItemDowncastRemoveConverter</td>
+<td>_listItemDowncastRemoveConverter</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>bogusParagraphCreator</td>
+<td>_listItemBogusParagraphCreator</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>findMappedViewElement</td>
+<td>_findMappedListItemViewElement</td>
+</tr>
+<tr>
+<td>list/converters.ts</td>
+<td>createModelToViewPositionMapper</td>
+<td>_createModelToViewListPositionMapper</td>
+</tr>
+<tr>
+<td>list/listcommand.ts</td>
+<td>ListCommandAfterExecuteEvent</td>
+<td>_ListCommandAfterExecuteEvent</td>
+</tr>
+<tr>
+<td>list/listediting.ts</td>
+<td>ListItemAttributesMap</td>
+<td>_ListItemAttributesMap</td>
+</tr>
+<tr>
+<td>list/listediting.ts</td>
+<td>ListEditingCheckAttributesEvent</td>
+<td>_ListEditingCheckAttributesEvent</td>
+</tr>
+<tr>
+<td>list/listediting.ts</td>
+<td>ListEditingCheckElementEvent</td>
+<td>_ListEditingCheckElementEvent</td>
+</tr>
+<tr>
+<td>list/listindentcommand.ts</td>
+<td>ListIndentCommandAfterExecuteEvent</td>
+<td>_ListIndentCommandAfterExecuteEvent</td>
+</tr>
+<tr>
+<td>list/listmergecommand.ts</td>
+<td>ListMergeCommandAfterExecuteEvent</td>
+<td>_ListMergeCommandAfterExecuteEvent</td>
+</tr>
+<tr>
+<td>list/listsplitcommand.ts</td>
+<td>ListSplitCommandAfterExecuteEvent</td>
+<td>_ListSplitCommandAfterExecuteEvent</td>
+</tr>
+<tr>
+<td>list/utils.ts</td>
+<td>createUIComponents</td>
+<td>_createListUIComponents</td>
+</tr>
+<tr>
+<td>list/utils/listwalker.ts</td>
+<td>ListWalker</td>
+<td>_ListWalker</td>
+</tr>
+<tr>
+<td>list/utils/listwalker.ts</td>
+<td>SiblingListBlocksIterator</td>
+<td>_SiblingListBlocksIterator</td>
+</tr>
+<tr>
+<td>list/utils/listwalker.ts</td>
+<td>ListBlocksIterable</td>
+<td>_ListBlocksIterable</td>
+</tr>
+<tr>
+<td>list/utils/listwalker.ts</td>
+<td>ListIteratorValue</td>
+<td>_ListIteratorValue</td>
+</tr>
+<tr>
+<td>list/utils/listwalker.ts</td>
+<td>ListWalkerOptions</td>
+<td>_ListWalkerOptions</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>ListItemUid</td>
+<td>_ListItemUid</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>ListElement</td>
+<td>_ListElement</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>isListItemBlock</td>
+<td>_isListItemBlock</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>getAllListItemBlocks</td>
+<td>_getAllListItemBlocks</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>getListItemBlocks</td>
+<td>_getListItemBlocks</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>getNestedListBlocks</td>
+<td>_getNestedListBlocks</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>getListItems</td>
+<td>_getListItems</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>isFirstBlockOfListItem</td>
+<td>_isFirstBlockOfListItem</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>isLastBlockOfListItem</td>
+<td>_isLastBlockOfListItem</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>expandListBlocksToCompleteItems</td>
+<td>_expandListBlocksToCompleteItems</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>expandListBlocksToCompleteList</td>
+<td>_expandListBlocksToCompleteList</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>splitListItemBefore</td>
+<td>_splitListItemBefore</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>mergeListItemBefore</td>
+<td>_mergeListItemBefore</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>indentBlocks</td>
+<td>_indentListBlocks</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>outdentBlocksWithMerge</td>
+<td>_outdentListBlocksWithMerge</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>removeListAttributes</td>
+<td>_removeListAttributes</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>isSingleListItem</td>
+<td>_isSingleListItem</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>outdentFollowingItems</td>
+<td>_outdentFollowingListItems</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>sortBlocks</td>
+<td>_sortListBlocks</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>getSelectedBlockObject</td>
+<td>_getSelectedBlockObject</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>canBecomeSimpleListItem</td>
+<td>_canBecomeSimpleListItem</td>
+</tr>
+<tr>
+<td>list/utils/model.ts</td>
+<td>isNumberedListType</td>
+<td>_isNumberedListType</td>
+</tr>
+<tr>
+<td>list/utils/postfixers.ts</td>
+<td>findAndAddListHeadToMap</td>
+<td>_findAndAddListHeadToMap</td>
+</tr>
+<tr>
+<td>list/utils/postfixers.ts</td>
+<td>fixListIndents</td>
+<td>_fixListIndents</td>
+</tr>
+<tr>
+<td>list/utils/postfixers.ts</td>
+<td>fixListItemIds</td>
+<td>_fixListItemIds</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>isListView</td>
+<td>_isListView</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>isListItemView</td>
+<td>_isListItemView</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>getIndent</td>
+<td>_getListIndent</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>createListElement</td>
+<td>_createListElement</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>createListItemElement</td>
+<td>_createListItemElement</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>getViewElementNameForListType</td>
+<td>_getViewElementNameForListType</td>
+</tr>
+<tr>
+<td>list/utils/view.ts</td>
+<td>getViewElementIdForListType</td>
+<td>_getViewElementIdForListType</td>
+</tr>
+<tr>
+<td>listproperties/converters.ts</td>
+<td>listPropertiesUpcastConverter</td>
+<td>_listPropertiesUpcastConverter</td>
+</tr>
+<tr>
+<td>listproperties/listpropertiesediting.ts</td>
+<td>AttributeStrategy</td>
+<td>_ListAttributeConversionStrategy</td>
+</tr>
+<tr>
+<td>listproperties/ui/listpropertiesview.ts</td>
+<td>ListPropertiesView</td>
+<td>_ListPropertiesView</td>
+</tr>
+<tr>
+<td>listproperties/ui/listpropertiesview.ts</td>
+<td>StylesView</td>
+<td>_ListPropertiesStylesView</td>
+</tr>
+<tr>
+<td>listproperties/utils/config.ts</td>
+<td>getNormalizedConfig</td>
+<td>_getNormalizedListConfig</td>
+</tr>
+<tr>
+<td>listproperties/utils/config.ts</td>
+<td>NormalizedListPropertiesConfig</td>
+<td>_NormalizedListPropertiesConfig</td>
+</tr>
+<tr>
+<td>listproperties/utils/style.ts</td>
+<td>getAllSupportedStyleTypes</td>
+<td>_getAllSupportedListStyleTypes</td>
+</tr>
+<tr>
+<td>listproperties/utils/style.ts</td>
+<td>getListTypeFromListStyleType</td>
+<td>_getListTypeFromListStyleType</td>
+</tr>
+<tr>
+<td>listproperties/utils/style.ts</td>
+<td>getListStyleTypeFromTypeAttribute</td>
+<td>_getListStyleTypeFromTypeAttribute</td>
+</tr>
+<tr>
+<td>listproperties/utils/style.ts</td>
+<td>getTypeAttributeFromListStyleType</td>
+<td>_getTypeAttributeFromListStyleType</td>
+</tr>
+<tr>
+<td>listproperties/utils/style.ts</td>
+<td>normalizeListStyle</td>
+<td>_normalizeListStyle</td>
+</tr>
+<tr>
+<td>todolist/todocheckboxchangeobserver.ts</td>
+<td>TodoCheckboxChangeObserver</td>
+<td>_TodoCheckboxChangeObserver</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-list-multi-level"><a class="headerlink" href="#ckeditorckeditor5-list-multi-level">#</a> @ckeditor/ckeditor5-list-multi-level</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>multilevellist.ts</td>
+<td>MultiLevelListConfig</td>
+<td>_MultiLevelListConfig</td>
+</tr>
+<tr>
+<td>multilevellist.ts</td>
+<td>MultiLevelListDefinition</td>
+<td>_MultiLevelListDefinition</td>
+</tr>
+<tr>
+<td>multilevellist.ts</td>
+<td>MultiLevelListMarkerDefinition</td>
+<td>_MultiLevelListMarkerDefinition</td>
+</tr>
+<tr>
+<td>multilevellist.ts</td>
+<td>MultiLevelListMarkerPattern</td>
+<td>_MultiLevelListMarkerPattern</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-markdown-gfm"><a class="headerlink" href="#ckeditorckeditor5-markdown-gfm">#</a> @ckeditor/ckeditor5-markdown-gfm</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gfmdataprocessor.ts</td>
+<td>GFMDataProcessor</td>
+<td>MarkdownGfmDataProcessor</td>
+</tr>
+<tr>
+<td>html2markdown.ts</td>
+<td>HtmlToMarkdown</td>
+<td>MarkdownGfmHtmlToMd</td>
+</tr>
+<tr>
+<td>markdown2html.ts</td>
+<td>MarkdownToHtml</td>
+<td>MarkdownGfmMdToHtml</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-media-embed"><a class="headerlink" href="#ckeditorckeditor5-media-embed">#</a> @ckeditor/ckeditor5-media-embed</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>converters.ts</td>
+<td>modelToViewUrlAttributeConverter</td>
+<td>_modelToViewUrlAttributeMediaConverter</td>
+</tr>
+<tr>
+<td>ui/mediaformview.ts</td>
+<td>MediaFormView</td>
+<td>_MediaFormView</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>toMediaWidget</td>
+<td>_toMediaWidget</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getSelectedMediaViewWidget</td>
+<td>_getSelectedMediaViewWidget</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>isMediaWidget</td>
+<td>_isMediaWidget</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>createMediaFigureElement</td>
+<td>_createMediaFigureElement</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getSelectedMediaModelWidget</td>
+<td>_getSelectedMediaModelWidget</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>insertMedia</td>
+<td>_insertMedia</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-mention"><a class="headerlink" href="#ckeditorckeditor5-mention">#</a> @ckeditor/ckeditor5-mention</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mentionconfig.ts</td>
+<td>FeedCallback</td>
+<td>MentionFeedbackCallback</td>
+</tr>
+<tr>
+<td>mentionconfig.ts</td>
+<td>ItemRenderer</td>
+<td>MentionItemRenderer</td>
+</tr>
+<tr>
+<td>mentionediting.ts</td>
+<td>_addMentionAttributes</td>
+<td>_addMentionAttributes</td>
+</tr>
+<tr>
+<td>mentionediting.ts</td>
+<td>_toMentionAttribute</td>
+<td>_toMentionAttribute</td>
+</tr>
+<tr>
+<td>mentionui.ts</td>
+<td>createRegExp</td>
+<td>_createMentionMarkerRegExp</td>
+</tr>
+<tr>
+<td>ui/domwrapperview.ts</td>
+<td>DomWrapperView</td>
+<td>MentionDomWrapperView</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-merge-fields"><a class="headerlink" href="#ckeditorckeditor5-merge-fields">#</a> @ckeditor/ckeditor5-merge-fields</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mergefieldsconfig.ts</td>
+<td>GroupDefinition</td>
+<td>MergeFieldsGroupDefinition</td>
+</tr>
+<tr>
+<td>mergefieldsconfig.ts</td>
+<td>DataSetDefinition</td>
+<td>MergeFieldsDataSetDefinition</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-minimap"><a class="headerlink" href="#ckeditorckeditor5-minimap">#</a> @ckeditor/ckeditor5-minimap</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minimapiframeview.ts</td>
+<td>MinimapIframeView</td>
+<td>_MinimapIframeView</td>
+</tr>
+<tr>
+<td>minimappositiontrackerview.ts</td>
+<td>MinimapPositionTrackerView</td>
+<td>_MinimapPositionTrackerView</td>
+</tr>
+<tr>
+<td>minimapview.ts</td>
+<td>MinimapViewOptions</td>
+<td>_MinimapViewOptions</td>
+</tr>
+<tr>
+<td>minimapview.ts</td>
+<td>MinimapView</td>
+<td>_MinimapView</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>cloneEditingViewDomRoot</td>
+<td>_cloneMinimapEditingViewDomRoot</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getPageStyles</td>
+<td>_getMinimapPageStyles</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getDomElementRect</td>
+<td>_getMinimapDomElementRect</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getClientHeight</td>
+<td>_getMinimapClientHeight</td>
+</tr>
+<tr>
+<td>utils.ts</td>
+<td>getScrollable</td>
+<td>_getMinimapScrollable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-paste-from-office"><a class="headerlink" href="#ckeditorckeditor5-paste-from-office">#</a> @ckeditor/ckeditor5-paste-from-office</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filters/bookmark.ts</td>
+<td>transformBookmarks</td>
+<td>_transformPasteOfficeBookmarks</td>
+</tr>
+<tr>
+<td>filters/br.ts</td>
+<td>transformBlockBrsToParagraphs</td>
+<td>_transformPasteOfficeBlockBrsToParagraphs</td>
+</tr>
+<tr>
+<td>filters/image.ts</td>
+<td>replaceImagesSourceWithBase64</td>
+<td>_replacePasteOfficeImagesSourceWithBase64</td>
+</tr>
+<tr>
+<td>filters/image.ts</td>
+<td>_convertHexToBase64</td>
+<td>_convertHexToBase64</td>
+</tr>
+<tr>
+<td>filters/list.ts</td>
+<td>transformListItemLikeElementsIntoLists</td>
+<td>_transformPasteOfficeListItemLikeElementsIntoLists</td>
+</tr>
+<tr>
+<td>filters/list.ts</td>
+<td>unwrapParagraphInListItem</td>
+<td>_unwrapPasteOfficeParagraphInListItem</td>
+</tr>
+<tr>
+<td>filters/parse.ts</td>
+<td>parseHtml</td>
+<td>parsePasteOfficeHtml</td>
+</tr>
+<tr>
+<td>filters/parse.ts</td>
+<td>ParseHtmlResult</td>
+<td>PasteOfficeHtmlParseResult</td>
+</tr>
+<tr>
+<td>filters/removeboldwrapper.ts</td>
+<td>removeBoldWrapper</td>
+<td>_removePasteOfficeBoldWrapper</td>
+</tr>
+<tr>
+<td>filters/removegooglesheetstag.ts</td>
+<td>removeGoogleSheetsTag</td>
+<td>_removePasteGoogleOfficeSheetsTag</td>
+</tr>
+<tr>
+<td>filters/removeinvalidtablewidth.ts</td>
+<td>removeInvalidTableWidth</td>
+<td>_removePasteOfficeInvalidTableWidths</td>
+</tr>
+<tr>
+<td>filters/removemsattributes.ts</td>
+<td>removeMSAttributes</td>
+<td>_removePasteMSOfficeAttributes</td>
+</tr>
+<tr>
+<td>filters/removestyleblock.ts</td>
+<td>removeStyleBlock</td>
+<td>_removePasteOfficeStyleBlock</td>
+</tr>
+<tr>
+<td>filters/removexmlns.ts</td>
+<td>removeXmlns</td>
+<td>_removePasteOfficeXmlnsAttributes</td>
+</tr>
+<tr>
+<td>filters/space.ts</td>
+<td>normalizeSpacing</td>
+<td>_normalizePasteOfficeSpacing</td>
+</tr>
+<tr>
+<td>filters/space.ts</td>
+<td>normalizeSpacerunSpans</td>
+<td>_normalizePasteOfficeSpaceRunSpans</td>
+</tr>
+<tr>
+<td>filters/table.ts</td>
+<td>transformTables</td>
+<td>_transformPasteOfficeTables</td>
+</tr>
+<tr>
+<td>filters/utils.ts</td>
+<td>convertCssLengthToPx</td>
+<td>_convertPasteOfficeCssLengthToPx</td>
+</tr>
+<tr>
+<td>filters/utils.ts</td>
+<td>isPx</td>
+<td>_isPasteOfficePxValue</td>
+</tr>
+<tr>
+<td>filters/utils.ts</td>
+<td>toPx</td>
+<td>_toPasteOfficePxValue</td>
+</tr>
+<tr>
+<td>normalizer.ts</td>
+<td>Normalizer</td>
+<td>PasteFromOfficeNormalizer</td>
+</tr>
+<tr>
+<td>normalizer.ts</td>
+<td>NormalizerData</td>
+<td>PasteFromOfficeNormalizerData</td>
+</tr>
+<tr>
+<td>normalizers/googledocsnormalizer.ts</td>
+<td>GoogleDocsNormalizer</td>
+<td>PasteFromOfficeGoogleDocsNormalizer</td>
+</tr>
+<tr>
+<td>normalizers/googlesheetsnormalizer.ts</td>
+<td>GoogleSheetsNormalizer</td>
+<td>PasteFromOfficeGoogleSheetsNormalizer</td>
+</tr>
+<tr>
+<td>normalizers/mswordnormalizer.ts</td>
+<td>MSWordNormalizer</td>
+<td>PasteFromOfficeMSWordNormalizer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-real-time-collaboration"><a class="headerlink" href="#ckeditorckeditor5-real-time-collaboration">#</a> @ckeditor/ckeditor5-real-time-collaboration</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config.ts</td>
+<td>PresenceListConfig</td>
+<td>RtcPresenceListConfig</td>
+</tr>
+<tr>
+<td>presencelist/view/presencedropdownlistview.ts</td>
+<td>PresenceDropdownListView</td>
+<td>_RtcPresenceDropdownListView</td>
+</tr>
+<tr>
+<td>presencelist/view/presencedropdownlistview.ts</td>
+<td>PresenceDropdownListWrapperView</td>
+<td>_RtcPresenceDropdownListWrapperView</td>
+</tr>
+<tr>
+<td>presencelist/view/presencelistview.ts</td>
+<td>PresenceListView</td>
+<td>_RtcPresenceListView</td>
+</tr>
+<tr>
+<td>realtimecollaborativeediting/sessions.ts</td>
+<td>ServerUser</td>
+<td>RtcServerUser</td>
+</tr>
+<tr>
+<td>realtimecollaborativeediting/sessions.ts</td>
+<td>SessionAddEvent</td>
+<td>RtcSessionAddEvent</td>
+</tr>
+<tr>
+<td>realtimecollaborativeediting/websocketgateway.ts</td>
+<td>WebSocketGateway</td>
+<td>RtcWebSocketGateway</td>
+</tr>
+<tr>
+<td>realtimecollaborativeediting/websocketgateway.ts</td>
+<td>ReconnectPlugin</td>
+<td>RtcReconnectPlugin</td>
+</tr>
+<tr>
+<td>realtimecollaborativeediting/websocketgateway.ts</td>
+<td>ReconnectContextPlugin</td>
+<td>RtcReconnectContextPlugin</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-restricted-editing"><a class="headerlink" href="#ckeditorckeditor5-restricted-editing">#</a> @ckeditor/ckeditor5-restricted-editing</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>restrictededitingmode/converters.ts</td>
+<td>setupExceptionHighlighting</td>
+<td>_setupRestrictedEditingExceptionHighlighting</td>
+</tr>
+<tr>
+<td>restrictededitingmode/converters.ts</td>
+<td>resurrectCollapsedMarkerPostFixer</td>
+<td>_resurrectRestrictedEditingCollapsedMarkerPostFixer</td>
+</tr>
+<tr>
+<td>restrictededitingmode/converters.ts</td>
+<td>extendMarkerOnTypingPostFixer</td>
+<td>_extendRestrictedEditingMarkerOnTypingPostFixer</td>
+</tr>
+<tr>
+<td>restrictededitingmode/converters.ts</td>
+<td>upcastHighlightToMarker</td>
+<td>_upcastRestrictedEditingHighlightToMarker</td>
+</tr>
+<tr>
+<td>restrictededitingmode/utils.ts</td>
+<td>getMarkerAtPosition</td>
+<td>_getRestrictedEditingMarkerAtPosition</td>
+</tr>
+<tr>
+<td>restrictededitingmode/utils.ts</td>
+<td>isPositionInRangeBoundaries</td>
+<td>_isRestrictedEditingPositionInRangeBoundaries</td>
+</tr>
+<tr>
+<td>restrictededitingmode/utils.ts</td>
+<td>isSelectionInMarker</td>
+<td>_isRestrictedEditingSelectionInMarker</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-revision-history"><a class="headerlink" href="#ckeditorckeditor5-revision-history">#</a> @ckeditor/ckeditor5-revision-history</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>revisionhistory.ts</td>
+<td>TapeValue</td>
+<td>_RevisionHistoryTapeValue</td>
+</tr>
+<tr>
+<td>revisionhistory.ts</td>
+<td>TapeItem</td>
+<td>_RevisionHistoryTapeItem</td>
+</tr>
+<tr>
+<td>revisiontracker.ts</td>
+<td>RevisionSource</td>
+<td>_RevisionHistorySource</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-special-characters"><a class="headerlink" href="#ckeditorckeditor5-special-characters">#</a> @ckeditor/ckeditor5-special-characters</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ui/charactergridview.ts</td>
+<td>CharacterGridView</td>
+<td>_SpecialCharactersGridView</td>
+</tr>
+<tr>
+<td>ui/charactergridview.ts</td>
+<td>CharacterGridViewExecuteEvent</td>
+<td>SpecialCharactersGridViewExecuteEvent</td>
+</tr>
+<tr>
+<td>ui/charactergridview.ts</td>
+<td>CharacterGridViewTileHoverEvent</td>
+<td>SpecialCharactersGridViewTileHoverEvent</td>
+</tr>
+<tr>
+<td>ui/charactergridview.ts</td>
+<td>CharacterGridViewTileFocusEvent</td>
+<td>SpecialCharactersGridViewTileFocusEvent</td>
+</tr>
+<tr>
+<td>ui/charactergridview.ts</td>
+<td>CharacterGridViewEventData</td>
+<td>SpecialCharactersGridViewEventData</td>
+</tr>
+<tr>
+<td>ui/characterinfoview.ts</td>
+<td>CharacterInfoView</td>
+<td>_SpecialCharacterInfoView</td>
+</tr>
+<tr>
+<td>ui/specialcharacterscategoriesview.ts</td>
+<td>SpecialCharactersCategoriesView</td>
+<td>_SpecialCharactersCategoriesView</td>
+</tr>
+<tr>
+<td>ui/specialcharactersview.ts</td>
+<td>SpecialCharactersView</td>
+<td>_SpecialCharactersView</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-style"><a class="headerlink" href="#ckeditorckeditor5-style">#</a> @ckeditor/ckeditor5-style</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>new re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsIsEnabledForBlockEvent</td>
+<td>StyleUtilsIsEnabledForBlockEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsIsActiveForBlockEvent</td>
+<td>StyleUtilsIsActiveForBlockEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsGetAffectedBlocksEvent</td>
+<td>StyleUtilsGetAffectedBlocksEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsIsStyleEnabledForInlineSelectionEvent</td>
+<td>StyleUtilsIsStyleEnabledForInlineSelectionEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsIsStyleActiveForInlineSelectionEvent</td>
+<td>StyleUtilsIsStyleActiveForInlineSelectionEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsGetAffectedInlineSelectableEvent</td>
+<td>StyleUtilsGetAffectedInlineSelectableEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsGetStylePreviewEvent</td>
+<td>StyleUtilsGetStylePreviewEvent</td>
+</tr>
+<tr>
+<td>styleutils.ts</td>
+<td>StyleUtilsConfigureGHSDataFilterEvent</td>
+<td>StyleUtilsConfigureGHSDataFilterEvent</td>
+</tr>
+<tr>
+<td>ui/stylegridbuttonview.ts</td>
+<td>StyleGridButtonView</td>
+<td>_StyleGridButtonView</td>
+</tr>
+<tr>
+<td>ui/stylegridview.ts</td>
+<td>StyleGridView</td>
+<td>_StyleGridView</td>
+</tr>
+<tr>
+<td>ui/stylegroupview.ts</td>
+<td>StyleGroupView</td>
+<td>_StyleGroupView</td>
+</tr>
+<tr>
+<td>ui/stylepanelview.ts</td>
+<td>StylePanelView</td>
+<td>_StylePanelView</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-table"><a class="headerlink" href="#ckeditorckeditor5-table">#</a> @ckeditor/ckeditor5-table</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>converters/downcast.ts</td>
+<td>downcastTable</td>
+<td>_downcastTable</td>
+</tr>
+<tr>
+<td>converters/downcast.ts</td>
+<td>downcastRow</td>
+<td>_downcastTableRow</td>
+</tr>
+<tr>
+<td>converters/downcast.ts</td>
+<td>downcastCell</td>
+<td>_downcastTableCell</td>
+</tr>
+<tr>
+<td>converters/downcast.ts</td>
+<td>convertParagraphInTableCell</td>
+<td>_convertParagraphInTableCell</td>
+</tr>
+<tr>
+<td>converters/downcast.ts</td>
+<td>isSingleParagraphWithoutAttributes</td>
+<td>_isSingleTableParagraphWithoutAttributes</td>
+</tr>
+<tr>
+<td>converters/downcast.ts</td>
+<td>DowncastTableOptions</td>
+<td>_DowncastTableOptions</td>
+</tr>
+<tr>
+<td>converters/table-caption-post-fixer.ts</td>
+<td>injectTableCaptionPostFixer</td>
+<td>_injectTableCaptionPostFixer</td>
+</tr>
+<tr>
+<td>converters/table-cell-paragraph-post-fixer.ts</td>
+<td>injectTableCellParagraphPostFixer</td>
+<td>_injectTableCellParagraphPostFixer</td>
+</tr>
+<tr>
+<td>converters/table-cell-refresh-handler.ts</td>
+<td>tableCellRefreshHandler</td>
+<td>_tableCellRefreshHandler</td>
+</tr>
+<tr>
+<td>converters/table-headings-refresh-handler.ts</td>
+<td>tableHeadingsRefreshHandler</td>
+<td>_tableHeadingsRefreshHandler</td>
+</tr>
+<tr>
+<td>converters/table-layout-post-fixer.ts</td>
+<td>injectTableLayoutPostFixer</td>
+<td>_injectTableLayoutPostFixer</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>upcastStyleToAttribute</td>
+<td>_upcastNormalizedTableStyleToAttribute</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>StyleValues</td>
+<td>_TableStyleValues</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>upcastBorderStyles</td>
+<td>_upcastTableBorderStyles</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>downcastAttributeToStyle</td>
+<td>_downcastTableAttributeToStyle</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>downcastTableAttribute</td>
+<td>_downcastTableAttribute</td>
+</tr>
+<tr>
+<td>converters/tableproperties.ts</td>
+<td>getDefaultValueAdjusted</td>
+<td>_getDefaultTableValueAdjusted</td>
+</tr>
+<tr>
+<td>converters/upcasttable.ts</td>
+<td>upcastTableFigure</td>
+<td>_upcastTableFigure</td>
+</tr>
+<tr>
+<td>converters/upcasttable.ts</td>
+<td>upcastTable</td>
+<td>_upcastTable</td>
+</tr>
+<tr>
+<td>converters/upcasttable.ts</td>
+<td>skipEmptyTableRow</td>
+<td>_skipEmptyTableRow</td>
+</tr>
+<tr>
+<td>converters/upcasttable.ts</td>
+<td>ensureParagraphInTableCell</td>
+<td>_ensureParagraphInTableCell</td>
+</tr>
+<tr>
+<td>tablecaption/utils.ts</td>
+<td>isTable</td>
+<td>_isTableModelElement</td>
+</tr>
+<tr>
+<td>tablecaption/utils.ts</td>
+<td>getCaptionFromTableModelElement</td>
+<td>_getTableCaptionFromModelElement</td>
+</tr>
+<tr>
+<td>tablecaption/utils.ts</td>
+<td>getCaptionFromModelSelection</td>
+<td>_getTableCaptionFromModelSelection</td>
+</tr>
+<tr>
+<td>tablecaption/utils.ts</td>
+<td>matchTableCaptionViewElement</td>
+<td>_matchTableCaptionViewElement</td>
+</tr>
+<tr>
+<td>tablecolumnresize/constants.ts</td>
+<td>COLUMN_MIN_WIDTH_AS_PERCENTAGE</td>
+<td>_TABLE_COLUMN_MIN_WIDTH_AS_PERCENTAGE</td>
+</tr>
+<tr>
+<td>tablecolumnresize/constants.ts</td>
+<td>COLUMN_MIN_WIDTH_IN_PIXELS</td>
+<td>_TABLE_COLUMN_MIN_WIDTH_IN_PIXELS</td>
+</tr>
+<tr>
+<td>tablecolumnresize/constants.ts</td>
+<td>COLUMN_WIDTH_PRECISION</td>
+<td>_TABLE_COLUMN_WIDTH_PRECISION</td>
+</tr>
+<tr>
+<td>tablecolumnresize/constants.ts</td>
+<td>COLUMN_RESIZE_DISTANCE_THRESHOLD</td>
+<td>_TABLE_COLUMN_RESIZE_DISTANCE_THRESHOLD</td>
+</tr>
+<tr>
+<td>tablecolumnresize/converters.ts</td>
+<td>upcastColgroupElement</td>
+<td>_upcastTableColgroupElement</td>
+</tr>
+<tr>
+<td>tablecolumnresize/converters.ts</td>
+<td>downcastTableResizedClass</td>
+<td>_downcastTableResizedClass</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getColumnMinWidthAsPercentage</td>
+<td>_getTableColumnMinWidthAsPercentage</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getTableWidthInPixels</td>
+<td>_getTableWidthInPixels</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getElementWidthInPixels</td>
+<td>_getElementWidthInPixels</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getColumnEdgesIndexes</td>
+<td>_getTableColumnEdgesIndexes</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>toPrecision</td>
+<td>_toPrecision</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>clamp</td>
+<td>_clamp</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>createFilledArray</td>
+<td>_createFilledArray</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>sumArray</td>
+<td>_sumArray</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>normalizeColumnWidths</td>
+<td>_normalizeTableColumnWidths</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getDomCellOuterWidth</td>
+<td>_getDomTableCellOuterWidth</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>updateColumnElements</td>
+<td>_updateTableColumnElements</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getColumnGroupElement</td>
+<td>_getTableColumnGroupElement</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getTableColumnElements</td>
+<td>_getTableColumnElements</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>getTableColumnsWidths</td>
+<td>_getTableColumnsWidths</td>
+</tr>
+<tr>
+<td>tablecolumnresize/utils.ts</td>
+<td>translateColSpanAttribute</td>
+<td>_translateTableColspanAttribute</td>
+</tr>
+<tr>
+<td>tableediting.ts</td>
+<td>AdditionalSlot</td>
+<td>TableConversionAdditionalSlot</td>
+</tr>
+<tr>
+<td>tablemouse/mouseeventsobserver.ts</td>
+<td>MouseEventsObserver</td>
+<td>_TableMouseEventsObserver</td>
+</tr>
+<tr>
+<td>tablemouse/mouseeventsobserver.ts</td>
+<td>ViewDocumentMouseMoveEvent</td>
+<td>ViewDocumentTableMouseMoveEvent</td>
+</tr>
+<tr>
+<td>tablemouse/mouseeventsobserver.ts</td>
+<td>ViewDocumentMouseLeaveEvent</td>
+<td>ViewDocumentTableMouseLeaveEvent</td>
+</tr>
+<tr>
+<td>ui/colorinputview.ts</td>
+<td>ColorInputViewOptions</td>
+<td>_TableColorInputViewOptions</td>
+</tr>
+<tr>
+<td>ui/colorinputview.ts</td>
+<td>ColorInputView</td>
+<td>_TableColorInputView</td>
+</tr>
+<tr>
+<td>ui/inserttableview.ts</td>
+<td>InsertTableView</td>
+<td>_InsertTableView</td>
+</tr>
+<tr>
+<td>utils/common.ts</td>
+<td>updateNumericAttribute</td>
+<td>_updateTableNumericAttribute</td>
+</tr>
+<tr>
+<td>utils/common.ts</td>
+<td>createEmptyTableCell</td>
+<td>_createEmptyTableCell</td>
+</tr>
+<tr>
+<td>utils/common.ts</td>
+<td>isHeadingColumnCell</td>
+<td>_isHeadingColumnCell</td>
+</tr>
+<tr>
+<td>utils/common.ts</td>
+<td>enableProperty</td>
+<td>_enableTableCellProperty</td>
+</tr>
+<tr>
+<td>utils/common.ts</td>
+<td>getSelectionAffectedTable</td>
+<td>_getSelectionAffectedTable</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>cropTableToDimensions</td>
+<td>_cropTableToDimensions</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>getVerticallyOverlappingCells</td>
+<td>_getVerticallyOverlappingTableCells</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>splitHorizontally</td>
+<td>_splitTableCellHorizontally</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>getHorizontallyOverlappingCells</td>
+<td>_getHorizontallyOverlappingTableCells</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>splitVertically</td>
+<td>_splitTableCellVertically</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>trimTableCellIfNeeded</td>
+<td>_trimTableCellIfNeeded</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>removeEmptyColumns</td>
+<td>_removeEmptyTableColumns</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>removeEmptyRows</td>
+<td>_removeEmptyTableRows</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>removeEmptyRowsColumns</td>
+<td>_removeEmptyTableRowsColumns</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>adjustLastRowIndex</td>
+<td>_adjustLastTableRowIndex</td>
+</tr>
+<tr>
+<td>utils/structure.ts</td>
+<td>adjustLastColumnIndex</td>
+<td>_adjustLastTableColumnIndex</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>getSingleValue</td>
+<td>_getTableBorderBoxSingleValue</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>addDefaultUnitToNumericValue</td>
+<td>_addDefaultUnitToNumericValue</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>NormalizedDefaultProperties</td>
+<td>_NormalizedTableDefaultProperties</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>NormalizeTableDefaultPropertiesOptions</td>
+<td>_NormalizeTableDefaultPropertiesOptions</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>getNormalizedDefaultProperties</td>
+<td>_getNormalizedDefaultTableBaseProperties</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>getNormalizedDefaultTableProperties</td>
+<td>_getNormalizedDefaultTableProperties</td>
+</tr>
+<tr>
+<td>utils/table-properties.ts</td>
+<td>getNormalizedDefaultCellProperties</td>
+<td>_getNormalizedDefaultTableCellProperties</td>
+</tr>
+<tr>
+<td>utils/ui/contextualballoon.ts</td>
+<td>repositionContextualBalloon</td>
+<td>_repositionTableContextualBalloon</td>
+</tr>
+<tr>
+<td>utils/ui/contextualballoon.ts</td>
+<td>getBalloonTablePositionData</td>
+<td>_getBalloonTablePositionData</td>
+</tr>
+<tr>
+<td>utils/ui/contextualballoon.ts</td>
+<td>getBalloonCellPositionData</td>
+<td>_getBalloonTableCellPositionData</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>getBorderStyleLabels</td>
+<td>_getBorderTableStyleLabels</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>getLocalizedColorErrorText</td>
+<td>_getLocalizedTableColorErrorText</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>getLocalizedLengthErrorText</td>
+<td>_getLocalizedTableLengthErrorText</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>colorFieldValidator</td>
+<td>_colorTableFieldValidator</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>lengthFieldValidator</td>
+<td>_lengthTableFieldValidator</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>lineWidthFieldValidator</td>
+<td>_lineWidthTableFieldValidator</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>getBorderStyleDefinitions</td>
+<td>_getTableOrCellBorderStyleDefinitions</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>fillToolbar</td>
+<td>_fillTableOrCellToolbar</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>defaultColors</td>
+<td>_TABLE_DEFAULT_COLORS</td>
+</tr>
+<tr>
+<td>utils/ui/table-properties.ts</td>
+<td>getLabeledColorInputCreator</td>
+<td>_getLabeledTableColorInputCreator</td>
+</tr>
+<tr>
+<td>utils/ui/widget.ts</td>
+<td>getSelectionAffectedTableWidget</td>
+<td>_getSelectionAffectedTableWidget</td>
+</tr>
+<tr>
+<td>utils/ui/widget.ts</td>
+<td>getSelectedTableWidget</td>
+<td>_getSelectedTableWidget</td>
+</tr>
+<tr>
+<td>utils/ui/widget.ts</td>
+<td>getTableWidgetAncestor</td>
+<td>_getTableWidgetAncestor</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="ckeditorckeditor5-track-changes"><a class="headerlink" href="#ckeditorckeditor5-track-changes">#</a> @ckeditor/ckeditor5-track-changes</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>suggestiondescriptionfactory.ts</td>
+<td>Description</td>
+<td>SuggestionDescription</td>
+</tr>
+<tr>
+<td>suggestiondescriptionfactory.ts</td>
+<td>DescriptionCallback</td>
+<td>SuggestionDescriptionCallback</td>
+</tr>
+<tr>
+<td>suggestiondescriptionfactory.ts</td>
+<td>LabelCallback</td>
+<td>SuggestionLabelCallback</td>
+</tr>
+<tr>
+<td>suggestiondescriptionfactory.ts</td>
+<td>LabelCallbackObject</td>
+<td>_SuggestionLabelCallbackObject</td>
+</tr>
+<tr>
+<td>trackchangesediting.ts</td>
+<td>renameAttributeKey</td>
+<td>_TRACK_CHANGES_RENAME_ATTRIBUTE_KEY</td>
+</tr>
+<tr>
+<td>trackchangesediting.ts</td>
+<td>FormatData</td>
+<td>SuggestionFormatData</td>
+</tr>
+<tr>
+<td>trackchangesediting.ts</td>
+<td>AttributeData</td>
+<td>SuggestionAttributeData</td>
+</tr>
+<tr>
+<td>ui/view/trackchangespreviewview.ts</td>
+<td>TrackChangesPreviewView</td>
+<td>_SuggestionsPreviewView</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="ckeditorckeditor5-typing"><a class="headerlink" href="#ckeditorckeditor5-typing">#</a> @ckeditor/ckeditor5-typing</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deleteobserver.ts</td>
+<td>DeleteObserver</td>
+<td>_DeleteObserver</td>
+</tr>
+<tr>
+<td>inserttextobserver.ts</td>
+<td>InsertTextObserver</td>
+<td>InsertTextObserver</td>
+</tr>
+<tr>
+<td>textwatcher.ts</td>
+<td>TextWatcherMatchedDataEventData</td>
+<td>TextWatcherMatchedTypingDataEventData</td>
+</tr>
+<tr>
+<td>textwatcher.ts</td>
+<td>TextWatcherMatchedSelectionEvent</td>
+<td>TextWatcherMatchedTypingSelectionEvent</td>
+</tr>
+<tr>
+<td>textwatcher.ts</td>
+<td>TextWatcherMatchedSelectionEventData</td>
+<td>TextWatcherMatchedTypingSelectionEventData</td>
+</tr>
+<tr>
+<td>textwatcher.ts</td>
+<td>TextWatcherUnmatchedEvent</td>
+<td>TextWatcherUnmatchedTypingEvent</td>
+</tr>
+<tr>
+<td>typingconfig.ts</td>
+<td>TextTransformationDescription</td>
+<td>TextTypingTransformationDescription</td>
+</tr>
+<tr>
+<td>utils/changebuffer.ts</td>
+<td>ChangeBuffer</td>
+<td>TypingChangeBuffer</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="ckeditorckeditor5-ui"><a class="headerlink" href="#ckeditorckeditor5-ui">#</a> @ckeditor/ckeditor5-ui</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original method name</th>
+<th>re-exported method name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bindings/preventdefault.ts</td>
+<td>preventDefault</td>
+<td>_preventUiViewDefault</td>
+</tr>
+<tr>
+<td>colorpicker/colorpickerview.ts</td>
+<td>tryParseHexColor</td>
+<td>_tryNormalizeHexColor</td>
+</tr>
+<tr>
+<td>colorpicker/utils.ts</td>
+<td>convertColor</td>
+<td>_convertColor</td>
+</tr>
+<tr>
+<td>colorpicker/utils.ts</td>
+<td>convertToHex</td>
+<td>_convertColorToHex</td>
+</tr>
+<tr>
+<td>colorpicker/utils.ts</td>
+<td>registerCustomElement</td>
+<td>_registerCustomElement</td>
+</tr>
+<tr>
+<td>dropdown/menu/dropdownmenubehaviors.ts</td>
+<td>DropdownRootMenuBehaviors</td>
+<td>_DropdownRootMenuBehaviors</td>
+</tr>
+<tr>
+<td>dropdown/menu/dropdownmenubehaviors.ts</td>
+<td>DropdownMenuBehaviors</td>
+<td>_DropdownMenuBehaviors</td>
+</tr>
+<tr>
+<td>menubar/utils.ts</td>
+<td>MenuBarBehaviors</td>
+<td>_MenuBarBehaviors</td>
+</tr>
+<tr>
+<td>menubar/utils.ts</td>
+<td>MenuBarMenuBehaviors</td>
+<td>_MenuBarMenuBehaviors</td>
+</tr>
+<tr>
+<td>menubar/utils.ts</td>
+<td>MenuBarMenuViewPanelPositioningFunctions</td>
+<td>_MenuBarMenuViewPanelPositioningFunctions</td>
+</tr>
+<tr>
+<td>menubar/utils.ts</td>
+<td>processMenuBarConfig</td>
+<td>_processMenuBarConfig</td>
+</tr>
+<tr>
+<td>model.ts</td>
+<td>Model</td>
+<td>UIModel</td>
+</tr>
+<tr>
+<td>panel/balloon/contextualballoon.ts</td>
+<td>RotatorView</td>
+<td>_ContextualBalloonRotatorView</td>
+</tr>
+<tr>
+<td>search/searchinfoview.ts</td>
+<td>SearchInfoView</td>
+<td>_SearchInfoView</td>
+</tr>
+<tr>
+<td>search/text/searchtextqueryview.ts</td>
+<td>SearchTextQueryView</td>
+<td>_SearchTextQueryView</td>
+</tr>
+<tr>
+<td>template.ts</td>
+<td>RenderData</td>
+<td>_TemplateRenderData</td>
+</tr>
+<tr>
+<td>toolbar/toolbarview.ts</td>
+<td>NESTED_TOOLBAR_ICONS</td>
+<td>NESTED_TOOLBAR_ICONS</td>
+</tr>
+<tr>
+<td>toolbar/toolbarview.ts</td>
+<td>ToolbarBehavior</td>
+<td>_ToolbarBehavior</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-undo"><a class="headerlink" href="#ckeditorckeditor5-undo">#</a> @ckeditor/ckeditor5-undo</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basecommand.ts</td>
+<td>BaseCommand</td>
+<td>UndoRedoBaseCommand</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-upload"><a class="headerlink" href="#ckeditorckeditor5-upload">#</a> @ckeditor/ckeditor5-upload</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filereader.ts</td>
+<td>FileReader</td>
+<td>FileReader</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-utils"><a class="headerlink" href="#ckeditorckeditor5-utils">#</a> @ckeditor/ckeditor5-utils</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>areconnectedthroughproperties.ts</td>
+<td>areConnectedThroughProperties</td>
+<td>areConnectedThroughProperties</td>
+</tr>
+<tr>
+<td>ckeditorerror.ts</td>
+<td>DOCUMENTATION_URL</td>
+<td>DOCUMENTATION_URL</td>
+</tr>
+<tr>
+<td>dom/getcommonancestor.ts</td>
+<td>getCommonAncestor</td>
+<td>getCommonAncestor</td>
+</tr>
+<tr>
+<td>dom/getpositionedancestor.ts</td>
+<td>getPositionedAncestor</td>
+<td>getPositionedAncestor</td>
+</tr>
+<tr>
+<td>dom/global.ts</td>
+<td>GlobalType</td>
+<td>GlobalType</td>
+</tr>
+<tr>
+<td>dom/global.ts</td>
+<td>globalVar</td>
+<td>global</td>
+</tr>
+<tr>
+<td>dom/iswindow.ts</td>
+<td>isWindow</td>
+<td>isWindow</td>
+</tr>
+<tr>
+<td>dom/position.ts</td>
+<td>Options</td>
+<td>DomOptimalPositionOptions</td>
+</tr>
+<tr>
+<td>dom/position.ts</td>
+<td>PositioningFunctionResult</td>
+<td>DomPositioningFunctionResult</td>
+</tr>
+<tr>
+<td>dom/rect.ts</td>
+<td>RectLike</td>
+<td>DomRectLike</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>getUserAgent</td>
+<td>_getUserAgent</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isMac</td>
+<td>_isMac</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isWindows</td>
+<td>_isWindows</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isGecko</td>
+<td>_isGecko</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isSafari</td>
+<td>_isSafari</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isiOS</td>
+<td>_isiOS</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isAndroid</td>
+<td>_isAndroid</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isBlink</td>
+<td>_isBlink</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isRegExpUnicodePropertySupported</td>
+<td>_isRegExpUnicodePropertySupported</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isMediaForcedColors</td>
+<td>_isMediaForcedColors</td>
+</tr>
+<tr>
+<td>env.ts</td>
+<td>isMotionReduced</td>
+<td>_isMotionReduced</td>
+</tr>
+<tr>
+<td>mapsequal.ts</td>
+<td>mapsEqual</td>
+<td>mapsEqual</td>
+</tr>
+<tr>
+<td>nth.ts</td>
+<td>nth</td>
+<td>nth</td>
+</tr>
+<tr>
+<td>objecttomap.ts</td>
+<td>objectToMap</td>
+<td>objectToMap</td>
+</tr>
+<tr>
+<td>spy.ts</td>
+<td>spy</td>
+<td>spy</td>
+</tr>
+<tr>
+<td>translation-service.ts</td>
+<td>_clear</td>
+<td>_clearTranslations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-watchdog"><a class="headerlink" href="#ckeditorckeditor5-watchdog">#</a> @ckeditor/ckeditor5-watchdog</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contextwatchdog.ts</td>
+<td>WatchdogItemConfiguration</td>
+<td>ContextWatchdogItemConfiguration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-widget"><a class="headerlink" href="#ckeditorckeditor5-widget">#</a> @ckeditor/ckeditor5-widget</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>highlightstack.ts</td>
+<td>HighlightStack</td>
+<td>WidgetHighlightStack</td>
+</tr>
+<tr>
+<td>highlightstack.ts</td>
+<td>HighlightStackChangeEvent</td>
+<td>WidgetHighlightStackChangeEvent</td>
+</tr>
+<tr>
+<td>highlightstack.ts</td>
+<td>HighlightStackChangeEventData</td>
+<td>WidgetHighlightStackChangeEventData</td>
+</tr>
+<tr>
+<td>verticalnavigation.ts</td>
+<td>verticalNavigationHandler</td>
+<td>verticalWidgetNavigationHandler</td>
+</tr>
+<tr>
+<td>widgetresize.ts</td>
+<td>ResizerOptions</td>
+<td>WidgetResizerOptions</td>
+</tr>
+<tr>
+<td>widgetresize/resizer.ts</td>
+<td>Resizer</td>
+<td>WidgetResizer</td>
+</tr>
+<tr>
+<td>widgetresize/resizer.ts</td>
+<td>ResizerBeginEvent</td>
+<td>WidgetResizerBeginEvent</td>
+</tr>
+<tr>
+<td>widgetresize/resizer.ts</td>
+<td>ResizerCancelEvent</td>
+<td>WidgetResizerCancelEvent</td>
+</tr>
+<tr>
+<td>widgetresize/resizer.ts</td>
+<td>ResizerCommitEvent</td>
+<td>WidgetResizerCommitEvent</td>
+</tr>
+<tr>
+<td>widgetresize/resizer.ts</td>
+<td>ResizerUpdateSizeEvent</td>
+<td>WidgetResizerUpdateSizeEvent</td>
+</tr>
+<tr>
+<td>widgetresize/resizerstate.ts</td>
+<td>ResizeState</td>
+<td>WidgetResizeState</td>
+</tr>
+<tr>
+<td>widgetresize/sizeview.ts</td>
+<td>SizeView</td>
+<td>_WidgetSizeView</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>TYPE_AROUND_SELECTION_ATTRIBUTE</td>
+<td>_WIDGET_TYPE_AROUND_SELECTION_ATTRIBUTE</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>isTypeAroundWidget</td>
+<td>isTypeAroundWidget</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>getClosestTypeAroundDomButton</td>
+<td>_getClosestWidgetTypeAroundDomButton</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>getTypeAroundButtonPosition</td>
+<td>_getWidgetTypeAroundButtonPosition</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>getClosestWidgetViewElement</td>
+<td>_getClosestWidgetViewElement</td>
+</tr>
+<tr>
+<td>widgettypearound/utils.ts</td>
+<td>getTypeAroundFakeCaretPosition</td>
+<td>_getWidgetTypeAroundFakeCaretPosition</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-word-count"><a class="headerlink" href="#ckeditorckeditor5-word-count">#</a> @ckeditor/ckeditor5-word-count</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>original name</th>
+<th>re-exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>utils.ts</td>
+<td>modelElementToPlainText</td>
+<td>_modelElementToPlainText</td>
+</tr>
+</tbody>
+</table>
+<h2 id="new-exports"><a class="headerlink" href="#new-exports">#</a> New exports</h2>
+<p>Listed below are exports introduced with NIM.</p>
+<h3 id="ckeditorckeditor5-ai-2"><a class="headerlink" href="#ckeditorckeditor5-ai-2">#</a> @ckeditor/ckeditor5-ai</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adapters/openaitextadapter.ts</td>
+<td>AIRequestMessageItem</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-case-change-2"><a class="headerlink" href="#ckeditorckeditor5-case-change-2">#</a> @ckeditor/ckeditor5-case-change</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>casechangecommand.ts</td>
+<td>CaseChangeTransformCallback</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-collaboration-core-2"><a class="headerlink" href="#ckeditorckeditor5-collaboration-core-2">#</a> @ckeditor/ckeditor5-collaboration-core</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>users.ts</td>
+<td>CollaborationUserColor</td>
+</tr>
+<tr>
+<td>users.ts</td>
+<td>CollaborationUserData</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-comments-2"><a class="headerlink" href="#ckeditorckeditor5-comments-2">#</a> @ckeditor/ckeditor5-comments</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>annotations/annotation.ts</td>
+<td>AnnotationTargetBase</td>
+</tr>
+<tr>
+<td>comments/commentsrepository.ts</td>
+<td>CommentPermissionsConfig</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-import-word-2"><a class="headerlink" href="#ckeditorckeditor5-import-word-2">#</a> @ckeditor/ckeditor5-import-word</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>importwordcommand.ts</td>
+<td>ImportWordDataInsertEventData</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-real-time-collaboration-2"><a class="headerlink" href="#ckeditorckeditor5-real-time-collaboration-2">#</a> @ckeditor/ckeditor5-real-time-collaboration</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>realtimecollaborativeediting/websocketgateway.ts</td>
+<td>RtcReconnect</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-track-changes-2"><a class="headerlink" href="#ckeditorckeditor5-track-changes-2">#</a> @ckeditor/ckeditor5-track-changes</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>suggestiondescriptionfactory.ts</td>
+<td>SuggestionDescriptionItem</td>
+</tr>
+<tr>
+<td>trackchangesconfig.ts</td>
+<td>TrackChangesPreviewConfig</td>
+</tr>
+<tr>
+<td>trackchangesdata.ts</td>
+<td>TrackChangesDataGetter</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-uploadcare"><a class="headerlink" href="#ckeditorckeditor5-uploadcare">#</a> @ckeditor/ckeditor5-uploadcare</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uploadcareconfig.ts</td>
+<td>UploadcareExcludedKeys</td>
+</tr>
+<tr>
+<td>uploadcareimageedit/uploadcareimageeditui.ts</td>
+<td>UploadcareImageCache</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-engine-2"><a class="headerlink" href="#ckeditorckeditor5-engine-2">#</a> @ckeditor/ckeditor5-engine</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conversion/conversion.ts</td>
+<td>ConversionType</td>
+</tr>
+<tr>
+<td>conversion/downcastdispatcher.ts</td>
+<td>DowncastDispatcherEventMap</td>
+</tr>
+<tr>
+<td>view/domconverter.ts</td>
+<td>BlockFillerMode</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-table-2"><a class="headerlink" href="#ckeditorckeditor5-table-2">#</a> @ckeditor/ckeditor5-table</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tableutils.ts</td>
+<td>TableIndexesObject</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-ui-2"><a class="headerlink" href="#ckeditorckeditor5-ui-2">#</a> @ckeditor/ckeditor5-ui</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arialiveannouncer.ts</td>
+<td>AriaLiveAnnouncerPolitenessValue</td>
+</tr>
+<tr>
+<td>arialiveannouncer.ts</td>
+<td>AriaLiveAppendContentAttributes</td>
+</tr>
+<tr>
+<td>arialiveannouncer.ts</td>
+<td>AriaLiveAnnounceConfig</td>
+</tr>
+<tr>
+<td>button/filedialogbuttonview.ts</td>
+<td>FileDialogViewMixin</td>
+</tr>
+<tr>
+<td>button/filedialogbuttonview.ts</td>
+<td>FileDialogButtonViewBase</td>
+</tr>
+<tr>
+<td>colorpicker/colorpickerview.ts</td>
+<td>SliderView</td>
+</tr>
+<tr>
+<td>colorpicker/colorpickerview.ts</td>
+<td>ColorPickerInputRowView</td>
+</tr>
+<tr>
+<td>editableui/inline/inlineeditableuiview.ts</td>
+<td>InlineEditableUIViewOptions</td>
+</tr>
+<tr>
+<td>template.ts</td>
+<td>AttributeValues</td>
+</tr>
+<tr>
+<td>toolbar/toolbarview.ts</td>
+<td>ItemsView</td>
+</tr>
+<tr>
+<td>editorui/poweredby.ts</td>
+<td>PoweredByConfig</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ckeditorckeditor5-utils-2"><a class="headerlink" href="#ckeditorckeditor5-utils-2">#</a> @ckeditor/ckeditor5-utils</h3>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>exported name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>crc32.ts</td>
+<td>CRCValue</td>
+</tr>
+<tr>
+<td>dom/createelement.ts</td>
+<td>HTMLElementAttributes</td>
+</tr>
+<tr>
+<td>dom/createelement.ts</td>
+<td>SVGElementAttributes</td>
+</tr>
+<tr>
+<td>dom/createelement.ts</td>
+<td>ChildrenElements</td>
+</tr>
+<tr>
+<td>dom/scroll.ts</td>
+<td>IfTrue</td>
+</tr>
+<tr>
+<td>observablemixin.ts</td>
+<td>ObservableSingleBindChain</td>
+</tr>
+<tr>
+<td>observablemixin.ts</td>
+<td>ObservableDualBindChain</td>
+</tr>
+<tr>
+<td>observablemixin.ts</td>
+<td>ObservableMultiBindChain</td>
+</tr>
+</tbody>
+</table>
+
+          <div class="info-box notice notice__feedback">
+            <p>
+              Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fmigrating-exports.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+            </p>
+            <p>
+              With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
+              We appreciate your feedback to help us ensure its accuracy and completeness.
+            </p>
+          </div>
+          <script>
+            ( () => {
+                const issueTracker = document.getElementById( 'report-widget-issue-tracker' );
+                const hrefUrl = new URL( issueTracker.href );
+                hrefUrl.searchParams.set( 'user-agent', navigator.userAgent )
+                hrefUrl.searchParams.set( 'origin-url', location.href )
+                issueTracker.href = hrefUrl.toString();
+            } )();
+          </script>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree" id="guidetree">
+                          <li><a href="../index.html" title="Overview">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Migrations from npm to CDN</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="migrations">
+                                    <li><a href="../migrations/vanilla-js.html" title="Vanilla JS">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vanilla JS</span>
+                                        </div></a></li>
+                                    <li><a href="../migrations/testing-suite.html" title="Vanilla JS testing suite">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vanilla JS testing suite</span>
+                                        </div></a></li>
+                                    <li><a href="../migrations/react.html" title="React">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">React</span>
+                                        </div></a></li>
+                                    <li><a href="../migrations/vuejs-v3.html" title="Vue.js 3+">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Vue.js 3+</span>
+                                        </div></a></li>
+                                    <li><a href="../migrations/angular.html" title="Angular">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Angular</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">New installation methods</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="nim-migration">
+                                    <li><a href="migration-to-new-installation-methods.html" title="Migrating to new installation methods">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating to new installation methods</span>
+                                        </div></a></li>
+                                    <li><a href="predefined-builds.html" title="Migrating from predefined builds">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from predefined builds</span>
+                                        </div></a></li>
+                                    <li><a href="online-builder.html" title="Migrating from legacy Online Builder">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from legacy Online Builder</span>
+                                        </div></a></li>
+                                    <li><a href="customized-builds.html" title="Migrating from customized builds">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from customized builds</span>
+                                        </div></a></li>
+                                    <li><a href="dll-builds.html" title="Migrating from DLL builds">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating from DLL builds</span>
+                                        </div></a></li>
+                                    <li><a href="custom-plugins.html" title="Migrating custom plugins">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
+                                        </div></a></li>
+                                    <li><a href="" title="Migrating internal exports">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">CKEditor 4 migration</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="ckeditor4-migration">
+                                    <li><a href="../ckeditor4/migration-from-ckeditor-4.html" title="Migration from CKEditor 4">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span>
+                                        </div></a></li>
+                                    <li><a href="../ckeditor4/ckeditor4-plugin-compatibility.html" title="Plugin equivalents">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugin equivalents</span>
+                                        </div></a></li>
+                                    <li><a href="../ckeditor4/ckeditor4-configuration-compatibility.html" title="Configuration options compatibility">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration options compatibility</span>
+                                        </div></a></li>
+                                    <li><a href="../ckeditor4/ckeditor4-troubleshooting.html" title="Troubleshooting">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Troubleshooting</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../maintaining.html" title="Maintaining your editor">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Maintaining your editor</span>
+                              </div></a></li>
+                          <li><a href="../release-process.html" title="Release process">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Release process</span>
+                              </div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Update guides</span>
+                            </div>
+                            <ul class="tree__item-nested-list" data-id="update-guides">
+                                    <li><a href="../guides/updating-ckeditor-5.html" title="Updating CKEditor 5">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Updating CKEditor 5</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/changelog.html" title="Changelog">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Changelog</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-46.html" title="Update to v46.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-45.html" title="Update to v45.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-44.html" title="Update to v44.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-43.html" title="Update to v43.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v43.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-42.html" title="Update to v42.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v42.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-41.html" title="Update to v41.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v41.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-40.html" title="Update to v40.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v40.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-39.html" title="Update to v39.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v39.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-38.html" title="Update to v38.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v38.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-37.html" title="Update to v37.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v37.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-36.html" title="Update to v36.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v36.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-35.html" title="Update to v35.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v35.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-34.html" title="Update to v34.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v34.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-33.html" title="Update to v33.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v33.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-32.html" title="Update to v32.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v32.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-31.html" title="Update to v31.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v31.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-30.html" title="Update to v30.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v30.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-29.html" title="Update to v29.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v29.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-28.html" title="Update to v28.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v28.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-27.html" title="Update to v27.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v27.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-26.html" title="Update to v26.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v26.x</span>
+                                        </div></a></li>
+                                    <li><a href="../guides/update-to-25.html" title="Update to v25.x">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v25.x</span>
+                                        </div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="../versioning-policy.html" title="Versioning policy">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span>
+                              </div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2025 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*'},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'getting-started', 'features', 'examples', 'framework', 'api', 'updating', 'support' ];var hitsGrouped = { api: [] };hitsGrouped[ 'updating' ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( 'updating' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'updating' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( 'ckeditor5' ) && h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'updating' ] );tags.forEach( function( tag ) {if ( tag !== 'updating' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/7.0.2/gloria/scripts/app.js"></script>
+    <script src="../../assets/buildwarningbanner.js" async></script>
+  </body>
+</html>
