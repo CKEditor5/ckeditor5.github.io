@@ -7,7 +7,7 @@
     <meta name="description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 07 2025 01:52:59 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jul 10 2025 01:52:42 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Update to version 46.x | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="45.2.1">
+    <meta name="project-version" content="46.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 7.3.0"></head>
   <body>
@@ -144,8 +144,8 @@
                                   <li><a href="../nim-migration/custom-plugins.html" title="Migrating custom plugins">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                       </div></a></li>
-                                  <li><a href="../nim-migration/migrating-exports.html" title="Migrating internal exports">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                  <li><a href="../nim-migration/migrating-imports.html" title="Migrating imports">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                             </ul>
                           </li>
@@ -187,7 +187,7 @@
                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="update-to-45.html" title="Update to v45.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                       </div></a></li>
                                   <li><a href="update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
@@ -271,13 +271,15 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
           <h1 class="main__content-title">Update to CKEditor 5 v46.x
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4600" title="Update to CKEditor&nbsp;5 v46.0.0">Update to CKEditor&nbsp;5 v46.0.0</a></li><li><a href="#release-highlights" title="Release highlights">Release highlights</a><ol><li><a href="#line-height-feature" title="Line height feature (⭐)">Line height feature (⭐)</a></li><li><a href="#remove-format-improvements" title="Remove Format improvements">Remove Format improvements</a></li><li><a href="#list-markers-styling" title="List markers styling">List markers styling</a></li><li><a href="#markdown-processor-dependency-refresh" title="Markdown processor dependency refresh">Markdown processor dependency refresh</a></li><li><a href="#manual-token-refreshing" title="Manual token refreshing">Manual token refreshing</a></li><li><a href="#unified-exports-renames" title="Unified exports &amp; renames">Unified exports &amp; renames</a></li><li><a href="#introduction-of-the-default-content-styles" title="Introduction of the default content styles">Introduction of the default content styles</a></li><li><a href="#content-area-css-variables-renamed-to-ck-content-prefix" title="Content area CSS variables renamed to --ck-content-* prefix">Content area CSS variables renamed to --ck-content-* prefix</a><ol><li><a href="#table-related-css-variables-renamed-for-better-clarity" title="Table-related CSS variables renamed for better clarity">Table-related CSS variables renamed for better clarity</a></li></ol></li><li><a href="#comment-threads-improvements" title="Comment threads improvements">Comment threads improvements</a><ol><li><a href="#minor-breaking-change" title="Minor breaking change">Minor breaking change</a></li></ol></li><li><a href="#comments-and-suggestions-annotations" title="Comments and suggestions annotations">Comments and suggestions annotations</a></li><li><a href="#major-breaking-changes-in-this-release" title="Major breaking changes in this release">Major breaking changes in this release</a></li><li><a href="#minor-breaking-changes-in-this-release" title="Minor breaking changes in this release">Minor breaking changes in this release</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#update-to-ckeditor-5-v4600" title="Update to CKEditor&nbsp;5 v46.0.0">Update to CKEditor&nbsp;5 v46.0.0</a><ol><li><a href="#line-height-feature" title="Line height feature (⭐)">Line height feature (⭐)</a></li><li><a href="#remove-format-improvements" title="Remove Format improvements">Remove Format improvements</a></li><li><a href="#list-markers-styling" title="List markers styling">List markers styling</a></li><li><a href="#markdown-processor-dependency-refresh" title="Markdown processor dependency refresh">Markdown processor dependency refresh</a></li><li><a href="#manual-token-refreshing" title="Manual token refreshing">Manual token refreshing</a></li><li><a href="#unified-exports-and-renames-in-the-editor-api" title="Unified exports and renames in the editor API">Unified exports and renames in the editor API</a></li><li><a href="#introduction-of-the-default-content-styles" title="Introduction of the default content styles">Introduction of the default content styles</a></li><li><a href="#content-area-css-variables-renamed-to-ck-content-prefix" title="Content area CSS variables renamed to --ck-content-* prefix">Content area CSS variables renamed to --ck-content-* prefix</a><ol><li><a href="#table-related-css-variables-renamed-for-better-clarity" title="Table-related CSS variables renamed for better clarity">Table-related CSS variables renamed for better clarity</a></li></ol></li><li><a href="#multi-level-list-markup-change" title="Multi-level list markup change">Multi-level list markup change</a></li><li><a href="#list-item-identification-in-editor-data" title="List item identification in editor data">List item identification in editor data</a></li><li><a href="#comments-annotation-styles-standardization" title="Comments annotation styles standardization">Comments annotation styles standardization</a></li><li><a href="#improved-vertical-spacing-for-paragraphs-in-lists-and-tables" title="Improved vertical spacing for paragraphs in lists and tables">Improved vertical spacing for paragraphs in lists and tables</a></li><li><a href="#comment-threads-improvements" title="Comment threads improvements">Comment threads improvements</a><ol><li><a href="#new-thread-command-changes" title="New thread command changes">New thread command changes</a><ol><li><a href="#minor-breaking-change" title="Minor breaking change">Minor breaking change</a></li></ol></li><li><a href="#comments-and-suggestions-annotations" title="Comments and suggestions annotations">Comments and suggestions annotations</a></li></ol></li><li><a href="#major-breaking-changes-in-this-release" title="Major breaking changes in this release">Major breaking changes in this release</a></li><li><a href="#minor-breaking-changes-in-this-release" title="Minor breaking changes in this release">Minor breaking changes in this release</a></li></ol></li></ol></nav>
 <div class="info-box notice"><p>When updating your CKEditor&nbsp;5 installation, ensure <strong>all the packages are the same version</strong> to avoid errors.</p><p>You may try removing the <code>package-lock.json</code> or <code>yarn.lock</code> files (if applicable) and reinstalling all packages before rebuilding the editor. For best results, make sure you use the most recent package versions.</p></div>
 <h2 id="update-to-ckeditor-5-v4600"><a class="headerlink" href="#update-to-ckeditor-5-v4600">#</a> Update to CKEditor&nbsp;5 v46.0.0</h2>
-<p>Released on xxx, 2025. (<a href="https://github.com/ckeditor/ckeditor5/releases/tag/v46.0.0">See full release notes</a>)</p>
-<p>Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v46.0.0.</p>
-<h2 id="release-highlights"><a class="headerlink" href="#release-highlights">#</a> Release highlights</h2>
-<p>CKEditor 5 v46.0.0 brings several major improvements and changes that enhance both the developer and end-user experience. This release includes significant API refinements, new features, and improvements to existing functionality.</p>
+<p>Released on 9 July, 2025. (<a href="https://github.com/ckeditor/ckeditor5/releases/tag/v46.0.0">See full release notes</a>)</p>
+<p>CKEditor 5 v46.0.0 brings several major improvements and changes that enhance both the developer and end-user experience. This release includes significant API refinements, new features, and improvements to existing functionality. Below are the most important changes that require your attention when upgrading to CKEditor&nbsp;5 v46.0.0.</p>
+<div class="info-box notice notice__warning"><p>This is a <strong>major release</strong> with significant amount of changes that may affect your CKEditor&nbsp;5 integration. We strongly encourage you to read the entire update guide to understand all the changes.</p><p>Pay special attention to:</p><ul>
+<li><a href="#unified-exports-and-renames-in-the-editor-api">Unified exports and renames in the editor API</a>: Many import/export names have changed</li>
+<li><a href="#introduction-of-the-default-content-styles">Introduction of the default content styles</a>: New default styling that may affect your content appearance</li>
+</ul><p>These changes are designed to improve the long-term stability and maintainability of CKEditor&nbsp;5, but they require careful attention during the upgrade process.</p></div>
 <h3 id="line-height-feature"><a class="headerlink" href="#line-height-feature">#</a> Line height feature (⭐)</h3>
 <p>The new <a href="../../features/line-height.html">line height</a> feature allows you to adjust the vertical spacing between lines of text, improving readability and visual harmony in your documents. This premium feature lets you set consistent line spacing across paragraphs and text blocks to enhance document accessibility and maintain visual hierarchy in your content.</p>
 <h3 id="remove-format-improvements"><a class="headerlink" href="#remove-format-improvements">#</a> Remove Format improvements</h3>
@@ -290,14 +292,14 @@
 <li>Font weight modifications (bold, italic).</li>
 </ul>
 <p>This improvement makes it easier to create visually consistent and professional-looking lists without additional configuration. This improvement also supports <a href="../../features/lists/multi-level-lists.html">multi-level lists</a>.</p>
-<p><strong>Important!</strong> This behavior is enabled by default, which means you may experience content change when you load the content to the editor’s new version (for the better in our opinion). But if this is not something you expect, you can opt out<!-- link -->.</p>
+<p><strong>Important!</strong> This behavior is enabled by default, which means you may experience content change when you load the content to the editor’s new version (for the better in our opinion). But if this is not something you expect, <a href="../../features/lists/lists.html#disabling-marker-formatting">you can opt out</a>.</p>
 <h3 id="markdown-processor-dependency-refresh"><a class="headerlink" href="#markdown-processor-dependency-refresh">#</a> Markdown processor dependency refresh</h3>
-<p>The {@loink features/markdown Markdown} feature dependencies have been modernized with a switch to the <code>unified</code> ecosystem, replacing the previous <code>marked</code> / <code>turndown</code> implementation. This change brings more consistent and symmetrical HTML ↔ Markdown conversion. By adopting <code>remark</code> and <code>rehype</code> from the same family of tools, we have created a more reliable and maintainable implementation that will better serve your document processing needs.</p>
+<p>The <a href="../../features/markdown.html">Markdown</a> feature dependencies have been modernized with a switch to the <code>unified</code> ecosystem, replacing the previous <code>marked</code> / <code>turndown</code> implementation. This change brings more consistent and symmetrical HTML ↔ Markdown conversion. By adopting <code>remark</code> and <code>rehype</code> from the same family of tools, we have created a more reliable and maintainable implementation that will better serve your document processing needs.</p>
 <h3 id="manual-token-refreshing"><a class="headerlink" href="#manual-token-refreshing">#</a> Manual token refreshing</h3>
-<p>We have added a configuration property: <code>config.cloudServices.autoRefresh</code> to disable the automatic token refresh mechanism. When it is set to <code>false</code>, the token must be refreshed manually.</p>
+<p>We have added the <code>config.cloudServices.autoRefresh</code> configuration property to disable the automatic token refresh mechanism. When it is set to <code>false</code>, the token must be refreshed manually.</p>
 <p>This property opens up the ability to implement custom token handling if a certain use case requires this.</p>
-<h3 id="unified-exports-renames"><a class="headerlink" href="#unified-exports-renames">#</a> Unified exports &amp; renames</h3>
-<p>This release is also about tidying up the rough edges that showed up after the big New Installation Method release (v42.0.0+). In cases where many helpers or methods from the framework’s APIs were used, some developers upgrading from v41-x to v42-x were greeted by the <code>does not provide an export named …</code> error. We addressed issues immediately as they were reported, but we knew it required a deeper are more comprehensive approach long-term.</p>
+<h3 id="unified-exports-and-renames-in-the-editor-api"><a class="headerlink" href="#unified-exports-and-renames-in-the-editor-api">#</a> Unified exports and renames in the editor API</h3>
+<p>This release is also about tidying up the rough edges that showed up after the big New Installation Method release (v42.0.0+). In cases where many helpers or methods from the framework’s APIs were used, some developers upgrading from v41.x to v42.x were greeted by the <code>does not provide an export named …</code> error. We addressed issues immediately as they were reported, but we knew it required a deeper are more comprehensive approach long-term.</p>
 <p>We spent the last several months discussing how to prepare the CKEditor 5 API layer for the years to come. This release is the result of the rules we are introducing from now on:</p>
 <ul>
 <li>Every public API must be exported via the package’s&nbsp;<code>index.ts</code>.</li>
@@ -313,24 +315,25 @@
 <li>Also, we decided to use this occasion to clean up the code from <code>@deprecated</code> code that was stale for several years.</li>
 </ul>
 <p>At the same time, we have developed an internal tooling to make sure guardrails are set for the future.</p>
-<p>If your build throws errors after the update, search and replace the old names with the new ones from the update guide. <strong>We have not changed the behavior of these APIs, just the names</strong>.</p>
-<div class="info-box notice notice__info"><p>Manually updating all these numerous imports could be time-consuming and error-prone. We recommend using the <a href="https://raw.githubusercontent.com/ckeditor/ckeditor5/refs/heads/master/docs/updating/nim-migration/migrating-exports.md">tables with the changed import/export names</a> as context for tools such as Copilot, ChatGPT, or other LLM-based services that can automatically update all imports in your project.</p></div>
+<p>If your build throws errors after the update, search and replace the old names with the new ones from the <a href="../nim-migration/migrating-imports.html">update guide</a>. <strong>We have not changed the behavior of these APIs, just the names</strong>.</p>
+<div class="info-box notice notice__info"><p>Manually updating all these numerous imports could be time-consuming and error-prone. We recommend using the <a href="https://raw.githubusercontent.com/ckeditor/ckeditor5/refs/heads/master/docs/updating/nim-migration/migrating-imports.md">tables with the changed import/export names</a> as context for tools such as Copilot, ChatGPT, or other LLM-based services that can automatically update all imports in your project.</p></div>
 <h3 id="introduction-of-the-default-content-styles"><a class="headerlink" href="#introduction-of-the-default-content-styles">#</a> Introduction of the default content styles</h3>
 <p>To improve the out-of-the-box experience and accessibility, we are introducing opinionated defaults for content styling. From this version, we ship a small defaults layer applied to <code>.ck-content</code>:</p>
 <pre class="highlight"><code class="css">
 :root {
-  --ck-content-font-family: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
-  --ck-content-font-size: medium;
-  --ck-content-font-color: #000;
-  --ck-content-line-height: 1.5;
-  --ck-content-word-break: break-word;
+    --ck-content-font-family: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
+    --ck-content-font-size: medium;
+    --ck-content-font-color: #000;
+    --ck-content-line-height: 1.5;
+    --ck-content-word-break: break-word;
 }
 
 .ck-content {
-  font-family: var(--ck-content-font-family);
-  font-size: var(--ck-content-font-size);
-  color: var(--ck-content-font-color);
-  line-height: var(--ck-content-line-height);
+    font-family: var(--ck-content-font-family);
+    font-size: var(--ck-content-font-size);
+    color: var(--ck-content-font-color);
+    line-height: var(--ck-content-line-height);
+    word-break: var(--ck-content-word-break);
 }
 </code></pre>
 <p>Those content styles are easily replaceable via CSS variable override. It is possible that you already style those things with more specific selectors but we recommend to use the variables from now on.<br>
@@ -430,8 +433,8 @@ You can read more about the reasons in our <a href="https://github.com/ckeditor/
 </ul>
 <p>Example:</p>
 <pre class="highlight"><code class="css">:root {
-  --ck-content-highlight-marker-yellow: #fdfd77;
-  --ck-content-color-image-caption-background: hsl(0, 0%, 97%);
+    --ck-content-highlight-marker-yellow: #fdfd77;
+    --ck-content-color-image-caption-background: hsl(0, 0%, 97%);
 }
 </code></pre>
 <h4 id="table-related-css-variables-renamed-for-better-clarity"><a class="headerlink" href="#table-related-css-variables-renamed-for-better-clarity">#</a> Table-related CSS variables renamed for better clarity</h4>
@@ -465,24 +468,169 @@ You can read more about the reasons in our <a href="https://github.com/ckeditor/
 </ul>
 <p>Example:</p>
 <pre class="highlight"><code class="css">:root {
-  --ck-color-table-caption-highlighted-background: hsl(52deg 100% 50%);
-  --ck-color-table-column-resizer-hover: var(--ck-color-base-active);
-  --ck-color-table-focused-cell-background: hsla(212, 90%, 80%, .3);
+    --ck-color-table-caption-highlighted-background: hsl(52deg 100% 50%);
+    --ck-color-table-column-resizer-hover: var(--ck-color-base-active);
+    --ck-color-table-focused-cell-background: hsla(212, 90%, 80%, .3);
+}
+</code></pre>
+<h3 id="multi-level-list-markup-change"><a class="headerlink" href="#multi-level-list-markup-change">#</a> Multi-level list markup change</h3>
+<p>Due to work on fixing the <a href="https://github.com/ckeditor/ckeditor5/issues/5752">list markers formatting</a>, we changed the markup of the Multi-level list feature. This has no visual affect, but may trigger some automated tests issues. <strong>There is no need to migrate content during the update.</strong></p>
+<p><strong>Before:</strong></p>
+<pre class="highlight"><code class="html">&lt;ol class="multi-level-list legal-list" style="list-style-type:none;"&gt;
+    &lt;li&gt;
+        &lt;span class="multi-level-list__marker"&gt;1. &lt;/span&gt;Foo bar
+    &lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<p><strong>After:</strong></p>
+<pre class="highlight"><code class="html">&lt;ol class="multi-level-list legal-list" style="list-style-type:none;"&gt;
+    &lt;li&gt;
+        &lt;span class="multi-level-list__marker"&gt;&lt;span&gt;1.&lt;/span&gt;&amp;nbsp;&lt;/span&gt;Foo bar
+    &lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<h3 id="list-item-identification-in-editor-data"><a class="headerlink" href="#list-item-identification-in-editor-data">#</a> List item identification in editor data</h3>
+<p>The <code>data-list-item-id</code> attribute is now added to the <code>&lt;li&gt;</code> elements in the editor data to improve integration between the list feature and other editor features. This attribute provides a stable identifier for list items that remains consistent across data loads and saves, resolving issues with data stability and improving compatibility with external systems and diffing algorithms.</p>
+<p><strong>Before:</strong></p>
+<pre class="highlight"><code class="html">&lt;ul&gt;
+        &lt;li&gt;
+                &lt;p&gt;First item&lt;/p&gt;
+                &lt;p&gt;Second paragraph&lt;/p&gt;
+        &lt;/li&gt;
+        &lt;li&gt;Another item&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p><strong>After:</strong></p>
+<pre class="highlight"><code class="html">&lt;ul&gt;
+        &lt;li data-list-item-id="abc123"&gt;
+                &lt;p&gt;First item&lt;/p&gt;
+                &lt;p&gt;Second paragraph&lt;/p&gt;
+        &lt;/li&gt;
+        &lt;li data-list-item-id="def456"&gt;Another item&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>This change ensures that list items maintain consistent identifiers across editor sessions, improving the reliability of features that depend on list structure tracking. The attribute is automatically generated and maintained by the editor, requiring no action from developers.</p>
+<p>If you need to export clean HTML without these IDs (for presentation purposes only), you can use the <code>skipListItemIds</code> option when calling <code>editor.getData()</code>:</p>
+<pre class="highlight"><code class="js">// Get data without list item IDs (for presentation only)
+const cleanHtml = editor.getData({ skipListItemIds: true });
+</code></pre>
+<p>For more technical details, see <a href="https://github.com/ckeditor/ckeditor5/issues/18407">GitHub issue #18407</a>.</p>
+<h3 id="comments-annotation-styles-standardization"><a class="headerlink" href="#comments-annotation-styles-standardization">#</a> Comments annotation styles standardization</h3>
+<p>The default styles for comments annotations have changed significantly. Previously, the defaults were set only on part of the comments UI, and the comments UI was affected by the main editor content styles. Now, we have introduced a standardized set of CSS variables that are applied to both the comments content and input field.</p>
+<p><strong>New CSS variables introduced:</strong></p>
+<ul>
+<li><code>--ck-comment-content-font-family</code></li>
+<li><code>--ck-comment-content-font-size</code></li>
+<li><code>--ck-comment-content-font-color</code></li>
+</ul>
+<p>These variables have default values based on the editor’s UI styles, which may be different from styles you currently have set. Most notably, the default font color has changed from black <code>hsl(0, 0%, 0%)</code> to dark gray <code>hsl(0, 0%, 20%)</code> to match the rest of the editor UI.</p>
+<p><strong>Migration:</strong></p>
+<ol>
+<li>Review the comments appearance after updating the editor</li>
+<li>If the new default styles do not match your design requirements, set custom values using the new CSS variables:</li>
+</ol>
+<pre class="highlight"><code class="css">:root {
+    --ck-comment-content-font-family: "Your preferred font family";
+    --ck-comment-content-font-size: 14px;
+    --ck-comment-content-font-color: hsl(0, 0%, 0%); /* or your preferred color */
+}
+</code></pre>
+<p>This change ensures consistent styling across all comments-related UI elements and provides better integration with the overall editor design system.</p>
+<h3 id="improved-vertical-spacing-for-paragraphs-in-lists-and-tables"><a class="headerlink" href="#improved-vertical-spacing-for-paragraphs-in-lists-and-tables">#</a> Improved vertical spacing for paragraphs in lists and tables</h3>
+<p>During the work on Line Height, we changed the behavior how paragraphs behave in lists and table cells. It was <a href="https://github.com/ckeditor/ckeditor5/issues/11347">a long-reported bug</a> which caused a confusion for writers. We decided to solve it with opinionated content styles, and it may result in a <strong>visual change</strong> of your content after the update. If you are not satisfied with the result, you can revert the change in the CSS:</p>
+<pre class="highlight"><code class="css">.ck-content li &gt; p:first-of-type {
+        margin-top: revert;
+    }
+
+
+.ck-content li &gt; p:only-child {
+    margin-top: revert;
+    margin-bottom: revert;
+}
+
+.ck-content table.table:not(.layout-table),
+.ck-content figure.table:not(.layout-table) &gt; table {
+    &gt; thead,
+    &gt; tbody {
+        &gt; tr {
+            &gt; td,
+            &gt; th {
+                &gt; p:first-of-type {
+                    margin-top: revert;
+                }
+
+                &gt; p:last-of-type {
+                    margin-bottom: revert;
+                }
+            }
+        }
+    }
 }
 </code></pre>
 <h3 id="comment-threads-improvements"><a class="headerlink" href="#comment-threads-improvements">#</a> Comment threads improvements</h3>
+<h4 id="new-thread-command-changes"><a class="headerlink" href="#new-thread-command-changes">#</a> New thread command changes</h4>
 <p>We have introduced improvements to the <code>addCommandThread</code> command, which now supports creating comment threads on specified ranges. Additionally, it allows for creating a comment thread with an initial comment with the provided comment content.</p>
-<h4 id="minor-breaking-change"><a class="headerlink" href="#minor-breaking-change">#</a> Minor breaking change</h4>
+<h5 id="minor-breaking-change"><a class="headerlink" href="#minor-breaking-change">#</a> Minor breaking change</h5>
 <p>The&nbsp;<code>AddCommandThreadCommand#isEnabled</code>&nbsp;property is no longer&nbsp;<code>false</code>&nbsp;when the current document selection is empty, as the command now allows for creating comment threads on custom ranges. If you previously used this property (for example, to provide a custom UI element), you should now use the observable <code>AddCommentThreadCommand#hasContent</code> property instead.</p>
-<h3 id="comments-and-suggestions-annotations"><a class="headerlink" href="#comments-and-suggestions-annotations">#</a> Comments and suggestions annotations</h3>
+<h4 id="comments-and-suggestions-annotations"><a class="headerlink" href="#comments-and-suggestions-annotations">#</a> Comments and suggestions annotations</h4>
 <p>We have introduced dedicated methods for an easier way to get specific annotations related to a comment or a suggestion and vice versa.</p>
 <h3 id="major-breaking-changes-in-this-release"><a class="headerlink" href="#major-breaking-changes-in-this-release">#</a> Major breaking changes in this release</h3>
+<ul>
+<li>
+<p><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ai">ai</a></strong>: The AI Assistant now uses the more advanced <code>gpt-4o</code> model by default, replacing the previous <code>gpt-3.5-turbo</code>. This update improves response quality and overall capabilities. Additionally, the default limit set by <code>max_tokens</code> parameter has been removed, allowing for better and more detailed responses. If you relied on the previous default settings and wish to continue using them, be sure to explicitly define the editor configuration entry <code>ai.openAi.requestParameters</code> to <code>{ model: 'gpt-3.5-turbo', max_tokens: 2000, stream: true }</code>.</p>
+</li>
+<li>
+<p><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-document-outline">document-outline</a></strong>: Content area CSS variables have been renamed to use the --ck-content-* prefix for better consistency in the Table of Contents feature. This requires action if you have overridden the variables. See the update guide for details.</p>
+</li>
+<li>
+<p><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list">list</a></strong>: Removed vertical spacing in list items by resetting margins for <code>&lt;p&gt;</code> elements that are the child of a <code>&lt;li&gt;</code> element.</p>
+</li>
+<li>
+<p><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table">table</a></strong>: Removed vertical spacing in table cells by collapsing margins of </p><p> elements that are the only child of a <code>&lt;td&gt;</code> or <code>&lt;th&gt;</code> element.</p>
+</li>
+<li>
+<p>The editor now enforces default browser styles for text content in both the editing view and rendered output. This change may affect existing styling and layout, so any custom CSS overrides should be reviewed. See <a href="https://github.com/ckeditor/ckeditor5/issues/18710">#18710</a> for details. The following CSS variables and their default values are now applied:</p>
+<ul>
+<li><code>--ck-content-font-family</code>: <code>Helvetica, Arial, Tahoma, Verdana, sans-serif</code></li>
+<li><code>--ck-content-font-size</code>: <code>medium</code></li>
+<li><code>--ck-content-font-color</code>: <code>#000</code> (<em>HEX instead of <code>hsl()</code> to ensure compatibility with email clients</em>)</li>
+<li><code>--ck-content-line-height</code>: <code>1.5</code></li>
+<li><code>--ck-content-word-break</code>: <code>break-word</code></li>
+</ul>
+</li>
+<li>
+<p>The default styles for comment annotations have changed to provide better consistency with the editor UI. A new set of CSS variables is now used to control the appearance of the comment content and input fields. These changes may affect the current appearance of comments in your integration, so please review them after updating. The following CSS variables are now applied:</p>
+<ul>
+<li><code>--ck-comment-content-font-family</code></li>
+<li><code>--ck-comment-content-font-size</code></li>
+<li><code>--ck-comment-content-font-color</code> (default changed from <code>hsl(0, 0%, 0%)</code> to <code>hsl(0, 0%, 20%)</code>)</li>
+</ul>
+<p>These variables default to values derived from the editor 's UI styles, and they may differ from your current settings. Customize these variables as needed to match your desired appearance.</p>
+</li>
+<li>
+<p>Content area CSS variables have been renamed to use the <code>--ck-content-*</code> prefix for better consistency in the Highlight, Image, List, and Table features. This requires action if you have overridden the variables. See the update guide for details.</p>
+</li>
+<li>
+<p>Table-related CSS variables with improper <code>*-selector-*</code> naming have been renamed to use <code>*-table-*</code> for better clarity. This requires action if you have overridden the variables. See the update guide for details.</p>
+</li>
+</ul>
 <h3 id="minor-breaking-changes-in-this-release"><a class="headerlink" href="#minor-breaking-changes-in-this-release">#</a> Minor breaking changes in this release</h3>
+<ul>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-comments">comments</a></strong>: The <code>AddCommandThreadCommand#isEnabled</code> property is no longer <code>false</code> when the current document selection is empty, as the command now allows for creating comment threads on custom ranges. If you previously used this property (for example, to provide a custom UI element), you should now use the observable <code>AddCommentThreadCommand#hasContent</code> property instead.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core">core</a></strong>: Removed the deprecated <code>DataApiMixin</code> function and <code>DataApi</code> interface. Their functionality is the part of the Editor class.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine">engine</a></strong>: Removed <code>Batch#type</code> deprecated property.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list">list</a></strong>: Removed <code>DocumentList</code>, <code>DocumentListProperties</code> and <code>TodoDocumentList</code> plugins. They were aliases for plugins <code>List</code>, <code>ListProperties</code> and <code>DocumentList</code> respectively.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-markdown-gfm">markdown-gfm</a></strong>: Migrated from <code>marked</code> and <code>turndown</code> to <code>remark</code> and <code>rehype</code> for improved extensibility and alignment with the modern Markdown ecosystem.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-markdown-gfm">markdown-gfm</a></strong>: Enabled the autolinking feature in Markdown when loading Markdown content into the editor.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui">ui</a></strong>: Removed the deprecated <code>buttonView</code> property from buttons created with <code>FileDialogViewMixin</code>. Use the button object itself.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Removed the deprecated <code>mix</code> function.</li>
+<li><strong><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-utils">utils</a></strong>: Removed the deprecated <code>Locale#language</code> property. Use <code>Locale#uiLanguage</code> instead.ase</li>
+</ul>
 
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-46.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fguides%2Fupdate-to-46.html%22&amp;project-version=46.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -550,8 +698,8 @@ You can read more about the reasons in our <a href="https://github.com/ckeditor/
                                     <li><a href="../nim-migration/custom-plugins.html" title="Migrating custom plugins">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                         </div></a></li>
-                                    <li><a href="../nim-migration/migrating-exports.html" title="Migrating internal exports">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                    <li><a href="../nim-migration/migrating-imports.html" title="Migrating imports">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                             </ul>
                           </li>
@@ -593,7 +741,7 @@ You can read more about the reasons in our <a href="https://github.com/ckeditor/
                                         <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="update-to-45.html" title="Update to v45.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                         </div></a></li>
                                     <li><a href="update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>

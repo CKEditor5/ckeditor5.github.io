@@ -7,7 +7,7 @@
     <meta name="description" content="Learn how to upgrade your CKEditor5 project to the new installation methods.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 07 2025 01:53:12 GMT+0000 (Coordinated Universal Time)">
+    <meta name="x-generated-at" content="Thu Jul 10 2025 01:52:54 GMT+0000 (Coordinated Universal Time)">
     <meta property="og:title" content="Migrating to new installation methods | CKEditor5 documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="45.2.1">
+    <meta name="project-version" content="46.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 7.3.0"></head>
   <body>
@@ -144,8 +144,8 @@
                                   <li><a href="custom-plugins.html" title="Migrating custom plugins">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                       </div></a></li>
-                                  <li><a href="migrating-exports.html" title="Migrating internal exports">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                  <li><a href="migrating-imports.html" title="Migrating imports">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                             </ul>
                           </li>
@@ -187,7 +187,7 @@
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="../guides/update-to-45.html" title="Update to v45.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                       </div></a></li>
                                   <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
@@ -377,16 +377,16 @@ ClassicEditor
 <h3 id="browser-builds"><a class="headerlink" href="#browser-builds">#</a> Browser builds</h3>
 <p>The browser builds are a great way to use CKEditor&nbsp;5 if you do not want to build JavaScript with a module bundler. The browser builds are available as JavaScript modules and can be loaded directly in the browser using the <code>&lt;script type="module"&gt;</code> tag.</p>
 <p>Here is the same editor setup as above, but using the browser builds:</p>
-<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.2.1/ckeditor5.css" /&gt;
-&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/ckeditor5-premium-features.css" /&gt;
+<pre class="highlight"><code class="html">&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/46.0.0/ckeditor5.css" /&gt;
+&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/ckeditor5-premium-features.css" /&gt;
 
 &lt;script type="importmap"&gt;
 {
     "imports": {
-        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/45.2.1/ckeditor5.js",
-        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/45.2.1/",
-        "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/ckeditor5-premium-features.js",
-        "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/"
+        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/46.0.0/ckeditor5.js",
+        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/46.0.0/",
+        "ckeditor5-premium-features": "https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/ckeditor5-premium-features.js",
+        "ckeditor5-premium-features/": "https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/"
     }
 }
 &lt;/script&gt;
@@ -412,16 +412,16 @@ ClassicEditor
 </code></pre>
 <p>In some environments, you may not be able to use the import maps or JavaScript modules. In such cases, you can use the UMD builds instead. These register global variables that you can use in your scripts. This is the same setup as above, but using the UMD builds:</p>
 <pre class="highlight"><code class="html">&lt;!-- Style sheets --&gt;
-&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.2.1/ckeditor5.css" /&gt;
-&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/ckeditor5-premium-features.css" /&gt;
+&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/46.0.0/ckeditor5.css" /&gt;
+&lt;link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/ckeditor5-premium-features.css" /&gt;
 
 &lt;!-- Scripts --&gt;
-&lt;script src="https://cdn.ckeditor.com/ckeditor5/45.2.1/ckeditor5.umd.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/ckeditor5-premium-features.umd.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.ckeditor.com/ckeditor5/46.0.0/ckeditor5.umd.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/ckeditor5-premium-features.umd.js"&gt;&lt;/script&gt;
 
 &lt;!-- Translations --&gt;
-&lt;script src="https://cdn.ckeditor.com/ckeditor5/45.2.1/translations/pl.umd.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.ckeditor.com/ckeditor5-premium-features/45.2.1/translations/pl.umd.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.ckeditor.com/ckeditor5/46.0.0/translations/pl.umd.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.0/translations/pl.umd.js"&gt;&lt;/script&gt;
 
 &lt;script&gt;
 const { ClassicEditor, Essentials, Bold, Italic, Paragraph, Mention } = CKEDITOR;
@@ -542,12 +542,12 @@ ClassicEditor
 <p>With the release of version 42.0.0, we have decided to deprecate the older methods of setting up CKEditor&nbsp;5. The new experience introduced in v42.0.0 is far superior.</p>
 <p>However, we understand that migrating to a new setup, even if easy, requires planning and work allocation. We would rather not block anyone from receiving bug fixes and improvements due to a deprecated update path. Therefore, we will support all existing methods according to the timelines given below.</p>
 <h3 id="deprecation-of-the-predefined-builds"><a class="headerlink" href="#deprecation-of-the-predefined-builds">#</a> Deprecation of the predefined builds</h3>
-<p>Our provided predefined editor builds, such as <code>ckeditor5-build-classic</code>, will be supported until <strong>the end of Q1 (March), 2025</strong>.</p>
-<p>What we will sunset on this date:</p>
+<p>Our provided predefined editor builds, such as <code>ckeditor5-build-classic</code>, were supported until <strong>the end of Q1 (March), 2025</strong>.</p>
+<p>What we sunset on this date:</p>
 <ol>
-<li>The documentation for the predefined builds and superbuild will be removed.</li>
-<li>No more new versions of predefined builds packages will be published to npm.</li>
-<li>We will update our environment to target ES2022 (or newer), thus dropping the support for webpack 4.</li>
+<li>The documentation for the predefined builds and superbuild was removed.</li>
+<li>No more new versions of predefined builds packages are published to npm.</li>
+<li>We updated our environment to target ES2022, thus dropping the support for webpack 4.</li>
 </ol>
 <h3 id="deprecation-of-the-custom-builds"><a class="headerlink" href="#deprecation-of-the-custom-builds">#</a> Deprecation of the custom builds</h3>
 <p>The setup method which was “webpack-first”, in which you imported from specific packages from <code>src</code> folder, will be supported until <strong>the end of 2025</strong>.</p>
@@ -599,7 +599,7 @@ ClassicEditor
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fmigration-to-new-installation-methods.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fmigration-to-new-installation-methods.html%22&amp;project-version=46.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -667,8 +667,8 @@ ClassicEditor
                                     <li><a href="custom-plugins.html" title="Migrating custom plugins">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                         </div></a></li>
-                                    <li><a href="migrating-exports.html" title="Migrating internal exports">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                    <li><a href="migrating-imports.html" title="Migrating imports">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                             </ul>
                           </li>
@@ -710,7 +710,7 @@ ClassicEditor
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="../guides/update-to-45.html" title="Update to v45.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                         </div></a></li>
                                     <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>

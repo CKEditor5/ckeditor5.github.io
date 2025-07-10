@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Migrating internal exports | CKEditor 5 Documentation</title>
-    <meta name="description" content="Mihgrate CKEditor 5 to new, clearer, standardized public API names.">
+    <title>Migrating imports (v46+) | CKEditor 5 Documentation</title>
+    <meta name="description" content="Migrate CKEditor 5 to new, clearer, standardized public API names.">
     <meta name="twitter:card" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta name="twitter:site" content="@ckeditor">
-    <meta name="x-generated-at" content="Mon Jul 07 2025 01:53:12 GMT+0000 (Coordinated Universal Time)">
-    <meta property="og:title" content="Migrating internal exports | CKEditor 5 Documentation">
+    <meta name="x-generated-at" content="Thu Jul 10 2025 01:52:55 GMT+0000 (Coordinated Universal Time)">
+    <meta property="og:title" content="Migrating imports (v46+) | CKEditor 5 Documentation">
     <meta property="og:description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-exports.html">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-imports.html">
     <meta property="DC.language" content="en">
     <meta property="DC.publisher" content="CKSource">
     <meta property="DC.creator" content="CKEditor">
-    <meta property="DC.title" content="Migrating internal exports | CKEditor 5 Documentation">
+    <meta property="DC.title" content="Migrating imports (v46+) | CKEditor 5 Documentation">
     <meta property="DC.format" content="text/html">
     <meta property="DC.type" content="Text">
     <meta property="DC.description" content="Learn to install and configure CKEditor 5. Work with the CKEditor 5 Framework, customize it, create plugins, and custom editors. Includes API reference.">
-    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-exports.html">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/updating/nim-migration/migrating-imports.html">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
@@ -56,7 +56,7 @@
       }
     </script>
     <meta name="permalink-disable-domains" content="ckeditor5.github.io,fake.ckeditor.com,localhost,127.0.0.1">
-    <meta name="project-version" content="45.2.1">
+    <meta name="project-version" content="46.0.0">
     <meta name="project-slug" content="ckeditor5">
   <meta name="generator" content="Hexo 7.3.0"></head>
   <body>
@@ -144,8 +144,8 @@
                                   <li><a href="custom-plugins.html" title="Migrating custom plugins">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                       </div></a></li>
-                                  <li><a href="" title="Migrating internal exports">
-                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                  <li><a href="" title="Migrating imports">
+                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                             </ul>
                           </li>
@@ -187,7 +187,7 @@
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                       </div></a></li>
                                   <li><a href="../guides/update-to-45.html" title="Update to v45.x">
-                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                       </div></a></li>
                                   <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                       <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>
@@ -266,26 +266,35 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/updating/nim-migration/migrating-exports.md" title="Contribute to this guide"><img src="../../../../assets/7.0.2/gloria/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/updating/nim-migration/migrating-imports.md" title="Contribute to this guide"><img src="../../../../assets/7.0.2/gloria/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Updating</a>
           </div>
-          <h1 class="main__content-title">Migrating internal exports
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#internal-exports" title="Internal exports">Internal exports</a></li><li><a href="#changed-exports" title="Changed exports">Changed exports</a></li><li><a href="#new-exports" title="New exports">New exports</a></li></ol></nav>
-<p>As part of the transition to the New Installation Methods (NIM), we have standardized how public API elements are exposed in CKEditor&nbsp;5 and related packages. We introduced a unified export policy that ensures every public entity is exported via the package’s <code>index.ts</code> file. We also gave the exported classes, functions, and helpers more descriptive and context-appropriate names ensuring they are unambiguous and unique within the scope of CKEditor&nbsp;5. This includes renaming existing exports where needed. The changes are semantically equivalent but introduce breaking changes in naming.</p>
-<h2 id="internal-exports"><a class="headerlink" href="#internal-exports">#</a> Internal exports</h2>
-<p>All internal exports are now available directly from the <code>ckeditor5</code> (or <code>ckeditor5-premium-features</code>) package root with an underscore (<code>_</code>) prefix. This means you no longer need to specify the file path within a package to access these exports.</p>
-<h3 id="example-usage"><a class="headerlink" href="#example-usage">#</a> Example usage</h3>
+          <h1 class="main__content-title">Migrating imports (v46+)
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#using-internal-apis" title="Using internal APIs">Using internal APIs</a></li><li><a href="#changed-exports" title="Changed exports">Changed exports</a></li><li><a href="#new-exports" title="New exports">New exports</a></li></ol></nav>
+<p>As part of the transition to the New Installation Methods (NIM) in version, we have standardized how public API elements are exposed in CKEditor&nbsp;5 and related packages. We introduced a unified export policy that ensures every public entity is exported via the package’s <code>index.ts</code> file. We also gave the exported classes, functions, and helpers more descriptive and context-appropriate names ensuring they are unambiguous and unique within the scope of CKEditor&nbsp;5. This includes renaming existing exports where needed. The changes are semantically equivalent but introduce breaking changes in naming.</p>
+<div class="info-box notice notice__info"><p>Please note that while New Installation Methods were introduced since CKEditor&nbsp;5 42.0.0, these changes to exports name came with version 46.0.0.</p></div>
+<h2 id="using-internal-apis"><a class="headerlink" href="#using-internal-apis">#</a> Using internal APIs</h2>
+<p>For a long time in Old Installation Methods (OIM), it was possible to grab internal-purpose functions from specific files if they were exported just for the package’s internal purposes.</p>
+<p>We want to clean up this situation in the New Installation Methods, and internal APIs will not be available in the index. After deprecating OIM, source files will not be available, so some internal APIs that were previously used in this way will no longer be available.</p>
+<p>To ease the migration, all internal exports that were available before, are now available directly from the <code>ckeditor5</code> (or <code>ckeditor5-premium-features</code>) package root with an underscore (<code>_</code>) prefix.</p>
+<p>Keep in mind that:</p>
+<ul>
+<li>we may remove them in the future.</li>
+<li>all new internal methods will not be added to the indexes.</li>
+</ul>
+<p>If you think one of our internal methods, classes, etc. should be available in the public API, please let us know via <a href="https://ckeditor.com/contact/">the support channel</a> or on <a href="https://github.com/ckeditor/ckeditor5/issues">the GitHub issue tracker</a>.</p>
+<h3 id="example-migration"><a class="headerlink" href="#example-migration">#</a> Example migration</h3>
 <p>Previously, importing internal exports required specifying the exact file path:</p>
 <pre class="highlight"><code class="ts">import { getCsrfToken } from '@ckeditor/ckeditor5-adapter-ckfinder/src/utils';
 </code></pre>
 <p>Now, you can import them from the package’s root entry point with the new name:</p>
 <pre class="highlight"><code class="ts">import { _getCKFinderCsrfToken } from 'ckeditor5';
 </code></pre>
-<p>This standardized approach simplifies imports while clearly distinguishing internal implementation details from the public API through the underscore prefix.</p>
 <h2 id="changed-exports"><a class="headerlink" href="#changed-exports">#</a> Changed exports</h2>
 <p>Below, you will find all name changes in packages listed alphabetically for convenience.</p>
 <div class="info-box notice notice__info"><p>The tables below list only these exports that have changed names and may introduce breaking changes. Newly exported methods that did not exist before NIM are <strong>not</strong> included here.</p></div>
+<div class="info-box notice notice__info"><p>Manually updating all these numerous imports could be time-consuming and error-prone. We recommend using the <a href="https://raw.githubusercontent.com/ckeditor/ckeditor5/refs/heads/master/docs/updating/nim-migration/migrating-exports.md">tables with the changed import/export names</a> as context for tools such as Copilot, ChatGPT, or other LLM-based services that can automatically update all imports in your project.</p></div>
 <h3 id="ckeditorckeditor5-adapter-ckfinder"><a class="headerlink" href="#ckeditorckeditor5-adapter-ckfinder">#</a> @ckeditor/ckeditor5-adapter-ckfinder</h3>
 <table>
 <thead>
@@ -871,8 +880,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>originalName</th>
-<th>reExportedName</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2053,8 +2062,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original_method_name</th>
-<th>re_exported_method_name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2080,8 +2089,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original_method_name</th>
-<th>re_exported_method_name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2127,8 +2136,8 @@
 <thead>
 <tr>
 <th>File</th>
-<th>Original Method Name</th>
-<th>New Re-exported Method Name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2159,8 +2168,8 @@
 <thead>
 <tr>
 <th>File</th>
-<th>Original Method Name</th>
-<th>New Re-exported Method Name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2211,8 +2220,8 @@
 <thead>
 <tr>
 <th>File</th>
-<th>Original Method Name</th>
-<th>New Re-exported Method Name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2238,8 +2247,8 @@
 <thead>
 <tr>
 <th>File</th>
-<th>Original Method Name</th>
-<th>New Re-exported Method Name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2260,8 +2269,8 @@
 <thead>
 <tr>
 <th>File</th>
-<th>Original Method Name</th>
-<th>New Re-exported Method Name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2277,8 +2286,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original_method</th>
-<th>reexported_method</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2404,8 +2413,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original_method</th>
-<th>reexported_method</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2601,8 +2610,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original_method</th>
-<th>reexported_method</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2623,8 +2632,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2645,8 +2654,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2667,8 +2676,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -2759,8 +2768,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3091,8 +3100,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3123,8 +3132,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3150,8 +3159,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3202,8 +3211,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3244,8 +3253,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3266,8 +3275,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3323,8 +3332,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3460,8 +3469,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3517,8 +3526,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3564,8 +3573,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3591,8 +3600,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3643,8 +3652,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>new re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -3715,8 +3724,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -4188,8 +4197,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -4241,8 +4250,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -4294,8 +4303,8 @@
 <thead>
 <tr>
 <th>file</th>
-<th>original method name</th>
-<th>re-exported method name</th>
+<th>original name</th>
+<th>re-exported name</th>
 </tr>
 </thead>
 <tbody>
@@ -4864,7 +4873,7 @@
 </tr>
 <tr>
 <td>view/domconverter.ts</td>
-<td>BlockFillerMode</td>
+<td>ViewBlockFillerMode</td>
 </tr>
 </tbody>
 </table>
@@ -4985,7 +4994,7 @@
           <div class="info-box notice notice__feedback">
             <p>
               Every day, we work hard to keep our documentation complete. Have you spotted outdated information? Is something missing?
-              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fmigrating-exports.html%22&amp;project-version=45.2.1" id="report-widget-issue-tracker">issue tracker</a>.
+              Please report it via our <a href="https://github.com/ckeditor/ckeditor5/issues/new?labels=squad%3Accx%2Ctype%3Adocs&amp;template=7-docs-issue-community.yml&amp;title=Docs+issue+report+from+%22updating%2Fnim-migration%2Fmigrating-imports.html%22&amp;project-version=46.0.0" id="report-widget-issue-tracker">issue tracker</a>.
             </p>
             <p>
               With the release of version 42.0.0, we have rewritten much of our documentation to reflect the new import paths and features.
@@ -5053,8 +5062,8 @@
                                     <li><a href="custom-plugins.html" title="Migrating custom plugins">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migrating custom plugins</span>
                                         </div></a></li>
-                                    <li><a href="" title="Migrating internal exports">
-                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating internal exports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                    <li><a href="" title="Migrating imports">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Migrating imports</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                             </ul>
                           </li>
@@ -5096,7 +5105,7 @@
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v46.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
                                         </div></a></li>
                                     <li><a href="../guides/update-to-45.html" title="Update to v45.x">
-                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span><span class="tree__item__badge tree__item__badge_new" data-badge-tooltip="New or updated content">New</span>
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v45.x</span>
                                         </div></a></li>
                                     <li><a href="../guides/update-to-44.html" title="Update to v44.x">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Update to v44.x</span>

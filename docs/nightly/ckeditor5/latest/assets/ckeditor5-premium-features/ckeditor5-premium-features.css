@@ -1544,6 +1544,13 @@ With track-changes feature enabled, we need to distinguish various types of anno
 	--ck-color-comment-separator: hsl(210, 52%, 87%);
 	--ck-color-comment-remove-background: var(--ck-color-light-red);
 	--ck-color-comment-input-background: var(--ck-color-comment-background);
+	/* Because of default content styles that are inherited from `.ck-content` are affecting the comment font family
+	(it's not inherited from `body`) we need to set the `font-family` manually; similar situation is with:
+	`font-size` and `color` properties.
+	See https://github.com/ckeditor/ckeditor5/issues/18710 */
+	--ck-comment-content-font-family: var(--ck-font-face);
+	--ck-comment-content-font-size: var(--ck-font-size-base);
+	--ck-comment-content-font-color: var(--ck-color-base-text);
 }
 
 .ck .ck-comment__wrapper {
@@ -1613,10 +1620,17 @@ With track-changes feature enabled, we need to distinguish various types of anno
 .ck .ck-comment__content {
 	word-break: normal;
 	overflow-wrap: anywhere;
+	font-family: var(--ck-comment-content-font-family);
+	color: var(--ck-comment-content-font-color);
 }
 
 .ck .ck-comment--info .ck-comment__content {
 		font-style: italic;
+		/* Override the default content styles that are inherited from `.ck-content`.
+		See https://github.com/ckeditor/ckeditor5/issues/18710 */
+		font-family: var(--ck-comment-content-font-family);
+		font-size: var(--ck-comment-content-font-size);
+		color: var(--ck-comment-content-font-color);
 	}
 
 /* Common styles for typography inside comment element and editable input.
@@ -2070,6 +2084,12 @@ We are styling resetting list-style because of parent <ul> element. */
 		--ck-focus-ring: none;
 		--ck-inner-shadow: none;
 
+		/* Override the default content styles that are inherited from `.ck-content`.
+		See https://github.com/ckeditor/ckeditor5/issues/18710 */
+		font-family: var(--ck-comment-content-font-family);
+		font-size: var(--ck-comment-content-font-size);
+		color: var(--ck-comment-content-font-color);
+
 		padding: 0;
 		overflow: visible;
 		border: 0;
@@ -2340,9 +2360,9 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 .ck .ck-annotation__main p {
 	margin: 0;
 
-	/* We need it to prevent `.ck.ck-reset` ovverride. */
+	/* We need it to prevent `.ck.ck-reset` override. */
 	white-space: normal;
-	font-size: var(--ck-font-size-base);
+	font-size: var(--ck-comment-content-font-size);
 
 	/* TODO: refactor this value later. */
 	line-height: 1.5em;
@@ -2802,6 +2822,12 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
+.ck-editor__editable .multi-level-list li .multi-level-list__marker::before {
+				/* Use CSS to display multi-level list markers to prevent breaking the composition.
+				See https://github.com/cksource/ckeditor5-commercial/issues/6873. */
+				content: attr(data-multi-level-list-marker);
+			}
+
 .ck-content .multi-level-list {
 	list-style: none;
 }
@@ -2811,23 +2837,50 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 	}
 
 .ck-content .multi-level-list li .multi-level-list__marker {
-			position: absolute;
-			padding-inline-end: 5px;
-			transform: translate(-100%, 0);
 			pointer-events: none;
 
-			/* RTL styles */
+			/* Do not show list markers as selected. */
 		}
-
-[dir="rtl"] .ck-content .multi-level-list li .multi-level-list__marker {
-				transform: translate(100%, 0);
-	}
-
-/* Do not show list markers as selected. */
 
 .ck-content .multi-level-list li .multi-level-list__marker::selection {
 				background-color: transparent;
 			}
+
+/* Marker next to a block widget or old marker format (legacy content without span element in marker) */
+
+.ck-content .multi-level-list li .multi-level-list__marker:not(:has(span)) {
+				position: absolute;
+				padding-inline-end: 5px;
+				transform: translate(-100%, 0);
+
+				/* RTL styles */
+			}
+
+[dir="rtl"] .ck-content .multi-level-list li .multi-level-list__marker:not(:has(span)) {
+					transform: translate(100%, 0);
+	}
+
+/* Marker next to a paragraph like element in a new marker format with marker styling */
+
+.ck-content .multi-level-list li .multi-level-list__marker:has(span) {
+				position: relative;
+				width: 0;
+				display: inline-block;
+				text-wrap: nowrap;
+			}
+
+.ck-content .multi-level-list li .multi-level-list__marker:has(span)::before,
+				.ck-content .multi-level-list li .multi-level-list__marker:has(span) > span {
+					position: absolute;
+					padding-inline-end: 5px;
+					transform: translate(-100%, 0);
+
+					/* RTL styles */
+				}
+
+[dir="rtl"] .ck-content .multi-level-list li .multi-level-list__marker:has(span)::before, [dir="rtl"] .ck-content .multi-level-list li .multi-level-list__marker:has(span) > span {
+						transform: translate(100%, 0);
+	}
 
 .ck-content .multi-level-list li.ck-list-marker-bold > .multi-level-list__marker,
 		.ck-content .multi-level-list li.ck-list-marker-bold > * > .multi-level-list__marker {
@@ -2874,15 +2927,10 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			font-size: var(--ck-content-font-size-huge);
 		}
 
-.ck-editor__editable .multi-level-list li .multi-level-list__marker::before {
-				/* Use CSS to display multi-level list markers to prevent breaking the composition.
-				See https://github.com/cksource/ckeditor5-commercial/issues/6873. */
-				content: attr(data-multi-level-list-marker);
+.ck-content[dir='rtl'] .multi-level-list li .multi-level-list__marker:not(:has(span)),
+			.ck-content[dir='rtl'] .multi-level-list li .multi-level-list__marker > span {
+				transform: translate(100%, 0);
 			}
-
-.ck-content[dir='rtl'] .multi-level-list li .multi-level-list__marker {
-			transform: translate(100%, 0);
-		}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
