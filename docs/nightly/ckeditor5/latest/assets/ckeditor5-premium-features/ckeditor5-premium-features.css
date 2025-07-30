@@ -1477,55 +1477,6 @@ With track-changes feature enabled, we need to distinguish various types of anno
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-:root {
-	--ck-color-comment-marker: hsl(55, 98%, 83%);
-	--ck-color-comment-marker-active: hsl(55, 98%, 68%);
-}
-
-.ck-content .ck-comment-marker {
-	background: var(--ck-color-comment-marker);
-
-	/* Match size with suggestion markers */
-	border-top: 3px solid transparent;
-	border-bottom: 3px solid transparent;
-
-	/* #152. In the image case, we change marker background to border. */
-}
-
-.ck-content .ck-comment-marker.ck-widget {
-		background-color: transparent;
-		border: 3px solid var(--ck-color-comment-marker);
-	}
-
-.ck-content .ck-comment-marker--active {
-	background: var(--ck-color-comment-marker-active);
-
-	/* See #2469. Inactive comment marker inside an active one should be highlighted too. */
-}
-
-.ck-content .ck-comment-marker--active .ck-comment-marker {
-		background: var(--ck-color-comment-marker-active);
-	}
-
-.ck-content .ck-comment-marker--active.ck-widget {
-		border-color: var(--ck-color-comment-marker-active);
-
-		/* See #2469. Inactive comment in a widget inside an active comment should not be highlighted. */
-	}
-
-.ck-content .ck-comment-marker--active.ck-widget .ck-comment-marker {
-			background-color: var(--ck-color-comment-marker);
-		}
-
-/*
- * What you're currently looking at is the source code of a legally protected, proprietary software.
- * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
- * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
- *
- * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
- */
-
 /*
  * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
@@ -2574,6 +2525,55 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
  */
 
 :root {
+	--ck-color-comment-marker: hsl(55, 98%, 83%);
+	--ck-color-comment-marker-active: hsl(55, 98%, 68%);
+}
+
+.ck-content .ck-comment-marker {
+	background: var(--ck-color-comment-marker);
+
+	/* Match size with suggestion markers */
+	border-top: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+
+	/* #152. In the image case, we change marker background to border. */
+}
+
+.ck-content .ck-comment-marker.ck-widget {
+		background-color: transparent;
+		border: 3px solid var(--ck-color-comment-marker);
+	}
+
+.ck-content .ck-comment-marker--active {
+	background: var(--ck-color-comment-marker-active);
+
+	/* See #2469. Inactive comment marker inside an active one should be highlighted too. */
+}
+
+.ck-content .ck-comment-marker--active .ck-comment-marker {
+		background: var(--ck-color-comment-marker-active);
+	}
+
+.ck-content .ck-comment-marker--active.ck-widget {
+		border-color: var(--ck-color-comment-marker-active);
+
+		/* See #2469. Inactive comment in a widget inside an active comment should not be highlighted. */
+	}
+
+.ck-content .ck-comment-marker--active.ck-widget .ck-comment-marker {
+			background-color: var(--ck-color-comment-marker);
+		}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
 	--ck-document-outline-padding: var(--ck-spacing-large);
 	--ck-document-outline-base-font-size: .875em;
 	--ck-document-outline-placeholder-color: var(--ck-color-engine-placeholder-text);
@@ -3414,8 +3414,46 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		display: none;
 	}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .ck-widget__type-around {
+/*
+		 * Reset all layout styles for content root as the pagination-view is responsible for page size and margins.
+		*/
+
+.ck.ck-pagination_enabled.ck-pagination-view > .ck-content {
+			padding: 0;
+			margin: 0;
+			width: auto;
+			height: auto;
+			min-width: auto;
+			min-height: auto;
+			max-width: none;
+			max-height: none;
+			border: none;
+			box-sizing: border-box;
+			overflow: unset;
+		}
+
+/**
+		 * Hide all UI related elements.
+		 */
+
+.ck.ck-pagination_enabled.ck-pagination-view .ck-widget__type-around,
+		.ck.ck-pagination_enabled.ck-pagination-view .ck-fake-selection-container,
+		.ck.ck-pagination_enabled.ck-pagination-view .ck-widget__selection-handle,
+		.ck.ck-pagination_enabled.ck-pagination-view .ck-widget__resizer,
+		.ck.ck-pagination_enabled.ck-pagination-view .ck-table-column-resizer {
 			display: none;
+		}
+
+.ck.ck-pagination_enabled.ck-pagination-view .ck-widget {
+			outline: none;
+		}
+
+/*
+		 * Disable border for image/table caption (existing only in editing view).
+		 */
+
+.ck.ck-pagination_enabled.ck-pagination-view .ck-editor__nested-editable:not(td,th) {
+			border: 0;
 		}
 
 /*
@@ -3427,7 +3465,7 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		 * See more: https://github.com/cksource/ckeditor5-commercial/issues/7316
 		 */
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view p:first-child {
+.ck.ck-pagination_enabled.ck-pagination-view p:first-child {
 			padding-top: 0;
 		}
 
@@ -3441,11 +3479,11 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		 * See more: https://github.com/cksource/ckeditor5-commercial/issues/6289.
 		 */
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view *:has(+ .page-break) {
+.ck.ck-pagination_enabled.ck-pagination-view *:has(+ .page-break) {
 			margin-bottom: 0;
 		}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .page-break {
+.ck.ck-pagination_enabled.ck-pagination-view .page-break {
 			padding: 0;
 			margin: 0;
 			break-after: column;
@@ -3454,19 +3492,15 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 
 		}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .page-break .page-break__label {
+.ck.ck-pagination_enabled.ck-pagination-view .page-break .page-break__label {
 				display: none;
 			}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .page-break::after {
+.ck.ck-pagination_enabled.ck-pagination-view .page-break::after {
 				display: none;
 			}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .ck-table-column-resizer {
-			display: none;
-		}
-
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .table table {
+.ck.ck-pagination_enabled.ck-pagination-view .table table {
 
 			/*
 			 * Tables that have overflow set to hidden are incorrectly split between pages on the chrome. Reset the overflow to initial fixes this issue.
@@ -3476,8 +3510,23 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			overflow: initial;
 		}
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view .ck-bookmark {
-			display: none;
+.ck.ck-pagination_enabled.ck-pagination-view blockquote {
+			overflow: initial;
+
+			/*
+			 * Disable inner margins from merging with outside margins
+			 */
+			display: flow-root;
+		}
+
+/**
+		 * The bookmark widget must not expand content next to it but still it has to be rendered so page-break before it can be recorded.
+		 */
+
+.ck.ck-pagination_enabled.ck-pagination-view .ck-bookmark {
+			width: 0;
+			height: 0;
+			overflow: hidden;
 		}
 
 /*
@@ -3497,9 +3546,22 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		 * See: https://github.com/cksource/ckeditor5-commercial/issues/6707
 		 */
 
-.ck.ck-pagination_enabled.ck-editor__editable.ck-pagination-view figure.table:not(.layout-table):has(> table) {
+.ck.ck-pagination_enabled.ck-pagination-view figure.table:not(.layout-table):has(> table) {
 			display: block;
+			width: fit-content;
 		}
+
+/**
+		 * Make ToC page fragmentable.
+		 */
+
+.ck.ck-pagination_enabled.ck-pagination-view .table-of-contents {
+			border: 0;
+		}
+
+.ck.ck-pagination_enabled.ck-pagination-view .table-of-contents ol li {
+				overflow: visible;
+			}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.

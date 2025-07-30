@@ -14,18 +14,17 @@
 @media print {
 	body {
 		margin: 0 !important;
+		overflow-x: hidden;
 	}
 }
 
 @layer snippets {
-	.ck-content * {
-		box-sizing: border-box;
+	.ck-content {
+		--ck-content-font-size: 15px;
 	}
 
-	.ck-content {
-		font-weight: 400;
-		--ck-content-font-size: 15px;
-		--ck-content-line-height: 1.6;
+	.ck-content * {
+		box-sizing: border-box;
 	}
 
 	.ck-content > :first-child {
@@ -50,7 +49,7 @@
 		line-height: 1.5em;
 		padding: 0.6em 0 0 0;
 		margin: 0 0 1.5em 0;
-		font-weight: 400
+		font-weight: 400;
 	}
 
 	.ck-content h4 {
@@ -58,7 +57,7 @@
 		line-height: 1.4em;
 		padding: 0.6em 0 0 0;
 		margin: 0 0 0.2em 0;
-		font-weight: 400
+		font-weight: 400;
 	}
 
 	.ck-content h5 {
@@ -66,7 +65,7 @@
 		line-height: 1.6em;
 		padding: 0.2em 0 0 0;
 		margin: 0 0 0.8em 0;
-		font-weight: 400
+		font-weight: 400;
 	}
 
 	.ck-content strong, .ck-content b {
@@ -79,7 +78,7 @@
 	}
 
 	.ck-content p {
-		margin: 0 0 0.8em 0 !important;
+		margin: 0 0 0.8em 0;
 		padding: 0.2em 0 0 0;
 		line-height: 1.6em;
 	}
@@ -87,7 +86,7 @@
 	.ck-content ol {
 		margin-top: 0;
 		margin-left: 2.666em;
-		margin-bottom: 0.8em !important;
+		margin-bottom: 0.8em;
 		padding: 0.2em 0 0 0;
 		line-height: 1.6em;
 	}
@@ -109,7 +108,7 @@
 
 	.ck-content blockquote {
 		margin-top: 0;
-		margin-bottom: 0.8em !important;
+		margin-bottom: 0.8em;
 		padding-top: 0;
 		padding-bottom: 0;
 		line-height: 1.6em;
@@ -142,8 +141,16 @@
 	}
 
 	.ck-content .table p:last-child,
+	.ck-content .table p:last-of-type:has(+ .ck-table-column-resizer),
 	.ck-content .table ul:last-child,
-	.ck-content .table ol:last-child {
+	.ck-content .table ul:last-of-type:has(+ .ck-table-column-resizer),
+	.ck-content .table ol:last-child,
+	.ck-content .table ol:last-of-type:has(+ .ck-table-column-resizer) {
+		margin-bottom: 0;
+	}
+
+	/* stylelint-disable no-descending-specificity */
+	.ck-content .table-of-contents ol ol:last-of-type {
 		margin-bottom: 0;
 	}
 
@@ -180,7 +187,6 @@
 
 	.ck.ck-editor__editable_inline.test-editor {
 		/* A4 size */
-		columns: calc( 210mm + 2px ) auto;
 		width: calc( 210mm + 2px ); /* Those 2px are from border (box-sizing: border-box) */
 		height: auto;
 		padding: 20mm 12mm;
