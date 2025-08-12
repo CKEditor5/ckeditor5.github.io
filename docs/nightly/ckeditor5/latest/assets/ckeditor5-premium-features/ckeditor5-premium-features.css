@@ -3529,28 +3529,6 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			overflow: hidden;
 		}
 
-/*
-		 * Sometimes Chrome incorrectly calculates the height of the last table row and some
-		 * of the content overlaps the paragraph that is placed directly after the table. It affects
-		 * the column split mode pagination calculation which causes mismatch between the print mode and
-		 * the preview mode.
-		 *
-		 * This issue happens only if:
-		 *
-		 * 	* The table is inside a figure element.
-		 * 	* The table has `display: table` style set.
-		 * 	* The block element is placed directly after the table.
-		 *
-		 * The print mode is not affected, the issue happens only in the column split mode.
-		 *
-		 * See: https://github.com/ckeditor/ckeditor5-commercial/issues/6707
-		 */
-
-.ck.ck-pagination_enabled.ck-pagination-view figure.table:not(.layout-table):has(> table) {
-			display: block;
-			width: fit-content;
-		}
-
 /**
 		 * Make ToC page fragmentable.
 		 */
