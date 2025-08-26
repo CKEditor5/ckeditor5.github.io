@@ -1295,29 +1295,30 @@ With track-changes feature enabled, we need to distinguish various types of anno
 		box-shadow: -3px 0 0 0 var(--ck-color-suggestion-marker-format-border-active);
 	}
 
-.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-deletion {
-		background-color: var(--ck-color-suggestion-widget-deletion-background);
-		border: none;
-	}
-
-.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-deletion.ck-suggestion-marker--active {
-			background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-deletion, .ck-content .ck-widget.table > table > caption.ck-suggestion-marker-deletion {
+			background-color: var(--ck-color-suggestion-widget-deletion-background);
+			border: none;
 		}
 
-.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-insertion {
-		background-color: var(--ck-color-suggestion-widget-insertion-background);
-		border: none;
-	}
+.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-deletion.ck-suggestion-marker--active, .ck-content .ck-widget.table > table > caption.ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+				background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+			}
 
-.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-insertion.ck-suggestion-marker--active {
-			background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-insertion, .ck-content .ck-widget.table > table > caption.ck-suggestion-marker-insertion {
+			background-color: var(--ck-color-suggestion-widget-insertion-background);
+			border: none;
 		}
+
+.ck-content .ck-widget.table > figcaption.ck-suggestion-marker-insertion.ck-suggestion-marker--active, .ck-content .ck-widget.table > table > caption.ck-suggestion-marker-insertion.ck-suggestion-marker--active {
+				background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+			}
 
 .ck-content .ck-suggestion-marker-insertion.table {
 	border-color: var(--ck-color-suggestion-marker-insertion-border);
 }
 
-.ck-content .ck-suggestion-marker-insertion.table > figcaption {
+.ck-content .ck-suggestion-marker-insertion.table > figcaption,
+	.ck-content .ck-suggestion-marker-insertion.table > table > caption {
 		background-color: var(--ck-color-suggestion-widget-insertion-background);
 	}
 
@@ -1340,7 +1341,8 @@ With track-changes feature enabled, we need to distinguish various types of anno
 	border-color: var(--ck-color-suggestion-marker-insertion-border-active);
 }
 
-.ck-content .ck-suggestion-marker-insertion.ck-suggestion-marker--active.table > figcaption {
+.ck-content .ck-suggestion-marker-insertion.ck-suggestion-marker--active.table > figcaption,
+	.ck-content .ck-suggestion-marker-insertion.ck-suggestion-marker--active.table > table > caption {
 		background-color: var(--ck-color-suggestion-widget-insertion-background-active);
 	}
 
@@ -1363,7 +1365,8 @@ With track-changes feature enabled, we need to distinguish various types of anno
 	border-color: var(--ck-color-suggestion-marker-deletion-border);
 }
 
-.ck-content .ck-suggestion-marker-deletion.ck-widget.table > figcaption {
+.ck-content .ck-suggestion-marker-deletion.ck-widget.table > figcaption,
+	.ck-content .ck-suggestion-marker-deletion.ck-widget.table > table > caption {
 		background-color: var(--ck-color-suggestion-widget-deletion-background);
 	}
 
@@ -1389,7 +1392,8 @@ With track-changes feature enabled, we need to distinguish various types of anno
 	border-color: var(--ck-color-suggestion-marker-deletion-border-active);
 }
 
-.ck-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active.table > figcaption {
+.ck-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active.table > figcaption,
+	.ck-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active.table > table > caption {
 		background-color: var(--ck-color-suggestion-widget-deletion-background-active);
 	}
 
@@ -3527,6 +3531,28 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			width: 0;
 			height: 0;
 			overflow: hidden;
+		}
+
+/*
+		 * Sometimes Chrome incorrectly calculates the height of the last table row and some
+		 * of the content overlaps the paragraph that is placed directly after the table. It affects
+		 * the column split mode pagination calculation which causes mismatch between the print mode and
+		 * the preview mode.
+		 *
+		 * This issue happens only if:
+		 *
+		 * 	* The table is inside a figure element.
+		 * 	* The table has `display: table` style set.
+		 * 	* The block element is placed directly after the table.
+		 *
+		 * The print mode is not affected, the issue happens only in the column split mode.
+		 *
+		 * See: https://github.com/cksource/ckeditor5-commercial/issues/6707
+		 */
+
+.ck.ck-pagination_enabled.ck-pagination-view figure.table:not(.layout-table):not(:has(> figcaption)) {
+			display: block;
+			width: fit-content;
 		}
 
 /**
