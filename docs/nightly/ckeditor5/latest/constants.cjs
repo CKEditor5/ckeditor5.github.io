@@ -25,7 +25,7 @@ module.exports = {
  */
 function generateInternalLicenseKey() {
 	return execSync(
-		'yarn --silent ckeditor5-dev-private-generate-license-key3 ' +
+		'pnpm --silent ckeditor5-dev-private-generate-license-key3 ' +
 		'--licensedHosts 127.0.0.1 192.168.*.* ckeditor.com *.ckeditor.com ckeditor5.github.io ' +
 		'--licenseType production',
 		{
