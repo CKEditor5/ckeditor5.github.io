@@ -1615,7 +1615,8 @@
 					margin-bottom: 0;
 				}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck.ck-ai-chat__feed__ai-suggestion .ck-ai-suggestion__body *,
-		.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck.ck-ai-chat__feed__text-item *:not(.ck-ai-chat__feed__context-chips):not(.ck-ai-chat__feed__context-chips *) {
+		.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck.ck-ai-chat__feed__text-item
+		*:not(.ck-ai-chat__feed__context-chips):not(.ck-ai-chat__feed__context-chips *):not(.ck-ai-web-source .ck-button__label) {
 			white-space: normal;
 			line-height: 1.4em;
 		}
@@ -1624,6 +1625,65 @@
 			display: flex;
 			justify-content: flex-end;
 			margin-bottom: var(--ck-spacing-medium-small);
+		}
+/* stylelint-disable-next-line no-descending-specificity */
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: var(--ck-spacing-standard);
+
+			padding: var(--ck-spacing-medium-small) var(--ck-spacing-large) var(--ck-spacing-extra-large) var(--ck-spacing-large);
+		}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-sources__header {
+				grid-column-start: span 3;
+
+				font-size: 12px;
+				font-weight: 500;
+				line-height: 1.4em;
+			}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-sources__header > .ck-icon {
+					vertical-align: text-bottom;
+					width: 14px;
+					height: 14px;
+					margin-right: var(--ck-spacing-medium-small);
+					color: hsl(0, 0%, 44%);
+				}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-sources__header > span {
+					color: hsl(0, 0%, 44%);
+				}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source {
+				padding: var(--ck-spacing-medium) var(--ck-spacing-large);
+				border: 0;
+				border-radius: 50px;
+				background-color: var(--ck-ai-chat-feed-item-color-background);
+			}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source:focus, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source:active {
+					box-shadow: none;
+				}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source .ck-button__icon {
+					margin-right: var(--ck-spacing-medium);
+					color: var(--ck-ai-button-primary-background-color);
+					width: 16px;
+					height: 16px;
+				}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source .ck-button__label {
+					/* display: inline-block; */
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					max-width: 80px;
+					font-size: 10px;
+					font-weight: 700;
+					line-height: 1.4em;
+				}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source .ck-ai-web-source__title {
+					display: flex;
+					align-items: center;
+					gap: var(--ck-spacing-small);
+				}
+/* Remove padding if it's directly inside the reply container as the padding is already set. */
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item > .ck-ai-web-sources {
+			padding: var(--ck-spacing-extra-large) 0 var(--ck-spacing-medium) 0;
 		}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__loader {
 		display: flex;
@@ -1735,6 +1795,10 @@
 		display: flex;
 		flex-direction: column;
 	}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-parts {
+			display: flex;
+			flex-direction: column;
+		}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part {
 			position: relative;
 			padding-bottom: var(--ck-spacing-large);
@@ -1818,6 +1882,12 @@
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected::after {
 				opacity: 0.5;
 			}
+/* The warning is displayed when some parts of the suggestion are empty. */
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck.ck-ai-chat__feed__item.ck-ai-chat-error_warning {
+			margin-left: 0;
+			margin-right: 0;
+			margin-bottom: var(--ck-spacing-large);
+		}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body,
 	.ck.ck-ai-suggestion__container .ck-ai-suggestion__changes {
 		padding: var(--ck-spacing-large);
@@ -1985,9 +2055,9 @@
  */
 :root {
 	--ck-ai-chat-color-background-error: hsla(15, 100%, 97%, 1);
-	--ck-ai-chat-color-border-error: hsla(14, 100%, 68%, 1);
+	--ck-ai-chat-color-background-warning: hsla(36, 100%, 65.10%, 0.10);
 
-	--ck-ai-chat-color-background-warning: hsl(36, 100%, 97%);
+	--ck-ai-chat-color-border-error: hsla(14, 100%, 68%, 1);
 	--ck-ai-chat-color-border-warning: hsla(36, 100%, 65%, 1);
 }
 /* TODO: rename the class to make it more generic and function as a modifier. */
@@ -2312,8 +2382,6 @@
 	--ck-ai-chat-feed-loader-icon-color: hsla(0, 0%, 85%, 1);
 
 	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
-
-	--ck-color-ai-selection: hsla(262.5, 60%, 90%, 1);
 }
 
 /* Note: This class name is mentioned in the guide and acts like a public API. */
@@ -2580,8 +2648,6 @@
  */
 
 :root {
-	--ck-ai-balloon-selection-color: hsl(262.5, 60%, 90%);
-	--ck-ai-fake-selection-background: hsl(262.5, 60%, 90%);
 	--ck-ai-quick-actions-button-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-quick-actions-button-background-color: hsla(265, 100%, 96%, 1);
 }
@@ -2615,23 +2681,6 @@
 		color: var(--ck-ai-quick-actions-button-color);
 	}
 
-.ck span.ck-fake-ai-selection {
-	background: var(--ck-ai-fake-selection-background);
-}
-
-.ck span.ck-ai-balloon-selection {
-	background: var(--ck-ai-balloon-selection-color);
-}
-
-.ck .ck-widget.ck-ai-balloon-selection {
-	outline-color: var(--ck-ai-balloon-selection-color);
-}
-
-.ck .ck-ai-balloon-selection_collapsed {
-	width: 2px;
-	background: var(--ck-ai-balloon-selection-color);
-}
-
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -2642,7 +2691,9 @@
  */
 
 :root {
-	--ck-color-ai-selection: hsla(266, 100%, 64%, 0.1);
+	/* Taken from old AI Assistant */
+	--ck-color-ai-selection: hsl(262.5, 60%, 90%);
+
 	/* Primary button */
 	--ck-ai-button-primary-color: hsla(0, 0%, 100%, 1);
 	--ck-ai-button-primary-disabled-color: hsla(0, 0%, 100%, 1);
@@ -2701,10 +2752,9 @@
 		}
 
 .ck.ai-balloon .ck-ai-suggestion__body {
+		height: 150px;
 		word-break: normal;
 		text-wrap: auto;
-		max-height: 300px;
-		min-height: 100px;
 		overflow-y: auto;
 	}
 
@@ -2713,7 +2763,7 @@
 		}
 
 .ck.ai-balloon .ck-ai-suggestion__changes {
-		max-height: 300px;
+		height: 150px;
 		overflow-y: auto;
 	}
 
@@ -2794,22 +2844,40 @@
 			cursor: not-allowed;
 		}
 
-.ck-ai-suggestion__loader {
+.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader {
 	padding: var(--ck-spacing-large) !important;
-	padding-bottom: 0px !important;
-	position: absolute !important;
-	bottom: 6px !important;
-	left: 0 !important;
+	height: 150px;
 }
 
-.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
+.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
 		--ck-ai-spinner-size: 18px;
 	}
 
-.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
+.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
 		--ck-ai-spinner-size: 18px;
 	}
 
+.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck-ai-suggestion__loader-text {
+		margin-left: var(--ck-spacing-medium);
+	}
+
+/*
+ * Classes used by the "fake visual selection" displayed in the content
+ * when the AI Balloon is open.
+ *
+ * Narrow down to <span> to prevent changing background for widgets and nested editables.
+ */
+.ck span.ck-fake-ai-selection {
+	background: var(--ck-color-ai-selection);
+}
+
+.ck .ck-widget.ck-fake-ai-selection {
+	outline-color: var(--ck-color-ai-selection);
+}
+
+.ck.ck-dialog-overlay:has(.ai-balloon) {
+	z-index: 998;
+}
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -2948,6 +3016,22 @@
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row .ck.ck-button {
 						flex-shrink: 0;
 					}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck.ck-input.ck-textarea.ck-review-mode__prompt-input {
+						width: 100%;
+					}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck-ai-review-mode__check-list-item-custom-actions-footer {
+						display: flex;
+						width: 100%;
+						align-items: center;
+						justify-content: space-between;
+					}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck-ai-review-mode__check-list-item-custom-actions-footer .ck-ai-review-mode__check-list-item-parameterized-custom-actions-buttons {
+							display: flex;
+							gap: var(--ck-spacing-small);
+						}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
