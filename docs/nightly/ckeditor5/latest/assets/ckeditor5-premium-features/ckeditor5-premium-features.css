@@ -1457,6 +1457,14 @@
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar,
 		.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions,
 		.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
+			transition: opacity .4s, display .4s allow-discrete;
+		}
+@starting-style {
+				.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
+					opacity: 0;
+				}
+			}
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
 			--ck-color-button-default-hover-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-background);
 			--ck-color-button-on-hover-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-background);
 			--ck-color-button-default-active-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-active-background);
@@ -1468,28 +1476,21 @@
 			min-height: 22px;
 			font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
 			color: var(--ck-ai-chat-color-icon);
-
-			transition: opacity .4s, display .4s allow-discrete;
 		}
-@starting-style {
-				.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
-					opacity: 0;
-				}
-			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar:hover, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions:hover, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:hover {
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:hover {
 				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-color);
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar:active, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions:active, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:active {
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:active {
 				box-shadow: none;
 				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-on-color);
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar.ck-on, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions.ck-on, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle.ck-on {
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle.ck-on {
 				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-on-color);
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar:focus, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions:focus, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:focus {
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:focus {
 				border: 1px solid transparent;
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-mini-toolbar > .ck-icon, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions > .ck-icon, .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle > .ck-icon {
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle > .ck-icon {
 				width: 16px;
 				height: 16px;
 				margin-right: 0;
