@@ -472,7 +472,6 @@
 
 :root {
 	--ck-tabs-buttons-container-buttons-vertical-spacing: 0;
-	--ck-tabs-panels-container-width: auto;
 	--ck-tabs-panels-container-background: hsl(0, 0%, 100%);
 	--ck-tab-button-padding: 12px;
 	--ck-tab-button-gap: var(--ck-spacing-medium);
@@ -484,11 +483,16 @@
 
 .ck.ck-tabs {
 	display: flex;
-	height: 100%;
 
 	font-size: var(--ck-font-size-base);
 	border: 1px solid var(--ck-color-base-border);
 	border-radius: var(--ck-border-radius);
+
+	/*
+	 * This is essential for avoiding horizontal stretching by children with white-space: nowrap
+	 * (see https://stackoverflow.com/questions/38223879/white-space-nowrap-breaks-flexbox-layout)
+	 */
+	min-width: 0;
 }
 
 .ck.ck-tabs.ck-tabs_top {
@@ -504,11 +508,16 @@
 	}
 
 .ck.ck-tabs .ck-tabs__panels-container {
-		width: var(--ck-tabs-panels-container-width);
 		transition: width 0.8s ease-in-out;
 		transition: height 0.8s ease-in-out;
 		background-color: var(--ck-tabs-panels-container-background);
 		flex-grow: 1;
+
+		/*
+		 * This is essential for avoiding horizontal stretching by children with white-space: nowrap
+		 * (see https://stackoverflow.com/questions/38223879/white-space-nowrap-breaks-flexbox-layout)
+		 */
+		min-width: 0
 	}
 
 .ck.ck-tabs .ck-tabs__buttons-container {
@@ -537,6 +546,7 @@
 		.ck.ck-tabs .ck-tabs__buttons-container.ck-tabs__buttons-container_right {
 			flex-direction: column;
 			padding-top: var(--ck-tabs-buttons-container-buttons-vertical-spacing);
+			padding-bottom: var(--ck-tabs-buttons-container-buttons-vertical-spacing);
 		}
 
 /*
@@ -556,12 +566,12 @@
 	--ck-tabs-overlay-height: 100%;
 	--ck-ai-tabs-overlay-width: 500px;
 	--ck-ai-tabs-overlay-width-maximized: 50%;
+	--ck-ai-tabs-overlay-z-index: calc(var(--ck-z-dialog) - 1);
 }
 
 .ck.ck-tabs.ck-ai-tabs {
 	--ck-tabs-buttons-container-buttons-vertical-spacing: 61.5px;
 	--ck-color-tab-button-active-icon: hsl(263, 59%, 52%);
-	--ck-tabs-panels-container-width: 450px;
 }
 
 .ck.ck-tabs.ck-ai-tabs .ck-tab-panel {
@@ -587,7 +597,7 @@
 		right: var(--ck-tabs-overlay-right-position);
 		left: var(--ck-tabs-overlay-left-position);
 		bottom: var(--ck-tabs-overlay-bottom-position);
-		z-index: calc(var(--ck-z-dialog) - 1);
+		z-index: var(--ck-ai-tabs-overlay-z-index);
 		border-radius: 0;
 		border-top: 0;
 		border-bottom: 0;
@@ -727,6 +737,46 @@
 .ck.ck-ai-chat-controls .ck-ai-chat__prompt-capabilities .ck-ai-chat-controls__model-name {
 		color: var(--ck-ai-chat-color-icon);
 	}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+.ck.ck-ai-chat-controls-model-unavailable-message {
+	border: 1px solid hsl(262, 51%, 80%);
+	border-radius: 4px;
+	background-color: hsla(263, 59%, 52%, 0.051);
+}
+
+.ck.ck-ai-chat-controls-model-unavailable-message p {
+		white-space: normal;
+		line-height: 1.4;
+		padding: var(--ck-spacing-large);
+	}
+
+.ck.ck-ai-chat-controls-model-unavailable-message p button.ck-ai-chat-controls__start-new-chat-button {
+			background: none;
+			border: none;
+			padding: 0;
+			cursor: default;
+			vertical-align: baseline;
+			color: var(--ck-ai-chat-color-text);
+			text-decoration: underline;
+		}
+
+.ck.ck-ai-chat-controls-model-unavailable-message p button.ck-ai-chat-controls__start-new-chat-button:hover {
+				background: none;
+			}
+
+.ck.ck-ai-chat-controls-model-unavailable-message p button.ck-ai-chat-controls__start-new-chat-button:active, .ck.ck-ai-chat-controls-model-unavailable-message p button.ck-ai-chat-controls__start-new-chat-button:focus {
+				background: none;
+				box-shadow: none;
+			}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -1089,6 +1139,7 @@
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__add-context-balloon-panel {
 		min-width: 157px;
 		max-width: 250px;
+		z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 	}
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__add-context-balloon-panel .ck-ai-chat-context-controls__balloon-button {
@@ -1135,6 +1186,10 @@
 				flex-grow: 1;
 			}
 
+.ck.ck-balloon-panel.ck-ai-chat-context-controls__url-balloon-panel {
+		z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
+	}
+
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__url-balloon-panel .ck-ai-chat-context-controls__url-form {
 			width: var(--ck-ai-chat-context-controls-balloon-width);
 			line-height: var(--ck-form-header-height);
@@ -1179,6 +1234,7 @@
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel {
 		width: var(--ck-ai-chat-context-controls-balloon-width);
 		height: 319px;
+		z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 	}
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel:has(.ck-ai-skeleton:not(.ck-hidden)) {
@@ -1451,6 +1507,12 @@
 	padding-bottom: var(--ck-spacing-extra-large);
 	gap: var(--ck-spacing-large);
 	position: relative;
+
+	/*
+	 * Addresses an issue in Chrome where the entire feed gets repainted by the browser's engine when the user
+	 * types in the prompt textarea. See https://github.com/ckeditor/ckeditor5-commercial/issues/8611.
+	 */
+	contain: size;
 
 	/* This is needed to prevent the feed from overflowing when the skeleton is visible. */
 }
@@ -1747,6 +1809,9 @@
 /**
  * This is the balloon panel for the suggestion actions.
  */
+.ck-ai-chat__feed__ai-suggestion__actions__balloon.ck-balloon-panel {
+		z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
+	}
 .ck-ai-chat__feed__ai-suggestion__actions__balloon .ck-list__item {
 		min-width: fit-content;
 	}
@@ -1784,6 +1849,7 @@
  * @see $ck-border-radius
  */
 :root {
+	--ck-ai-chat-color-icon-outdated: var(--ck-ai-chat-suggestion-icon-default-color);
 	--ck-ai-chat-suggestion-container-header-font-size: .9em;
 	--ck-ai-background-color-action-button-semi-transparent: hsla(263, 59%, 52%, 0.5);
 }
@@ -1876,6 +1942,9 @@
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-rejected {
 					color: var(--ck-color-base-error);
 				}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-outdated {
+					color: var(--ck-ai-chat-color-icon-outdated);
+				}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-icon,
 				.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-toolbar .ck-icon {
 					--ck-icon-size: 1.477em;
@@ -1925,21 +1994,22 @@
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active:last-child:first-child::before {
 			display: none;
 		}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__content, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__content {
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__content, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__content, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__content {
 				opacity: 0.5;
 			}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__title
 			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *), .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__title
+			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *), .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__title
 			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *) {
 				opacity: 0.5;
 			}
 /* stylelint-disable no-descending-specificity */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__icon-title, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__icon-title {
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__icon-title, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__icon-title, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__icon-title {
 				/* Icon can not be transparent because the border would be visible, it has to be controlled by the color. */
 				color: var(--ck-ai-background-color-action-button-semi-transparent);
 			}
 /* stylelint-enable no-descending-specificity */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected::after {
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated::after {
 				opacity: 0.5;
 			}
 /* The warning is displayed when some parts of the suggestion are empty. */
@@ -2468,7 +2538,6 @@
 .ck.ck-ai-chat {
 
 		width: 100%;
-		min-height: 300px;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
@@ -3179,6 +3248,10 @@
 						flex-shrink: 0;
 					}
 
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row .ck.ck-labeled-field-view {
+						width: 100%;
+					}
+
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck.ck-input.ck-textarea.ck-review-mode__prompt-input {
 						width: 100%;
 					}
@@ -3359,14 +3432,42 @@
 			border-bottom: 1px solid var(--ck-color-base-border);
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title {
-				align-self: center;
-				font-weight: bold;
-				white-space: nowrap;
-				overflow: hidden;
-				max-width: 100%;
-				text-overflow: ellipsis;
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper {
+				display: flex;
+				align-items: flex-start;
+				min-width: 0;
 			}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper > .ck-ai-spinner {
+					transition: width 0.25s, opacity 0.25s, margin-inline-end 0.25s, display 0.25s;
+					transition-behavior: allow-discrete;
+					margin-inline-end: var(--ck-spacing-large);
+				}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper > .ck-ai-spinner.ck-hidden {
+						width: 0;
+						opacity: 0;
+						margin-inline-end: 0;
+					}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content {
+					min-width: 0;
+				}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-title,
+					.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-subtitle {
+						display: block;
+						align-self: center;
+						white-space: nowrap;
+						overflow: hidden;
+						max-width: 100%;
+						text-overflow: ellipsis;
+						line-height: 1.5;
+					}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-title {
+						font-weight: bold;
+					}
 
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-buttons {
 				display: flex;
@@ -3514,6 +3615,10 @@
 		width: 300px;
 	}
 
+.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion:has(.ck-ai-review-mode__check-run-result-response.ck-hidden) {
+			width: auto;
+		}
+
 .ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker {
 			white-space: break-spaces;
 		}
@@ -3526,25 +3631,6 @@
  * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response {
-		overflow: hidden;
-	}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response.ck.ck-content:not(:focus) {
-			/* Reset default padding and border of `ck-content` class. */
-			padding: 0;
-			border: 0;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response > * {
-			white-space: normal;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response img {
-			max-width: 125px;
-			max-height: 125px;
-		}
 
 .ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer {
 		margin-top: var(--ck-spacing-standard);
@@ -3566,6 +3652,29 @@
 
 			max-height: var(--ck-ui-component-min-height);
 			margin-left: auto;
+		}
+
+.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response {
+		overflow: hidden;
+	}
+
+.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response.ck.ck-content:not(:focus) {
+			/* Reset default padding and border of `ck-content` class. */
+			padding: 0;
+			border: 0;
+		}
+
+.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response.ck-hidden + .ck-ai-review-mode__check-run-result-footer {
+				margin-top: 0;
+			}
+
+.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response > * {
+			white-space: normal;
+		}
+
+.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response img {
+			max-width: 125px;
+			max-height: 125px;
 		}
 
 /*
