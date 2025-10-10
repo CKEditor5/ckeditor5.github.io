@@ -1,0 +1,1 @@
+import{IconView as n,ToolbarView as r,Locale as c}from"ckeditor5";import*as s from"ckeditor5";var i=new c,t=new r(i);Object.entries(s).filter(([o,e])=>o.startsWith("Icon")&&typeof e=="string"&&e.startsWith("<svg")).forEach(([,o])=>{let e=new n;e.content=o,e.render(),t.items.add(e)});t.render();document.querySelector(".ui-icons").append(t.element);

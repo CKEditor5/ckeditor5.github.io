@@ -1,0 +1,1 @@
+import{ToolbarView as o,View as n,Locale as l}from"ckeditor5";var r=new l,e=new n;e.element=document.createElement("span");e.element.innerHTML="Toolbar text";var t=new o(r);t.items.add(e);t.render();document.querySelector(".ui-toolbar-text").append(t.element);
