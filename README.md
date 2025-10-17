@@ -19,9 +19,15 @@ Finally, build CKEditor for the sample:
 npm run build
 ```
 
-## Releases archive
+## Large archives
 
-Because the full `releases/` directory exceeds GitHub’s single-file size limits, it is stored as a multi-part compressed archive.
+Some project folders exceed GitHub's single-file size limit (100 MB).
+
+To keep them in the repository while staying within GitHub's constraints, they are stored as multi-part compressed archives created with standard UNIX tools.
+
+Each chunk is under 45 MB to stay safely below GitHub's recommended 50 MB limit and the 100 MB hard cap, while still preserving the complete data of both directories.
+
+### Releases archive
 
 The folder was packed using standard UNIX tools:
 
@@ -42,9 +48,7 @@ cat releases-archive.tar.gz.part-* | tar -xzf -
 
 Each part (`releases-archive.tar.gz.part-*`) must be present in the same directory.
 
-## Misc archive
-
-The `misc/` folder is also too large to store as a single file in the repository, so it is split into 45 MB chunks using standard UNIX tools.
+### Misc archive
 
 ```bash
 # Create archive and split it into 45 MB parts.
