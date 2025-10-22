@@ -425,6 +425,7 @@
 .ck.ck-button.ck-tab-button.ck-on {
 		border: 0;
 		background-color: var(--ck-color-tab-button-active-background);
+		color: var(--ck-color-tab-button-active-border);
 	}
 
 .ck.ck-button.ck-tab-button.ck-on .ck.ck-icon {
@@ -478,6 +479,7 @@
 	--ck-color-tabs-buttons-container-background: hsl(0, 0%, 96%);
 	--ck-color-tab-button-icon: hsl(0, 0%, 44%);
 	--ck-color-tab-button-active-icon: hsl(0, 0%, 44%);
+	--ck-color-tab-button-active-border: hsl(0, 0%, 44%);
 	--ck-color-tab-button-active-background: hsl(0, 0%, 91%);
 }
 
@@ -572,6 +574,7 @@
 .ck.ck-tabs.ck-ai-tabs {
 	--ck-tabs-buttons-container-buttons-vertical-spacing: 61.5px;
 	--ck-color-tab-button-active-icon: hsl(263, 59%, 52%);
+	--ck-color-tab-button-active-border: hsl(263, 59%, 52%);
 }
 
 .ck.ck-tabs.ck-ai-tabs .ck-tab-panel {
@@ -718,7 +721,6 @@
 
 .ck.ck-ai-chat-controls .ck-ai-chat__prompt-capabilities .ck-ai-chat-controls-button > .ck-icon {
 			--ck-icon-size: 16px;
-			color: var(--ck-ai-chat-color-icon);
 		}
 
 .ck.ck-ai-chat-controls .ck-ai-chat__prompt-capabilities .ck-ai-chat-controls-button--commands {
@@ -906,7 +908,7 @@
 				--ck-icon-size: 1em;
 
 				font-size: 1em;
-				fill: var(--ck-ai-chat-color-icon);
+				color: var(--ck-ai-chat-color-icon);
 			}
 
 .ck.ck-balloon-panel .ck-ai-chat-context-chips-wrapper, .ck.ck-ai-chat .ck-ai-chat-context-chips-wrapper {
@@ -992,22 +994,26 @@
 		text-align: center;
 	}
 
+.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled) {
+		color: var(--ck-ai-button-tertiary-filled-color);
+	}
+
 .ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):hover {
-			background-color: var(--ck-ai-chat-button-active-background-color);
-			color: var(--ck-ai-chat-button-hover-color);
+			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			color: var(--ck-ai-button-tertiary-filled-hover-color);
 		}
 
 .ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):hover .ck-button__icon {
-				fill: var(--ck-ai-chat-button-hover-color);
+				color: var(--ck-ai-button-tertiary-filled-hover-color);
 			}
 
 .ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):active {
-			background-color: var(--ck-ai-chat-button-active-background-color);
-			color: var(--ck-ai-chat-button-active-color);
+			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
+			color: var(--ck-ai-button-tertiary-filled-active-color);
 		}
 
 .ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):active .ck-button__icon {
-				fill: var(--ck-ai-chat-button-active-color);
+				color: var(--ck-ai-button-tertiary-filled-active-color);
 			}
 
 .ck.ck-button.ck-ai-chat-controls-button.ck-on:not(.ck-disabled):not(:hover):not(:active):not(.ck-disabled) {
@@ -1043,8 +1049,9 @@
  */
 
 :root {
-	--ck-ai-chat-loader-icon-dot-color: hsl(216, 5%, 81%);
-	--ck-ai-chat-loader-icon-dot-active-color: hsl(0, 0%, 20%);
+	--ck-ai-chat-controls-loader-icon-dot-color: hsl(216, 5%, 81%);
+	--ck-ai-chat-controls-loader-icon-dot-active-color: hsl(0, 0%, 20%);
+	--ck-ai-chat-controls-loader-color: hsla(0, 0%, 44%, 1);
 	--ck-ai-loader-dot-pulse-dot-size: 6px;
 	--ck-ai-loader-dot-pulse-width: 40px;
 	--ck-ai-loader-dot-pulse-height: 20px;
@@ -1052,46 +1059,46 @@
 	--ck-ai-loader-dot-pulse-animation-delay: 0.3s;
 }
 
-.ck-ai-chat-controls-loader {
-	display: flex;
-	align-items: center;
-	color: var(--ck-color-input-disabled-text);
-}
-
-.ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon {
-		box-sizing: border-box;
+.ck-ai-chat-controls .ck-ai-chat-controls-loader {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		width: var(--ck-ai-loader-dot-pulse-width);
-		height: var(--ck-ai-loader-dot-pulse-height);
-		margin-inline-end: var(--ck-spacing-standard);
-		padding: var(--ck-spacing-small) var(--ck-spacing-medium-small);
-		border-radius: var(--ck-ai-loader-dot-pulse-border-radius);
-		background-color: var(--ck-ai-chat-loader-icon-color);
+		color: var(--ck-ai-chat-controls-loader-color);
 	}
 
-.ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot {
-		width: var(--ck-ai-loader-dot-pulse-dot-size);
-		height: var(--ck-ai-loader-dot-pulse-dot-size);
-		border-radius: 50%;
-		background-color: var(--ck-ai-chat-loader-icon-dot-color);
-		flex-shrink: 0;
-
-		animation: ck-ai-loader-dot-pulse var(--ck-ai-chat-loader-animation-duration) infinite;
-	}
-
-.ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(1) {
-			animation-delay: 0s;
+.ck-ai-chat-controls .ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon {
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: var(--ck-ai-loader-dot-pulse-width);
+			height: var(--ck-ai-loader-dot-pulse-height);
+			margin-inline-end: var(--ck-spacing-standard);
+			padding: var(--ck-spacing-small) var(--ck-spacing-medium-small);
+			border-radius: var(--ck-ai-loader-dot-pulse-border-radius);
+			background-color: var(--ck-ai-chat-controls-loader-icon-color);
 		}
 
-.ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(2) {
-			animation-delay: var(--ck-ai-loader-dot-pulse-animation-delay);
+.ck-ai-chat-controls .ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot {
+			width: var(--ck-ai-loader-dot-pulse-dot-size);
+			height: var(--ck-ai-loader-dot-pulse-dot-size);
+			border-radius: 50%;
+			background-color: var(--ck-ai-chat-controls-loader-icon-dot-color);
+			flex-shrink: 0;
+
+			animation: ck-ai-loader-dot-pulse var(--ck-ai-chat-controls-loader-animation-duration) infinite;
 		}
 
-.ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(3) {
-			animation-delay: calc(var(--ck-ai-loader-dot-pulse-animation-delay) * 2);
-		}
+.ck-ai-chat-controls .ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(1) {
+				animation-delay: 0s;
+			}
+
+.ck-ai-chat-controls .ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(2) {
+				animation-delay: var(--ck-ai-loader-dot-pulse-animation-delay);
+			}
+
+.ck-ai-chat-controls .ck-ai-chat-controls-loader .ck-ai-chat-controls-loader-icon-dot:nth-child(3) {
+				animation-delay: calc(var(--ck-ai-loader-dot-pulse-animation-delay) * 2);
+			}
 
 .ck.ck-button.ai-chat-controls-loader__cancel-button {
 	min-height: 22px;
@@ -1119,11 +1126,11 @@
 
 @keyframes ck-ai-loader-dot-pulse {
 	0%, 80%, 100% {
-		background-color: var(--ck-ai-chat-loader-icon-dot-color);
+		background-color: var(--ck-ai-chat-controls-loader-icon-dot-color);
 	}
 
 	40% {
-		background-color: var(--ck-ai-chat-loader-icon-dot-active-color);
+		background-color: var(--ck-ai-chat-controls-loader-icon-dot-active-color);
 	}
 }
 
@@ -1233,7 +1240,6 @@
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel {
 		width: var(--ck-ai-chat-context-controls-balloon-width);
-		height: 319px;
 		z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 	}
 
@@ -1253,7 +1259,6 @@
 		}
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel .ck-ai-chat-resources__list {
-			height: 233px;
 			overflow-y: auto;
 			overflow-x: hidden;
 		}
@@ -1396,13 +1401,21 @@
 				width: auto;
 			}
 
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover,
-			.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on {
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover {
+				background-color: var(--ck-ai-chat-button-active-background-color);
+				color: var(--ck-ai-chat-button-hover-color);
+			}
+
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover .ck-dropdown__arrow {
+					color: var(--ck-ai-chat-button-hover-color);
+				}
+
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on:not(:hover) {
 				background-color: var(--ck-ai-chat-button-active-background-color);
 				color: var(--ck-ai-background-color-action-button);
 			}
 
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover .ck-dropdown__arrow, .ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on .ck-dropdown__arrow {
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on:not(:hover) .ck-dropdown__arrow {
 					color: var(--ck-ai-background-color-action-button);
 				}
 
@@ -1547,31 +1560,10 @@
 			transition: none;
 		}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
-			--ck-color-button-default-hover-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-background);
-			--ck-color-button-on-hover-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-background);
-			--ck-color-button-default-active-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-active-background);
-			--ck-color-button-on-background: var(--ck-ai-chat-feed-item-color-show-changes-toggle-active-background);
-			--ck-color-focus-border: var(--ck-ai-chat-feed-item-color-show-changes-toggle-active-background);
-			--ck-focus-ring: 1px solid var(--ck-color-focus-border);
-
 			padding: 0 var(--ck-spacing-small);
 			min-height: 22px;
 			font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
-			color: var(--ck-ai-chat-color-icon);
 		}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:hover {
-				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-hover-color);
-			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:active {
-				box-shadow: none;
-				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-on-color);
-			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle.ck-on {
-				color: var(--ck-ai-chat-feed-item-color-show-changes-toggle-on-color);
-			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle:focus {
-				border: 1px solid transparent;
-			}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle > .ck-icon {
 				width: 16px;
 				height: 16px;
@@ -1609,7 +1601,7 @@
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck.ck-ai-chat__feed__user-message p {
 				display: inline-block;
 				background-color: var(--ck-ai-chat-feed-item-color-background-secondary);
-				padding: 8px;
+				padding: var(--ck-spacing-standard);
 				border-radius: var(--ck-ai-border-radius);
 			}
 /*
@@ -1956,6 +1948,9 @@
 						margin: 0;
 						color: var(--ck-ai-chat-suggestion-icon-default-color);
 					}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title .ck-toolbar .ck-button:hover {
+							background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+						}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__content :last-child {
 					padding-bottom: 0;
 					margin-bottom: var(--ck-spacing-medium);
@@ -2017,6 +2012,7 @@
 			margin-left: 0;
 			margin-right: 0;
 			margin-bottom: var(--ck-spacing-large);
+			width: 100%;
 		}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body,
 	.ck.ck-ai-suggestion__container .ck-ai-suggestion__changes {
@@ -2166,6 +2162,9 @@
 			margin-inline-start: 0;
 			margin-inline-end: var(--ck-spacing-small);
 		}
+.ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
+				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			}
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
 				/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
 				--ck-icon-font-size: 13px;
@@ -2363,6 +2362,7 @@
 	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-button-tertiary-text-background-color: transparent;
 	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
 
 	/* Tertiary filled button */
 	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
@@ -2424,7 +2424,17 @@
 	}
 .ck.ck-button.ck-ai-button-tertiary-text:hover {
 			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			color: var(--ck-ai-button-tertiary-text-hover-color);
 		}
+.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
+				color: var(--ck-ai-button-tertiary-text-hover-color);
+			}
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
+				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			}
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-text-hover-color);
+				}
 .ck.ck-button.ck-ai-button-tertiary-text:disabled,
 		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
 			color: var(--ck-ai-button-tertiary-disabled-text-color);
@@ -2522,8 +2532,8 @@
 	--ck-ai-chat-animation-duration: 0.6s;
 	--ck-ai-chat-animation-timing: ease-out;
 
-	--ck-ai-chat-loader-animation-duration: 1.5s;
-	--ck-ai-chat-loader-icon-color: hsla(0, 0%, 96%, 0.98);
+	--ck-ai-chat-controls-loader-animation-duration: 1.5s;
+	--ck-ai-chat-controls-loader-icon-color: hsla(0, 0%, 96%, 0.98);
 
 	--ck-ai-chat-feed-loader-icon-color: hsla(0, 0%, 85%, 1);
 
@@ -2714,6 +2724,10 @@
 .ck .ck-ai-chat-history .ck-ai-chat-history__item-actions > .ck-button.ck-on svg, .ck .ck-ai-chat-history .ck-ai-chat-history__item-actions > .ck-dropdown .ck-dropdown__button.ck-on svg {
 					color: var(--ck-ai-chat-button-active-color);
 				}
+
+.ck .ck-ai-chat-history .ck-ai-chat-history__item-actions .ck-dropdown .ck-dropdown__panel .ck-list__item .ck-button:hover, .ck .ck-ai-chat-history .ck-ai-chat-history__item-actions .ck-dropdown .ck-dropdown__panel .ck-list__item .ck-button:active {
+							background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+						}
 
 .ck .ck-ai-chat-history .ck-ai-chat-history__item--edit .ck-input,
 	.ck .ck-ai-chat-history .ck-ai-chat-history__item--edit .ck-input_focused {
@@ -3753,6 +3767,10 @@
 			margin-inline-start: 0;
 			margin-inline-end: var(--ck-spacing-small);
 		}
+
+.ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
+				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
 				/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
