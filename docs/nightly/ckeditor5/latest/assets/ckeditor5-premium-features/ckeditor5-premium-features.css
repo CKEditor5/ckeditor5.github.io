@@ -3417,7 +3417,19 @@
 			}
 
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:last-child {
-				border-bottom: 1px solid var(--ck-color-base-border);
+				position: relative;
+				contain: layout;
+			}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:last-child::after {
+				display: block;
+				content: "";
+				height: 1px;
+				background: var(--ck-color-base-border);
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: -1px;
 			}
 
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result .ck-suggestion-marker {
@@ -6302,10 +6314,10 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
  */
 
 :root {
-	--ck-footnotes-list-widget-label-background-color: hsl(0, 0%, 46%);
 	--ck-content-footnotes-list-background-color: none;
 	--ck-content-footnotes-list-separator-color: hsl(0, 0%, 0%);
 	--ck-content-footnote-font-size: var(--ck-content-font-size-small);
+	--ck-footnotes-widget-label-background-color: hsl(0, 0%, 46%);
 }
 
 /* Content styles */
@@ -6314,22 +6326,25 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 	}
 .ck-content .footnotes {
 		position: relative;
-		margin: 1.9em 0 1.5em;
-		padding-inline-start: 3em;
+		margin: 0.9em 0 1.5em;
 		font-size: var(--ck-content-footnote-font-size);
 		background-color: var(--ck-content-footnotes-list-background-color);
 	}
-.ck-content .footnotes::before {
-			content: '';
-			position: absolute;
-			top: -1em;
-			left: 0;
-			border-top: 1px solid var(--ck-content-footnotes-list-separator-color);
-			width: min(30%, 350px);
-		}
-[dir="rtl"] .ck-content .footnotes::before {
-				left: auto;
-				right: 0;
+.ck-content .footnotes-divider {
+		border: none;
+		border-top: 1px solid var(--ck-content-footnotes-list-separator-color);
+		width: min(30%, 350px);
+		margin: 0 0 1em 0;
+		height: 1px;
+		background: none;
+	}
+[dir="rtl"] .ck-content .footnotes-divider {
+			margin-left: auto;
+			margin-right: 0;
+	}
+.ck-content .footnotes-list {
+		padding-inline-start: 3em;
+		margin: 0;
 	}
 .ck-content .footnote-backlink {
 		display: inline-block;
@@ -6379,26 +6394,23 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 		}
 
 /* Editing styles */
-.ck.ck-editor__editable .footnote > a {
-		pointer-events: none;
-	}
-.ck.ck-editor__editable .footnotes-wrapper {
+.ck.ck-editor__editable .footnotes.ck-widget {
 		/* Necessary to render properly next to floated objects, e.g. side image case. */
 		display: flow-root;
 		position: relative;
 		margin: 0.9em 0 0.85em;
 	}
-.ck.ck-editor__editable .footnotes-wrapper:not(:hover):not(.ck-widget_selected) {
+.ck.ck-editor__editable .footnotes.ck-widget:not(:hover):not(.ck-widget_selected) {
 			outline: 1px solid var(--ck-color-base-border);
 		}
-.ck.ck-editor__editable .footnotes-wrapper[data-footnotes-list-label]::after {
+.ck.ck-editor__editable .footnotes.ck-widget[data-footnotes-list-label]::after {
 			content: attr(data-footnotes-list-label);
 
 			position: absolute;
 			top: -1px;
 			right: 10px;
 			padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
-			background-color: var(--ck-footnotes-list-widget-label-background-color);
+			background-color: var(--ck-footnotes-widget-label-background-color);
 
 			font-size: 10px;
 			font-family: var(--ck-font-face);
@@ -6406,14 +6418,20 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 			color: hsl(0, 0%, 100%);
 			white-space: nowrap;
 		}
-[dir="rtl"] .ck.ck-editor__editable .footnotes-wrapper[data-footnotes-list-label]::after {
+[dir="rtl"] .ck.ck-editor__editable .footnotes.ck-widget[data-footnotes-list-label]::after {
 				left: 10px;
 				right: auto;
 	}
-.ck.ck-editor__editable .footnotes-wrapper > .footnotes {
-			margin-top: 1em;
-			margin-bottom: 0.65em;
-		}
+.ck.ck-editor__editable .footnote > a {
+		pointer-events: none;
+	}
+.ck.ck-editor__editable .footnotes-divider {
+		margin-top: 0;
+	}
+.ck.ck-editor__editable .footnotes-list {
+		margin-top: 0;
+		margin-bottom: 0.65em;
+	}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
