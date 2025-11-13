@@ -2494,6 +2494,15 @@
 	--ck-ai-suggestion-marker-deletion-border-color: var(--ck-color-suggestion-marker-deletion-border, hsla(345, 71%, 40%, .35));
 	--ck-ai-suggestion-marker-deletion-background-color: var(--ck-color-suggestion-marker-deletion-background, hsla(345, 71%, 65%, .35));
 	--ck-ai-suggestion-marker-deletion-stroke-color: var(--ck-color-suggestion-marker-deletion-stroke, hsla(345, 71%, 20%, .5));
+
+	--ck-ai-suggestion-marker-deletion-border-color-active: hsla(345, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-deletion-background-color-active: hsla(345, 71%, 50%, .5);
+
+	--ck-ai-suggestion-marker-insertion-border-color-active: hsla(128, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-insertion-background-color-active: hsla(128, 71%, 50%, .5);
+
+	--ck-ai-review-mode-suggestion-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-review-mode-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
 }
 
 :root {
@@ -3449,6 +3458,18 @@
 				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-active-border-color) inset;
 			}
 
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_active .ck-suggestion-marker-insertion {
+					border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color-active);
+					border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color-active);
+					background: var(--ck-ai-suggestion-marker-insertion-background-color-active);
+				}
+
+.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_active .ck-suggestion-marker-deletion {
+					border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color-active);
+					border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color-active);
+					background: var(--ck-ai-suggestion-marker-deletion-background-color-active);
+				}
+
 .ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_removing {
 				animation: ck-ai-check-run-item-remove 0.2s forwards;
 			}
@@ -3657,6 +3678,28 @@
 .ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker {
 			white-space: break-spaces;
 		}
+
+.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker-insertion {
+			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			background: var(--ck-ai-suggestion-marker-insertion-background-color);
+		}
+
+.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker-deletion {
+			border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			background: var(--ck-ai-suggestion-marker-deletion-background-color);
+		}
+
+.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion.ck-ai-review-mode-balloon-panel-suggestion_diff-active .ck-suggestion-marker-insertion {
+				--ck-ai-suggestion-marker-insertion-border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
+				--ck-ai-suggestion-marker-insertion-background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
+			}
+
+.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion.ck-ai-review-mode-balloon-panel-suggestion_diff-active .ck-suggestion-marker-deletion {
+				--ck-ai-suggestion-marker-deletion-border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
+				--ck-ai-suggestion-marker-deletion-background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
+			}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -4200,15 +4243,20 @@
 	--ck-ai-suggestion-marker-deletion-border-color: var(--ck-color-suggestion-marker-deletion-border, hsla(345, 71%, 40%, .35));
 	--ck-ai-suggestion-marker-deletion-background-color: var(--ck-color-suggestion-marker-deletion-background, hsla(345, 71%, 65%, .35));
 	--ck-ai-suggestion-marker-deletion-stroke-color: var(--ck-color-suggestion-marker-deletion-stroke, hsla(345, 71%, 20%, .5));
+
+	--ck-ai-suggestion-marker-deletion-border-color-active: hsla(345, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-deletion-background-color-active: hsla(345, 71%, 50%, .5);
+
+	--ck-ai-suggestion-marker-insertion-border-color-active: hsla(128, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-insertion-background-color-active: hsla(128, 71%, 50%, .5);
+
+	--ck-ai-review-mode-suggestion-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-review-mode-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
 }
 
 :root {
 	--ck-ai-review-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	--ck-ai-review-color-icon: hsla(0, 0%, 44%, 1);
-}
-
-.ck {
-	--ck-color-ai-review-mode-suggestion: hsla(263, 59%, 52%, 0.5);
 }
 
 .ck .ck-ai-review-mode {
@@ -4219,8 +4267,12 @@
 	}
 
 .ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_add {
-			border-bottom: 3px solid var(--ck-color-ai-review-mode-suggestion);
+			border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
 		}
+
+.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_add.ck-ai-review-mode__change_active {
+				--ck-ai-review-mode-suggestion-color: var(--ck-ai-review-mode-suggestion-color-active);
+			}
 
 .ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_hide {
 			display: none;
@@ -4231,7 +4283,7 @@
 		}
 
 .ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_strikethrough:before {
-				border-bottom: 3px solid var(--ck-color-ai-review-mode-suggestion);
+				border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
 				position: absolute;
 				content: "";
 				width: 100%;
@@ -4239,15 +4291,20 @@
 			}
 
 .ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_underline {
-			border-bottom: 3px solid var(--ck-color-ai-review-mode-suggestion);
+			border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
 		}
 
 .ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_add {
 			white-space: break-spaces;
 			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
 			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
-			background: var(--ck-ai-suggestion-marker-insertion-background-color);
+			background-color: var(--ck-ai-suggestion-marker-insertion-background-color);
 		}
+
+.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_add.ck-ai-review-mode__change_active {
+				border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
+				background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
+			}
 
 .ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_hide,
 		.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_strikethrough {
@@ -4257,8 +4314,13 @@
 			text-decoration: line-through;
 			text-decoration-color: var(--ck-ai-suggestion-marker-deletion-stroke-color);
 			text-decoration-thickness: 3px;
-			background: var(--ck-ai-suggestion-marker-deletion-background-color);
+			background-color: var(--ck-ai-suggestion-marker-deletion-background-color);
 		}
+
+.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_hide.ck-ai-review-mode__change_active, .ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_strikethrough.ck-ai-review-mode__change_active {
+				border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
+				background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
+			}
 
 .ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_underline {
 			border: none;
