@@ -4,8 +4,8 @@
  */
 
 const csConfig = require( '../scripts/presets/production.json' );
-const { execSync } = require( 'child_process' );
-const path = require( 'path' );
+const { execSync } = require( 'node:child_process' );
+const path = require( 'node:path' );
 const CKEDITOR5_COMMERCIAL_DIRECTORY = path.join( __dirname, '..' );
 
 module.exports = {
