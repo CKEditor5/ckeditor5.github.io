@@ -2973,6 +2973,32 @@
 			white-space: pre-wrap;
 		}
 
+.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion:not([data-author-id="$aiSuggestion"]),
+		.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatInline:not([data-author-id="$aiSuggestion"]),
+		.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+			border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			background: var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatInline.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion.ck-widget:not([data-author-id="$aiSuggestion"]) {
+				border: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			}
+
+.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
+			box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+			text-decoration: line-through;
+			text-decoration-thickness: 3px;
+			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
+		}
+
+.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion.table > tbody > tr > td {
+			background-color: var(--ck-color-suggestion-widget-insertion-background);
+		}
+
 .ck.ai-balloon .ck-ai-suggestion__changes {
 		height: 150px;
 		overflow-y: auto;
@@ -6977,6 +7003,46 @@ See: ckeditor5-theme-lark/theme/ckeditor5-ui/components/editorui/editorui.css. *
 .ck-content .line-height-double {
 	line-height: 2;
 }
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-content-list-marker-line-height: var(--ck-content-line-height);
+}
+
+/*
+		 * Workaround for misplacement of checkbox when change to-do list item
+		 * type from item with description to item without description. Without this
+		 * checkbox will be vertically shifted.
+		 */
+
+.ck-content .todo-list li.ck-list-marker-line-height::before {
+			line-height: var(--ck-content-list-marker-line-height);
+			content: '';
+		}
+
+.ck-content .todo-list li.ck-list-marker-line-height > .todo-list__label.todo-list__label_without-description {
+			position: absolute;
+			width: 0;
+			line-height: var(--ck-content-list-marker-line-height);
+		}
+
+.ck-content .todo-list li.ck-list-marker-line-height > .todo-list__label.todo-list__label_without-description input[type=checkbox] {
+				position: relative;
+				margin: 0;
+			}
+
+.ck-editor__editable.ck-content .todo-list li.ck-list-marker-line-height > .todo-list__label.todo-list__label_without-description > span[contenteditable="false"] {
+			display: inline-block;
+			width: 0;
+		}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
