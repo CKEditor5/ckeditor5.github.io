@@ -1974,7 +1974,7 @@
 				opacity: 0.5;
 			}
 /* The warning is displayed when some parts of the suggestion are empty. */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck.ck-ai-chat__feed__item.ck-ai-chat-error_warning {
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck.ck-ai-chat__feed__item.ck-ai-notification_warning {
 			margin-left: 0;
 			margin-right: 0;
 			margin-bottom: var(--ck-spacing-large);
@@ -2160,47 +2160,49 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 :root {
-	--ck-ai-chat-color-background-error: hsla(15, 100%, 97%, 1);
-	--ck-ai-chat-color-background-warning: hsla(36, 100%, 65.10%, 0.10);
+	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
+	--ck-ai-notification-warning-color-background: hsla(36, 100%, 65.10%, 0.10);
 
-	--ck-ai-chat-color-border-error: hsla(14, 100%, 68%, 1);
-	--ck-ai-chat-color-border-warning: hsla(36, 100%, 65%, 1);
+	--ck-ai-notification-error-color-border: hsla(14, 100%, 68%, 1);
+	--ck-ai-notification-warning-color-border: hsla(36, 100%, 65%, 1);
+
+	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
-/* TODO: rename the class to make it more generic and function as a modifier. */
-.ck.ck-ai-chat-error {
+.ck.ck-ai-notification {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: var(--ck-spacing-medium);
 	width: fit-content;
 
-	background-color: var(--ck-ai-chat-color-background-error);
-	border: 1px solid var(--ck-ai-chat-color-border-error);
 	padding: var(--ck-spacing-standard);
 	border-radius: var(--ck-ai-border-radius);
 }
-.ck.ck-ai-chat-error.ck-ai-chat-error_warning {
-		background-color: var(--ck-ai-chat-color-background-warning);
-		border-color: var(--ck-ai-chat-color-border-warning);
+.ck.ck-ai-notification.ck-ai-notification_error {
+		background-color: var(--ck-ai-notification-error-color-background);
+		border: 1px solid var(--ck-ai-notification-error-color-border);
 	}
-.ck.ck-ai-chat-error > p {
+.ck.ck-ai-notification.ck-ai-notification_warning {
+		background-color: var(--ck-ai-notification-warning-color-background);
+		border-color: var(--ck-ai-notification-warning-color-border);
+	}
+.ck.ck-ai-notification > p {
 		flex: 1;
-		max-width: calc(100% - (16px + var(--ck-spacing-medium)));
 		white-space: normal;
 		color: var(--ck-color-base-text);
 		line-height: var(--ck-line-height-base);
 	}
-.ck.ck-ai-chat-error > .ck-button {
+.ck.ck-ai-notification > .ck-button {
 		--ck-icon-font-size: 0.666em;
 	}
-.ck.ck-ai-chat-error > .ck-button.ck-ai-chat-error__dismiss-button {
+.ck.ck-ai-notification > .ck-button.ck-ai-notification_error__dismiss-button {
 			--ck-icon-font-size: 0.666em;
 			--ck-ui-component-min-height: 16px;
 
 			padding: 0;
 			flex-shrink: 0;
 		}
-.ck.ck-ai-chat-error.ck-ai-chat-error_full-width > p {
+.ck.ck-ai-notification.ck-ai-notification__full-width > p {
 			max-width: 100%;
 		}
 /*
@@ -2532,8 +2534,6 @@
 	--ck-ai-chat-controls-loader-icon-color: hsla(0, 0%, 96%, 0.98);
 
 	--ck-ai-chat-feed-loader-icon-color: hsla(0, 0%, 85%, 1);
-
-	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
 
 /* Note: This class name is mentioned in the guide and acts like a public API. */
@@ -2610,7 +2610,7 @@
 		position: relative;
 	}
 
-.ck .ck-ai-chat-history .ck-ai-chat-history__content .ck-ai-chat-error {
+.ck .ck-ai-chat-history .ck-ai-chat-history__content .ck-ai-notification_error {
 			margin: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-medium) var(--ck-spacing-large);
 		}
 
@@ -2845,32 +2845,38 @@
 :root {
 	--ck-ai-quick-actions-button-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-quick-actions-button-background-color: hsla(265, 100%, 96%, 1);
+	--ck-ai-quick-actions-list-max-height: 300px;
+	--ck-ai-quick-actions-list-item-group-row-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-quick-actions-dropdown-max-width: 309px;
+	--ck-ai-quick-actions-group-single-button-height: 28.68px;
+	--ck-ai-quick-actions-group-search-result-button-min-height: 40.68px;
+
 }
 
-.ck-ai-quick-actions {
-	width: 300px;
+.ck-dropdown > .ck-dropdown__panel > .ck-ai-quick-actions {
+	max-width: var(--ck-ai-quick-actions-dropdown-max-width);
 }
 
-.ck-ai-quick-actions svg.ck-icon {
-		width: 20px;
-		height: 20px;
+.ck-dropdown > .ck-dropdown__panel > .ck-ai-quick-actions ul {
+		max-height: var(--ck-ai-quick-actions-list-max-height);
+		overflow: auto;
 	}
 
-:scope .ck-ai-quick-actions-dropdown,:scope .ck-ai-quick-actions-group-panel {
-	--ck-color-list-button-hover-background: var(--ck-ai-quick-actions-button-background-color);
-	--ck-color-button-default-hover-background: var(--ck-ai-quick-actions-button-background-color);
-	--ck-color-button-on-background: var(--ck-ai-quick-actions-button-background-color);
-	--ck-color-button-on-hover-background: var(--ck-ai-quick-actions-button-background-color);
+.ck-ai-quick-actions-group-panel > .ck-ai-quick-actions-group-list {
+	max-width: var(--ck-ai-quick-actions-dropdown-max-width);
 }
 
-:scope .ck-ai-quick-actions-dropdown .ck.ck-button:not(.ck-dropdown__button),:scope .ck-ai-quick-actions-group-panel .ck.ck-button:not(.ck-dropdown__button) {
-		border-color: transparent;
-		box-shadow: none;
+.ck-ai-quick-actions-group-panel > .ck-ai-quick-actions-group-list span {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
-:scope .ck-ai-quick-actions-dropdown .ck.ck-button.ck-dropdown__button.ck-on,:scope .ck-ai-quick-actions-group-panel .ck.ck-button.ck-dropdown__button.ck-on {
-		color: var(--ck-ai-quick-actions-button-color);
-	}
+.ck-ai-quick-actions-dropdown  .ck.ck-button:not(.ck-dropdown__button),
+.ck-ai-quick-actions-group-panel  .ck.ck-button:not(.ck-dropdown__button) {
+	border-color: transparent;
+	box-shadow: none;
+}
 
 .ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button,  .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button {
 		--ck-color-button-default-hover-background: 				hsl(262.1,100%,96.3%);
@@ -2883,15 +2889,125 @@
 		--ck-color-button-on-color:									hsl(263.2,59.2%,52%);
 	}
 
-.ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button:hover, .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button:hover {
-			color: var(--ck-color-button-on-color);
+.ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button:hover,  .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button:hover {
+		color: var(--ck-color-button-on-color);
+	}
+
+.ck-ai-quick-actions-dropdown,
+.ck-ai-quick-actions-group-panel {
+	--ck-color-list-button-hover-background: var(--ck-ai-quick-actions-button-background-color);
+	--ck-color-button-default-hover-background: var(--ck-ai-quick-actions-button-background-color);
+	--ck-color-button-on-background: var(--ck-ai-quick-actions-button-background-color);
+	--ck-color-button-on-hover-background: var(--ck-ai-quick-actions-button-background-color);
+	--ck-color-search-border: hsla(216, 5%, 81%, 1);
+}
+
+.ck-ai-quick-actions-dropdown .ck.ck-button.ck-dropdown__button.ck-on, .ck-ai-quick-actions-group-panel .ck.ck-button.ck-dropdown__button.ck-on {
+		color: var(--ck-ai-quick-actions-button-color);
+	}
+
+.ck-ai-quick-actions-dropdown .ck-ai-quick-actions-search > .ck-search__query_with-icon, .ck-ai-quick-actions-group-panel .ck-ai-quick-actions-search > .ck-search__query_with-icon {
+		padding: var(--ck-spacing-large);
+		border-bottom: 1px solid var(--ck-color-search-border);
+	}
+
+.ck-ai-quick-actions-dropdown .ck-search__info, .ck-ai-quick-actions-group-panel .ck-search__info {
+		width: 100%;
+		padding: var(--ck-spacing-medium) var(--ck-spacing-large);
+	}
+
+.ck-ai-quick-actions-dropdown .ck-search__info *, .ck-ai-quick-actions-group-panel .ck-search__info * {
+			white-space: normal;
 		}
 
-.ck-ai-quick-actions-dropdown  .ck.ck-button:not(.ck-dropdown__button):focus,
-.ck-ai-quick-actions-group-panel .ck.ck-button:not(.ck-dropdown__button):focus {
-	background-color: var(--ck-ai-quick-actions-button-background-color);
-}
-	
+.ck-ai-quick-actions-dropdown .ck-search__info > span:first-child, .ck-ai-quick-actions-group-panel .ck-search__info > span:first-child {
+			display: block;
+			font-weight: bold;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-search__info:not(.ck-hidden) ~ .ck.ck-list, .ck-ai-quick-actions-group-panel .ck-search__info:not(.ck-hidden) ~ .ck.ck-list {
+			display: none;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-ai-quick-actions-button_with-group__open-paren, .ck-ai-quick-actions-group-panel .ck-ai-quick-actions-button_with-group__open-paren {
+		margin-left: var(--ck-spacing-medium);
+	}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button {
+		width: 100%;
+		margin-bottom: 3.9px;
+	}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-button__label, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-button__label {
+			width: 100%;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__content, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__content {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row {
+			display: flex;
+			align-items: center;
+			color: var(--ck-ai-quick-actions-list-item-group-row-color);
+			font-size: calc(var(--ck-font-size-base) * 0.9);
+			margin-bottom: 0;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck-icon, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck-icon {
+				width: 12px;
+				height: 12px;
+				margin-right: 2.7px;
+			}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck.ck-highlighted-text, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck.ck-highlighted-text {
+				color: hsla(0, 0%, 44%, 1);
+				font-size: calc(var(--ck-font-size-base) * 0.7);
+				line-height: calc(var(--ck-font-size-base) * 0.9);
+				margin-left: var(--ck-spacing-tiny);
+			}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck.ck-highlighted-text mark, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__group-row .ck.ck-highlighted-text mark {
+					vertical-align: middle;
+				}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group) .ck-button__label > .ck-icon, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group) .ck-button__label > .ck-icon {
+			display: none;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__action-row, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button .ck-ai-quick-actions-search-result__action-row {
+			display: flex;
+			align-items: center;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group {
+			min-height: var(--ck-ai-quick-actions-group-search-result-button-min-height);
+			border: none;
+			padding-bottom: 0;
+			padding-top: 0;
+		}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group span, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group span {
+				white-space: normal; 
+			}
+
+.ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group), .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group) {
+			height: var(--ck-ai-quick-actions-group-single-button-height);
+			border: none;
+			padding-bottom: 0;
+			padding-top: 0;
+		}
+
+.ck-ai-quick-actions-dropdown .ck.ck-button:not(.ck-dropdown__button):focus, .ck-ai-quick-actions-group-panel .ck.ck-button:not(.ck-dropdown__button):focus {
+		background-color: var(--ck-ai-quick-actions-button-background-color);
+	}
+
+.ck-ai-quick-actions-dropdown .ck-list__item:last-child > .ck.ck-button:not(.ck-list-item-button), .ck-ai-quick-actions-group-panel .ck-list__item:last-child > .ck.ck-button:not(.ck-list-item-button) {
+		margin-bottom: 0;
+	}
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4083,47 +4199,49 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 :root {
-	--ck-ai-chat-color-background-error: hsla(15, 100%, 97%, 1);
-	--ck-ai-chat-color-background-warning: hsla(36, 100%, 65.10%, 0.10);
+	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
+	--ck-ai-notification-warning-color-background: hsla(36, 100%, 65.10%, 0.10);
 
-	--ck-ai-chat-color-border-error: hsla(14, 100%, 68%, 1);
-	--ck-ai-chat-color-border-warning: hsla(36, 100%, 65%, 1);
+	--ck-ai-notification-error-color-border: hsla(14, 100%, 68%, 1);
+	--ck-ai-notification-warning-color-border: hsla(36, 100%, 65%, 1);
+
+	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
-/* TODO: rename the class to make it more generic and function as a modifier. */
-.ck.ck-ai-chat-error {
+.ck.ck-ai-notification {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: var(--ck-spacing-medium);
 	width: fit-content;
 
-	background-color: var(--ck-ai-chat-color-background-error);
-	border: 1px solid var(--ck-ai-chat-color-border-error);
 	padding: var(--ck-spacing-standard);
 	border-radius: var(--ck-ai-border-radius);
 }
-.ck.ck-ai-chat-error.ck-ai-chat-error_warning {
-		background-color: var(--ck-ai-chat-color-background-warning);
-		border-color: var(--ck-ai-chat-color-border-warning);
+.ck.ck-ai-notification.ck-ai-notification_error {
+		background-color: var(--ck-ai-notification-error-color-background);
+		border: 1px solid var(--ck-ai-notification-error-color-border);
 	}
-.ck.ck-ai-chat-error > p {
+.ck.ck-ai-notification.ck-ai-notification_warning {
+		background-color: var(--ck-ai-notification-warning-color-background);
+		border-color: var(--ck-ai-notification-warning-color-border);
+	}
+.ck.ck-ai-notification > p {
 		flex: 1;
-		max-width: calc(100% - (16px + var(--ck-spacing-medium)));
 		white-space: normal;
 		color: var(--ck-color-base-text);
 		line-height: var(--ck-line-height-base);
 	}
-.ck.ck-ai-chat-error > .ck-button {
+.ck.ck-ai-notification > .ck-button {
 		--ck-icon-font-size: 0.666em;
 	}
-.ck.ck-ai-chat-error > .ck-button.ck-ai-chat-error__dismiss-button {
+.ck.ck-ai-notification > .ck-button.ck-ai-notification_error__dismiss-button {
 			--ck-icon-font-size: 0.666em;
 			--ck-ui-component-min-height: 16px;
 
 			padding: 0;
 			flex-shrink: 0;
 		}
-.ck.ck-ai-chat-error.ck-ai-chat-error_full-width > p {
+.ck.ck-ai-notification.ck-ai-notification__full-width > p {
 			max-width: 100%;
 		}
 /*
@@ -4371,6 +4489,18 @@
 			text-decoration: line-through;
 			text-decoration-thickness: 3px;
 			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
+		}
+
+.ck .ck-ai-review-mode__general-error-container {
+		padding: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-standard) var(--ck-spacing-large);
+
+		border-radius: var(--ck-ai-border-radius);
+	}
+
+.ck .ck-ai-review-mode__general-error-container > p {
+			max-width: 100%;
+			white-space: normal;
+			line-height: 1.4em;
 		}
 
 /*
