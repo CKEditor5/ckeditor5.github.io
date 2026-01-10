@@ -1,0 +1,1 @@
+import{ButtonView as r,ToolbarSeparatorView as n,ToolbarView as a,Locale as c}from"ckeditor5";var l=new c;function o(){let e=new r;return e.set({label:"Button",withText:!0}),e}var s=new n,u=[o(),s,o()],t=new a(l);u.forEach(e=>t.items.add(e));t.render();document.querySelector(".ui-toolbar-separator").append(t.element);
