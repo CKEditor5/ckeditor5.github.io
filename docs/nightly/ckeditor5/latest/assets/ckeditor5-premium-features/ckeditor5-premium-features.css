@@ -1525,9 +1525,6 @@
 					opacity: 0;
 				}
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-chat__feed__ai-suggestion__actions--no-animation {
-			transition: none;
-		}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-suggestion__header__show-changes-toggle {
 			padding: 0 var(--ck-spacing-small);
 			min-height: 22px;
@@ -1582,54 +1579,21 @@
 /*
 		 * This is the kind of reply from the AI where content changes are suggested.
 		 */
-/*
+.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion {
+			margin: 0 var(--ck-spacing-standard);
+
+			/*
 			 * Actions for the suggestion.
 			 */
+		}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions {
-				--ck-color-split-button-hover-background: var(--ck-ai-background-color-action-button);
+				--ck-border-radius: 2px;
 
-				margin-top: var(--ck-spacing-medium);
+				display: flex;
+				flex-direction: row;
+				gap: var(--ck-spacing-standard);
 				width: fit-content;
 			}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button {
-					--ck-color-button-default-background: var(--ck-ai-background-color-action-button);
-					--ck-color-button-default-hover-background: var(--ck-ai-chat-feed-item-color-actions-button-hover);
-					--ck-color-button-on-hover-background: var(--ck-ai-chat-feed-item-color-actions-button-hover);
-					--ck-color-button-default-active-background: var(--ck-ai-chat-feed-item-color-actions-button-hover);
-					--ck-color-button-on-background: var(--ck-ai-chat-feed-item-color-actions-button-hover);
-					--ck-color-button-on-active-background: var(--ck-ai-chat-feed-item-color-actions-button-hover);
-					--ck-color-focus-border: var(--ck-color-base-background);
-					--ck-focus-ring: 1px solid var(--ck-color-focus-border);
-
-					color: var(--ck-color-base-background);
-					margin-top: 0;
-				}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-splitbutton__action {
-						border-radius: 0;
-					}
-.ck-rounded-corners .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-splitbutton__action,
-	.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-splitbutton__action.ck-rounded-corners {
-		border-radius: var(--ck-border-radius);
-							border-top-right-radius: 0;
-							border-bottom-right-radius: 0;
-	}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-splitbutton__arrow {
-						width: 1.9em;
-						color: var(--ck-color-base-background);
-
-						/* Separator always visible */
-					}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-splitbutton__arrow:after {
-							content: '';
-							position: absolute;
-							width: 1px;
-							height: 100%;
-							left: -1px;
-							background: var(--ck-color-base-background);
-						}
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions > .ck-button.ck-disabled {
-						background: hsl(263, 59%, 52%, 0.5);
-					}
 /*
 		* Interaction header showing capabilities used for the entire interaction.
 		*/
@@ -1698,7 +1662,7 @@
 			grid-template-columns: repeat(3, 1fr);
 			gap: var(--ck-spacing-standard);
 
-			padding: var(--ck-spacing-medium-small) var(--ck-spacing-large) var(--ck-spacing-extra-large) var(--ck-spacing-large);
+			padding: var(--ck-spacing-medium) 0 0;
 		}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-sources__header {
 				grid-column-start: span 3;
@@ -1721,7 +1685,7 @@
 				padding: var(--ck-spacing-medium) var(--ck-spacing-large);
 				border: 0;
 				border-radius: 50px;
-				background-color: var(--ck-ai-chat-feed-item-color-background);
+				background-color: var(--ck-color-base-background);
 			}
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item .ck-ai-web-sources > .ck-ai-web-source:hover {
 					background-color: var(--ck-ai-chat-button-active-background-color);
@@ -1858,9 +1822,12 @@
  * @see $ck-border-radius
  */
 :root {
-	--ck-ai-chat-color-icon-outdated: var(--ck-ai-chat-suggestion-icon-default-color);
 	--ck-ai-chat-suggestion-container-header-font-size: .9em;
-	--ck-ai-background-color-action-button-semi-transparent: hsla(263, 59%, 52%, 0.5);
+	--ck-color-ai-chat-icon-outdated: var(--ck-ai-chat-suggestion-icon-default-color);
+	--ck-color-ai-suggestion-header-shadow: hsla(0, 0%, 0%, 0.1);
+	--ck-color-ai-suggestion-part-title: hsla(0, 0%, 44%, 1);
+	--ck-color-ai-suggestion-part-active-border: hsla(262, 64%, 78%, 1);
+	--ck-color-ai-suggestion-part-active-shadow: hsla(262, 64%, 78%, 0.15);
 }
 /*
  * Container for the suggestion where the content returned by the AI is displayed.
@@ -1874,7 +1841,6 @@
 
 	--ck-border-radius: 4px;
 
-	border: 1px solid var(--ck-color-base-border);
 	position: relative;
 }
 .ck-rounded-corners .ck.ck-ai-suggestion__container,
@@ -1882,13 +1848,25 @@
 		border-radius: var(--ck-border-radius);
 	}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__header {
+		border-radius: 0;
+
 		height: 3.23em; /* 42px */
-		border-bottom: 1px solid var(--ck-color-base-border);
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 var(--ck-spacing-large);
+		box-shadow: 0 0 3px 1px var(--ck-color-ai-suggestion-header-shadow);
+
+		/* Keep the shadow on top of the body part */
+		position: relative;
+		z-index: 1;
+	}
+.ck-rounded-corners .ck.ck-ai-suggestion__container .ck-ai-suggestion__header,
+	.ck.ck-ai-suggestion__container .ck-ai-suggestion__header.ck-rounded-corners {
+		border-radius: var(--ck-border-radius);
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
 	}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__header > span {
 			font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
@@ -1919,122 +1897,81 @@
 					border-radius: 100%;
 				}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body {
+		gap: var(--ck-spacing-large);
+
+		border-radius: 0;
+
 		display: flex;
 		flex-direction: column;
+		background: var(--ck-ai-chat-feed-item-color-background);
+	}
+.ck-rounded-corners .ck.ck-ai-suggestion__container .ck-ai-suggestion__body,
+	.ck.ck-ai-suggestion__container .ck-ai-suggestion__body.ck-rounded-corners {
+		border-radius: var(--ck-border-radius);
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
 	}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-parts {
 			display: flex;
 			flex-direction: column;
+			gap: var(--ck-spacing-large);
 		}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-parts:empty {
+				display: none;
+			}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part {
+			border-radius: 0;
+
 			position: relative;
-			padding-bottom: var(--ck-spacing-large);
+			padding: var(--ck-spacing-large);
+			padding-top: 0;
+			background: var(--ck-color-base-background);
 		}
+.ck-rounded-corners .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part,
+	.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part.ck-rounded-corners {
+		border-radius: var(--ck-border-radius);
+	}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				color: var(--ck-color-ai-suggestion-part-title);
+				height: 2.93em;
+			}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active {
+			box-shadow: 0 1px 3px 1.5px var(--ck-color-ai-suggestion-part-active-shadow);
+			outline: 1px solid var(--ck-color-ai-suggestion-part-active-border);
+		}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active .ck-ai-suggestion__body__content-part__title,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active .ck-ai-suggestion__body__content-part__title .ck-toolbar .ck-icon {
 				color: var(--ck-ai-background-color-action-button);
-				height: 2.308em;
 			}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-title {
-					position: absolute;
-					left: calc(-1.8 * var(--ck-spacing-large));
-					background: var(--ck-color-base-background);
-					box-shadow: 0 0 5px 6px var(--ck-color-base-background);
-					clip-path: inset(-6px 0 -6px 0);
-					border-radius: 100%;
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-accepted {
-					color: var(--ck-color-base-action);
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-rejected {
-					color: var(--ck-color-base-error);
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-ai-suggestion__body__content-part__icon-outdated {
-					color: var(--ck-ai-chat-color-icon-outdated);
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-icon,
-				.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title > .ck-toolbar .ck-icon {
-					--ck-icon-size: 1.477em;
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title .ck-toolbar {
-					border: 0;
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title .ck-toolbar .ck-button {
-						margin: 0;
-						color: var(--ck-ai-chat-suggestion-icon-default-color);
-					}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__title .ck-toolbar .ck-button:hover {
-							background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
-						}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__content :last-child {
-					padding-bottom: 0;
-					margin-bottom: var(--ck-spacing-medium);
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part .ck-ai-suggestion__body__content-part__content.ck.ck-content:not(:focus) {
-					/* Reset default padding and border of `ck-content` class. */
-					padding: 0;
-					border: 0;
-				}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part:hover .ck-ai-suggestion__body__content-part__title .ck-toolbar {
-				visibility: visible;
-				opacity: 1;
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__title,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__title,
+			.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__title {
+				opacity: 0.5;
 			}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part:not(:last-child)::after {
-				content: '...';
-				width: 100%;
-				text-align: center;
-				display: block;
-				clear: both;
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part:hover {
+			box-shadow: 0 1px 3px 1.5px var(--ck-color-ai-suggestion-header-shadow);
+		}
+.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part:hover .ck-ai-suggestion__body__content-part__title {
+				color: var(--ck-ai-background-color-action-button);
 			}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_pending:hover .ck-toolbar .ck-icon {
 				color: var(--ck-ai-background-color-action-button);
-			}
-/* TODO: This is only a temporary implementation for preview demo purposes. Make it nice. */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active:hover::before {
-			content: '';
-			position: absolute;
-			left: calc((-1 * var(--ck-spacing-large)) - 1px);
-			top: 5px;
-			height: 100%;
-			border-left: 3px solid var(--ck-ai-chat-suggestion-border-hover-color);
-		}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active:last-child::before {
-			height: calc(100% - 10px);
-		}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_active:last-child:first-child::before {
-			display: none;
-		}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__content, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__content, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__content {
-				opacity: 0.5;
-			}
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__title
-			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *), .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__title
-			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *), .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__title
-			:not(.ck-ai-suggestion__body__content-part__icon-title):not(.ck-ai-suggestion__body__content-part__icon-title *) {
-				opacity: 0.5;
-			}
-/* stylelint-disable no-descending-specificity */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted .ck-ai-suggestion__body__content-part__icon-title, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected .ck-ai-suggestion__body__content-part__icon-title, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated .ck-ai-suggestion__body__content-part__icon-title {
-				/* Icon can not be transparent because the border would be visible, it has to be controlled by the color. */
-				color: var(--ck-ai-background-color-action-button-semi-transparent);
-			}
-/* stylelint-enable no-descending-specificity */
-.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected::after, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated::after {
-				opacity: 0.5;
 			}
 /* The warning is displayed when some parts of the suggestion are empty. */
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck.ck-ai-chat__feed__item.ck-ai-notification_warning {
 			margin-left: 0;
 			margin-right: 0;
-			margin-bottom: var(--ck-spacing-large);
 			width: 100%;
 		}
 .ck.ck-ai-suggestion__container .ck-ai-suggestion__body,
 	.ck.ck-ai-suggestion__container .ck-ai-suggestion__changes {
-		padding: var(--ck-spacing-large);
-		padding-bottom: 0px;
+		padding: var(--ck-spacing-standard);
 	}
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -2056,11 +1993,6 @@
 	--ck-color-button-action-hover-background: hsl(262.6, 58.9%, 49.6%);
 	--ck-color-button-action-active-background: hsl(262.6, 58.9%, 49.6%);
 	--ck-color-button-action-disabled-background: hsl(263.8, 59.3%, 75.9%);
-
-	position: absolute;
-	right: var(--ck-spacing-large);
-	bottom: 0;
-	transform: translateY(50%);
 }
 .ck.ck-ai-mini-toolbar .ck-ai-interaction-counter {
 		color: var(--ck-ai-chat-color-icon);
@@ -2130,10 +2062,123 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 :root {
+	--ck-ai-chat-balloon-form-row-height: 2.924em;
+}
+/*
+ * Dialog for browsing AI Chat suggestions.
+ */
+.ck.ck-ai-chat-balloon {
+	width: 500px;
+	max-height: 300px;
+	min-height: 170px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	--ck-border-radius: 4px;
+}
+.ck.ck-ai-chat-balloon .ck.ck-form__header,
+	.ck.ck-ai-chat-balloon .ck-ai-chat-balloon__toolbar-container {
+		--ck-ui-component-min-height: 1.726em;
+		--ck-icon-size: 1.477em;
+	}
+.ck.ck-ai-chat-balloon .ck.ck-form__header {
+		--ck-form-header-height: var(--ck-ai-chat-balloon-form-row-height);
+
+		gap: var(--ck-spacing-standard);
+	}
+.ck.ck-ai-chat-balloon .ck.ck-form__header .ck-form__header__label {
+			--ck-font-size-base: 1em;
+			font-weight: normal;
+
+			color: var(--ck-ai-button-primary-background-color);
+		}
+.ck.ck-ai-chat-balloon .ck-dialog__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		flex-grow: 1;
+		min-height: 0;
+	}
+/*
+	 * The main view of the balloon.
+	 */
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		flex-grow: 1;
+		min-height: 0;
+
+		/*
+		 * The content part preview.
+		 */
+	}
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main .ck-ai-suggestion-streamable-content {
+			padding: var(--ck-spacing-large);
+			overflow-y: auto;
+			flex-grow: 1;
+		}
+/**
+		 * Reduced opacity of the content and the state view when the suggestion is accepted, rejected, or outdated.
+		 */
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_accepted .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_rejected .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_outdated .ck-ai-suggestion-streamable-content,
+			.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_accepted .ck-ai-suggestion__content-part-state,
+			.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_rejected .ck-ai-suggestion__content-part-state,
+			.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_outdated .ck-ai-suggestion__content-part-state {
+				opacity: 0.5;
+			}
+/**
+		 * The error view, e.g. when the selection the balloon was opened for was removed.
+		 */
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main .ck.ck-ai-suggestion__error.ck-ai-balloon-error {
+			margin: var(--ck-spacing-large);
+
+			/**
+			 * Add a border between the error view and the content.
+			 */
+		}
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main .ck.ck-ai-suggestion__error.ck-ai-balloon-error:not(.ck-hidden) + .ck-ai-suggestion-streamable-content {
+				border-top: 1px solid var(--ck-color-toolbar-border);
+			}
+/*
+		 * The bottom bar with toolbars.
+		 */
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main .ck-ai-chat-balloon__toolbar-container {
+			display: flex;
+			justify-content: space-between;
+			height: var(--ck-ai-chat-balloon-form-row-height);
+			padding: var(--ck-spacing-large);
+			align-items: center;
+
+			border-top: 1px solid var(--ck-color-toolbar-border);
+		}
+.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main .ck-ai-chat-balloon__toolbar-container > * {
+				border: 0;
+				margin: 0;
+				padding: 0;
+			}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
 	--ck-ai-header-color-icon: hsla(0, 0%, 44%, 1);
 	--ck-ai-header-color-text: hsla(263, 59%, 52%, 1);
 	--ck-ai-header-border-color-button: hsla(262, 51%, 80%, 1);
 }
+
 .ck-ai-header {
 	/* Custom values unlike the rest of editor UI. */
 	--ck-ui-component-min-height: 1.7em;
@@ -2143,15 +2188,18 @@
 	--ck-form-header-height: 3em;
 	--ck-form-header-small-icon-color: hsla(0, 0%, 20%, 1);
 }
+
 .ck-ai-header > .ck-button {
 		margin-inline-start: var(--ck-spacing-standard);
 	}
+
 .ck-ai-header > .ck-button > .ck-button__icon {
 			/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
 			--ck-icon-font-size: .666em;
 
 			color: var(--ck-ai-header-color-icon);
 		}
+
 .ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation {
 		/* TODO: Extract this to a separate class to avoid duplication (same component and styling in Chat history - empty viewr) */
 		/* Custom value unlike the rest of editor UI (derived from --ck-font-size-base, defaults to 13px). */
@@ -2162,13 +2210,16 @@
 		gap: var(--ck-spacing-small);
 		color: var(--ck-ai-header-color-text);
 	}
+
 .ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation:hover {
 			background-color: var(--ck-ai-chat-button-active-background-color);
 		}
+
 .ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > .ck-button__label {
 			/* Custom value unlike the rest of editor UI. */
 			line-height: 1.4em;
 		}
+
 .ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > .ck-button__icon {
 			/* Custom value unlike the rest of editor UI (defaults to 14px). See how it's used in the icon.css */
 			--ck-icon-font-size: .632em;
@@ -2176,29 +2227,35 @@
 			margin-inline-end: 0;
 			color: var(--ck-ai-header-color-text);
 		}
+
 .ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > span.ck-button__label {
 			position: relative;
 			top: 1px;
 		}
+
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back {
 			margin-inline-start: 0;
 			margin-inline-end: var(--ck-spacing-small);
 		}
+
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
 				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
 			}
+
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
 				/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
 				--ck-icon-font-size: 13px;
 
 				color: var(--ck-form-header-small-icon-color);
 			}
+
 .ck-ai-header.ck-ai-header_small .ck-form__header__label {
 			--ck-font-size-base: 13px;
 			--ck-font-face: var(--ck-ai-chat-font-family);
 
 			font-weight: 500;
 		}
+
 .ck-ai-header .ck-form__header__label:not(:last-child) {
 			margin-inline-end: var(--ck-spacing-small);
 		}
@@ -2211,11 +2268,12 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 :root {
+	--ck-ai-notification-color-text: hsla(0, 0%, 20%, 1);
 	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
-	--ck-ai-notification-warning-color-background: hsla(36, 100%, 65.10%, 0.10);
+	--ck-ai-notification-warning-color-background: hsla(37, 100%, 96.50%, 1);
 
 	--ck-ai-notification-error-color-border: hsla(14, 100%, 68%, 1);
-	--ck-ai-notification-warning-color-border: hsla(36, 100%, 65%, 1);
+	--ck-ai-notification-warning-color-border: hsla(36, 100.00%, 68.00%, 1);
 
 	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
@@ -2235,7 +2293,7 @@
 	}
 .ck.ck-ai-notification.ck-ai-notification_warning {
 		background-color: var(--ck-ai-notification-warning-color-background);
-		border-color: var(--ck-ai-notification-warning-color-border);
+		border: 1px solid var(--ck-ai-notification-warning-color-border);
 	}
 .ck.ck-ai-notification > p {
 		flex: 1;
@@ -2557,6 +2615,122 @@
 	--ck-ai-review-mode-suggestion-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-review-mode-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
 }
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+/* Keep the content close to the header (headings, paragraphs, blockquotes, etc. have variable margins). */
+
+.ck.ck-ai-suggestion-streamable-content :first-child {
+		margin-top: 0;
+	}
+
+/* Keep the content close to bottom edge of the container  (headings, paragraphs, blockquotes, etc. have variable margins). */
+
+.ck.ck-ai-suggestion-streamable-content :last-child {
+		margin-bottom: 0;
+	}
+
+/* <Content styles> */
+
+.ck.ck-ai-suggestion-streamable-content, .ck.ck-ai-suggestion-streamable-content * {
+		white-space: normal;
+		line-height: 1.4em;
+	}
+
+.ck.ck-ai-suggestion-streamable-content pre>code {
+		white-space: pre-wrap;
+	}
+
+.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion:not([data-author-id="$aiSuggestion"]),
+	.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline:not([data-author-id="$aiSuggestion"]),
+	.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+		border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+		border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+		background: var(--ck-ai-suggestion-inactive-color-background);
+	}
+
+.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion.ck-widget:not([data-author-id="$aiSuggestion"]) {
+			border: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+		}
+
+.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
+		box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
+	}
+
+.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+		text-decoration: line-through;
+		text-decoration-thickness: 3px;
+		text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
+	}
+
+.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.table > tbody > tr > td {
+		background-color: var(--ck-color-suggestion-widget-insertion-background);
+	}
+
+/* </Content styles> */
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+/*
+ * Toolbar with actions for the suggestion content part (accept, insert, reject).
+ */
+.ck.ck-toolbar.ck-ai-suggestion-content-part-toolbar {
+	--ck-icon-size: 1.477em;
+
+	border: 0;
+	padding: 0;
+}
+.ck.ck-toolbar.ck-ai-suggestion-content-part-toolbar .ck-toolbar__items {
+		gap: var(--ck-spacing-standard);
+	}
+.ck.ck-toolbar.ck-ai-suggestion-content-part-toolbar .ck-button {
+		--ck-ui-component-min-height: 1.726em;
+
+		margin: 0;
+		color: var(--ck-ai-chat-suggestion-icon-default-color);
+	}
+.ck.ck-toolbar.ck-ai-suggestion-content-part-toolbar .ck-button:hover {
+			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			color: var(--ck-ai-background-color-action-button);
+		}
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+/* State label and icon */
+div.ck.ck-ai-suggestion__content-part-state .ck-ai-suggestion__content-part-state__label {
+		vertical-align: middle;
+		margin-right: var(--ck-spacing-medium);
+	}
+/* Downscale state icons */
+div.ck.ck-ai-suggestion__content-part-state .ck-icon {
+		--ck-icon-size: 1.477em;
+	}
+div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_accepted > * {
+		color: var(--ck-color-base-action);
+	}
+div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_rejected > * {
+		color: var(--ck-color-base-error);
+	}
+div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_outdated > * {
+		color: var(--ck-color-ai-chat-icon-outdated);
+	}
 
 :root {
 	--ck-ai-border-color-main: hsla(216, 5%, 81%, 1);
@@ -2893,6 +3067,290 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	/* Primary button */
+	--ck-ai-button-primary-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-primary-disabled-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+
+	/* Secondary button */
+	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-secondary-disabled-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-secondary-background-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-secondary-disabled-background-color: hsla(0, 0%, 100%, 0.5);
+	--ck-ai-button-secondary-border-color: hsla(262, 51%, 80%, 1);
+	--ck-ai-button-secondary-disabled-border-color: hsla(262, 51%, 80%, 0.5);
+	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
+
+	/* Tertiary text button */
+	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-tertiary-text-background-color: transparent;
+	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
+
+	/* Tertiary filled button */
+	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
+	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-filled-background-color: transparent;
+	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
+	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+}
+
+.ck.ck-button.ck-ai-button-primary {
+		color: var(--ck-ai-button-primary-color);
+		background-color: var(--ck-ai-button-primary-background-color);
+		border: 1px solid transparent;
+	}
+
+.ck.ck-button.ck-ai-button-primary:hover {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-primary:disabled,
+		.ck.ck-button.ck-ai-button-primary.ck-disabled {
+			color: var(--ck-ai-button-primary-disabled-color);
+			background-color: var(--ck-ai-button-primary-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-primary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-primary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-secondary {
+		color: var(--ck-ai-button-secondary-color);
+		background-color: var(--ck-ai-button-secondary-background-color);
+		border: 1px solid var(--ck-ai-button-secondary-border-color);
+	}
+
+.ck.ck-button.ck-ai-button-secondary:hover {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:active,
+		.ck.ck-button.ck-ai-button-secondary.ck-on {
+			background-color: var(--ck-ai-button-secondary-active-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:disabled,
+		.ck.ck-button.ck-ai-button-secondary.ck-disabled {
+			color: var(--ck-ai-button-secondary-disabled-color);
+			background-color: var(--ck-ai-button-secondary-disabled-background-color);
+			border: 1px solid var(--ck-ai-button-secondary-disabled-border-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-secondary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text {
+		color: var(--ck-ai-button-tertiary-text-color);
+		background-color: var(--ck-ai-button-tertiary-text-background-color);
+		border: none;
+	}
+
+.ck.ck-button.ck-ai-button-tertiary-text:hover {
+			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			color: var(--ck-ai-button-tertiary-text-hover-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
+				color: var(--ck-ai-button-tertiary-text-hover-color);
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
+				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-text-hover-color);
+				}
+
+.ck.ck-button.ck-ai-button-tertiary-text:disabled,
+		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-text-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-filled {
+		color: var(--ck-ai-button-tertiary-filled-color);
+		background-color: var(--ck-ai-button-tertiary-filled-background-color);
+		border: none;
+	}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:hover {
+			color: var(--ck-ai-button-tertiary-filled-hover-color);
+			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:active,
+		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
+			color: var(--ck-ai-button-tertiary-filled-active-color);
+			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
+		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
+			color: var(--ck-ai-button-tertiary-filled-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-stop-generating {
+		min-height: 22px;
+		padding: 0 var(--ck-spacing-medium) 0 var(--ck-spacing-small);
+	}
+
+.ck.ck-button.ck-ai-button-stop-generating .ck.ck-icon.ck-button__icon {
+			height: 14px;
+			width: 14px;
+			margin-right: 4px;
+		}
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+/*
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+/**
+ * Implements rounded corner interface for .ck-rounded-corners class.
+ *
+ * @see $ck-border-radius
+ */
+:root {
+	--ck-ai-actions-balloon-disclaimer-text-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-actions-balloon-content-height: 150px;
+}
+/*
+ * Dialog for browsing AI Quick Actions suggestions.
+ */
+/* The main view of the balloon. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main {
+		width: 580px;
+		padding: var(--ck-spacing-large);
+
+		/*
+		 * The error view, e.g. when the selection the balloon was opened for was removed.
+		 */
+	}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck.ck-ai-suggestion__error {
+			margin-bottom: var(--ck-spacing-large);
+		}
+/* The toolbar with apply and suggest buttons. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck.ck-ai-balloon__toolbar {
+			border: none;
+			padding: 0;
+			margin-top: var(--ck-spacing-medium);
+			margin-bottom: 0;
+		}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck.ck-ai-balloon__toolbar .ck-button_with-text {
+				margin-bottom: 0;
+				margin-top: 0;
+			}
+/* Content wrapper containing the loader, streamable content and mini toolbar. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper {
+			border-radius: 0;
+
+			--ck-border-radius: 4px;
+
+			height: var(--ck-ai-actions-balloon-content-height);
+			border: 1px solid var(--ck-color-base-border);
+			position: relative;
+		}
+.ck-rounded-corners .ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper,
+	.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper.ck-rounded-corners {
+		border-radius: var(--ck-border-radius);
+	}
+/* The content of the balloon that gets streamed. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck-ai-suggestion-streamable-content {
+				overflow-y: auto;
+				word-break: normal;
+				text-wrap: auto;
+				padding: var(--ck-spacing-large);
+				height: var(--ck-ai-actions-balloon-content-height);
+			}
+/* The loader of the balloon. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck.ck-ai-suggestion__loader {
+				padding: var(--ck-spacing-large) !important;
+				height: var(--ck-ai-actions-balloon-content-height);
+			}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
+					--ck-ai-spinner-size: 18px;
+				}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
+					--ck-ai-spinner-size: 18px;
+				}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck.ck-ai-suggestion__loader .ck-ai-suggestion__loader-text {
+					margin-left: var(--ck-spacing-medium);
+				}
+/* Hide the content when the loader is visible. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck.ck-ai-suggestion__loader:not(.ck-hidden) + .ck-ai-suggestion-streamable-content {
+					display: none;
+				}
+/* The mini toolbar of the balloon. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-actions-balloon-content-wrapper .ck-ai-mini-toolbar {
+				position: absolute;
+				right: var(--ck-spacing-large);
+				bottom: 0;
+				transform: translateY(50%);
+			}
+/* The disclaimer with the warning text. */
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-balloon__disclaimer {
+			margin-top: var(--ck-spacing-medium);
+		}
+.ck.ck-ai-actions-balloon .ck-ai-actions-balloon-main .ck-ai-balloon__disclaimer .ck-ai-balloon__disclaimer-content {
+				color: var(--ck-ai-actions-balloon-disclaimer-text-color);
+				font-size: 0.75em;
+				line-height: 1.025em;
+				text-align: left;
+				word-break: normal;
+				text-wrap: auto;
+			}
+
+/*
+ * This file contains the styles for the AI Quick Actions dropdown and menus
+ * For the Quick Actions Balloon styles, see aiquickactionsballoon.css.
+ */
+
 :root {
 	--ck-ai-quick-actions-button-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-quick-actions-button-background-color: hsla(265, 100%, 96%, 1);
@@ -2901,7 +3359,6 @@
 	--ck-ai-quick-actions-dropdown-max-width: 309px;
 	--ck-ai-quick-actions-group-single-button-height: 28.68px;
 	--ck-ai-quick-actions-group-search-result-button-min-height: 40.68px;
-
 }
 
 .ck-dropdown > .ck-dropdown__panel > .ck-ai-quick-actions {
@@ -2932,7 +3389,6 @@
 .ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button,  .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button {
 		--ck-color-button-default-hover-background: 				hsl(262.1,100%,96.3%);
 		--ck-color-button-default-active-background:				hsl(262.1,100%,96.3%);
-	
 		--ck-color-button-on-background: 							hsl(262.1,100%,96.3%);
 		--ck-color-button-on-hover-background: 						hsl(262.1,100%,96.3%);
 		--ck-color-button-on-active-background:						hsl(262.1,100%,96.3%);
@@ -3044,7 +3500,7 @@
 		}
 
 .ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group span, .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button.ck-ai-quick-actions-search-result-button_with-group span {
-				white-space: normal; 
+				white-space: normal;
 			}
 
 .ck-ai-quick-actions-dropdown .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group), .ck-ai-quick-actions-group-panel .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button:not(.ck-ai-quick-actions-search-result-button_with-group) {
@@ -3075,223 +3531,29 @@
 	/* Taken from old AI Assistant */
 	--ck-color-ai-selection: hsl(262.5, 60%, 90%);
 
-	/* Primary button */
-	--ck-ai-button-primary-color: hsla(0, 0%, 100%, 1);
-	--ck-ai-button-primary-disabled-color: hsla(0, 0%, 100%, 1);
-	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
-
-	/* Secondary button */
-	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-secondary-disabled-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-secondary-background-color: hsla(0, 0%, 100%, 1);
-	--ck-ai-button-secondary-disabled-background-color: hsla(0, 0%, 100%, 0.5);
-	--ck-ai-button-secondary-border-color: hsla(262, 51%, 80%, 1);
-	--ck-ai-button-secondary-disabled-border-color: hsla(262, 51%, 80%, 0.5);
-	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
-}
-
-.ck.ai-balloon {
+	/* Font family for the balloon. */
 	--ck-ai-balloon-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	--ck-ai-balloon-disclaimer-text-color: hsla(0, 0%, 44%, 1);
 }
 
-.ck.ai-balloon .ck-dialog__content {
-		/* Use min() to ensure the width is not greater than the dialog max width */
-		width: min(580px, var(--ck-dialog-max-width));
-		padding: var(--ck-spacing-large);
-	}
-
-.ck.ai-balloon .ck-ai-suggestion__header {
-		display: none
-	}
-
-.ck.ai-balloon .ck.ck-ai-balloon__toolbar {
-		border: none;
-		padding: 0;
-		margin-top: var(--ck-spacing-medium);
-		margin-bottom: 0;
-	}
-
-.ck.ai-balloon .ck.ck-ai-balloon__toolbar .ck-button_with-text {
-			margin-bottom: 0;
-			margin-top: 0;
-		}
-
-.ck.ai-balloon .ck-ai-balloon__disclaimer {
-		margin-top: var(--ck-spacing-medium);
-	}
-
-.ck.ai-balloon .ck-ai-balloon__disclaimer .ck-ai-balloon__disclaimer-content {
-			color: var(--ck-ai-balloon-disclaimer-text-color);
-			font-size: 0.75em;
-			line-height: 1.025em;
-			text-align: left;
-			word-break: normal;
-			text-wrap: auto;
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__body {
-		height: 150px;
-		word-break: normal;
-		text-wrap: auto;
-		overflow-y: auto;
-	}
-
-.ck.ai-balloon .ck-ai-suggestion__body pre>code {
-			white-space: pre-wrap;
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion:not([data-author-id="$aiSuggestion"]),
-		.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatInline:not([data-author-id="$aiSuggestion"]),
-		.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
-			border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
-			border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
-			background: var(--ck-ai-suggestion-inactive-color-background);
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatInline.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion.ck-widget:not([data-author-id="$aiSuggestion"]) {
-				border: 3px solid var(--ck-ai-suggestion-inactive-color-border);
-			}
-
-.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
-			box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
-			text-decoration: line-through;
-			text-decoration-thickness: 3px;
-			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__body .ck-suggestion-marker-insertion.table > tbody > tr > td {
-			background-color: var(--ck-color-suggestion-widget-insertion-background);
-		}
-
-.ck.ai-balloon .ck-ai-suggestion__changes {
-		height: 150px;
-		overflow-y: auto;
-	}
-
-.ck.ai-balloon * {
+/**
+ * The styles shared by all consumers of the AI Balloon, including: AI Chat Balloon, AI Quick Actions Balloon.
+ */
+.ck.ck-ai-balloon * {
 		font-family: var(--ck-ai-balloon-font-family) !important;
 	}
+/**
+	 * The error view, e.g. when the selection the balloon was opened for was removed.
+	 */
+.ck.ck-ai-balloon .ck.ck-ai-suggestion__error.ck-ai-balloon-error .ck-ai-suggestion__error-text {
+		--ck-border-radius: 4px;
 
-.ck.ai-balloon .ck-ai-suggestion__changes *,
-	.ck.ai-balloon .ck-ai-suggestion__body *,
-	.ck.ai-balloon .ck-ai-suggestion__change * {
-		white-space: normal;
-		line-height: 1.4em;
-	}
-
-.ck.ai-balloon-rotator .ck.ck-form__header {
-		justify-content: center;
-		position: relative;
-	}
-
-.ck.ai-balloon-rotator .ck.ck-form__header h2.ck.ck-form__header__label {
-			flex-grow: 0;
-		}
-
-.ck.ai-balloon-rotator .ck.ck-form__header button.ck-button {
-			margin-right: var(--ck-spacing-large);
-			margin-left: var(--ck-spacing-large);
-		}
-
-.ck.ai-balloon-rotator .ck.ck-form__header .ck-button:last-child {
-			position: absolute;
-			right: var(--ck-spacing-large);
-		}
-
-.ck.ai-balloon-rotator::after {
-		content: "";
-		position: absolute;
-		top: 8px;
-		left: 8px;
-		width: 100%;
-		height: 100%;
-		background: var(--ck-color-dialog-background);
-		z-index: -1;
-		border-radius: var(--ck-border-radius);
-		box-shadow: var(--ck-drop-shadow), 0 0;
-		border: 1px solid var(--ck-color-base-border);
-	}
-
-/* Buttons styles will be removed after shared code is merged. */
-.ck.ck-button.ck-ai-button-primary {
-		color: var(--ck-ai-button-primary-color);
-		background-color: var(--ck-ai-button-primary-background-color);
-		border: none;
-	}
-.ck.ck-button.ck-ai-button-primary:hover {
-			background-color: var(--ck-ai-button-primary-hover-background-color);
-		}
-.ck.ck-button.ck-ai-button-primary:disabled {
-			color: var(--ck-ai-button-primary-disabled-color);
-			background-color: var(--ck-ai-button-primary-disabled-background-color);
-		}
-.ck.ck-button.ck-ai-button-secondary {
-		color: var(--ck-ai-button-secondary-color);
-		background-color: var(--ck-ai-button-secondary-background-color);
-		border: 1px solid var(--ck-ai-button-secondary-border-color);
-	}
-.ck.ck-button.ck-ai-button-secondary:hover {
-			background-color: var(--ck-ai-button-secondary-hover-background-color);
-		}
-.ck.ck-button.ck-ai-button-secondary:active,
-		.ck.ck-button.ck-ai-button-secondary.ck-on {
-			background-color: var(--ck-ai-button-secondary-active-background-color);
-		}
-.ck.ck-button.ck-ai-button-secondary:disabled {
-			color: var(--ck-ai-button-secondary-disabled-color);
-			background-color: var(--ck-ai-button-secondary-disabled-background-color);
-			border: 1px solid var(--ck-ai-button-secondary-disabled-border-color);
-		}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader {
-	padding: var(--ck-spacing-large) !important;
-	height: 150px;
-}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
-		--ck-ai-spinner-size: 18px;
-	}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
-		--ck-ai-spinner-size: 18px;
-	}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__loader .ck-ai-suggestion__loader-text {
-		margin-left: var(--ck-spacing-medium);
-	}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__error {
-	padding: var(--ck-spacing-large) !important;
-	height: 150px;
-}
-
-.ck-ai-suggestion__container .ck.ck-ai-suggestion__error .ck-ai-suggestion__error-text {
-		background-color: hsla(15, 100%, 97%, 1);
-		border: 1px solid hsla(14, 100%, 68%, 1);
-		color: hsla(0, 0%, 20%, 1);
+		background-color: var(--ck-ai-notification-error-color-background);
+		border: 1px solid var(--ck-ai-notification-error-color-border);
+		color: var(--ck-ai-notification-color-text);
 		padding: var(--ck-spacing-medium);
 		display: block;
 		border-radius: var(--ck-border-radius);
 	}
-
-.ck.ck-ai-suggestion__error.ai-balloon-error .ck-ai-suggestion__error-text {
-	--ck-border-radius: 4px;
-
-	margin-bottom: var(--ck-spacing-medium);
-	background-color: hsla(15, 100%, 97%, 1);
-	border: 1px solid hsla(14, 100%, 68%, 1);
-	color: hsla(0, 0%, 20%, 1);
-	padding: var(--ck-spacing-medium);
-	display: block;
-	border-radius: var(--ck-border-radius);
-}
 
 /*
  * Classes used by the "fake visual selection" displayed in the content
@@ -3311,6 +3573,7 @@
 	/* Override the height of the panel because the default height adds 2px scrollbar. */
 	max-height: 316px;
 }
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4254,11 +4517,12 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 :root {
+	--ck-ai-notification-color-text: hsla(0, 0%, 20%, 1);
 	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
-	--ck-ai-notification-warning-color-background: hsla(36, 100%, 65.10%, 0.10);
+	--ck-ai-notification-warning-color-background: hsla(37, 100%, 96.50%, 1);
 
 	--ck-ai-notification-error-color-border: hsla(14, 100%, 68%, 1);
-	--ck-ai-notification-warning-color-border: hsla(36, 100%, 65%, 1);
+	--ck-ai-notification-warning-color-border: hsla(36, 100.00%, 68.00%, 1);
 
 	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
@@ -4278,7 +4542,7 @@
 	}
 .ck.ck-ai-notification.ck-ai-notification_warning {
 		background-color: var(--ck-ai-notification-warning-color-background);
-		border-color: var(--ck-ai-notification-warning-color-border);
+		border: 1px solid var(--ck-ai-notification-warning-color-border);
 	}
 .ck.ck-ai-notification > p {
 		flex: 1;
