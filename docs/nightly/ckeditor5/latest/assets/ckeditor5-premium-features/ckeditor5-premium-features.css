@@ -2612,8 +2612,8 @@
 	--ck-ai-suggestion-marker-insertion-border-color-active: hsla(128, 71%, 25%, .5);
 	--ck-ai-suggestion-marker-insertion-background-color-active: hsla(128, 71%, 50%, .5);
 
-	--ck-ai-review-mode-suggestion-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-review-mode-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
+	--ck-ai_review-suggestion-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai_review-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
 }
 
 /*
@@ -3583,260 +3583,40 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-:root {
-	--ck-ai-review-check-list-item-hover-border-color: hsla(262, 64%, 78%, 1);
-	--ck-ai-review-check-list-item-active-border-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-review-check-list-item-title-color: var(--ck-color-text);
-	--ck-ai-review-check-list-item-description-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-review-check-list-item-title-icon-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-review-check-list-model-dropdown-width: 426px;
-	--ck-ai-review-check-list-model-dropdown-max-height: 340px;
-	--ck-ai-review-check-list-model-dropdown-arrow-drop-shadow: 0 -2px 0px var(--ck-color-shadow-drop);
-	--ck-ai-review-check-list-model-dropdown-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-review-check-list-model-dropdown-active-color: hsla(263, 59%, 52%, 1);
-}
-
-.ck.ck-ai-review-mode * {
-		font-family: var(--ck-ai-review-font-family) !important;
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion {
+		padding: var(--ck-spacing-standard);
+		width: 300px;
 	}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list {
-		position: relative;
-		height: 100%;
-		overflow: auto;
-	}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item {
-			padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
-			border-bottom: 1px solid var(--ck-color-base-border);
-			box-shadow: 3px 0px 0px 0px transparent inset;
-			opacity: 0;
-			visibility: hidden;
-
-			transition: box-shadow 0.3s ease-in-out;
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion:has(.ck-ai_review__check-run-result-response.ck-hidden) {
+			width: auto;
 		}
 
-@media (prefers-reduced-motion: reduce) {
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item {
-				transition-duration: 0s;
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion .ck-suggestion-marker {
+			white-space: break-spaces;
 		}
+
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion .ck-suggestion-marker-insertion {
+			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			background: var(--ck-ai-suggestion-marker-insertion-background-color);
+		}
+
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion .ck-suggestion-marker-deletion {
+			border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			background: var(--ck-ai-suggestion-marker-deletion-background-color);
+		}
+
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion.ck-ai_review-balloon-panel-suggestion_diff-active .ck-suggestion-marker-insertion {
+				--ck-ai-suggestion-marker-insertion-border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
+				--ck-ai-suggestion-marker-insertion-background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-description {
-				color: var(--ck-ai-review-check-list-item-description-color);
+.ck.ck-balloon-panel > .ck-ai_review-balloon-panel-suggestion.ck-ai_review-balloon-panel-suggestion_diff-active .ck-suggestion-marker-deletion {
+				--ck-ai-suggestion-marker-deletion-border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
+				--ck-ai-suggestion-marker-deletion-background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
 			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-title-text,
-			.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-description {
-				white-space: normal;
-				line-height: 1.3;
-			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item:hover {
-				cursor: pointer;
-			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item:hover .ck-ai-review-mode__check-list-item-title-text,
-				.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item:hover .ck-ai-review-mode__check-list-item-description {
-					cursor: pointer;
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item.ck-ai-review-mode__check-list-item_rendered {
-				opacity: 1;
-				visibility: visible;
-
-				transition: box-shadow 0.3s ease-in-out,
-					opacity 0.1s calc(0.05s * var(--ck-ai-review-check-list-item-index)),
-					visibility 0.1s calc(0.05s * var(--ck-ai-review-check-list-item-index));
-			}
-
-@media (prefers-reduced-motion: reduce) {
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item.ck-ai-review-mode__check-list-item_rendered {
-					opacity: 1;
-					visibility: visible;
-			}
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item.ck-ai-review-mode__check-list-item_selected {
-				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-active-border-color) inset;
-			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-title {
-				display: flex;
-				justify-content: space-between;
-				margin-block-end: var(--ck-spacing-tiny);
-			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-title > .ck-ai-review-mode__check-list-item-title-text {
-					flex-grow: 1;
-					color: var(--ck-ai-review-check-list-item-title-color);
-					font-weight: 700;
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-title > .ck.ck-icon.ck-ai-review-mode__check-list-item-title-icon {
-					--ck-icon-size: 20px;
-
-					flex-shrink: 0;
-					margin-inline-start: var(--ck-spacing-small);
-					color: var(--ck-ai-review-check-list-item-title-icon-color);
-
-					opacity: 0;
-					visibility: hidden;
-
-					transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-				}
-
-@media (prefers-reduced-motion: reduce) {
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-title > .ck.ck-icon.ck-ai-review-mode__check-list-item-title-icon {
-						transition-duration: 0s;
-				}
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item:not(.ck-ai-review-mode__check-list-item_selected):hover {
-				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-hover-border-color) inset;
-			}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item:not(.ck-ai-review-mode__check-list-item_selected):hover .ck-ai-review-mode__check-list-item-title > .ck.ck-icon.ck-ai-review-mode__check-list-item-title-icon {
-					opacity: 1;
-					visibility: visible;
-				}
-
-/* Parameterized form view. */
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row {
-					padding-left: 0;
-					padding-right: 0;
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai-review-mode__check-list-item-parameterized-form-element {
-						flex: 1;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai-review-mode__check-list-item-parameterized-form-element > *:first-child {
-							width: 100%;
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai-review-mode__check-list-item-parameterized-form-element.ck-ai-review-mode__check-list-item-parameterized-form-element_dropdown .ck-button.ck-dropdown__button {
-								border-color: hsl(216, 5%, 81%);
-							}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai-review-mode__check-list-item-parameterized-form-element.ck-ai-review-mode__check-list-item-parameterized-form-element_dropdown .ck-button.ck-dropdown__button > .ck-button__label {
-									width: 100%;
-								}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row .ck.ck-button {
-						flex-shrink: 0;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-parameterized .ck.ck-form__row .ck.ck-labeled-field-view {
-						width: 100%;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck.ck-input.ck-textarea.ck-review-mode__prompt-input {
-						width: 100%;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck-ai-review-mode__check-list-item-custom-actions-footer {
-						display: flex;
-						width: 100%;
-						align-items: center;
-						justify-content: space-between;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-custom-actions .ck.ck-form__row .ck-ai-review-mode__check-list-item-custom-actions-footer .ck-ai-review-mode__check-list-item-parameterized-custom-actions-buttons {
-							display: flex;
-							gap: var(--ck-spacing-small);
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button {
-					font-size: .9em;
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button.ck-on,
-					.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button:active {
-						background-color: var(--ck-ai-button-secondary-active-background-color);
-						color: var(--ck-ai-review-check-list-model-dropdown-active-color);
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button:hover:not(.ck-disabled) {
-						background-color: var(--ck-ai-review-check-list-model-dropdown-hover-background-color);
-						color: var(--ck-ai-review-check-list-model-dropdown-active-color);
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button > .ck.ck-button__label {
-						width: auto;
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel {
-					width: var(--ck-ai-review-check-list-model-dropdown-width);
-					padding-top: var(--ck-spacing-standard);
-					top: calc(100% + var(--ck-balloon-arrow-height));
-					bottom: auto;
-				}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::before,
-						.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::after {
-							content: '';
-							position: absolute;
-							left: calc(2 * var(--ck-balloon-arrow-half-width));
-							top: calc(-1 * var(--ck-balloon-arrow-height) + 2px);
-							width: 0;
-							height: 0;
-							border-style: solid;
-							border-width: 0 var(--ck-balloon-arrow-height) var(--ck-balloon-arrow-half-width) var(--ck-balloon-arrow-half-width);
-							border-color: transparent transparent var(--ck-color-panel-background) transparent;
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::before {
-							z-index: var(--ck-balloon-panel-arrow-z-index);
-							margin-bottom: calc(-1 * var(--ck-balloon-border-width));
-							filter: drop-shadow(var(--ck-ai-review-check-list-model-dropdown-arrow-drop-shadow));
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::after {
-							z-index: calc(var(--ck-balloon-panel-arrow-z-index) + 1);
-							margin-bottom: calc(var(--ck-balloon-arrow-offset) - var(--ck-balloon-border-width));
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se > .ck-list {
-							max-height: var(--ck-ai-review-check-list-model-dropdown-max-height);
-							overflow-y: scroll;
-						}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list {
-						gap: var(--ck-spacing-medium-small);
-					}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button {
-								align-items: baseline;
-							}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button:hover:not(.ck-disabled) {
-									background-color: var(--ck-ai-button-secondary-hover-background-color);
-								}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-list-item-button__check-holder {
-									flex-shrink: 0;
-								}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai-review-mode__check-list-item-model-dropdown-name {
-									line-height: 1.3;
-									font-weight: 500;
-								}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai-review-mode__check-list-item-model-dropdown-description {
-									padding-top: var(--ck-spacing-tiny);
-									line-height: 1.3;
-								}
-
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-list > .ck-ai-review-mode__check-list-item .ck-ai-review-mode__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai-review-mode__check-list-item-model-dropdown-description > span {
-										color: var(--ck-ai-review-color-icon);
-										line-height: 1;
-										white-space: normal;
-									}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -3852,7 +3632,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-review-border-color-button: hsla(262, 51%, 80%, 1);
 }
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run {
+.ck.ck-ai-review .ck-ai_review__check-run {
 		position: relative;
 		height: 100%;
 		overflow: auto;
@@ -3860,11 +3640,11 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		flex-direction: column;
 	}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run:has( .ck-ai-review-mode__check-run-skeleton-container:not(.ck-hidden) ) {
+.ck.ck-ai-review .ck-ai_review__check-run:has( .ck-ai_review__check-run-skeleton-container:not(.ck-hidden) ) {
 			overflow: hidden;
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result {
 			opacity: 0;
 			visibility: hidden;
 			box-shadow: 3px 0px 0px 0px transparent inset;
@@ -3878,7 +3658,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 
 @media (prefers-reduced-motion: reduce) {
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result {
 				animation: none;
 				opacity: 1;
 				visibility: visible;
@@ -3886,16 +3666,16 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		}
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:not(:first-child) {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result:not(:first-child) {
 				border-top: 1px solid var(--ck-color-base-border);
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:last-child {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result:last-child {
 				position: relative;
 				contain: layout;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:last-child::after {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result:last-child::after {
 				display: block;
 				content: "";
 				height: 1px;
@@ -3906,35 +3686,35 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				bottom: -1px;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result .ck-suggestion-marker {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result .ck-suggestion-marker {
 				white-space: break-spaces;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result:hover {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result:hover {
 				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-hover-border-color) inset;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_active {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_active {
 				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-active-border-color) inset;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_active .ck-suggestion-marker-insertion {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_active .ck-suggestion-marker-insertion {
 					border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color-active);
 					border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color-active);
 					background: var(--ck-ai-suggestion-marker-insertion-background-color-active);
 				}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_active .ck-suggestion-marker-deletion {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_active .ck-suggestion-marker-deletion {
 					border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color-active);
 					border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color-active);
 					background: var(--ck-ai-suggestion-marker-deletion-background-color-active);
 				}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_removing {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_removing {
 				animation: ck-ai-check-run-item-remove 0.2s forwards;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -3944,30 +3724,30 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 			border-bottom: 1px solid var(--ck-color-base-border);
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper {
 				display: flex;
 				align-items: flex-start;
 				min-width: 0;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper > .ck-ai-spinner {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper > .ck-ai-spinner {
 					transition: width 0.25s, opacity 0.25s, margin-inline-end 0.25s, display 0.25s;
 					transition-behavior: allow-discrete;
 					margin-inline-end: var(--ck-spacing-large);
 				}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper > .ck-ai-spinner.ck-hidden {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper > .ck-ai-spinner.ck-hidden {
 						width: 0;
 						opacity: 0;
 						margin-inline-end: 0;
 					}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper .ck-ai_review__check-run-results-header-title-content {
 					min-width: 0;
 				}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-title,
-					.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-subtitle {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper .ck-ai_review__check-run-results-header-title-content .ck-ai_review__check-run-results-header-title,
+					.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper .ck-ai_review__check-run-results-header-title-content .ck-ai_review__check-run-results-header-subtitle {
 						display: block;
 						align-self: center;
 						white-space: nowrap;
@@ -3977,11 +3757,11 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 						line-height: 1.5;
 					}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-title-wrapper .ck-ai-review-mode__check-run-results-header-title-content .ck-ai-review-mode__check-run-results-header-title {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-title-wrapper .ck-ai_review__check-run-results-header-title-content .ck-ai_review__check-run-results-header-title {
 						font-weight: bold;
 					}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-header .ck-ai-review-mode__check-run-results-header-buttons {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-buttons {
 				display: flex;
 				gap: var(--ck-spacing-standard);
 				flex-shrink: 0;
@@ -3991,35 +3771,37 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				min-height: 30px;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-wrapper {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-wrapper {
 			position: relative;
 			height: 100%;
 			overflow: auto;
+			--ck-content-font-size: 13px;
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-results-wrapper:has( .ck-ai-review-mode__check-run-skeleton-container:not(.ck-hidden) ) {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-wrapper:has( .ck-ai_review__check-run-skeleton-container:not(.ck-hidden) ) {
 				overflow: hidden;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-skeleton-container {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-skeleton-container {
 			position: absolute;
 			width: 100%;
 			top: 0;
 			height: 100%;
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-skeleton-container .ck-ai-review-mode__check-run-skeleton-item {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-skeleton-container .ck-ai_review__check-run-skeleton-item {
 				position: static;
 				height: auto;
 				padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
 				border-bottom: 1px solid var(--ck-color-base-border);
+				box-sizing: border-box;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-skeleton-container .ck-ai-review-mode__check-run-skeleton-item.ck-ai-skeleton {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-skeleton-container .ck-ai_review__check-run-skeleton-item.ck-ai-skeleton {
 					--ck-ai-skeleton-gap: var(--ck-spacing-small);
 				}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-error-container {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-error-container {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
@@ -4027,11 +3809,11 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 			padding: var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-standard) var(--ck-spacing-large);
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-error-container.ck-ai-review-mode__check-run-error-container_border-bottom {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-error-container.ck-ai_review__check-run-error-container_border-bottom {
 				border-bottom: 1px solid var(--ck-color-base-border);
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-error-container .ck-ai-review-mode__check-run-error-retry-button {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-error-container .ck-ai_review__check-run-error-retry-button {
 				font-size: 11.7px;
 				min-height: unset;
 				border: 1px solid var(--ck-ai-review-border-color-button);
@@ -4040,7 +3822,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				color: var(--ck-ai-review-color-text);
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__check-run .ck-ai-review-mode__check-run-error-container:not(.ck-hidden) + .ck-ai-review-mode__check-run-results-container:not(.ck-hidden) > .ck-ai-review-mode__check-run-result:first-child {
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-error-container:not(.ck-hidden) + .ck-ai_review__check-run-results-container:not(.ck-hidden) > .ck-ai_review__check-run-result:first-child {
 					border-top: 1px solid var(--ck-color-base-border);
 				}
 
@@ -4077,7 +3859,103 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-header {
+:root {
+	--ck-ai_review-inactive-check-background: hsla(0, 0%, 98%, 1);
+
+	--ck-color-suggestion-marker-deletion-border-inactive: hsla(345, 1%, 74%, 0.35);
+	--ck-color-suggestion-marker-deletion-background-inactive: hsla(345, 11%, 95%, 0.35);
+	--ck-color-suggestion-marker-deletion-stroke-inactive: hsla(0, 1%, 62%, 0.35);
+
+	--ck-color-suggestion-marker-insertion-border-inactive: hsla(128, 1%, 73%, 0.35);
+	--ck-color-suggestion-marker-insertion-background-inactive: hsla(128, 6%, 93%, 0.35);
+}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-footer {
+		margin-top: var(--ck-spacing-standard);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--ck-spacing-standard);
+	}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-footer > .ck-ai_review__check-run-result-action-buttons {
+			display: flex;
+			gap: var(--ck-spacing-standard);
+			flex-grow: 1;
+		}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-footer .ck.ck-button.ck-ai_review__check-run-result-info-button {
+			--ck-icon-size: 16px;
+			--ck-ui-component-min-height: 1.75em;
+
+			max-height: var(--ck-ui-component-min-height);
+			margin-left: auto;
+		}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-footer .ck.ck-button.ck-ai_review__check-run-result-status-button {
+			background-color: hsla(0, 0%, 93%, 1);
+			color: hsla(0, 0%, 44%, 1);
+			border: none;
+		}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-footer .ck.ck-button.ck-ai_review__check-run-result-status-button > .ck.ck-icon {
+				--ck-icon-size: 16px;
+			}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-response {
+		overflow: hidden;
+	}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-response.ck.ck-content:not(:focus) {
+			/* Reset default padding and border of `ck-content` class. */
+			padding: 0;
+			border: 0;
+		}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-response.ck-hidden + .ck-ai_review__check-run-result-footer {
+				margin-top: 0;
+			}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-response > * {
+			white-space: normal;
+			margin: 0;
+		}
+
+.ck-ai_review__check-run-result > .ck-ai_review__check-run-result-response img {
+			max-width: 125px;
+			max-height: 125px;
+		}
+
+.ck-ai_review__check-run-result.ck-ai_review__check-run-result_grayout {
+		pointer-events: none;
+		background-color: var(--ck-ai_review-inactive-check-background);
+	}
+
+.ck-ai_review__check-run-result.ck-ai_review__check-run-result_grayout .ck-suggestion-marker.ck-suggestion-marker-deletion {
+				--ck-color-suggestion-marker-deletion-border: var(--ck-color-suggestion-marker-deletion-border-inactive);
+				--ck-color-suggestion-marker-deletion-background: var(--ck-color-suggestion-marker-deletion-background-inactive);
+				--ck-color-suggestion-marker-deletion-stroke: var(--ck-color-suggestion-marker-deletion-stroke-inactive);
+			}
+
+.ck-ai_review__check-run-result.ck-ai_review__check-run-result_grayout .ck-suggestion-marker.ck-suggestion-marker-insertion {
+				--ck-color-suggestion-marker-insertion-border: var(--ck-color-suggestion-marker-insertion-border-inactive);
+				--ck-color-suggestion-marker-insertion-background: var(--ck-color-suggestion-marker-insertion-background-inactive);
+			}
+
+.ck-ai_review__check-run-result.ck-ai_review__check-run-result_grayout > .ck-ai_review__check-run-result-response > * {
+				filter: grayscale(1);
+			}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-header {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -4087,7 +3965,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 			border-bottom: 1px solid var(--ck-color-base-border);
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-header .ck-ai-review-mode__review-completed-header-title {
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-header .ck-ai_review__review-completed-header-title {
 				align-self: center;
 				white-space: nowrap;
 				overflow: hidden;
@@ -4095,23 +3973,23 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				text-overflow: ellipsis;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-header .ck-ai-review-mode__review-completed-header-buttons {
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-header .ck-ai_review__review-completed-header-buttons {
 				display: flex;
 				gap: var(--ck-spacing-standard);
 				flex-shrink: 0;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-content {
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-content {
 			padding: var(--ck-spacing-extra-large) var(--ck-spacing-extra-large) 0 var(--ck-spacing-extra-large);
 			text-align: center;
 		}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-content .ck-ai-review-mode__review-completed-content-icon {
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-content .ck-ai_review__review-completed-content-icon {
 				font-size: 20px;
 				line-height: 20px;
 			}
 
-.ck.ck-ai-review-mode .ck-ai-review-mode__review-completed .ck-ai-review-mode__review-completed-content .ck-ai-review-mode__review-completed-content-text {
+.ck.ck-ai-review .ck-ai_review__review-completed .ck-ai_review__review-completed-content .ck-ai_review__review-completed-content-text {
 				margin-top: var(--ck-spacing-large);
 				text-align: center;
 				white-space: normal;
@@ -4125,136 +4003,6 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion {
-		padding: var(--ck-spacing-standard);
-		width: 300px;
-	}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion:has(.ck-ai-review-mode__check-run-result-response.ck-hidden) {
-			width: auto;
-		}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker {
-			white-space: break-spaces;
-		}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker-insertion {
-			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
-			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
-			background: var(--ck-ai-suggestion-marker-insertion-background-color);
-		}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion .ck-suggestion-marker-deletion {
-			border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
-			border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
-			background: var(--ck-ai-suggestion-marker-deletion-background-color);
-		}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion.ck-ai-review-mode-balloon-panel-suggestion_diff-active .ck-suggestion-marker-insertion {
-				--ck-ai-suggestion-marker-insertion-border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
-				--ck-ai-suggestion-marker-insertion-background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
-			}
-
-.ck.ck-balloon-panel > .ck-ai-review-mode-balloon-panel-suggestion.ck-ai-review-mode-balloon-panel-suggestion_diff-active .ck-suggestion-marker-deletion {
-				--ck-ai-suggestion-marker-deletion-border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
-				--ck-ai-suggestion-marker-deletion-background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
-			}
-
-/*
- * What you're currently looking at is the source code of a legally protected, proprietary software.
- * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
- * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
- *
- * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
- */
-
-:root {
-	--ck-ai-review-mode-inactive-check-background: hsla(0, 0%, 98%, 1);
-
-	--ck-color-suggestion-marker-deletion-border-inactive: hsla(345, 1%, 74%, 0.35);
-	--ck-color-suggestion-marker-deletion-background-inactive: hsla(345, 11%, 95%, 0.35);
-	--ck-color-suggestion-marker-deletion-stroke-inactive: hsla(0, 1%, 62%, 0.35);
-
-	--ck-color-suggestion-marker-insertion-border-inactive: hsla(128, 1%, 73%, 0.35);
-	--ck-color-suggestion-marker-insertion-background-inactive: hsla(128, 6%, 93%, 0.35);
-}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer {
-		margin-top: var(--ck-spacing-standard);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--ck-spacing-standard);
-	}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer > .ck-ai-review-mode__check-run-result-action-buttons {
-			display: flex;
-			gap: var(--ck-spacing-standard);
-			flex-grow: 1;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer .ck.ck-button.ck-ai-review-mode__check-run-result-info-button {
-			--ck-icon-size: 16px;
-			--ck-ui-component-min-height: 1.75em;
-
-			max-height: var(--ck-ui-component-min-height);
-			margin-left: auto;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer .ck.ck-button.ck-ai-review-mode__check-run-result-status-button {
-			background-color: hsla(0, 0%, 93%, 1);
-			color: hsla(0, 0%, 44%, 1);
-			border: none;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-footer .ck.ck-button.ck-ai-review-mode__check-run-result-status-button > .ck.ck-icon {
-				--ck-icon-size: 16px;
-			}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response {
-		overflow: hidden;
-	}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response.ck.ck-content:not(:focus) {
-			/* Reset default padding and border of `ck-content` class. */
-			padding: 0;
-			border: 0;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response.ck-hidden + .ck-ai-review-mode__check-run-result-footer {
-				margin-top: 0;
-			}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response > * {
-			white-space: normal;
-		}
-
-.ck-ai-review-mode__check-run-result > .ck-ai-review-mode__check-run-result-response img {
-			max-width: 125px;
-			max-height: 125px;
-		}
-
-.ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_grayout {
-		pointer-events: none;
-		background-color: var(--ck-ai-review-mode-inactive-check-background);
-	}
-
-.ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_grayout .ck-suggestion-marker.ck-suggestion-marker-deletion {
-				--ck-color-suggestion-marker-deletion-border: var(--ck-color-suggestion-marker-deletion-border-inactive);
-				--ck-color-suggestion-marker-deletion-background: var(--ck-color-suggestion-marker-deletion-background-inactive);
-				--ck-color-suggestion-marker-deletion-stroke: var(--ck-color-suggestion-marker-deletion-stroke-inactive);
-			}
-
-.ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_grayout .ck-suggestion-marker.ck-suggestion-marker-insertion {
-				--ck-color-suggestion-marker-insertion-border: var(--ck-color-suggestion-marker-insertion-border-inactive);
-				--ck-color-suggestion-marker-insertion-background: var(--ck-color-suggestion-marker-insertion-background-inactive);
-			}
-
-.ck-ai-review-mode__check-run-result.ck-ai-review-mode__check-run-result_grayout > .ck-ai-review-mode__check-run-result-response > * {
-				filter: grayscale(1);
-			}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -4360,6 +4108,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 .ck-ai-header .ck-form__header__label:not(:last-child) {
 			margin-inline-end: var(--ck-spacing-small);
 		}
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4368,6 +4117,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	/* Primary button */
 	--ck-ai-button-primary-color: hsla(0, 0%, 100%, 1);
@@ -4403,111 +4153,135 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
 	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
 }
+
 .ck.ck-button.ck-ai-button-primary {
 		color: var(--ck-ai-button-primary-color);
 		background-color: var(--ck-ai-button-primary-background-color);
 		border: 1px solid transparent;
 	}
+
 .ck.ck-button.ck-ai-button-primary:hover {
 			background-color: var(--ck-ai-button-primary-hover-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-primary:disabled,
 		.ck.ck-button.ck-ai-button-primary.ck-disabled {
 			color: var(--ck-ai-button-primary-disabled-color);
 			background-color: var(--ck-ai-button-primary-disabled-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-primary:disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-primary:disabled > .ck-button__icon,
 			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
+
 .ck.ck-button.ck-ai-button-secondary {
 		color: var(--ck-ai-button-secondary-color);
 		background-color: var(--ck-ai-button-secondary-background-color);
 		border: 1px solid var(--ck-ai-button-secondary-border-color);
 	}
+
 .ck.ck-button.ck-ai-button-secondary:hover {
 			background-color: var(--ck-ai-button-secondary-hover-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-secondary:active,
 		.ck.ck-button.ck-ai-button-secondary.ck-on {
 			background-color: var(--ck-ai-button-secondary-active-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-secondary:disabled,
 		.ck.ck-button.ck-ai-button-secondary.ck-disabled {
 			color: var(--ck-ai-button-secondary-disabled-color);
 			background-color: var(--ck-ai-button-secondary-disabled-background-color);
 			border: 1px solid var(--ck-ai-button-secondary-disabled-border-color);
 		}
+
 .ck.ck-button.ck-ai-button-secondary:disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-secondary:disabled > .ck-button__icon,
 			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
+
 .ck.ck-button.ck-ai-button-tertiary-text {
 		color: var(--ck-ai-button-tertiary-text-color);
 		background-color: var(--ck-ai-button-tertiary-text-background-color);
 		border: none;
 	}
+
 .ck.ck-button.ck-ai-button-tertiary-text:hover {
 			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
 			color: var(--ck-ai-button-tertiary-text-hover-color);
 		}
+
 .ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
 				color: var(--ck-ai-button-tertiary-text-hover-color);
 			}
+
 .ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
 				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
 			}
+
 .ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
 					color: var(--ck-ai-button-tertiary-text-hover-color);
 				}
+
 .ck.ck-button.ck-ai-button-tertiary-text:disabled,
 		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
 			color: var(--ck-ai-button-tertiary-disabled-text-color);
 		}
+
 .ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
 			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
+
 .ck.ck-button.ck-ai-button-tertiary-filled {
 		color: var(--ck-ai-button-tertiary-filled-color);
 		background-color: var(--ck-ai-button-tertiary-filled-background-color);
 		border: none;
 	}
+
 .ck.ck-button.ck-ai-button-tertiary-filled:hover {
 			color: var(--ck-ai-button-tertiary-filled-hover-color);
 			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-tertiary-filled:active,
 		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
 			color: var(--ck-ai-button-tertiary-filled-active-color);
 			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-tertiary-filled:disabled,
 		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
 			color: var(--ck-ai-button-tertiary-filled-disabled-color);
 			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
 		}
+
 .ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
 			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
 			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
+
 .ck.ck-button.ck-ai-button-stop-generating {
 		min-height: 22px;
 		padding: 0 var(--ck-spacing-medium) 0 var(--ck-spacing-small);
 	}
+
 .ck.ck-button.ck-ai-button-stop-generating .ck.ck-icon.ck-button__icon {
 			height: 14px;
 			width: 14px;
 			margin-right: 4px;
 		}
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4516,6 +4290,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	--ck-ai-notification-color-text: hsla(0, 0%, 20%, 1);
 	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
@@ -4526,6 +4301,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 
 	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
 }
+
 .ck.ck-ai-notification {
 	display: flex;
 	align-items: flex-start;
@@ -4536,23 +4312,28 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	padding: var(--ck-spacing-standard);
 	border-radius: var(--ck-ai-border-radius);
 }
+
 .ck.ck-ai-notification.ck-ai-notification_error {
 		background-color: var(--ck-ai-notification-error-color-background);
 		border: 1px solid var(--ck-ai-notification-error-color-border);
 	}
+
 .ck.ck-ai-notification.ck-ai-notification_warning {
 		background-color: var(--ck-ai-notification-warning-color-background);
 		border: 1px solid var(--ck-ai-notification-warning-color-border);
 	}
+
 .ck.ck-ai-notification > p {
 		flex: 1;
 		white-space: normal;
 		color: var(--ck-color-base-text);
 		line-height: var(--ck-line-height-base);
 	}
+
 .ck.ck-ai-notification > .ck-button {
 		--ck-icon-font-size: 0.666em;
 	}
+
 .ck.ck-ai-notification > .ck-button.ck-ai-notification_error__dismiss-button {
 			--ck-icon-font-size: 0.666em;
 			--ck-ui-component-min-height: 16px;
@@ -4560,9 +4341,11 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 			padding: 0;
 			flex-shrink: 0;
 		}
+
 .ck.ck-ai-notification.ck-ai-notification__full-width > p {
 			max-width: 100%;
 		}
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4571,16 +4354,19 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	--ck-ai-disclaimer-background-color: hsla(0, 0%, 96%, 1);
 	--ck-ai-disclaimer-border-color: hsla(220, 6%, 82%, 1);
 	--ck-ai-disclaimer-text-color: hsla(0, 0%, 44%, 1);
 }
+
 .ck.ck-ai-disclaimer {
 	background-color: var(--ck-ai-disclaimer-background-color);
 	border-top: 1px solid var(--ck-ai-disclaimer-border-color);
 	padding: var(--ck-spacing-standard) 1em;
 }
+
 .ck.ck-ai-disclaimer > .ck.ck-ai-disclaimer__content {
 		color: var(--ck-ai-disclaimer-text-color);
 		font-size: 0.75em;
@@ -4589,6 +4375,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		word-break: normal;
 		text-wrap: auto;
 	}
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4597,12 +4384,14 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	--ai-skeleton-z-index: calc( var(--ck-z-default) + 1 );
 	--ck-ai-skeleton-item-background: linear-gradient(90deg, hsl(0, 0.00%, 98.00%) 0%, hsl(0, 0.00%, 94.10%) 50%, hsl(0, 0.00%, 98.00%) 100%);
 	--ck-ai-skeleton-animation-duration: 1s;
 	--ck-ai-skeleton-gap: var(--ck-spacing-extra-large);
 }
+
 .ck.ck-ai-skeleton {
 	position: absolute;
 	inset: 0;
@@ -4619,26 +4408,32 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	transition: opacity .4s, display .4s allow-discrete;
 	transition-delay: 350ms;
 }
+
 .ck.ck-ai-skeleton.ck-hidden {
 		transition-delay: 0ms;
 		opacity: 0;
 	}
+
 @starting-style {
+
 .ck.ck-ai-skeleton {
 		opacity: 0;
 }
 	}
+
 .ck.ck-ai-skeleton > .ck.ck-ai-skeleton__item {
 		background: var(--ck-ai-skeleton-item-background);
 		background-size: 200% 100%;
 		animation: var(--ck-ai-skeleton-animation-duration) ck-ai-skeleton-shine linear infinite;
 		width: 100%;
 	}
+
 @keyframes ck-ai-skeleton-shine {
 	to {
 		background-position-x: -200%;
 	}
 }
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4647,12 +4442,14 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	--ck-ai-spinner-size: var(--ck-toolbar-spinner-size);
 	--ck-ai-spinner-background: linear-gradient(to right, hsl(0, 0%, 100%), hsl(0, 0%, 58%));
 	--ck-ai-spinner-mask: radial-gradient(farthest-side, transparent 66%, hsl(0, 0%, 0%) 61%);
 	--ck-ai-spinner-animation-duration: 1s;
 }
+
 .ck.ck-spinner-container.ck-ai-spinner {
 		display: inline-block;
 		width: var(--ck-ai-spinner-size);
@@ -4661,6 +4458,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		flex-shrink: 0;
 		animation-duration: var(--ck-ai-spinner-animation-duration);
 	}
+
 .ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
 			width: var(--ck-ai-spinner-size);
 			height: var(--ck-ai-spinner-size);
@@ -4673,21 +4471,26 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 
 			box-sizing: border-box;
 		}
+
 .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
 			--ck-ai-spinner-size: 1em;
 		}
+
 .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_tiny {
 			--ck-ai-spinner-size: 12px;
 		}
+
 .ck.ck-spinner-container.ck-hidden {
 		display: none;
 		animation: none;
 	}
+
 @keyframes ck-spin {
 	to {
 		transform: rotate(360deg);
 	}
 }
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -4696,6 +4499,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
+
 :root {
 	--ck-ai-suggestion-inactive-color-background: hsla(128, 6%, 93%, 0.35);
 	--ck-ai-suggestion-inactive-color-border: hsla(128, 1%, 73%, 0.35);
@@ -4713,8 +4517,8 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-suggestion-marker-insertion-border-color-active: hsla(128, 71%, 25%, .5);
 	--ck-ai-suggestion-marker-insertion-background-color-active: hsla(128, 71%, 50%, .5);
 
-	--ck-ai-review-mode-suggestion-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-review-mode-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
+	--ck-ai_review-suggestion-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai_review-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
 }
 
 :root {
@@ -4722,55 +4526,63 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-review-color-icon: hsla(0, 0%, 44%, 1);
 }
 
-.ck .ck-ai-review-mode {
+.ck .ck-ai-review {
 		max-height: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 	}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_add {
-			border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_add {
+			border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
 		}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_add.ck-ai-review-mode__change_active {
-				--ck-ai-review-mode-suggestion-color: var(--ck-ai-review-mode-suggestion-color-active);
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_add.ck-ai_review__change_active {
+				--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
 			}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_hide {
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_hide {
 			display: none;
 		}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_strikethrough {
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough {
 			position: relative;
 		}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_strikethrough:before {
-				border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough:before {
+				border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
 				position: absolute;
 				content: "";
 				width: 100%;
 				height: 60%;
 			}
 
-.ck.ck-ai-review-mode-highlights span.ck-ai_review-mode-marker_underline {
-			border-bottom: 3px solid var(--ck-ai-review-mode-suggestion-color);
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough:before.ck-ai_review__change_active {
+					--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
+				}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_underline {
+			border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
 		}
 
-.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_add {
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_underline.ck-ai_review__change_active {
+				--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
+			}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_add {
 			white-space: break-spaces;
 			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
 			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
 			background-color: var(--ck-ai-suggestion-marker-insertion-background-color);
 		}
 
-.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_add.ck-ai-review-mode__change_active {
+.ck.ck-ai_review-diff span.ck-ai_review-marker_add.ck-ai_review__change_active {
 				border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
 				background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
 			}
 
-.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_hide,
-		.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_strikethrough {
+.ck.ck-ai_review-diff span.ck-ai_review-marker_hide,
+		.ck.ck-ai_review-diff span.ck-ai_review-marker_strikethrough {
 			white-space: break-spaces;
 			border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
 			border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
@@ -4780,59 +4592,1054 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 			background-color: var(--ck-ai-suggestion-marker-deletion-background-color);
 		}
 
-.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_hide.ck-ai-review-mode__change_active, .ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_strikethrough.ck-ai-review-mode__change_active {
+.ck.ck-ai_review-diff span.ck-ai_review-marker_hide.ck-ai_review__change_active, .ck.ck-ai_review-diff span.ck-ai_review-marker_strikethrough.ck-ai_review__change_active {
 				border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
 				background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
 			}
 
-.ck.ck-ai-review-mode-diff span.ck-ai_review-mode-marker_underline {
+.ck.ck-ai_review-diff span.ck-ai_review-marker_underline {
 			border: none;
 		}
 
-.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-insertion,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-insertion,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-formatInline,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-formatInline,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-deletion,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-deletion,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+.ck.ck-ai_review-highlights .ck-suggestion-marker-insertion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-insertion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatInline,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatInline,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
 			border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
 			border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
 			background: var(--ck-ai-suggestion-inactive-color-background);
 		}
 
-.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-formatBlock,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-formatBlock,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active {
+.ck.ck-ai_review-highlights .ck-suggestion-marker-formatBlock,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatBlock,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active {
 			box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
 		}
 
-.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-deletion,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-deletion,
-		.ck.ck-ai-review-mode-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
-		.ck.ck-ai-review-mode-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
 			text-decoration: line-through;
 			text-decoration-thickness: 3px;
 			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
 		}
 
-.ck .ck-ai-review-mode__general-error-container {
+.ck .ck-ai_review__general-error-container {
 		padding: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-standard) var(--ck-spacing-large);
 
 		border-radius: var(--ck-ai-border-radius);
 	}
 
-.ck .ck-ai-review-mode__general-error-container > p {
+.ck .ck-ai_review__general-error-container > p {
 			max-width: 100%;
 			white-space: normal;
 			line-height: 1.4em;
 		}
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-header-color-icon: hsla(0, 0%, 44%, 1);
+	--ck-ai-header-color-text: hsla(263, 59%, 52%, 1);
+	--ck-ai-header-border-color-button: hsla(262, 51%, 80%, 1);
+}
+
+.ck-ai-header {
+	/* Custom values unlike the rest of editor UI. */
+	--ck-ui-component-min-height: 1.7em;
+	--ck-ui-component-min-width: 1.7em;
+
+	/* Custom value. It defaults to the toolbar component height so they look fine on next to each other. */
+	--ck-form-header-height: 3em;
+	--ck-form-header-small-icon-color: hsla(0, 0%, 20%, 1);
+}
+
+.ck-ai-header > .ck-button {
+		margin-inline-start: var(--ck-spacing-standard);
+	}
+
+.ck-ai-header > .ck-button > .ck-button__icon {
+			/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
+			--ck-icon-font-size: .666em;
+
+			color: var(--ck-ai-header-color-icon);
+		}
+
+.ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation {
+		/* TODO: Extract this to a separate class to avoid duplication (same component and styling in Chat history - empty viewr) */
+		/* Custom value unlike the rest of editor UI (derived from --ck-font-size-base, defaults to 13px). */
+		font-size: 11.7px;
+		min-height: unset;
+		border: 1px solid var(--ck-ai-header-border-color-button);
+		border-radius: var(--ck-border-radius);
+		gap: var(--ck-spacing-small);
+		color: var(--ck-ai-header-color-text);
+	}
+
+.ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation:hover {
+			background-color: var(--ck-ai-chat-button-active-background-color);
+		}
+
+.ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > .ck-button__label {
+			/* Custom value unlike the rest of editor UI. */
+			line-height: 1.4em;
+		}
+
+.ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > .ck-button__icon {
+			/* Custom value unlike the rest of editor UI (defaults to 14px). See how it's used in the icon.css */
+			--ck-icon-font-size: .632em;
+
+			margin-inline-end: 0;
+			color: var(--ck-ai-header-color-text);
+		}
+
+.ck-ai-header > .ck.ck-button.ck-ai-chat__start-conversation > span.ck-button__label {
+			position: relative;
+			top: 1px;
+		}
+
+.ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back {
+			margin-inline-start: 0;
+			margin-inline-end: var(--ck-spacing-small);
+		}
+
+.ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
+				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			}
+
+.ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
+				/* Custom value unlike the rest of editor UI (defaults to 16px). See how it's used in the icon.css */
+				--ck-icon-font-size: 13px;
+
+				color: var(--ck-form-header-small-icon-color);
+			}
+
+.ck-ai-header.ck-ai-header_small .ck-form__header__label {
+			--ck-font-size-base: 13px;
+			--ck-font-face: var(--ck-ai-chat-font-family);
+
+			font-weight: 500;
+		}
+
+.ck-ai-header .ck-form__header__label:not(:last-child) {
+			margin-inline-end: var(--ck-spacing-small);
+		}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	/* Primary button */
+	--ck-ai-button-primary-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-primary-disabled-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+
+	/* Secondary button */
+	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-secondary-disabled-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-secondary-background-color: hsla(0, 0%, 100%, 1);
+	--ck-ai-button-secondary-disabled-background-color: hsla(0, 0%, 100%, 0.5);
+	--ck-ai-button-secondary-border-color: hsla(262, 51%, 80%, 1);
+	--ck-ai-button-secondary-disabled-border-color: hsla(262, 51%, 80%, 0.5);
+	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
+
+	/* Tertiary text button */
+	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai-button-tertiary-text-background-color: transparent;
+	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
+
+	/* Tertiary filled button */
+	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
+	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-filled-background-color: transparent;
+	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
+	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+}
+
+.ck.ck-button.ck-ai-button-primary {
+		color: var(--ck-ai-button-primary-color);
+		background-color: var(--ck-ai-button-primary-background-color);
+		border: 1px solid transparent;
+	}
+
+.ck.ck-button.ck-ai-button-primary:hover {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-primary:disabled,
+		.ck.ck-button.ck-ai-button-primary.ck-disabled {
+			color: var(--ck-ai-button-primary-disabled-color);
+			background-color: var(--ck-ai-button-primary-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-primary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-primary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-secondary {
+		color: var(--ck-ai-button-secondary-color);
+		background-color: var(--ck-ai-button-secondary-background-color);
+		border: 1px solid var(--ck-ai-button-secondary-border-color);
+	}
+
+.ck.ck-button.ck-ai-button-secondary:hover {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:active,
+		.ck.ck-button.ck-ai-button-secondary.ck-on {
+			background-color: var(--ck-ai-button-secondary-active-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:disabled,
+		.ck.ck-button.ck-ai-button-secondary.ck-disabled {
+			color: var(--ck-ai-button-secondary-disabled-color);
+			background-color: var(--ck-ai-button-secondary-disabled-background-color);
+			border: 1px solid var(--ck-ai-button-secondary-disabled-border-color);
+		}
+
+.ck.ck-button.ck-ai-button-secondary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-secondary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text {
+		color: var(--ck-ai-button-tertiary-text-color);
+		background-color: var(--ck-ai-button-tertiary-text-background-color);
+		border: none;
+	}
+
+.ck.ck-button.ck-ai-button-tertiary-text:hover {
+			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			color: var(--ck-ai-button-tertiary-text-hover-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
+				color: var(--ck-ai-button-tertiary-text-hover-color);
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
+				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-text-hover-color);
+				}
+
+.ck.ck-button.ck-ai-button-tertiary-text:disabled,
+		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-text-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-tertiary-filled {
+		color: var(--ck-ai-button-tertiary-filled-color);
+		background-color: var(--ck-ai-button-tertiary-filled-background-color);
+		border: none;
+	}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:hover {
+			color: var(--ck-ai-button-tertiary-filled-hover-color);
+			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:active,
+		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
+			color: var(--ck-ai-button-tertiary-filled-active-color);
+			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
+		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
+			color: var(--ck-ai-button-tertiary-filled-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
+				opacity: 1;
+			}
+
+.ck.ck-button.ck-ai-button-stop-generating {
+		min-height: 22px;
+		padding: 0 var(--ck-spacing-medium) 0 var(--ck-spacing-small);
+	}
+
+.ck.ck-button.ck-ai-button-stop-generating .ck.ck-icon.ck-button__icon {
+			height: 14px;
+			width: 14px;
+			margin-right: 4px;
+		}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-notification-color-text: hsla(0, 0%, 20%, 1);
+	--ck-ai-notification-error-color-background: hsla(15, 100%, 97%, 1);
+	--ck-ai-notification-warning-color-background: hsla(37, 100%, 96.50%, 1);
+
+	--ck-ai-notification-error-color-border: hsla(14, 100%, 68%, 1);
+	--ck-ai-notification-warning-color-border: hsla(36, 100.00%, 68.00%, 1);
+
+	--ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
+}
+
+.ck.ck-ai-notification {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: var(--ck-spacing-medium);
+	width: fit-content;
+
+	padding: var(--ck-spacing-standard);
+	border-radius: var(--ck-ai-border-radius);
+}
+
+.ck.ck-ai-notification.ck-ai-notification_error {
+		background-color: var(--ck-ai-notification-error-color-background);
+		border: 1px solid var(--ck-ai-notification-error-color-border);
+	}
+
+.ck.ck-ai-notification.ck-ai-notification_warning {
+		background-color: var(--ck-ai-notification-warning-color-background);
+		border: 1px solid var(--ck-ai-notification-warning-color-border);
+	}
+
+.ck.ck-ai-notification > p {
+		flex: 1;
+		white-space: normal;
+		color: var(--ck-color-base-text);
+		line-height: var(--ck-line-height-base);
+	}
+
+.ck.ck-ai-notification > .ck-button {
+		--ck-icon-font-size: 0.666em;
+	}
+
+.ck.ck-ai-notification > .ck-button.ck-ai-notification_error__dismiss-button {
+			--ck-icon-font-size: 0.666em;
+			--ck-ui-component-min-height: 16px;
+
+			padding: 0;
+			flex-shrink: 0;
+		}
+
+.ck.ck-ai-notification.ck-ai-notification__full-width > p {
+			max-width: 100%;
+		}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-disclaimer-background-color: hsla(0, 0%, 96%, 1);
+	--ck-ai-disclaimer-border-color: hsla(220, 6%, 82%, 1);
+	--ck-ai-disclaimer-text-color: hsla(0, 0%, 44%, 1);
+}
+
+.ck.ck-ai-disclaimer {
+	background-color: var(--ck-ai-disclaimer-background-color);
+	border-top: 1px solid var(--ck-ai-disclaimer-border-color);
+	padding: var(--ck-spacing-standard) 1em;
+}
+
+.ck.ck-ai-disclaimer > .ck.ck-ai-disclaimer__content {
+		color: var(--ck-ai-disclaimer-text-color);
+		font-size: 0.75em;
+		line-height: 1.025em;
+		text-align: center;
+		word-break: normal;
+		text-wrap: auto;
+	}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ai-skeleton-z-index: calc( var(--ck-z-default) + 1 );
+	--ck-ai-skeleton-item-background: linear-gradient(90deg, hsl(0, 0.00%, 98.00%) 0%, hsl(0, 0.00%, 94.10%) 50%, hsl(0, 0.00%, 98.00%) 100%);
+	--ck-ai-skeleton-animation-duration: 1s;
+	--ck-ai-skeleton-gap: var(--ck-spacing-extra-large);
+}
+
+.ck.ck-ai-skeleton {
+	position: absolute;
+	inset: 0;
+	z-index: var(--ai-skeleton-z-index);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: var(--ck-ai-skeleton-gap) 0;
+	padding: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-large);
+	width: 100%;
+	height: 100%;
+	background-color: var(--ck-color-base-background);
+	opacity: 1;
+	transition: opacity .4s, display .4s allow-discrete;
+	transition-delay: 350ms;
+}
+
+.ck.ck-ai-skeleton.ck-hidden {
+		transition-delay: 0ms;
+		opacity: 0;
+	}
+
+@starting-style {
+
+.ck.ck-ai-skeleton {
+		opacity: 0;
+}
+	}
+
+.ck.ck-ai-skeleton > .ck.ck-ai-skeleton__item {
+		background: var(--ck-ai-skeleton-item-background);
+		background-size: 200% 100%;
+		animation: var(--ck-ai-skeleton-animation-duration) ck-ai-skeleton-shine linear infinite;
+		width: 100%;
+	}
+
+@keyframes ck-ai-skeleton-shine {
+	to {
+		background-position-x: -200%;
+	}
+}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-spinner-size: var(--ck-toolbar-spinner-size);
+	--ck-ai-spinner-background: linear-gradient(to right, hsl(0, 0%, 100%), hsl(0, 0%, 58%));
+	--ck-ai-spinner-mask: radial-gradient(farthest-side, transparent 66%, hsl(0, 0%, 0%) 61%);
+	--ck-ai-spinner-animation-duration: 1s;
+}
+
+.ck.ck-spinner-container.ck-ai-spinner {
+		display: inline-block;
+		width: var(--ck-ai-spinner-size);
+		height: var(--ck-ai-spinner-size);
+		margin: 0;
+		flex-shrink: 0;
+		animation-duration: var(--ck-ai-spinner-animation-duration);
+	}
+
+.ck.ck-spinner-container.ck-ai-spinner .ck-spinner {
+			width: var(--ck-ai-spinner-size);
+			height: var(--ck-ai-spinner-size);
+
+			border: none;
+
+			background: var(--ck-ai-spinner-background);
+			-webkit-mask: var(--ck-ai-spinner-mask);
+			mask: var(--ck-ai-spinner-mask);
+
+			box-sizing: border-box;
+		}
+
+.ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
+			--ck-ai-spinner-size: 1em;
+		}
+
+.ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_tiny {
+			--ck-ai-spinner-size: 12px;
+		}
+
+.ck.ck-spinner-container.ck-hidden {
+		display: none;
+		animation: none;
+	}
+
+@keyframes ck-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-suggestion-inactive-color-background: hsla(128, 6%, 93%, 0.35);
+	--ck-ai-suggestion-inactive-color-border: hsla(128, 1%, 73%, 0.35);
+
+	--ck-ai-suggestion-marker-insertion-border-color: var(--ck-color-suggestion-marker-insertion-border, hsla(128, 71%, 40%, .35));
+	--ck-ai-suggestion-marker-insertion-background-color: var(--ck-color-suggestion-marker-insertion-background, hsla(128, 71%, 65%, .35));
+
+	--ck-ai-suggestion-marker-deletion-border-color: var(--ck-color-suggestion-marker-deletion-border, hsla(345, 71%, 40%, .35));
+	--ck-ai-suggestion-marker-deletion-background-color: var(--ck-color-suggestion-marker-deletion-background, hsla(345, 71%, 65%, .35));
+	--ck-ai-suggestion-marker-deletion-stroke-color: var(--ck-color-suggestion-marker-deletion-stroke, hsla(345, 71%, 20%, .5));
+
+	--ck-ai-suggestion-marker-deletion-border-color-active: hsla(345, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-deletion-background-color-active: hsla(345, 71%, 50%, .5);
+
+	--ck-ai-suggestion-marker-insertion-border-color-active: hsla(128, 71%, 25%, .5);
+	--ck-ai-suggestion-marker-insertion-background-color-active: hsla(128, 71%, 50%, .5);
+
+	--ck-ai_review-suggestion-color: hsla(263, 59%, 52%, 0.5);
+	--ck-ai_review-suggestion-color-active: hsla(263, 62%, 36%, 0.8);
+}
+
+:root {
+	--ck-ai-review-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	--ck-ai-review-color-icon: hsla(0, 0%, 44%, 1);
+}
+
+.ck .ck-ai-review {
+		max-height: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_add {
+			border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
+		}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_add.ck-ai_review__change_active {
+				--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
+			}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_hide {
+			display: none;
+		}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough {
+			position: relative;
+		}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough:before {
+				border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
+				position: absolute;
+				content: "";
+				width: 100%;
+				height: 60%;
+			}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_strikethrough:before.ck-ai_review__change_active {
+					--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
+				}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_underline {
+			border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
+		}
+
+.ck.ck-ai_review-highlights span.ck-ai_review-marker_underline.ck-ai_review__change_active {
+				--ck-ai_review-suggestion-color: var(--ck-ai_review-suggestion-color-active);
+			}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_add {
+			white-space: break-spaces;
+			border-top: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-insertion-border-color);
+			background-color: var(--ck-ai-suggestion-marker-insertion-background-color);
+		}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_add.ck-ai_review__change_active {
+				border-color: var(--ck-ai-suggestion-marker-insertion-border-color-active);
+				background-color: var(--ck-ai-suggestion-marker-insertion-background-color-active);
+			}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_hide,
+		.ck.ck-ai_review-diff span.ck-ai_review-marker_strikethrough {
+			white-space: break-spaces;
+			border-top: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			border-bottom: 3px solid var(--ck-ai-suggestion-marker-deletion-border-color);
+			text-decoration: line-through;
+			text-decoration-color: var(--ck-ai-suggestion-marker-deletion-stroke-color);
+			text-decoration-thickness: 3px;
+			background-color: var(--ck-ai-suggestion-marker-deletion-background-color);
+		}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_hide.ck-ai_review__change_active, .ck.ck-ai_review-diff span.ck-ai_review-marker_strikethrough.ck-ai_review__change_active {
+				border-color: var(--ck-ai-suggestion-marker-deletion-border-color-active);
+				background-color: var(--ck-ai-suggestion-marker-deletion-background-color-active);
+			}
+
+.ck.ck-ai_review-diff span.ck-ai_review-marker_underline {
+			border: none;
+		}
+
+.ck.ck-ai_review-highlights .ck-suggestion-marker-insertion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-insertion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatInline,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatInline,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+			border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			background: var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ck-ai_review-highlights .ck-suggestion-marker-formatBlock,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatBlock,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active {
+			box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion,
+		.ck.ck-ai_review-highlights .ck-suggestion-marker-deletion.ck-suggestion-marker--active,
+		.ck.ck-ai_review-diff .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+			text-decoration: line-through;
+			text-decoration-thickness: 3px;
+			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
+		}
+
+.ck .ck-ai_review__general-error-container {
+		padding: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-standard) var(--ck-spacing-large);
+
+		border-radius: var(--ck-ai-border-radius);
+	}
+
+.ck .ck-ai_review__general-error-container > p {
+			max-width: 100%;
+			white-space: normal;
+			line-height: 1.4em;
+		}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai-translate__check-list-wrapper .ck-ai-translate__check-list-header {
+				padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
+				border-bottom: 1px solid var(--ck-color-base-border);
+				color: var(--ck-color-base-text);
+			}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai-translate__check-list-wrapper .ck-ai-translate__check-list-header > h2 {
+					--ck-font-size-base: 1.153em;
+					font-weight: 700;
+					white-space: normal;
+					line-height: 1.3;
+					color: hsla(0, 0%, 20%, 1);
+				}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-buttons .ck-ai_review__check-run-toggle-diff-button {
+						display: none;
+						visibility: hidden ;
+					}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_active {
+					box-shadow: 3px 0px 0px 0px var(--ck-ai_review-suggestion-color) inset;
+				}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-result .ck-suggestion-marker {
+					display: none;
+					visibility: hidden ;
+				}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-result .ck-ai_review__check-run-result-footer {
+					display: none;
+					visibility: hidden ;
+				}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-result.ck-ai_review__check-run-result_grayout .ck-ai_review__check-run-result-footer {
+						display: flex;
+						visibility: visible;
+					}
+
+.ck.ck-ai-translate-mode-content span.ck-ai_review-marker_add {
+			border-bottom: none;
+		}
+
+.ck.ck-ai-translate-mode-content span.ck-ai_review-marker_add.ck-ai_review__change_active {
+				border-bottom: 3px solid var(--ck-ai_review-suggestion-color);
+			}
+
+.ck.ck-ai-translate-mode-content span.ck-ai_review-marker_add.ck-ai-review__change_active > span.ck-ai_review-marker_add {
+				border-bottom: none;
+			}
+
+.ck.ck-ai-translate-mode-content .ck-ai_review-marker_hide,
+		.ck.ck-ai-translate-mode-content .ck-ai_review-marker_strikethrough,
+		.ck.ck-ai-translate-mode-content .ck-ai_review-marker_underline {
+			display: none !important;
+		}
+
+.ck.ck-ai-translate-mode-content .ck-suggestion-marker-insertion,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-formatInline,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-deletion,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-insertion.ck-suggestion-marker--active,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-formatInline.ck-suggestion-marker--active,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+			border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
+			background: var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ck-ai-translate-mode-content .ck-suggestion-marker-formatBlock,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-formatBlock.ck-suggestion-marker--active {
+			box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
+		}
+
+.ck.ck-ai-translate-mode-content .ck-suggestion-marker-deletion,
+		.ck.ck-ai-translate-mode-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active {
+			text-decoration: line-through;
+			text-decoration-thickness: 3px;
+			text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
+		}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
+:root {
+	--ck-ai-review-check-list-item-hover-border-color: hsla(262, 64%, 78%, 1);
+	--ck-ai-review-check-list-item-active-border-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-review-check-list-item-title-color: var(--ck-color-text);
+	--ck-ai-review-check-list-item-description-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-review-check-list-item-title-icon-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-review-check-list-model-dropdown-width: 426px;
+	--ck-ai-review-check-list-model-dropdown-max-height: 340px;
+	--ck-ai-review-check-list-model-dropdown-arrow-drop-shadow: 0 -2px 0px var(--ck-color-shadow-drop);
+	--ck-ai-review-check-list-model-dropdown-hover-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-review-check-list-model-dropdown-active-color: hsla(263, 59%, 52%, 1);
+}
+
+.ck.ck-ai-review * {
+		font-family: var(--ck-ai-review-font-family) !important;
+	}
+
+.ck.ck-ai-review .ck-ai_review__check-list {
+		position: relative;
+		height: 100%;
+		overflow: auto;
+	}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item {
+			padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
+			border-bottom: 1px solid var(--ck-color-base-border);
+			box-shadow: 3px 0px 0px 0px transparent inset;
+			opacity: 0;
+			visibility: hidden;
+
+			transition: box-shadow 0.3s ease-in-out;
+		}
+
+@media (prefers-reduced-motion: reduce) {
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item {
+				transition-duration: 0s;
+		}
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-description {
+				color: var(--ck-ai-review-check-list-item-description-color);
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-title-text,
+			.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-description {
+				white-space: normal;
+				line-height: 1.3;
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item:hover {
+				cursor: pointer;
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item:hover .ck-ai_review__check-list-item-title-text,
+				.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item:hover .ck-ai_review__check-list-item-description {
+					cursor: pointer;
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item.ck-ai_review__check-list-item_rendered {
+				opacity: 1;
+				visibility: visible;
+
+				transition: box-shadow 0.3s ease-in-out,
+					opacity 0.1s calc(0.05s * var(--ck-ai-review-check-list-item-index)),
+					visibility 0.1s calc(0.05s * var(--ck-ai-review-check-list-item-index));
+			}
+
+@media (prefers-reduced-motion: reduce) {
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item.ck-ai_review__check-list-item_rendered {
+					opacity: 1;
+					visibility: visible;
+			}
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item.ck-ai_review__check-list-item_selected {
+				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-active-border-color) inset;
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-title {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-block-end: var(--ck-spacing-tiny);
+				cursor: pointer;
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-title > .ck-ai_review__check-list-item-title-text {
+					flex-grow: 1;
+					color: var(--ck-ai-review-check-list-item-title-color);
+					font-weight: 700;
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-title > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
+					--ck-icon-size: 20px;
+
+					flex-shrink: 0;
+					margin-inline-start: var(--ck-spacing-small);
+					color: var(--ck-ai-review-check-list-item-title-icon-color);
+
+					opacity: 0;
+					visibility: hidden;
+
+					transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+				}
+
+@media (prefers-reduced-motion: reduce) {
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-title > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
+						transition-duration: 0s;
+				}
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item:not(.ck-ai_review__check-list-item_selected):hover {
+				box-shadow: 3px 0px 0px 0px var(--ck-ai-review-check-list-item-hover-border-color) inset;
+			}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item:not(.ck-ai_review__check-list-item_selected):hover .ck-ai_review__check-list-item-title > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
+					opacity: 1;
+					visibility: visible;
+				}
+
+/* Parameterized form view. */
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row {
+					padding-left: 0;
+					padding-right: 0;
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai_review__check-list-item-parameterized-form-element {
+						flex: 1;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai_review__check-list-item-parameterized-form-element > *:first-child {
+							width: 100%;
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai_review__check-list-item-parameterized-form-element.ck-ai_review__check-list-item-parameterized-form-element_dropdown .ck-button.ck-dropdown__button {
+								border-color: hsl(216, 5%, 81%);
+							}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row > .ck.ck-ai_review__check-list-item-parameterized-form-element.ck-ai_review__check-list-item-parameterized-form-element_dropdown .ck-button.ck-dropdown__button > .ck-button__label {
+									width: 100%;
+								}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row .ck.ck-button {
+						flex-shrink: 0;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-parameterized .ck.ck-form__row .ck.ck-labeled-field-view {
+						width: 100%;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-custom-actions .ck.ck-form__row .ck.ck-input.ck-textarea.ck-review__prompt-input {
+						width: 100%;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-custom-actions .ck.ck-form__row .ck-ai_review__check-list-item-custom-actions-footer {
+						display: flex;
+						width: 100%;
+						align-items: center;
+						justify-content: space-between;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-custom-actions .ck.ck-form__row .ck-ai_review__check-list-item-custom-actions-footer .ck-ai_review__check-list-item-parameterized-custom-actions-buttons {
+							display: flex;
+							gap: var(--ck-spacing-small);
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button {
+					font-size: .9em;
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button.ck-on,
+					.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button:active {
+						background-color: var(--ck-ai-button-secondary-active-background-color);
+						color: var(--ck-ai-review-check-list-model-dropdown-active-color);
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button:hover:not(.ck-disabled) {
+						background-color: var(--ck-ai-review-check-list-model-dropdown-hover-background-color);
+						color: var(--ck-ai-review-check-list-model-dropdown-active-color);
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown > .ck.ck-button.ck-dropdown__button > .ck.ck-button__label {
+						width: auto;
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel {
+					width: var(--ck-ai-review-check-list-model-dropdown-width);
+					padding-top: var(--ck-spacing-standard);
+					top: calc(100% + var(--ck-balloon-arrow-height));
+					bottom: auto;
+				}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::before,
+						.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::after {
+							content: '';
+							position: absolute;
+							left: calc(2 * var(--ck-balloon-arrow-half-width));
+							top: calc(-1 * var(--ck-balloon-arrow-height) + 2px);
+							width: 0;
+							height: 0;
+							border-style: solid;
+							border-width: 0 var(--ck-balloon-arrow-height) var(--ck-balloon-arrow-half-width) var(--ck-balloon-arrow-half-width);
+							border-color: transparent transparent var(--ck-color-panel-background) transparent;
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::before {
+							z-index: var(--ck-balloon-panel-arrow-z-index);
+							margin-bottom: calc(-1 * var(--ck-balloon-border-width));
+							filter: drop-shadow(var(--ck-ai-review-check-list-model-dropdown-arrow-drop-shadow));
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se::after {
+							z-index: calc(var(--ck-balloon-panel-arrow-z-index) + 1);
+							margin-bottom: calc(var(--ck-balloon-arrow-offset) - var(--ck-balloon-border-width));
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel.ck-dropdown__panel_se > .ck-list {
+							max-height: var(--ck-ai-review-check-list-model-dropdown-max-height);
+							overflow-y: scroll;
+						}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list {
+						gap: var(--ck-spacing-medium-small);
+					}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button {
+								align-items: baseline;
+							}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button:hover:not(.ck-disabled) {
+									background-color: var(--ck-ai-button-secondary-hover-background-color);
+								}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-list-item-button__check-holder {
+									flex-shrink: 0;
+								}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai_review__check-list-item-model-dropdown-name {
+									line-height: 1.3;
+									font-weight: 500;
+								}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai_review__check-list-item-model-dropdown-description {
+									padding-top: var(--ck-spacing-tiny);
+									line-height: 1.3;
+								}
+
+.ck.ck-ai-review .ck-ai_review__check-list > .ck-ai_review__check-list-item .ck-ai_review__check-list-item-model-dropdown .ck-dropdown__panel > .ck.ck-list > .ck.ck-list__item > .ck.ck-button.ck-list-item-button .ck-ai_review__check-list-item-model-dropdown-description > span {
+										color: var(--ck-ai-review-color-icon);
+										line-height: 1;
+										white-space: normal;
+									}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
