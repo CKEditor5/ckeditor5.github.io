@@ -2634,52 +2634,57 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-/* Keep the content close to the header (headings, paragraphs, blockquotes, etc. have variable margins). */
+.ck.ck-content.ck-ai-suggestion-streamable-content {
+	/* Don't inherit padding from page's .ck-content styles because they can be too large for the suggestion preview. */
+	padding: 0;
 
-.ck.ck-ai-suggestion-streamable-content :first-child {
+	/* Keep the content close to the header (headings, paragraphs, blockquotes, etc. have variable margins). */
+}
+
+.ck.ck-content.ck-ai-suggestion-streamable-content :first-child {
 		margin-top: 0;
 	}
 
 /* Keep the content close to bottom edge of the container  (headings, paragraphs, blockquotes, etc. have variable margins). */
 
-.ck.ck-ai-suggestion-streamable-content :last-child {
+.ck.ck-content.ck-ai-suggestion-streamable-content :last-child {
 		margin-bottom: 0;
 	}
 
 /* <Content styles> */
 
-.ck.ck-ai-suggestion-streamable-content, .ck.ck-ai-suggestion-streamable-content * {
+.ck.ck-content.ck-ai-suggestion-streamable-content, .ck.ck-content.ck-ai-suggestion-streamable-content * {
 		white-space: normal;
 		line-height: 1.4em;
 	}
 
-.ck.ck-ai-suggestion-streamable-content pre>code {
+.ck.ck-content.ck-ai-suggestion-streamable-content pre>code {
 		white-space: pre-wrap;
 	}
 
-.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion:not([data-author-id="$aiSuggestion"]),
-	.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline:not([data-author-id="$aiSuggestion"]),
-	.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion:not([data-author-id="$aiSuggestion"]),
+	.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline:not([data-author-id="$aiSuggestion"]),
+	.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
 		border-top: 3px solid var(--ck-ai-suggestion-inactive-color-border);
 		border-bottom: 3px solid var(--ck-ai-suggestion-inactive-color-border);
 		background: var(--ck-ai-suggestion-inactive-color-background);
 	}
 
-.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion.ck-widget:not([data-author-id="$aiSuggestion"]) {
+.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatInline.ck-widget:not([data-author-id="$aiSuggestion"]), .ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion.ck-widget:not([data-author-id="$aiSuggestion"]) {
 			border: 3px solid var(--ck-ai-suggestion-inactive-color-border);
 		}
 
-.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
+.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
 		box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-inactive-color-background);
 	}
 
-.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
+.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
 		text-decoration: line-through;
 		text-decoration-thickness: 3px;
 		text-decoration-color: var(--ck-ai-suggestion-inactive-color-border);
 	}
 
-.ck.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.table > tbody > tr > td {
+.ck.ck-content.ck-ai-suggestion-streamable-content .ck-suggestion-marker-insertion.table > tbody > tr > td {
 		background-color: var(--ck-color-suggestion-widget-insertion-background);
 	}
 
