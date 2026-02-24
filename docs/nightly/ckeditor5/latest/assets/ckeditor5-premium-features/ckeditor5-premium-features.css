@@ -630,6 +630,19 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
+.ck.ck-button.ck-ai-tabs__resize.ck-on:not(:hover) {
+		background-color: var(--ck-ai-button-tertiary-background-color);
+	}
+
+/*
+ * What you're currently looking at is the source code of a legally protected, proprietary software.
+ * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
+ * all CKEditor 5 Collaboration content is authored by CKSource engineers and consists of CKSource-owned intellectual property.
+ *
+ * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+ */
+
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
  * CKEditor 5 Collaboration is licensed under a commercial license and protected by copyright law. Where not otherwise indicated,
@@ -817,7 +830,6 @@
 .ck.ck-ai-chat-controls .ck-button.ck-ai-chat-controls-button.ck-ai-chat-context-controls__add-context-button {
 		position: absolute;
 		bottom: 3px;
-		opacity: .7;
 		margin: 0;
 	}
 
@@ -973,6 +985,8 @@
 .ck.ck-button.ck-ai-chat-controls-button {
 	--ck-ui-component-min-height: 1.88em;
 
+	color: var(--ck-ai-button-tertiary-color);
+	background-color: var(--ck-ai-button-tertiary-background-color);
 	padding: var(--ck-spacing-tiny);
 	flex-shrink: 0;
 	display: flex;
@@ -993,36 +1007,36 @@
 		text-align: center;
 	}
 
-.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled) {
-		color: var(--ck-ai-button-tertiary-filled-color);
+.ck.ck-button.ck-ai-chat-controls-button:disabled,
+	.ck.ck-button.ck-ai-chat-controls-button.ck-disabled {
+		color: var(--ck-ai-button-tertiary-disabled-color);
+		background-color: var(--ck-ai-button-tertiary-disabled-background-color);
 	}
 
-.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):hover {
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
-			color: var(--ck-ai-button-tertiary-filled-hover-color);
+.ck.ck-button.ck-ai-chat-controls-button:disabled > .ck.ck-button__label,
+		.ck.ck-button.ck-ai-chat-controls-button.ck-disabled > .ck.ck-button__label,
+		.ck.ck-button.ck-ai-chat-controls-button:disabled > .ck-button__icon,
+		.ck.ck-button.ck-ai-chat-controls-button.ck-disabled > .ck-button__icon {
+			opacity: 1;
 		}
 
-.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):hover .ck-button__icon {
-				color: var(--ck-ai-button-tertiary-filled-hover-color);
-			}
+.ck.ck-button.ck-ai-chat-controls-button:active,
+	.ck.ck-button.ck-ai-chat-controls-button.ck-on {
+		color: var(--ck-ai-button-tertiary-active-color);
+		background-color: var(--ck-ai-button-tertiary-active-background-color);
+	}
 
-.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):active {
-			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
-			color: var(--ck-ai-button-tertiary-filled-active-color);
+.ck.ck-button.ck-ai-chat-controls-button:active:hover:not(.ck-disabled), .ck.ck-button.ck-ai-chat-controls-button.ck-on:hover:not(.ck-disabled) {
+			color: var(--ck-ai-button-tertiary-hover-active-color);
+			background-color: var(--ck-ai-button-tertiary-hover-active-background-color);
 		}
 
-.ck.ck-button.ck-ai-chat-controls-button:not(.ck-disabled):active .ck-button__icon {
-				color: var(--ck-ai-button-tertiary-filled-active-color);
-			}
+/* stylelint-disable-next-line no-descending-specificity */
 
-.ck.ck-button.ck-ai-chat-controls-button.ck-on:not(.ck-disabled):not(:hover):not(:active):not(.ck-disabled) {
-			background-color: var(--ck-ai-chat-button-active-background-color);
-			color: var(--ck-ai-chat-button-active-color);
-		}
-
-.ck.ck-button.ck-ai-chat-controls-button.ck-on:not(.ck-disabled):not(:hover):not(:active):not(.ck-disabled) .ck-button__icon {
-				color: var(--ck-ai-chat-button-active-color);
-			}
+.ck.ck-button.ck-ai-chat-controls-button:hover:not(.ck-disabled, :active, .ck-on) {
+		color: var(--ck-ai-button-tertiary-hover-color);
+		background-color: var(--ck-ai-button-tertiary-hover-background-color);
+	}
 
 .ck.ck-button.ck-ai-chat-controls-button > .ck-icon {
 		--ck-icon-size: 16px;
@@ -1352,7 +1366,6 @@
 			border: 0;
 			font-size: .9em;
 			margin-inline-end: 0;
-			color: var(--ck-ai-chat-color-icon);
 			padding-top: 0;
 			padding-bottom: 0;
 			min-height: auto;
@@ -1365,24 +1378,6 @@
 .ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button .ck-button__label {
 				width: auto;
 			}
-
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover {
-				background-color: var(--ck-ai-chat-button-active-background-color);
-				color: var(--ck-ai-chat-button-hover-color);
-			}
-
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button:hover .ck-dropdown__arrow {
-					color: var(--ck-ai-chat-button-hover-color);
-				}
-
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on:not(:hover) {
-				background-color: var(--ck-ai-chat-button-active-background-color);
-				color: var(--ck-ai-background-color-action-button);
-			}
-
-.ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-button.ck-dropdown__button.ck-on:not(:hover) .ck-dropdown__arrow {
-					color: var(--ck-ai-background-color-action-button);
-				}
 
 .ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection .ck-list > .ck-list__item:not(:last-child) {
 					margin-bottom: var(--ck-spacing-medium-small);
@@ -1990,19 +1985,6 @@
  * Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
-.ck.ck-ai-mini-toolbar {
-	--ck-color-button-action-background: hsl(263.2, 59.2%, 52%);
-	--ck-color-button-default-hover-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-default-active-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-on-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-on-hover-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-on-active-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-on-disabled-background: hsl(262.1, 100%, 96.3%);
-	--ck-color-button-on-color: hsl(263.2, 59.2%, 52%);
-	--ck-color-button-action-hover-background: hsl(262.6, 58.9%, 49.6%);
-	--ck-color-button-action-active-background: hsl(262.6, 58.9%, 49.6%);
-	--ck-color-button-action-disabled-background: hsl(263.8, 59.3%, 75.9%);
-}
 .ck.ck-ai-mini-toolbar .ck-ai-interaction-counter {
 		color: var(--ck-ai-chat-color-icon);
 		letter-spacing: 2.6px;
@@ -2013,9 +1995,6 @@
 		font-family: var(--ck-ai-chat-font-family);
 		color: var(--ck-ai-chat-color-icon);
 	}
-.ck.ck-ai-mini-toolbar .ck.ck-button.ck-on {
-			color: var(--ck-ai-background-color-action-button);
-		}
 .ck.ck-ai-mini-toolbar .ck.ck-button.ck-button_with-text {
 			min-height: 2.1em;
 			box-sizing: border-box;
@@ -2248,7 +2227,7 @@
 		}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
-				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+				background-color: var(--ck-ai-button-tertiary-hover-background-color);
 			}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
@@ -2437,6 +2416,7 @@
 	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+	--ck-ai-button-primary-active-background-color: hsla(263, 59%, 40%, 1);
 
 	/* Secondary button */
 	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
@@ -2448,30 +2428,27 @@
 	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
 	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
 
-	/* Tertiary text button */
-	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-tertiary-text-background-color: transparent;
-	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
-
-	/* Tertiary filled button */
-	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
-	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
-	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-filled-background-color: transparent;
-	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
-	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+	/* Tertiary button */
+	--ck-ai-button-tertiary-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-hover-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-background-color: transparent;
+	--ck-ai-button-tertiary-disabled-background-color: transparent;
+	--ck-ai-button-tertiary-hover-background-color: hsla(0, 0%, 94%, 1);
+	--ck-ai-button-tertiary-active-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-hover-active-background-color: hsla(261, 100%, 93%, 1);
+	--ck-ai-button-tertiary-hover-active-color: hsla(263, 59%, 52%, 1);
 }
 .ck.ck-button.ck-ai-button-primary {
 		color: var(--ck-ai-button-primary-color);
 		background-color: var(--ck-ai-button-primary-background-color);
 		border: 1px solid transparent;
+		gap: var(--ck-spacing-small);
 	}
-.ck.ck-button.ck-ai-button-primary:hover {
-			background-color: var(--ck-ai-button-primary-hover-background-color);
+.ck.ck-button.ck-ai-button-primary:active,
+		.ck.ck-button.ck-ai-button-primary.ck-on {
+			background-color: var(--ck-ai-button-primary-active-background-color);
 		}
 .ck.ck-button.ck-ai-button-primary:disabled,
 		.ck.ck-button.ck-ai-button-primary.ck-disabled {
@@ -2484,14 +2461,15 @@
 			.ck.ck-button.ck-ai-button-primary.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
+.ck.ck-button.ck-ai-button-primary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
 .ck.ck-button.ck-ai-button-secondary {
 		color: var(--ck-ai-button-secondary-color);
 		background-color: var(--ck-ai-button-secondary-background-color);
 		border: 1px solid var(--ck-ai-button-secondary-border-color);
+		gap: var(--ck-spacing-small);
 	}
-.ck.ck-button.ck-ai-button-secondary:hover {
-			background-color: var(--ck-ai-button-secondary-hover-background-color);
-		}
 .ck.ck-button.ck-ai-button-secondary:active,
 		.ck.ck-button.ck-ai-button-secondary.ck-on {
 			background-color: var(--ck-ai-button-secondary-active-background-color);
@@ -2508,59 +2486,45 @@
 			.ck.ck-button.ck-ai-button-secondary.ck-disabled > .ck-button__icon {
 				opacity: 1;
 			}
-.ck.ck-button.ck-ai-button-tertiary-text {
-		color: var(--ck-ai-button-tertiary-text-color);
-		background-color: var(--ck-ai-button-tertiary-text-background-color);
-		border: none;
-	}
-.ck.ck-button.ck-ai-button-tertiary-text:hover {
-			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
-			color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-secondary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
 		}
-.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
-				color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary {
+		color: var(--ck-ai-button-tertiary-color);
+		background-color: var(--ck-ai-button-tertiary-background-color);
+		border: none;
+		gap: var(--ck-spacing-small);
+	}
+.ck.ck-button.ck-ai-button-tertiary:disabled,
+		.ck.ck-button.ck-ai-button-tertiary.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-disabled-background-color);
+		}
+.ck.ck-button.ck-ai-button-tertiary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck-button__icon {
+				opacity: 1;
 			}
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
-				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled), .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) {
+				color: var(--ck-ai-button-tertiary-active-color);
+				background-color: var(--ck-ai-button-tertiary-active-background-color);
 			}
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
-					color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled):hover, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled):hover {
+					color: var(--ck-ai-button-tertiary-hover-active-color);
+					background-color: var(--ck-ai-button-tertiary-hover-active-background-color);
 				}
-.ck.ck-button.ck-ai-button-tertiary-text:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
-			color: var(--ck-ai-button-tertiary-disabled-text-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled) > .ck.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-active-color);
+				}
+/* stylelint-disable-next-line no-descending-specificity */
+.ck.ck-button.ck-ai-button-tertiary:hover:not(.ck-disabled, :active, .ck-on) {
+			color: var(--ck-ai-button-tertiary-hover-color);
+			background-color: var(--ck-ai-button-tertiary-hover-background-color);
 		}
-.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
-.ck.ck-button.ck-ai-button-tertiary-filled {
-		color: var(--ck-ai-button-tertiary-filled-color);
-		background-color: var(--ck-ai-button-tertiary-filled-background-color);
-		border: none;
-	}
-.ck.ck-button.ck-ai-button-tertiary-filled:hover {
-			color: var(--ck-ai-button-tertiary-filled-hover-color);
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+.ck.ck-button.ck-ai-button-primary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-secondary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary .ck.ck-icon.ck-button__icon {
+			--ck-icon-size: 16px;
 		}
-.ck.ck-button.ck-ai-button-tertiary-filled:active,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
-			color: var(--ck-ai-button-tertiary-filled-active-color);
-			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
-		}
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
-			color: var(--ck-ai-button-tertiary-filled-disabled-color);
-			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
-		}
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
 .ck.ck-button.ck-ai-button-stop-generating {
 		min-height: 22px;
 		padding: 0 var(--ck-spacing-medium) 0 var(--ck-spacing-small);
@@ -2716,7 +2680,7 @@
 		color: var(--ck-ai-chat-suggestion-icon-default-color);
 	}
 .ck.ck-toolbar.ck-ai-suggestion-content-part-toolbar .ck-button:hover {
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
 			color: var(--ck-ai-background-color-action-button);
 		}
 /*
@@ -2802,19 +2766,13 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
  */
 
 .ck.ck-button.ck-ai-toggle-button {
-	--ck-color-button-default-hover-background: 				hsl(262.1,100%,96.3%);
-	--ck-color-button-default-active-background:				hsl(262.1,100%,96.3%);
 
-	--ck-color-button-on-background: 							hsl(262.1,100%,96.3%);
-	--ck-color-button-on-hover-background: 						hsl(262.1,100%,96.3%);
-	--ck-color-button-on-active-background:						hsl(262.1,100%,96.3%);
-	--ck-color-button-on-disabled-background: 					hsl(262.1,100%,96.3%);
-	--ck-color-button-on-color:									hsl(263.2,59.2%,52%);
+	--ck-color-button-on-background: 							hsl(262,100%,96%);
+	--ck-color-button-on-hover-background: 						hsl(261, 100%, 93%);
+	--ck-color-button-on-active-background:						hsl(261, 100%, 93%);
+	--ck-color-button-on-disabled-background: 					hsl(262,100%,96%);
+	--ck-color-button-on-color:									hsl(263,59%,52%);
 }
-
-.ck.ck-button.ck-ai-toggle-button:hover {
-		color: var(--ck-color-button-on-color);
-	}
 
 /*
  * What you're currently looking at is the source code of a legally protected, proprietary software.
@@ -2960,7 +2918,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				}
 
 .ck .ck-ai-chat-history .ck-ai-chat-history__item-actions .ck-dropdown .ck-dropdown__panel .ck-list__item .ck-button:hover, .ck .ck-ai-chat-history .ck-ai-chat-history__item-actions .ck-dropdown .ck-dropdown__panel .ck-list__item .ck-button:active {
-							background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+							background-color: var(--ck-ai-button-secondary-hover-background-color);
 						}
 
 .ck .ck-ai-chat-history .ck-ai-chat-history__item--edit .ck-input,
@@ -3097,6 +3055,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+	--ck-ai-button-primary-active-background-color: hsla(263, 59%, 40%, 1);
 
 	/* Secondary button */
 	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
@@ -3108,32 +3067,29 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
 	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
 
-	/* Tertiary text button */
-	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-tertiary-text-background-color: transparent;
-	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
-
-	/* Tertiary filled button */
-	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
-	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
-	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-filled-background-color: transparent;
-	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
-	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+	/* Tertiary button */
+	--ck-ai-button-tertiary-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-hover-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-background-color: transparent;
+	--ck-ai-button-tertiary-disabled-background-color: transparent;
+	--ck-ai-button-tertiary-hover-background-color: hsla(0, 0%, 94%, 1);
+	--ck-ai-button-tertiary-active-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-hover-active-background-color: hsla(261, 100%, 93%, 1);
+	--ck-ai-button-tertiary-hover-active-color: hsla(263, 59%, 52%, 1);
 }
 
 .ck.ck-button.ck-ai-button-primary {
 		color: var(--ck-ai-button-primary-color);
 		background-color: var(--ck-ai-button-primary-background-color);
 		border: 1px solid transparent;
+		gap: var(--ck-spacing-small);
 	}
 
-.ck.ck-button.ck-ai-button-primary:hover {
-			background-color: var(--ck-ai-button-primary-hover-background-color);
+.ck.ck-button.ck-ai-button-primary:active,
+		.ck.ck-button.ck-ai-button-primary.ck-on {
+			background-color: var(--ck-ai-button-primary-active-background-color);
 		}
 
 .ck.ck-button.ck-ai-button-primary:disabled,
@@ -3149,15 +3105,16 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
+.ck.ck-button.ck-ai-button-primary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
+
 .ck.ck-button.ck-ai-button-secondary {
 		color: var(--ck-ai-button-secondary-color);
 		background-color: var(--ck-ai-button-secondary-background-color);
 		border: 1px solid var(--ck-ai-button-secondary-border-color);
+		gap: var(--ck-spacing-small);
 	}
-
-.ck.ck-button.ck-ai-button-secondary:hover {
-			background-color: var(--ck-ai-button-secondary-hover-background-color);
-		}
 
 .ck.ck-button.ck-ai-button-secondary:active,
 		.ck.ck-button.ck-ai-button-secondary.ck-on {
@@ -3178,70 +3135,54 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text {
-		color: var(--ck-ai-button-tertiary-text-color);
-		background-color: var(--ck-ai-button-tertiary-text-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-text:hover {
-			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
-			color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-secondary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
-				color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary {
+		color: var(--ck-ai-button-tertiary-color);
+		background-color: var(--ck-ai-button-tertiary-background-color);
+		border: none;
+		gap: var(--ck-spacing-small);
+	}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled,
+		.ck.ck-button.ck-ai-button-tertiary.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck-button__icon {
+				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
-				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled), .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) {
+				color: var(--ck-ai-button-tertiary-active-color);
+				background-color: var(--ck-ai-button-tertiary-active-background-color);
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
-					color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled):hover, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled):hover {
+					color: var(--ck-ai-button-tertiary-hover-active-color);
+					background-color: var(--ck-ai-button-tertiary-hover-active-background-color);
 				}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
-			color: var(--ck-ai-button-tertiary-disabled-text-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled) > .ck.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-active-color);
+				}
+
+/* stylelint-disable-next-line no-descending-specificity */
+
+.ck.ck-button.ck-ai-button-tertiary:hover:not(.ck-disabled, :active, .ck-on) {
+			color: var(--ck-ai-button-tertiary-hover-color);
+			background-color: var(--ck-ai-button-tertiary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
-
-.ck.ck-button.ck-ai-button-tertiary-filled {
-		color: var(--ck-ai-button-tertiary-filled-color);
-		background-color: var(--ck-ai-button-tertiary-filled-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:hover {
-			color: var(--ck-ai-button-tertiary-filled-hover-color);
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+.ck.ck-button.ck-ai-button-primary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-secondary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary .ck.ck-icon.ck-button__icon {
+			--ck-icon-size: 16px;
 		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:active,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
-			color: var(--ck-ai-button-tertiary-filled-active-color);
-			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
-			color: var(--ck-ai-button-tertiary-filled-disabled-color);
-			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
 
 .ck.ck-button.ck-ai-button-stop-generating {
 		min-height: 22px;
@@ -3401,17 +3342,12 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 }
 
 .ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button,  .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button {
-		--ck-color-button-default-hover-background: 				hsl(262.1,100%,96.3%);
-		--ck-color-button-default-active-background:				hsl(262.1,100%,96.3%);
-		--ck-color-button-on-background: 							hsl(262.1,100%,96.3%);
-		--ck-color-button-on-hover-background: 						hsl(262.1,100%,96.3%);
-		--ck-color-button-on-active-background:						hsl(262.1,100%,96.3%);
-		--ck-color-button-on-disabled-background: 					hsl(262.1,100%,96.3%);
-		--ck-color-button-on-color:									hsl(263.2,59.2%,52%);
-	}
-
-.ck-toolbar__items>.ck.ck-button.ck-ai-quick-actions-button:hover,  .ck-toolbar__items>.ck-ai-quick-actions-dropdown > .ck.ck-button:hover {
-		color: var(--ck-color-button-on-color);
+		--ck-color-button-default-hover-background: 				hsl(0, 0%, 94%);
+		--ck-color-button-on-background: 							hsl(262, 100%, 96%);
+		--ck-color-button-on-hover-background: 						hsl(261, 100%, 93%);
+		--ck-color-button-on-active-background:						hsl(261, 100%, 93%);
+		--ck-color-button-on-disabled-background: 					hsl(262, 100%, 96%);
+		--ck-color-button-on-color:									hsl(263, 59%, 52%);
 	}
 
 .ck-ai-quick-actions-dropdown,
@@ -3785,6 +3721,10 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				min-height: 30px;
 			}
 
+.ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-buttons .ck-ai_review__check-run-accept-all-button {
+					border: none;
+				}
+
 .ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-results-wrapper {
 			position: relative;
 			height: 100%;
@@ -4102,7 +4042,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
-				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+				background-color: var(--ck-ai-button-tertiary-hover-background-color);
 			}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
@@ -4139,6 +4079,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+	--ck-ai-button-primary-active-background-color: hsla(263, 59%, 40%, 1);
 
 	/* Secondary button */
 	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
@@ -4150,32 +4091,29 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
 	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
 
-	/* Tertiary text button */
-	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-tertiary-text-background-color: transparent;
-	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
-
-	/* Tertiary filled button */
-	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
-	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
-	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-filled-background-color: transparent;
-	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
-	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+	/* Tertiary button */
+	--ck-ai-button-tertiary-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-hover-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-background-color: transparent;
+	--ck-ai-button-tertiary-disabled-background-color: transparent;
+	--ck-ai-button-tertiary-hover-background-color: hsla(0, 0%, 94%, 1);
+	--ck-ai-button-tertiary-active-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-hover-active-background-color: hsla(261, 100%, 93%, 1);
+	--ck-ai-button-tertiary-hover-active-color: hsla(263, 59%, 52%, 1);
 }
 
 .ck.ck-button.ck-ai-button-primary {
 		color: var(--ck-ai-button-primary-color);
 		background-color: var(--ck-ai-button-primary-background-color);
 		border: 1px solid transparent;
+		gap: var(--ck-spacing-small);
 	}
 
-.ck.ck-button.ck-ai-button-primary:hover {
-			background-color: var(--ck-ai-button-primary-hover-background-color);
+.ck.ck-button.ck-ai-button-primary:active,
+		.ck.ck-button.ck-ai-button-primary.ck-on {
+			background-color: var(--ck-ai-button-primary-active-background-color);
 		}
 
 .ck.ck-button.ck-ai-button-primary:disabled,
@@ -4191,15 +4129,16 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
+.ck.ck-button.ck-ai-button-primary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
+
 .ck.ck-button.ck-ai-button-secondary {
 		color: var(--ck-ai-button-secondary-color);
 		background-color: var(--ck-ai-button-secondary-background-color);
 		border: 1px solid var(--ck-ai-button-secondary-border-color);
+		gap: var(--ck-spacing-small);
 	}
-
-.ck.ck-button.ck-ai-button-secondary:hover {
-			background-color: var(--ck-ai-button-secondary-hover-background-color);
-		}
 
 .ck.ck-button.ck-ai-button-secondary:active,
 		.ck.ck-button.ck-ai-button-secondary.ck-on {
@@ -4220,70 +4159,54 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text {
-		color: var(--ck-ai-button-tertiary-text-color);
-		background-color: var(--ck-ai-button-tertiary-text-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-text:hover {
-			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
-			color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-secondary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
-				color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary {
+		color: var(--ck-ai-button-tertiary-color);
+		background-color: var(--ck-ai-button-tertiary-background-color);
+		border: none;
+		gap: var(--ck-spacing-small);
+	}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled,
+		.ck.ck-button.ck-ai-button-tertiary.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck-button__icon {
+				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
-				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled), .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) {
+				color: var(--ck-ai-button-tertiary-active-color);
+				background-color: var(--ck-ai-button-tertiary-active-background-color);
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
-					color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled):hover, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled):hover {
+					color: var(--ck-ai-button-tertiary-hover-active-color);
+					background-color: var(--ck-ai-button-tertiary-hover-active-background-color);
 				}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
-			color: var(--ck-ai-button-tertiary-disabled-text-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled) > .ck.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-active-color);
+				}
+
+/* stylelint-disable-next-line no-descending-specificity */
+
+.ck.ck-button.ck-ai-button-tertiary:hover:not(.ck-disabled, :active, .ck-on) {
+			color: var(--ck-ai-button-tertiary-hover-color);
+			background-color: var(--ck-ai-button-tertiary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
-
-.ck.ck-button.ck-ai-button-tertiary-filled {
-		color: var(--ck-ai-button-tertiary-filled-color);
-		background-color: var(--ck-ai-button-tertiary-filled-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:hover {
-			color: var(--ck-ai-button-tertiary-filled-hover-color);
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+.ck.ck-button.ck-ai-button-primary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-secondary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary .ck.ck-icon.ck-button__icon {
+			--ck-icon-size: 16px;
 		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:active,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
-			color: var(--ck-ai-button-tertiary-filled-active-color);
-			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
-			color: var(--ck-ai-button-tertiary-filled-disabled-color);
-			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
 
 .ck.ck-button.ck-ai-button-stop-generating {
 		min-height: 22px;
@@ -4752,7 +4675,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 		}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back:hover {
-				background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+				background-color: var(--ck-ai-button-tertiary-hover-background-color);
 			}
 
 .ck-ai-header.ck-ai-header_small > .ck.ck-button.ck-button-back > .ck-button__icon {
@@ -4789,6 +4712,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-primary-background-color: hsla(263, 59%, 52%, 1);
 	--ck-ai-button-primary-disabled-background-color: hsla(263, 59%, 52%, 0.5);
 	--ck-ai-button-primary-hover-background-color: hsla(263, 59%, 40%, 1);
+	--ck-ai-button-primary-active-background-color: hsla(263, 59%, 40%, 1);
 
 	/* Secondary button */
 	--ck-ai-button-secondary-color: hsla(263, 59%, 52%, 1);
@@ -4800,32 +4724,29 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 	--ck-ai-button-secondary-hover-background-color: hsla(262, 100%, 96%, 1);
 	--ck-ai-button-secondary-active-background-color: hsla(262, 100%, 96%, 1);
 
-	/* Tertiary text button */
-	--ck-ai-button-tertiary-text-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-disabled-text-color: hsla(263, 59%, 52%, 0.5);
-	--ck-ai-button-tertiary-text-background-color: transparent;
-	--ck-ai-button-tertiary-text-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-text-hover-color: hsla(0, 0%, 20%, 1);
-
-	/* Tertiary filled button */
-	--ck-ai-button-tertiary-filled-color: hsla(0, 0%, 44%, 1);
-	--ck-ai-button-tertiary-filled-disabled-color: hsla(0, 0%, 44%, 0.5);
-	--ck-ai-button-tertiary-filled-hover-color: hsla(0, 0%, 20%, 1);
-	--ck-ai-button-tertiary-filled-active-color: hsla(263, 59%, 52%, 1);
-	--ck-ai-button-tertiary-filled-background-color: transparent;
-	--ck-ai-button-tertiary-filled-disabled-background-color: hsla(0, 0%, 93%, 1);
-	--ck-ai-button-tertiary-filled-hover-background-color: hsla(262, 100%, 96%, 1);
-	--ck-ai-button-tertiary-filled-active-background-color: hsla(262, 100%, 96%, 1);
+	/* Tertiary button */
+	--ck-ai-button-tertiary-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-disabled-color: hsla(0, 0%, 44%, 0.5);
+	--ck-ai-button-tertiary-hover-color: hsla(0, 0%, 44%, 1);
+	--ck-ai-button-tertiary-active-color: hsla(263, 59%, 52%, 1);
+	--ck-ai-button-tertiary-background-color: transparent;
+	--ck-ai-button-tertiary-disabled-background-color: transparent;
+	--ck-ai-button-tertiary-hover-background-color: hsla(0, 0%, 94%, 1);
+	--ck-ai-button-tertiary-active-background-color: hsla(262, 100%, 96%, 1);
+	--ck-ai-button-tertiary-hover-active-background-color: hsla(261, 100%, 93%, 1);
+	--ck-ai-button-tertiary-hover-active-color: hsla(263, 59%, 52%, 1);
 }
 
 .ck.ck-button.ck-ai-button-primary {
 		color: var(--ck-ai-button-primary-color);
 		background-color: var(--ck-ai-button-primary-background-color);
 		border: 1px solid transparent;
+		gap: var(--ck-spacing-small);
 	}
 
-.ck.ck-button.ck-ai-button-primary:hover {
-			background-color: var(--ck-ai-button-primary-hover-background-color);
+.ck.ck-button.ck-ai-button-primary:active,
+		.ck.ck-button.ck-ai-button-primary.ck-on {
+			background-color: var(--ck-ai-button-primary-active-background-color);
 		}
 
 .ck.ck-button.ck-ai-button-primary:disabled,
@@ -4841,15 +4762,16 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
+.ck.ck-button.ck-ai-button-primary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-primary-hover-background-color);
+		}
+
 .ck.ck-button.ck-ai-button-secondary {
 		color: var(--ck-ai-button-secondary-color);
 		background-color: var(--ck-ai-button-secondary-background-color);
 		border: 1px solid var(--ck-ai-button-secondary-border-color);
+		gap: var(--ck-spacing-small);
 	}
-
-.ck.ck-button.ck-ai-button-secondary:hover {
-			background-color: var(--ck-ai-button-secondary-hover-background-color);
-		}
 
 .ck.ck-button.ck-ai-button-secondary:active,
 		.ck.ck-button.ck-ai-button-secondary.ck-on {
@@ -4870,70 +4792,54 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text {
-		color: var(--ck-ai-button-tertiary-text-color);
-		background-color: var(--ck-ai-button-tertiary-text-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-text:hover {
-			background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
-			color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-secondary:hover:not(.ck-disabled) {
+			background-color: var(--ck-ai-button-secondary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:hover > .ck.ck-button__icon {
-				color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary {
+		color: var(--ck-ai-button-tertiary-color);
+		background-color: var(--ck-ai-button-tertiary-background-color);
+		border: none;
+		gap: var(--ck-spacing-small);
+	}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled,
+		.ck.ck-button.ck-ai-button-tertiary.ck-disabled {
+			color: var(--ck-ai-button-tertiary-disabled-color);
+			background-color: var(--ck-ai-button-tertiary-disabled-background-color);
+		}
+
+.ck.ck-button.ck-ai-button-tertiary:disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck.ck-button__label,
+			.ck.ck-button.ck-ai-button-tertiary:disabled > .ck-button__icon,
+			.ck.ck-button.ck-ai-button-tertiary.ck-disabled > .ck-button__icon {
+				opacity: 1;
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover {
-				background-color: var(--ck-ai-button-tertiary-text-hover-background-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled), .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) {
+				color: var(--ck-ai-button-tertiary-active-color);
+				background-color: var(--ck-ai-button-tertiary-active-background-color);
 			}
 
-.ck.ck-button.ck-ai-button-tertiary-text.ck-on:hover > .ck.ck-button__icon {
-					color: var(--ck-ai-button-tertiary-text-hover-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled):hover, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled):hover {
+					color: var(--ck-ai-button-tertiary-hover-active-color);
+					background-color: var(--ck-ai-button-tertiary-hover-active-background-color);
 				}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled {
-			color: var(--ck-ai-button-tertiary-disabled-text-color);
+.ck.ck-button.ck-ai-button-tertiary:active:not(.ck-disabled) > .ck.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary.ck-on:not(.ck-disabled) > .ck.ck-button__icon {
+					color: var(--ck-ai-button-tertiary-active-color);
+				}
+
+/* stylelint-disable-next-line no-descending-specificity */
+
+.ck.ck-button.ck-ai-button-tertiary:hover:not(.ck-disabled, :active, .ck-on) {
+			color: var(--ck-ai-button-tertiary-hover-color);
+			background-color: var(--ck-ai-button-tertiary-hover-background-color);
 		}
 
-.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-text:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-text.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
-
-.ck.ck-button.ck-ai-button-tertiary-filled {
-		color: var(--ck-ai-button-tertiary-filled-color);
-		background-color: var(--ck-ai-button-tertiary-filled-background-color);
-		border: none;
-	}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:hover {
-			color: var(--ck-ai-button-tertiary-filled-hover-color);
-			background-color: var(--ck-ai-button-tertiary-filled-hover-background-color);
+.ck.ck-button.ck-ai-button-primary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-secondary .ck.ck-icon.ck-button__icon, .ck.ck-button.ck-ai-button-tertiary .ck.ck-icon.ck-button__icon {
+			--ck-icon-size: 16px;
 		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:active,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-on {
-			color: var(--ck-ai-button-tertiary-filled-active-color);
-			background-color: var(--ck-ai-button-tertiary-filled-active-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled,
-		.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled {
-			color: var(--ck-ai-button-tertiary-filled-disabled-color);
-			background-color: var(--ck-ai-button-tertiary-filled-disabled-background-color);
-		}
-
-.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck.ck-button__label,
-			.ck.ck-button.ck-ai-button-tertiary-filled:disabled > .ck-button__icon,
-			.ck.ck-button.ck-ai-button-tertiary-filled.ck-disabled > .ck-button__icon {
-				opacity: 1;
-			}
 
 .ck.ck-button.ck-ai-button-stop-generating {
 		min-height: 22px;
@@ -5334,6 +5240,10 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 				overflow: initial;
 				height: auto;
 			}
+
+.ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-buttons .ck-ai_review__check-run-accept-all-button {
+						border: none;
+					}
 
 .ck .ck-ai-review.ck-ai-translate-mode .ck-ai_review__check-run .ck-ai_review__check-run-results-header .ck-ai_review__check-run-results-header-buttons .ck-ai_review__check-run-toggle-diff-button {
 						display: none;
