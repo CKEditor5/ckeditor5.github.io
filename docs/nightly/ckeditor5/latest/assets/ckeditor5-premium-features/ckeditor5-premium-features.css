@@ -6166,12 +6166,13 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 
 .ck.ck-page-navigator {
   padding: 0 var(--ck-spacing-standard);
+  font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
 .ck.ck-page-navigator > .ck-input-number {
-  width: var(--ck-ui-component-min-height);
-  min-width: var(--ck-ui-component-min-height);
+  width: calc(4ch + 2 * var(--ck-spacing-medium) + 2px);
+  min-width: calc(4ch + 2 * var(--ck-spacing-medium) + 2px);
   text-align: center;
   -moz-appearance: textfield;
   background: none;
@@ -6190,6 +6191,11 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 .ck.ck-page-navigator > .ck-input-number:not(:focus) {
   border: 1px solid #0000;
   border-bottom: 1px solid var(--ck-color-base-border);
+}
+
+.ck.ck-page-navigator > span {
+  min-width: calc(2 * var(--ck-spacing-standard) + 5ch);
+  display: inline-block;
 }
 
 .ck.ck-page-navigator > span:before {
