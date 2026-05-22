@@ -891,6 +891,7 @@
   padding: var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-standard);
   line-height: var(--ck-form-header-height);
   border-top: var(--ck-ai-chat-border-width) solid var(--ck-color-base-border);
+  position: relative;
 }
 
 .ck.ck-ai-chat-controls:has( > :first-child.ck-hidden) {
@@ -901,6 +902,32 @@
   opacity: .5;
   pointer-events: none;
   cursor: default;
+}
+
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__drop-overlay {
+  z-index: 1;
+  background: var(--ck-color-base-background);
+  justify-content: center;
+  align-items: center;
+  gap: var(--ck-spacing-small);
+  flex-direction: column;
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__drop-overlay .ck-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.ck.ck-ai-chat-controls .ck-ai-chat-controls__drop-overlay .ck-ai-chat-controls__drop-overlay__label {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.ck.ck-ai-chat-controls.ck-ai-chat-controls_drag-over .ck-ai-chat-controls__drop-overlay {
+  display: flex;
 }
 
 .ck.ck-ai-chat-controls .ck-ai-chat-controls__model-selection {
@@ -2474,7 +2501,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 }
 
 .ck.ck-content.ck-ai-suggestion-streamable-content {
-  padding: 0;
+  padding: 3px 0;
   overflow-x: auto;
 }
 
