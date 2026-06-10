@@ -1,0 +1,1 @@
+import{SwitchButtonView as n,ToolbarView as o,Locale as i}from"ckeditor5";var c=new i,e=new n;e.set({label:"Switch button",isEnbaled:!0,withText:!0});e.on("execute",()=>e.isOn=!e.isOn);var t=new o(c);t.items.add(e);t.render();document.querySelector(".ui-switch").append(t.element);
