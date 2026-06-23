@@ -394,6 +394,10 @@
   }
 }
 
+.ck.ck-body.ck-ai-body .ck.ck-balloon-panel {
+  z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
+}
+
 :root {
   --ck-ai-chat-suggestion-container-header-font-size: .9em;
   --ck-color-ai-chat-suggestion-container-outdated-icon: var(--ck-color-ai-chat-suggestion-icon-default);
@@ -1568,7 +1572,6 @@
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__add-context-balloon-panel {
   min-width: 157px;
   max-width: 250px;
-  z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 }
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__add-context-balloon-panel .ck-ai-chat-context-controls__balloon-button {
@@ -1608,10 +1611,6 @@
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__add-context-balloon-panel .ck-ai-chat-context-controls__balloon-button > span {
   flex-grow: 1;
-}
-
-.ck.ck-balloon-panel.ck-ai-chat-context-controls__url-balloon-panel {
-  z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 }
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__url-balloon-panel .ck-ai-chat-context-controls__url-form {
@@ -1657,7 +1656,6 @@
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel {
   width: var(--ck-ai-chat-context-controls-balloon-width);
-  z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 }
 
 .ck.ck-balloon-panel.ck-ai-chat-context-controls__source-balloon-panel:has(.ck-ai-skeleton:not(.ck-hidden)) {
@@ -4183,6 +4181,9 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 }
 
 .ck.ck-pill .ck-pill__label {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
   display: inline-block;
 }
 
