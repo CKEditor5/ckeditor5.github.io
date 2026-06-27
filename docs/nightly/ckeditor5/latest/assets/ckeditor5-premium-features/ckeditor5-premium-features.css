@@ -498,9 +498,8 @@
   border-radius: var(--ck-rounded-corners-radius);
   padding: var(--ck-spacing-large);
   background: var(--ck-color-base-background);
-  opacity: 0;
   padding-top: 0;
-  animation: .2s ease-out forwards ck-ai-suggestion-content-part-fade-in;
+  animation: .2s ease-out ck-ai-suggestion-content-part-fade-in;
   position: relative;
 }
 
@@ -544,6 +543,10 @@
 }
 
 @keyframes ck-ai-suggestion-content-part-fade-in {
+  from {
+    opacity: 0;
+  }
+
   to {
     opacity: 1;
   }
@@ -3363,12 +3366,10 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
 }
 
 .ck.ck-ai-review .ck-ai_review__check-run .ck-ai_review__check-run-result {
-  opacity: 0;
-  visibility: hidden;
   padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
   transition-behavior: allow-discrete;
   transition: box-shadow .3s ease-in-out;
-  animation: .25s .1s forwards ck-ai-check-run-list-item-show;
+  animation: .25s .1s backwards ck-ai-check-run-list-item-show;
   box-shadow: inset 3px 0 #0000;
 }
 
