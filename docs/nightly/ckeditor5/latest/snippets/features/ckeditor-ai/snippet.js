@@ -1,0 +1,174 @@
+var $=Object.create;var F=Object.defineProperty;var Z=Object.getOwnPropertyDescriptor;var X=Object.getOwnPropertyNames;var Y=Object.getPrototypeOf,ee=Object.prototype.hasOwnProperty;var te=(e,t)=>()=>(e&&(t=e(e=0)),t);var v=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports);var oe=(e,t,r,o)=>{if(t&&typeof t=="object"||typeof t=="function")for(let n of X(t))!ee.call(e,n)&&n!==r&&F(e,n,{get:()=>t[n],enumerable:!(o=Z(t,n))||o.enumerable});return e};var ie=(e,t,r)=>(r=e!=null?$(Y(e)):{},oe(t||!e||!e.__esModule?F(r,"default",{value:e,enumerable:!0}):r,e));var i=te(()=>{});var O=v(S=>{"use strict";i();Object.defineProperty(S,Symbol.toStringTag,{value:"Module"});function de(e,t,{signal:r,edges:o}={}){let n,l=null,d=o!=null&&o.includes("leading"),u=o==null||o.includes("trailing"),c=()=>{l!==null&&(e.apply(n,l),n=void 0,l=null)},m=()=>{u&&c(),h()},s=null,g=()=>{s!=null&&clearTimeout(s),s=setTimeout(()=>{s=null,m()},t)},p=()=>{s!==null&&(clearTimeout(s),s=null)},h=()=>{p(),n=void 0,l=null},b=()=>{c()},y=function(...G){if(r?.aborted)return;n=this,l=G;let J=s==null;g(),d&&J&&c()};return y.schedule=g,y.cancel=h,y.flush=b,r?.addEventListener("abort",h,{once:!0}),y}S.debounce=de});var q=v(A=>{"use strict";i();Object.defineProperty(A,Symbol.toStringTag,{value:"Module"});var ce=O();function me(e,t=0,r={}){typeof r!="object"&&(r={});let{leading:o=!1,trailing:n=!0,maxWait:l}=r,d=Array(2);o&&(d[0]="leading"),n&&(d[1]="trailing");let u,c=null,m=ce.debounce(function(...p){u=e.apply(this,p),c=null},t,{edges:d}),s=function(...p){return l!=null&&(c===null&&(c=Date.now()),Date.now()-c>=l)?(u=e.apply(this,p),c=Date.now(),m.cancel(),m.schedule(),u):(m.apply(this,p),u)},g=()=>(m.flush(),u);return s.cancel=m.cancel,s.flush=g,s}A.debounce=me});var z=v((Qa,H)=>{i();H.exports=q().debounce});i();i();import{Alignment as pe,Autoformat as K,AutoImage as ge,AutoLink as he,Autosave as fe,BalloonToolbar as be,BlockQuote as ye,Bold as N,Bookmark as we,CKBox as ke,CKBoxImageEdit as ve,CloudServices as Ce,Code as Ie,DecoupledEditor as Te,Emoji as xe,Essentials as Se,FindAndReplace as Ae,FontBackgroundColor as Ee,FontColor as Le,FontFamily as Be,FontSize as _e,Fullscreen as Pe,GeneralHtmlSupport as Fe,Heading as Me,HorizontalLine as De,ImageBlock as Ue,ImageCaption as Re,ImageEditing as Oe,ImageInline as qe,ImageInsert as He,ImageInsertViaUrl as ze,ImageResize as We,ImageStyle as Ke,ImageTextAlternative as Ne,ImageToolbar as Ve,ImageUpload as Qe,ImageUtils as je,Indent as Ge,IndentBlock as Je,Italic as V,Link as $e,LinkImage as Ze,List as Xe,ListProperties as Ye,Mention as et,Paragraph as tt,PasteFromOffice as ot,PictureEditing as it,Plugin as rt,RemoveFormat as nt,SpecialCharacters as at,SpecialCharactersArrows as st,SpecialCharactersCurrency as lt,SpecialCharactersEssentials as dt,SpecialCharactersLatin as ct,SpecialCharactersMathematical as mt,SpecialCharactersText as ut,Strikethrough as pt,Subscript as gt,Superscript as ht,Table as ft,TableCaption as bt,TableCellProperties as yt,TableColumnResize as wt,TableProperties as kt,TableToolbar as vt,TextTransformation as Ct,TodoList as It,Underline as Tt}from"ckeditor5";i();i();var re="https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",ne="https://33333.cke-cs.com/easyimage/upload/",ae="33333.cke-cs.com/ws",w={tokenUrl:re,uploadUrl:ne,webSocketUrl:ae};i();var C="https://api.ckbox.io/token/demo";i();import{Plugin as co}from"@ckeditor/ckeditor5-core";import{Essentials as uo}from"@ckeditor/ckeditor5-essentials";import{Autoformat as go}from"@ckeditor/ckeditor5-autoformat";import{BlockQuote as fo}from"@ckeditor/ckeditor5-block-quote";import{Bold as yo,Italic as wo}from"@ckeditor/ckeditor5-basic-styles";import{Heading as vo}from"@ckeditor/ckeditor5-heading";import{Image as Io,ImageCaption as To,ImageStyle as xo,ImageToolbar as So}from"@ckeditor/ckeditor5-image";import{Indent as Eo}from"@ckeditor/ckeditor5-indent";import{Link as Bo}from"@ckeditor/ckeditor5-link";import{List as Po}from"@ckeditor/ckeditor5-list";import{MediaEmbed as Mo}from"@ckeditor/ckeditor5-media-embed";import{Paragraph as Uo}from"@ckeditor/ckeditor5-paragraph";import{Table as Oo,TableToolbar as qo}from"@ckeditor/ckeditor5-table";i();function I({id:e,target:t,text:r,editor:o,tippyOptions:n}){if(!t){console.warn("[attachTourBalloon] The target DOM node for the feature tour balloon does not exist.",{text:r});return}if(!t.offsetParent){console.warn("[attachTourBalloon] The target DOM node is invisible and the balloon could not be attached.",{target:t,text:r});return}let l=window.umberto.Tooltip.create({id:e,text:r,trigger:t,mode:"click",variant:"dark",icon:"bulb",disableOnMobile:!1,showCloseButton:!0,showAfterMount:!0,hideOnOutsideClick:!1,destroyOnHide:!0,...n?.placement&&{position:n.placement}});for(let d of o.editing.view.document.roots)d.once("change:isFocused",(u,c,m)=>{m&&l.destroy()});return l}function T(e,t){let r=e.items,o;return typeof t=="function"?o=r.find(t):o=r.get(t),o?o.element:void 0}function x(){let e=document.documentElement;return parseInt(window.getComputedStyle(e).getPropertyValue("--ck-snippet-viewport-top-offset"))}function k(e){return document.querySelector(`link[href*="${e}/snippet.css"][data-cke]`)?.href||""}i();import{BalloonEditor as Vo,Essentials as Qo,Autoformat as jo,BlockToolbar as Go,Bold as Jo,Italic as $o,BlockQuote as Zo,CKBox as Xo,Heading as Yo,Image as ei,ImageCaption as ti,ImageStyle as oi,ImageToolbar as ii,ImageUpload as ri,PictureEditing as ni,Indent as ai,IndentBlock as si,Link as li,List as di,MediaEmbed as ci,Paragraph as mi,PasteFromOffice as ui,Table as pi,TableToolbar as gi,TextTransformation as hi,CloudServices as fi}from"ckeditor5";i();import{BalloonEditor as ki,Essentials as vi,Autoformat as Ci,Bold as Ii,Italic as Ti,BlockQuote as xi,CKBox as Si,Heading as Ai,Image as Ei,ImageCaption as Li,ImageStyle as Bi,ImageToolbar as _i,ImageUpload as Pi,PictureEditing as Fi,Indent as Mi,IndentBlock as Di,Link as Ui,List as Ri,MediaEmbed as Oi,Paragraph as qi,PasteFromOffice as Hi,Table as zi,TableToolbar as Wi,TextTransformation as Ki,CloudServices as Ni}from"ckeditor5";i();import{ClassicEditor as Gi,Essentials as Ji,Autoformat as $i,Bold as Zi,Italic as Xi,BlockQuote as Yi,CKBox as er,Heading as tr,Image as or,ImageCaption as ir,ImageStyle as rr,ImageToolbar as nr,ImageUpload as ar,PictureEditing as sr,Indent as lr,IndentBlock as dr,Link as cr,List as mr,MediaEmbed as ur,Paragraph as pr,PasteFromOffice as gr,Table as hr,TableToolbar as fr,TextTransformation as br,CloudServices as yr,AutoImage as wr,ImageInsert as kr,Bookmark as vr}from"ckeditor5";i();import{DecoupledEditor as xr,Essentials as Sr,Alignment as Ar,FontSize as Er,FontFamily as Lr,FontColor as Br,FontBackgroundColor as _r,Autoformat as Pr,Bold as Fr,Italic as Mr,Strikethrough as Dr,Underline as Ur,BlockQuote as Rr,CKBox as Or,Heading as qr,Image as Hr,ImageCaption as zr,ImageResize as Wr,ImageStyle as Kr,ImageToolbar as Nr,ImageUpload as Vr,PictureEditing as Qr,Indent as jr,IndentBlock as Gr,Link as Jr,List as $r,ListProperties as Zr,MediaEmbed as Xr,Paragraph as Yr,PasteFromOffice as en,Table as tn,TableToolbar as on,TextTransformation as rn,CloudServices as nn}from"ckeditor5";i();import{InlineEditor as dn,Essentials as cn,Autoformat as mn,Bold as un,Italic as pn,BlockQuote as gn,CKBox as hn,Heading as fn,Image as bn,ImageCaption as yn,ImageStyle as wn,ImageToolbar as kn,ImageUpload as vn,PictureEditing as Cn,Indent as In,IndentBlock as Tn,Link as xn,List as Sn,MediaEmbed as An,Paragraph as En,PasteFromOffice as Ln,Table as Bn,TableToolbar as _n,TextTransformation as Pn,CloudServices as Fn}from"ckeditor5";i();import{MultiRootEditor as Rn,Essentials as On,Autoformat as qn,Bold as Hn,Italic as zn,BlockQuote as Wn,CKBox as Kn,Heading as Nn,Image as Vn,ImageCaption as Qn,ImageStyle as jn,ImageToolbar as Gn,ImageUpload as Jn,PictureEditing as $n,Indent as Zn,IndentBlock as Xn,Link as Yn,List as ea,MediaEmbed as ta,Paragraph as oa,PasteFromOffice as ia,Table as ra,TableToolbar as na,TextTransformation as aa,CloudServices as sa}from"ckeditor5";import{AIChat as xt,AIEditorIntegration as St,AIQuickActions as At,AIReviewMode as Et,AITranslate as Lt,CaseChange as Bt,Comments as _t,CommentsRepository as Pt,ExportPdf as Ft,ExportWord as Mt,Footnotes as Dt,FormatPainter as Ut,ImportWord as Rt,LineHeight as Ot,MergeFields as qt,MultiLevelList as Ht,PasteFromOfficeEnhanced as zt,SlashCommand as Wt,TableOfContents as Kt,Template as Nt,TrackChanges as Vt,TrackChangesData as Qt,TrackChangesPreview as jt,Users as Gt}from"ckeditor5-premium-features";i();i();import{uid as se}from"ckeditor5";function M(){let e=["Bo","Jo","Moe","Mex","Tex","Hex","Brick","Em","Plate","Zee","DJ","CJ","AJ"],t=["King","Egli","Zwart","Principe","Siddiqui","Ehlers","Coltrane","Grimes","Cavallaro","Croce","Haddox","Weatherspoon","Gilpatrick","Funderburk","Mustard","Enterline","Redden","Hayford","Hevey","Dey","Demaio","Chenard","Whalley","Light","Kleist","Huntsman","Drovin","Duenes","Weintraub","Mcbeath","Harden","Streicher","Nadel","Philbrick","Ramm","Byrge","Broce","Olivera","Hamm","Tweedie","Hershman","Hertzler","Fielding","Dao","Constante","Berens","Finks","Corvin","Lemmons","Cuenca"],r=se(),o=e[Math.floor(Math.random()*e.length)],n=t[Math.floor(Math.random()*t.length)];return{name:o+" "+n,id:r}}function D(e,t=M()){return`${e}?`+Object.keys(t).filter(o=>t[o]).map(o=>`user.${o}=${t[o]}`).join("&")}i();import{AICoreError as le}from"ckeditor5-premium-features";function U(e){e.plugins.has("AIErrorSink")&&e.plugins.get("AIErrorSink").on("error",(t,{error:r,component:o,context:n})=>{typeof window.Sentry>"u"||r instanceof le&&(r.type==="user"||r.type==="network")||window.Sentry.captureException(r,{tags:{component:o},extra:n})})}i();function R(e){e.commands.get("aiQuickAction")&&e.commands.get("aiQuickAction").on("execute",(r,o)=>{o[0].type==="CHAT"&&(e.commands.get("toggleAi").value||e.execute("toggleAi"))},{priority:"high"})}i();var W=ie(z(),1);function E(e){e.on("ready",()=>{let t=e.plugins.get("AnnotationsUIs"),r=e.commands.get("toggleFullscreen"),o=document.querySelector(".editing-area-scroll-wrapper"),n=parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--ck-demo-sidebar-wide-min-width"));if(isNaN(parseFloat(n))){console.error("--ck-demo-sidebar-wide-min-width is required by DynamicAnnotationsModeIntegration");return}let l=new Map([[document.querySelector(".editing-area-scroll-wrapper .ck.editor-content"),["margin-left","margin-right","border-left-width","border-right-width","scrollWidth"]],[document.querySelector(".editing-area-scroll-wrapper .editor-content-wrapper"),["padding-left","padding-right"]]]),d=(0,W.default)(()=>{if(!(r&&r.value))if(o.scrollWidth>o.clientWidth)m("narrowSidebar");else{let s=0;l.forEach((g,p)=>{let h=getComputedStyle(p);for(let b of g)b==="scrollWidth"?s+=p.scrollWidth:s+=parseFloat(h.getPropertyValue(b))||0}),s+n<o.clientWidth&&m("wideSidebar")}},10),u=new ResizeObserver(d);u.observe(o),u.observe(document.querySelector(".editor-content-wrapper")),r&&r.on("execute",()=>{r.value||d()}),d();let c="wideSidebar";function m(s){c!==s&&(t.switchTo(s),c=s)}})}i();function L(){let e=document.querySelectorAll(".live-snippet"),t=[];return e.forEach(r=>{let o=r.querySelector(".live-snippet__container");if(!o)return;let n=document.createElement("div");n.classList.add("live-snippet__loader"),n.innerHTML=`<svg class="spinner" viewBox="25 25 50 50">
+				<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
+			</svg>`,r.prepend(n),t.push({container:o,spinner:n,markDemoAsLoaded(){n.classList.add("fadeout"),o.classList.add("loaded")}})}),t}i();import{uid as ue}from"ckeditor5";function B(e){let t=location.search.match(new RegExp(`${e}=([^&]+)`)),r=t?decodeURIComponent(t[1]):null;if(!r){r=ue();let o=new URL(window.location.href);o.searchParams.set(e,r),window.history.replaceState({},document.title,o.toString())}return r}var Jt=B("channelId"),f=B("userId"),_={name:Zt(),id:f,role:"writer"},P=class extends rt{static get requires(){return[Gt,Pt]}init(){let t=this.editor.plugins.get("Users"),r=this.editor.plugins.get("CommentsRepository");t.addUser(_),t.defineMe(_.id),r.adapter={addComment:()=>Promise.resolve(),updateComment:()=>Promise.resolve(),removeComment:()=>Promise.resolve(),getCommentThread:({threadId:o})=>{let n={"thread-1":{threadId:"thread-1",comments:[{commentId:"comment-1",authorId:f,content:"<p>What are some typical examples of Tier 2 cases?</p>",createdAt:new Date}]},"thread-2":{threadId:"thread-2",comments:[{commentId:"comment-1",authorId:f,content:"<p>Could we add one sentence explaining what qualifies as \u201Chigh-impact\u201D?</p>",createdAt:new Date}]},"thread-3":{threadId:"thread-3",comments:[{commentId:"comment-1",authorId:f,content:"<p>Can we add percentages for each category?</p>",createdAt:new Date}]},"thread-4":{threadId:"thread-4",comments:[{commentId:"comment-1",authorId:f,content:"<p>Can we add a short explanation here?</p>",createdAt:new Date}]}};return Promise.resolve(n[o])},addCommentThread:()=>Promise.resolve({comments:[]}),updateCommentThread:()=>Promise.resolve(),resolveCommentThread:()=>Promise.resolve({resolvedAt:new Date,resolvedBy:t.me.id}),reopenCommentThread:()=>Promise.resolve(),removeCommentThread:()=>Promise.resolve()}}},$t=`<h1>Customer Support Metrics Report</h1>
+
+<p><strong>Operational Summary \u2013 Second Half of 2025</strong></p>
+
+<h2>Overview</h2>
+
+<p>This report summarizes customer support performance during the second half of 2025. It focuses on ticket volumes, response efficiency and common issue categories, based on internal operational data across all support channels.</p>
+
+<p>The information below should be treated as an overview of observed trends rather than a detailed performance evaluation.</p>
+
+<h2>Support Process Overview</h2>
+
+<p>The diagram outlines our internal customer support process, showing how incoming requests are handled across multiple support tiers based on complexity.</p>
+
+<p>Customer inquiries are initially managed by <strong>Tier 1: Frontline Support</strong>, which is responsible for triage and resolution of common issues. <comment-start name="thread-1"></comment-start>More complex<comment-end name="thread-1"></comment-end> cases are escalated to <strong>Tier 2: Technical Support</strong>, where deeper technical investigation is performed.</p>
+
+<p><comment-start name="thread-2"></comment-start>High-impact<comment-end name="thread-2"></comment-end> or unresolved issues are handled by <strong>Tier 3: Escalation Team</strong>, which coordinates with internal experts as required. <strong>Specialist Teams</strong> support Tier 2 and Tier 3 by providing domain-specific expertise, while typically remaining non-customer-facing.</p>
+
+<p>The process is designed to allow flexible movement between tiers, supporting efficient resolution and appropriate escalation when needed.</p>
+
+<figure class="image">
+	<img src="../../assets/img/demo-content-customer-support-metrics-report-image.png" alt="Internal support workflow">
+	<figcaption>Figure 1. Internal support workflow across frontline, technical and escalation teams.</figcaption>
+</figure>
+
+<h2>Ticket Volume</h2>
+
+<p>During the reporting period, the support team processed <strong>184,600 tickets</strong>, representing an increase of <strong>11%</strong> compared to the previous period. Ticket volume peaked in September and gradually stabilized towards the end of the year.</p>
+
+<p>The increase was primarily driven by onboarding-related questions and product configuration requests.</p>
+
+<h2>Channel Distribution</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Channel</th>
+			<th>Share of Tickets</th>
+			<th>Change vs. Previous Period</th>
+			<th>Avg. First Response Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Email</td>
+			<td>54%</td>
+			<td>-3%</td>
+			<td>3.1 hours</td>
+		</tr>
+		<tr>
+			<td>Live Chat</td>
+			<td>31%</td>
+			<td>+5%</td>
+			<td>1.2 hours</td>
+		</tr>
+		<tr>
+			<td>In-App Support</td>
+			<td>15%</td>
+			<td>-2%</td>
+			<td>2.4 hours</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Email remained the dominant support channel, although live chat usage continued to increase, particularly among larger accounts.</p>
+
+<h2>Resolution Efficiency</h2>
+
+<p>Average response and resolution times showed minor improvement compared to earlier in the year.</p>
+
+<ul>
+	<li>Average first response time: <strong>2.4 hours</strong></li>
+	<li>Average resolution time: <strong>18.7 hours</strong></li>
+	<li>Tickets resolved within 24 hours: <strong>68%</strong></li>
+</ul>
+
+<p>More complex cases, especially those related to integrations, required additional follow-up and were not consistently resolved within standard timeframes. While faster response times were generally appreciated, qualitative feedback indicates that communication consistency played an equally important role in overall customer perception.</p>
+
+<blockquote>
+	<p>"Faster responses were helpful, but consistency in follow-up communication had a bigger impact on our overall experience."</p>
+	<p><strong>\u2014 Enterprise customer, post-resolution survey</strong></p>
+</blockquote>
+
+<h2>Common Issue Categories</h2>
+
+<p><comment-start name="thread-3"></comment-start>The most frequently reported issues were<comment-end name="thread-3"></comment-end>:</p>
+
+<ol>
+	<li>Account access and authentication</li>
+	<li>Billing and invoice related questions</li>
+	<li>Feature usage clarification</li>
+	<li>Integration setup</li>
+	<li>Performance-related concerns</li>
+</ol>
+
+<p>Billing-related requests declined slightly, while integration-related inquiries increased towards the end of the period.</p>
+
+<h2>Customer Satisfaction</h2>
+
+<p>Customer satisfaction was measured through post-resolution surveys. The overall response rate remained stable throughout the reporting period.</p>
+
+<ul>
+	<li><comment-start name="thread-4"></comment-start>Average CSAT score: <strong>4.2 / 5</strong></li>
+	<li>Survey response rate: <strong>27%</strong><comment-end name="thread-4"></comment-end></li>
+</ul>
+
+<p>Feedback most often referenced response time and clarity of follow-up communication as areas for improvement, particularly in cases involving multiple handovers or escalations.</p>
+
+<h2>Identified Bottlenecks</h2>
+
+<p>Internal review identified several operational areas that may require further attention:</p>
+
+<ul>
+	<li>Delays in ticket reassignment for escalated cases</li>
+	<li>Inconsistent categorization of incoming requests</li>
+	<li>Limited coverage during selected regional peak hours</li>
+</ul>
+
+<p>While these issues did not materially impact aggregate performance metrics, they were visible in individual case handling and customer feedback.</p>
+
+<blockquote>
+	<p>"The issue was eventually resolved, although it was not always clear who was responsible for the case during escalation."</p>
+	<p><strong>\u2014 Key account feedback, quarterly review</strong></p>
+</blockquote>
+
+<h2>Summary</h2>
+
+<p>Overall support performance remained within expected operational ranges. Most key indicators were stable, with moderate improvements observed in response efficiency. At the same time, the data suggests that further improvements in communication clarity and escalation handling could positively impact customer experience in future reporting periods.</p>`;function Q(e=()=>{}){let t={ui:{viewportOffset:{top:x()}},root:{initialData:$t,placeholder:"Type or paste your content here!",element:document.querySelector(".editor-content")},plugins:[pe,K,ge,he,fe,be,ye,N,we,ke,ve,Ce,Ie,xe,Se,Ae,Ee,Le,Be,_e,Pe,Fe,Me,De,Ue,Re,Oe,qe,He,ze,We,Ke,Ne,Ve,Qe,je,Ge,Je,V,$e,Ze,Xe,Ye,et,tt,ot,it,nt,at,st,lt,dt,ct,mt,ut,pt,gt,ht,ft,bt,yt,wt,kt,vt,Ct,It,Tt,xt,St,At,Et,Lt,Bt,_t,Ft,Mt,Dt,Ut,Rt,Ot,qt,Ht,zt,Wt,Kt,Nt,Vt,Qt,jt,E,P],toolbar:{items:["undo","redo","|","trackChanges","comment","commentsArchive","|","insertMergeField","previewMergeFields","|","toggleAi","aiQuickActions","|","importWord","exportWord","exportPdf","formatPainter","caseChange","findAndReplace","fullscreen","|","heading","|","fontSize","fontFamily","fontColor","fontBackgroundColor","|","bold","italic","underline","strikethrough","subscript","superscript","code","removeFormat","|","emoji","specialCharacters","horizontalLine","link","insertFootnote","bookmark","insertImage","insertImageViaUrl","ckbox","insertTable","tableOfContents","insertTemplate","blockQuote","|","alignment","lineHeight","|","bulletedList","numberedList","multiLevelList","todoList","outdent","indent"]},balloonToolbar:["comment","|","aiQuickActions","ask-ai","|","bold","italic","|","link","insertImage","|","bulletedList","numberedList"],htmlSupport:{allow:[{name:/^.*$/,styles:!0,attributes:!0,classes:!0}]},heading:{options:[{model:"paragraph",title:"Paragraph",class:"ck-heading_paragraph"},{model:"heading1",view:"h1",title:"Heading 1",class:"ck-heading_heading1"},{model:"heading2",view:"h2",title:"Heading 2",class:"ck-heading_heading2"},{model:"heading3",view:"h3",title:"Heading 3",class:"ck-heading_heading3"},{model:"heading4",view:"h4",title:"Heading 4",class:"ck-heading_heading4"},{model:"heading5",view:"h5",title:"Heading 5",class:"ck-heading_heading5"},{model:"heading6",view:"h6",title:"Heading 6",class:"ck-heading_heading6"}]},fontFamily:{supportAllValues:!0},fontSize:{options:[10,12,14,"default",18,20,22],supportAllValues:!0},image:{styles:["alignCenter","alignLeft","alignRight"],resizeOptions:[{name:"resizeImage:original",label:"Original",value:null},{name:"resizeImage:50",label:"50%",value:"50"},{name:"resizeImage:75",label:"75%",value:"75"}],toolbar:["imageTextAlternative","toggleImageCaption","|","imageStyle:inline","imageStyle:wrapText","imageStyle:breakText","|","resizeImage","|","ckboxImageEdit"]},list:{enableSkipLevelLists:!0,properties:{styles:!0,startIndex:!0,reversed:!0}},link:{addTargetToExternalLinks:!0,defaultProtocol:"https://",decorators:{toggleDownloadable:{mode:"manual",label:"Downloadable",attributes:{download:"file"}}}},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells","tableProperties","tableCellProperties","toggleTableCaption"]},ckbox:{tokenUrl:C,forceDemoLabel:!0,allowExternalImagesEditing:[/^data:/,"origin",/ckbox/]},collaboration:{channelId:Jt},cloudServices:{...w,tokenUrl:D(w.tokenUrl,_)},ai:{container:{type:"sidebar",element:document.querySelector(".demo-container")},chat:{context:{document:{enabled:!0},urls:{enabled:!0},files:{enabled:!0},sources:[{id:"customer_support_metrics",label:"Customer Support Metrics",useDefaultFiltering:!0,getResources:async()=>{let o=[{id:"customer_support_metrics_source",type:"file",label:"Customer Support Metrics - Source Data"}];return Promise.resolve(o)},getData:async()=>{let l=await(await fetch("../../assets/pdf/Customer_Support_Metrics-Source_Data.pdf")).blob(),d=new File([l],"Customer_Support_Metrics-Source_Data.pdf",{type:"application/pdf"});return Promise.resolve(d)}}]}}},sidebar:{container:document.querySelector(".sidebar-container")},comments:{editorConfig:{extraPlugins:[N,V,K]}},trackChanges:{showAISource:"pill"},emoji:{skinTone:"default",definitionsUrl:"cdn"},exportPdf:{stylesheets:["../../assets/pagination-fonts.css","../../assets/ckeditor5/ckeditor5.css","../../assets/ckeditor5-premium-features/ckeditor5-premium-features.css",k("full-featured-editor")],fileName:"export-pdf-demo.pdf",appID:"cke5-docs",converterOptions:{document:{size:"Tabloid",orientation:"portrait",margins:{top:"20mm",bottom:"20mm",right:"24mm",left:"24mm"}}}},exportWord:{stylesheets:["../../assets/pagination-fonts.css","../../assets/ckeditor5/ckeditor5.css","../../assets/ckeditor5-premium-features/ckeditor5-premium-features.css",k("full-featured-editor")],fileName:"export-word-demo.docx",appID:"cke5-docs",converterOptions:{document:{size:"A4",orientation:"portrait",margin:{top:"20mm",bottom:"20mm",right:"12mm",left:"12mm"}}}},template:{definitions:[{title:"Introduction",description:"Simple introduction to an article",icon:`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="icons/article-image-right">
+        <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>
+        <g id="page" filter="url(#filter0_d_1_507)">
+            <path d="M9 41H36V12L28 5H9V41Z" fill="white"/>
+            <path d="M35.25 12.3403V40.25H9.75V5.75H27.7182L35.25 12.3403Z" stroke="#333333" stroke-width="1.5"/>
+        </g>
+        <g id="image">
+            <path id="Rectangle 22" d="M21.5 23C21.5 22.1716 22.1716 21.5 23 21.5H31C31.8284 21.5 32.5 22.1716 32.5 23V29C32.5 29.8284 31.8284 30.5 31 30.5H23C22.1716 30.5 21.5 29.8284 21.5 29V23Z" fill="#B6E3FC" stroke="#333333"/>
+            <path id="Vector 1" d="M24.1184 27.8255C23.9404 27.7499 23.7347 27.7838 23.5904 27.9125L21.6673 29.6268C21.5124 29.7648 21.4589 29.9842 21.5328 30.178C21.6066 30.3719 21.7925 30.5 22 30.5H32C32.2761 30.5 32.5 30.2761 32.5 30V27.7143C32.5 27.5717 32.4391 27.4359 32.3327 27.3411L30.4096 25.6268C30.2125 25.451 29.9127 25.4589 29.7251 25.6448L26.5019 28.8372L24.1184 27.8255Z" fill="#44D500" stroke="#333333" stroke-linejoin="round"/>
+            <circle id="Ellipse 1" cx="26" cy="25" r="1.5" fill="#FFD12D" stroke="#333333"/>
+        </g>
+        <rect id="Rectangle 23" x="13" y="13" width="12" height="2" rx="1" fill="#B4B4B4"/>
+        <rect id="Rectangle 24" x="13" y="17" width="19" height="2" rx="1" fill="#B4B4B4"/>
+        <rect id="Rectangle 25" x="13" y="21" width="6" height="2" rx="1" fill="#B4B4B4"/>
+        <rect id="Rectangle 26" x="13" y="25" width="6" height="2" rx="1" fill="#B4B4B4"/>
+        <rect id="Rectangle 27" x="13" y="29" width="6" height="2" rx="1" fill="#B4B4B4"/>
+        <rect id="Rectangle 28" x="13" y="33" width="16" height="2" rx="1" fill="#B4B4B4"/>
+    </g>
+    <defs>
+        <filter id="filter0_d_1_507" x="9" y="5" width="28" height="37" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="1" dy="1"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.29 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_507"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_507" result="shape"/>
+        </filter>
+    </defs>
+</svg>
+`,data:"<h2>Introduction</h2><p>In today's fast-paced world, keeping up with the latest trends and insights is essential for both personal growth and professional development. This article aims to shed light on a topic that resonates with many, providing valuable information and actionable advice. Whether you're seeking to enhance your knowledge, improve your skills, or simply stay informed, our comprehensive analysis offers a deep dive into the subject matter, designed to empower and inspire our readers.</p>"}]}};e(t);let r=L()[0];return Te.create(t).then(o=>(window.editor=o,document.querySelector(".menubar-container").appendChild(o.ui.view.menuBarView.element),document.querySelector(".toolbar-container").appendChild(o.ui.view.toolbar.element),U(o),r.markDemoAsLoaded(),R(o),o)).catch(o=>{console.error(o)})}function Zt(){let e=["Alex","Jordan","Taylor","Casey","Morgan","Riley","Avery","Quinn","Sage","River"],t=["Smith","Johnson","Williams","Brown","Jones","Garcia","Miller","Davis","Rodriguez","Martinez"],r=e[Math.floor(Math.random()*e.length)],o=t[Math.floor(Math.random()*t.length)];return`${r} ${o}`}import{AIChatShortcuts as Xt}from"ckeditor5-premium-features";i();var j=[{id:"summarize-document",type:"chat",label:"Summarize the document",prompt:"Summarize the following document in 5-7 sentences. Focus on the main ideas and essential details. Exclude examples, repetition, and minor points. Do not introduce new information."},{id:"continue-writing",type:"chat",label:"Continue writing",prompt:"Continue writing this document. Match the existing tone, vocabulary level, and formatting. Do not repeat or summarize earlier sections. Ensure logical flow and progression of ideas. Add approximately 3 paragraphs.",useReasoning:!0,useWebSearch:!0},{id:"rewrite-document",type:"chat",label:"Rewrite the document",prompt:`Rewrite the document below for the following audience:
+
+Audience: [e.g. Product / Engineering /Leadership]
+Primary concern: [e.g., escalations, integrations, customer sentiment]
+Context: [e.g. Internal performance review]
+
+Guidelines:
+
+- Emphasize sections most relevant to this audience
+- De-emphasize or condense less relevant details
+- Adjust terminology to match how this team thinks and speaks
+- Keep metrics accurate and unchanged
+
+Tone: [e.g. Clear, practical, collaborative]`,useReasoning:!0,draftMode:!0},{id:"fix-grammar-and-spelling",type:"review",label:"Fix grammar and spelling",check:"correctness"},{id:"review-document",type:"review",label:"Review document"},{id:"translate-document",type:"translate",label:"Translate document"}];Q(e=>{e.ai.chat.shortcuts=j,e.ai.review={extraCommands:[{id:"company-style-guide",label:"Company style guide",description:"Apply the company writing style guide to ensure consistent, professional language.",prompt:'Apply the following company style guide rules to the text. For each violation, suggest a concrete rewrite. Replace hedging phrases (e.g., "may require", "could positively impact", "should be treated as") with direct, confident statements. Convert passive voice to active voice where the actor is known or implied. Remove filler words and redundant qualifiers (e.g., "overall", "generally", "in terms of"). Replace vague language with precise wording (e.g., "minor improvement" \u2192 state the actual change). Keep all data, metrics, and factual content unchanged.'}]},e.plugins.push(Xt)}).then(e=>{window.editor=e,I({target:T(e.ui.view.toolbar,t=>t&&t.buttonView&&t.buttonView.label==="AI Quick Actions"),text:"Click to see AI-powered Quick Actions.",editor:e,tippyOptions:{placement:"bottom-start"}})});
