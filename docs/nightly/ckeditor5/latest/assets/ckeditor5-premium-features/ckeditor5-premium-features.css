@@ -520,7 +520,7 @@
   color: var(--ck-color-ai-chat-primary-button-background);
 }
 
-:is(.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated) .ck-ai-suggestion-streamable-content, :is(.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated) .ck-ai-suggestion__body__content-part__title {
+:is(.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated) .ck-ai-suggestion-streamable-content, :is(.ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_accepted, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_rejected, .ck.ck-ai-suggestion__container .ck-ai-suggestion__body .ck-ai-suggestion__body__content-part_outdated) .ck-ai-suggestion__body__content-part__title__label {
   opacity: .5;
 }
 
@@ -671,16 +671,6 @@
   flex-direction: row;
   width: fit-content;
   display: flex;
-}
-
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions .ck-ai-chat__feed__suggestion__actions__info > p {
-  color: var(--ck-color-ai-chat-icon);
-  font-size: .75em;
-  line-height: 2.8em !important;
-}
-
-.ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck-ai-chat__feed__ai-suggestion .ck-ai-chat__feed__ai-suggestion__actions .ck-ai-chat__feed__suggestion__actions__info > p button {
-  font-size: .8em;
 }
 
 .ck.ck-ai-chat__feed .ck.ck-ai-chat__feed__item.ck.ck-ai-chat__feed__interaction-header .ck-ai-chat__feed__interaction-header__capabilities {
@@ -1829,32 +1819,27 @@
   color: var(--ck-color-ai-suggestion-content-part-toolbar-button-text-hover);
 }
 
-.ck-ai-suggestion-content-part-disabled-actions-tooltip .ck-tooltip__text {
-  white-space: break-spaces;
-  width: 250px;
-  padding: var(--ck-tooltip-text-padding) 0;
-  display: inline-block;
+div.ck.ck-ai-suggestion__content-part-state .ck-pill {
+  --ck-pill-font-size: calc(var(--ck-font-size-base) * .9);
+  --ck-pill-line-height: 1em;
+  --ck-pill-padding-block: calc(var(--ck-font-size-base) * .3);
+  --ck-pill-padding-inline: calc(var(--ck-font-size-base) * .6);
+  --ck-pill-gap: calc(var(--ck-font-size-base) * .3);
 }
 
-div.ck.ck-ai-suggestion__content-part-state .ck-ai-suggestion__content-part-state__label {
-  vertical-align: middle;
-  margin-right: var(--ck-spacing-medium);
+div.ck.ck-ai-suggestion__content-part-state .ck-pill_accepted {
+  --ck-pill-color: var(--ck-color-ai-suggestion-pill-accepted-text);
+  --ck-pill-background: var(--ck-color-ai-suggestion-pill-accepted-background);
 }
 
-div.ck.ck-ai-suggestion__content-part-state .ck-icon {
-  --ck-icon-size: 1.477em;
+div.ck.ck-ai-suggestion__content-part-state .ck-pill_rejected {
+  --ck-pill-color: var(--ck-color-ai-suggestion-pill-rejected-text);
+  --ck-pill-background: var(--ck-color-ai-suggestion-pill-rejected-background);
 }
 
-div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_accepted > * {
-  color: var(--ck-color-base-action);
-}
-
-div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_rejected > * {
-  color: var(--ck-color-base-error);
-}
-
-div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state_outdated > * {
-  color: var(--ck-color-ai-chat-suggestion-container-outdated-icon);
+div.ck.ck-ai-suggestion__content-part-state .ck-pill_outdated {
+  --ck-pill-color: var(--ck-color-ai-suggestion-pill-outdated-text);
+  --ck-pill-background: var(--ck-color-ai-suggestion-pill-outdated-background);
 }
 
 :root {
@@ -1910,7 +1895,7 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
   overflow-y: auto;
 }
 
-:is(.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_accepted, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_rejected, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_outdated) .ck-ai-suggestion-streamable-content, :is(.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_accepted, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_rejected, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_outdated) .ck-ai-suggestion__content-part-state {
+:is(.ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_accepted, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_rejected, .ck.ck-ai-chat-balloon .ck.ck-ai-chat-balloon-main.ck-ai-chat-balloon-main_state_outdated) .ck-ai-suggestion-streamable-content {
   opacity: .5;
 }
 
@@ -3177,6 +3162,12 @@ div.ck.ck-ai-suggestion__content-part-state.ck-ai-suggestion__content-part-state
   --ck-color-ai-inactive-deletion-border: #bdbcbc59;
   --ck-color-ai-inactive-deletion-background: #f4f1f259;
   --ck-color-ai-inactive-deletion-stroke: #9f9d9d59;
+  --ck-color-ai-suggestion-pill-accepted-text: #408825;
+  --ck-color-ai-suggestion-pill-accepted-background: #66e57717;
+  --ck-color-ai-suggestion-pill-rejected-text: #b5455f;
+  --ck-color-ai-suggestion-pill-rejected-background: #e5668617;
+  --ck-color-ai-suggestion-pill-outdated-text: var(--ck-color-ai-gray-600);
+  --ck-color-ai-suggestion-pill-outdated-background: var(--ck-color-ai-gray-50);
   --ck-color-ai-error-background: #fff4f0;
   --ck-color-ai-error-border: #ff825c;
   --ck-color-ai-warning-background: #fff8ed;
