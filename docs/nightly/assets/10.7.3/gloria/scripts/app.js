@@ -406,7 +406,7 @@ function zs(e,{attributes:t}={}){if(document.head.querySelector(`link[href="${e}
 * @license Copyright (c) 2017-2026, CKSource Holding sp. z o.o. All rights reserved.
 * For licensing, see LICENSE.md.
 */
-window.umberto=Object.assign(window.umberto||{},{version:`10.7.2`,Tooltip:{create:_t},Tabs:{activateTab:We,onTabActivation:Ue},Header:{get the(){return O.the},onResize:fe},HeaderBar:{onStateChange:le},Dropdown:{selectItem:w,onSelectChange:C},highlightCode:_s,afterDomReady:n,throttle:he,fetchStylesheet:As,randomId:ct,scrollToHash:Ne,formatHtml:js,injectScript:Je,injectScriptsInParallel:Ye,injectStylesheet:Rs,injectResourcePreload:zs,afterReady(e){this._afterReadyCallbacks||=[],this._afterReadyCallbacks.push(e)}});
+window.umberto=Object.assign(window.umberto||{},{version:`10.7.3`,Tooltip:{create:_t},Tabs:{activateTab:We,onTabActivation:Ue},Header:{get the(){return O.the},onResize:fe},HeaderBar:{onStateChange:le},Dropdown:{selectItem:w,onSelectChange:C},highlightCode:_s,afterDomReady:n,throttle:he,fetchStylesheet:As,randomId:ct,scrollToHash:Ne,formatHtml:js,injectScript:Je,injectScriptsInParallel:Ye,injectStylesheet:Rs,injectResourcePreload:zs,afterReady(e){this._afterReadyCallbacks||=[],this._afterReadyCallbacks.push(e)}});
 /**
 * @license Copyright (c) 2017-2026, CKSource Holding sp. z o.o. All rights reserved.
 * For licensing, see LICENSE.md.

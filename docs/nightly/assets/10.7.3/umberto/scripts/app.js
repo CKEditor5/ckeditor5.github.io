@@ -166,4 +166,4 @@ const Ai={selfHosted:`selfhosted`,cloud:`cloud`},ji=`code-switcher-type`,Mi=`cod
 * @license Copyright (c) 2017-2026, CKSource Holding sp. z o.o. All rights reserved.
 * For licensing, see LICENSE.md.
 */
-localStorage.getItem(`theme`)===`theme-dark`&&document.getElementsByTagName(`html`)[0].classList.add(`theme-dark`),window.umberto={version:`10.7.2`,showWarningBanner:Mt,createTooltip:Oi},window.open.closed=1,(0,d.default)(document).ready(()=>{mt(),vt(),gt(),ae(),oe(),w(),f(),g(),v(),S(),C(),ie(),ft(),ht(),ki(),yt(),jt(),_t(),Di(),zi()});
+localStorage.getItem(`theme`)===`theme-dark`&&document.getElementsByTagName(`html`)[0].classList.add(`theme-dark`),window.umberto={version:`10.7.3`,showWarningBanner:Mt,createTooltip:Oi},window.open.closed=1,(0,d.default)(document).ready(()=>{mt(),vt(),gt(),ae(),oe(),w(),f(),g(),v(),S(),C(),ie(),ft(),ht(),ki(),yt(),jt(),_t(),Di(),zi()});
