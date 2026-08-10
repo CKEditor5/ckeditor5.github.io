@@ -1,0 +1,1 @@
+import{BalloonPanelView as e,ButtonView as n}from"ckeditor5";var o=new n;o.set({label:"Balloon button",withText:!0});o.render();var t=new e;t.render();t.content.add(o);document.body.append(t.element);t.pin({target:document.querySelector(".ui-balloon"),positions:[e.defaultPositions.northArrowSouth]});document.body.classList.add("ck");document.body.setAttribute("dir","ltr");

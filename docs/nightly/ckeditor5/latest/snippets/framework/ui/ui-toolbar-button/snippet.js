@@ -1,0 +1,1 @@
+import{ButtonView as o,ToolbarView as n,Locale as l}from"ckeditor5";var r=new l,e=new o;e.set({label:"Button",withText:!0});var t=new n(r);t.items.add(e);t.render();document.querySelector(".ui-toolbar-button").append(t.element);
