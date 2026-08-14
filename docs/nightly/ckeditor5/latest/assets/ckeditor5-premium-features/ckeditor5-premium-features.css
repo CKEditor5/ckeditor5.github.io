@@ -7159,6 +7159,13 @@ div.ck.ck-ai-suggestion__content-part-state .ck-pill_outdated {
   padding: 0;
 }
 
+.ck.ck-revision-history-sidebar__revision-wrapper .ck-revision-history-sidebar__revision .ck-revision-history-sidebar__revision-ai-pill-row {
+  width: 100%;
+  margin-top: var(--ck-spacing-small);
+  justify-content: flex-end;
+  display: flex;
+}
+
 .ck.ck-revision-history-sidebar__revision-wrapper .ck-revision-history-sidebar__revision.ck-revision-history-sidebar__revision_selected, .ck.ck-revision-history-sidebar__revision-wrapper .ck-revision-history-sidebar__revision.ck-revision-history-sidebar__revision_highlighted {
   transform: translateX(calc(-1 * var(--ck-revision-history-sidebar-timeline-padding)));
   border-left-color: #0000;
@@ -7378,7 +7385,31 @@ div.ck.ck-ai-suggestion__content-part-state .ck-pill_outdated {
 .ck .ck-revision-change .ck-revision-change__label {
   font-weight: bold;
   font-size: inherit;
-  vertical-align: inherit;
+  vertical-align: baseline;
+}
+
+.ck .ck-revision-change .ck-revision-change__author {
+  vertical-align: baseline;
+  font-weight: normal;
+}
+
+.ck .ck-revision-change .ck-revision-change__ai-note {
+  color: var(--ck-color-suggestion-ai-accent);
+  vertical-align: baseline;
+  font-weight: bold;
+}
+
+.ck .ck-revision-change.ck-revision-change_ai > span {
+  align-items: center;
+  gap: .3em;
+  display: inline-flex;
+}
+
+.ck .ck-revision-change .ck-revision-change__ai-icon {
+  width: 1.1em;
+  height: 1.1em;
+  color: var(--ck-color-suggestion-ai-accent);
+  flex: none;
 }
 
 .ck.ck-button.ck-revision-history-ui__back-to-editing {
