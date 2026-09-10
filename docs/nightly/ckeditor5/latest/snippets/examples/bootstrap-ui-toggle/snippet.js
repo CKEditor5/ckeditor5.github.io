@@ -1,0 +1,1 @@
+(()=>{let t=document.getElementById("toggle-bootstrap-ui-readonly"),n=document.getElementById("external-ui-preview"),e=!1;t.addEventListener("click",()=>{n.contentWindow.postMessage("toggle","*"),e=!e,t.textContent=e?"Turn off read-only mode":"Turn on read-only mode"})})();
