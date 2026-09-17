@@ -11,23 +11,23 @@
 }
 
 .ck-ai-assistant-ui_theme {
-  --ck-color-button-default-hover-background: #f3ecff;
-  --ck-color-button-default-active-background: #f3ecff;
-  --ck-color-button-on-background: #f3ecff;
-  --ck-color-button-on-hover-background: #f3ecff;
-  --ck-color-button-on-active-background: #f3ecff;
-  --ck-color-button-on-disabled-background: #f3ecff;
-  --ck-color-button-on-color: #743ccd;
-  --ck-color-button-action-background: #743ccd;
-  --ck-color-button-action-hover-background: #6c34c9;
-  --ck-color-button-action-active-background: #6c34c9;
-  --ck-color-button-action-disabled-background: #ba9de6;
-  --ck-color-list-button-hover-background: #f3ecff;
+  --ck-button-default-hover-background-color: #f3ecff;
+  --ck-button-default-active-background-color: #f3ecff;
+  --ck-button-on-background-color: #f3ecff;
+  --ck-button-on-hover-background-color: #f3ecff;
+  --ck-button-on-active-background-color: #f3ecff;
+  --ck-button-on-disabled-background-color: #f3ecff;
+  --ck-button-on-text-color: #743ccd;
+  --ck-button-action-background-color: #743ccd;
+  --ck-button-action-hover-background-color: #6c34c9;
+  --ck-button-action-active-background-color: #6c34c9;
+  --ck-button-action-disabled-background-color: #ba9de6;
+  --ck-list-button-hover-background-color: #f3ecff;
   --ck-ai-form-content-background: #f9f9f9;
-  --ck-ai-form-submit-button-text-color: var(--ck-color-button-on-color);
-  --ck-ai-form-submit-button-border-color: var(--ck-color-button-action-background);
-  --ck-ai-form-submit-button-disabled-border-color: var(--ck-color-button-action-disabled-background);
-  --ck-ai-toolbar-button-hover-color: var(--ck-color-button-on-color);
+  --ck-ai-form-submit-button-text-color: var(--ck-button-on-text-color);
+  --ck-ai-form-submit-button-border-color: var(--ck-button-action-background-color);
+  --ck-ai-form-submit-button-disabled-border-color: var(--ck-button-action-disabled-background-color);
+  --ck-ai-toolbar-button-hover-color: var(--ck-button-on-text-color);
   --ck-color-ai-selection: #e2d6f5;
 }
 
@@ -82,7 +82,7 @@
   width: var(--ck-ai-dropdown-view-width);
 
   & > .ck-labeled-field-view {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
 
     & .ck-input {
       min-width: unset;
@@ -116,7 +116,7 @@
   }
 
   & .ck-ai-form-content {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
     width: 100%;
 
     & .ck-input {
@@ -132,7 +132,7 @@
 
       &:focus {
         border: var(--ck-focus-ring);
-        box-shadow: var(--ck-focus-outer-shadow), 0 0;
+        box-shadow: var(--ck-focus-outer-shadow, var(--ck-focus-shadow)), 0 0;
         outline: none;
       }
     }
@@ -142,14 +142,14 @@
       display: flex;
 
       &.ck-ai-form__content-area--processing {
-        --ck-color-text: var(--ck-color-input-disabled-text);
-        background-color: var(--ck-color-input-disabled-background);
+        --ck-color-text: var(--ck-input-disabled-text-color);
+        background-color: var(--ck-input-disabled-background-color);
       }
 
       & .ck-ai-form__content-field {
         white-space: normal;
         width: 100%;
-        padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+        padding: var(--ck-spacing-tiny, var(--ck-spacing-xs)) var(--ck-spacing-medium, var(--ck-spacing-md));
         min-height: calc(var(--ck-line-height-base) * var(--ck-font-size-base));
         box-sizing: content-box;
 
@@ -169,11 +169,11 @@
 
       & .ck-spinner-container {
         [dir="ltr"] & {
-          margin-right: var(--ck-spacing-medium);
+          margin-right: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
 
         [dir="rtl"] & {
-          margin-left: var(--ck-spacing-medium);
+          margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
       }
 
@@ -202,8 +202,8 @@
     }
 
     & .ck-ai-form__toolbar {
-      margin-top: var(--ck-spacing-medium);
-      margin-bottom: calc(2 * var(--ck-spacing-medium));
+      margin-top: var(--ck-spacing-medium, var(--ck-spacing-md));
+      margin-bottom: calc(2 * var(--ck-spacing-medium, var(--ck-spacing-md)));
       border: none;
       padding: 0;
     }
@@ -227,11 +227,11 @@
 
       & > .ck.ck-ai-form__submit {
         [dir="ltr"] & {
-          margin-left: var(--ck-spacing-medium);
+          margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
 
         [dir="rtl"] & {
-          margin-right: var(--ck-spacing-medium);
+          margin-right: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
 
         border-color: var(--ck-ai-form-submit-button-border-color);
@@ -243,19 +243,19 @@
       }
 
       & > .ck-labeled-field-view .ck-ai-form__toggle-history {
-        font-size: var(--ck-font-size-tiny);
+        font-size: var(--ck-font-size-tiny, var(--ck-font-size-xs));
         position: absolute;
 
         [dir="ltr"] & {
-          right: var(--ck-spacing-medium);
+          right: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
 
         [dir="rtl"] & {
-          left: var(--ck-spacing-medium);
+          left: var(--ck-spacing-medium, var(--ck-spacing-md));
         }
 
-        bottom: var(--ck-spacing-small);
-        top: var(--ck-spacing-small);
+        bottom: var(--ck-spacing-small, var(--ck-spacing-sm));
+        top: var(--ck-spacing-small, var(--ck-spacing-sm));
         min-height: unset;
         min-width: unset;
         padding: 4px;
@@ -289,7 +289,7 @@
         & > .ck-button {
           min-height: auto;
           font-size: var(--ck-ai-form-history-font-size);
-          margin: var(--ck-spacing-medium) 0 0;
+          margin: var(--ck-spacing-medium, var(--ck-spacing-md)) 0 0;
           background: none;
           grid-area: 1 / 2 / 2 / 3;
           justify-self: start;
@@ -321,10 +321,10 @@
   }
 
   & .ck-ai-form__error {
-    padding: var(--ck-spacing-medium);
+    padding: var(--ck-spacing-medium, var(--ck-spacing-md));
     background-color: var(--ck-ai-form-error-background);
     color: var(--ck-color-base-text);
-    margin-bottom: var(--ck-spacing-medium);
+    margin-bottom: var(--ck-spacing-medium, var(--ck-spacing-md));
     border-radius: 2px;
     justify-content: center;
     align-items: center;
@@ -346,7 +346,7 @@
   --ck-color-ai-chat-shortcuts-prompt-animation-glow-ring: var(--ck-color-ai-accent-700-a3);
   --ck-color-ai-chat-shortcuts-prompt-animation-border: var(--ck-color-ai-accent-700);
   --ck-ai-chat-shortcut-border-radius: .6em;
-  --ck-ai-chat-shortcut-padding: var(--ck-spacing-medium) calc(2 * var(--ck-spacing-standard));
+  --ck-ai-chat-shortcut-padding: var(--ck-spacing-medium, var(--ck-spacing-md)) calc(2 * var(--ck-spacing-standard, var(--ck-spacing-base)));
   --ck-ai-chat-shortcut-min-height: 3.07em;
   --ck-ai-chat-shortcut-icon-size: 1.385em;
   --ck-ai-chat-shortcuts-prompt-input-animation: ck-ai-chat-shortcuts-prompt-input-glow .8s ease-in-out;
@@ -356,7 +356,7 @@
 
 .ck.ck-ai-chat-shortcuts {
   & > .ck-list {
-    gap: var(--ck-spacing-medium);
+    gap: var(--ck-spacing-medium, var(--ck-spacing-md));
     padding: 0;
 
     & .ck.ck-button.ck-ai-chat-shortcut {
@@ -370,7 +370,7 @@
         --ck-icon-size: var(--ck-ai-chat-shortcut-icon-size);
         --ck-icon-font-size: 1em;
         color: var(--ck-color-ai-chat-shortcuts-shortcut-icon);
-        margin-right: var(--ck-spacing-standard);
+        margin-right: var(--ck-spacing-standard, var(--ck-spacing-base));
         flex: none;
       }
 
@@ -393,7 +393,7 @@
   }
 
   100% {
-    box-shadow: var(--ck-focus-outer-shadow);
+    box-shadow: var(--ck-focus-outer-shadow, var(--ck-focus-shadow));
     border: var(--ck-focus-ring);
   }
 }
@@ -403,7 +403,8 @@
 }
 
 :root, :host {
-  --ck-ai-chat-suggestion-container-header-font-size: .9em;
+  --ck-ai-chat-suggestion-container-header-font-size: var(--ck-font-size-sm);
+  --ck-ai-chat-suggestion-container-content-part-title-label-font-size: var(--ck-font-size-md);
   --ck-color-ai-chat-suggestion-container-outdated-icon: var(--ck-color-ai-chat-suggestion-icon-default);
   --ck-color-ai-chat-suggestion-container-header-shadow: var(--ck-color-ai-shadow);
   --ck-color-ai-chat-suggestion-container-content-part-title: var(--ck-color-ai-gray-600);
@@ -412,15 +413,16 @@
 }
 
 .ck.ck-ai-suggestion__container {
-  border-radius: var(--ck-rounded-corners-radius);
+  border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
   border: 1px solid var(--ck-color-base-border);
   --ck-border-radius: 4px;
+  --ck-radius-base: 4px;
   position: relative;
 
   & .ck-ai-suggestion__header {
-    border-radius: var(--ck-rounded-corners-radius);
+    border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
     height: 3.23em;
-    padding: 0 var(--ck-spacing-large);
+    padding: 0 var(--ck-spacing-large, var(--ck-spacing-lg));
     border-bottom: 1px solid var(--ck-color-base-border);
     z-index: 1;
     border-bottom-right-radius: 0;
@@ -441,7 +443,7 @@
     & > .ck-icon {
       width: 14px;
       height: 14px;
-      margin-right: var(--ck-spacing-medium);
+      margin-right: var(--ck-spacing-medium, var(--ck-spacing-md));
       color: var(--ck-color-ai-chat-icon);
     }
 
@@ -449,11 +451,11 @@
       --ck-switch-button-toggle-width: 2.307em;
       --ck-switch-button-toggle-inner-size: 1em;
       --ck-switch-button-translation: calc(var(--ck-switch-button-toggle-width) - var(--ck-switch-button-toggle-inner-size) - 2px);
-      --ck-color-switch-button-off-background: var(--ck-color-ai-chat-icon);
+      --ck-switch-button-off-background-color: var(--ck-color-ai-chat-icon);
 
       & .ck-button__label {
         font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
-        margin-right: var(--ck-spacing-standard);
+        margin-right: var(--ck-spacing-standard, var(--ck-spacing-base));
       }
 
       & .ck-button__toggle {
@@ -467,8 +469,8 @@
   }
 
   & .ck-ai-suggestion__body {
-    gap: var(--ck-spacing-large);
-    border-radius: var(--ck-rounded-corners-radius);
+    gap: var(--ck-spacing-large, var(--ck-spacing-lg));
+    border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
     background: var(--ck-color-ai-chat-feed-item-background);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -476,7 +478,7 @@
     display: flex;
 
     & .ck-ai-suggestion__body__content-parts {
-      gap: var(--ck-spacing-large);
+      gap: var(--ck-spacing-large, var(--ck-spacing-lg));
       flex-direction: column;
       display: flex;
 
@@ -497,8 +499,8 @@
     }
 
     & .ck-ai-suggestion__body__content-part {
-      border-radius: var(--ck-rounded-corners-radius);
-      padding: var(--ck-spacing-large);
+      border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
+      padding: var(--ck-spacing-large, var(--ck-spacing-lg));
       background: var(--ck-color-base-background);
       padding-top: 0;
       animation: .2s ease-out ck-ai-suggestion-content-part-fade-in;
@@ -510,6 +512,10 @@
         align-items: center;
         height: 2.93em;
         display: flex;
+
+        & .ck-ai-suggestion__body__content-part__title__label {
+          font-size: var(--ck-ai-chat-suggestion-container-content-part-title-label-font-size);
+        }
       }
     }
 
@@ -544,7 +550,7 @@
   }
 
   & .ck-ai-suggestion__body, & .ck-ai-suggestion__changes {
-    padding: var(--ck-spacing-standard);
+    padding: var(--ck-spacing-standard, var(--ck-spacing-base));
   }
 }
 
@@ -566,13 +572,14 @@
   --ck-color-ai-chat-web-source-tooltip-title: var(--ck-color-ai-gray-900);
   --ck-color-ai-chat-feed-web-sources-header-icon: var(--ck-color-ai-gray-600);
   --ck-color-ai-chat-feed-web-sources-header-text: var(--ck-color-ai-gray-600);
+  --ck-ai-chat-loader-text-font-size: var(--ck-font-size-md);
 }
 
 .ck.ck-ai-chat__feed {
-  padding-bottom: var(--ck-spacing-extra-large);
+  padding-bottom: var(--ck-spacing-extra-large, var(--ck-spacing-xl));
   justify-content: flex-start;
   align-items: stretch;
-  gap: var(--ck-spacing-large);
+  gap: var(--ck-spacing-large, var(--ck-spacing-lg));
   contain: size;
   flex-flow: column;
   flex: auto;
@@ -593,24 +600,24 @@
   }
 
   & .ck.ck-ai-chat__feed__items {
-    gap: var(--ck-spacing-extra-large) 0;
+    gap: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) 0;
     flex-direction: column;
     margin-top: auto;
     display: flex;
 
     & > .ck-ai-chat__feed__item {
       &:first-child {
-        margin-top: var(--ck-spacing-extra-large);
+        margin-top: var(--ck-spacing-extra-large, var(--ck-spacing-xl));
       }
     }
   }
 
   & .ck.ck-ai-chat__feed__item {
-    margin: 0 var(--ck-spacing-large);
-    scroll-margin: var(--ck-spacing-large);
+    margin: 0 var(--ck-spacing-large, var(--ck-spacing-lg));
+    scroll-margin: var(--ck-spacing-large, var(--ck-spacing-lg));
 
     & .ck-ai-mini-toolbar, & .ck-ai-chat__feed__ai-suggestion__actions, & .ck-ai-suggestion__header__show-changes-toggle {
-      transition: opacity .4s, display .4s allow-discrete;
+      transition: opacity var(--ck-duration-slower), display var(--ck-duration-slower) allow-discrete;
 
       @starting-style {
         & {
@@ -620,7 +627,7 @@
     }
 
     & .ck-ai-suggestion__header__show-changes-toggle {
-      padding: 0 var(--ck-spacing-small);
+      padding: 0 var(--ck-spacing-small, var(--ck-spacing-sm));
       min-height: 22px;
       font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
 
@@ -628,7 +635,7 @@
         width: 16px;
         height: 16px;
         margin-right: 0;
-        margin-left: var(--ck-spacing-medium);
+        margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
       }
     }
 
@@ -667,7 +674,7 @@
 
       & p {
         background-color: var(--ck-color-ai-chat-feed-item-background-secondary);
-        padding: var(--ck-spacing-standard);
+        padding: var(--ck-spacing-standard, var(--ck-spacing-base));
         border-radius: var(--ck-ai-border-radius);
         width: max-content;
         max-width: 100%;
@@ -682,11 +689,12 @@
     }
 
     &.ck-ai-chat__feed__ai-suggestion {
-      margin: 0 var(--ck-spacing-standard);
+      margin: 0 var(--ck-spacing-standard, var(--ck-spacing-base));
 
       & .ck-ai-chat__feed__ai-suggestion__actions {
         --ck-rounded-corners-radius: 2px;
-        gap: var(--ck-spacing-standard);
+        --ck-radius-corners: 2px;
+        gap: var(--ck-spacing-standard, var(--ck-spacing-base));
         flex-direction: row;
         width: fit-content;
         display: flex;
@@ -750,7 +758,7 @@
       }
 
       & .ck-suggestion-marker-insertion.table > tbody > tr > td {
-        background-color: var(--ck-color-suggestion-widget-insertion-background);
+        background-color: var(--ck-suggestion-widget-insertion-background-color);
       }
     }
 
@@ -760,14 +768,14 @@
     }
 
     & .ck-ai-chat__feed__context-chips {
-      margin-bottom: var(--ck-spacing-medium-small);
+      margin-bottom: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
       justify-content: flex-end;
       display: flex;
     }
 
     & .ck-ai-web-sources {
-      gap: var(--ck-spacing-standard);
-      padding: var(--ck-spacing-medium) 0 0;
+      gap: var(--ck-spacing-standard, var(--ck-spacing-base));
+      padding: var(--ck-spacing-medium, var(--ck-spacing-md)) 0 0;
       grid-template-columns: repeat(3, 1fr);
       display: grid;
 
@@ -781,7 +789,7 @@
           vertical-align: text-bottom;
           width: 14px;
           height: 14px;
-          margin-right: var(--ck-spacing-medium-small);
+          margin-right: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
           color: var(--ck-color-ai-chat-feed-web-sources-header-icon);
         }
 
@@ -791,7 +799,7 @@
       }
 
       & > .ck-ai-web-source {
-        padding: var(--ck-spacing-medium) var(--ck-spacing-large);
+        padding: var(--ck-spacing-medium, var(--ck-spacing-md)) var(--ck-spacing-large, var(--ck-spacing-lg));
         background-color: var(--ck-color-base-background);
         border: 0;
         border-radius: 50px;
@@ -805,7 +813,7 @@
         }
 
         & .ck-ai-web-source__image, & .ck-button__icon {
-          margin-right: var(--ck-spacing-medium);
+          margin-right: var(--ck-spacing-medium, var(--ck-spacing-md));
           color: var(--ck-color-ai-button-primary-background);
           width: 16px;
           height: 16px;
@@ -823,14 +831,14 @@
 
         & .ck-ai-web-source__title {
           align-items: center;
-          gap: var(--ck-spacing-small);
+          gap: var(--ck-spacing-small, var(--ck-spacing-sm));
           display: flex;
         }
       }
     }
 
     & > .ck-ai-web-sources {
-      padding: var(--ck-spacing-extra-large) 0 var(--ck-spacing-medium) 0;
+      padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) 0 var(--ck-spacing-medium, var(--ck-spacing-md)) 0;
     }
   }
 
@@ -839,12 +847,13 @@
     display: flex;
 
     & .ck.ck-spinner-container.ck-ai-spinner {
-      margin: 0 var(--ck-spacing-large);
+      margin: 0 var(--ck-spacing-large, var(--ck-spacing-lg));
     }
 
     & .ck.ck-ai-chat__loader-text {
-      white-space: normal;
       font-weight: 500;
+      font-size: var(--ck-ai-chat-loader-text-font-size);
+      white-space: normal;
       line-height: 1.462em;
     }
   }
@@ -870,10 +879,10 @@
 }
 
 .ck-ai-web-source__tooltip-balloon {
-  border-radius: var(--ck-rounded-corners-radius);
+  border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
 
   & .ck-ai-web-source__tooltip {
-    font-size: var(--ck-font-size-small);
+    font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
     width: 214px;
     padding: .8em;
     line-height: 1.4em;
@@ -897,7 +906,7 @@
     }
 
     & .ck-ai-web-source__tooltip-url {
-      font-size: var(--ck-font-size-small);
+      font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
       color: var(--ck-color-ai-chat-web-source-tooltip-url);
       white-space: normal;
       word-wrap: break-word;
@@ -929,7 +938,7 @@
 }
 
 :root, :host {
-  --ck-ai-chat-content-font-size: 13px;
+  --ck-ai-chat-content-font-size: var(--ck-font-size-md);
   --ck-ai-chat-content-line-height: 1.385;
   --ck-color-ai-chat-content-text: #333;
   --ck-color-ai-chat-content-link: #0000f0;
@@ -1094,14 +1103,21 @@
   display: contents;
 }
 
+:root, :host {
+  --ck-ai-chat-model-selection-button-font-size: var(--ck-font-size-sm);
+  --ck-ai-chat-model-selection-item-name-font-size: var(--ck-font-size-md);
+  --ck-ai-chat-model-selection-item-description-font-size: var(--ck-font-size-md);
+  --ck-ai-chat-model-selection-item-capabilities-font-size: var(--ck-font-size-md);
+}
+
 .ck.ck-ai-chat-controls {
-  padding: var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-standard);
+  padding: var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-standard, var(--ck-spacing-base));
   line-height: var(--ck-form-header-height);
   border-top: var(--ck-ai-chat-border-width) solid var(--ck-color-base-border);
   position: relative;
 
   &:has( > :first-child.ck-hidden) {
-    padding-bottom: var(--ck-spacing-large);
+    padding-bottom: var(--ck-spacing-large, var(--ck-spacing-lg));
   }
 
   &.ck-ai-chat-controls-disabled {
@@ -1161,11 +1177,11 @@
     }
 
     & .ck-button.ck-dropdown__button {
+      font-size: var(--ck-ai-chat-model-selection-button-font-size);
       min-height: auto;
       margin-inline-end: 0;
       padding-top: 0;
       padding-bottom: 0;
-      font-size: .9em;
 
       &.ck-on .ck-dropdown__arrow {
         transform: rotate(180deg);
@@ -1179,11 +1195,11 @@
     & .ck-list {
       & > .ck-list__item {
         &:not(:last-child) {
-          margin-bottom: var(--ck-spacing-medium-small);
+          margin-bottom: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
         }
 
         & > .ck-button {
-          background-color: var(--ck-color-list-background);
+          background-color: var(--ck-list-background-color);
           align-items: start;
           gap: 0;
 
@@ -1206,13 +1222,15 @@
             & > .ck-ai-chat-controls__model-selection__item-name {
               font-weight: 500;
               line-height: 1.3;
+              font-size: var(--ck-ai-chat-model-selection-item-name-font-size);
             }
 
             & > .ck-ai-chat-controls__model-selection__item-description {
-              padding-top: var(--ck-spacing-tiny);
+              padding-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
               line-height: 1.3;
 
               & > span {
+                font-size: var(--ck-ai-chat-model-selection-item-description-font-size);
                 color: var(--ck-color-ai-chat-icon);
                 white-space: normal;
                 line-height: 1;
@@ -1225,6 +1243,7 @@
 
               & > span {
                 color: var(--ck-color-ai-chat-icon);
+                font-size: var(--ck-ai-chat-model-selection-item-capabilities-font-size);
 
                 &:nth-of-type(2n) {
                   width: 4ch;
@@ -1236,7 +1255,7 @@
               & > .ck-icon {
                 color: var(--ck-color-ai-chat-icon);
                 fill: var(--ck-color-ai-chat-icon);
-                margin-inline-end: var(--ck-spacing-standard);
+                margin-inline-end: var(--ck-spacing-standard, var(--ck-spacing-base));
               }
             }
           }
@@ -1250,7 +1269,11 @@
   --ck-color-ai-chat-prompt-input-animation-background: var(--ck-color-ai-prompt-glow);
   --ck-ai-chat-prompt-input-animation: ck-ai-chat-prompt-input-glow .8s ease-in-out;
   --ck-ai-chat-prompt-input-line-height: 1.4em;
-  --ck-ai-chat-prompt-input-padding-vertical: 5px;
+  --ck-ai-chat-prompt-input-padding-vertical: var(--ck-spacing-sm);
+  --ck-ai-chat-prompt-input-padding-inline-start: var(--ck-spacing-md);
+  --ck-ai-chat-prompt-input-padding-inline-end: 2.6em;
+  --ck-ai-chat-prompt-input-font-size: var(--ck-font-size-md);
+  --ck-ai-chat-prompt-submit-button-font-size: .95em;
 }
 
 .ck.ck-ai-chat__prompt-input.ck-search {
@@ -1267,14 +1290,9 @@
       padding-top: var(--ck-ai-chat-prompt-input-padding-vertical);
       padding-bottom: var(--ck-ai-chat-prompt-input-padding-vertical);
       line-height: var(--ck-ai-chat-prompt-input-line-height);
-
-      [dir="ltr"] & {
-        padding-right: 2.6em;
-      }
-
-      [dir="rtl"] & {
-        padding-left: 2.6em;
-      }
+      font-size: var(--ck-ai-chat-prompt-input-font-size);
+      padding-inline-start: var(--ck-ai-chat-prompt-input-padding-inline-start);
+      padding-inline-end: var(--ck-ai-chat-prompt-input-padding-inline-end);
     }
 
     & > .ck.ck-label {
@@ -1288,7 +1306,8 @@
 
   & .ck-ai-chat__prompt-submit-button {
     height: auto;
-    margin-left: var(--ck-spacing-medium);
+    margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
+    font-size: var(--ck-ai-chat-prompt-submit-button-font-size);
     align-self: flex-end;
 
     & .ck.ck-icon.ck-button__icon {
@@ -1303,21 +1322,21 @@
   }
 
   100% {
-    background: var(--ck-color-input-background);
+    background: var(--ck-input-background-color);
   }
 }
 
 .ck.ck-ai-chat-controls .ck-ai-chat__prompt-capabilities {
-  padding-top: var(--ck-spacing-medium-small);
+  padding-top: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
   justify-content: space-between;
   align-items: center;
-  gap: var(--ck-spacing-medium-small);
-  padding-inline-end: calc(var(--ck-ui-component-min-height) + var(--ck-spacing-medium));
+  gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
+  padding-inline-end: calc(var(--ck-ui-component-min-height, var(--ck-size-min-height)) + var(--ck-spacing-medium, var(--ck-spacing-md)));
   display: flex;
 
   & .ck-ai-chat-controls-button {
     &:not(.ck-button_with-text) {
-      padding: var(--ck-spacing-tiny);
+      padding: var(--ck-spacing-tiny, var(--ck-spacing-xs));
       margin: 0;
     }
 
@@ -1351,7 +1370,7 @@
 
   & p {
     white-space: normal;
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
     line-height: 1.4;
 
     & button.ck-ai-chat-controls__start-new-chat-button {
@@ -1383,14 +1402,14 @@
   & .ck-ai-chat-context-controls {
     place-content: center flex-start;
     align-items: flex-start;
-    gap: var(--ck-spacing-medium-small);
+    gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
     padding-top: 0;
-    padding-bottom: var(--ck-spacing-medium-small);
+    padding-bottom: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
     flex-wrap: wrap;
     display: flex;
 
     &:has(.ck-ai-chat-context-controls__pending-contexts:empty) {
-      padding-bottom: var(--ck-spacing-small);
+      padding-bottom: var(--ck-spacing-small, var(--ck-spacing-sm));
     }
 
     & .ck-ai-chat-context-controls__pending-contexts {
@@ -1401,7 +1420,8 @@
   & .ck-button.ck-ai-chat-controls-button.ck-ai-chat-context-controls__add-context-button {
     margin: 0;
     position: absolute;
-    bottom: 3px;
+    top: 50%;
+    transform: translateY(-50%);
 
     &:hover, &:focus {
       opacity: 1;
@@ -1411,14 +1431,17 @@
 
 :root, :host {
   --ck-ai-chat-context-balloon-width: 290px;
+  --ck-ai-chat-context-chip-padding: var(--ck-spacing-sm) 5px;
+  --ck-ai-chat-context-chip-label-font-size: var(--ck-font-size-sm);
+  --ck-ai-chat-context-chip-icon-font-size: 13px;
 }
 
 .ck.ck-balloon-panel, .ck.ck-ai-chat {
   & .ck-ai-chat-context-chip {
-    max-width: max(calc(33% - var(--ck-spacing-medium-small) - (2 * var(--ck-spacing-large) / 3)), 118px);
+    max-width: max(calc(33% - var(--ck-spacing-medium-small, var(--ck-spacing-ms)) - (2 * var(--ck-spacing-large, var(--ck-spacing-lg)) / 3)), 118px);
     box-sizing: border-box;
     width: auto;
-    padding: var(--ck-spacing-small) var(--ck-spacing-medium-small);
+    padding: var(--ck-ai-chat-context-chip-padding);
     background-color: var(--ck-color-ai-chat-user-context-background);
     border-radius: var(--ck-ai-border-radius);
     border: var(--ck-ai-chat-border-width) solid var(--ck-color-ai-chat-border-main);
@@ -1430,7 +1453,7 @@
     display: inline-flex;
 
     &.ck-ai-chat-context-chip_wide {
-      max-width: max(calc(66% - var(--ck-spacing-medium-small)), 240px);
+      max-width: max(calc(66% - var(--ck-spacing-medium-small, var(--ck-spacing-ms))), 240px);
       width: auto;
     }
 
@@ -1443,38 +1466,40 @@
     }
 
     & > .ck-ai-chat-context-chip__label {
-      margin: 0 var(--ck-spacing-medium-small);
+      font-size: var(--ck-ai-chat-context-chip-label-font-size);
+      margin: 0 var(--ck-spacing-medium-small, var(--ck-spacing-ms));
       text-overflow: ellipsis;
       color: var(--ck-color-ai-chat-icon);
-      font-size: .9em;
       line-height: 1.25;
       display: inline-block;
       overflow: hidden;
     }
 
     & > .ck-icon.ck-ai-chat-context-chip__type-icon {
-      --ck-icon-size: 1em;
+      --ck-icon-size: var(--ck-ai-chat-context-chip-icon-font-size);
+      font-size: var(--ck-ai-chat-context-chip-icon-font-size);
       fill: var(--ck-color-ai-chat-icon);
       flex-shrink: 0;
-      font-size: 1em;
     }
 
     & .ck-button {
-      --ck-ui-component-min-height: 1em;
-      max-width: var(--ck-ui-component-min-height);
-      max-height: var(--ck-ui-component-min-height);
+      --ck-ui-component-min-height: var(--ck-ai-chat-context-chip-icon-font-size);
+      --ck-size-control-min-height: var(--ck-ai-chat-context-chip-icon-font-size);
+      --ck-size-min-height: var(--ck-ai-chat-context-chip-icon-font-size);
+      max-width: var(--ck-ui-component-min-height, var(--ck-size-min-height));
+      max-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
       padding: 0;
 
       & > .ck-icon {
-        --ck-icon-size: 1em;
+        --ck-icon-size: var(--ck-ai-chat-context-chip-icon-font-size);
+        font-size: var(--ck-ai-chat-context-chip-icon-font-size);
         color: var(--ck-color-ai-chat-icon);
-        font-size: 1em;
       }
     }
   }
 
   & .ck-ai-chat-context-chips-wrapper {
-    gap: var(--ck-spacing-medium-small);
+    gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
@@ -1485,10 +1510,10 @@
   }
 
   & .ck-ai-chat-context-chips-wrapper-balloon {
-    gap: var(--ck-spacing-standard);
+    gap: var(--ck-spacing-standard, var(--ck-spacing-base));
     width: var(--ck-ai-chat-context-balloon-width);
     max-height: 10em;
-    padding: var(--ck-spacing-standard);
+    padding: var(--ck-spacing-standard, var(--ck-spacing-base));
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
@@ -1496,7 +1521,7 @@
     overflow-y: auto;
 
     & .ck-ai-chat-context-chip {
-      max-width: max(calc(50% - var(--ck-spacing-standard)), 110px);
+      max-width: max(calc(50% - var(--ck-spacing-standard, var(--ck-spacing-base))), 110px);
     }
 
     &.ck-ai-chat-context-chip_wide {
@@ -1523,17 +1548,23 @@
   }
 }
 
+:root, :host {
+  --ck-ai-chat-controls-button-min-height: 1.5em;
+}
+
 .ck.ck-button.ck-ai-chat-controls-button {
-  --ck-ui-component-min-height: 1.88em;
-  padding: var(--ck-spacing-tiny);
+  --ck-ui-component-min-height: var(--ck-ai-chat-controls-button-min-height);
+  --ck-size-min-height: var(--ck-ai-chat-controls-button-min-height);
+  --ck-size-control-min-height: var(--ck-ai-chat-controls-button-min-height);
+  padding: var(--ck-spacing-tiny, var(--ck-spacing-xs));
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
   display: flex;
 
   &:not(.ck-button_with-text) {
-    margin: 0 0 var(--ck-spacing-tiny) 0;
-    padding: var(--ck-spacing-tiny);
+    margin: 0 0 var(--ck-spacing-tiny, var(--ck-spacing-xs)) 0;
+    padding: var(--ck-spacing-tiny, var(--ck-spacing-xs));
   }
 
   &.ck-button_with-text.ck-ai-chat-controls_context_show-more-button {
@@ -1562,10 +1593,12 @@
   --ck-ai-loader-dot-pulse-height: 20px;
   --ck-ai-loader-dot-pulse-border-radius: 8px;
   --ck-ai-loader-dot-pulse-animation-delay: .3s;
+  --ck-ai-chat-controls-loader-font-size: var(--ck-font-size-md);
 }
 
 .ck-ai-chat-controls {
   & .ck-ai-chat-controls-loader {
+    font-size: var(--ck-ai-chat-controls-loader-font-size);
     color: var(--ck-color-ai-chat-controls-loader);
     align-items: center;
     display: flex;
@@ -1574,12 +1607,12 @@
       box-sizing: border-box;
       width: var(--ck-ai-loader-dot-pulse-width);
       height: var(--ck-ai-loader-dot-pulse-height);
-      padding: var(--ck-spacing-small) var(--ck-spacing-medium-small);
+      padding: var(--ck-spacing-small, var(--ck-spacing-sm)) var(--ck-spacing-medium-small, var(--ck-spacing-ms));
       border-radius: var(--ck-ai-loader-dot-pulse-border-radius);
       background-color: var(--ck-color-ai-chat-controls-loader-icon);
       justify-content: space-between;
       align-items: center;
-      margin-inline-end: var(--ck-spacing-standard);
+      margin-inline-end: var(--ck-spacing-standard, var(--ck-spacing-base));
       display: flex;
     }
 
@@ -1633,16 +1666,16 @@
 
     & .ck-ai-chat-context-controls__balloon-button {
       width: 100%;
-      padding-left: var(--ck-spacing-extra-large);
-      padding-right: var(--ck-spacing-extra-large);
+      padding-left: var(--ck-spacing-extra-large, var(--ck-spacing-xl));
+      padding-right: var(--ck-spacing-extra-large, var(--ck-spacing-xl));
       display: flex;
 
       &:first-child {
-        margin-top: var(--ck-spacing-tiny);
+        margin-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
       }
 
       &:last-child {
-        margin-bottom: var(--ck-spacing-tiny);
+        margin-bottom: var(--ck-spacing-tiny, var(--ck-spacing-xs));
       }
 
       & .ck-icon.ck-button__icon {
@@ -1660,8 +1693,8 @@
 
       & > .ck-ai-chat-context-controls__balloon-button-source__arrow {
         width: var(--ck-dropdown-arrow-size);
-        margin-left: var(--ck-spacing-standard);
-        margin-right: calc(-1 * var(--ck-spacing-small));
+        margin-left: var(--ck-spacing-standard, var(--ck-spacing-base));
+        margin-right: calc(-1 * var(--ck-spacing-small, var(--ck-spacing-sm)));
         transform: rotate(-90deg);
       }
 
@@ -1677,7 +1710,7 @@
       line-height: var(--ck-form-header-height);
 
       & .ck-ai-chat-context-controls__url-input-section {
-        padding: var(--ck-spacing-large);
+        padding: var(--ck-spacing-large, var(--ck-spacing-lg));
         align-items: flex-start;
         display: flex;
 
@@ -1687,7 +1720,7 @@
           & > .ck.ck-labeled-field-view__input-wrapper {
             & > .ck.ck-input {
               width: 100%;
-              font: normal normal normal var(--ck-font-size-base) / var(--ck-line-height-base) var(--ck-font-face);
+              font: normal normal normal var(--ck-font-size-base) / var(--ck-line-height-base) var(--ck-font-face, var(--ck-font-family));
               vertical-align: middle;
               line-height: var(--ck-line-height-base);
             }
@@ -1700,7 +1733,7 @@
 
         & > .ck.ck-button {
           height: auto;
-          margin-left: var(--ck-spacing-medium);
+          margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
           background-color: var(--ck-color-ai-chat-primary-button-background);
           color: var(--ck-color-ai-chat-primary-button-text);
 
@@ -1724,13 +1757,13 @@
     }
 
     & .ck.ck-search__query_with-icon {
-      padding: var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-tiny) var(--ck-spacing-large);
+      padding: var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-tiny, var(--ck-spacing-xs)) var(--ck-spacing-large, var(--ck-spacing-lg));
     }
 
     & .ck-ai-skeleton {
-      --ck-ai-skeleton-gap: var(--ck-spacing-small);
-      padding-top: var(--ck-spacing-standard);
-      padding-bottom: var(--ck-spacing-standard);
+      --ck-ai-skeleton-gap: var(--ck-spacing-small, var(--ck-spacing-sm));
+      padding-top: var(--ck-spacing-standard, var(--ck-spacing-base));
+      padding-bottom: var(--ck-spacing-standard, var(--ck-spacing-base));
     }
 
     & .ck-ai-chat-resources {
@@ -1739,11 +1772,11 @@
         overflow: hidden auto;
 
         & .ck-ai-chat-resources__item {
-          padding: var(--ck-spacing-tiny) var(--ck-spacing-extra-large);
-          border-radius: var(--ck-border-radius);
+          padding: var(--ck-spacing-tiny, var(--ck-spacing-xs)) var(--ck-spacing-extra-large, var(--ck-spacing-xl));
+          border-radius: var(--ck-border-radius, var(--ck-radius-base));
           cursor: pointer;
+          transition: background-color var(--ck-duration-base);
           align-items: center;
-          transition: background-color .2s;
           display: flex;
 
           &:hover {
@@ -1804,7 +1837,6 @@
 
     & .ck.ck-tooltip__text {
       white-space: normal;
-      padding: var(--ck-tooltip-text-padding) 0;
       overflow-wrap: anywhere;
       display: inline-block;
     }
@@ -1815,19 +1847,20 @@
   --ck-color-ai-disclaimer-background: var(--ck-color-ai-gray-50);
   --ck-color-ai-disclaimer-border: var(--ck-color-ai-gray-300);
   --ck-color-ai-disclaimer-text: var(--ck-color-ai-gray-600);
+  --ck-ai-disclaimer-font-size: var(--ck-font-size-xs);
 }
 
 .ck.ck-ai-disclaimer {
   background-color: var(--ck-color-ai-disclaimer-background);
   border-top: 1px solid var(--ck-color-ai-disclaimer-border);
-  padding: var(--ck-spacing-standard) 1em;
+  padding: var(--ck-spacing-standard, var(--ck-spacing-base)) 1em;
 
   & > .ck.ck-ai-disclaimer__content {
     color: var(--ck-color-ai-disclaimer-text);
+    font-size: var(--ck-ai-disclaimer-font-size);
     text-align: center;
     word-break: normal;
     text-wrap: auto;
-    font-size: .75em;
     line-height: 1.025em;
   }
 }
@@ -1873,11 +1906,13 @@
   padding: 0;
 
   & .ck-toolbar__items {
-    gap: var(--ck-spacing-medium-small);
+    gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
   }
 
   & .ck-button {
     --ck-ui-component-min-height: 1.88em;
+    --ck-size-min-height: 1.88em;
+    --ck-size-control-min-height: 1.88em;
     color: var(--ck-color-ai-chat-suggestion-icon-default);
     margin: 0;
 
@@ -1924,6 +1959,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck.ck-ai-chat-balloon {
   --ck-border-radius: 4px;
+  --ck-radius-base: 4px;
   flex-direction: column;
   justify-content: space-between;
   min-height: 170px;
@@ -1932,12 +1968,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck.ck-form__header, & .ck-ai-chat-balloon__toolbar-container {
     --ck-ui-component-min-height: 1.726em;
+    --ck-size-min-height: 1.726em;
     --ck-icon-size: 1.477em;
   }
 
   & .ck.ck-form__header {
     --ck-form-header-height: var(--ck-ai-chat-balloon-form-row-height);
-    gap: var(--ck-spacing-standard);
+    gap: var(--ck-spacing-standard, var(--ck-spacing-base));
 
     & .ck-form__header__label {
       --ck-font-size-base: 1em;
@@ -1964,7 +2001,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     display: flex;
 
     & .ck-ai-suggestion-streamable-content {
-      padding: var(--ck-spacing-large);
+      padding: var(--ck-spacing-large, var(--ck-spacing-lg));
       flex-grow: 1;
       overflow-y: auto;
     }
@@ -1976,17 +2013,17 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck.ck-ai-suggestion__error.ck-ai-balloon-error {
-      margin: var(--ck-spacing-large);
+      margin: var(--ck-spacing-large, var(--ck-spacing-lg));
 
       &:not(.ck-hidden) + .ck-ai-suggestion-streamable-content {
-        border-top: 1px solid var(--ck-color-toolbar-border);
+        border-top: 1px solid var(--ck-toolbar-border-color);
       }
     }
 
     & .ck-ai-chat-balloon__toolbar-container {
       height: var(--ck-ai-chat-balloon-form-row-height);
-      padding: var(--ck-spacing-large);
-      border-top: 1px solid var(--ck-color-toolbar-border);
+      padding: var(--ck-spacing-large, var(--ck-spacing-lg));
+      border-top: 1px solid var(--ck-toolbar-border-color);
       justify-content: space-between;
       align-items: center;
       display: flex;
@@ -2009,11 +2046,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-button.ck-ai-toggle-button {
-  --ck-color-button-on-background: var(--ck-color-ai-toggle-on-background);
-  --ck-color-button-on-hover-background: var(--ck-color-ai-toggle-on-hover-background);
-  --ck-color-button-on-active-background: var(--ck-color-ai-toggle-on-active-background);
-  --ck-color-button-on-disabled-background: var(--ck-color-ai-toggle-on-disabled-background);
-  --ck-color-button-on-color: var(--ck-color-ai-toggle-on-text);
+  --ck-button-on-background-color: var(--ck-color-ai-toggle-on-background);
+  --ck-button-on-hover-background-color: var(--ck-color-ai-toggle-on-hover-background);
+  --ck-button-on-active-background-color: var(--ck-color-ai-toggle-on-active-background);
+  --ck-button-on-disabled-background-color: var(--ck-color-ai-toggle-on-disabled-background);
+  --ck-button-on-text-color: var(--ck-color-ai-toggle-on-text);
 }
 
 :root, :host {
@@ -2024,7 +2061,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-tabs-overlay-height: 100%;
   --ck-ai-tabs-overlay-width: 500px;
   --ck-ai-tabs-overlay-width-maximized: 50%;
-  --ck-ai-tabs-overlay-z-index: calc(var(--ck-z-dialog) - 1);
+  --ck-ai-tabs-overlay-z-index: calc(var(--ck-z-dialog, var(--ck-z-modal)) - 1);
   --ck-color-ai-tabs-overlay-tab-button-active-icon: var(--ck-color-ai-accent-700);
   --ck-color-ai-tabs-overlay-tab-button-active-border: var(--ck-color-ai-accent-700);
 }
@@ -2086,10 +2123,10 @@ div.ck.ck-ai-suggestion__content-part-state {
     bottom: var(--ck-tabs-overlay-bottom-position);
     z-index: var(--ck-ai-tabs-overlay-z-index);
     width: var(--ck-ai-tabs-overlay-width);
+    transition: width var(--ck-duration-slow) ease;
     border-top: 0;
     border-bottom: 0;
     border-radius: 0;
-    transition: width .3s;
     position: fixed;
 
     &.ck-ai-tabs_maximized {
@@ -2188,7 +2225,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-color-ai-tabs-tab-button-active-border: var(--ck-color-ai-accent-700);
   --ck-color-ai-tabs-tab-button-active-background: var(--ck-color-ai-gray-100);
   --ck-tab-button-padding: 12px;
-  --ck-tab-button-gap: var(--ck-spacing-medium);
+  --ck-tab-button-gap: var(--ck-spacing-medium, var(--ck-spacing-md));
   --ck-tabs-panels-container-background: var(--ck-color-ai-tabs-panels-container-background);
   --ck-color-tabs-buttons-container-background: var(--ck-color-ai-tabs-buttons-container-background);
   --ck-color-tab-button-icon: var(--ck-color-ai-tabs-tab-button-icon);
@@ -2200,7 +2237,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-tabs {
   font-size: var(--ck-font-size-base);
   border: 1px solid var(--ck-color-base-border);
-  border-radius: var(--ck-border-radius);
+  border-radius: var(--ck-border-radius, var(--ck-radius-base));
   min-width: 0;
   display: flex;
 
@@ -2313,7 +2350,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ai-active-icon-size: 17px;
-  --ck-ai-chat-feed-item-spacing: var(--ck-spacing-extra-large);
+  --ck-ai-chat-feed-item-spacing: var(--ck-spacing-extra-large, var(--ck-spacing-xl));
+  --ck-ai-chat-history-section-title-font-size: var(--ck-font-size-sm);
+  --ck-ai-chat-history-section-title-padding: var(--ck-spacing-sm) var(--ck-spacing-lg) 0 var(--ck-spacing-lg);
+  --ck-ai-chat-history-item-title-font-size: var(--ck-font-size-md);
+  --ck-ai-chat-history-item-date-font-size: var(--ck-font-size-md);
 }
 
 .ck .ck-ai-chat-history {
@@ -2322,7 +2363,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   display: flex;
 
   & .ck-ai-chat-history__content, & .ck-search {
-    gap: var(--ck-spacing-medium-small);
+    gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
     flex-direction: column;
     flex: auto;
     min-height: 0;
@@ -2332,13 +2373,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-ai-chat-history__content {
     & .ck-ai-notification_error {
-      margin: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-medium) var(--ck-spacing-large);
+      margin: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-medium, var(--ck-spacing-md)) var(--ck-spacing-large, var(--ck-spacing-lg));
     }
   }
 
   & .ck-search > .ck-labeled-field-view {
-    margin-top: var(--ck-spacing-medium);
-    padding: var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-tiny);
+    margin-top: var(--ck-spacing-medium, var(--ck-spacing-md));
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-tiny, var(--ck-spacing-xs));
   }
 
   & .ck-search__results {
@@ -2352,7 +2393,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai-chat-history__sections {
-    gap: var(--ck-spacing-medium-small);
+    gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
   }
 
   & .ck.ck-dropdown .ck-button.ck-dropdown__button:not(.ck-button_with-text) {
@@ -2361,21 +2402,21 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-ai-chat-history__section-title {
     color: var(--ck-color-ai-chat-icon);
-    padding: .48em .9em 0;
-    font-size: .85em;
+    font-size: var(--ck-ai-chat-history-section-title-font-size);
+    padding: var(--ck-ai-chat-history-section-title-padding);
     font-weight: 700;
     line-height: 1.85em;
   }
 
   & .ck-confirm-view .ck-confirm-view-inner, & .ck-ai-chat-history__item {
-    padding: var(--ck-spacing-tiny)
-			var(--ck-spacing-extra-large)
-			var(--ck-spacing-tiny)
-			var(--ck-spacing-large);
+    padding: var(--ck-spacing-tiny, var(--ck-spacing-xs))
+			var(--ck-spacing-extra-large, var(--ck-spacing-xl))
+			var(--ck-spacing-tiny, var(--ck-spacing-xs))
+			var(--ck-spacing-large, var(--ck-spacing-lg));
   }
 
   & .ck-ai-chat-history__item {
-    transition: transform .3s;
+    transition: transform var(--ck-duration-slow) ease;
     display: flex;
     position: relative;
 
@@ -2396,6 +2437,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-ai-chat-history__item-title {
     text-overflow: ellipsis;
     width: 100%;
+    font-size: var(--ck-ai-chat-history-item-title-font-size);
     display: inline-block;
     overflow: hidden;
   }
@@ -2409,6 +2451,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-ai-chat-history__item-row {
     --ck-icon-font-size: .666em;
     --ck-ui-component-min-height: 1.7em;
+    --ck-size-min-height: 1.7em;
     --ck-ui-component-min-width: 1.7em;
     width: 100%;
     min-width: 0;
@@ -2500,16 +2543,17 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai-chat-history__item-date {
-    color: var(--ck-color-ai-chat-icon);
     line-height: 1.385em;
+    font-size: var(--ck-ai-chat-history-item-date-font-size);
+    color: var(--ck-color-ai-chat-icon);
   }
 
   & .ck-ai-chat-history__empty {
-    padding: var(--ck-spacing-tiny) var(--ck-spacing-large) var(--ck-spacing-large) var(--ck-spacing-large);
+    padding: var(--ck-spacing-tiny, var(--ck-spacing-xs)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-large, var(--ck-spacing-lg));
 
     & .ck-ai-chat-history__empty-message {
       text-wrap: auto;
-      margin: var(--ck-spacing-large) 0;
+      margin: var(--ck-spacing-large, var(--ck-spacing-lg)) 0;
       line-height: 1.85em;
     }
   }
@@ -2517,6 +2561,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-confirm-view {
     --ck-icon-font-size: .666em;
     --ck-ui-component-min-height: 1.7em;
+    --ck-size-min-height: 1.7em;
     --ck-ui-component-min-width: 1.7em;
 
     & .ck-confirm-view-inner {
@@ -2536,7 +2581,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-color-ai-actions-toolbar-button-default-hover-background: var(--ck-color-ai-gray-100);
+  --ck-color-ai-actions-toolbar-button-default-hover-background: var(--ck-button-default-hover-background-color);
   --ck-color-ai-actions-toolbar-button-on-background: var(--ck-color-ai-accent-50);
   --ck-color-ai-actions-toolbar-button-on-hover-background: var(--ck-color-ai-accent-100);
   --ck-color-ai-actions-toolbar-button-on-active-background: var(--ck-color-ai-accent-100);
@@ -2544,9 +2589,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-color-ai-actions-toolbar-button-on-text: var(--ck-color-ai-accent-700);
   --ck-color-ai-actions-dropdown-search-border: var(--ck-color-ai-gray-300);
   --ck-color-ai-actions-search-result-highlight-text: var(--ck-color-ai-gray-600);
-  --ck-color-ai-quick-actions-button: var(--ck-color-ai-accent-700);
+  --ck-color-ai-quick-actions-button-text: var(--ck-color-ai-quick-actions-button, var(--ck-color-ai-accent-700));
   --ck-color-ai-quick-actions-button-background: var(--ck-color-ai-accent-50);
-  --ck-ai-quick-actions-list-max-height: 300px;
+  --ck-color-ai-quick-actions-button-hover-background: var(--ck-color-ai-accent-50);
+  --ck-ai-quick-actions-list-max-height: 350px;
   --ck-color-ai-quick-actions-list-item-group-row: var(--ck-color-ai-gray-600);
   --ck-ai-quick-actions-dropdown-max-width: 309px;
   --ck-ai-quick-actions-group-single-button-height: 28.68px;
@@ -2579,34 +2625,34 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-toolbar__items {
   & > .ck.ck-button.ck-ai-quick-actions-button, & > .ck-ai-quick-actions-dropdown > .ck.ck-button {
-    --ck-color-button-default-hover-background: var(--ck-color-ai-actions-toolbar-button-default-hover-background);
-    --ck-color-button-on-background: var(--ck-color-ai-actions-toolbar-button-on-background);
-    --ck-color-button-on-hover-background: var(--ck-color-ai-actions-toolbar-button-on-hover-background);
-    --ck-color-button-on-active-background: var(--ck-color-ai-actions-toolbar-button-on-active-background);
-    --ck-color-button-on-disabled-background: var(--ck-color-ai-actions-toolbar-button-on-disabled-background);
-    --ck-color-button-on-color: var(--ck-color-ai-actions-toolbar-button-on-text);
+    --ck-button-default-hover-background-color: var(--ck-color-ai-actions-toolbar-button-default-hover-background);
+    --ck-button-on-background-color: var(--ck-color-ai-actions-toolbar-button-on-background);
+    --ck-button-on-hover-background-color: var(--ck-color-ai-actions-toolbar-button-on-hover-background);
+    --ck-button-on-active-background-color: var(--ck-color-ai-actions-toolbar-button-on-active-background);
+    --ck-button-on-disabled-background-color: var(--ck-color-ai-actions-toolbar-button-on-disabled-background);
+    --ck-button-on-text-color: var(--ck-color-ai-actions-toolbar-button-on-text);
   }
 }
 
 .ck-ai-quick-actions-dropdown, .ck-ai-quick-actions-group-panel {
-  --ck-color-list-button-hover-background: var(--ck-color-ai-quick-actions-button-background);
-  --ck-color-button-default-hover-background: var(--ck-color-ai-quick-actions-button-background);
-  --ck-color-button-on-background: var(--ck-color-ai-quick-actions-button-background);
-  --ck-color-button-on-hover-background: var(--ck-color-ai-quick-actions-button-background);
+  --ck-list-button-hover-background-color: var(--ck-color-ai-quick-actions-button-background);
+  --ck-button-default-hover-background-color: var(--ck-color-ai-quick-actions-button-hover-background, var(--ck-color-ai-quick-actions-button-background));
+  --ck-button-on-background-color: var(--ck-color-ai-quick-actions-button-background);
+  --ck-button-on-hover-background-color: var(--ck-color-ai-quick-actions-button-background);
   --ck-color-search-border: var(--ck-color-ai-actions-dropdown-search-border);
 
   & .ck.ck-button.ck-dropdown__button.ck-on {
-    color: var(--ck-color-ai-quick-actions-button);
+    color: var(--ck-color-ai-quick-actions-button-text);
   }
 
   & .ck-ai-quick-actions-search > .ck-search__query_with-icon {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
     border-bottom: 1px solid var(--ck-color-search-border);
   }
 
   & .ck-search__info {
     width: 100%;
-    padding: var(--ck-spacing-medium) var(--ck-spacing-large);
+    padding: var(--ck-spacing-medium, var(--ck-spacing-md)) var(--ck-spacing-large, var(--ck-spacing-lg));
 
     & * {
       white-space: normal;
@@ -2623,7 +2669,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai-quick-actions-button_with-group__open-paren {
-    margin-left: var(--ck-spacing-medium);
+    margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
   }
 
   & .ck-list__item > .ck.ck-button.ck-ai-quick-actions-search-result-button {
@@ -2658,7 +2704,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       & .ck.ck-highlighted-text {
         color: var(--ck-color-ai-actions-search-result-highlight-text);
         font-size: calc(var(--ck-font-size-base) * .7);
-        margin-left: var(--ck-spacing-tiny);
+        margin-left: var(--ck-spacing-tiny, var(--ck-spacing-xs));
         vertical-align: middle;
         line-height: 1.319em;
       }
@@ -2730,7 +2776,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & svg {
-        margin-left: var(--ck-spacing-medium);
+        margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
         --ck-icon-size: 16px;
         margin-right: 0;
       }
@@ -2823,7 +2869,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-suggestion-marker-insertion.table > tbody > tr > td {
-    background-color: var(--ck-color-suggestion-widget-insertion-background);
+    background-color: var(--ck-suggestion-widget-insertion-background-color);
   }
 }
 
@@ -2835,14 +2881,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-ai-actions-balloon {
   & .ck-ai-actions-balloon-main {
     width: 580px;
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
 
     & .ck.ck-ai-suggestion__error {
-      margin-bottom: var(--ck-spacing-large);
+      margin-bottom: var(--ck-spacing-large, var(--ck-spacing-lg));
     }
 
     & .ck.ck-ai-balloon__toolbar {
-      margin-top: var(--ck-spacing-medium);
+      margin-top: var(--ck-spacing-medium, var(--ck-spacing-md));
       border: none;
       margin-bottom: 0;
       padding: 0;
@@ -2857,8 +2903,9 @@ div.ck.ck-ai-suggestion__content-part-state {
       position: relative;
 
       & .ck-ai-actions-balloon-content-wrapper {
-        border-radius: var(--ck-rounded-corners-radius);
+        border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
         --ck-border-radius: 4px;
+        --ck-radius-base: 4px;
         height: var(--ck-ai-actions-balloon-content-height);
         border: 1px solid var(--ck-color-base-border);
         overflow: hidden;
@@ -2866,7 +2913,7 @@ div.ck.ck-ai-suggestion__content-part-state {
         & .ck-ai-suggestion-streamable-content {
           word-break: normal;
           text-wrap: auto;
-          padding: var(--ck-spacing-large);
+          padding: var(--ck-spacing-large, var(--ck-spacing-lg));
           box-sizing: border-box;
           height: 100%;
           overflow-y: auto;
@@ -2874,14 +2921,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 
         & .ck.ck-ai-suggestion__loader {
           height: var(--ck-ai-actions-balloon-content-height);
-          padding: var(--ck-spacing-large) !important;
+          padding: var(--ck-spacing-large, var(--ck-spacing-lg)) !important;
 
           & .ck.ck-spinner-container.ck-ai-spinner .ck-spinner, & .ck.ck-spinner-container.ck-ai-spinner.ck-ai-spinner_small {
             --ck-ai-spinner-size: 18px;
           }
 
           & .ck-ai-suggestion__loader-text {
-            margin-left: var(--ck-spacing-medium);
+            margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
           }
 
           &:not(.ck-hidden) + .ck-ai-suggestion-streamable-content {
@@ -2891,7 +2938,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & .ck-ai-mini-toolbar {
-        right: var(--ck-spacing-large);
+        right: var(--ck-spacing-large, var(--ck-spacing-lg));
         position: absolute;
         bottom: 0;
         transform: translateY(50%);
@@ -2899,7 +2946,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-ai-balloon__disclaimer {
-      margin-top: var(--ck-spacing-medium);
+      margin-top: var(--ck-spacing-medium, var(--ck-spacing-md));
 
       & .ck-ai-balloon__disclaimer-content {
         color: var(--ck-color-ai-actions-balloon-disclaimer-text);
@@ -2921,11 +2968,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-ai-balloon {
   & .ck.ck-ai-suggestion__error.ck-ai-balloon-error .ck-ai-suggestion__error-text {
     --ck-border-radius: 4px;
+    --ck-radius-base: 4px;
     background-color: var(--ck-color-ai-notification-error-background);
     border: 1px solid var(--ck-color-ai-notification-error-border);
     color: var(--ck-color-ai-notification-text);
-    padding: var(--ck-spacing-medium);
-    border-radius: var(--ck-border-radius);
+    padding: var(--ck-spacing-medium, var(--ck-spacing-md));
+    border-radius: var(--ck-border-radius, var(--ck-radius-base));
     display: block;
   }
 }
@@ -2968,7 +3016,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck.ck-balloon-panel {
   & > .ck-ai_review-balloon-panel-suggestion {
-    padding: var(--ck-spacing-standard);
+    padding: var(--ck-spacing-standard, var(--ck-spacing-base));
     width: 450px;
 
     &:has(.ck-ai_review__check-run-result-response.ck-hidden) {
@@ -3007,16 +3055,18 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-color-ai-header-icon: var(--ck-color-ai-gray-600);
+  --ck-ai-chat-start-conversation-font-size: var(--ck-font-size-sm);
 }
 
 .ck-ai-header {
   --ck-ui-component-min-height: 1.7em;
+  --ck-size-min-height: 1.7em;
   --ck-ui-component-min-width: 1.7em;
   --ck-form-header-height: 3em;
   --ck-form-header-small-icon-color: var(--ck-color-ai-gray-900);
 
   & > .ck-button {
-    margin-inline-start: var(--ck-spacing-standard);
+    margin-inline-start: var(--ck-spacing-standard, var(--ck-spacing-base));
 
     & > .ck-button__icon {
       --ck-icon-font-size: .666em;
@@ -3025,8 +3075,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & > .ck.ck-button.ck-ai-chat__start-conversation {
+    font-size: var(--ck-ai-chat-start-conversation-font-size);
     min-height: unset;
-    font-size: 11.7px;
 
     & > .ck-button__label {
       line-height: 1.4em;
@@ -3043,7 +3093,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   &.ck-ai-header_small {
     & > .ck.ck-button.ck-button-back {
       margin-inline-start: 0;
-      margin-inline-end: var(--ck-spacing-small);
+      margin-inline-end: var(--ck-spacing-small, var(--ck-spacing-sm));
 
       &:hover {
         background-color: var(--ck-color-ai-button-tertiary-background-hover);
@@ -3063,7 +3113,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-form__header__label {
     &:not(:last-child) {
-      margin-inline-end: var(--ck-spacing-small);
+      margin-inline-end: var(--ck-spacing-small, var(--ck-spacing-sm));
     }
   }
 
@@ -3078,15 +3128,15 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-color-ai-notification-warning-background: var(--ck-color-ai-warning-background);
   --ck-color-ai-notification-error-border: var(--ck-color-ai-error-border);
   --ck-color-ai-notification-warning-border: var(--ck-color-ai-warning-border);
-  --ck-ai-border-radius: calc(var(--ck-border-radius) * 2);
+  --ck-ai-border-radius: var(--ck-radius-md);
 }
 
 .ck.ck-ai-notification {
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--ck-spacing-medium);
+  gap: var(--ck-spacing-medium, var(--ck-spacing-md));
   width: fit-content;
-  padding: var(--ck-spacing-standard);
+  padding: var(--ck-spacing-standard, var(--ck-spacing-base));
   border-radius: var(--ck-ai-border-radius);
   display: flex;
 
@@ -3114,6 +3164,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     &.ck-ai-notification_error__dismiss-button {
       --ck-icon-font-size: .666em;
       --ck-ui-component-min-height: 16px;
+      --ck-size-min-height: 16px;
       flex-shrink: 0;
       padding: 0;
     }
@@ -3127,6 +3178,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
+  --ck-ai-button-stop-generating-font-size: var(--ck-font-size-md);
   --ck-color-ai-button-primary-text: var(--ck-color-ai-white);
   --ck-color-ai-button-primary-text-disabled: var(--ck-color-ai-white);
   --ck-color-ai-button-primary-background: var(--ck-color-ai-accent-700);
@@ -3157,7 +3209,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   &.ck-ai-button-primary {
     color: var(--ck-color-ai-button-primary-text);
     background-color: var(--ck-color-ai-button-primary-background);
-    gap: var(--ck-spacing-small);
+    gap: var(--ck-spacing-small, var(--ck-spacing-sm));
 
     &:active, &.ck-on {
       background-color: var(--ck-color-ai-button-primary-background-active);
@@ -3180,7 +3232,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   &.ck-ai-button-secondary {
     color: var(--ck-color-ai-button-secondary-text);
     background-color: var(--ck-color-ai-button-secondary-background);
-    gap: var(--ck-spacing-small);
+    gap: var(--ck-spacing-small, var(--ck-spacing-sm));
 
     &:not(:focus) {
       border: 1px solid var(--ck-color-ai-button-secondary-border);
@@ -3211,7 +3263,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   &.ck-ai-button-tertiary {
     color: var(--ck-color-ai-button-tertiary-text);
     background-color: var(--ck-color-ai-button-tertiary-background);
-    gap: var(--ck-spacing-small);
+    gap: var(--ck-spacing-small, var(--ck-spacing-sm));
 
     &:disabled, &.ck-disabled {
       color: var(--ck-color-ai-button-tertiary-text-disabled);
@@ -3252,7 +3304,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &.ck-ai-button-stop-generating {
     min-height: 22px;
-    padding: 0 var(--ck-spacing-medium) 0 var(--ck-spacing-small);
+    font-size: var(--ck-ai-button-stop-generating-font-size);
+    padding: 0 var(--ck-spacing-medium, var(--ck-spacing-md)) 0 var(--ck-spacing-small, var(--ck-spacing-sm));
 
     & .ck.ck-icon.ck-button__icon {
       width: 14px;
@@ -3322,11 +3375,11 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-color-ai-prompt-glow: #fffde6;
   --ck-color-ai-suggestion-inactive-background: var(--ck-color-ai-inactive-insertion-background);
   --ck-color-ai-suggestion-inactive-border: var(--ck-color-ai-inactive-insertion-border);
-  --ck-color-ai-suggestion-marker-insertion-border: var(--ck-color-suggestion-marker-insertion-border, var(--ck-color-ai-insertion-border));
-  --ck-color-ai-suggestion-marker-insertion-background: var(--ck-color-suggestion-marker-insertion-background, var(--ck-color-ai-insertion-background));
-  --ck-color-ai-suggestion-marker-deletion-border: var(--ck-color-suggestion-marker-deletion-border, var(--ck-color-ai-deletion-border));
-  --ck-color-ai-suggestion-marker-deletion-background: var(--ck-color-suggestion-marker-deletion-background, var(--ck-color-ai-deletion-background));
-  --ck-color-ai-suggestion-marker-deletion-stroke: var(--ck-color-suggestion-marker-deletion-stroke, var(--ck-color-ai-deletion-stroke));
+  --ck-color-ai-suggestion-marker-insertion-border: var(--ck-suggestion-marker-insertion-border-color, var(--ck-color-ai-insertion-border));
+  --ck-color-ai-suggestion-marker-insertion-background: var(--ck-suggestion-marker-insertion-background-color, var(--ck-color-ai-insertion-background));
+  --ck-color-ai-suggestion-marker-deletion-border: var(--ck-suggestion-marker-deletion-border-color, var(--ck-color-ai-deletion-border));
+  --ck-color-ai-suggestion-marker-deletion-background: var(--ck-suggestion-marker-deletion-background-color, var(--ck-color-ai-deletion-background));
+  --ck-color-ai-suggestion-marker-deletion-stroke: var(--ck-suggestion-marker-deletion-stroke-color, var(--ck-color-ai-deletion-stroke));
   --ck-color-ai-suggestion-marker-deletion-border-active: var(--ck-color-ai-deletion-border-active);
   --ck-color-ai-suggestion-marker-deletion-background-active: var(--ck-color-ai-deletion-bg-active);
   --ck-color-ai-suggestion-marker-insertion-border-active: var(--ck-color-ai-insertion-border-active);
@@ -3446,7 +3499,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai_review__general-error-container {
-    padding: var(--ck-spacing-extra-large) var(--ck-spacing-large) var(--ck-spacing-standard) var(--ck-spacing-large);
+    padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-large, var(--ck-spacing-lg)) var(--ck-spacing-standard, var(--ck-spacing-base)) var(--ck-spacing-large, var(--ck-spacing-lg));
     border-radius: var(--ck-ai-border-radius);
 
     & > p {
@@ -3719,25 +3772,25 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-color-ai-review-inactive-check-background: var(--ck-color-ai-gray-25);
-  --ck-color-suggestion-marker-deletion-border-inactive: var(--ck-color-ai-inactive-deletion-border);
-  --ck-color-suggestion-marker-deletion-background-inactive: var(--ck-color-ai-inactive-deletion-background);
-  --ck-color-suggestion-marker-deletion-stroke-inactive: var(--ck-color-ai-inactive-deletion-stroke);
-  --ck-color-suggestion-marker-insertion-border-inactive: var(--ck-color-ai-inactive-insertion-border);
-  --ck-color-suggestion-marker-insertion-background-inactive: var(--ck-color-ai-inactive-insertion-background);
+  --ck-suggestion-marker-deletion-inactive-border-color: var(--ck-color-suggestion-marker-deletion-border-inactive, var(--ck-color-ai-inactive-deletion-border));
+  --ck-suggestion-marker-deletion-inactive-background-color: var(--ck-color-suggestion-marker-deletion-background-inactive, var(--ck-color-ai-inactive-deletion-background));
+  --ck-suggestion-marker-deletion-inactive-stroke-color: var(--ck-color-suggestion-marker-deletion-stroke-inactive, var(--ck-color-ai-inactive-deletion-stroke));
+  --ck-suggestion-marker-insertion-inactive-border-color: var(--ck-color-suggestion-marker-insertion-border-inactive, var(--ck-color-ai-inactive-insertion-border));
+  --ck-suggestion-marker-insertion-inactive-background-color: var(--ck-color-suggestion-marker-insertion-background-inactive, var(--ck-color-ai-inactive-insertion-background));
   --ck-color-ai-review-check-run-result-status-button-background: var(--ck-color-ai-gray-100);
   --ck-color-ai-review-check-run-result-status-button-text: var(--ck-color-ai-gray-600);
 }
 
 .ck-ai_review__check-run-result {
   & > .ck-ai_review__check-run-result-footer {
-    margin-top: var(--ck-spacing-standard);
+    margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
     justify-content: space-between;
     align-items: center;
-    gap: var(--ck-spacing-standard);
+    gap: var(--ck-spacing-standard, var(--ck-spacing-base));
     display: flex;
 
     & > .ck-ai_review__check-run-result-action-buttons {
-      gap: var(--ck-spacing-standard);
+      gap: var(--ck-spacing-standard, var(--ck-spacing-base));
       flex-grow: 1;
       display: flex;
     }
@@ -3745,7 +3798,8 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck.ck-button.ck-ai_review__check-run-result-info-button {
       --ck-icon-size: 16px;
       --ck-ui-component-min-height: 1.75em;
-      max-height: var(--ck-ui-component-min-height);
+      --ck-size-min-height: 1.75em;
+      max-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
       margin-left: auto;
     }
 
@@ -3790,14 +3844,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     & .ck-suggestion-marker {
       &.ck-suggestion-marker-deletion {
-        --ck-color-suggestion-marker-deletion-border: var(--ck-color-suggestion-marker-deletion-border-inactive);
-        --ck-color-suggestion-marker-deletion-background: var(--ck-color-suggestion-marker-deletion-background-inactive);
-        --ck-color-suggestion-marker-deletion-stroke: var(--ck-color-suggestion-marker-deletion-stroke-inactive);
+        --ck-suggestion-marker-deletion-border-color: var(--ck-suggestion-marker-deletion-inactive-border-color);
+        --ck-suggestion-marker-deletion-background-color: var(--ck-suggestion-marker-deletion-inactive-background-color);
+        --ck-suggestion-marker-deletion-stroke-color: var(--ck-suggestion-marker-deletion-inactive-stroke-color);
       }
 
       &.ck-suggestion-marker-insertion {
-        --ck-color-suggestion-marker-insertion-border: var(--ck-color-suggestion-marker-insertion-border-inactive);
-        --ck-color-suggestion-marker-insertion-background: var(--ck-color-suggestion-marker-insertion-background-inactive);
+        --ck-suggestion-marker-insertion-border-color: var(--ck-suggestion-marker-insertion-inactive-border-color);
+        --ck-suggestion-marker-insertion-background-color: var(--ck-suggestion-marker-insertion-inactive-background-color);
       }
     }
 
@@ -3813,8 +3867,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-ai_review__review-completed-header {
     justify-content: space-between;
     align-items: center;
-    gap: var(--ck-spacing-standard);
-    padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
+    gap: var(--ck-spacing-standard, var(--ck-spacing-base));
+    padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-large, var(--ck-spacing-lg));
     border-bottom: 1px solid var(--ck-color-base-border);
     display: flex;
 
@@ -3828,7 +3882,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-ai_review__review-completed-header-buttons {
-      gap: var(--ck-spacing-standard);
+      gap: var(--ck-spacing-standard, var(--ck-spacing-base));
       flex-shrink: 0;
       display: flex;
     }
@@ -3836,7 +3890,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-ai_review__review-completed {
     & .ck-ai_review__review-completed-content {
-      padding: var(--ck-spacing-extra-large) var(--ck-spacing-extra-large) 0 var(--ck-spacing-extra-large);
+      padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-extra-large, var(--ck-spacing-xl)) 0 var(--ck-spacing-extra-large, var(--ck-spacing-xl));
       text-align: center;
 
       & .ck-ai_review__review-completed-content-icon {
@@ -3845,7 +3899,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & .ck-ai_review__review-completed-content-text {
-        margin-top: var(--ck-spacing-large);
+        margin-top: var(--ck-spacing-large, var(--ck-spacing-lg));
         text-align: center;
         white-space: normal;
       }
@@ -3863,6 +3917,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-review-check-list-model-dropdown-width: 426px;
   --ck-ai-review-check-list-model-dropdown-max-height: 340px;
   --ck-ai-review-check-list-model-dropdown-arrow-drop-shadow: 0 -2px 0px var(--ck-color-shadow-drop);
+  --ck-ai-review-check-list-item-title-text-font-size: var(--ck-font-size-md);
+  --ck-ai-review-check-list-item-description-font-size: var(--ck-font-size-md);
 }
 
 .ck.ck-ai-review {
@@ -3872,11 +3928,11 @@ div.ck.ck-ai-suggestion__content-part-state {
     overflow: auto;
 
     & > .ck-ai_review__check-list-item {
-      padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
+      padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-large, var(--ck-spacing-lg));
       border-bottom: 1px solid var(--ck-color-base-border);
       opacity: 0;
       visibility: hidden;
-      transition: box-shadow .3s ease-in-out;
+      transition: box-shadow var(--ck-duration-slow) ease-in-out;
       box-shadow: inset 3px 0 #0000;
 
       @media (prefers-reduced-motion: reduce) {
@@ -3885,6 +3941,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
       & .ck-ai_review__check-list-item-description {
         color: var(--ck-color-ai-review-check-list-item-description);
+        font-size: var(--ck-ai-review-check-list-item-description-font-size);
       }
 
       & .ck-ai_review__check-list-item-title-text, & .ck-ai_review__check-list-item-description {
@@ -3903,7 +3960,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       &.ck-ai_review__check-list-item_rendered {
         opacity: 1;
         visibility: visible;
-        transition: box-shadow .3s ease-in-out,
+        transition: box-shadow var(--ck-duration-slow) ease-in-out,
 					opacity .1s calc(50ms * var(--ck-ai-review-check-list-item-index)),
 					visibility .1s calc(50ms * var(--ck-ai-review-check-list-item-index));
 
@@ -3921,13 +3978,14 @@ div.ck.ck-ai-suggestion__content-part-state {
         cursor: pointer;
         justify-content: space-between;
         align-items: center;
-        margin-block-end: var(--ck-spacing-tiny);
+        margin-block-end: var(--ck-spacing-tiny, var(--ck-spacing-xs));
         display: flex;
 
         & > .ck-ai_review__check-list-item-title-text {
           color: var(--ck-color-ai-review-check-list-item-title);
-          flex-grow: 1;
           font-weight: 700;
+          font-size: var(--ck-ai-review-check-list-item-title-text-font-size);
+          flex-grow: 1;
         }
 
         & > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
@@ -3935,9 +3993,9 @@ div.ck.ck-ai-suggestion__content-part-state {
           color: var(--ck-color-ai-review-check-list-item-title-icon);
           opacity: 0;
           visibility: hidden;
+          transition: opacity var(--ck-duration-slow) ease-in-out, visibility var(--ck-duration-slow) ease-in-out;
           flex-shrink: 0;
-          margin-inline-start: var(--ck-spacing-small);
-          transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+          margin-inline-start: var(--ck-spacing-small, var(--ck-spacing-sm));
 
           @media (prefers-reduced-motion: reduce) {
             transition-duration: 0s;
@@ -4005,7 +4063,7 @@ div.ck.ck-ai-suggestion__content-part-state {
             }
 
             & .ck-ai_review__check-list-item-parameterized-custom-actions-buttons {
-              gap: var(--ck-spacing-small);
+              gap: var(--ck-spacing-small, var(--ck-spacing-sm));
               margin-left: auto;
               display: flex;
             }
@@ -4024,7 +4082,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
         & .ck-dropdown__panel {
           width: var(--ck-ai-review-check-list-model-dropdown-width);
-          padding-top: var(--ck-spacing-standard);
+          padding-top: var(--ck-spacing-standard, var(--ck-spacing-base));
           top: calc(100% + var(--ck-balloon-arrow-height));
           bottom: auto;
 
@@ -4035,21 +4093,21 @@ div.ck.ck-ai-suggestion__content-part-state {
               top: calc(-1 * var(--ck-balloon-arrow-height) + 2px);
               border-style: solid;
               border-width: 0 var(--ck-balloon-arrow-height) var(--ck-balloon-arrow-half-width) var(--ck-balloon-arrow-half-width);
-              border-color: transparent transparent var(--ck-color-panel-background) transparent;
+              border-color: transparent transparent var(--ck-balloon-panel-background-color) transparent;
               width: 0;
               height: 0;
               position: absolute;
             }
 
             &:before {
-              z-index: var(--ck-balloon-panel-arrow-z-index);
-              margin-bottom: calc(-1 * var(--ck-balloon-border-width));
+              z-index: var(--ck-balloon-panel-arrow-z-index, var(--ck-layer-balloon-arrow-back));
+              margin-bottom: calc(-1 * var(--ck-balloon-border-width, var(--ck-border-width-surface)));
               filter: drop-shadow(var(--ck-ai-review-check-list-model-dropdown-arrow-drop-shadow));
             }
 
             &:after {
-              z-index: calc(var(--ck-balloon-panel-arrow-z-index) + 1);
-              margin-bottom: calc(var(--ck-balloon-arrow-offset) - var(--ck-balloon-border-width));
+              z-index: calc(var(--ck-balloon-panel-arrow-z-index, var(--ck-layer-balloon-arrow-back)) + 1);
+              margin-bottom: calc(var(--ck-balloon-arrow-offset) - var(--ck-balloon-border-width, var(--ck-border-width-surface)));
             }
 
             & > .ck-list {
@@ -4059,11 +4117,11 @@ div.ck.ck-ai-suggestion__content-part-state {
           }
 
           & > .ck.ck-list {
-            gap: var(--ck-spacing-medium-small);
+            gap: var(--ck-spacing-medium-small, var(--ck-spacing-ms));
 
             & > .ck.ck-list__item {
               & > .ck.ck-button.ck-list-item-button {
-                background-color: var(--ck-color-list-background);
+                background-color: var(--ck-list-background-color);
                 align-items: baseline;
                 gap: 0;
 
@@ -4081,7 +4139,7 @@ div.ck.ck-ai-suggestion__content-part-state {
                 }
 
                 & .ck-ai_review__check-list-item-model-dropdown-description {
-                  padding-top: var(--ck-spacing-tiny);
+                  padding-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
                   line-height: 1.3;
 
                   & > span {
@@ -4101,6 +4159,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-color-ai-translate-check-list-header-title: var(--ck-color-ai-gray-900);
+  --ck-ai-translate-check-list-header-font-size: var(--ck-font-size-md);
+  --ck-ai-translate-check-list-header-title-font-size: var(--ck-font-size-base);
 }
 
 .ck {
@@ -4111,16 +4171,20 @@ div.ck.ck-ai-suggestion__content-part-state {
       overflow: auto;
 
       & .ck-ai-translate__check-list-header {
-        padding: var(--ck-spacing-extra-large) var(--ck-spacing-large);
+        padding: var(--ck-spacing-extra-large, var(--ck-spacing-xl)) var(--ck-spacing-large, var(--ck-spacing-lg));
         border-bottom: 1px solid var(--ck-color-base-border);
         color: var(--ck-color-base-text);
 
         & > h2 {
-          --ck-font-size-base: 1.153em;
+          --ck-font-size-base: var(--ck-ai-translate-check-list-header-title-font-size);
           white-space: normal;
           color: var(--ck-color-ai-translate-check-list-header-title);
           font-weight: 700;
           line-height: 1.3;
+        }
+
+        & > p {
+          font-size: var(--ck-ai-translate-check-list-header-font-size);
         }
       }
 
@@ -4247,13 +4311,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-user-avatar-size: 40px;
-  --ck-user-avatar-background: #3670ab;
-  --ck-user-avatar-color: #fff;
+  --ck-user-avatar-background-color: #0f084b;
+  --ck-user-me-avatar-background-color: #4c9f70;
+  --ck-user-avatar-text-color: var(--ck-user-avatar-color, #fff);
   --ck-user-me-border-color: #fff;
+  --ck-user-name-font-size: var(--ck-font-size-md);
 }
 
 .ck.ck-user {
-  background-color: var(--ck-user-avatar-background);
+  background-color: var(--ck-user-avatar-background-color);
   box-sizing: border-box;
   height: var(--ck-user-avatar-size);
   width: var(--ck-user-avatar-size);
@@ -4268,13 +4334,13 @@ div.ck.ck-ai-suggestion__content-part-state {
   position: relative;
 
   &.ck-user_me {
-    border: 2px solid var(--ck-user-me-border-color);
-    outline: 2px solid var(--ck-user-avatar-background);
+    background-color: var(--ck-user-me-avatar-background-color);
   }
 }
 
 .ck.ck-user__name {
-  color: var(--ck-user-avatar-color);
+  color: var(--ck-user-avatar-text-color);
+  font-size: var(--ck-user-name-font-size);
   cursor: default;
   -webkit-user-select: none;
   user-select: none;
@@ -4288,7 +4354,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: var(--ck-user-avatar-background);
+  background-color: var(--ck-user-avatar-background-color);
   border: none;
   border-radius: 50%;
   width: 100%;
@@ -4315,8 +4381,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-user__notification {
-  background: var(--ck-color-base-background);
-  border: 2px solid var(--ck-color-base-background);
+  background: var(--ck-color-surface-canvas);
+  border: 2px solid var(--ck-color-surface-canvas);
   box-sizing: content-box;
   border-radius: 50%;
   justify-content: center;
@@ -4331,8 +4397,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   transform: translateZ(0);
 
   & .ck-user__icon {
-    color: var(--ck-color-annotation-info);
-    background: var(--ck-color-base-background);
+    color: var(--ck-annotation-info-color);
+    background: var(--ck-color-surface-canvas);
     width: 19px;
     min-width: 19px;
     max-width: 19px;
@@ -4346,11 +4412,11 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-pill-icon-size: 12px;
   --ck-pill-radius: 9999px;
   --ck-pill-line-height: var(--ck-pill-icon-size);
-  --ck-pill-padding-block: var(--ck-spacing-small);
-  --ck-pill-padding-inline: var(--ck-spacing-standard);
-  --ck-pill-gap: var(--ck-spacing-small);
+  --ck-pill-padding-block: var(--ck-spacing-control-padding-block);
+  --ck-pill-padding-inline: var(--ck-spacing-control-padding-inline);
+  --ck-pill-gap: var(--ck-spacing-gap-compact);
   --ck-pill-font-size: var(--ck-font-size-small);
-  --ck-pill-background: var(--ck-color-button-default-hover-background);
+  --ck-pill-background: var(--ck-button-default-hover-background-color);
   --ck-pill-color: var(--ck-color-text);
   align-items: center;
   gap: var(--ck-pill-gap);
@@ -4389,7 +4455,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-confirm-view-active {
-  transition: all .3s linear;
+  transition: all var(--ck-transition-duration-control-emphasized) linear;
   transform: translate3d(-100%, 0, 0);
 }
 
@@ -4405,7 +4471,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   left: 100%;
 
   & .ck-confirm-view-inner {
-    padding-top: var(--ck-spacing-standard);
+    padding-top: var(--ck-spacing-standard, var(--ck-spacing-base));
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -4422,31 +4488,32 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-color-comment-box-border: #f2de02;
-  --ck-color-suggestion-box-deletion-border: #d85a79;
-  --ck-color-suggestion-box-insertion-border: #5ad86b;
-  --ck-color-suggestion-box-format-border: #5ac1d8;
-  --ck-color-suggestion-ai-accent: #743ccd;
-  --ck-color-suggestion-ai-accent-background: #f2ebff;
+  --ck-annotation-type-border-width: 0px;
+  --ck-comment-box-border-color: var(--ck-color-comment-box-border);
+  --ck-suggestion-box-deletion-border-color: var(--ck-color-diff-deletion-box-border);
+  --ck-suggestion-box-insertion-border-color: var(--ck-color-diff-insertion-box-border);
+  --ck-suggestion-box-format-border-color: var(--ck-color-base-active);
+  --ck-suggestion-ai-accent-color: var(--ck-color-suggestion-ai-accent, #743ccd);
+  --ck-suggestion-ai-accent-background-color: var(--ck-color-suggestion-ai-accent-background, #f2ebff);
   --ck-suggestion-ai-author-icon-size: 18px;
-  --ck-color-suggestion-marker-insertion-border: #1eae3159;
-  --ck-color-suggestion-marker-insertion-border-active: #126d1f80;
-  --ck-color-suggestion-marker-deletion-border: #ae1e4259;
-  --ck-color-suggestion-marker-deletion-border-active: #6d122980;
-  --ck-color-suggestion-widget-insertion-background: #66e5770d;
+  --ck-suggestion-wrapper-border-radius: var(--ck-border-radius-surface);
+  --ck-suggestion-marker-insertion-border-color: var(--ck-color-diff-insertion-border, #119c6780);
+  --ck-suggestion-marker-insertion-active-border-color: var(--ck-color-diff-insertion-border-active, #119c6799);
+  --ck-suggestion-marker-deletion-border-color: var(--ck-color-diff-deletion-border, #e0292966);
+  --ck-suggestion-marker-deletion-active-border-color: var(--ck-color-diff-deletion-border-active, #e0292980);
+  --ck-suggestion-widget-insertion-background-color: var(--ck-color-diff-insertion-widget-background, #66e5770d);
 }
 
 .ck .ck-suggestion {
-  border-top-left-radius: var(--ck-border-radius);
+  border-top-left-radius: var(--ck-border-radius-control);
 
   &:focus {
-    background: var(--ck-color-button-default-hover-background);
     outline: none;
   }
 }
 
 .ck .ck-annotation {
-  border-left: 3px solid #0000;
+  border-left: var(--ck-annotation-type-border-width) solid transparent;
 }
 
 .ck .ck-suggestion--disabled-comments .ck-annotation {
@@ -4454,38 +4521,38 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment, .ck .ck-thread__comment-count, .ck .ck-comment__input-container, .ck .ck-thread__header {
-  border-left: 3px solid var(--ck-color-comment-box-border);
+  border-left: var(--ck-annotation-type-border-width) solid var(--ck-comment-box-border-color);
 }
 
 .ck .ck-suggestion-insertion .ck-suggestion {
-  border-left-color: var(--ck-color-suggestion-box-insertion-border);
+  border-left-color: var(--ck-suggestion-box-insertion-border-color);
 }
 
 .ck .ck-suggestion-deletion .ck-suggestion {
-  border-left-color: var(--ck-color-suggestion-box-deletion-border);
+  border-left-color: var(--ck-suggestion-box-deletion-border-color);
 }
 
 .ck .ck-suggestion-replace .ck-suggestion {
-  border-left-color: var(--ck-color-suggestion-box-insertion-border);
+  border-left-color: var(--ck-suggestion-box-insertion-border-color);
 }
 
 .ck .ck-suggestion-format .ck-suggestion {
-  border-left-color: var(--ck-color-suggestion-box-format-border);
+  border-left-color: var(--ck-suggestion-box-format-border-color);
 }
 
 .ck .ck-suggestion-wrapper {
-  border-radius: var(--ck-rounded-corners-radius);
+  border-radius: var(--ck-suggestion-wrapper-border-radius);
   overflow: hidden;
 
   &:focus {
-    outline: var(--ck-focus-ring);
+    outline: var(--ck-interactive-focus-ring);
     box-shadow: 0 0 0 4px var(--ck-color-focus-outer-shadow);
   }
 }
 
 .ck-balloon-panel:has(.ck-suggestion-wrapper:focus) {
-  border: var(--ck-focus-ring);
-  box-shadow: var(--ck-drop-shadow), var(--ck-focus-outer-shadow), 0 0;
+  border: var(--ck-interactive-focus-ring);
+  box-shadow: var(--ck-drop-shadow, var(--ck-shadow-md)), var(--ck-focus-outer-shadow, var(--ck-focus-shadow)), 0 0;
   outline: none;
 }
 
@@ -4504,31 +4571,29 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-suggestion-insertion .ck-comment, .ck .ck-suggestion-insertion .ck-thread__comment-count, .ck .ck-suggestion-insertion .ck-comment__input-container, .ck .ck-suggestion-replace .ck-comment, .ck .ck-suggestion-replace .ck-thread__comment-count, .ck .ck-suggestion-replace .ck-comment__input-container {
-  border-left-color: var(--ck-color-suggestion-box-insertion-border);
+  border-left-color: var(--ck-suggestion-box-insertion-border-color);
 }
 
 .ck .ck-suggestion-deletion .ck-comment, .ck .ck-suggestion-deletion .ck-thread__comment-count, .ck .ck-suggestion-deletion .ck-comment__input-container {
-  border-left-color: var(--ck-color-suggestion-box-deletion-border);
+  border-left-color: var(--ck-suggestion-box-deletion-border-color);
 }
 
 .ck .ck-suggestion-format .ck-comment, .ck .ck-suggestion-format .ck-thread__comment-count, .ck .ck-suggestion-format .ck-comment__input-container {
-  border-left-color: var(--ck-color-suggestion-box-format-border);
+  border-left-color: var(--ck-suggestion-box-format-border-color);
 }
 
 .ck.ck-pill.ck-pill_ai {
-  --ck-pill-background: var(--ck-color-suggestion-ai-accent-background);
-  --ck-pill-color: var(--ck-color-suggestion-ai-accent);
-  --ck-pill-font-size: calc(var(--ck-font-size-base) * .9);
+  --ck-pill-background: var(--ck-suggestion-ai-accent-background-color);
+  --ck-pill-color: var(--ck-suggestion-ai-accent-color);
+  --ck-pill-font-size: var(--ck-font-size-sm);
   --ck-pill-line-height: 1em;
-  --ck-pill-padding-block: calc(var(--ck-font-size-base) * .3);
-  --ck-pill-padding-inline: calc(var(--ck-font-size-base) * .6);
-  --ck-pill-gap: calc(var(--ck-font-size-base) * .3);
+  --ck-pill-gap: calc(var(--ck-pill-font-size) / 2.4);
 }
 
 .ck .ck-user[data-user-id="ck-ai-author"] .ck-user__img.ck-user__avatar {
   background-color: var(--ck-color-base-foreground);
-  box-shadow: 0 0 0 1.5px var(--ck-color-suggestion-ai-accent);
-  color: var(--ck-color-suggestion-ai-accent);
+  box-shadow: 0 0 0 1.5px var(--ck-suggestion-ai-accent-color);
+  color: var(--ck-suggestion-ai-accent-color);
   justify-content: center;
   align-items: center;
   display: flex;
@@ -4540,7 +4605,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-suggestion__ai-source-pill {
-  margin-top: var(--ck-spacing-small);
+  margin-top: var(--ck-spacing-gap-compact);
   grid-column: 1 / -1;
   justify-content: flex-end;
   display: flex;
@@ -4551,231 +4616,231 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-color-suggestion-marker-insertion-border: #1eae3159;
-  --ck-color-suggestion-marker-insertion-border-active: #126d1f80;
-  --ck-color-suggestion-marker-insertion-background: #66e57759;
-  --ck-color-suggestion-marker-insertion-background-active: #25da3d80;
-  --ck-color-suggestion-marker-deletion-border: #ae1e4259;
-  --ck-color-suggestion-marker-deletion-border-active: #6d122980;
-  --ck-color-suggestion-marker-deletion-background: #e5668659;
-  --ck-color-suggestion-marker-deletion-background-active: #da255280;
-  --ck-color-suggestion-marker-deletion-stroke: #570f2180;
-  --ck-color-suggestion-marker-format-border: #99d7e6;
-  --ck-color-suggestion-marker-format-border-active: #5cc0d6;
-  --ck-color-suggestion-widget-insertion-background: #66e5770d;
-  --ck-color-suggestion-widget-insertion-background-active: #25da3d12;
-  --ck-color-suggestion-widget-deletion-background: #e566860d;
-  --ck-color-suggestion-widget-deletion-background-active: #c4214a12;
-  --ck-color-suggestion-widget-format-background: #0aa0c217;
-  --ck-color-suggestion-widget-format-background-active: #0aa0c229;
-  --ck-color-suggestion-widget-th-insertion-background: #66e5771f;
-  --ck-color-suggestion-widget-th-insertion-background-active: #25da3d24;
-  --ck-color-suggestion-widget-th-deletion-background: #e5668624;
-  --ck-color-suggestion-widget-th-deletion-background-active: #c4214a29;
+  --ck-suggestion-marker-insertion-border-color: var(--ck-color-diff-insertion-border, #119c6780);
+  --ck-suggestion-marker-insertion-active-border-color: var(--ck-color-diff-insertion-border-active, #119c6799);
+  --ck-suggestion-marker-insertion-background-color: var(--ck-color-diff-insertion-background, #119c6733);
+  --ck-suggestion-marker-insertion-active-background-color: var(--ck-color-diff-insertion-background-active, #119c674d);
+  --ck-suggestion-marker-deletion-border-color: var(--ck-color-diff-deletion-border, #e0292966);
+  --ck-suggestion-marker-deletion-active-border-color: var(--ck-color-diff-deletion-border-active, #e0292980);
+  --ck-suggestion-marker-deletion-background-color: var(--ck-color-diff-deletion-background, #e0292933);
+  --ck-suggestion-marker-deletion-active-background-color: var(--ck-color-diff-deletion-background-active, #e029294d);
+  --ck-suggestion-marker-deletion-stroke-color: var(--ck-color-diff-deletion-stroke, #c01b1b99);
+  --ck-suggestion-marker-format-border-color: var(--ck-color-diff-format-border, #99d7e6);
+  --ck-suggestion-marker-format-active-border-color: var(--ck-color-diff-format-border-active, #5cc0d6);
+  --ck-suggestion-widget-insertion-background-color: var(--ck-color-diff-insertion-widget-background, #66e5770d);
+  --ck-suggestion-widget-insertion-active-background-color: var(--ck-color-diff-insertion-widget-background-active, #25da3d12);
+  --ck-suggestion-widget-deletion-background-color: var(--ck-color-diff-deletion-widget-background, #e566860d);
+  --ck-suggestion-widget-deletion-active-background-color: var(--ck-color-diff-deletion-widget-background-active, #c4214a12);
+  --ck-suggestion-widget-format-background-color: var(--ck-color-diff-format-widget-background, #0aa0c217);
+  --ck-suggestion-widget-format-active-background-color: var(--ck-color-diff-format-widget-background-active, #0aa0c229);
+  --ck-suggestion-widget-th-insertion-background-color: var(--ck-color-diff-insertion-widget-th-background, #66e5771f);
+  --ck-suggestion-widget-th-insertion-active-background-color: var(--ck-color-diff-insertion-widget-th-background-active, #25da3d24);
+  --ck-suggestion-widget-th-deletion-background-color: var(--ck-color-diff-deletion-widget-th-background, #e5668624);
+  --ck-suggestion-widget-th-deletion-active-background-color: var(--ck-color-diff-deletion-widget-th-background-active, #c4214a29);
 }
 
 .ck-content .ck-suggestion-marker-insertion {
-  border-top: 3px solid var(--ck-color-suggestion-marker-insertion-border);
-  border-bottom: 3px solid var(--ck-color-suggestion-marker-insertion-border);
-  background: var(--ck-color-suggestion-marker-insertion-background);
+  border-top: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+  border-bottom: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+  background: var(--ck-suggestion-marker-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    border-color: var(--ck-color-suggestion-marker-insertion-border-active);
-    background: var(--ck-color-suggestion-marker-insertion-background-active);
+    border-color: var(--ck-suggestion-marker-insertion-active-border-color);
+    background: var(--ck-suggestion-marker-insertion-active-background-color);
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-suggestion-marker-insertion-border);
+    border: 3px solid var(--ck-suggestion-marker-insertion-border-color);
     background: none;
     text-decoration: none;
 
     &.ck-suggestion-marker--active {
-      border-color: var(--ck-color-suggestion-marker-insertion-border-active);
+      border-color: var(--ck-suggestion-marker-insertion-active-border-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion {
-  border-top: 3px solid var(--ck-color-suggestion-marker-deletion-border);
-  border-bottom: 3px solid var(--ck-color-suggestion-marker-deletion-border);
+  border-top: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+  border-bottom: 3px solid var(--ck-suggestion-marker-deletion-border-color);
   text-decoration: line-through;
-  text-decoration-color: var(--ck-color-suggestion-marker-deletion-stroke);
-  background: var(--ck-color-suggestion-marker-deletion-background);
+  text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
+  background: var(--ck-suggestion-marker-deletion-background-color);
   text-decoration-thickness: 3px;
 
   &.ck-suggestion-marker--active {
-    border-color: var(--ck-color-suggestion-marker-deletion-border-active);
-    background: var(--ck-color-suggestion-marker-deletion-background-active);
+    border-color: var(--ck-suggestion-marker-deletion-active-border-color);
+    background: var(--ck-suggestion-marker-deletion-active-background-color);
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-suggestion-marker-deletion-border);
+    border: 3px solid var(--ck-suggestion-marker-deletion-border-color);
     background: none;
     text-decoration: none;
 
     &.ck-suggestion-marker--active {
-      border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+      border-color: var(--ck-suggestion-marker-deletion-active-border-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-merge {
   &:after {
-    border-top: 3px solid var(--ck-color-suggestion-marker-deletion-border);
-    border-bottom: 3px solid var(--ck-color-suggestion-marker-deletion-border);
+    border-top: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+    border-bottom: 3px solid var(--ck-suggestion-marker-deletion-border-color);
     text-decoration: line-through;
-    text-decoration-color: var(--ck-color-suggestion-marker-deletion-stroke);
-    background: var(--ck-color-suggestion-marker-deletion-background);
-    color: var(--ck-color-suggestion-marker-deletion-stroke);
+    text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
+    background: var(--ck-suggestion-marker-deletion-background-color);
+    color: var(--ck-suggestion-marker-deletion-stroke-color);
     content: "¶";
   }
 
   &.ck-suggestion-marker--active:after {
-    border-color: var(--ck-color-suggestion-marker-deletion-border-active);
-    background: var(--ck-color-suggestion-marker-deletion-background-active);
+    border-color: var(--ck-suggestion-marker-deletion-active-border-color);
+    background: var(--ck-suggestion-marker-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-split {
   &:after {
-    border-top: 3px solid var(--ck-color-suggestion-marker-insertion-border);
-    border-bottom: 3px solid var(--ck-color-suggestion-marker-insertion-border);
-    background: var(--ck-color-suggestion-marker-insertion-background);
-    color: var(--ck-color-suggestion-marker-insertion-border);
+    border-top: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+    border-bottom: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+    background: var(--ck-suggestion-marker-insertion-background-color);
+    color: var(--ck-suggestion-marker-insertion-border-color);
     content: "¶";
   }
 
   &.ck-suggestion-marker--active:after {
-    border-color: var(--ck-color-suggestion-marker-insertion-border-active);
-    background: var(--ck-color-suggestion-marker-insertion-background-active);
+    border-color: var(--ck-suggestion-marker-insertion-active-border-color);
+    background: var(--ck-suggestion-marker-insertion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-formatInline {
-  border-top: 3px solid var(--ck-color-suggestion-marker-format-border);
-  border-bottom: 3px solid var(--ck-color-suggestion-marker-format-border);
+  border-top: 3px solid var(--ck-suggestion-marker-format-border-color);
+  border-bottom: 3px solid var(--ck-suggestion-marker-format-border-color);
 
   &.ck-suggestion-marker--active {
-    border-color: var(--ck-color-suggestion-marker-format-border-active);
+    border-color: var(--ck-suggestion-marker-format-active-border-color);
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-suggestion-marker-format-border);
+    border: 3px solid var(--ck-suggestion-marker-format-border-color);
     background: none;
 
     &.ck-suggestion-marker--active {
-      border-color: var(--ck-color-suggestion-marker-format-border-active);
+      border-color: var(--ck-suggestion-marker-format-active-border-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-formatBlock {
-  box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-color-suggestion-marker-format-border);
+  box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-suggestion-marker-format-border-color);
   background: none;
   border: 0;
 
   &.ck-suggestion-marker--active {
-    box-shadow: -5px 0 0 0 var(--ck-color-base-background), -8px 0 0 0 var(--ck-color-suggestion-marker-format-border-active);
+    box-shadow: -5px 0 0 0 var(--ck-color-base-background), -8px 0 0 0 var(--ck-suggestion-marker-format-active-border-color);
   }
 }
 
 .ck-content ul .ck-suggestion-marker-formatBlock, .ck-content ol .ck-suggestion-marker-formatBlock {
-  box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-color-suggestion-marker-format-border);
+  box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-suggestion-marker-format-border-color);
 
   &.ck-suggestion-marker--active {
-    box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-color-suggestion-marker-format-border-active);
+    box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-suggestion-marker-format-active-border-color);
   }
 }
 
 .ck-content .ck-widget.image > figcaption {
   &.ck-suggestion-marker-deletion {
-    background-color: var(--ck-color-suggestion-widget-deletion-background);
+    background-color: var(--ck-suggestion-widget-deletion-background-color);
     border: none;
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+      background-color: var(--ck-suggestion-widget-deletion-active-background-color);
     }
   }
 
   &.ck-suggestion-marker-insertion {
-    background-color: var(--ck-color-suggestion-widget-insertion-background);
+    background-color: var(--ck-suggestion-widget-insertion-background-color);
     border: none;
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+      background-color: var(--ck-suggestion-widget-insertion-active-background-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.image {
-  background-color: var(--ck-color-suggestion-widget-deletion-background);
+  background-color: var(--ck-suggestion-widget-deletion-background-color);
 
   & img {
     opacity: .6;
   }
 
   & figcaption {
-    background-color: var(--ck-color-suggestion-widget-deletion-background);
+    background-color: var(--ck-suggestion-widget-deletion-background-color);
   }
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
 
     & figcaption {
-      background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+      background-color: var(--ck-suggestion-widget-deletion-active-background-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.image {
-  background-color: var(--ck-color-suggestion-widget-insertion-background);
+  background-color: var(--ck-suggestion-widget-insertion-background-color);
 
   & figcaption {
-    background-color: var(--ck-color-suggestion-widget-insertion-background);
+    background-color: var(--ck-suggestion-widget-insertion-background-color);
   }
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
 
     & figcaption {
-      background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+      background-color: var(--ck-suggestion-widget-insertion-active-background-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.ck-horizontal-line {
-  background-color: var(--ck-color-suggestion-widget-deletion-background);
+  background-color: var(--ck-suggestion-widget-deletion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.ck-horizontal-line {
-  background-color: var(--ck-color-suggestion-widget-insertion-background);
+  background-color: var(--ck-suggestion-widget-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.media {
-  background-color: var(--ck-color-suggestion-widget-deletion-background);
+  background-color: var(--ck-suggestion-widget-deletion-background-color);
 
   & .ck-media__wrapper {
     opacity: .6;
   }
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.media {
-  background-color: var(--ck-color-suggestion-widget-insertion-background);
+  background-color: var(--ck-suggestion-widget-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
   }
 }
 
@@ -4790,34 +4855,34 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.ck-merge-field {
-  border-top-color: var(--ck-color-suggestion-marker-deletion-border);
-  border-bottom-color: var(--ck-color-suggestion-marker-deletion-border);
-  background: var(--ck-color-suggestion-marker-deletion-background);
+  border-top-color: var(--ck-suggestion-marker-deletion-border-color);
+  border-bottom-color: var(--ck-suggestion-marker-deletion-border-color);
+  background: var(--ck-suggestion-marker-deletion-background-color);
 
   & :not(.ck-merge-field__affix), &.ck-merge-field_with-value, &.ck-merge-field_with-warning {
     text-decoration: line-through;
-    text-decoration-color: var(--ck-color-suggestion-marker-deletion-stroke);
+    text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
     text-decoration-thickness: 3px;
   }
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-marker-deletion-background-active);
+    background-color: var(--ck-suggestion-marker-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.ck-merge-field {
-  background-color: var(--ck-color-suggestion-marker-insertion-background);
+  background-color: var(--ck-suggestion-marker-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-marker-insertion-background-active);
+    background-color: var(--ck-suggestion-marker-insertion-active-background-color);
   }
 }
 
 .ck-content .ck-comment-marker.ck-widget.ck-merge-field {
-  background: var(--ck-color-comment-marker);
+  background: var(--ck-comment-marker-color);
 
   &.ck-comment-marker--active {
-    background: var(--ck-color-comment-marker-active);
+    background: var(--ck-comment-marker-active-color);
   }
 }
 
@@ -4827,218 +4892,220 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.page-break {
-  background-color: var(--ck-color-suggestion-widget-deletion-background);
+  background-color: var(--ck-suggestion-widget-deletion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.page-break {
-  background-color: var(--ck-color-suggestion-widget-insertion-background);
+  background-color: var(--ck-suggestion-widget-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
   }
 }
 
 .ck-content figure.table .ck-suggestion-marker-formatBlock {
-  box-shadow: -3px 0 0 0 var(--ck-color-suggestion-marker-format-border);
+  box-shadow: -3px 0 0 0 var(--ck-suggestion-marker-format-border-color);
 
   &.ck-suggestion-marker--active {
-    box-shadow: -3px 0 0 0 var(--ck-color-suggestion-marker-format-border-active);
+    box-shadow: -3px 0 0 0 var(--ck-suggestion-marker-format-active-border-color);
   }
 }
 
 .ck-content .ck-widget.table {
   & > figcaption, & > table > caption {
     &.ck-suggestion-marker-deletion {
-      background-color: var(--ck-color-suggestion-widget-deletion-background);
+      background-color: var(--ck-suggestion-widget-deletion-background-color);
       border: none;
 
       &.ck-suggestion-marker--active {
-        background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+        background-color: var(--ck-suggestion-widget-deletion-active-background-color);
       }
     }
 
     &.ck-suggestion-marker-insertion {
-      background-color: var(--ck-color-suggestion-widget-insertion-background);
+      background-color: var(--ck-suggestion-widget-insertion-background-color);
       border: none;
 
       &.ck-suggestion-marker--active {
-        background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+        background-color: var(--ck-suggestion-widget-insertion-active-background-color);
       }
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.table {
-  border-color: var(--ck-color-suggestion-marker-insertion-border);
+  border-color: var(--ck-suggestion-marker-insertion-border-color);
 
   & > figcaption, & > table > caption {
-    background-color: var(--ck-color-suggestion-widget-insertion-background);
+    background-color: var(--ck-suggestion-widget-insertion-background-color);
   }
 
   & > table {
     & > tbody > tr > th, & > thead > tr > th {
-      background-color: var(--ck-color-suggestion-widget-th-insertion-background);
-      border-color: var(--ck-color-suggestion-marker-insertion-border);
+      background-color: var(--ck-suggestion-widget-th-insertion-background-color);
+      border-color: var(--ck-suggestion-marker-insertion-border-color);
     }
 
     & > tbody > tr > td {
-      background-color: var(--ck-color-suggestion-widget-insertion-background);
-      border-color: var(--ck-color-suggestion-marker-insertion-border);
+      background-color: var(--ck-suggestion-widget-insertion-background-color);
+      border-color: var(--ck-suggestion-marker-insertion-border-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-suggestion-marker--active.table {
-  border-color: var(--ck-color-suggestion-marker-insertion-border-active);
+  border-color: var(--ck-suggestion-marker-insertion-active-border-color);
 
   & > figcaption, & > table > caption {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
   }
 
   & > table {
     & > tbody > tr > th, & > thead > tr > th {
-      background-color: var(--ck-color-suggestion-widget-th-insertion-background-active);
-      border-color: var(--ck-color-suggestion-marker-insertion-border-active);
+      background-color: var(--ck-suggestion-widget-th-insertion-active-background-color);
+      border-color: var(--ck-suggestion-marker-insertion-active-border-color);
     }
 
     & > tbody > tr > td {
-      background-color: var(--ck-color-suggestion-widget-insertion-background-active);
-      border-color: var(--ck-color-suggestion-marker-insertion-border-active);
+      background-color: var(--ck-suggestion-widget-insertion-active-background-color);
+      border-color: var(--ck-suggestion-marker-insertion-active-border-color);
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.table {
-  border-color: var(--ck-color-suggestion-marker-deletion-border);
+  border-color: var(--ck-suggestion-marker-deletion-border-color);
 
   & > figcaption, & > table > caption {
-    background-color: var(--ck-color-suggestion-widget-deletion-background);
+    background-color: var(--ck-suggestion-widget-deletion-background-color);
   }
 
   & > table {
     & > tbody > tr > th, & > thead > tr > th {
-      background-color: var(--ck-color-suggestion-widget-th-deletion-background);
-      border-color: var(--ck-color-suggestion-marker-deletion-border);
+      background-color: var(--ck-suggestion-widget-th-deletion-background-color);
+      border-color: var(--ck-suggestion-marker-deletion-border-color);
       text-decoration: none;
     }
 
     & > tbody > tr > td {
-      background-color: var(--ck-color-suggestion-widget-deletion-background);
-      border-color: var(--ck-color-suggestion-marker-deletion-border);
+      background-color: var(--ck-suggestion-widget-deletion-background-color);
+      border-color: var(--ck-suggestion-marker-deletion-border-color);
       text-decoration: none;
     }
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-suggestion-marker--active.table {
-  border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+  border-color: var(--ck-suggestion-marker-deletion-active-border-color);
 
   & > figcaption, & > table > caption {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
   }
 
   & > table {
     & > tbody > tr > th, & > thead > tr > th {
-      background-color: var(--ck-color-suggestion-widget-th-deletion-background-active);
-      border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+      background-color: var(--ck-suggestion-widget-th-deletion-active-background-color);
+      border-color: var(--ck-suggestion-marker-deletion-active-border-color);
     }
 
     & > tbody > tr > td {
-      background-color: var(--ck-color-suggestion-widget-deletion-background-active);
-      border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+      background-color: var(--ck-suggestion-widget-deletion-active-background-color);
+      border-color: var(--ck-suggestion-marker-deletion-active-border-color);
     }
   }
 }
 
 .ck-content .table {
   & th.ck-suggestion-marker-insertion {
-    background-color: var(--ck-color-suggestion-widget-th-insertion-background);
+    background-color: var(--ck-suggestion-widget-th-insertion-background-color);
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-th-insertion-background-active);
+      background-color: var(--ck-suggestion-widget-th-insertion-active-background-color);
     }
   }
 
   & th.ck-suggestion-marker-deletion {
-    background-color: var(--ck-color-suggestion-widget-th-deletion-background);
+    background-color: var(--ck-suggestion-widget-th-deletion-background-color);
     text-decoration: none;
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-th-deletion-background-active);
+      background-color: var(--ck-suggestion-widget-th-deletion-active-background-color);
     }
   }
 
   & td.ck-suggestion-marker-insertion {
-    background-color: var(--ck-color-suggestion-widget-insertion-background);
+    background-color: var(--ck-suggestion-widget-insertion-background-color);
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+      background-color: var(--ck-suggestion-widget-insertion-active-background-color);
     }
   }
 
   & td.ck-suggestion-marker-deletion {
-    background-color: var(--ck-color-suggestion-widget-deletion-background);
+    background-color: var(--ck-suggestion-widget-deletion-background-color);
     text-decoration: none;
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+      background-color: var(--ck-suggestion-widget-deletion-active-background-color);
     }
   }
 
   & th.ck-suggestion-marker-formatInline, & td.ck-suggestion-marker-formatInline, & th.ck-suggestion-marker-formatBlock, & td.ck-suggestion-marker-formatBlock {
-    background-color: var(--ck-color-suggestion-widget-format-background);
+    background-color: var(--ck-suggestion-widget-format-background-color);
     box-shadow: none;
 
     &.ck-suggestion-marker--active {
-      background-color: var(--ck-color-suggestion-widget-format-background-active);
+      background-color: var(--ck-suggestion-widget-format-active-background-color);
       box-shadow: none;
     }
   }
 }
 
 .ck-content pre > code.ck-suggestion-marker-formatBlock {
-  box-shadow: -7px 0 0 0 #ededed, -10px 0 0 0 var(--ck-color-suggestion-marker-format-border);
+  box-shadow: -7px 0 0 0 #ededed, -10px 0 0 0 var(--ck-suggestion-marker-format-border-color);
   display: block;
 
   &.ck-suggestion-marker--active {
-    box-shadow: -5px 0 0 0 #ededed, -8px 0 0 0 var(--ck-color-suggestion-marker-format-border-active);
+    box-shadow: -5px 0 0 0 #ededed, -8px 0 0 0 var(--ck-suggestion-marker-format-active-border-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-deletion.ck-widget.footnotes-wrapper {
-  background-color: var(--ck-color-suggestion-widget-deletion-background);
+  background-color: var(--ck-suggestion-widget-deletion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-deletion-background-active);
+    background-color: var(--ck-suggestion-widget-deletion-active-background-color);
   }
 }
 
 .ck-content .ck-suggestion-marker-insertion.ck-widget.footnotes-wrapper {
-  background-color: var(--ck-color-suggestion-widget-insertion-background);
+  background-color: var(--ck-suggestion-widget-insertion-background-color);
 
   &.ck-suggestion-marker--active {
-    background-color: var(--ck-color-suggestion-widget-insertion-background-active);
+    background-color: var(--ck-suggestion-widget-insertion-active-background-color);
   }
 }
 
 :root, :host {
-  --ck-color-comment-background: #f3f7fb;
-  --ck-color-comment-separator: #cddeef;
-  --ck-color-comment-remove-background: var(--ck-color-light-red);
-  --ck-color-comment-input-background: var(--ck-color-comment-background);
-  --ck-comment-content-font-family: var(--ck-font-face);
-  --ck-comment-content-font-size: var(--ck-font-size-base);
-  --ck-comment-content-font-color: var(--ck-color-base-text);
+  --ck-comment-background-color: #f7f9fd;
+  --ck-comment-separator-color: var(--ck-color-comment-separator, #cddeef);
+  --ck-comment-remove-background-color: var(--ck-color-comment-remove-background, var(--ck-color-light-red));
+  --ck-comment-input-background-color: var(--ck-color-surface-canvas);
+  --ck-comment-content-font-family: var(--ck-font-face, var(--ck-font-family));
+  --ck-comment-content-font-size: var(--ck-font-size-md);
+  --ck-comment-content-font-color: var(--ck-color-text);
+  --ck-comment-thread-line-size: 1px;
+  --ck-comment-border-radius: var(--ck-border-radius-surface);
 }
 
 .ck .ck-comment__wrapper {
   font-size: var(--ck-font-size-base);
+  transition: all var(--ck-transition-duration-control-emphasized) linear;
   outline: 0;
-  transition: all .3s linear;
   position: relative;
 
   @media (prefers-reduced-motion: reduce) {
@@ -5046,12 +5113,18 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &:first-of-type {
-    border-top-right-radius: var(--ck-border-radius);
-    border-top-left-radius: var(--ck-border-radius);
+    border-top-right-radius: var(--ck-comment-border-radius);
+    border-top-left-radius: var(--ck-comment-border-radius);
   }
 
-  &:focus {
-    background: var(--ck-color-button-default-hover-background);
+  &:has( + .ck-thread__comment-count) {
+    & .ck-comment {
+      &:after {
+        height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding)
+					+ var(--ck-size-control-min-height) /* Comment count button height */
+					+ 2*var(--ck-spacing-gap) /* List item margin top/bottom */);
+      }
+    }
   }
 }
 
@@ -5059,28 +5132,31 @@ div.ck.ck-ai-suggestion__content-part-state {
   &:after {
     content: "";
     opacity: 1;
-    top: calc(var(--ck-user-avatar-size) + var(--ck-spacing-small));
-    left: calc(var(--ck-spacing-standard) + ( var(--ck-user-avatar-size) / 2 )
+    left: calc(var(--ck-spacing-standard, var(--ck-spacing-base)) + ( var(--ck-user-avatar-size) / 2 )
 
 			/* Half width of line. */
-			- 2px);
-    background-color: var(--ck-color-comment-separator);
-    width: 4px;
-    height: 100%;
+			- calc(var(--ck-comment-thread-line-size) / 2)
+			/* Avatar margin size) */
+			+ 2px);
+    width: var(--ck-comment-thread-line-size);
+    background-color: var(--ck-comment-separator-color);
+    top: calc(var(--ck-user-avatar-size) + (2 * var(--ck-spacing-padding, var(--ck-spacing-sm))));
+    height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding));
+    border-radius: var(--ck-comment-border-radius);
     display: block;
     position: absolute;
   }
 }
 
 .ck .ck-comment--edit {
-  background-color: var(--ck-color-comment-input-background);
+  background-color: var(--ck-comment-input-background-color);
 
   &:after {
     opacity: 0;
   }
 
   & .ck-comment__input-actions {
-    margin-top: var(--ck-spacing-standard);
+    margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
   }
 }
 
@@ -5127,8 +5203,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck .ck-comment__main {
   & .ck-comment__input-wrapper {
+    transition: all var(--ck-transition-duration-control-emphasized) linear;
     flex-direction: column;
-    transition: all .3s linear;
     display: flex;
     position: relative;
 
@@ -5139,15 +5215,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment__user {
-  z-index: var(--ck-z-default);
+  z-index: var(--ck-z-default, var(--ck-z-base));
 }
 
 .ck-comment__input-actions .ck.ck-button.ck-comment__input-actions--submit {
-  background: var(--ck-color-base-action);
   color: #fff;
 
-  &:hover {
-    background: var(--ck-color-button-save);
+  &.ck-disabled {
+    cursor: default;
   }
 }
 
@@ -5156,10 +5231,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment__external {
-  color: var(--ck-color-annotation-info);
+  color: var(--ck-annotation-info-color);
   font-style: italic;
-  font-size: var(--ck-font-size-tiny);
-  margin-top: var(--ck-spacing-standard);
+  font-size: var(--ck-font-size-tiny, var(--ck-font-size-xs));
+  margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
 }
 
 .ck .ck-comment .ck-dropdown {
@@ -5168,11 +5243,11 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-list {
-    padding: var(--ck-spacing-small) 0;
+    padding: var(--ck-list-padding);
     margin: 0;
 
     & .ck-list__item {
-      color: var(--ck-color-base-text);
+      color: var(--ck-color-text);
       min-width: auto;
       font-size: 1.2em;
 
@@ -5184,22 +5259,28 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-color-thread-remove-background: var(--ck-color-comment-remove-background);
-  --ck-color-comment-count: #5891ca;
-  --ck-color-thread-header-background: #fdfadd;
-  --ck-color-thread-header-active-background: #fff3a8;
-  --ck-color-unlinked-background: #f5f5f5;
-  --ck-color-unlinked-active-background: #ebebeb;
+  --ck-thread-remove-background-color: var(--ck-color-thread-remove-background, var(--ck-comment-remove-background-color));
+  --ck-comment-count-color: #223047;
+  --ck-thread-header-background-color: #f3f6fd;
+  --ck-thread-header-active-background-color: var(--ck-color-interactive-selected-surface);
+  --ck-thread-unlinked-background-color: var(--ck-color-unlinked-background, #f5f5f5);
+  --ck-thread-unlinked-active-background-color: var(--ck-color-unlinked-active-background, #ebebeb);
+  --ck-comment-thread-background-color: transparent;
+  --ck-comment-thread-comments-background-color: var(--ck-color-surface-container);
+  --ck-thread-header-padding: var(--ck-spacing-padding);
+  --ck-thread-border-radius: var(--ck-border-radius-surface);
+  --ck-thread-comments-border-radius: var(--ck-border-radius-surface);
+  --ck-thread-input-border-radius: var(--ck-border-radius-control);
 }
 
 .ck .ck-thread {
-  border-radius: var(--ck-rounded-corners-radius);
+  border-radius: var(--ck-thread-border-radius);
   width: 100%;
-  color: var(--ck-color-base-text);
-  background-color: var(--ck-color-base-background);
-  outline: 0;
+  color: var(--ck-color-text);
+  background-color: var(--ck-comment-thread-background-color);
   transition-property: color, background-color, width, outline;
-  transition-duration: .3s;
+  transition-duration: var(--ck-transition-duration-control-emphasized);
+  outline: 0;
   transition-timing-function: ease;
   overflow: hidden;
 
@@ -5208,20 +5289,20 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &:focus {
-    outline: var(--ck-focus-ring);
+    outline: var(--ck-interactive-focus-ring);
     box-shadow: 0 0 0 4px var(--ck-color-focus-outer-shadow);
   }
 }
 
 .ck-balloon-panel:has(.ck-thread:focus) {
-  border: var(--ck-focus-ring);
-  box-shadow: var(--ck-drop-shadow), var(--ck-focus-outer-shadow), 0 0;
+  border: var(--ck-interactive-focus-ring);
+  box-shadow: var(--ck-shadow-surface-floating), var(--ck-interactive-focus-shadow), 0 0;
   outline: none;
 }
 
 .ck .ck-thread__header {
-  padding: var(--ck-spacing-standard);
-  background-color: var(--ck-color-thread-header-background);
+  padding: var(--ck-thread-header-padding);
+  background-color: var(--ck-thread-header-background-color);
   line-height: 1.57;
   font-size: var(--ck-font-size-base);
   justify-content: space-between;
@@ -5234,16 +5315,24 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-context-wrapper {
     width: 100%;
     min-width: 0;
-    height: 25px;
-    padding-right: var(--ck-spacing-large);
+    padding-right: var(--ck-spacing-large, var(--ck-spacing-lg));
     display: inline-flex;
     position: relative;
+
+    &:has(.ck-context--quotes.overlay) {
+      &:before {
+        content: " ";
+        padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline);
+        font-size: 16px;
+        display: block;
+      }
+    }
   }
 
   & .ck-context {
     white-space: nowrap;
     width: 100%;
-    padding: var(--ck-spacing-small) var(--ck-spacing-medium);
+    padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline);
     display: flex;
     overflow: hidden;
 
@@ -5255,66 +5344,59 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-context__type {
-      padding-right: var(--ck-spacing-standard);
+      padding-right: var(--ck-spacing-control-padding-inline);
       font-weight: bold;
     }
 
     & .ck-context__value {
       text-overflow: ellipsis;
-      border: 1px solid #0000;
       overflow: hidden;
 
       &:focus {
-        border: var(--ck-focus-ring);
-        box-shadow: var(--ck-focus-outer-shadow), 0 0;
+        border: var(--ck-interactive-focus-ring);
+        box-shadow: var(--ck-interactive-focus-shadow), 0 0;
         outline: none;
       }
     }
 
     &.overlay {
       z-index: 2;
-      background: var(--ck-color-base-background);
+      background: var(--ck-color-surface-canvas);
+      box-shadow: var(--ck-shadow-surface-floating);
+      border-radius: var(--ck-border-radius-surface);
       white-space: normal;
       box-sizing: border-box;
-      border-radius: 2px;
       display: inline-block;
       position: absolute;
       top: 0;
-      box-shadow: 0 2px 3px #fff3;
     }
   }
 }
 
 .ck .ck-thread__comment-count {
-  --ck-user-avatar-size: 28px;
-  padding-left: calc(var(--ck-user-avatar-size) + var(--ck-spacing-standard) * 2);
-  color: var(--ck-color-comment-count);
-  font-size: var(--ck-font-size-base);
+  --ck-user-avatar-size: 32px;
+  margin-left: calc(var(--ck-user-avatar-size) + var(--ck-spacing-standard, var(--ck-spacing-base)) * 2);
+  margin-top: var(--ck-spacing-gap);
+  margin-bottom: var(--ck-spacing-gap);
+  color: var(--ck-comment-count-color);
+  font-size: var(--ck-font-size-sm);
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color .3s;
-
-  &:before {
-    content: "▼";
-    margin-right: var(--ck-spacing-small);
-  }
+  transition: background-color var(--ck-transition-duration-control-emphasized) ease;
 }
 
 .ck .ck-thread--remove {
   & .ck-comment {
-    background-color: var(--ck-color-comment-remove-background);
+    background-color: var(--ck-comment-remove-background-color);
   }
 
   & .ck-thread__input--active {
-    background-color: var(--ck-color-base-background);
-
     &.ck-thread__input {
-      background-color: var(--ck-color-comment-remove-background);
+      background-color: var(--ck-comment-remove-background-color);
     }
   }
 
   & .ck-thread__comment-count {
-    background-color: var(--ck-color-comment-remove-background);
+    background-color: var(--ck-comment-remove-background-color);
   }
 
   & .ck-comment__wrapper {
@@ -5333,7 +5415,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-thread__container {
-  transition: transform .3s;
+  transition: transform var(--ck-transition-duration-control-emphasized) ease;
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
@@ -5341,8 +5423,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-thread__comments {
-  z-index: var(--ck-z-default);
-  border-radius: var(--ck-border-radius);
+  z-index: var(--ck-z-default, var(--ck-z-base));
+  border-radius: var(--ck-thread-comments-border-radius);
+  background-color: var(--ck-comment-thread-comments-background-color);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -5356,60 +5439,58 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck .ck-thread__input {
   width: calc(100% - var(--ck-user-avatar-size));
   white-space: normal;
-  border-radius: var(--ck-border-radius);
+  transition: background-color var(--ck-transition-duration-control) ease-in-out;
+  border-radius: var(--ck-thread-input-border-radius);
   min-height: 38px;
-  transition: background-color .2s ease-in-out;
 }
 
 .ck .ck-thread--active {
-  & .ck-comment__options.ck-dropdown {
-    display: block;
-  }
-
-  & .ck-thread__input {
-    background-color: var(--ck-color-comment-background);
+  & .ck-comment__options.ck-dropdown, & .ck-thread__input {
     display: block;
   }
 
   & .ck-thread__header {
-    background-color: var(--ck-color-thread-header-active-background);
+    background-color: var(--ck-thread-header-active-background-color);
   }
 }
 
 .ck .ck-thread--unlinked {
-  --ck-color-comment-box-border: var(--ck-color-base-border);
-  --ck-color-thread-header-background: var(--ck-color-unlinked-background);
-  --ck-color-thread-header-active-background: var(--ck-color-unlinked-active-background);
+  --ck-comment-box-border-color: var(--ck-color-comment-box-border, var(--ck-color-base-border));
+  --ck-thread-header-background-color: var(--ck-thread-unlinked-background-color);
+  --ck-thread-header-active-background-color: var(--ck-thread-unlinked-active-background-color);
 }
 
 .ck.ck-button.ck-confirm-view-submit {
-  color: var(--ck-color-button-save);
+  color: var(--ck-button-save-color);
 }
 
 .ck.ck-button.ck-confirm-view-cancel {
-  color: var(--ck-color-button-cancel);
+  color: var(--ck-button-cancel-color);
+}
+
+:root, :host {
+  --ck-comment-input-padding: var(--ck-spacing-padding) var(--ck-spacing-padding);
 }
 
 .ck .ck-comment__input-container {
-  --ck-user-avatar-size: 28px;
+  --ck-user-avatar-size: 32px;
   font-size: var(--ck-font-size-base);
-  padding: var(--ck-spacing-standard);
-  background: var(--ck-color-comment-background);
+  padding: var(--ck-comment-input-padding);
   display: none;
 }
 
 .ck .ck-comment__input-container--active {
+  align-items: baseline;
   display: flex;
 }
 
 .ck .ck-comment__input {
-  padding: var(--ck-spacing-standard);
-  padding-top: var(--ck-spacing-medium);
-  color: var(--ck-color-base-text);
+  padding: var(--ck-comment-input-padding);
+  color: var(--ck-color-text);
   resize: none;
+  transition: color var(--ck-transition-duration-control-emphasized) ease-in-out;
   background-color: #0000;
   border-width: 0;
-  transition: color .3s ease-in-out;
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
@@ -5422,6 +5503,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-editor__editable_inline {
     --ck-focus-ring: none;
     --ck-inner-shadow: none;
+    --ck-inset-shadow-sm: none;
     font-family: var(--ck-comment-content-font-family);
     font-size: var(--ck-comment-content-font-size);
     color: var(--ck-comment-content-font-color);
@@ -5453,18 +5535,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck.ck-button {
     cursor: pointer;
-    min-height: var(--ck-ui-component-min-height);
+    min-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
     min-width: 60px;
     font-size: var(--ck-annotation-button-size);
-    margin-left: var(--ck-spacing-large);
-    padding: 0 var(--ck-spacing-medium);
+    margin-left: var(--ck-spacing-large, var(--ck-spacing-lg));
+    padding: 0 var(--ck-spacing-control-padding-inline);
     justify-content: center;
     align-items: center;
     display: inline-flex;
-  }
-
-  & .ck-button.ck-disabled {
-    opacity: .3;
   }
 }
 
@@ -5473,7 +5551,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-inline-annotation-container-width: 300px;
+  --ck-inline-annotation-container-width: var(--ck-width-sm);
   --ck-inline-annotation-container-max-height: 400px;
 }
 
@@ -5501,13 +5579,17 @@ div.ck.ck-ai-suggestion__content-part-state {
   font-style: italic;
 }
 
+.ck.ck-balloon-panel .ck-annotation-wrapper .ck-suggestion-type {
+  vertical-align: baseline;
+}
+
 :root, :host {
   --ck-annotation-counter-icon-size: 16px;
   --ck-annotation-counter-number-size: 10px;
-  --ck-color-annotation-counter-comment: #f2de02;
-  --ck-color-annotation-counter-suggestion-insertion: #5ad86b;
-  --ck-color-annotation-counter-suggestion-deletion: #d85a79;
-  --ck-color-annotation-counter-suggestion-format: #5ac1d8;
+  --ck-annotation-counter-comment-color: #fcbf49;
+  --ck-annotation-counter-suggestion-insertion-color: #499167;
+  --ck-annotation-counter-suggestion-deletion-color: #ca3c25;
+  --ck-annotation-counter-suggestion-format-color: var(--ck-color-base-active);
 }
 
 .ck.ck-sidebar--narrow .ck-sidebar-item {
@@ -5535,7 +5617,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   height: 16px;
   font-weight: bold;
   font-size: var(--ck-annotation-counter-number-size);
-  font-family: var(--ck-font-face);
+  font-family: var(--ck-font-face, var(--ck-font-family));
   text-shadow: -1px 0 2px #454545, 1px 0 2px #454545;
   z-index: 1;
   background: #333;
@@ -5553,34 +5635,39 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-sidebar--narrow .ck-annotation-counter__badge--suggestion-insertion, .ck.ck-sidebar--narrow .ck-annotation-counter__badge--suggestion-replace {
-  background: var(--ck-color-annotation-counter-suggestion-insertion);
+  background: var(--ck-annotation-counter-suggestion-insertion-color);
 }
 
 .ck.ck-sidebar--narrow .ck-annotation-counter__badge--suggestion-deletion {
-  background: var(--ck-color-annotation-counter-suggestion-deletion);
+  background: var(--ck-annotation-counter-suggestion-deletion-color);
 }
 
 .ck.ck-sidebar--narrow .ck-annotation-counter__badge--suggestion-format {
-  background: var(--ck-color-annotation-counter-suggestion-format);
+  background: var(--ck-annotation-counter-suggestion-format-color);
 }
 
 .ck.ck-sidebar--narrow .ck-annotation-counter__badge--comment {
-  background: var(--ck-color-annotation-counter-comment);
+  background: var(--ck-annotation-counter-comment-color);
 }
 
 :root, :host {
-  --ck-color-annotation-icon: gray;
-  --ck-color-annotation-info: #757575;
+  --ck-annotation-icon-color: var(--ck-color-text);
+  --ck-annotation-info-color: var(--ck-color-base-text);
   --ck-annotation-button-size: .85em;
+  --ck-annotation-dropdown-button-size: 14px;
+  --ck-annotation-padding: var(--ck-spacing-padding) var(--ck-spacing-padding);
+  --ck-annotation-content-wrapper-padding-inline-end: var(--ck-spacing-padding);
+  --ck-annotation-main-border-radius: var(--ck-border-radius-surface);
+  --ck-annotation-button-border-radius: var(--ck-border-radius-control);
 }
 
 .ck .ck-annotation {
-  --ck-user-avatar-size: 28px;
+  --ck-user-avatar-size: 32px;
   font-size: var(--ck-font-size-base);
-  padding: var(--ck-spacing-standard);
+  animation: annotationFadeInLeft var(--ck-animation-duration-surface-entrance);
+  transition: background-color var(--ck-transition-duration-control-emphasized) ease;
+  padding: var(--ck-annotation-padding);
   white-space: normal;
-  transition: background-color .3s;
-  animation: .3s annotationFadeInLeft;
   display: flex;
   position: relative;
 
@@ -5593,25 +5680,33 @@ div.ck.ck-ai-suggestion__content-part-state {
     min-width: unset;
     min-height: unset;
     cursor: pointer;
-    color: var(--ck-color-annotation-icon);
-    border-radius: var(--ck-border-radius);
-    font-size: var(--ck-annotation-button-size);
-    background-color: #0000;
+    color: var(--ck-annotation-icon-color);
+    border-radius: var(--ck-annotation-button-border-radius);
   }
 
   & .ck-user {
-    font-size: .85em;
+    font-size: 12px;
+  }
+
+  & .ck-dropdown .ck-list {
+    & > .ck-list__item:has( > .ck-hidden) {
+      display: none;
+    }
+
+    & .ck-button {
+      font-size: var(--ck-annotation-dropdown-button-size);
+    }
   }
 }
 
 .ck .ck-annotation__main {
   width: calc(100% - var(--ck-user-avatar-size));
-  border-radius: var(--ck-border-radius);
-  padding-left: var(--ck-spacing-standard);
+  transition: all var(--ck-transition-duration-control) ease;
+  border-radius: var(--ck-annotation-main-border-radius);
+  padding-left: var(--ck-spacing-padding);
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas: "info actions"
                        "content content";
-  transition: all .2s;
   display: grid;
 
   @media (prefers-reduced-motion: reduce) {
@@ -5624,34 +5719,40 @@ div.ck.ck-ai-suggestion__content-part-state {
   font-size: var(--ck-comment-content-font-size);
   margin: 0;
   line-height: 1.5em;
+
+  & .ck-suggestion-type {
+    font-size: var(--ck-comment-content-font-size);
+    line-height: 1.5em;
+  }
 }
 
 .ck .ck-annotation__user {
-  margin-top: var(--ck-spacing-small);
+  margin-top: var(--ck-spacing-gap-compact);
 }
 
 .ck .ck-annotation__info {
-  color: var(--ck-color-annotation-info);
-  grid-area: info;
-  align-items: center;
+  color: var(--ck-annotation-info-color);
   min-height: 2.4em;
+  margin-bottom: var(--ck-spacing-gap);
+  flex-direction: column;
+  grid-area: info;
   display: flex;
 }
 
 .ck .ck-annotation__info-name, .ck .ck-annotation__info-time {
   white-space: nowrap;
-  color: var(--ck-color-annotation-info);
-  font-weight: bold;
-  font-size: var(--ck-font-size-small);
+  color: var(--ck-annotation-info-color);
+  font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
   overflow: hidden;
 }
 
 .ck .ck-annotation__info-name {
+  font-weight: 500;
+  font-size: var(--ck-font-size-control);
   text-overflow: ellipsis;
 }
 
 .ck .ck-annotation__info-time {
-  margin: 0 var(--ck-spacing-large);
   flex: none;
 }
 
@@ -5660,18 +5761,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-annotation__actions {
-  opacity: .5;
   grid-area: actions;
-  transition: opacity .2s;
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
+  align-items: flex-start;
+  display: flex;
 }
 
 .ck .ck-annotation__content-wrapper {
-  grid-area: content;
   width: 100%;
+  grid-area: content;
+  padding-inline-end: var(--ck-annotation-content-wrapper-padding-inline-end);
 }
 
 @keyframes annotationFadeInLeft {
@@ -5687,8 +5785,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-color-annotation-wrapper-background: #fff;
-  --ck-color-annotation-wrapper-drop-shadow: 0 1px 1px 1px #e6e6e6;
+  --ck-annotation-wrapper-background-color: var(--ck-color-annotation-wrapper-background, #fff);
+  --ck-annotation-wrapper-shadow: var(--ck-color-annotation-wrapper-drop-shadow, 0 1px 1px 1px #e6e6e6);
+  --ck-annotation-wrapper-border-radius: var(--ck-border-radius-surface);
 }
 
 .ck.ck-sidebar {
@@ -5703,7 +5802,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-sidebar-item {
   width: 100%;
-  transition: top .3s, box-shadow .3s;
+  transition: top var(--ck-transition-duration-control-emphasized) ease, box-shadow var(--ck-transition-duration-control-emphasized) ease;
   position: absolute;
 
   @media (prefers-reduced-motion: reduce) {
@@ -5716,9 +5815,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-annotation-wrapper {
-  border-radius: var(--ck-border-radius);
-  background: var(--ck-color-annotation-wrapper-background);
-  box-shadow: var(--ck-color-annotation-wrapper-drop-shadow);
+  border-radius: var(--ck-annotation-wrapper-border-radius);
+  background: var(--ck-annotation-wrapper-background-color);
+  border: var(--ck-border-surface);
   outline: 0;
 }
 
@@ -5727,25 +5826,22 @@ div.ck.ck-ai-suggestion__content-part-state {
     opacity: 1;
 
     & .ck-comment--resolve {
-      color: var(--ck-color-button-save);
+      color: var(--ck-button-save-color);
     }
   }
 
   & .ck-suggestion--accept {
-    color: var(--ck-color-button-save);
+    color: var(--ck-button-save-color);
   }
 
   & .ck-suggestion--discard {
-    color: var(--ck-color-button-cancel);
+    color: var(--ck-button-cancel-color);
   }
 }
 
-.ck.ck-annotation-wrapper:not(.ck-annotation-wrapper--active):hover {
-  box-shadow: var(--ck-drop-shadow);
-}
-
-.ck.ck-annotation-wrapper--active {
-  box-shadow: var(--ck-drop-shadow-active);
+:root, :host {
+  --ck-comments-archive-width: var(--ck-width-dialog);
+  --ck-comments-archive-info-font-size: var(--ck-font-size-md);
 }
 
 .ck .ck-comments-archive-dropdown {
@@ -5755,8 +5851,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comments-archive {
+  width: var(--ck-comments-archive-width);
   box-sizing: content-box;
-  width: 400px;
   max-height: 450px;
 
   & .ck-annotation {
@@ -5765,64 +5861,65 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-comments-archive__header, & .ck-comments-archive__content {
     max-height: 410px;
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-padding-comfortable);
     overflow: auto;
   }
 
   & .ck-comments-archive__header {
     max-height: 40px;
     line-height: var(--ck-font-size-base);
-    border-bottom: 1px solid var(--ck-color-toolbar-border);
+    border-bottom: var(--ck-border-divider);
     font-weight: bold;
   }
 
   & .ck-comments-archive__content {
     & .ck-annotation-wrapper:not(:last-child) {
-      margin-bottom: var(--ck-spacing-large);
+      margin-bottom: var(--ck-spacing-gap-comfortable);
     }
   }
 
   & .ck-comments-archive__info {
     text-align: center;
-    color: var(--ck-color-annotation-info);
     font-style: italic;
+    font-size: var(--ck-comments-archive-info-font-size);
+    color: var(--ck-annotation-info-color);
   }
 }
 
 :root, :host {
-  --ck-color-comment-marker: #fef7a9;
-  --ck-color-comment-marker-active: #fdf05d;
+  --ck-comment-marker-color: #fdecc3;
+  --ck-comment-marker-active-color: #fbd988;
 }
 
 .ck-content .ck-comment-marker {
-  background: var(--ck-color-comment-marker);
+  background: var(--ck-comment-marker-color);
   border-top: 3px solid #0000;
   border-bottom: 3px solid #0000;
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-comment-marker);
+    border: 3px solid var(--ck-comment-marker-color);
     background-color: #0000;
   }
 }
 
 .ck-content .ck-comment-marker--active {
-  background: var(--ck-color-comment-marker-active);
+  background: var(--ck-comment-marker-active-color);
 
   & .ck-comment-marker {
-    background: var(--ck-color-comment-marker-active);
+    background: var(--ck-comment-marker-active-color);
   }
 
   &.ck-widget {
-    border-color: var(--ck-color-comment-marker-active);
+    border-color: var(--ck-comment-marker-active-color);
 
     & .ck-comment-marker {
-      background-color: var(--ck-color-comment-marker);
+      background-color: var(--ck-comment-marker-color);
     }
   }
 }
 
 :root, :host {
-  --ck-document-outline-padding: var(--ck-spacing-large);
+  --ck-document-outline-padding: var(--ck-spacing-padding-comfortable);
   --ck-document-outline-base-font-size: .875em;
   --ck-document-outline-placeholder-color: var(--ck-color-engine-placeholder-text);
   --ck-document-outline-indent-level-1: 0;
@@ -5831,10 +5928,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-document-outline-indent-level-4: 4.5em;
   --ck-document-outline-indent-level-5: 6em;
   --ck-document-outline-indent-level-6: 7.5em;
-  --ck-document-outline-item-padding: var(--ck-spacing-small);
+  --ck-document-outline-item-padding: var(--ck-spacing-control-padding-block);
   --ck-document-outline-item-active-color: var(--ck-color-base-active);
   --ck-document-outline-item-default-color: #424242;
-  --ck-document-outline-item-hover-state-color: var(--ck-color-base-text);
+  --ck-document-outline-item-hover-state-color: var(--ck-color-text);
 }
 
 .ck.ck-document-outline {
@@ -5929,8 +6026,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-table-of-contents-border-color: var(--ck-color-base-border);
-  --ck-table-of-contents-label-background-color: #757575;
+  --ck-table-of-contents-border-color: var(--ck-color-border-container);
+  --ck-table-of-contents-label-background-color: var(--ck-color-base-text-light);
   --ck-table-of-contents-background-color: var(--ck-color-base-foreground);
 }
 
@@ -5947,10 +6044,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &[data-table-of-contents-label]:after {
     content: attr(data-table-of-contents-label);
-    padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+    padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
     background-color: var(--ck-table-of-contents-label-background-color);
+    border-radius: var(--ck-widget-label-border-radius);
     font-size: 10px;
-    font-family: var(--ck-font-face);
+    font-family: var(--ck-font-face, var(--ck-font-family));
     color: #fff;
     white-space: nowrap;
     line-height: 16px;
@@ -6009,7 +6107,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-footnotes-widget-label-background-color: #757575;
+  --ck-footnotes-widget-label-background-color: var(--ck-color-base-text-light);
 }
 
 .ck.ck-editor__editable {
@@ -6019,15 +6117,16 @@ div.ck.ck-ai-suggestion__content-part-state {
     position: relative;
 
     &:not(:hover):not(.ck-widget_selected) {
-      outline: 1px solid var(--ck-color-base-border);
+      outline: 1px solid var(--ck-color-border-container);
     }
 
     &[data-footnotes-list-label]:after {
       content: attr(data-footnotes-list-label);
-      padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+      padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
       background-color: var(--ck-footnotes-widget-label-background-color);
+      border-radius: var(--ck-widget-label-border-radius);
       font-size: 10px;
-      font-family: var(--ck-font-face);
+      font-family: var(--ck-font-face, var(--ck-font-family));
       color: #fff;
       white-space: nowrap;
       line-height: 16px;
@@ -6058,9 +6157,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck.ck-footnotes-definitions-properties {
   & > .ck-footnotes-definitions-styles-list {
-    row-gap: var(--ck-spacing-medium);
-    column-gap: var(--ck-spacing-medium);
-    padding: var(--ck-spacing-large);
+    row-gap: var(--ck-spacing-gap);
+    column-gap: var(--ck-spacing-gap);
+    padding: var(--ck-list-styles-list-padding);
     grid-template-columns: repeat(4, auto);
     display: grid;
 
@@ -6079,7 +6178,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & > .ck-collapsible {
-    border-top: 1px solid var(--ck-color-base-border);
+    border-top: 1px solid var(--ck-color-divider);
 
     & .ck-footnotes-definitions-properties__start-index .ck-input {
       min-width: 100%;
@@ -6229,13 +6328,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck.ck-multi-level-list-properties {
   &.ck-multi-level-list-properties_without-styles {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-list-styles-list-padding);
 
     & > * {
       min-width: 14em;
 
       & + * {
-        margin-top: var(--ck-spacing-standard);
+        margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
       }
     }
   }
@@ -6246,14 +6345,14 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > .ck-collapsible {
-      border-top: 1px solid var(--ck-color-base-border);
+      border-top: 1px solid var(--ck-color-divider);
 
       & > .ck-collapsible__children {
         & > * {
           width: 100%;
 
           & + * {
-            margin-top: var(--ck-spacing-standard);
+            margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
           }
         }
       }
@@ -6348,7 +6447,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-merge-fields-icon-size: calc(var(--ck-line-height-base) * var(--ck-font-size-normal) * .55);
+  --ck-merge-fields-icon-size: calc(var(--ck-line-height-base) * var(--ck-font-size-normal, var(--ck-font-size-base)) * .55);
   --ck-merge-fields-paddings-vertical: 2px;
   --ck-color-merge-fields-form-error-background: #fff4f0;
   --ck-color-merge-fields-outline: #3779eb;
@@ -6482,8 +6581,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     &:before {
       z-index: 1;
-      top: var(--ck-spacing-small);
-      left: var(--ck-spacing-small);
+      top: var(--ck-spacing-small, var(--ck-spacing-sm));
+      left: var(--ck-spacing-small, var(--ck-spacing-sm));
       background-color: #fff;
       border-radius: 2px;
       padding: 2px 2px 2.5px;
@@ -6512,7 +6611,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &[dir="rtl"]:before {
     left: auto;
-    right: var(--ck-spacing-medium);
+    right: var(--ck-spacing-medium, var(--ck-spacing-md));
   }
 }
 
@@ -6562,8 +6661,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   &.ck-merge-field-image_with-warning_default-value-used, &.ck-merge-field-image_with-value {
     &:before {
       z-index: 1;
-      top: var(--ck-spacing-small);
-      left: var(--ck-spacing-small);
+      top: var(--ck-spacing-small, var(--ck-spacing-sm));
+      left: var(--ck-spacing-small, var(--ck-spacing-sm));
       background-color: #fff;
       border-radius: 2px;
       max-width: -webkit-fill-available;
@@ -6608,11 +6707,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-merge-fields-form {
-  padding: var(--ck-spacing-medium);
+  padding: var(--ck-spacing-medium, var(--ck-spacing-md));
 
   & .ck-merge-fields-form__status {
-    padding: var(--ck-spacing-medium);
-    color: var(--ck-color-base-text);
+    padding: var(--ck-spacing-medium, var(--ck-spacing-md));
+    color: var(--ck-color-text);
     background-color: var(--ck-color-merge-fields-form-error-background);
     border-radius: 2px;
     justify-content: center;
@@ -6653,7 +6752,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-insert-merge-field-dropdown-view-width: 250px;
+  --ck-insert-merge-field-dropdown-view-width: 260px;
   --ck-insert-merge-field-dropdown-view-list-max-height: 250px;
 }
 
@@ -6671,7 +6770,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   width: var(--ck-insert-merge-field-dropdown-view-width);
 
   & > .ck-labeled-field-view {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-spacing-padding-comfortable);
 
     & .ck-input {
       min-width: unset;
@@ -6679,7 +6778,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & > .ck-search__results {
-    border-top: 1px solid var(--ck-color-base-border);
+    border-top: 1px solid var(--ck-color-divider);
 
     & > .ck-list {
       max-height: var(--ck-insert-merge-field-dropdown-view-list-max-height);
@@ -6787,13 +6886,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-page-navigator {
-  padding: 0 var(--ck-spacing-standard);
+  padding: 0 var(--ck-spacing-control-padding-inline);
   font-variant-numeric: tabular-nums;
   line-height: 1;
 
   & > .ck-input-number {
-    width: calc(4ch + 2 * var(--ck-spacing-medium) + 2px);
-    min-width: calc(4ch + 2 * var(--ck-spacing-medium) + 2px);
+    width: calc(4ch + 2 * var(--ck-spacing-padding-compact) + 2px);
+    min-width: calc(4ch + 2 * var(--ck-spacing-padding-compact) + 2px);
     text-align: center;
     -moz-appearance: textfield;
     background: none;
@@ -6805,17 +6904,17 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     &:not(:focus) {
       border: 1px solid #0000;
-      border-bottom: 1px solid var(--ck-color-base-border);
+      border-bottom: 1px solid var(--ck-color-border-control);
     }
   }
 
   & > span {
-    min-width: calc(2 * var(--ck-spacing-standard) + 5ch);
+    min-width: calc(2 * var(--ck-spacing-standard, var(--ck-spacing-base)) + 5ch);
     display: inline-block;
 
     &:before {
       content: "/";
-      margin: 0 var(--ck-spacing-standard);
+      margin: 0 var(--ck-spacing-standard, var(--ck-spacing-base));
     }
   }
 }
@@ -6828,10 +6927,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &:after {
     content: attr(data-page-number);
-    color: var(--ck-color-base-background);
+    color: var(--ck-color-text-inverse);
     text-align: center;
     min-width: 18px;
-    padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+    padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
     background: #c4c4c4;
     font-size: 10px;
     display: inline-block;
@@ -6855,17 +6954,17 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-user__marker-tooltip {
-  font-family: var(--ck-font-face);
+  font-family: var(--ck-font-face, var(--ck-font-family));
   font-size: var(--ck-font-size-base);
   line-height: 1;
   font-style: initial;
   font-weight: initial;
   opacity: 0;
-  padding: var(--ck-spacing-small);
+  padding: var(--ck-spacing-small, var(--ck-spacing-sm));
   color: #fff;
   white-space: nowrap;
+  transition: opacity var(--ck-transition-duration-control) linear, transform var(--ck-duration-slow) ease-in-out;
   z-index: 99999;
-  transition: opacity .2s linear, transform .3s ease-in-out;
   display: none;
   position: absolute;
   top: -20px;
@@ -6896,7 +6995,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-user__marker-tooltip {
     opacity: 1;
-    animation: .3s ease-in-out userMarkersFadeInLeft;
+    animation: userMarkersFadeInLeft var(--ck-duration-slow) ease-in-out;
     display: block;
   }
 }
@@ -6934,13 +7033,18 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-presence-list-dropdown-list-min-width: 180px;
   --ck-presence-list-users-tooltip-max-width: 120px;
   --ck-presence-list-users-tooltip-min-width: 25px;
+  --ck-presence-list-dropdown-avatar-size: 32px;
+  --ck-presence-list-dropdown-list-item-padding: var(--ck-spacing-padding-compact);
+  --ck-presence-list-dropdown-list-item-border-radius: var(--ck-border-radius-control);
+  --ck-presence-list-dropdown-user-name-font-size: var(--ck-font-size-md);
+  --ck-presence-list-focus-border-radius: var(--ck-border-radius-control);
 }
 
 .ck.ck-presence-list {
-  margin-right: var(--ck-spacing-standard);
+  margin-right: var(--ck-spacing-standard, var(--ck-spacing-base));
+  transition: margin-right var(--ck-transition-duration-control) ease-in-out;
   font-size: var(--ck-font-size-base);
   align-items: center;
-  transition: margin-right .2s ease-in-out;
   display: inline-flex;
 
   & * {
@@ -6972,7 +7076,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-presence-list__list-item {
   font: inherit;
   color: inherit;
-  margin-left: var(--ck-spacing-medium);
+  margin-left: var(--ck-spacing-medium, var(--ck-spacing-md));
   background: none;
   border: 1px solid #0000;
   outline: none;
@@ -6980,9 +7084,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   position: relative;
 
   &:focus {
-    border-radius: var(--ck-rounded-corners-radius);
-    border: var(--ck-focus-ring);
-    box-shadow: var(--ck-focus-outer-shadow), 0 0;
+    border-radius: var(--ck-presence-list-focus-border-radius);
+    border: var(--ck-interactive-focus-ring);
+    box-shadow: var(--ck-interactive-focus-shadow), 0 0;
     outline: none;
   }
 
@@ -7009,6 +7113,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__marker {
+  border-radius: 4px;
   width: 100%;
   height: 3px;
   margin-top: 5px;
@@ -7028,13 +7133,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     & * {
       cursor: pointer;
-      transition: all .4s ease-in-out;
+      transition: all var(--ck-transition-duration-surface) ease-in-out;
     }
 
     &:focus {
-      border-radius: var(--ck-rounded-corners-radius);
-      border: var(--ck-focus-ring);
-      box-shadow: var(--ck-focus-outer-shadow), 0 0;
+      border-radius: var(--ck-presence-list-focus-border-radius);
+      border: var(--ck-interactive-focus-ring);
+      box-shadow: var(--ck-interactive-focus-shadow), 0 0;
       outline: none;
     }
   }
@@ -7067,12 +7172,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__balloon {
-  --ck-color-panel-border: var(--ck-color-presence-list-dropdown-arrow-border);
-  --ck-color-panel-background: var(--ck-color-presence-list-dropdown-background);
+  --ck-balloon-panel-border-color: var(--ck-color-presence-list-dropdown-arrow-border);
+  --ck-balloon-panel-background-color: var(--ck-color-presence-list-dropdown-background);
   background-color: var(--ck-color-presence-list-dropdown-background);
   opacity: 1;
+  animation: var(--ck-duration-slow) fadeIn ease-in-out;
   border: 0;
-  animation: .3s ease-in-out fadeIn;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -7085,7 +7190,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck.ck-presence-list__dropdown-list-wrapper {
     min-width: var(--ck-presence-list-dropdown-list-min-width);
     max-width: var(--ck-presence-list-dropdown-list-max-width);
-    border-radius: var(--ck-border-radius);
+    border-radius: var(--ck-border-radius-control);
 
     &.ck-presence-list__dropdown-list-wrapper_scrollable {
       max-height: 80vh;
@@ -7096,7 +7201,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck.ck-presence-list__dropdown-list-item {
     font: inherit;
     color: inherit;
-    padding: var(--ck-spacing-standard);
+    padding: var(--ck-presence-list-dropdown-list-item-padding);
+    border-radius: var(--ck-presence-list-dropdown-list-item-border-radius);
+    --ck-user-avatar-size: var(--ck-presence-list-dropdown-avatar-size);
     background: none;
     border: 0;
     outline: none;
@@ -7106,21 +7213,21 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     &:focus {
       z-index: 1;
-      outline: var(--ck-focus-ring);
+      outline: var(--ck-interactive-focus-ring);
       outline-offset: -1px;
-      box-shadow: var(--ck-focus-outer-shadow), 0 0;
+      box-shadow: var(--ck-interactive-focus-shadow), 0 0;
       position: relative;
     }
 
     &:first-of-type {
       & .ck-presence-list__marker {
-        border-top-left-radius: var(--ck-border-radius);
+        border-top-left-radius: var(--ck-border-radius-control);
       }
     }
 
     &:last-of-type {
       & .ck-presence-list__marker {
-        border-bottom-left-radius: var(--ck-border-radius);
+        border-bottom-left-radius: var(--ck-border-radius-control);
       }
     }
   }
@@ -7129,8 +7236,9 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck-user__full-name {
       white-space: nowrap;
       text-overflow: ellipsis;
-      color: var(--ck-color-base-text);
-      margin-left: var(--ck-spacing-standard);
+      color: var(--ck-color-text);
+      font-size: var(--ck-presence-list-dropdown-user-name-font-size);
+      margin-left: var(--ck-spacing-standard, var(--ck-spacing-base));
       overflow: hidden;
     }
 
@@ -7145,8 +7253,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__users-counter {
-  --ck-presence-list-counter-border-color: var(--ck-user-avatar-background);
-  --ck-presence-list-counter-background-color: var(--ck-user-avatar-color);
+  --ck-presence-list-counter-border-color: var(--ck-user-avatar-background-color);
+  --ck-presence-list-counter-background-color: var(--ck-user-avatar-text-color);
   border: 2px solid var(--ck-presence-list-counter-border-color);
   background-color: var(--ck-presence-list-counter-background-color);
   box-sizing: border-box;
@@ -7162,7 +7270,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__users-counter__text {
-  --ck-presence-list-counter-text-color: var(--ck-user-avatar-background);
+  --ck-presence-list-counter-text-color: var(--ck-user-avatar-background-color);
   color: var(--ck-presence-list-counter-text-color);
   cursor: default;
   -webkit-user-select: none;
@@ -7179,12 +7287,12 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
-.ck {
-  --ck-revision-history-loading-overlay-transition-duration: .2s;
+:root, :host {
+  --ck-revision-history-loading-overlay-transition-duration: var(--ck-transition-duration-control);
   --ck-revision-history-loading-overlay-transition-delay: 0s;
   --ck-revision-history-loading-overlay-spinner-rotation-duration: 1s;
   --ck-revision-history-loading-overlay-spinner-size: 60px;
-  --ck-revision-history-loading-overlay-visible-background: #fff;
+  --ck-revision-history-loading-overlay-visible-background-color: var(--ck-revision-history-loading-overlay-visible-background, #fff);
 }
 
 .ck.ck-editor__editable {
@@ -7202,10 +7310,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &:before {
-    background: var(--ck-revision-history-loading-overlay-visible-background);
+    background: var(--ck-revision-history-loading-overlay-visible-background-color);
     width: 100%;
     height: 100%;
-    z-index: var(--ck-z-default);
+    z-index: var(--ck-z-default, var(--ck-z-base));
     top: 0;
     left: 0;
   }
@@ -7214,17 +7322,17 @@ div.ck.ck-ai-suggestion__content-part-state {
     box-sizing: border-box;
     width: var(--ck-revision-history-loading-overlay-spinner-size);
     height: var(--ck-revision-history-loading-overlay-spinner-size);
-    border-top: 3px solid var(--ck-color-base-text);
-    z-index: var(--ck-z-default);
+    border-radius: var(--ck-radius-full);
+    border-top: 3px solid var(--ck-color-text);
+    z-index: var(--ck-z-default, var(--ck-z-base));
     border-right: 3px solid #0000;
-    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
   &.ck-editor__editable__loading-overlay, &.ck-editor__editable__overlay {
-    min-height: calc(var(--ck-revision-history-loading-overlay-spinner-size) + 2 * var(--ck-spacing-large));
+    min-height: calc(var(--ck-revision-history-loading-overlay-spinner-size) + 2 * var(--ck-spacing-large, var(--ck-spacing-lg)));
     position: relative;
 
     &:before, &:after {
@@ -7257,9 +7365,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-revision-history-save-revision-form {
+  width: 400px;
+  padding: var(--ck-dialog-content-padding);
   flex-flow: row;
   align-items: flex-start;
-  width: 400px;
   display: flex;
 
   & .ck-labeled-field-view {
@@ -7276,7 +7385,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-revision-history-sidebar__revision-name {
-  left: calc(-1 * var(--ck-spacing-small));
+  left: calc(-1 * var(--ck-spacing-small, var(--ck-spacing-sm)));
   margin-right: 30px;
   font-size: 1.2em;
   font-weight: bold;
@@ -7289,16 +7398,16 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > .ck-input {
-      padding: var(--ck-spacing-tiny) var(--ck-spacing-small);
+      padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline-compact);
       min-height: auto;
       color: inherit;
       font-family: inherit;
       font-weight: bold;
-      font-size: var(--ck-font-size-normal);
-      border-radius: var(--ck-border-radius);
+      font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
+      border-radius: var(--ck-border-radius-control);
       width: 100%;
       min-width: auto;
-      transition: var(--ck-revision-history-revision-transitions);
+      transition: var(--ck-revision-history-revision-transition);
       text-overflow: ellipsis;
       background: none;
 
@@ -7326,7 +7435,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-revision-history-sidebar__revision-author {
-  transition: var(--ck-revision-history-revision-transitions);
+  transition: var(--ck-revision-history-revision-transition);
   display: block;
   position: relative;
 
@@ -7339,16 +7448,18 @@ div.ck.ck-ai-suggestion__content-part-state {
     white-space: nowrap;
     width: 100%;
     font-weight: bold;
+    font-size: var(--ck-revision-history-revision-author-font-size);
+    color: var(--ck-revision-history-revision-author-text-color);
     display: block;
     overflow: hidden;
   }
 
   & .ck-icon {
     left: calc(-1 * var(--ck-revision-history-revision-author-icon-offset));
+    top: calc(var(--ck-revision-history-revision-author-font-size)/2);
     width: 11px;
     height: 10px;
     position: absolute;
-    top: 3px;
   }
 
   &:not(:first-of-type) .ck-icon {
@@ -7359,8 +7470,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck {
   &.ck-revision-history-sidebar__revision {
     & .ck-revision-history-sidebar__revision__actions {
-      top: var(--ck-spacing-small);
-      right: var(--ck-spacing-small);
+      top: var(--ck-revision-history-revision-padding-block);
+      right: var(--ck-revision-history-revision-padding-inline);
       display: none;
       position: absolute;
 
@@ -7378,21 +7489,18 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & .ck-list__item__danger {
-        color: var(--ck-color-button-cancel);
+        color: var(--ck-button-cancel-color);
       }
     }
 
     &.ck-revision-history-sidebar__revision_selected {
       & .ck-revision-history-sidebar__revision__actions {
         & .ck-dropdown__button {
-          color: var(--ck-color-base-background);
+          color: var(--ck-revision-history-revision-selected-input-text-color);
 
           &:hover, &.ck-on {
-            background: var(--ck-color-base-active-focus);
-
-            &:hover {
-              filter: brightness(95%);
-            }
+            background: var(--ck-button-hover-background);
+            color: initial;
           }
         }
       }
@@ -7402,7 +7510,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       & .ck-revision-history-sidebar__revision__actions {
         & .ck-dropdown__button {
           &:hover, &.ck-on {
-            background: var(--ck-revision-history-revision-highlighted-background-color-hover);
+            background: var(--ck-revision-history-revision-highlighted-hover-background-color);
 
             &:hover {
               filter: brightness(95%);
@@ -7418,30 +7526,43 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
-.ck {
-  --ck-revision-history-revision-background-color: var(--ck-color-base-background);
+:root, :host {
+  --ck-revision-history-revision-background-color: var(--ck-color-surface-container);
+  --ck-revision-history-revision-padding-inline: var(--ck-spacing-padding-comfortable);
+  --ck-revision-history-revision-padding-block: var(--ck-spacing-large, var(--ck-spacing-lg));
+  --ck-revision-history-revision-padding: var(--ck-spacing-padding-comfortable);
   --ck-revision-history-revision-border-color: #47576b;
-  --ck-revision-history-revision-box-shadow: 0 1px 1px 1px #e6e6e6;
+  --ck-revision-history-revision-selected-border-color: var(--ck-color-base-active);
+  --ck-revision-history-revision-highlighted-border-color: transparent;
+  --ck-revision-history-revision-author-text-color: inherit;
+  --ck-revision-history-revision-date-text-color: inherit;
+  --ck-revision-history-revision-shadow: var(--ck-revision-history-revision-box-shadow, 0);
   --ck-revision-history-revision-author-icon-offset: 20px;
-  --ck-revision-history-revision-transitions: background .1s ease-in, border .1s ease-in;
-  --ck-revision-history-revision-selected-text-color: var(--ck-color-base-background);
-  --ck-revision-history-revision-selected-input-text-color-empty: var(--ck-color-base-background);
-  --ck-revision-history-revision-selected-background-color: var(--ck-color-base-active);
+  --ck-revision-history-revision-transition: var(--ck-revision-history-revision-transitions, background var(--ck-transition-duration-control-fast) ease-in, border var(--ck-transition-duration-control-fast) ease-in);
+  --ck-revision-history-revision-selected-text-color: var(--ck-color-text-primary);
+  --ck-revision-history-revision-selected-input-text-color: #4a67d6;
+  --ck-revision-history-revision-selected-input-empty-text-color: var(--ck-revision-history-revision-selected-input-text-color-empty, var(--ck-color-base-background));
+  --ck-revision-history-revision-selected-author-text-color: var(--ck-revision-history-revision-selected-text-color);
+  --ck-revision-history-revision-author-font-size: var(--ck-font-size-md);
+  --ck-revision-history-revision-selected-date-text-color: #525252;
+  --ck-revision-history-revision-selected-background-color: var(--ck-color-surface-canvas);
   --ck-revision-history-revision-highlighted-background-color: #e0f1ff;
-  --ck-revision-history-revision-highlighted-background-color-hover: #cce7ff;
-  --ck-revision-history-revision-delete-confirmation-background: #fcc;
-  --ck-revision-history-revision-delete-confirmation-active-button-background: #ffb3b3;
+  --ck-revision-history-revision-highlighted-hover-background-color: var(--ck-revision-history-revision-highlighted-background-color-hover, #cce7ff);
+  --ck-revision-history-revision-delete-confirmation-background-color: var(--ck-revision-history-revision-delete-confirmation-background, #fcc);
+  --ck-revision-history-revision-delete-confirmation-active-button-background-color: var(--ck-revision-history-revision-delete-confirmation-active-button-background, #ffb3b3);
+  --ck-revision-history-revision-radius: var(--ck-border-radius-surface);
+  --ck-revision-history-revision-active-radius: 0 var(--ck-border-radius-surface) var(--ck-border-radius-surface) 0;
 }
 
 .ck.ck-revision-history-sidebar__revision-wrapper {
   & .ck-revision-history-sidebar__revision {
     background: var(--ck-revision-history-revision-background-color);
-    padding: var(--ck-spacing-large) calc(2 * var(--ck-spacing-standard));
-    border-radius: var(--ck-border-radius);
+    padding: var(--ck-revision-history-revision-padding);
+    border-radius: var(--ck-revision-history-revision-radius);
     border-left: 3px solid var(--ck-revision-history-revision-border-color);
-    box-shadow: var(--ck-revision-history-revision-box-shadow);
+    box-shadow: var(--ck-revision-history-revision-shadow);
     width: 100%;
-    transition: transform .3s;
+    transition: transform var(--ck-transition-duration-control-emphasized) ease;
     display: block;
     position: relative;
 
@@ -7454,7 +7575,8 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-revision-history-sidebar__revision__date {
-      font-size: var(--ck-font-size-small);
+      color: var(--ck-revision-history-revision-date-text-color);
+      font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
       opacity: .8;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -7465,7 +7587,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-revision-history-sidebar__revision__controls-wrapper {
-      margin: var(--ck-spacing-standard) 0 0;
+      margin: var(--ck-spacing-standard, var(--ck-spacing-base)) 0 0;
       flex-direction: row;
       align-items: flex-start;
       display: flex;
@@ -7487,17 +7609,24 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     &.ck-revision-history-sidebar__revision_selected, &.ck-revision-history-sidebar__revision_highlighted {
       transform: translateX(calc(-1 * var(--ck-revision-history-sidebar-timeline-padding)));
-      border-left-color: #0000;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+      border-radius: var(--ck-revision-history-revision-active-radius);
     }
 
     &.ck-revision-history-sidebar__revision_selected {
+      border-left-color: var(--ck-revision-history-revision-selected-border-color);
       background: var(--ck-revision-history-revision-selected-background-color);
       color: var(--ck-revision-history-revision-selected-text-color);
 
+      & .ck-revision-history-sidebar__revision__date {
+        color: var(--ck-revision-history-revision-selected-date-text-color);
+      }
+
+      & .ck-revision-history-sidebar__revision-author__name {
+        color: var(--ck-revision-history-revision-selected-author-text-color);
+      }
+
       & .ck-revision-history-sidebar__revision-name .ck-input {
-        color: var(--ck-revision-history-revision-selected-text-color);
+        color: var(--ck-revision-history-revision-selected-input-text-color);
 
         &.ck-input-text_empty::placeholder {
           opacity: .7;
@@ -7506,11 +7635,12 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     &.ck-revision-history-sidebar__revision_highlighted {
+      border-left-color: var(--ck-revision-history-revision-highlighted-border-color);
       background: var(--ck-revision-history-revision-highlighted-background-color);
     }
 
     &.ck-revision-history-sidebar__actions_dropdown_open {
-      z-index: var(--ck-z-default);
+      z-index: var(--ck-z-default, var(--ck-z-base));
     }
   }
 
@@ -7529,11 +7659,11 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-confirm-view {
-    border-radius: var(--ck-border-radius);
+    border-radius: var(--ck-revision-history-revision-radius);
     width: 100%;
     height: 100%;
-    box-shadow: var(--ck-revision-history-revision-box-shadow);
-    background: var(--ck-revision-history-revision-delete-confirmation-background);
+    box-shadow: var(--ck-revision-history-revision-shadow);
+    background: var(--ck-revision-history-revision-delete-confirmation-background-color);
     -webkit-user-select: none;
     user-select: none;
     flex-direction: row;
@@ -7546,7 +7676,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     & .ck-confirm-view-inner {
       text-align: center;
-      margin-top: var(--ck-spacing-small);
+      margin-top: var(--ck-spacing-small, var(--ck-spacing-sm));
 
       & p {
         color: var(--ck-color-text);
@@ -7561,15 +7691,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 
         & .ck.ck-button {
           &:hover, &:focus, &:active {
-            background: var(--ck-revision-history-revision-delete-confirmation-active-button-background);
+            background: var(--ck-revision-history-revision-delete-confirmation-active-button-background-color);
           }
 
           &.ck-confirm-view-submit {
-            color: var(--ck-color-button-save);
+            color: var(--ck-button-save-color);
           }
 
           &.ck-confirm-view-cancel {
-            color: var(--ck-color-button-cancel);
+            color: var(--ck-button-cancel-color);
           }
         }
       }
@@ -7577,28 +7707,28 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-revision-history-sidebar__subrevisions {
-    margin-left: var(--ck-spacing-large);
+    margin-left: var(--ck-spacing-large, var(--ck-spacing-lg));
   }
 }
 
-.ck {
-  --ck-revision-history-sidebar-revision-vertical-spacing: calc(2 * var(--ck-spacing-standard));
+:root, :host {
+  --ck-revision-history-sidebar-revision-vertical-spacing: calc(2 * var(--ck-spacing-standard, var(--ck-spacing-base)));
 }
 
 .ck.ck-revision-history-sidebar__time-period {
   width: 100%;
 
   & .ck-revision-history-sidebar__time-period__label {
-    background: var(--ck-revision-history-sidebar-period-background);
-    padding: var(--ck-spacing-tiny) var(--ck-spacing-standard);
-    border-radius: var(--ck-border-radius);
-    color: var(--ck-color-base-background);
+    background: var(--ck-revision-history-sidebar-period-background-color);
+    padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline);
+    border-radius: var(--ck-border-radius-control);
+    color: var(--ck-color-text-inverse);
     text-transform: uppercase;
     font-size: 9px;
     font-weight: bold;
 
     &:first-child {
-      margin-top: var(--ck-spacing-standard);
+      margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
     }
   }
 
@@ -7617,12 +7747,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-revision-history-sidebar__header {
-  --header-height: max(calc(var(--ck-ui-component-min-height) + 2 * var(--ck-spacing-small) + 1px),
-		calc(var(--ck-icon-size) + 2 * var(--ck-spacing-small) + 2 * var(--ck-spacing-small) + 1px));
+  --header-height: max(calc(var(--ck-ui-component-min-height, var(--ck-size-min-height)) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 1px),
+		calc(var(--ck-icon-size) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 1px));
   height: var(--header-height);
   min-height: var(--header-height);
   line-height: var(--header-height);
-  border-bottom: 1px solid var(--ck-color-toolbar-border);
+  border-bottom: var(--ck-border-divider);
   color: inherit;
   padding: 0 var(--ck-revision-history-sidebar-timeline-padding);
   flex-direction: row;
@@ -7640,13 +7770,13 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-icon {
-    margin-right: var(--ck-spacing-large);
+    margin-right: var(--ck-spacing-large, var(--ck-spacing-lg));
   }
 }
 
-.ck {
-  --ck-revision-history-sidebar-period-background: #ff5724;
-  --ck-revision-history-sidebar-timeline-padding: var(--ck-spacing-large);
+:root, :host {
+  --ck-revision-history-sidebar-period-background-color: var(--ck-revision-history-sidebar-period-background, #ff5724);
+  --ck-revision-history-sidebar-timeline-padding: var(--ck-spacing-padding-comfortable);
 }
 
 .ck.ck-revision-history-sidebar {
@@ -7663,9 +7793,13 @@ div.ck.ck-ai-suggestion__content-part-state {
     overflow: hidden auto;
 
     &.ck-disabled {
-      filter: grayscale(1) opacity(var(--ck-disabled-opacity));
+      filter: grayscale(1) opacity(var(--ck-disabled-opacity, var(--ck-opacity-disabled)));
     }
   }
+}
+
+:root, :host {
+  --ck-revision-history-changes-navigation-font-size: var(--ck-font-size-md);
 }
 
 .ck.ck-revision-history-ui.ck-revision-history-ui__changes-navigation {
@@ -7674,23 +7808,25 @@ div.ck.ck-ai-suggestion__content-part-state {
   display: flex;
 
   & .ck-revision-history-ui__changes-navigation__wrapper {
-    margin-right: var(--ck-spacing-standard);
+    margin-right: var(--ck-spacing-standard, var(--ck-spacing-base));
+    font-size: var(--ck-revision-history-changes-navigation-font-size);
     display: flex;
   }
 
   & .ck-revision-history-ui__changes-navigation__label {
     white-space: pre;
     font-weight: bold;
+    font-size: var(--ck-revision-history-changes-navigation-font-size);
   }
 
   & .ck-revision-history-ui__changes-navigation__navigation {
-    margin-left: var(--ck-spacing-small);
+    margin-left: var(--ck-spacing-small, var(--ck-spacing-sm));
   }
 }
 
 .ck .ck-revision-change {
-  padding: var(--ck-spacing-small) var(--ck-spacing-large);
-  border-top-left-radius: var(--ck-border-radius);
+  padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-padding-comfortable);
+  border-top-left-radius: var(--ck-border-radius-surface);
   outline: 0;
 
   & > * {
@@ -7699,11 +7835,11 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &.ck-revision-change__add {
-    border-left-color: var(--ck-color-suggestion-box-insertion-border);
+    border-left-color: var(--ck-suggestion-box-insertion-border-color);
   }
 
   &.ck-revision-change__remove {
-    border-left-color: var(--ck-color-suggestion-box-deletion-border);
+    border-left-color: var(--ck-suggestion-box-deletion-border-color);
   }
 
   & .ck-revision-change__label {
@@ -7718,7 +7854,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-revision-change__ai-note {
-    color: var(--ck-color-suggestion-ai-accent);
+    color: var(--ck-suggestion-ai-accent-color);
     vertical-align: baseline;
     font-weight: bold;
   }
@@ -7732,35 +7868,35 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-revision-change__ai-icon {
     width: 1.1em;
     height: 1.1em;
-    color: var(--ck-color-suggestion-ai-accent);
+    color: var(--ck-suggestion-ai-accent-color);
     flex: none;
   }
 }
 
 .ck.ck-button {
   &.ck-revision-history-ui__back-to-editing {
-    background: var(--ck-color-base-active);
-    color: var(--ck-color-base-background);
+    background: var(--ck-color-interactive-primary-surface);
+    color: var(--ck-color-text-inverse);
 
     &:hover:not(.ck-disabled) {
-      background: var(--ck-color-base-active-focus);
+      background: var(--ck-color-interactive-primary-surface-hover);
     }
   }
 }
 
 .ck.ck-editor__editable_inline.ck-revision-history-root-add {
-  border: 3px solid var(--ck-color-suggestion-marker-insertion-border);
+  border: 3px solid var(--ck-suggestion-marker-insertion-border-color);
 
   &.ck-revision-history-root--active {
-    border-color: var(--ck-color-suggestion-marker-insertion-border-active);
+    border-color: var(--ck-suggestion-marker-insertion-active-border-color);
   }
 }
 
 .ck.ck-editor__editable_inline.ck-revision-history-root-remove {
-  border: 3px solid var(--ck-color-suggestion-marker-deletion-border);
+  border: 3px solid var(--ck-suggestion-marker-deletion-border-color);
 
   &.ck-revision-history-root--active {
-    border-color: var(--ck-color-suggestion-marker-deletion-border-active);
+    border-color: var(--ck-suggestion-marker-deletion-active-border-color);
   }
 }
 
@@ -7787,13 +7923,13 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-suggestion-marker-deletion-new:not(.ck-widget), & .ck-suggestion-marker-merge-new {
-    --ck-color-suggestion-marker-deletion-border: none;
-    --ck-color-suggestion-marker-deletion-border-active: none;
-    --ck-color-suggestion-marker-deletion-background: none;
-    --ck-color-suggestion-marker-deletion-background-active: none;
-    --ck-color-suggestion-marker-deletion-stroke: #7a1f36cc;
-    --ck-color-suggestion-widget-deletion-background: #e5668608;
-    --ck-color-suggestion-widget-deletion-background-active: #c4214a0d;
+    --ck-suggestion-marker-deletion-border-color: none;
+    --ck-suggestion-marker-deletion-active-border-color: none;
+    --ck-suggestion-marker-deletion-background-color: none;
+    --ck-suggestion-marker-deletion-active-background-color: none;
+    --ck-suggestion-marker-deletion-stroke-color: #7a1f36cc;
+    --ck-suggestion-widget-deletion-background-color: #e5668608;
+    --ck-suggestion-widget-deletion-active-background-color: #c4214a0d;
   }
 
   & .ck-suggestion-marker-merge-new:after {
@@ -7805,8 +7941,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-suggestion-marker-deletion-new.ck-suggestion-marker--active:not(.table), & .ck-suggestion-marker-merge-new.ck-suggestion-marker--active {
-    --ck-color-suggestion-marker-deletion-background-active: #da255214;
-    --ck-color-suggestion-marker-deletion-stroke: #7a1f36;
+    --ck-suggestion-marker-deletion-active-background-color: #da255214;
+    --ck-suggestion-marker-deletion-stroke-color: #7a1f36;
     opacity: 1;
   }
 
@@ -7818,17 +7954,19 @@ div.ck.ck-ai-suggestion__content-part-state {
 :root, :host {
   --ck-slash-command-button-width: 250px;
   --ck-slash-command-description-width: 200px;
+  --ck-slash-command-button-radius: var(--ck-list-dropdown-button-border-radius, 0);
 }
 
 .ck-mentions .ck.ck-button.ck-slash-command-button {
   width: var(--ck-slash-command-button-width);
   padding: calc(.2 * var(--ck-line-height-base) * var(--ck-font-size-base));
+  border-radius: var(--ck-slash-command-button-radius);
   justify-content: flex-start;
   display: flex;
 
   & .ck.ck-icon {
-    color: var(--ck-color-base-text);
-    background-color: var(--ck-color-base-background);
+    color: var(--ck-color-text);
+    background-color: var(--ck-color-surface-container);
     box-sizing: initial;
     border-radius: 2px;
     flex-shrink: 0;
@@ -7836,11 +7974,11 @@ div.ck.ck-ai-suggestion__content-part-state {
     padding: 5px;
 
     [dir="ltr"] & {
-      margin: 0 var(--ck-spacing-small) 0 0;
+      margin: 0 var(--ck-spacing-gap-compact) 0 0;
     }
 
     [dir="rtl"] & {
-      margin: 0 0 0 var(--ck-spacing-small);
+      margin: 0 0 0 var(--ck-spacing-gap-compact);
     }
   }
 
@@ -7849,11 +7987,11 @@ div.ck.ck-ai-suggestion__content-part-state {
     display: flex;
 
     [dir="ltr"] & {
-      margin-left: var(--ck-spacing-small);
+      margin-left: var(--ck-spacing-gap-compact);
     }
 
     [dir="rtl"] & {
-      margin-right: var(--ck-spacing-small);
+      margin-right: var(--ck-spacing-gap-compact);
     }
 
     & > span {
@@ -7871,28 +8009,30 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > .ck-slash-command-button__description {
-      font-size: var(--ck-font-size-small);
+      font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
       opacity: .75;
     }
   }
 
   &.ck-on > .ck-slash-command-button__text-part > span {
-    color: var(--ck-color-list-button-on-text);
+    color: var(--ck-list-button-on-text-color);
   }
 }
 
 :root, :host {
   --ck-source-editing-enhanced-height: calc(var(--ck-dialog-max-height)            /* ─▶   Total max height of the dialog     */
 		- var(--ck-form-header-height)         /* ─▶   Height of the dialog header        */
-		- 2 * var(--ck-spacing-large)          /* ─┐                                       */
-		- var(--ck-ui-component-min-height)    /*  ├─▶ Height of the dialog actions bar   */
-		- 2 * var(--ck-spacing-tiny)           /* ─┘                                       */);
+		- 2 * var(--ck-spacing-large, var(--ck-spacing-lg))          /* ─┐                                       */
+		- var(--ck-ui-component-min-height, var(--ck-size-min-height))    /*  ├─▶ Height of the dialog actions bar   */
+		- 2 * var(--ck-spacing-tiny, var(--ck-spacing-xs))           /* ─┘                                       */
+		- 2 * var(--ck-dialog-content-padding)           /* ─▶   Padding of the dialog content           */);
   --ck-source-editing-enhanced-width: min(80vw, 1200px);
+  --ck-source-editing-enhanced-font-size: var(--ck-font-size-md);
 }
 
 .ck.ck-code-editor {
   white-space: initial;
-  border-bottom: 1px solid var(--ck-color-base-border);
+  padding: var(--ck-dialog-content-padding);
   height: var(--ck-source-editing-enhanced-height);
   width: var(--ck-source-editing-enhanced-width);
   flex-direction: row;
@@ -7902,11 +8042,14 @@ div.ck.ck-ai-suggestion__content-part-state {
   display: flex;
 
   & .cm-editor {
-    flex-grow: 1;
     width: 100%;
+    font-size: var(--ck-source-editing-enhanced-font-size);
+    border: var(--ck-border-control);
+    border-radius: var(--ck-input-border-radius);
+    flex-grow: 1;
 
     &.cm-focused {
-      outline: var(--ck-focus-ring);
+      outline: var(--ck-interactive-focus-ring);
     }
   }
 }
@@ -7914,7 +8057,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 :root, :host {
   --ck-template-dropdown-view-width: 345px;
   --ck-template-dropdown-view-height: 300px;
-  --ck-template-icon-size: 45px;
+  --ck-template-icon-size: 32px;
+  --ck-template-list-border-radius: var(--ck-list-border-radius);
+  --ck-template-list-padding: var(--ck-spacing-padding);
+  --ck-template-list-gap: var(--ck-spacing-gap-compact);
+  --ck-template-search-field-padding: var(--ck-spacing-padding-comfortable);
+  --ck-template-list-item-title-font-size: var(--ck-font-size-md);
 }
 
 .ck-button.ck-template-button {
@@ -7939,41 +8087,38 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & > .ck-labeled-field-view {
-    padding: var(--ck-spacing-large);
+    padding: var(--ck-template-search-field-padding);
   }
 
   & > .ck-search__results {
-    border-top: 1px solid var(--ck-color-base-border);
+    border-top: 1px solid var(--ck-color-divider);
 
     & > .ck.ck-list.ck-template-list {
       max-height: var(--ck-template-dropdown-view-height);
-      padding: var(--ck-spacing-large);
+      padding: var(--ck-template-list-padding);
       overscroll-behavior: contain;
-      border-radius: 0;
+      border-radius: var(--ck-template-list-border-radius);
+      gap: var(--ck-template-list-gap);
       overflow: hidden auto;
 
       & > .ck.ck-list__item {
-        &:not(.ck-hidden) ~ .ck.ck-list__item {
-          margin-top: var(--ck-spacing-large);
-        }
-
         & > .ck.ck-button {
-          border-radius: var(--ck-border-radius);
+          width: 100%;
+          padding: calc(.2 * var(--ck-line-height-base) * var(--ck-font-size-base));
+          border-radius: var(--ck-border-radius-uniform);
           grid-template-columns: var(--ck-template-icon-size) 1fr;
-          grid-template-rows: var(--ck-template-icon-size);
-          gap: var(--ck-spacing-large) var(--ck-spacing-large);
+          grid-template-rows: minmax(var(--ck-template-icon-size), auto);
+          gap: var(--ck-spacing-gap-comfortable) var(--ck-spacing-gap-comfortable);
           grid-template-areas: "ck-template-icon ck-template-content";
           grid-auto-columns: 1fr;
           grid-auto-flow: column dense;
           align-items: center;
-          width: 100%;
           margin: 0;
-          padding: 0;
           display: grid;
           overflow: hidden;
 
           &:not(:focus) {
-            border-color: var(--ck-color-dropdown-panel-background);
+            border-color: var(--ck-dropdown-panel-background-color);
           }
 
           & > .ck.ck-icon {
@@ -7994,7 +8139,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
             & > .ck.ck-button__label {
               font-weight: bold;
-              font-size: var(--ck-font-size-base);
+              font-size: var(--ck-template-list-item-title-font-size);
               color: var(--ck-color-text);
               white-space: nowrap;
               text-overflow: ellipsis;
@@ -8004,13 +8149,13 @@ div.ck.ck-ai-suggestion__content-part-state {
             }
 
             & .ck-template-form__description {
+              font-size: var(--ck-font-size-sm);
               color: var(--ck-color-text);
-              margin-top: var(--ck-spacing-tiny);
+              margin-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
               white-space: normal;
               text-overflow: ellipsis;
               -webkit-line-clamp: 2;
               -webkit-box-orient: vertical;
-              font-size: .85em;
               line-height: 1.1;
               display: -webkit-box;
               overflow: hidden;
@@ -8030,11 +8175,22 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
+:root, :host {
+  --ck-track-changes-preview-margin: var(--ck-dialog-content-padding);
+  --ck-track-changes-preview-padding: var(--ck-spacing-padding-comfortable);
+  --ck-track-changes-preview-border: var(--ck-border-control);
+  --ck-track-changes-preview-border-radius: var(--ck-input-border-radius);
+}
+
 .ck.ck-track-changes-preview {
-  -webkit-user-select: text;
-  user-select: text;
   max-width: 80vw;
   max-height: 80vh;
+  margin: var(--ck-track-changes-preview-margin);
+  padding: var(--ck-track-changes-preview-padding);
+  border: var(--ck-track-changes-preview-border);
+  border-radius: var(--ck-track-changes-preview-border-radius);
+  -webkit-user-select: text;
+  user-select: text;
   overflow-x: hidden;
 }
 
@@ -11319,69 +11475,69 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & uc-btn-ui button, & .uc-primary-btn, & .uc-secondary-btn {
-    padding: var(--ck-spacing-tiny) var(--ck-spacing-standard);
-    min-width: var(--ck-ui-component-min-height);
-    min-height: var(--ck-ui-component-min-height);
+    padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
+    min-width: var(--ck-ui-component-min-height, var(--ck-size-min-height));
+    min-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
   }
 
   & .uc-primary-btn, & uc-btn-ui.uc-primary button {
-    background: var(--ck-color-button-action-background);
+    background: var(--ck-button-action-background-color);
 
     &:not(.ck-disabled) {
       &:hover {
-        background: var(--ck-color-button-action-hover-background);
+        background: var(--ck-button-action-hover-background-color);
       }
 
       &:active {
-        background: var(--ck-color-button-action-active-background);
+        background: var(--ck-button-action-active-background-color);
       }
     }
 
     &.ck-disabled {
-      background: var(--ck-color-button-action-disabled-background);
+      background: var(--ck-button-action-disabled-background-color);
     }
   }
 
   & .uc-secondary-btn, & uc-btn-ui.uc-secondary button {
-    background: var(--ck-color-button-default-background);
+    background: var(--ck-button-default-background-color);
 
     &:not(.ck-disabled) {
       &:hover {
-        background: var(--ck-color-button-default-hover-background);
+        background: var(--ck-button-default-hover-background-color);
       }
 
       &:active {
-        background: var(--ck-color-button-default-active-background);
+        background: var(--ck-button-default-active-background-color);
       }
     }
 
     &.ck-disabled {
-      background: var(--ck-color-button-default-disabled-background);
+      background: var(--ck-button-default-disabled-background-color);
     }
   }
 
   & uc-upload-list {
     & .uc-toolbar {
-      gap: var(--ck-spacing-large);
+      gap: var(--ck-spacing-gap-comfortable);
     }
 
     & .uc-files {
-      padding-top: var(--ck-spacing-large);
+      padding-top: var(--ck-spacing-large, var(--ck-spacing-lg));
       max-height: var(--ck-uploadcare-external-source-view-height);
       overflow-y: auto;
     }
   }
 
   & .uc-content {
-    padding: var(--ck-spacing-large);
-    gap: var(--ck-spacing-large);
+    padding: var(--ck-spacing-large, var(--ck-spacing-lg));
+    gap: var(--ck-spacing-gap-comfortable);
 
     & > .uc-iframe-wrapper {
       height: var(--ck-uploadcare-external-source-view-height);
     }
 
     & > .uc-toolbar {
-      padding: var(--ck-spacing-large) 0 0;
+      padding: var(--ck-spacing-large, var(--ck-spacing-lg)) 0 0;
     }
   }
 
@@ -11397,7 +11553,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > .uc-inner:where([data-finished]) .uc-badge {
-      background: var(--ck-color-button-action-active-background) !important;
+      background: var(--ck-button-action-active-background-color) !important;
     }
   }
 

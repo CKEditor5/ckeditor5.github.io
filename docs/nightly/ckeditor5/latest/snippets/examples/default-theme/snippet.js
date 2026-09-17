@@ -3,7 +3,8 @@ import{Plugin as p,Command as R,ClassicEditor as H,CloudServices as q,PictureEdi
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-:root {
+:root,
+:host {
 	/* Helper variables to avoid duplication in the colors. */
 
 	--ck-custom-foreground: hsl(255, 3%, 18%);
