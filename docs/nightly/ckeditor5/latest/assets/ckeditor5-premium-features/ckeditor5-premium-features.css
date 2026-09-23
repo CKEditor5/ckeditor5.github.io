@@ -1240,6 +1240,7 @@
 
   & .ck-labeled-field-view__input-wrapper {
     & .ck.ck-input.ck-textarea {
+      min-width: 0;
       padding-top: var(--ck-ai-chat-prompt-input-padding-vertical);
       padding-bottom: var(--ck-ai-chat-prompt-input-padding-vertical);
       line-height: var(--ck-ai-chat-prompt-input-line-height);
@@ -1366,10 +1367,15 @@
   --ck-ai-chat-context-chip-label-font-size: var(--ck-font-size-sm);
   --ck-ai-chat-context-chip-icon-font-size: var(--ck-font-size-md);
   --ck-ai-chat-context-chip-padding: var(--ck-spacing-sm) var(--ck-spacing-md);
+  --ck-ai-chat-context-chip-height: calc(var(--ck-ai-chat-context-chip-label-font-size) * var(--ck-line-height-base) +
+		2 * var(--ck-spacing-sm) +
+		2 * var(--ck-ai-chat-border-width));
   --ck-ai-chat-context-chip-min-width: calc(var(--ck-ai-chat-context-chip-label-font-size) * 10);
   --ck-ai-chat-context-chip-wide-min-width: calc(var(--ck-ai-chat-context-chip-label-font-size) * 20);
   --ck-ai-chat-context-balloon-width: calc(var(--ck-ai-chat-context-chip-label-font-size) * 24);
-  --ck-ai-chat-context-balloon-max-height: calc(var(--ck-ai-chat-context-chip-label-font-size) * 13);
+  --ck-ai-chat-context-balloon-max-height: calc(4 * var(--ck-ai-chat-context-chip-height) +
+		3 * var(--ck-spacing-gap) +
+		2 * var(--ck-spacing-padding));
 }
 
 .ck.ck-balloon-panel, .ck.ck-ai-chat {
@@ -1378,6 +1384,7 @@
     align-items: center;
     gap: var(--ck-spacing-sm);
     max-width: max(calc(33% - var(--ck-spacing-ms) - (2 * var(--ck-spacing-lg) / 3)), var(--ck-ai-chat-context-chip-min-width));
+    min-height: var(--ck-ai-chat-context-chip-height);
     box-sizing: border-box;
     width: auto;
     padding: var(--ck-ai-chat-context-chip-padding);
@@ -1448,10 +1455,10 @@
   }
 
   & .ck-ai-chat-context-chips-wrapper-balloon {
-    gap: var(--ck-spacing-base);
+    gap: var(--ck-spacing-gap);
     width: var(--ck-ai-chat-context-balloon-width);
     max-height: var(--ck-ai-chat-context-balloon-max-height);
-    padding: var(--ck-spacing-base);
+    padding: var(--ck-spacing-padding);
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
@@ -1459,7 +1466,7 @@
     overflow-y: auto;
 
     & .ck-ai-chat-context-chip {
-      max-width: max(calc(50% - var(--ck-spacing-base)), var(--ck-ai-chat-context-chip-min-width));
+      max-width: max(calc(50% - var(--ck-spacing-gap)), var(--ck-ai-chat-context-chip-min-width));
     }
 
     &.ck-ai-chat-context-chip_wide {
@@ -1502,17 +1509,21 @@
   align-items: center;
   display: flex;
 
-  &.ck-button_with-text.ck-ai-chat-controls_context_show-more-button {
-    letter-spacing: -.1em;
-    text-align: center;
-    border-width: 0;
-    padding: 0;
-    display: block;
-  }
-
   & .ck-dropdown__arrow {
     display: none;
   }
+}
+
+.ck.ck-button.ck-ai-chat-controls_context_show-more-button {
+  --ck-ai-chat-controls-button-min-height: var(--ck-ai-chat-context-chip-height);
+  --ck-button-with-text-padding: var(--ck-spacing-padding-compact) 0;
+  --ck-button-font-size: var(--ck-ai-chat-context-chip-label-font-size);
+  --ck-button-border: var(--ck-ai-chat-border-width) solid var(--ck-ai-chat-main-border-color);
+  --ck-button-border-radius: var(--ck-ai-border-radius);
+  --ck-button-default-background-color: var(--ck-ai-chat-user-context-background-color);
+  --ck-button-on-text-color: var(--ck-color-base-text);
+  color: var(--ck-color-base-text);
+  font-weight: var(--ck-font-weight-medium);
 }
 
 :root, :host {
@@ -2411,11 +2422,12 @@ div.ck.ck-ai-suggestion__content-part-state {
       gap: var(--ck-spacing-md);
       flex-direction: row;
       flex: 1 0 0;
-      margin-inline-start: calc(var(--ck-ai-chat-history-check-slot-width) + var(--ck-spacing-md));
+      padding-inline-start: calc(var(--ck-spacing-lg) + var(--ck-ai-chat-history-check-slot-width) + var(--ck-spacing-md));
 
       & > p {
         font-size: var(--ck-font-size-md);
         line-height: var(--ck-line-height-base);
+        text-wrap: auto;
       }
     }
 
@@ -2679,7 +2691,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-content.ck-ai-suggestion-streamable-content {
   -webkit-user-select: text;
   user-select: text;
-  padding: 3px 0;
+  padding: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
   overflow-x: auto;
 
   & :first-child {
