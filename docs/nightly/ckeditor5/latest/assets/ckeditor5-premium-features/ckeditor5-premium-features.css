@@ -328,8 +328,7 @@
     & .ck.ck-button.ck-ai-chat-shortcut {
       border-radius: var(--ck-radius-base);
       border-color: var(--ck-ai-chat-shortcuts-shortcut-border-color);
-      padding: calc(var(--ck-spacing-padding) - var(--ck-border-width-thin))
-				calc(var(--ck-spacing-padding-spacious) - var(--ck-border-width-thin));
+      padding: var(--ck-spacing-padding) var(--ck-spacing-padding-spacious);
       min-height: calc(var(--ck-size-control-min-height) + var(--ck-spacing-md));
       font-weight: var(--ck-font-weight-medium);
 
@@ -376,7 +375,7 @@
   }
 }
 
-.ck.ck-body.ck-ai-body .ck.ck-balloon-panel {
+.ck.ck-body.ck-ai-body .ck.ck-balloon-panel:not(.ck-tooltip) {
   z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
 }
 
@@ -456,7 +455,7 @@
         padding-top: calc(var(--ck-ai-skeleton-gap) + var(--ck-spacing-large));
         padding-bottom: calc(var(--ck-ai-skeleton-gap) + var(--ck-spacing-large));
         background-color: var(--ck-color-base-background);
-        border-radius: var(--ck-rounded-corners-radius);
+        border-radius: var(--ck-rounded-corners-radius, var(--ck-radius-corners));
         align-items: flex-start;
         transition-delay: 0s;
         position: static;
@@ -1397,7 +1396,7 @@
     display: inline-flex;
 
     &.ck-ai-chat-context-chip_wide {
-      max-width: max(calc(66% - var(--ck-spacing-ms)), var(--ck-ai-chat-context-chip-wide-min-width));
+      max-width: max(calc(60% - var(--ck-spacing-ms)), var(--ck-ai-chat-context-chip-wide-min-width));
       width: auto;
     }
 
@@ -1413,6 +1412,8 @@
       font-size: var(--ck-ai-chat-context-chip-label-font-size);
       font-weight: var(--ck-font-weight-medium);
       text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
       line-height: var(--ck-line-height-base);
       color: var(--ck-color-base-text);
       display: inline-block;
@@ -2047,7 +2048,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 :root, :host {
   --ck-tabs-buttons-container-buttons-vertical-spacing: 0;
   --ck-tabs-panels-container-background: var(--ck-ai-white-color);
-  --ck-tab-button-gap: 0;
+  --ck-tab-button-gap: var(--ck-spacing-md);
   --ck-color-tabs-buttons-container-background: var(--ck-color-base-foreground);
 }
 
@@ -2290,7 +2291,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       transition: none;
     }
 
-    &:hover {
+    &:not(.ck-confirm-view-active):hover {
       background-color: var(--ck-color-base-hover);
     }
   }
@@ -2621,7 +2622,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-ai-interaction-counter {
     color: var(--ck-ai-chat-icon-color);
-    font-size: var(--ck-font-size-sm);
+    font-size: var(--ck-font-size-md);
     margin: 0;
     line-height: 1.5em;
   }
@@ -2867,7 +2868,7 @@ div.ck.ck-ai-suggestion__content-part-state {
         flex-shrink: 0;
 
         & .ck.ck-button:not(:last-child) {
-          margin-right: var(--ck-spacing-ms);
+          margin-right: var(--ck-spacing-gap-comfortable);
         }
       }
     }
@@ -3209,10 +3210,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-suggestion-marker-deletion-border-color: var(--ck-suggestion-marker-deletion-border-color, var(--ck-ai-deletion-border-color));
   --ck-ai-suggestion-marker-deletion-background-color: var(--ck-suggestion-marker-deletion-background-color, var(--ck-ai-deletion-background-color));
   --ck-ai-suggestion-marker-deletion-stroke-color: var(--ck-suggestion-marker-deletion-stroke-color, var(--ck-ai-deletion-stroke-color));
-  --ck-ai-suggestion-marker-deletion-active-border-color: hsla(from var(--ck-ai-deletion-active-border-color) h s l / 65%);
-  --ck-ai-suggestion-marker-deletion-active-background-color: hsla(from var(--ck-ai-deletion-active-background-color) h s l / 45%);
-  --ck-ai-suggestion-marker-insertion-active-border-color: hsla(from var(--ck-ai-insertion-active-border-color) h s l / 75%);
-  --ck-ai-suggestion-marker-insertion-active-background-color: hsla(from var(--ck-ai-insertion-active-background-color) h s l / 45%);
+  --ck-ai-suggestion-marker-deletion-active-border-color: var(--ck-ai-deletion-active-border-color);
+  --ck-ai-suggestion-marker-deletion-active-background-color: var(--ck-ai-deletion-active-background-color);
+  --ck-ai-suggestion-marker-insertion-active-border-color: var(--ck-ai-insertion-active-border-color);
+  --ck-ai-suggestion-marker-insertion-active-background-color: var(--ck-ai-insertion-active-background-color);
   --ck-ai-review-suggestion-color: var(--ck-ai-accent-700-a5-color);
   --ck-ai-review-icon-color: var(--ck-ai-neutral-600-color);
 }
@@ -3569,7 +3570,6 @@ div.ck.ck-ai-suggestion__content-part-state {
       gap: var(--ck-spacing-standard, var(--ck-spacing-base));
       padding: var(--ck-spacing-large);
       padding-top: calc(var(--ck-spacing-large) + var(--ck-spacing-standard));
-      border-bottom: var(--ck-border-width-thin) solid transparent;
       flex-wrap: wrap;
       display: flex;
 
@@ -3618,12 +3618,6 @@ div.ck.ck-ai-suggestion__content-part-state {
             width: var(--ck-icon-size);
           }
         }
-      }
-    }
-
-    &.ck-ai_review__check-run_ready {
-      & .ck-ai_review__check-run-results-header {
-        border-bottom-color: var(--ck-color-base-border);
       }
     }
 
@@ -4355,7 +4349,6 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     & .ck-ai_review__check-run {
       & .ck-ai_review__check-run-results-header {
-        border-bottom: none;
         padding-block-start: calc(var(--ck-spacing-extra-large) + var(--ck-spacing-small));
       }
 
@@ -5491,6 +5484,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-comment-count-color: #223047;
   --ck-thread-header-background-color: #f3f6fd;
   --ck-thread-header-active-background-color: var(--ck-color-interactive-selected-surface);
+  --ck-thread-header-button-hover-background: var(--ck-color-interactive-primary-surface-muted);
   --ck-thread-unlinked-background-color: var(--ck-color-unlinked-background, #f5f5f5);
   --ck-thread-unlinked-active-background-color: var(--ck-color-unlinked-active-background, #ebebeb);
   --ck-comment-thread-background-color: transparent;
@@ -5537,6 +5531,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   display: flex;
 
   & .ck-button {
+    --ck-button-hover-background: var(--ck-thread-header-button-hover-background);
     font-size: var(--ck-annotation-button-size);
   }
 
@@ -6372,6 +6367,10 @@ div.ck.ck-ai-suggestion__content-part-state {
         right: auto;
       }
     }
+
+    & > .footnotes-list > .footnote-definition {
+      padding: var(--ck-spacing-padding-compact) 0;
+    }
   }
 
   & .footnotes-divider {
@@ -6386,6 +6385,13 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .footnote-content.ck-editor__nested-editable {
     border-radius: var(--ck-input-border-radius);
     padding: var(--ck-input-padding);
+    margin-top: calc(-1 * var(--ck-spacing-padding-compact));
+
+    &.ck-editor__nested-editable_focused, &:focus {
+      border-color: var(--ck-input-focus-border-color);
+      box-shadow: var(--ck-interactive-focus-shadow), 0 0;
+      outline: none;
+    }
   }
 }
 
@@ -8296,7 +8302,13 @@ div.ck.ck-ai-suggestion__content-part-state {
     flex-grow: 1;
 
     &.cm-focused {
-      outline: var(--ck-interactive-focus-ring);
+      border-color: var(--ck-input-focus-border-color);
+      box-shadow: var(--ck-interactive-focus-shadow), 0 0;
+      outline: none;
+    }
+
+    & .cm-scroller {
+      border-radius: var(--ck-input-border-radius);
     }
   }
 }

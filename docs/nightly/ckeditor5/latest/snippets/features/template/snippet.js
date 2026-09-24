@@ -1,4 +1,4 @@
-import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Strikethrough as de,Subscript as ce,Superscript as he,Underline as pe,CKBox as ge,CKBoxImageEdit as fe,Font as me,Heading as ue,ImageInsert as be,ImageResize as xe,TodoList as Ce,TableToolbar as ye,TableCaption as _e,TableProperties as Be,TableCellProperties as we}from"ckeditor5";import{Template as ke}from"ckeditor5-premium-features";var _="https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt",B="https://33333.cke-cs.com/easyimage/upload/",w="33333.cke-cs.com/ws",a={tokenUrl:_,uploadUrl:B,webSocketUrl:w};var n="https://api.ckbox.io/token/demo";import{Plugin as Fe}from"@ckeditor/ckeditor5-core";import{Essentials as Ee}from"@ckeditor/ckeditor5-essentials";import{Autoformat as Oe}from"@ckeditor/ckeditor5-autoformat";import{BlockQuote as Ue}from"@ckeditor/ckeditor5-block-quote";import{Bold as Ze,Italic as De}from"@ckeditor/ckeditor5-basic-styles";import{Heading as Ne}from"@ckeditor/ckeditor5-heading";import{Image as qe,ImageCaption as Qe,ImageStyle as ze,ImageToolbar as je}from"@ckeditor/ckeditor5-image";import{Indent as Je}from"@ckeditor/ckeditor5-indent";import{Link as We}from"@ckeditor/ckeditor5-link";import{List as et}from"@ckeditor/ckeditor5-list";import{MediaEmbed as ot}from"@ckeditor/ckeditor5-media-embed";import{Paragraph as lt}from"@ckeditor/ckeditor5-paragraph";import{Table as at,TableToolbar as nt}from"@ckeditor/ckeditor5-table";function s({id:e,target:t,text:i,editor:l,tippyOptions:h}){if(!t){console.warn("[attachTourBalloon] The target DOM node for the feature tour balloon does not exist.",{text:i});return}if(!t.offsetParent){console.warn("[attachTourBalloon] The target DOM node is invisible and the balloon could not be attached.",{target:t,text:i});return}let p=window.umberto.Tooltip.create({id:e,text:i,trigger:t,mode:"click",variant:"dark",icon:"bulb",disableOnMobile:!1,showCloseButton:!0,showAfterMount:!0,hideOnOutsideClick:!1,destroyOnHide:!0,...h?.placement&&{position:h.placement}});for(let C of l.editing.view.document.roots)C.once("change:isFocused",(Le,Se,y)=>{y&&p.destroy()});return p}function d(e,t){let i=e.items,l;return typeof t=="function"?l=i.find(t):l=i.get(t),l?l.element:void 0}function c(){let e=document.documentElement;return parseInt(window.getComputedStyle(e).getPropertyValue("--ck-snippet-viewport-top-offset"))}import{BalloonEditor as gt,Essentials as ft,Autoformat as mt,BlockToolbar as ut,Bold as bt,Italic as xt,BlockQuote as Ct,CKBox as yt,Heading as _t,Image as Bt,ImageCaption as wt,ImageStyle as kt,ImageToolbar as Lt,ImageUpload as St,PictureEditing as It,Indent as Tt,IndentBlock as Mt,Link as At,List as vt,MediaEmbed as Ft,Paragraph as Rt,PasteFromOffice as Et,Table as Vt,TableToolbar as Ot,TextTransformation as Ht,CloudServices as Ut}from"ckeditor5";import{BalloonEditor as Gt,Essentials as Nt,Autoformat as Kt,Bold as qt,Italic as Qt,BlockQuote as zt,CKBox as jt,Heading as $t,Image as Jt,ImageCaption as Yt,ImageStyle as Wt,ImageToolbar as Xt,ImageUpload as eo,PictureEditing as to,Indent as oo,IndentBlock as io,Link as lo,List as ro,MediaEmbed as ao,Paragraph as no,PasteFromOffice as so,Table as co,TableToolbar as ho,TextTransformation as po,CloudServices as go}from"ckeditor5";import{ClassicEditor as k,Essentials as L,Autoformat as S,Bold as I,Italic as T,BlockQuote as M,CKBox as A,Heading as v,Image as F,ImageCaption as R,ImageStyle as E,ImageToolbar as V,ImageUpload as O,PictureEditing as H,Indent as U,IndentBlock as P,Link as Z,List as D,MediaEmbed as G,Paragraph as N,PasteFromOffice as K,Table as q,TableToolbar as Q,TextTransformation as z,CloudServices as j,AutoImage as $,ImageInsert as J,Bookmark as Y}from"ckeditor5";var r=class extends k{static builtinPlugins=[L,S,I,T,M,j,v,F,R,E,V,O,A,U,P,Z,D,G,N,K,H,q,Q,z,$,J,Y];static defaultConfig={toolbar:{items:["undo","redo","|","heading","|","bold","italic","|","link","uploadImage","insertTable","blockQuote","mediaEmbed","|","bulletedList","numberedList","outdent","indent"]},image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:wrapText","|","toggleImageCaption","imageTextAlternative"]},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells"]},list:{enableSkipLevelLists:!0},language:"en"}};import{DecoupledEditor as yo,Essentials as _o,Alignment as Bo,FontSize as wo,FontFamily as ko,FontColor as Lo,FontBackgroundColor as So,Autoformat as Io,Bold as To,Italic as Mo,Strikethrough as Ao,Underline as vo,BlockQuote as Fo,CKBox as Ro,Heading as Eo,Image as Vo,ImageCaption as Oo,ImageResize as Ho,ImageStyle as Uo,ImageToolbar as Po,ImageUpload as Zo,PictureEditing as Do,Indent as Go,IndentBlock as No,Link as Ko,List as qo,ListProperties as Qo,MediaEmbed as zo,Paragraph as jo,PasteFromOffice as $o,Table as Jo,TableToolbar as Yo,TextTransformation as Wo,CloudServices as Xo}from"ckeditor5";import{InlineEditor as ii,Essentials as li,Autoformat as ri,Bold as ai,Italic as ni,BlockQuote as si,CKBox as di,Heading as ci,Image as hi,ImageCaption as pi,ImageStyle as gi,ImageToolbar as fi,ImageUpload as mi,PictureEditing as ui,Indent as bi,IndentBlock as xi,Link as Ci,List as yi,MediaEmbed as _i,Paragraph as Bi,PasteFromOffice as wi,Table as ki,TableToolbar as Li,TextTransformation as Si,CloudServices as Ii}from"ckeditor5";import{MultiRootEditor as vi,Essentials as Fi,Autoformat as Ri,Bold as Ei,Italic as Vi,BlockQuote as Oi,CKBox as Hi,Heading as Ui,Image as Pi,ImageCaption as Zi,ImageStyle as Di,ImageToolbar as Gi,ImageUpload as Ni,PictureEditing as Ki,Indent as qi,IndentBlock as Qi,Link as zi,List as ji,MediaEmbed as $i,Paragraph as Ji,PasteFromOffice as Yi,Table as Wi,TableToolbar as Xi,TextTransformation as el,CloudServices as tl}from"ckeditor5";var g=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+import{Alignment as ee,RemoveFormat as te,Bold as oe,Italic as ie,Code as le,Strikethrough as re,Subscript as ae,Superscript as ne,Underline as se,CKBox as de,CKBoxImageEdit as ce,Font as he,Heading as pe,ImageInsert as ge,ImageResize as fe,TodoList as me,TableToolbar as ue,TableCaption as be,TableProperties as xe,TableCellProperties as Ce}from"ckeditor5";import{Template as ye}from"ckeditor5-premium-features";var a="https://api.ckbox.io/token/demo";import{Plugin as Te}from"@ckeditor/ckeditor5-core";import{Essentials as Ae}from"@ckeditor/ckeditor5-essentials";import{Autoformat as Fe}from"@ckeditor/ckeditor5-autoformat";import{BlockQuote as Ee}from"@ckeditor/ckeditor5-block-quote";import{Bold as Oe,Italic as He}from"@ckeditor/ckeditor5-basic-styles";import{Heading as Pe}from"@ckeditor/ckeditor5-heading";import{Image as De,ImageCaption as Ge,ImageStyle as Ne,ImageToolbar as Ke}from"@ckeditor/ckeditor5-image";import{Indent as Qe}from"@ckeditor/ckeditor5-indent";import{Link as je}from"@ckeditor/ckeditor5-link";import{List as Je}from"@ckeditor/ckeditor5-list";import{MediaEmbed as We}from"@ckeditor/ckeditor5-media-embed";import{Paragraph as et}from"@ckeditor/ckeditor5-paragraph";import{Table as ot,TableToolbar as it}from"@ckeditor/ckeditor5-table";function n({id:e,target:t,text:i,editor:l,tippyOptions:c}){if(!t){console.warn("[attachTourBalloon] The target DOM node for the feature tour balloon does not exist.",{text:i});return}if(!t.offsetParent){console.warn("[attachTourBalloon] The target DOM node is invisible and the balloon could not be attached.",{target:t,text:i});return}let h=window.umberto.Tooltip.create({id:e,text:i,trigger:t,mode:"click",variant:"dark",icon:"bulb",disableOnMobile:!1,showCloseButton:!0,showAfterMount:!0,hideOnOutsideClick:!1,destroyOnHide:!0,...c?.placement&&{position:c.placement}});for(let x of l.editing.view.document.roots)x.once("change:isFocused",(_e,Be,C)=>{C&&h.destroy()});return h}function s(e,t){let i=e.items,l;return typeof t=="function"?l=i.find(t):l=i.get(t),l?l.element:void 0}function d(){let e=document.documentElement;return parseInt(window.getComputedStyle(e).getPropertyValue("--ck-snippet-viewport-top-offset"))}import{BalloonEditor as dt,Essentials as ct,Autoformat as ht,BlockToolbar as pt,Bold as gt,Italic as ft,BlockQuote as mt,CKBox as ut,Heading as bt,Image as xt,ImageCaption as Ct,ImageStyle as yt,ImageToolbar as _t,ImageUpload as Bt,PictureEditing as wt,Indent as kt,IndentBlock as Lt,Link as St,List as It,MediaEmbed as Tt,Paragraph as Mt,PasteFromOffice as At,Table as vt,TableToolbar as Ft,TextTransformation as Rt,CloudServices as Et}from"ckeditor5";import{BalloonEditor as Ut,Essentials as Pt,Autoformat as Zt,Bold as Dt,Italic as Gt,BlockQuote as Nt,CKBox as Kt,Heading as qt,Image as Qt,ImageCaption as zt,ImageStyle as jt,ImageToolbar as $t,ImageUpload as Jt,PictureEditing as Yt,Indent as Wt,IndentBlock as Xt,Link as eo,List as to,MediaEmbed as oo,Paragraph as io,PasteFromOffice as lo,Table as ro,TableToolbar as ao,TextTransformation as no,CloudServices as so}from"ckeditor5";import{ClassicEditor as y,Essentials as _,Autoformat as B,Bold as w,Italic as k,BlockQuote as L,CKBox as S,Heading as I,Image as T,ImageCaption as M,ImageStyle as A,ImageToolbar as v,ImageUpload as F,PictureEditing as R,Indent as E,IndentBlock as V,Link as O,List as H,MediaEmbed as U,Paragraph as P,PasteFromOffice as Z,Table as D,TableToolbar as G,TextTransformation as N,CloudServices as K,AutoImage as q,ImageInsert as Q,Bookmark as z}from"ckeditor5";var r=class extends y{static builtinPlugins=[_,B,w,k,L,K,I,T,M,A,v,F,S,E,V,O,H,U,P,Z,R,D,G,N,q,Q,z];static defaultConfig={toolbar:{items:["undo","redo","|","heading","|","bold","italic","|","link","uploadImage","insertTable","blockQuote","mediaEmbed","|","bulletedList","numberedList","outdent","indent"]},image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:wrapText","|","toggleImageCaption","imageTextAlternative"]},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells"]},list:{enableSkipLevelLists:!0},language:"en"}};import{DecoupledEditor as uo,Essentials as bo,Alignment as xo,FontSize as Co,FontFamily as yo,FontColor as _o,FontBackgroundColor as Bo,Autoformat as wo,Bold as ko,Italic as Lo,Strikethrough as So,Underline as Io,BlockQuote as To,CKBox as Mo,Heading as Ao,Image as vo,ImageCaption as Fo,ImageResize as Ro,ImageStyle as Eo,ImageToolbar as Vo,ImageUpload as Oo,PictureEditing as Ho,Indent as Uo,IndentBlock as Po,Link as Zo,List as Do,ListProperties as Go,MediaEmbed as No,Paragraph as Ko,PasteFromOffice as qo,Table as Qo,TableToolbar as zo,TextTransformation as jo,CloudServices as $o}from"ckeditor5";import{InlineEditor as Xo,Essentials as ei,Autoformat as ti,Bold as oi,Italic as ii,BlockQuote as li,CKBox as ri,Heading as ai,Image as ni,ImageCaption as si,ImageStyle as di,ImageToolbar as ci,ImageUpload as hi,PictureEditing as pi,Indent as gi,IndentBlock as fi,Link as mi,List as ui,MediaEmbed as bi,Paragraph as xi,PasteFromOffice as Ci,Table as yi,TableToolbar as _i,TextTransformation as Bi,CloudServices as wi}from"ckeditor5";import{MultiRootEditor as Ii,Essentials as Ti,Autoformat as Mi,Bold as Ai,Italic as vi,BlockQuote as Fi,CKBox as Ri,Heading as Ei,Image as Vi,ImageCaption as Oi,ImageStyle as Hi,ImageToolbar as Ui,ImageUpload as Pi,PictureEditing as Zi,Indent as Di,IndentBlock as Gi,Link as Ni,List as Ki,MediaEmbed as qi,Paragraph as Qi,PasteFromOffice as zi,Table as ji,TableToolbar as $i,TextTransformation as Ji,CloudServices as Yi}from"ckeditor5";var p=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/article-image-right">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>
 <g id="page" filter="url(#filter0_d_1_507)">
@@ -29,7 +29,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;var f=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+`;var g=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/financial-report">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>
 <g id="page" filter="url(#filter0_d_1_920)">
@@ -64,7 +64,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;var m=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+`;var f=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/formal-letter">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>
 <g id="page" filter="url(#filter0_d_1_893)">
@@ -105,7 +105,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;var u=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+`;var m=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/resume">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#A5E7EB"/>
 <g id="page" filter="url(#filter0_d_1_1054)">
@@ -137,7 +137,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;var b=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+`;var u=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/rich-table">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#F3D1F4"/>
 <g id="table-border" filter="url(#filter0_d_1_775)">
@@ -169,7 +169,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;var x=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+`;var b=`<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="icons/todo">
 <rect id="icon-bg" width="45" height="45" rx="2" fill="#F3D1F4"/>
 <g id="Group 1">
@@ -241,12 +241,12 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 </filter>
 </defs>
 </svg>
-`;r.create({attachTo:document.querySelector("#snippet-template"),root:{placeholder:"Start typing here or insert a template using the toolbar button."},extraPlugins:[le,ae,se,ge,fe,me,ue,be,xe,ne,re,de,ce,he,_e,we,Be,ye,ke,Ce,pe],toolbar:{items:["undo","redo","|","heading","|","fontSize","fontFamily","fontColor","fontBackgroundColor","|","bold","italic","underline","strikethrough","subscript","superscript","code","removeFormat","-","link","insertTable","insertImage","insertTemplate","|","bulletedList","numberedList","todoList"],shouldNotGroupWhenFull:!0},image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:wrapText","|","toggleImageCaption","imageTextAlternative","|","ckboxImageEdit"]},ckbox:{tokenUrl:n,allowExternalImagesEditing:[/^data:/,"origin",/ckbox/],forceDemoLabel:!0},ui:{viewportOffset:{top:c()}},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells","tableProperties","tableCellProperties","toggleTableCaption"]},template:{definitions:[{title:"Document with an image",description:"Simple heading with text and image.",icon:g,data:`<h2>Title of the document</h2>
+`;r.create({attachTo:document.querySelector("#snippet-template"),root:{placeholder:"Start typing here or insert a template using the toolbar button."},extraPlugins:[ee,oe,le,de,ce,he,pe,ge,fe,ie,te,re,ae,ne,be,Ce,xe,ue,ye,me,se],toolbar:{items:["undo","redo","|","heading","|","fontSize","fontFamily","fontColor","fontBackgroundColor","|","bold","italic","underline","strikethrough","subscript","superscript","code","removeFormat","-","link","insertTable","insertImage","insertTemplate","|","bulletedList","numberedList","todoList"],shouldNotGroupWhenFull:!0},image:{toolbar:["imageStyle:inline","imageStyle:block","imageStyle:wrapText","|","toggleImageCaption","imageTextAlternative","|","ckboxImageEdit"]},ckbox:{tokenUrl:a,allowExternalImagesEditing:[/^data:/,"origin",/ckbox/],forceDemoLabel:!0},ui:{viewportOffset:{top:d()}},table:{contentToolbar:["tableColumn","tableRow","mergeTableCells","tableProperties","tableCellProperties","toggleTableCaption"]},template:{definitions:[{title:"Document with an image",description:"Simple heading with text and image.",icon:p,data:`<h2>Title of the document</h2>
 						<figure class="image image-style-align-right image_resized" style="width:26.32%;">
 							<img src="https://ckeditor.com/docs/ckeditor5/latest/assets/img/ckeditor-logo.png">
 							<figcaption>A caption of the image.</figcaption>
 						</figure>
-						<p>The content of the document.&nbsp;</p>`},{title:"Annual financial report",description:"A report that spells out the company's financial condition.",icon:f,data:`<figure class="table">
+						<p>The content of the document.&nbsp;</p>`},{title:"Annual financial report",description:"A report that spells out the company's financial condition.",icon:g,data:`<figure class="table">
 						<table style="border:2px solid hsl(0, 0%, 0%);">
 							<thead>
 								<tr>
@@ -291,7 +291,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 								</tr>
 							</tbody>
 						</table>
-					</figure>`},{title:"Resume",description:"A quick overview of candidate's professional qualifications.",icon:u,data:`<figure class="image image_resized" style="width:11.42%;">
+					</figure>`},{title:"Resume",description:"A quick overview of candidate's professional qualifications.",icon:m,data:`<figure class="image image_resized" style="width:11.42%;">
 							<picture>
 								<img src="https://ckeditor.com/docs/ckeditor5/latest/assets/img/user-avatar.png">
 							</picture>
@@ -333,7 +333,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 								<p><strong>JULY 2015</strong></p>
 								<p>Name of University, Degree</p>
 							</li>
-						</ul>`},{title:"Formal business letter",description:"A clear letter template for business communication.",icon:m,data:()=>`<p style="text-align:right;">${new Date().toLocaleDateString()}</p>
+						</ul>`},{title:"Formal business letter",description:"A clear letter template for business communication.",icon:f,data:()=>`<p style="text-align:right;">${new Date().toLocaleDateString()}</p>
 						<p><strong>Company name,</strong><br><strong>Street Name, Number</strong><br><strong>Post code, City</strong></p>
 						<p>&nbsp;</p>
 						<p>Dear [First name],</p>
@@ -346,7 +346,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 						Content of the letter. Content of the letter. Content of the letter. Content of the letter. Content of the letter.
 						Content of the letter. Content of the letter. Content of the letter. Content of the letter.&nbsp;</p>
 						<p>Kind regards,</p>
-						<p>Name Surname<br>Position, Company<br>Phone, E-mail</p>`},{title:"Rich table",description:"A table with a colorful header.",icon:b,data:`<figure class="table" style="width:100%;">
+						<p>Name Surname<br>Position, Company<br>Phone, E-mail</p>`},{title:"Rich table",description:"A table with a colorful header.",icon:u,data:`<figure class="table" style="width:100%;">
 						<table style="border:5px solid hsl(240, 75%, 60%);">
 							<thead>
 								<tr>
@@ -401,7 +401,7 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 							</tbody>
 						</table>
 						<figcaption>Caption of the table</figcaption>
-					</figure>`},{title:"To-do list",description:"A simple to-do list to keep track of things.",icon:x,data:`
+					</figure>`},{title:"To-do list",description:"A simple to-do list to keep track of things.",icon:b,data:`
 						<h2>My to-do list</h2>
 						<h3>Today</h3>
 						<ul class="todo-list">
@@ -466,4 +466,4 @@ import{Alignment as le,RemoveFormat as re,Bold as ae,Italic as ne,Code as se,Str
 								</label>
 							</li>
 						</ul>
-					`}]},cloudServices:a}).then(e=>{window.editor=e,s({target:d(e.ui.view.toolbar,t=>t&&t.buttonView&&t.buttonView.label==="Insert template"),text:"Click here to insert a template.",editor:e,tippyOptions:{placement:"bottom-start"}})}).catch(e=>{console.error(e.stack)});
+					`}]}}).then(e=>{window.editor=e,n({target:s(e.ui.view.toolbar,t=>t&&t.buttonView&&t.buttonView.label==="Insert template"),text:"Click here to insert a template.",editor:e,tippyOptions:{placement:"bottom-start"}})}).catch(e=>{console.error(e.stack)});
