@@ -1351,10 +1351,9 @@
   }
 
   & .ck-button.ck-ai-chat-controls-button.ck-ai-chat-context-controls__add-context-button {
+    bottom: var(--ck-ai-chat-prompt-input-padding-vertical);
     margin: 0;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
 
     &:hover, &:focus {
       opacity: 1;
@@ -2918,12 +2917,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-ai-review-navigation-panel-inset: var(--ck-spacing-lg);
+  --ck-ai-review-navigation-panel-max-width: 750px;
   --ck-ai-review-navigation-panel-header-background: var(--ck-color-base-foreground);
 }
 
 .ck.ck-balloon-panel.ck-ai_review-navigation-panel-balloon {
+  max-width: var(--ck-ai-review-navigation-panel-max-width);
   box-shadow: none;
-  transition: top var(--ck-transition-duration-control-emphasized) ease;
+  transition: top var(--ck-transition-duration-control-emphasized) ease,
+		left var(--ck-transition-duration-control-emphasized) ease;
   background: none;
   border: 0;
 
@@ -3016,9 +3018,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-ai-header {
-  --ck-form-header-padding: var(--ck-spacing-padding-comfortable)
+  --ck-form-header-height: calc(var(--ck-form-header-label-font-size) * var(--ck-line-height-base)
+		+ 2 * var(--ck-spacing-padding)
+		+ 2 * var(--ck-spacing-padding-compact));
+  --ck-form-header-padding: var(--ck-spacing-padding-compact)
 		var(--ck-spacing-padding-comfortable)
-		calc(var(--ck-spacing-padding-comfortable) - var(--ck-border-width-divider));
+		calc(var(--ck-spacing-padding-compact) - var(--ck-border-width-divider));
   --ck-border-divider: var(--ck-border-width-divider) solid var(--ck-color-divider);
 
   & > .ck-icon {
@@ -3964,7 +3969,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       &:hover {
         cursor: pointer;
 
-        & .ck-ai_review__check-list-item-title-text, & .ck-ai_review__check-list-item-description {
+        & .ck-ai_review__check-list-item-content, & .ck-ai_review__check-list-item-content * {
           cursor: pointer;
         }
       }
@@ -4030,7 +4035,6 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & .ck-ai_review__check-list-item-title {
-        cursor: pointer;
         font-size: var(--ck-ai-review-check-list-item-title-text-font-size);
         line-height: var(--ck-line-height-base);
 
@@ -4044,7 +4048,6 @@ div.ck.ck-ai-suggestion__content-part-state {
 
       & .ck-ai_review__check-list-item-icon-wrapper {
         height: calc(var(--ck-ai-review-check-list-item-title-text-font-size) * var(--ck-line-height-base));
-        cursor: pointer;
         --ck-icon-size: var(--ck-font-size-xl);
         flex-shrink: 0;
         justify-content: center;
