@@ -3989,6 +3989,16 @@ div.ck.ck-ai-suggestion__content-part-state {
         }
       }
 
+      &:not(:has( > .ck-ai_review__check-list-item-parameterized)) {
+        & .ck-ai_review__check-list-item-icon-wrapper {
+          align-self: center;
+        }
+
+        & .ck-ai_review__check-list-item-icon-wrapper > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
+          transform: rotate(-90deg);
+        }
+      }
+
       & .ck-ai_review__check-list-item-content {
         align-items: flex-start;
         gap: var(--ck-spacing-medium, var(--ck-spacing-gap));
@@ -4045,14 +4055,16 @@ div.ck.ck-ai-suggestion__content-part-state {
         }
       }
 
-      &:not(.ck-ai_review__check-list-item_selected):not(:has( > .ck-ai_review__check-list-item-content:focus)):hover {
-        box-shadow: var(--ck-ai-review-check-list-item-elevated-shadow);
-
-        &:has( > .ck-ai_review__check-list-item-parameterized) .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
+      &:hover, &:has( > .ck-ai_review__check-list-item-content:focus) {
+        & .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
           opacity: 1;
           visibility: visible;
           color: var(--ck-ai-review-check-list-item-hover-icon-color);
         }
+      }
+
+      &:not(.ck-ai_review__check-list-item_selected):not(:has( > .ck-ai_review__check-list-item-content:focus)):hover {
+        box-shadow: var(--ck-ai-review-check-list-item-elevated-shadow);
       }
 
       & .ck-ai_review__check-list-item-parameterized {
