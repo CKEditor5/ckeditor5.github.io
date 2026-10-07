@@ -68,15 +68,28 @@
 	align-items: center;
 	max-height: calc( 100vh - 100px );
 	background: hsl( 0, 0%, 95% );
+	border-radius: var(--ck-border-radius-surface);
 }
 
 .toolbar-container {
 	width: 100%;
 }
 
+/* The toolbar sits on top of the editor frame, so only its top corners are rounded. */
+.toolbar-container > .ck.ck-toolbar {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
 .editor-container {
 	width: 100%;
 	border: 1px solid hsl( 0, 0%, 80% );
+
+	/* The toolbar above already draws this line. */
+	border-top: 0;
+
+	/* The editor frame carries the bottom corners of the demo. */
+	border-radius: 0 0 var(--ck-border-radius-surface) var(--ck-border-radius-surface);
 	overflow: auto;
 }
 
@@ -85,7 +98,7 @@
 	width: 210mm;
 	height: auto;
 	background: hsl( 0, 0%, 100% );
-	border: 1px solid hsl( 0, 0%, 88% );
+	border: 1px solid var(--ck-color-border-container);
 	box-shadow: 0 2px 8px hsla( 0, 0%, 0%, .08 );
 	margin: 40px auto;
 	padding: 15mm;
