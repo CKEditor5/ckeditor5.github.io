@@ -445,6 +445,14 @@
     flex-direction: column;
     display: flex;
 
+    & .ck-ai-chat__feed__ai-suggestion__actions {
+      --ck-rounded-corners-radius: 2px;
+      gap: var(--ck-spacing-gap);
+      flex-direction: row;
+      width: fit-content;
+      display: flex;
+    }
+
     & .ck-ai-suggestion__body__content-parts {
       gap: var(--ck-spacing-gap-comfortable);
       flex-direction: column;
@@ -597,13 +605,6 @@
 
     &.ck-ai-chat__feed__ai-suggestion {
       margin: 0 var(--ck-spacing-gap);
-
-      & .ck-ai-chat__feed__ai-suggestion__actions {
-        gap: var(--ck-spacing-gap);
-        flex-direction: row;
-        width: fit-content;
-        display: flex;
-      }
     }
 
     &.ck.ck-ai-chat__feed__interaction-header {
@@ -11811,8 +11812,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & uc-btn-ui button, & .uc-primary-btn, & .uc-secondary-btn {
     padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
-    min-width: var(--ck-ui-component-min-height, var(--ck-size-min-height));
+    min-width: var(--ck-button-standard-min-width);
     min-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
+    border-radius: var(--ck-border-radius-control);
   }
 
   & .uc-primary-btn, & uc-btn-ui.uc-primary button {
@@ -11852,6 +11854,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & uc-upload-list {
+    border-radius: 0 0 var(--ck-dialog-border-radius) var(--ck-dialog-border-radius);
+
     & .uc-toolbar {
       gap: var(--ck-spacing-gap-comfortable);
     }
