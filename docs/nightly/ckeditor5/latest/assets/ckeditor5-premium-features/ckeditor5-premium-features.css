@@ -2050,10 +2050,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-tabs-panels-container-background: var(--ck-ai-white-color);
   --ck-tab-button-gap: var(--ck-spacing-gap);
   --ck-color-tabs-buttons-container-background: var(--ck-color-base-foreground);
+  --ck-tabs-border-radius: var(--ck-border-radius-surface);
 }
 
 .ck.ck-tabs {
-  --ck-tabs-border-radius: var(--ck-border-radius-surface);
   font-size: var(--ck-font-size-base);
   border: var(--ck-border-surface);
   border-radius: var(--ck-tabs-border-radius);
@@ -4708,7 +4708,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-suggestion-box-deletion-border-color: var(--ck-color-suggestion-box-deletion-border, var(--ck-color-diff-deletion-box-border));
   --ck-suggestion-box-insertion-border-color: var(--ck-color-suggestion-box-insertion-border, var(--ck-color-diff-insertion-box-border));
   --ck-suggestion-box-format-border-color: var(--ck-color-base-active);
-  --ck-suggestion-box-focus-background-color: var(--ck-color-interactive-hover-surface);
+  --ck-suggestion-box-focus-border-color: var(--ck-interactive-focus-border-color);
+  --ck-suggestion-box-focus-shadow: var(--ck-interactive-focus-shadow);
   --ck-suggestion-ai-accent-color: var(--ck-color-suggestion-ai-accent, var(--ck-color-base-action));
   --ck-suggestion-ai-accent-background-color: var(--ck-color-suggestion-ai-accent-background, hsla(from var(--ck-color-suggestion-ai-accent, var(--ck-suggestion-ai-accent-color)) h s l / .1));
   --ck-suggestion-ai-author-icon-size: 18px;
@@ -4724,8 +4725,18 @@ div.ck.ck-ai-suggestion__content-part-state {
   border-top-left-radius: var(--ck-border-radius-control);
 
   &:focus {
-    background: var(--ck-suggestion-box-focus-background-color);
     outline: none;
+  }
+
+  &:focus:before {
+    content: "";
+    inset: var(--ck-focus-shadow-spread);
+    border: 1px solid var(--ck-suggestion-box-focus-border-color);
+    border-radius: calc(var(--ck-suggestion-wrapper-border-radius) - var(--ck-focus-shadow-spread));
+    box-shadow: var(--ck-suggestion-box-focus-shadow);
+    pointer-events: none;
+    z-index: 1;
+    position: absolute;
   }
 }
 
@@ -5306,7 +5317,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-comment-background-color: #f7f9fd;
-  --ck-comment-focus-background-color: var(--ck-color-interactive-hover-surface);
+  --ck-comment-focus-border-color: var(--ck-interactive-focus-border-color);
+  --ck-comment-focus-shadow: var(--ck-interactive-focus-shadow);
   --ck-comment-separator-color: var(--ck-color-comment-separator, #cddeef);
   --ck-comment-remove-background-color: var(--ck-color-comment-remove-background, var(--ck-color-light-red));
   --ck-comment-input-background-color: var(--ck-color-surface-canvas);
@@ -5314,6 +5326,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-comment-content-font-size: var(--ck-font-size-md);
   --ck-comment-content-font-color: var(--ck-color-text);
   --ck-comment-context-border-color: var(--ck-color-base-attention);
+  --ck-comment-context-icon-size: calc(var(--ck-comment-content-font-size) * 16 / 14);
+  --ck-comment-context-tooltip-padding: var(--ck-spacing-padding-compact) var(--ck-spacing-padding);
   --ck-comment-thread-line-size: 1px;
   --ck-comment-border-radius: var(--ck-border-radius-surface);
 }
@@ -5328,43 +5342,42 @@ div.ck.ck-ai-suggestion__content-part-state {
     transition: none;
   }
 
-  &:first-of-type {
-    border-top-right-radius: var(--ck-comment-border-radius);
-    border-top-left-radius: var(--ck-comment-border-radius);
-  }
-
-  &:focus {
-    background: var(--ck-comment-focus-background-color);
-  }
-
-  &:has( + .ck-thread__comment-count) {
-    & .ck-comment {
-      &:after {
-        height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding)
-					+ var(--ck-size-control-min-height) /* Comment count button height */);
-      }
-    }
+  &:focus:before {
+    content: "";
+    inset: var(--ck-focus-shadow-spread);
+    border: 1px solid var(--ck-comment-focus-border-color);
+    border-radius: calc(var(--ck-comment-border-radius) - var(--ck-focus-shadow-spread));
+    box-shadow: var(--ck-comment-focus-shadow);
+    pointer-events: none;
+    z-index: 1;
+    position: absolute;
   }
 }
 
-.ck .ck-comment {
-  &:after {
-    content: "";
-    opacity: 1;
-    left: calc(var(--ck-spacing-standard, var(--ck-spacing-base)) + ( var(--ck-user-avatar-size) / 2 )
+.ck .ck-comment:after, .ck .ck-thread__comment-count:before {
+  content: "";
+  opacity: 1;
+  left: calc(var(--ck-spacing-standard, var(--ck-spacing-base)) + ( var(--ck-user-avatar-size) / 2 )
 
-			/* Half width of line. */
-			- calc(var(--ck-comment-thread-line-size) / 2)
-			/* Avatar margin size) */
-			+ 2px);
-    width: var(--ck-comment-thread-line-size);
-    background-color: var(--ck-color-comment-separator, var(--ck-comment-separator-color));
-    top: calc(var(--ck-user-avatar-size) + (2 * var(--ck-spacing-padding, var(--ck-spacing-sm))));
-    height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding));
-    border-radius: var(--ck-comment-border-radius);
-    display: block;
-    position: absolute;
-  }
+		/* Half width of line. */
+		- calc(var(--ck-comment-thread-line-size) / 2)
+		/* Avatar margin size) */
+		+ 2px);
+  width: var(--ck-comment-thread-line-size);
+  background-color: var(--ck-color-comment-separator, var(--ck-comment-separator-color));
+  border-radius: var(--ck-comment-border-radius);
+  display: block;
+  position: absolute;
+}
+
+.ck .ck-comment:after {
+  top: calc(var(--ck-user-avatar-size) + (2 * var(--ck-spacing-padding, var(--ck-spacing-sm))));
+  height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding));
+}
+
+.ck .ck-thread__comment-count:before {
+  height: calc(100% + var(--ck-spacing-padding));
+  top: 0;
 }
 
 .ck .ck-comment--edit {
@@ -5397,7 +5410,26 @@ div.ck.ck-ai-suggestion__content-part-state {
       text-overflow: ellipsis;
       overflow: hidden;
     }
+
+    &.ck-comment__context_unlinked {
+      align-items: center;
+      gap: var(--ck-spacing-gap-compact);
+      border-inline-start: 0;
+      padding-inline-start: 0;
+      display: flex;
+
+      & > .ck-icon {
+        width: var(--ck-comment-context-icon-size);
+        height: var(--ck-comment-context-icon-size);
+        flex-shrink: 0;
+      }
+    }
   }
+}
+
+.ck.ck-tooltip.ck-comment__context-tooltip {
+  --ck-tooltip-padding: var(--ck-comment-context-tooltip-padding);
+  --ck-tooltip-multiline-padding: 0;
 }
 
 .ck .ck-comment--info {
@@ -5530,7 +5562,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-balloon-panel:has(.ck-thread:focus) {
   border: var(--ck-interactive-focus-ring);
-  box-shadow: var(--ck-shadow-surface-floating), var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
+  box-shadow: var(--ck-drop-shadow, var(--ck-shadow-surface-floating)), var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
   outline: none;
 }
 
@@ -5615,6 +5647,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
   cursor: pointer;
   transition: background-color var(--ck-transition-duration-control-emphasized) ease;
+  position: relative;
 
   & .ck-button {
     color: var(--ck-color-base-text-light);
@@ -5645,6 +5678,10 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck-comment:after {
       opacity: 0;
     }
+  }
+
+  & .ck-thread__comment-count:before {
+    opacity: 0;
   }
 }
 
@@ -5716,6 +5753,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck .ck-comment__input-container {
   --ck-user-avatar-size: 28px;
+  --ck-user-name-font-size: var(--ck-font-size-sm);
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   padding: var(--ck-comment-input-padding);
   display: none;
@@ -5747,7 +5785,6 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-editor__editable_inline {
-    --ck-focus-ring: none;
     --ck-inner-shadow: none;
     --ck-inset-shadow-sm: none;
     font-family: var(--ck-comment-content-font-family);
@@ -5927,6 +5964,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck .ck-annotation {
   --ck-user-avatar-size: 28px;
+  --ck-user-name-font-size: var(--ck-font-size-sm);
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   animation: annotationFadeInLeft var(--ck-animation-duration-surface-entrance);
   transition: background-color var(--ck-transition-duration-control-emphasized) ease;
@@ -5949,10 +5987,6 @@ div.ck.ck-ai-suggestion__content-part-state {
     &:not(.ck-disabled) {
       cursor: pointer;
     }
-  }
-
-  & .ck-user {
-    font-size: 12px;
   }
 
   & .ck-dropdown .ck-list {
@@ -6072,7 +6106,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-annotation-wrapper-background-color: var(--ck-color-annotation-wrapper-background, #fff);
-  --ck-annotation-wrapper-shadow: var(--ck-color-annotation-wrapper-drop-shadow, 0 1px 1px 1px #e6e6e6);
+  --ck-annotation-wrapper-shadow: var(--ck-color-annotation-wrapper-drop-shadow, none);
   --ck-annotation-wrapper-border-radius: var(--ck-border-radius-surface);
 }
 
@@ -6104,6 +6138,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   border-radius: var(--ck-annotation-wrapper-border-radius);
   background: var(--ck-color-annotation-wrapper-background, var(--ck-annotation-wrapper-background-color));
   border: var(--ck-border-surface);
+  box-shadow: var(--ck-color-annotation-wrapper-drop-shadow, var(--ck-annotation-wrapper-shadow));
   outline: 0;
 }
 
