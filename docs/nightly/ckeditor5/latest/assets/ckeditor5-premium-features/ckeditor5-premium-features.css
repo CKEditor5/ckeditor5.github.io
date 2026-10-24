@@ -2350,25 +2350,22 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
   }
 
-  & .ck-ai-chat-history__item--edit .ck-input, & .ck-ai-chat-history__item--edit .ck-input_focused {
+  & .ck-ai-chat-history__item--edit .ck-input {
     width: 100%;
     min-width: 0;
-    min-height: 0;
-    box-shadow: none;
-    background: none;
-    border: none;
-    padding: 0;
   }
 
   & .ck-ai-chat-history__item--edit {
     background: var(--ck-color-base-hover);
 
-    & .ck-ai-chat-history__item-edit .ck-input {
-      background: var(--ck-color-base-hover);
+    & .ck-ai-chat-history__item-content {
+      gap: var(--ck-spacing-gap-compact);
+      min-width: 0;
+      overflow: visible;
     }
 
     & .ck-ai-chat-history__item-actions {
-      align-items: center;
+      align-items: flex-start;
     }
   }
 
@@ -5386,10 +5383,6 @@ div.ck.ck-ai-suggestion__content-part-state {
   &:after {
     opacity: 0;
   }
-
-  & .ck-comment__input-actions {
-    margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
-  }
 }
 
 .ck .ck-comment__content {
@@ -5472,10 +5465,6 @@ div.ck.ck-ai-suggestion__content-part-state {
     flex-direction: column;
     display: flex;
     position: relative;
-
-    & .ck-comment__input {
-      padding: 0;
-    }
   }
 }
 
@@ -5716,11 +5705,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-thread__input {
-  width: calc(100% - var(--ck-user-avatar-size));
   white-space: normal;
+  min-width: 0;
   transition: background-color var(--ck-transition-duration-control) ease-in-out;
   border-radius: var(--ck-thread-input-border-radius);
-  min-height: 38px;
+  min-height: max(var(--ck-input-min-height-small),
+		calc(var(--ck-comment-content-font-size) * var(--ck-line-height-base) +
+			2 * var(--ck-spacing-padding-tight) +
+			2 * var(--ck-border-width-control)));
+  flex: 1 1 0;
 }
 
 .ck .ck-thread--active {
@@ -5757,31 +5750,40 @@ div.ck.ck-ai-suggestion__content-part-state {
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   padding: var(--ck-comment-input-padding);
   display: none;
-
-  & .ck-user {
-    margin-top: calc(var(--ck-spacing-padding) * .8);
-  }
 }
 
 .ck .ck-comment__input-container--active {
   align-items: flex-start;
+  gap: var(--ck-spacing-gap);
   display: flex;
+
+  & .ck-user {
+    margin-block: 0;
+  }
 }
 
 .ck .ck-comment__input {
-  padding: var(--ck-comment-input-padding);
-  color: var(--ck-color-text);
+  box-sizing: border-box;
+  min-height: var(--ck-input-min-height-small);
+  padding: var(--ck-comment-input-field-padding, var(--ck-input-padding-small));
+  color: var(--ck-color-input-text, var(--ck-input-text-color));
+  border: var(--ck-input-border);
+  border-radius: var(--ck-input-border-radius);
   resize: none;
-  transition: color var(--ck-transition-duration-control-emphasized) ease-in-out;
-  background-color: #0000;
-  border-width: 0;
+  background-color: var(--ck-color-input-background, var(--ck-input-background-color));
+  transition: var(--ck-transition-control-fast);
 
   @media (prefers-reduced-motion: reduce) {
-    transition: none;
+    transition: var(--ck-transition-none);
   }
 
   &:focus {
     outline: none;
+  }
+
+  &:focus-within {
+    border-color: var(--ck-input-focus-border-color);
+    box-shadow: var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
   }
 
   & .ck-editor__editable_inline {
@@ -5789,6 +5791,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     --ck-inset-shadow-sm: none;
     font-family: var(--ck-comment-content-font-family);
     font-size: var(--ck-comment-content-font-size);
+    line-height: var(--ck-line-height-base);
     color: var(--ck-comment-content-font-color);
     word-break: normal;
     overflow-wrap: anywhere;
@@ -5796,6 +5799,11 @@ div.ck.ck-ai-suggestion__content-part-state {
     border: 0;
     padding: 0;
     overflow: visible;
+
+    & p {
+      line-height: inherit;
+      padding: 0;
+    }
   }
 }
 
@@ -5808,8 +5816,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment__input-actions {
-  text-align: right;
   width: 100%;
+  margin-top: var(--ck-spacing-gap);
+  text-align: right;
+  line-height: 0;
   display: none;
 
   &.ck-comment__input-actions--active {
@@ -5818,14 +5828,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck.ck-button {
     cursor: pointer;
-    min-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
-    min-width: 60px;
-    font-size: var(--ck-annotation-button-size);
-    margin-left: var(--ck-spacing-large, var(--ck-spacing-lg));
-    padding: 0 var(--ck-spacing-control-padding-inline);
-    justify-content: center;
-    align-items: center;
-    display: inline-flex;
+    margin-left: var(--ck-spacing-gap);
   }
 }
 
@@ -5954,6 +5957,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-annotation-info-name-color: var(--ck-color-text);
   --ck-annotation-info-icon-color: var(--ck-color-text-secondary);
   --ck-annotation-info-time-color: var(--ck-color-text-secondary);
+  --ck-annotation-content-font-color: var(--ck-comment-content-font-color);
   --ck-annotation-button-size: .85em;
   --ck-annotation-dropdown-button-size: 14px;
   --ck-annotation-padding: var(--ck-spacing-padding) var(--ck-spacing-padding);
@@ -5979,13 +5983,16 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-button {
-    min-width: unset;
-    min-height: unset;
     color: var(--ck-color-annotation-icon, var(--ck-annotation-icon-color));
     border-radius: var(--ck-annotation-button-border-radius);
 
     &:not(.ck-disabled) {
       cursor: pointer;
+    }
+
+    &:not(.ck-button_small) {
+      min-width: unset;
+      min-height: unset;
     }
   }
 
@@ -6018,11 +6025,13 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck .ck-annotation__main p {
   white-space: normal;
   font-size: var(--ck-comment-content-font-size);
+  color: inherit;
   margin: 0;
   line-height: 1.5em;
 
   & .ck-suggestion-type {
     font-size: var(--ck-comment-content-font-size);
+    color: inherit;
     line-height: 1.5em;
   }
 }
@@ -6084,10 +6093,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-annotation__content-wrapper {
-  grid-area: content;
   width: 100%;
+  color: var(--ck-annotation-content-font-color);
+  grid-area: content;
 
-  &:not(:has(.ck-comment__input-wrapper)), & .ck-comment__input-wrapper .ck-comment__input {
+  &:not(:has(.ck-comment__input-wrapper)) {
     padding-inline-end: var(--ck-annotation-content-wrapper-padding-inline-end);
   }
 }
@@ -6559,6 +6569,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .footnote-content {
+    box-sizing: border-box;
     vertical-align: top;
     width: calc(100% - 2em);
     padding: 0 4px;
@@ -11683,8 +11694,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-image-processing-highlight-color: #f9fafa;
-  --ck-image-processing-background-color: #e3e5e8;
+  --ck-image-processing-highlight-color: var(--ck-color-surface-skeleton-highlight);
+  --ck-image-processing-background-color: var(--ck-color-surface-skeleton);
 }
 
 .ck.ck-editor__editable {
