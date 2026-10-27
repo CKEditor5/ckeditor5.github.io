@@ -301,9 +301,13 @@
   }
 }
 
+:root, :host {
+  --ck-ai-tabs-resize-button-on-background-color: transparent;
+}
+
 .ck.ck-button.ck-ai-tabs__resize {
   &.ck-on:not(:hover) {
-    background-color: #0000;
+    background-color: var(--ck-ai-tabs-resize-button-on-background-color);
   }
 }
 
@@ -311,6 +315,8 @@
   --ck-ai-chat-shortcuts-shortcut-border-color: var(--ck-ai-accent-100-color);
   --ck-ai-chat-shortcuts-shortcut-icon-color: var(--ck-ai-accent-700-color);
   --ck-ai-chat-shortcuts-shortcut-icon-hover-background-color: var(--ck-color-interactive-hover-surface);
+  --ck-ai-chat-shortcuts-shortcut-icon-hover-color: initial;
+  --ck-ai-chat-shortcuts-shortcut-active-background-color: initial;
   --ck-ai-chat-shortcuts-prompt-highlight-background-color: var(--ck-ai-accent-700-a1-color);
   --ck-ai-chat-shortcuts-prompt-animation-glow-ring-color: var(--ck-ai-accent-700-a3-color);
   --ck-ai-chat-shortcuts-prompt-animation-border-color: var(--ck-ai-accent-700-color);
@@ -345,6 +351,14 @@
 
       &:hover:not(.ck-disabled) {
         background-color: var(--ck-ai-chat-shortcuts-shortcut-icon-hover-background-color);
+
+        & .ck-icon {
+          color: var(--ck-ai-chat-shortcuts-shortcut-icon-hover-color, var(--ck-ai-chat-shortcuts-shortcut-icon-color));
+        }
+      }
+
+      &:active:not(.ck-disabled) {
+        background-color: var(--ck-ai-chat-shortcuts-shortcut-active-background-color, var(--ck-ai-chat-shortcuts-shortcut-icon-hover-background-color));
       }
 
       &.ck-disabled {
@@ -370,13 +384,18 @@
   }
 
   100% {
-    box-shadow: var(--ck-focus-shadow);
-    border: var(--ck-focus-ring);
+    box-shadow: var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
+    border: var(--ck-border-width-control) solid var(--ck-input-focus-border-color);
   }
 }
 
 .ck.ck-body.ck-ai-body .ck.ck-balloon-panel:not(.ck-tooltip) {
   z-index: calc(var(--ck-ai-tabs-overlay-z-index) + 1);
+}
+
+.ck-ai-scroll-filler {
+  margin-top: calc(-1 * var(--ck-ai-scroll-filler-gap-compensation, 0px));
+  flex: none;
 }
 
 :root, :host {
@@ -490,8 +509,11 @@
   --ck-ai-chat-feed-item-background-color: var(--ck-ai-neutral-50-color);
   --ck-ai-chat-feed-item-secondary-background-color: var(--ck-ai-neutral-50-color);
   --ck-ai-chat-feed-interaction-header-capabilities-text-color: var(--ck-ai-neutral-600-color);
+  --ck-ai-chat-feed-interaction-header-capabilities-icon-background-color: initial;
   --ck-ai-chat-web-source-tooltip-url-color: var(--ck-ai-accent-700-color);
   --ck-ai-chat-web-source-tooltip-title-color: var(--ck-ai-neutral-900-color);
+  --ck-ai-chat-web-source-hover-background-color: initial;
+  --ck-ai-chat-web-source-focus-shadow: none;
   --ck-ai-chat-feed-web-sources-header-icon-color: var(--ck-ai-neutral-600-color);
   --ck-ai-chat-feed-web-sources-header-text-color: var(--ck-ai-neutral-600-color);
   --ck-ai-chat-feed-interaction-header-capabilities-text-font-size: var(--ck-font-size-md);
@@ -509,6 +531,7 @@
   align-items: stretch;
   gap: var(--ck-spacing-gap-comfortable);
   contain: size;
+  --ck-ai-scroll-filler-gap-compensation: var(--ck-spacing-gap-comfortable);
   flex-flow: column;
   flex: auto;
   display: flex;
@@ -529,8 +552,8 @@
 
   & .ck.ck-ai-chat__feed__items {
     gap: var(--ck-spacing-gap-spacious) 0;
+    margin-top: var(--ck-ai-chat-feed-items-margin-top, auto);
     flex-direction: column;
-    margin-top: auto;
     display: flex;
 
     & > .ck-ai-chat__feed__item {
@@ -714,11 +737,11 @@
         border-radius: 50px;
 
         &:hover {
-          background-color: var(--ck-color-interactive-selected-surface-hover);
+          background-color: var(--ck-ai-chat-web-source-hover-background-color, var(--ck-color-interactive-selected-surface-hover));
         }
 
         &:focus, &:active {
-          box-shadow: none;
+          box-shadow: var(--ck-ai-chat-web-source-focus-shadow);
         }
 
         & .ck-ai-web-source__image, & .ck-button__icon {
@@ -766,6 +789,10 @@
       white-space: normal;
       line-height: 1.462em;
     }
+  }
+
+  & .ck-ai-suggestion__body__content-part {
+    scroll-margin-top: var(--ck-spacing-gap-snug);
   }
 }
 
@@ -1732,6 +1759,7 @@
 
 :root, :host {
   --ck-ai-chat-main-border-color: var(--ck-ai-neutral-300-color);
+  --ck-ai-chat-disclaimer-divider-color: initial;
   --ck-ai-chat-primary-button-background-color: var(--ck-ai-accent-700-color);
   --ck-ai-chat-primary-button-text-color: var(--ck-ai-white-color);
   --ck-ai-chat-text-color: var(--ck-ai-accent-700-color);
@@ -1901,19 +1929,39 @@
 div.ck.ck-ai-suggestion__content-part-state {
   display: flex;
 
+  &.ck-ai-suggestion__content-part-state_animated {
+    animation: .2s ease-out ck-ai-suggestion-state-pill-appear;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
   & .ck-pill_accepted {
-    --ck-pill-color: var(--ck-ai-suggestion-pill-accepted-text-color);
+    --ck-pill-text-color: var(--ck-ai-suggestion-pill-accepted-text-color);
     --ck-pill-background: var(--ck-ai-suggestion-pill-accepted-background-color);
   }
 
   & .ck-pill_rejected {
-    --ck-pill-color: var(--ck-ai-suggestion-pill-rejected-text-color);
+    --ck-pill-text-color: var(--ck-ai-suggestion-pill-rejected-text-color);
     --ck-pill-background: var(--ck-ai-suggestion-pill-rejected-background-color);
   }
 
   & .ck-pill_outdated {
-    --ck-pill-color: var(--ck-ai-suggestion-pill-outdated-text-color);
+    --ck-pill-text-color: var(--ck-ai-suggestion-pill-outdated-text-color);
     --ck-pill-background: var(--ck-ai-suggestion-pill-outdated-background-color);
+  }
+}
+
+@keyframes ck-ai-suggestion-state-pill-appear {
+  0% {
+    opacity: 0;
+    transform: scale(.85);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -1978,7 +2026,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-tabs-overlay-height: 100%;
   --ck-ai-tabs-overlay-width: 500px;
   --ck-ai-tabs-overlay-width-maximized: 50%;
-  --ck-ai-tabs-overlay-z-index: calc(var(--ck-z-modal) - 1);
+  --ck-ai-tabs-overlay-z-index: calc(var(--ck-layer-dialog) - 1);
 }
 
 .ck.ck-tabs.ck-ai-tabs {
@@ -2199,6 +2247,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-chat-history-item-title-font-size: var(--ck-font-size-md);
   --ck-ai-chat-history-item-title-height: calc(var(--ck-line-height-base) * var(--ck-ai-chat-history-item-title-font-size) + var(--ck-spacing-md));
   --ck-ai-chat-history-item-date-font-size: var(--ck-font-size-md);
+  --ck-ai-chat-history-item-hover-background-color: initial;
+  --ck-ai-chat-history-item-edit-background-color: initial;
+  --ck-ai-chat-history-item-active-background-color: transparent;
 }
 
 .ck .ck-ai-chat-history {
@@ -2294,8 +2345,8 @@ div.ck.ck-ai-suggestion__content-part-state {
       transition: none;
     }
 
-    &:not(.ck-confirm-view-active):hover {
-      background-color: var(--ck-color-interactive-hover-surface);
+    &:not(.ck-confirm-view-active):not(.ck-ai-chat-history__item--edit):hover {
+      background-color: var(--ck-ai-chat-history-item-hover-background-color, var(--ck-color-interactive-hover-surface));
     }
   }
 
@@ -2321,6 +2372,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai-chat-history__item--active {
+    background-color: var(--ck-ai-chat-history-item-active-background-color);
+
     & .ck-ai-chat-history__item-title {
       font-weight: var(--ck-font-weight-bold);
     }
@@ -2359,7 +2412,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-ai-chat-history__item--edit {
-    background: var(--ck-color-interactive-hover-surface);
+    background: var(--ck-ai-chat-history-item-edit-background-color, var(--ck-color-interactive-hover-surface));
 
     & .ck-ai-chat-history__item-content {
       gap: var(--ck-spacing-gap-compact);
@@ -2528,7 +2581,20 @@ div.ck.ck-ai-suggestion__content-part-state {
     box-shadow: none;
     border-color: #0000;
 
-    &:focus:not(.ck-disabled) {
+    &:focus-visible {
+      border-color: var(--ck-button-focus-border-color);
+      box-shadow: var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
+
+      &:not(:hover, .ck-on) {
+        background: none;
+      }
+
+      &.ck-disabled {
+        box-shadow: var(--ck-focus-disabled-outer-shadow, var(--ck-interactive-focus-disabled-shadow)), 0 0;
+      }
+    }
+
+    &:focus:not(.ck-disabled, :focus-visible) {
       background: var(--ck-list-button-hover-background-color);
     }
   }
@@ -3647,6 +3713,10 @@ div.ck.ck-ai-suggestion__content-part-state {
       overflow: auto;
     }
 
+    & .ck-ai_review__check-run-results-list {
+      display: contents;
+    }
+
     & .ck-ai_review__check-run-skeleton-container {
       padding: var(--ck-spacing-padding-comfortable);
       box-sizing: border-box;
@@ -3669,7 +3739,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       &:not(.ck-hidden) + .ck-ai_review__check-run-results-container:not(.ck-hidden) {
-        & > .ck-ai_review__check-run-result:first-child {
+        & > .ck-ai_review__check-run-results-list > .ck-ai_review__check-run-result:first-child {
           border-top: var(--ck-border-width-divider) solid var(--ck-color-divider);
         }
       }
@@ -3812,11 +3882,18 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-ai_review__check-run-results-container {
     gap: var(--ck-spacing-gap);
     padding: var(--ck-spacing-padding-comfortable);
+    --ck-ai-scroll-filler-gap-compensation: var(--ck-spacing-gap);
     flex-direction: column;
     display: flex;
   }
 
   & .ck-ai-suggestion__body__content-part {
+    scroll-margin-top: var(--ck-spacing-gap);
+
+    .ck-ai_review__summary.ck-hidden + .ck-ai_review__check-run-results-list > &:first-child {
+      scroll-margin-top: var(--ck-spacing-padding-comfortable);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       opacity: 1;
       visibility: visible;
@@ -3840,6 +3917,75 @@ div.ck.ck-ai-suggestion__content-part-state {
         border-bottom: 3px solid var(--ck-ai-suggestion-preview-deletion-active-border-color);
         background: var(--ck-ai-suggestion-preview-deletion-active-background-color);
       }
+    }
+  }
+}
+
+:root, :host {
+  --ck-ai-review-summary-background-color: hsla(from var(--ck-ai-accent-50-color) h s l / var(--ck-ai-alpha-5));
+  --ck-ai-review-summary-border-radius: var(--ck-radius-base);
+  --ck-ai-review-summary-padding: var(--ck-spacing-padding-comfortable);
+  --ck-ai-review-summary-gap: var(--ck-spacing-gap-compact);
+  --ck-ai-review-summary-title-color: var(--ck-color-base-text);
+  --ck-ai-review-summary-title-font-size: var(--ck-font-size-md);
+  --ck-ai-review-summary-title-font-weight: var(--ck-font-weight-bold);
+  --ck-ai-review-summary-counts-font-size: var(--ck-font-size-md);
+  --ck-ai-review-summary-counts-font-weight: var(--ck-font-weight-medium);
+  --ck-ai-review-summary-accepted-color: var(--ck-color-base-success);
+  --ck-ai-review-summary-dismissed-color: var(--ck-color-base-error);
+  --ck-ai-review-summary-hint-color: var(--ck-color-base-text-light);
+  --ck-ai-review-summary-hint-font-size: var(--ck-font-size-sm);
+  --ck-ai-review-summary-hint-font-weight: var(--ck-font-weight-medium);
+}
+
+.ck .ck-ai-review.ck-ai-review-mode .ck-ai_review__summary {
+  gap: var(--ck-ai-review-summary-gap);
+  padding: var(--ck-ai-review-summary-padding);
+  border-radius: var(--ck-ai-review-summary-border-radius);
+  background: var(--ck-ai-review-summary-background-color);
+  line-height: var(--ck-line-height-base);
+  overflow-wrap: anywhere;
+  white-space: normal;
+  flex-direction: column;
+  flex-shrink: 0;
+  display: flex;
+
+  & > p {
+    margin: 0;
+  }
+
+  & .ck-ai_review__summary-title {
+    color: var(--ck-ai-review-summary-title-color);
+    font-size: var(--ck-ai-review-summary-title-font-size);
+    font-weight: var(--ck-ai-review-summary-title-font-weight);
+  }
+
+  & .ck-ai_review__summary-counts {
+    gap: var(--ck-ai-review-summary-gap);
+    font-size: var(--ck-ai-review-summary-counts-font-size);
+    font-weight: var(--ck-ai-review-summary-counts-font-weight);
+    flex-wrap: wrap;
+    display: flex;
+  }
+
+  & .ck-ai_review__summary-count_accepted {
+    color: var(--ck-ai-review-summary-accepted-color);
+  }
+
+  & .ck-ai_review__summary-count_dismissed {
+    color: var(--ck-ai-review-summary-dismissed-color);
+  }
+
+  & .ck-ai_review__summary-separator, & .ck-ai_review__summary-hint {
+    color: var(--ck-ai-review-summary-hint-color);
+  }
+
+  & .ck-ai_review__summary-hint {
+    font-size: var(--ck-ai-review-summary-hint-font-size);
+    font-weight: var(--ck-ai-review-summary-hint-font-weight);
+
+    & strong {
+      font-weight: var(--ck-ai-review-summary-title-font-weight);
     }
   }
 }
@@ -3893,11 +4039,14 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-review-check-list-item-active-border-color: var(--ck-ai-accent-700-color);
   --ck-ai-review-check-list-item-selected-border-color: var(--ck-color-ai-accent-400, var(--ck-ai-tile-active-border-color));
   --ck-ai-review-check-list-item-hover-icon-color: var(--ck-ai-accent-700-color);
+  --ck-ai-review-check-list-item-selected-icon-color: initial;
   --ck-ai-review-check-list-item-border-color: var(--ck-color-border-subtle);
   --ck-ai-review-check-list-item-radius: var(--ck-radius-base);
   --ck-ai-review-check-list-item-padding: var(--ck-spacing-padding-comfortable);
-  --ck-ai-review-check-list-item-elevated-shadow: var(--ck-shadow-lg);
+  --ck-ai-review-check-list-item-elevated-shadow: var(--ck-shadow-surface-raised);
   --ck-ai-review-check-list-item-active-shadow: var(--ck-ai-tile-active-shadow);
+  --ck-ai-review-check-list-item-hover-shadow: initial;
+  --ck-ai-review-check-list-item-selected-shadow: initial;
   --ck-ai-review-check-list-item-title-color: var(--ck-color-text);
   --ck-ai-review-check-list-item-description-color: var(--ck-ai-neutral-600-color);
   --ck-ai-review-check-list-item-title-icon-color: var(--ck-ai-neutral-600-color);
@@ -4004,11 +4153,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 
       &.ck-ai_review__check-list-item_selected {
         border-color: var(--ck-ai-review-check-list-item-selected-border-color);
-        box-shadow: var(--ck-ai-review-check-list-item-active-shadow);
+        box-shadow: var(--ck-ai-review-check-list-item-selected-shadow, var(--ck-ai-review-check-list-item-active-shadow));
       }
 
       &:has( > .ck-ai_review__check-list-item-content:focus).ck-ai_review__check-list-item_selected {
-        box-shadow: var(--ck-ai-review-check-list-item-active-shadow), var(--ck-focus-shadow), 0 0;
+        box-shadow: var(--ck-ai-review-check-list-item-selected-shadow, var(--ck-ai-review-check-list-item-active-shadow)), var(--ck-focus-shadow), 0 0;
       }
 
       &:has( > .ck-ai_review__check-list-item-parameterized) {
@@ -4019,7 +4168,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
         &.ck-ai_review__check-list-item_selected {
           & .ck-ai_review__check-list-item-icon-wrapper > .ck.ck-icon.ck-ai_review__check-list-item-title-icon {
-            color: var(--ck-ai-review-check-list-item-hover-icon-color);
+            color: var(--ck-ai-review-check-list-item-selected-icon-color, var(--ck-ai-review-check-list-item-hover-icon-color));
             transform: rotate(180deg);
           }
         }
@@ -4100,7 +4249,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       &:not(.ck-ai_review__check-list-item_selected):not(:has( > .ck-ai_review__check-list-item-content:focus)):hover {
-        box-shadow: var(--ck-ai-review-check-list-item-elevated-shadow);
+        box-shadow: var(--ck-ai-review-check-list-item-hover-shadow, var(--ck-ai-review-check-list-item-elevated-shadow));
       }
 
       & .ck-ai_review__check-list-item-parameterized {
@@ -4303,6 +4452,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-translate-check-list-header-title-color: var(--ck-ai-neutral-900-color);
   --ck-ai-translate-check-list-header-font-size: var(--ck-font-size-md);
   --ck-ai-translate-check-list-header-title-font-size: var(--ck-font-size-md);
+  --ck-ai-translate-check-run-result-hover-shadow: initial;
+  --ck-ai-translate-check-run-result-active-border-color: initial;
+  --ck-ai-translate-check-run-result-active-shadow: initial;
 }
 
 .ck {
@@ -4374,12 +4526,14 @@ div.ck.ck-ai-suggestion__content-part-state {
       & .ck-ai_review__check-run-results-container {
         gap: var(--ck-spacing-gap);
         padding: var(--ck-spacing-padding-comfortable);
+        --ck-ai-scroll-filler-gap-compensation: var(--ck-spacing-gap);
         flex-direction: column;
         padding-block-start: var(--ck-spacing-padding-compact);
         display: flex;
       }
 
       & .ck-ai_review__check-run-result {
+        scroll-margin-top: var(--ck-spacing-gap);
         border: var(--ck-border-width-thin) solid var(--ck-color-border-subtle);
         border-radius: var(--ck-radius-base);
         background: var(--ck-color-surface-canvas);
@@ -4392,12 +4546,12 @@ div.ck.ck-ai-suggestion__content-part-state {
         }
 
         &:hover {
-          box-shadow: var(--ck-ai-review-check-list-item-elevated-shadow);
+          box-shadow: var(--ck-ai-translate-check-run-result-hover-shadow, var(--ck-ai-review-check-list-item-elevated-shadow));
         }
 
         &.ck-ai_review__check-run-result_active {
-          border-color: var(--ck-ai-tile-active-border-color);
-          box-shadow: var(--ck-ai-tile-active-shadow);
+          border-color: var(--ck-ai-translate-check-run-result-active-border-color, var(--ck-ai-tile-active-border-color));
+          box-shadow: var(--ck-ai-translate-check-run-result-active-shadow, var(--ck-ai-tile-active-shadow));
         }
 
         & .ck-suggestion-marker, & .ck-ai_review__check-run-result-footer {
@@ -4414,6 +4568,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 
         &:last-child:after {
           display: none;
+        }
+
+        &:first-child {
+          scroll-margin-top: var(--ck-spacing-padding-compact);
         }
       }
     }
@@ -4510,6 +4668,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-user-me-avatar-background-color: #4c9f70;
   --ck-user-avatar-text-color: var(--ck-user-avatar-color, #fff);
   --ck-user-me-border-color: #fff;
+  --ck-user-avatar-image-background-color: #fff;
   --ck-user-name-font-size: var(--ck-font-size-md);
 }
 
@@ -4566,7 +4725,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &.ck-user__avatar {
-    background-color: #fff;
+    background-color: var(--ck-user-avatar-image-background-color);
     display: block;
   }
 
@@ -4617,8 +4776,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-pill-gap: var(--ck-spacing-gap-compact);
   --ck-pill-font-family: var(--ck-font-face, var(--ck-font-family));
   --ck-pill-font-weight: var(--ck-font-weight-medium);
-  --ck-pill-background: var(--ck-color-interactive-hover-surface);
+  --ck-pill-background: var(--ck-color-base-hover);
   --ck-pill-color: var(--ck-color-text);
+  --ck-pill-text-color: initial;
 }
 
 .ck.ck-pill {
@@ -4628,7 +4788,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   padding: var(--ck-pill-padding-block) var(--ck-pill-padding-inline);
   border-radius: var(--ck-pill-radius);
   background: var(--ck-pill-background);
-  color: var(--ck-pill-color);
+  color: var(--ck-pill-text-color, var(--ck-pill-color));
   font-family: var(--ck-pill-font-family);
   font-size: var(--ck-pill-font-size);
   font-weight: var(--ck-pill-font-weight);
@@ -4667,6 +4827,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
+:root, :host {
+  --ck-confirm-view-background-color: initial;
+}
+
 .ck .ck-confirm-view-active {
   transition: all var(--ck-transition-duration-control-emphasized) linear;
   transform: translate3d(-100%, 0, 0);
@@ -4674,7 +4838,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck .ck-confirm-view {
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
-  background-color: var(--ck-color-light-red);
+  background-color: var(--ck-confirm-view-background-color, var(--ck-color-light-red));
   justify-content: flex-start;
   width: 100%;
   height: 100%;
@@ -4706,17 +4870,21 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
+  --ck-suggestion-wrapper-focus-shadow: initial;
   --ck-annotation-type-border-width: 0px;
+  --ck-annotation-type-border-style: solid;
   --ck-comment-box-border-color: var(--ck-color-comment-box-border);
   --ck-suggestion-box-deletion-border-color: var(--ck-color-suggestion-box-deletion-border, var(--ck-color-diff-deletion-box-border));
   --ck-suggestion-box-insertion-border-color: var(--ck-color-suggestion-box-insertion-border, var(--ck-color-diff-insertion-box-border));
-  --ck-suggestion-box-format-border-color: var(--ck-color-base-active);
+  --ck-suggestion-box-format-border-color: var(--ck-color-border-accent);
   --ck-suggestion-box-focus-border-color: var(--ck-interactive-focus-border-color);
   --ck-suggestion-box-focus-shadow: var(--ck-interactive-focus-shadow);
   --ck-suggestion-ai-accent-color: var(--ck-color-suggestion-ai-accent, var(--ck-color-base-action));
   --ck-suggestion-ai-accent-background-color: var(--ck-color-suggestion-ai-accent-background, hsla(from var(--ck-color-suggestion-ai-accent, var(--ck-suggestion-ai-accent-color)) h s l / .1));
   --ck-suggestion-ai-author-icon-size: 18px;
   --ck-suggestion-wrapper-border-radius: var(--ck-border-radius-surface);
+  --ck-suggestion-color-swatch-size: 14px;
+  --ck-suggestion-color-swatch-border-color: #454545;
   --ck-suggestion-marker-insertion-border-color: var(--ck-color-suggestion-marker-insertion-border, var(--ck-color-diff-insertion-border, #119c6780));
   --ck-suggestion-marker-insertion-active-border-color: var(--ck-color-suggestion-marker-insertion-border-active, var(--ck-color-diff-insertion-border-active, #119c6799));
   --ck-suggestion-marker-deletion-border-color: var(--ck-color-suggestion-marker-deletion-border, var(--ck-color-diff-deletion-border, #e0292966));
@@ -4744,7 +4912,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-annotation {
-  border-left: var(--ck-annotation-type-border-width) solid transparent;
+  border-left: var(--ck-annotation-type-border-width) var(--ck-annotation-type-border-style) transparent;
 }
 
 .ck .ck-suggestion--disabled-comments .ck-annotation {
@@ -4752,7 +4920,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment, .ck .ck-thread__comment-count, .ck .ck-comment__input-container, .ck .ck-thread__header {
-  border-left: var(--ck-annotation-type-border-width) solid var(--ck-comment-box-border-color);
+  border-left: var(--ck-annotation-type-border-width) var(--ck-annotation-type-border-style) var(--ck-comment-box-border-color);
 }
 
 .ck .ck-suggestion-insertion .ck-suggestion {
@@ -4777,7 +4945,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &:focus {
     outline: var(--ck-interactive-focus-ring);
-    box-shadow: 0 0 0 4px var(--ck-color-focus-outer-shadow);
+    box-shadow: var(--ck-suggestion-wrapper-focus-shadow, 0 0 0 4px var(--ck-color-focus-outer-shadow));
   }
 }
 
@@ -4792,30 +4960,30 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-suggestion-color {
+  width: var(--ck-suggestion-color-swatch-size);
+  height: var(--ck-suggestion-color-swatch-size);
   vertical-align: text-bottom;
-  border-radius: 14px;
-  width: 14px;
-  height: 14px;
+  box-shadow: 0 0 0 1px var(--ck-suggestion-color-swatch-border-color);
+  border-radius: 50%;
   margin: 0 5px;
   display: inline-block;
-  box-shadow: 0 0 0 1px #454545;
 }
 
-.ck .ck-suggestion-insertion .ck-comment, .ck .ck-suggestion-insertion .ck-thread__comment-count, .ck .ck-suggestion-insertion .ck-comment__input-container, .ck .ck-suggestion-replace .ck-comment, .ck .ck-suggestion-replace .ck-thread__comment-count, .ck .ck-suggestion-replace .ck-comment__input-container {
+.ck .ck-suggestion-insertion .ck-comment, .ck .ck-suggestion-insertion .ck-thread__comment-count, .ck .ck-suggestion-insertion .ck-comment__input-container, .ck .ck-suggestion-insertion .ck-thread__header, .ck .ck-suggestion-replace .ck-comment, .ck .ck-suggestion-replace .ck-thread__comment-count, .ck .ck-suggestion-replace .ck-comment__input-container, .ck .ck-suggestion-replace .ck-thread__header {
   border-left-color: var(--ck-color-suggestion-box-insertion-border, var(--ck-suggestion-box-insertion-border-color));
 }
 
-.ck .ck-suggestion-deletion .ck-comment, .ck .ck-suggestion-deletion .ck-thread__comment-count, .ck .ck-suggestion-deletion .ck-comment__input-container {
+.ck .ck-suggestion-deletion .ck-comment, .ck .ck-suggestion-deletion .ck-thread__comment-count, .ck .ck-suggestion-deletion .ck-comment__input-container, .ck .ck-suggestion-deletion .ck-thread__header {
   border-left-color: var(--ck-color-suggestion-box-deletion-border, var(--ck-suggestion-box-deletion-border-color));
 }
 
-.ck .ck-suggestion-format .ck-comment, .ck .ck-suggestion-format .ck-thread__comment-count, .ck .ck-suggestion-format .ck-comment__input-container {
+.ck .ck-suggestion-format .ck-comment, .ck .ck-suggestion-format .ck-thread__comment-count, .ck .ck-suggestion-format .ck-comment__input-container, .ck .ck-suggestion-format .ck-thread__header {
   border-left-color: var(--ck-color-suggestion-box-format-border, var(--ck-suggestion-box-format-border-color));
 }
 
 .ck.ck-pill.ck-pill_ai {
   --ck-pill-background: var(--ck-suggestion-ai-accent-background-color);
-  --ck-pill-color: var(--ck-color-suggestion-ai-accent, var(--ck-suggestion-ai-accent-color));
+  --ck-pill-text-color: var(--ck-color-suggestion-ai-accent, var(--ck-suggestion-ai-accent-color));
 }
 
 .ck .ck-user[data-user-id="ck-ai-author"] .ck-user__img.ck-user__avatar {
@@ -4833,7 +5001,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-suggestion__ai-source-pill {
-  margin-top: var(--ck-spacing-gap-compact);
+  margin-top: var(--ck-spacing-gap-snug);
   grid-column: 1 / -1;
   justify-content: flex-end;
   display: flex;
@@ -4865,11 +5033,18 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-suggestion-widget-th-insertion-active-background-color: var(--ck-color-suggestion-widget-th-insertion-background-active, var(--ck-color-diff-insertion-widget-th-background-active, #25da3d24));
   --ck-suggestion-widget-th-deletion-background-color: var(--ck-color-suggestion-widget-th-deletion-background, var(--ck-color-diff-deletion-widget-th-background, #e5668624));
   --ck-suggestion-widget-th-deletion-active-background-color: var(--ck-color-suggestion-widget-th-deletion-background-active, var(--ck-color-diff-deletion-widget-th-background-active, #c4214a29));
+  --ck-suggestion-marker-border-width: 3px;
+  --ck-suggestion-marker-insertion-border-style: solid;
+  --ck-suggestion-marker-deletion-border-style: solid;
+  --ck-suggestion-marker-format-border-style: solid;
+  --ck-suggestion-marker-deletion-stroke-thickness: 3px;
+  --ck-suggestion-marker-format-gap-color: initial;
+  --ck-suggestion-marker-format-code-gap-color: #ededed;
 }
 
 .ck-content .ck-suggestion-marker-insertion {
-  border-top: 3px solid var(--ck-suggestion-marker-insertion-border-color);
-  border-bottom: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+  border-top: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-insertion-border-style) var(--ck-suggestion-marker-insertion-border-color);
+  border-bottom: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-insertion-border-style) var(--ck-suggestion-marker-insertion-border-color);
   background: var(--ck-suggestion-marker-insertion-background-color);
 
   &.ck-suggestion-marker--active {
@@ -4878,7 +5053,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+    border: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-insertion-border-style) var(--ck-suggestion-marker-insertion-border-color);
     background: none;
     text-decoration: none;
 
@@ -4889,12 +5064,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content .ck-suggestion-marker-deletion {
-  border-top: 3px solid var(--ck-suggestion-marker-deletion-border-color);
-  border-bottom: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+  border-top: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-deletion-border-style) var(--ck-suggestion-marker-deletion-border-color);
+  border-bottom: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-deletion-border-style) var(--ck-suggestion-marker-deletion-border-color);
   text-decoration: line-through;
   text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
+  text-decoration-thickness: var(--ck-suggestion-marker-deletion-stroke-thickness);
   background: var(--ck-suggestion-marker-deletion-background-color);
-  text-decoration-thickness: 3px;
 
   &.ck-suggestion-marker--active {
     border-color: var(--ck-suggestion-marker-deletion-active-border-color);
@@ -4902,7 +5077,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+    border: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-deletion-border-style) var(--ck-suggestion-marker-deletion-border-color);
     background: none;
     text-decoration: none;
 
@@ -4914,8 +5089,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-content .ck-suggestion-marker-merge {
   &:after {
-    border-top: 3px solid var(--ck-suggestion-marker-deletion-border-color);
-    border-bottom: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+    border-top: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-deletion-border-style) var(--ck-suggestion-marker-deletion-border-color);
+    border-bottom: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-deletion-border-style) var(--ck-suggestion-marker-deletion-border-color);
     text-decoration: line-through;
     text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
     background: var(--ck-suggestion-marker-deletion-background-color);
@@ -4931,8 +5106,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-content .ck-suggestion-marker-split {
   &:after {
-    border-top: 3px solid var(--ck-suggestion-marker-insertion-border-color);
-    border-bottom: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+    border-top: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-insertion-border-style) var(--ck-suggestion-marker-insertion-border-color);
+    border-bottom: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-insertion-border-style) var(--ck-suggestion-marker-insertion-border-color);
     background: var(--ck-suggestion-marker-insertion-background-color);
     color: var(--ck-suggestion-marker-insertion-border-color);
     content: "¶";
@@ -4945,15 +5120,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content .ck-suggestion-marker-formatInline {
-  border-top: 3px solid var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
-  border-bottom: 3px solid var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  border-top: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-format-border-style) var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  border-bottom: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-format-border-style) var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
 
   &.ck-suggestion-marker--active {
     border-color: var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
   }
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+    border: var(--ck-suggestion-marker-border-width) var(--ck-suggestion-marker-format-border-style) var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
     background: none;
 
     &.ck-suggestion-marker--active {
@@ -4963,20 +5138,20 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content .ck-suggestion-marker-formatBlock {
-  box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  box-shadow: -7px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background, #fff)), calc(-7px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
   background: none;
   border: 0;
 
   &.ck-suggestion-marker--active {
-    box-shadow: -5px 0 0 0 var(--ck-color-base-background), -8px 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
+    box-shadow: -5px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background, #fff)), calc(-5px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
   }
 }
 
 .ck-content ul .ck-suggestion-marker-formatBlock, .ck-content ol .ck-suggestion-marker-formatBlock {
-  box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  box-shadow: -2px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background, #fff)), calc(-2px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
 
   &.ck-suggestion-marker--active {
-    box-shadow: -2px 0 0 0 var(--ck-color-base-background), -5px 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
+    box-shadow: -2px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background, #fff)), calc(-2px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
   }
 }
 
@@ -5090,7 +5265,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & :not(.ck-merge-field__affix), &.ck-merge-field_with-value, &.ck-merge-field_with-warning {
     text-decoration: line-through;
     text-decoration-color: var(--ck-suggestion-marker-deletion-stroke-color);
-    text-decoration-thickness: 3px;
+    text-decoration-thickness: var(--ck-suggestion-marker-deletion-stroke-thickness);
   }
 
   &.ck-suggestion-marker--active {
@@ -5136,10 +5311,10 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content figure.table .ck-suggestion-marker-formatBlock {
-  box-shadow: -3px 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  box-shadow: calc(-1 * var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
 
   &.ck-suggestion-marker--active {
-    box-shadow: -3px 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
+    box-shadow: calc(-1 * var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
   }
 }
 
@@ -5294,11 +5469,11 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-content pre > code.ck-suggestion-marker-formatBlock {
-  box-shadow: -7px 0 0 0 #ededed, -10px 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
+  box-shadow: -7px 0 0 0 var(--ck-suggestion-marker-format-code-gap-color), calc(-7px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border, var(--ck-suggestion-marker-format-border-color));
   display: block;
 
   &.ck-suggestion-marker--active {
-    box-shadow: -5px 0 0 0 #ededed, -8px 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
+    box-shadow: -5px 0 0 0 var(--ck-suggestion-marker-format-code-gap-color), calc(-5px - var(--ck-suggestion-marker-border-width)) 0 0 0 var(--ck-color-suggestion-marker-format-border-active, var(--ck-suggestion-marker-format-active-border-color));
   }
 }
 
@@ -5329,6 +5504,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-comment-content-font-size: var(--ck-font-size-md);
   --ck-comment-content-font-color: var(--ck-color-text);
   --ck-comment-context-border-color: var(--ck-color-base-attention);
+  --ck-comment-context-text-color: var(--ck-color-text-secondary);
   --ck-comment-context-icon-size: calc(var(--ck-comment-content-font-size) * 16 / 14);
   --ck-comment-context-tooltip-padding: var(--ck-spacing-padding-compact) var(--ck-spacing-padding);
   --ck-comment-thread-line-size: 1px;
@@ -5401,7 +5577,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     border-inline-start: 3px solid var(--ck-comment-context-border-color);
     margin-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
     margin-bottom: var(--ck-spacing-standard, var(--ck-spacing-base));
-    color: var(--ck-color-base-text-light);
+    color: var(--ck-comment-context-text-color);
     padding-inline-start: var(--ck-spacing-standard, var(--ck-spacing-base));
 
     & > p {
@@ -5479,15 +5655,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck-comment__input-actions .ck.ck-button.ck-comment__input-actions--submit {
-  color: #fff;
-
   &.ck-disabled {
     cursor: default;
   }
-}
-
-.ck-comment__input-actions .ck.ck-button.ck-comment__input-actions--cancel {
-  color: var(--ck-color-text);
 }
 
 .ck .ck-comment__external {
@@ -5507,12 +5677,12 @@ div.ck.ck-ai-suggestion__content-part-state {
     margin: 0;
 
     & .ck-list__item {
-      color: var(--ck-color-text);
       min-width: auto;
       font-size: 1.2em;
 
       & .ck-button {
-        color: var(--ck-color-text);
+        --ck-button-default-text-color: inherit;
+        --_ck-button-fallback-text-color: var(--ck-color-text);
       }
     }
   }
@@ -5520,7 +5690,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-thread-remove-background-color: var(--ck-color-thread-remove-background, var(--ck-comment-remove-background-color));
-  --ck-comment-count-color: #223047;
+  --ck-comment-count-color: var(--ck-color-text-secondary);
+  --ck-thread-focus-shadow: initial;
   --ck-thread-header-background-color: var(--ck-color-thread-header-background, #f3f6fd);
   --ck-thread-header-active-background-color: var(--ck-color-thread-header-active-background, var(--ck-color-interactive-selected-surface));
   --ck-thread-header-button-hover-background: var(--ck-color-interactive-primary-surface-muted);
@@ -5551,7 +5722,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   &:focus {
     outline: var(--ck-interactive-focus-ring);
-    box-shadow: 0 0 0 4px var(--ck-color-focus-outer-shadow);
+    box-shadow: var(--ck-thread-focus-shadow, 0 0 0 4px var(--ck-color-focus-outer-shadow));
   }
 }
 
@@ -5636,16 +5807,16 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-thread__comment-count {
-  --ck-user-avatar-size: 28px;
+  --ck-user-avatar-size: var(--ck-annotation-user-avatar-size);
   padding-left: calc(var(--ck-user-avatar-size) + var(--ck-spacing-standard, var(--ck-spacing-base)) * 2);
-  color: var(--ck-color-comment-count, var(--ck-color-base-text-light));
+  color: var(--ck-color-comment-count, var(--ck-comment-count-color));
   font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
   cursor: pointer;
   transition: background-color var(--ck-transition-duration-control-emphasized) ease;
   position: relative;
 
   & .ck-button {
-    color: var(--ck-color-base-text-light);
+    color: var(--ck-color-comment-count, var(--ck-comment-count-color));
   }
 
   & .ck-button .ck-button__icon {
@@ -5748,13 +5919,15 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-comment-input-padding: var(--ck-spacing-padding) var(--ck-spacing-padding);
+  --ck-comment-input-container-background-color: transparent;
 }
 
 .ck .ck-comment__input-container {
-  --ck-user-avatar-size: 28px;
+  --ck-user-avatar-size: var(--ck-annotation-user-avatar-size);
   --ck-user-name-font-size: var(--ck-font-size-sm);
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   padding: var(--ck-comment-input-padding);
+  background-color: var(--ck-comment-input-container-background-color);
   display: none;
 }
 
@@ -5835,6 +6008,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck.ck-button {
     cursor: pointer;
     margin-left: var(--ck-spacing-gap);
+    --ck-button-default-text-color: inherit;
+    --_ck-button-fallback-text-color: var(--ck-color-text);
   }
 }
 
@@ -5886,9 +6061,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-annotation-counter-badge-top: 1px;
   --ck-annotation-counter-badge-gap: 1px;
   --ck-annotation-counter-badge-size: var(--ck-annotation-counter-icon-font-size);
-  --ck-annotation-counter-color: var(--ck-color-base-text-light);
-  --ck-annotation-counter-hover-color: var(--ck-color-base-text);
-  --ck-annotation-counter-focus-color: var(--ck-color-base-active);
+  --ck-annotation-counter-color: var(--ck-color-text-secondary);
+  --ck-annotation-counter-hover-color: var(--ck-color-text-primary);
+  --ck-annotation-counter-focus-color: var(--ck-color-interactive-selected-text);
+  --ck-annotation-counter-badge-text-color: var(--ck-color-text-inverse);
 }
 
 .ck.ck-sidebar--narrow .ck-sidebar-item {
@@ -5938,7 +6114,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     width: var(--ck-annotation-counter-badge-size);
     height: var(--ck-annotation-counter-badge-size);
     background: var(--ck-annotation-counter-color);
-    color: #fff;
+    color: var(--ck-annotation-counter-badge-text-color);
     font-weight: bold;
     font-size: var(--ck-annotation-counter-number-size);
     font-family: var(--ck-font-face, var(--ck-font-family));
@@ -5966,6 +6142,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-annotation-content-font-color: var(--ck-comment-content-font-color);
   --ck-annotation-button-size: .85em;
   --ck-annotation-dropdown-button-size: 14px;
+  --ck-annotation-user-avatar-size: 28px;
   --ck-annotation-padding: var(--ck-spacing-padding) var(--ck-spacing-padding);
   --ck-annotation-content-wrapper-padding-inline-end: var(--ck-spacing-padding);
   --ck-annotation-main-border-radius: var(--ck-border-radius-surface);
@@ -5973,7 +6150,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-annotation {
-  --ck-user-avatar-size: 28px;
+  --ck-user-avatar-size: var(--ck-annotation-user-avatar-size);
   --ck-user-name-font-size: var(--ck-font-size-sm);
   font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   animation: annotationFadeInLeft var(--ck-animation-duration-surface-entrance);
@@ -5989,7 +6166,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-button {
-    color: var(--ck-color-annotation-icon, var(--ck-annotation-icon-color));
+    --ck-button-default-text-color: var(--ck-color-annotation-icon, var(--ck-annotation-icon-color));
     border-radius: var(--ck-annotation-button-border-radius);
 
     &:not(.ck-disabled) {
@@ -6121,9 +6298,12 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-annotation-wrapper-background-color: var(--ck-color-annotation-wrapper-background, #fff);
+  --ck-annotation-wrapper-background-color: var(--ck-color-annotation-wrapper-background, var(--ck-color-surface-container));
   --ck-annotation-wrapper-shadow: var(--ck-color-annotation-wrapper-drop-shadow, none);
   --ck-annotation-wrapper-border-radius: var(--ck-border-radius-surface);
+  --ck-annotation-wrapper-border: var(--ck-border-surface);
+  --ck-annotation-wrapper-active-border: initial;
+  --ck-annotation-wrapper-active-shadow: initial;
 }
 
 .ck.ck-sidebar {
@@ -6153,9 +6333,14 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck.ck-annotation-wrapper {
   border-radius: var(--ck-annotation-wrapper-border-radius);
   background: var(--ck-color-annotation-wrapper-background, var(--ck-annotation-wrapper-background-color));
-  border: var(--ck-border-surface);
+  border: var(--ck-annotation-wrapper-border);
   box-shadow: var(--ck-color-annotation-wrapper-drop-shadow, var(--ck-annotation-wrapper-shadow));
   outline: 0;
+}
+
+:where(.ck-sidebar) .ck.ck-annotation-wrapper--active {
+  border: var(--ck-annotation-wrapper-active-border, var(--ck-annotation-wrapper-border));
+  box-shadow: var(--ck-annotation-wrapper-active-shadow, var(--ck-color-annotation-wrapper-drop-shadow, var(--ck-annotation-wrapper-shadow)));
 }
 
 .ck.ck-annotation-wrapper--active, .ck.ck-annotation-wrapper:hover {
@@ -6214,28 +6399,34 @@ div.ck.ck-ai-suggestion__content-part-state {
 :root, :host {
   --ck-comment-marker-color: #fdecc3;
   --ck-comment-marker-active-color: #fbd988;
+  --ck-comment-marker-border-width: 3px;
+  --ck-comment-marker-border-style: solid;
+  --ck-comment-marker-border-color: initial;
+  --ck-comment-marker-active-border-color: initial;
 }
 
 .ck-content .ck-comment-marker {
   background: var(--ck-color-comment-marker, var(--ck-comment-marker-color));
-  border-top: 3px solid #0000;
-  border-bottom: 3px solid #0000;
+  border-top: var(--ck-comment-marker-border-width) var(--ck-comment-marker-border-style) var(--ck-comment-marker-border-color, transparent);
+  border-bottom: var(--ck-comment-marker-border-width) var(--ck-comment-marker-border-style) var(--ck-comment-marker-border-color, transparent);
 
   &.ck-widget {
-    border: 3px solid var(--ck-color-comment-marker, var(--ck-comment-marker-color));
+    border: var(--ck-comment-marker-border-width) var(--ck-comment-marker-border-style)
+			var(--ck-comment-marker-border-color, var(--ck-color-comment-marker, var(--ck-comment-marker-color)));
     background-color: #0000;
   }
 }
 
 .ck-content .ck-comment-marker--active {
   background: var(--ck-color-comment-marker-active, var(--ck-comment-marker-active-color));
+  border-color: var(--ck-comment-marker-active-border-color, var(--ck-comment-marker-border-color, transparent));
 
   & .ck-comment-marker {
     background: var(--ck-color-comment-marker-active, var(--ck-comment-marker-active-color));
   }
 
   &.ck-widget {
-    border-color: var(--ck-color-comment-marker-active, var(--ck-comment-marker-active-color));
+    border-color: var(--ck-comment-marker-active-border-color, var(--ck-color-comment-marker-active, var(--ck-comment-marker-active-color)));
 
     & .ck-comment-marker {
       background-color: var(--ck-color-comment-marker, var(--ck-comment-marker-color));
@@ -6254,9 +6445,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-document-outline-indent-level-5: 6em;
   --ck-document-outline-indent-level-6: 7.5em;
   --ck-document-outline-item-padding: var(--ck-spacing-control-padding-block);
-  --ck-document-outline-item-active-color: var(--ck-color-base-active);
+  --ck-document-outline-item-active-color: var(--ck-color-text-accent);
   --ck-document-outline-item-default-color: #424242;
   --ck-document-outline-item-hover-state-color: var(--ck-color-text);
+  --ck-document-outline-item-hover-text-color: initial;
 }
 
 .ck.ck-document-outline {
@@ -6284,7 +6476,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     &.ck-document-outline__item_empty:hover, &:hover {
-      color: var(--ck-document-outline-item-hover-state-color);
+      color: var(--ck-document-outline-item-hover-text-color, var(--ck-document-outline-item-hover-state-color));
       text-decoration: underline;
     }
 
@@ -6352,8 +6544,9 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 :root, :host {
   --ck-table-of-contents-border-color: var(--ck-color-border-container);
-  --ck-table-of-contents-label-background-color: var(--ck-color-base-text-light);
-  --ck-table-of-contents-background-color: var(--ck-color-base-foreground);
+  --ck-table-of-contents-label-background-color: var(--ck-color-text-secondary);
+  --ck-table-of-contents-label-text-color: var(--ck-color-text-inverse);
+  --ck-table-of-contents-background-color: var(--ck-color-surface-subtle);
 }
 
 .ck-editor__editable .ck-widget.table-of-contents {
@@ -6374,7 +6567,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     border-radius: var(--ck-widget-label-border-radius);
     font-size: 10px;
     font-family: var(--ck-font-face, var(--ck-font-family));
-    color: #fff;
+    color: var(--ck-table-of-contents-label-text-color);
     white-space: nowrap;
     line-height: 16px;
     position: absolute;
@@ -6432,7 +6625,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-footnotes-widget-label-background-color: var(--ck-color-base-text-light);
+  --ck-footnotes-widget-label-background-color: var(--ck-color-text-secondary);
+  --ck-footnotes-widget-label-text-color: var(--ck-color-text-inverse);
 }
 
 .ck.ck-editor__editable {
@@ -6452,7 +6646,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       border-radius: var(--ck-widget-label-border-radius);
       font-size: 10px;
       font-family: var(--ck-font-face, var(--ck-font-family));
-      color: #fff;
+      color: var(--ck-footnotes-widget-label-text-color);
       white-space: nowrap;
       line-height: 16px;
       position: absolute;
@@ -6797,6 +6991,15 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-color-merge-fields-with-warning-outline: #ea6d43;
   --ck-color-merge-fields-block-outline: #e3e3e3;
   --ck-color-merge-fields-affix-color: #3779eb;
+  --ck-merge-fields-form-error-background-color: initial;
+  --ck-merge-fields-outline-color: initial;
+  --ck-merge-fields-value-outline-color: initial;
+  --ck-merge-fields-with-warning-outline-color: initial;
+  --ck-merge-fields-block-outline-color: initial;
+  --ck-merge-fields-affix-text-color: initial;
+  --ck-merge-fields-label-background-color: var(--ck-color-surface-canvas);
+  --ck-merge-fields-preview-badge-background-color: var(--ck-color-surface-canvas);
+  --ck-merge-fields-affix-font-family: Arial, sans-serif;
 }
 
 .ck .ck-merge-field {
@@ -6821,7 +7024,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     line-height: 1.2em;
 
     &:not(:hover):not(.ck-widget_selected) {
-      outline: 1px solid var(--ck-color-merge-fields-outline);
+      outline: 1px solid var(--ck-merge-fields-outline-color, var(--ck-color-merge-fields-outline));
     }
   }
 
@@ -6836,7 +7039,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       white-space: normal;
 
       &:not(:hover):not(.ck-widget_selected) {
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
       }
     }
 
@@ -6844,7 +7047,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       white-space: normal;
 
       &:not(:hover):not(.ck-widget_selected) {
-        outline: 1px solid var(--ck-color-merge-fields-value-outline);
+        outline: 1px solid var(--ck-merge-fields-value-outline-color, var(--ck-color-merge-fields-value-outline));
       }
     }
   }
@@ -6861,8 +7064,8 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-merge-field__affix {
-    color: var(--ck-color-merge-fields-affix-color);
-    font-family: Arial, sans-serif;
+    font-family: var(--ck-merge-fields-affix-font-family);
+    color: var(--ck-merge-fields-affix-text-color, var(--ck-color-merge-fields-affix-color));
     font-size: .85em;
     position: relative;
     top: -.15em;
@@ -6894,8 +7097,8 @@ div.ck.ck-ai-suggestion__content-part-state {
     display: flex;
 
     & .ck-merge-field {
+      background-color: var(--ck-merge-fields-label-background-color);
       pointer-events: all;
-      background-color: #fff;
       align-items: baseline;
       max-width: 80%;
       margin: 0 .5em;
@@ -6910,7 +7113,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     &.ck-merge-field-block_with-warning_no-default, &.ck-merge-field-block_with-warning_missing-data {
       & .ck-merge-field {
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
         line-height: 1.3em;
       }
     }
@@ -6925,7 +7128,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       z-index: 1;
       top: var(--ck-spacing-small, var(--ck-spacing-sm));
       left: var(--ck-spacing-small, var(--ck-spacing-sm));
-      background-color: #fff;
+      background-color: var(--ck-merge-fields-preview-badge-background-color);
       border-radius: 2px;
       padding: 2px 2px 2.5px;
       line-height: 0;
@@ -6935,20 +7138,20 @@ div.ck.ck-ai-suggestion__content-part-state {
     &:not(.ck-merge-field-block_with-value) {
       &:before {
         content: url("data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"15\" viewBox=\"0 0 16 15\" fill=\"none\"%3E%3Ccircle cx=\"7.89981\" cy=\"7.70938\" r=\"1.35\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 1.3645C10.8242 0.6895 10.8243 0.6895 10.8243 0.6895L10.8254 0.689501L10.8275 0.689505L10.834 0.689533L10.8558 0.689721C10.8741 0.689929 10.8998 0.690334 10.9313 0.691122C10.9942 0.692692 11.0818 0.695814 11.1822 0.702076C11.3725 0.713953 11.648 0.739273 11.8889 0.799933C12.2461 0.889854 12.5529 1.05305 12.7956 1.29598C13.0364 1.5369 13.1814 1.82347 13.2674 2.11173C13.4307 2.65843 13.4025 3.29399 13.3646 3.83275C13.3558 3.95861 13.3462 4.0811 13.3369 4.20063C13.3027 4.63909 13.2716 5.03792 13.29 5.41777C13.3131 5.89278 13.4121 6.20897 13.5894 6.41849C13.7897 6.65519 14.0336 6.8041 14.2365 6.89438C14.3365 6.93893 14.4218 6.96703 14.4787 6.98333C14.507 6.99142 14.5277 6.99644 14.5391 6.99901L14.5476 7.00087L15.0991 7.09901V7.6645H12.9373C12.8081 7.55756 12.68 7.43372 12.5588 7.29052C12.1016 6.7501 11.9706 6.08078 11.9416 5.48324C11.9186 5.00885 11.9589 4.49792 11.9942 4.05032C12.0027 3.94209 12.0109 3.83752 12.0179 3.73811C12.0572 3.17882 12.0575 2.77784 11.9739 2.49806C11.9366 2.37307 11.8893 2.29891 11.8406 2.25018C11.794 2.20346 11.7142 2.14808 11.5593 2.10908C11.4429 2.07977 11.2684 2.06009 11.0981 2.04945C11.0181 2.04446 10.9477 2.04195 10.8977 2.0407C10.8728 2.04008 10.8532 2.03978 10.8405 2.03963L10.8266 2.03951L10.8239 2.0395L10.1491 2.03945L10.1492 0.689453L10.8243 0.6895L10.8241 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 13.9645C10.8242 14.6395 10.8243 14.6395 10.8243 14.6395H10.8254L10.8275 14.6395L10.834 14.6395L10.8558 14.6393C10.8741 14.6391 10.8998 14.6387 10.9313 14.6379C10.9942 14.6363 11.0818 14.6332 11.1822 14.6269C11.3725 14.6151 11.648 14.5897 11.8889 14.5291C12.2461 14.4392 12.5529 14.276 12.7956 14.033C13.0364 13.7921 13.1814 13.5055 13.2674 13.2173C13.4307 12.6706 13.4025 12.035 13.3646 11.4963C13.3558 11.3704 13.3462 11.2479 13.3369 11.1284C13.3027 10.6899 13.2716 10.2911 13.29 9.91123C13.3131 9.43623 13.4121 9.12004 13.5894 8.91051C13.7897 8.67382 14.0336 8.52491 14.2365 8.43463C14.3365 8.39008 14.4218 8.36198 14.4787 8.34568C14.507 8.33759 14.5277 8.33257 14.5391 8.32999L14.5476 8.32813L15.0991 8.23V7.6645H12.9373C12.8081 7.77144 12.68 7.89528 12.5588 8.03849C12.1016 8.57891 11.9706 9.24823 11.9416 9.84577C11.9186 10.3202 11.9589 10.8311 11.9942 11.2787C12.0027 11.3869 12.0109 11.4915 12.0179 11.5909C12.0572 12.1502 12.0575 12.5512 11.9739 12.8309C11.9366 12.9559 11.8893 13.0301 11.8406 13.0788C11.794 13.1256 11.7142 13.1809 11.5593 13.2199C11.4429 13.2492 11.2684 13.2689 11.0981 13.2796C11.0181 13.2845 10.9477 13.2871 10.8977 13.2883C10.8728 13.2889 10.8532 13.2892 10.8405 13.2894L10.8266 13.2895L10.8239 13.2895L10.1491 13.2896L10.1492 14.6396L10.8243 14.6395L10.8241 13.9645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 1.3645C4.97466 0.6895 4.97455 0.6895 4.97455 0.6895L4.97338 0.689501L4.97131 0.689505L4.96483 0.689533L4.94301 0.689721C4.92472 0.689929 4.89906 0.690334 4.86749 0.691122C4.8046 0.692692 4.71698 0.695814 4.61666 0.702076C4.42635 0.713953 4.15083 0.739273 3.9099 0.799933C3.55276 0.889854 3.24593 1.05305 3.00319 1.29598C2.76247 1.5369 2.61747 1.82347 2.53138 2.11173C2.3681 2.65843 2.39635 3.29399 2.43421 3.83275C2.44306 3.95861 2.45262 4.0811 2.46194 4.20063C2.49615 4.63909 2.52727 5.03792 2.50883 5.41777C2.48576 5.89278 2.38671 6.20897 2.20942 6.41849C2.00914 6.65519 1.76518 6.8041 1.56236 6.89438C1.46229 6.93893 1.37703 6.96703 1.32009 6.98333C1.29181 6.99142 1.2711 6.99644 1.25976 6.99901L1.25122 7.00087L0.699707 7.09901V7.6645H2.86155C2.9907 7.55756 3.11882 7.43372 3.23999 7.29052C3.69727 6.7501 3.82823 6.08078 3.85724 5.48324C3.88027 5.00885 3.83997 4.49792 3.80466 4.05032C3.79613 3.94209 3.78788 3.83752 3.78089 3.73811C3.74159 3.17882 3.74136 2.77784 3.82492 2.49806C3.86225 2.37307 3.9095 2.29891 3.95819 2.25018C4.00487 2.20346 4.0846 2.14808 4.23951 2.10908C4.35591 2.07977 4.53039 2.06009 4.70075 2.04945C4.78076 2.04446 4.85115 2.04195 4.90117 2.0407C4.92606 2.04008 4.94559 2.03978 4.95837 2.03963L4.97222 2.03951L4.97497 2.0395L5.64975 2.03945L5.64966 0.689453L4.97455 0.6895L4.97471 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 13.9645C4.97466 14.6395 4.97455 14.6395 4.97455 14.6395H4.97338L4.97131 14.6395L4.96483 14.6395L4.94301 14.6393C4.92472 14.6391 4.89906 14.6387 4.86749 14.6379C4.8046 14.6363 4.71698 14.6332 4.61666 14.6269C4.42635 14.6151 4.15083 14.5897 3.9099 14.5291C3.55276 14.4392 3.24593 14.276 3.00319 14.033C2.76247 13.7921 2.61747 13.5055 2.53138 13.2173C2.3681 12.6706 2.39635 12.035 2.43421 11.4963C2.44306 11.3704 2.45261 11.2479 2.46194 11.1284C2.49615 10.6899 2.52727 10.2911 2.50883 9.91123C2.48576 9.43623 2.38671 9.12004 2.20942 8.91051C2.00914 8.67382 1.76518 8.52491 1.56236 8.43463C1.46229 8.39008 1.37703 8.36198 1.32009 8.34568C1.29181 8.33759 1.2711 8.33257 1.25976 8.32999L1.25122 8.32813L0.699707 8.23V7.6645H2.86155C2.9907 7.77144 3.11882 7.89528 3.23999 8.03849C3.69727 8.57891 3.82823 9.24823 3.85724 9.84577C3.88027 10.3202 3.83997 10.8311 3.80466 11.2787C3.79613 11.3869 3.78788 11.4915 3.78089 11.5909C3.74159 12.1502 3.74136 12.5512 3.82492 12.8309C3.86225 12.9559 3.9095 13.0301 3.95819 13.0788C4.00487 13.1256 4.0846 13.1809 4.23951 13.2199C4.35591 13.2492 4.53039 13.2689 4.70075 13.2796C4.78076 13.2845 4.85115 13.2871 4.90117 13.2883C4.92606 13.2889 4.94559 13.2892 4.95837 13.2894L4.97222 13.2895L4.97497 13.2895L5.64975 13.2896L5.64966 14.6396L4.97455 14.6395L4.97471 13.9645Z\" fill=\"%23333333\"/%3E%3C/svg%3E") url("data:image/svg+xml,%3Csvg width=\"15\" height=\"13\" viewBox=\"-2 0 13 13\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6ZM5.27988 2.40003H6.71988V6.72003H5.27988V2.40003ZM6.72009 8.16003H5.28009V9.60003H6.72009V8.16003Z\" fill=\"%23DB3700\"/%3E%3C/svg%3E");
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
       }
     }
 
     &:not(.ck-merge-field-block_with-warning) {
       &:before {
         content: url("data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"15\" viewBox=\"0 0 16 15\" fill=\"none\"%3E%3Ccircle cx=\"7.89981\" cy=\"7.70938\" r=\"1.35\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 1.3645C10.8242 0.6895 10.8243 0.6895 10.8243 0.6895L10.8254 0.689501L10.8275 0.689505L10.834 0.689533L10.8558 0.689721C10.8741 0.689929 10.8998 0.690334 10.9313 0.691122C10.9942 0.692692 11.0818 0.695814 11.1822 0.702076C11.3725 0.713953 11.648 0.739273 11.8889 0.799933C12.2461 0.889854 12.5529 1.05305 12.7956 1.29598C13.0364 1.5369 13.1814 1.82347 13.2674 2.11173C13.4307 2.65843 13.4025 3.29399 13.3646 3.83275C13.3558 3.95861 13.3462 4.0811 13.3369 4.20063C13.3027 4.63909 13.2716 5.03792 13.29 5.41777C13.3131 5.89278 13.4121 6.20897 13.5894 6.41849C13.7897 6.65519 14.0336 6.8041 14.2365 6.89438C14.3365 6.93893 14.4218 6.96703 14.4787 6.98333C14.507 6.99142 14.5277 6.99644 14.5391 6.99901L14.5476 7.00087L15.0991 7.09901V7.6645H12.9373C12.8081 7.55756 12.68 7.43372 12.5588 7.29052C12.1016 6.7501 11.9706 6.08078 11.9416 5.48324C11.9186 5.00885 11.9589 4.49792 11.9942 4.05032C12.0027 3.94209 12.0109 3.83752 12.0179 3.73811C12.0572 3.17882 12.0575 2.77784 11.9739 2.49806C11.9366 2.37307 11.8893 2.29891 11.8406 2.25018C11.794 2.20346 11.7142 2.14808 11.5593 2.10908C11.4429 2.07977 11.2684 2.06009 11.0981 2.04945C11.0181 2.04446 10.9477 2.04195 10.8977 2.0407C10.8728 2.04008 10.8532 2.03978 10.8405 2.03963L10.8266 2.03951L10.8239 2.0395L10.1491 2.03945L10.1492 0.689453L10.8243 0.6895L10.8241 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 13.9645C10.8242 14.6395 10.8243 14.6395 10.8243 14.6395H10.8254L10.8275 14.6395L10.834 14.6395L10.8558 14.6393C10.8741 14.6391 10.8998 14.6387 10.9313 14.6379C10.9942 14.6363 11.0818 14.6332 11.1822 14.6269C11.3725 14.6151 11.648 14.5897 11.8889 14.5291C12.2461 14.4392 12.5529 14.276 12.7956 14.033C13.0364 13.7921 13.1814 13.5055 13.2674 13.2173C13.4307 12.6706 13.4025 12.035 13.3646 11.4963C13.3558 11.3704 13.3462 11.2479 13.3369 11.1284C13.3027 10.6899 13.2716 10.2911 13.29 9.91123C13.3131 9.43623 13.4121 9.12004 13.5894 8.91051C13.7897 8.67382 14.0336 8.52491 14.2365 8.43463C14.3365 8.39008 14.4218 8.36198 14.4787 8.34568C14.507 8.33759 14.5277 8.33257 14.5391 8.32999L14.5476 8.32813L15.0991 8.23V7.6645H12.9373C12.8081 7.77144 12.68 7.89528 12.5588 8.03849C12.1016 8.57891 11.9706 9.24823 11.9416 9.84577C11.9186 10.3202 11.9589 10.8311 11.9942 11.2787C12.0027 11.3869 12.0109 11.4915 12.0179 11.5909C12.0572 12.1502 12.0575 12.5512 11.9739 12.8309C11.9366 12.9559 11.8893 13.0301 11.8406 13.0788C11.794 13.1256 11.7142 13.1809 11.5593 13.2199C11.4429 13.2492 11.2684 13.2689 11.0981 13.2796C11.0181 13.2845 10.9477 13.2871 10.8977 13.2883C10.8728 13.2889 10.8532 13.2892 10.8405 13.2894L10.8266 13.2895L10.8239 13.2895L10.1491 13.2896L10.1492 14.6396L10.8243 14.6395L10.8241 13.9645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 1.3645C4.97466 0.6895 4.97455 0.6895 4.97455 0.6895L4.97338 0.689501L4.97131 0.689505L4.96483 0.689533L4.94301 0.689721C4.92472 0.689929 4.89906 0.690334 4.86749 0.691122C4.8046 0.692692 4.71698 0.695814 4.61666 0.702076C4.42635 0.713953 4.15083 0.739273 3.9099 0.799933C3.55276 0.889854 3.24593 1.05305 3.00319 1.29598C2.76247 1.5369 2.61747 1.82347 2.53138 2.11173C2.3681 2.65843 2.39635 3.29399 2.43421 3.83275C2.44306 3.95861 2.45262 4.0811 2.46194 4.20063C2.49615 4.63909 2.52727 5.03792 2.50883 5.41777C2.48576 5.89278 2.38671 6.20897 2.20942 6.41849C2.00914 6.65519 1.76518 6.8041 1.56236 6.89438C1.46229 6.93893 1.37703 6.96703 1.32009 6.98333C1.29181 6.99142 1.2711 6.99644 1.25976 6.99901L1.25122 7.00087L0.699707 7.09901V7.6645H2.86155C2.9907 7.55756 3.11882 7.43372 3.23999 7.29052C3.69727 6.7501 3.82823 6.08078 3.85724 5.48324C3.88027 5.00885 3.83997 4.49792 3.80466 4.05032C3.79613 3.94209 3.78788 3.83752 3.78089 3.73811C3.74159 3.17882 3.74136 2.77784 3.82492 2.49806C3.86225 2.37307 3.9095 2.29891 3.95819 2.25018C4.00487 2.20346 4.0846 2.14808 4.23951 2.10908C4.35591 2.07977 4.53039 2.06009 4.70075 2.04945C4.78076 2.04446 4.85115 2.04195 4.90117 2.0407C4.92606 2.04008 4.94559 2.03978 4.95837 2.03963L4.97222 2.03951L4.97497 2.0395L5.64975 2.03945L5.64966 0.689453L4.97455 0.6895L4.97471 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 13.9645C4.97466 14.6395 4.97455 14.6395 4.97455 14.6395H4.97338L4.97131 14.6395L4.96483 14.6395L4.94301 14.6393C4.92472 14.6391 4.89906 14.6387 4.86749 14.6379C4.8046 14.6363 4.71698 14.6332 4.61666 14.6269C4.42635 14.6151 4.15083 14.5897 3.9099 14.5291C3.55276 14.4392 3.24593 14.276 3.00319 14.033C2.76247 13.7921 2.61747 13.5055 2.53138 13.2173C2.3681 12.6706 2.39635 12.035 2.43421 11.4963C2.44306 11.3704 2.45261 11.2479 2.46194 11.1284C2.49615 10.6899 2.52727 10.2911 2.50883 9.91123C2.48576 9.43623 2.38671 9.12004 2.20942 8.91051C2.00914 8.67382 1.76518 8.52491 1.56236 8.43463C1.46229 8.39008 1.37703 8.36198 1.32009 8.34568C1.29181 8.33759 1.2711 8.33257 1.25976 8.32999L1.25122 8.32813L0.699707 8.23V7.6645H2.86155C2.9907 7.77144 3.11882 7.89528 3.23999 8.03849C3.69727 8.57891 3.82823 9.24823 3.85724 9.84577C3.88027 10.3202 3.83997 10.8311 3.80466 11.2787C3.79613 11.3869 3.78788 11.4915 3.78089 11.5909C3.74159 12.1502 3.74136 12.5512 3.82492 12.8309C3.86225 12.9559 3.9095 13.0301 3.95819 13.0788C4.00487 13.1256 4.0846 13.1809 4.23951 13.2199C4.35591 13.2492 4.53039 13.2689 4.70075 13.2796C4.78076 13.2845 4.85115 13.2871 4.90117 13.2883C4.92606 13.2889 4.94559 13.2892 4.95837 13.2894L4.97222 13.2895L4.97497 13.2895L5.64975 13.2896L5.64966 14.6396L4.97455 14.6395L4.97471 13.9645Z\" fill=\"%23333333\"/%3E%3C/svg%3E");
-        outline: 1px solid var(--ck-color-merge-fields-value-outline);
+        outline: 1px solid var(--ck-merge-fields-value-outline-color, var(--ck-color-merge-fields-value-outline));
       }
     }
   }
 
   &:not(:hover):not(.ck-widget_selected), &.ck-widget.ck-widget_selected.ck-widget_type-around_show-fake-caret_before, &.ck-widget.ck-widget_selected.ck-widget_type-around_show-fake-caret_after {
-    outline: 1px solid var(--ck-color-merge-fields-block-outline);
+    outline: 1px solid var(--ck-merge-fields-block-outline-color, var(--ck-color-merge-fields-block-outline));
   }
 
   &[dir="rtl"]:before {
@@ -6965,7 +7168,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     background-size: contain;
 
     & > .ck-merge-field {
-      background-color: #fff;
+      background-color: var(--ck-merge-fields-label-background-color);
       align-items: baseline;
       max-width: 80%;
       max-height: -webkit-fill-available;
@@ -6984,19 +7187,19 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       &:hover {
-        outline: 1px solid var(--ck-color-merge-fields-outline);
+        outline: 1px solid var(--ck-merge-fields-outline-color, var(--ck-color-merge-fields-outline));
       }
     }
 
     &.ck-merge-field-image_with-warning_no-default, &.ck-merge-field-image_with-warning_missing-data {
       & > .ck-merge-field {
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
         line-height: 1.3em;
       }
     }
 
     &:not(:hover):not(.ck-widget_selected) {
-      outline: 1px solid var(--ck-color-merge-fields-block-outline);
+      outline: 1px solid var(--ck-merge-fields-block-outline-color, var(--ck-color-merge-fields-block-outline));
     }
   }
 
@@ -7005,7 +7208,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       z-index: 1;
       top: var(--ck-spacing-small, var(--ck-spacing-sm));
       left: var(--ck-spacing-small, var(--ck-spacing-sm));
-      background-color: #fff;
+      background-color: var(--ck-merge-fields-preview-badge-background-color);
       border-radius: 2px;
       max-width: -webkit-fill-available;
       max-height: -webkit-fill-available;
@@ -7018,14 +7221,14 @@ div.ck.ck-ai-suggestion__content-part-state {
     &:not(.ck-merge-field-image_with-value) {
       &:before {
         content: url("data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"15\" viewBox=\"0 0 16 15\" fill=\"none\"%3E%3Ccircle cx=\"7.89981\" cy=\"7.70938\" r=\"1.35\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 1.3645C10.8242 0.6895 10.8243 0.6895 10.8243 0.6895L10.8254 0.689501L10.8275 0.689505L10.834 0.689533L10.8558 0.689721C10.8741 0.689929 10.8998 0.690334 10.9313 0.691122C10.9942 0.692692 11.0818 0.695814 11.1822 0.702076C11.3725 0.713953 11.648 0.739273 11.8889 0.799933C12.2461 0.889854 12.5529 1.05305 12.7956 1.29598C13.0364 1.5369 13.1814 1.82347 13.2674 2.11173C13.4307 2.65843 13.4025 3.29399 13.3646 3.83275C13.3558 3.95861 13.3462 4.0811 13.3369 4.20063C13.3027 4.63909 13.2716 5.03792 13.29 5.41777C13.3131 5.89278 13.4121 6.20897 13.5894 6.41849C13.7897 6.65519 14.0336 6.8041 14.2365 6.89438C14.3365 6.93893 14.4218 6.96703 14.4787 6.98333C14.507 6.99142 14.5277 6.99644 14.5391 6.99901L14.5476 7.00087L15.0991 7.09901V7.6645H12.9373C12.8081 7.55756 12.68 7.43372 12.5588 7.29052C12.1016 6.7501 11.9706 6.08078 11.9416 5.48324C11.9186 5.00885 11.9589 4.49792 11.9942 4.05032C12.0027 3.94209 12.0109 3.83752 12.0179 3.73811C12.0572 3.17882 12.0575 2.77784 11.9739 2.49806C11.9366 2.37307 11.8893 2.29891 11.8406 2.25018C11.794 2.20346 11.7142 2.14808 11.5593 2.10908C11.4429 2.07977 11.2684 2.06009 11.0981 2.04945C11.0181 2.04446 10.9477 2.04195 10.8977 2.0407C10.8728 2.04008 10.8532 2.03978 10.8405 2.03963L10.8266 2.03951L10.8239 2.0395L10.1491 2.03945L10.1492 0.689453L10.8243 0.6895L10.8241 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 13.9645C10.8242 14.6395 10.8243 14.6395 10.8243 14.6395H10.8254L10.8275 14.6395L10.834 14.6395L10.8558 14.6393C10.8741 14.6391 10.8998 14.6387 10.9313 14.6379C10.9942 14.6363 11.0818 14.6332 11.1822 14.6269C11.3725 14.6151 11.648 14.5897 11.8889 14.5291C12.2461 14.4392 12.5529 14.276 12.7956 14.033C13.0364 13.7921 13.1814 13.5055 13.2674 13.2173C13.4307 12.6706 13.4025 12.035 13.3646 11.4963C13.3558 11.3704 13.3462 11.2479 13.3369 11.1284C13.3027 10.6899 13.2716 10.2911 13.29 9.91123C13.3131 9.43623 13.4121 9.12004 13.5894 8.91051C13.7897 8.67382 14.0336 8.52491 14.2365 8.43463C14.3365 8.39008 14.4218 8.36198 14.4787 8.34568C14.507 8.33759 14.5277 8.33257 14.5391 8.32999L14.5476 8.32813L15.0991 8.23V7.6645H12.9373C12.8081 7.77144 12.68 7.89528 12.5588 8.03849C12.1016 8.57891 11.9706 9.24823 11.9416 9.84577C11.9186 10.3202 11.9589 10.8311 11.9942 11.2787C12.0027 11.3869 12.0109 11.4915 12.0179 11.5909C12.0572 12.1502 12.0575 12.5512 11.9739 12.8309C11.9366 12.9559 11.8893 13.0301 11.8406 13.0788C11.794 13.1256 11.7142 13.1809 11.5593 13.2199C11.4429 13.2492 11.2684 13.2689 11.0981 13.2796C11.0181 13.2845 10.9477 13.2871 10.8977 13.2883C10.8728 13.2889 10.8532 13.2892 10.8405 13.2894L10.8266 13.2895L10.8239 13.2895L10.1491 13.2896L10.1492 14.6396L10.8243 14.6395L10.8241 13.9645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 1.3645C4.97466 0.6895 4.97455 0.6895 4.97455 0.6895L4.97338 0.689501L4.97131 0.689505L4.96483 0.689533L4.94301 0.689721C4.92472 0.689929 4.89906 0.690334 4.86749 0.691122C4.8046 0.692692 4.71698 0.695814 4.61666 0.702076C4.42635 0.713953 4.15083 0.739273 3.9099 0.799933C3.55276 0.889854 3.24593 1.05305 3.00319 1.29598C2.76247 1.5369 2.61747 1.82347 2.53138 2.11173C2.3681 2.65843 2.39635 3.29399 2.43421 3.83275C2.44306 3.95861 2.45262 4.0811 2.46194 4.20063C2.49615 4.63909 2.52727 5.03792 2.50883 5.41777C2.48576 5.89278 2.38671 6.20897 2.20942 6.41849C2.00914 6.65519 1.76518 6.8041 1.56236 6.89438C1.46229 6.93893 1.37703 6.96703 1.32009 6.98333C1.29181 6.99142 1.2711 6.99644 1.25976 6.99901L1.25122 7.00087L0.699707 7.09901V7.6645H2.86155C2.9907 7.55756 3.11882 7.43372 3.23999 7.29052C3.69727 6.7501 3.82823 6.08078 3.85724 5.48324C3.88027 5.00885 3.83997 4.49792 3.80466 4.05032C3.79613 3.94209 3.78788 3.83752 3.78089 3.73811C3.74159 3.17882 3.74136 2.77784 3.82492 2.49806C3.86225 2.37307 3.9095 2.29891 3.95819 2.25018C4.00487 2.20346 4.0846 2.14808 4.23951 2.10908C4.35591 2.07977 4.53039 2.06009 4.70075 2.04945C4.78076 2.04446 4.85115 2.04195 4.90117 2.0407C4.92606 2.04008 4.94559 2.03978 4.95837 2.03963L4.97222 2.03951L4.97497 2.0395L5.64975 2.03945L5.64966 0.689453L4.97455 0.6895L4.97471 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 13.9645C4.97466 14.6395 4.97455 14.6395 4.97455 14.6395H4.97338L4.97131 14.6395L4.96483 14.6395L4.94301 14.6393C4.92472 14.6391 4.89906 14.6387 4.86749 14.6379C4.8046 14.6363 4.71698 14.6332 4.61666 14.6269C4.42635 14.6151 4.15083 14.5897 3.9099 14.5291C3.55276 14.4392 3.24593 14.276 3.00319 14.033C2.76247 13.7921 2.61747 13.5055 2.53138 13.2173C2.3681 12.6706 2.39635 12.035 2.43421 11.4963C2.44306 11.3704 2.45261 11.2479 2.46194 11.1284C2.49615 10.6899 2.52727 10.2911 2.50883 9.91123C2.48576 9.43623 2.38671 9.12004 2.20942 8.91051C2.00914 8.67382 1.76518 8.52491 1.56236 8.43463C1.46229 8.39008 1.37703 8.36198 1.32009 8.34568C1.29181 8.33759 1.2711 8.33257 1.25976 8.32999L1.25122 8.32813L0.699707 8.23V7.6645H2.86155C2.9907 7.77144 3.11882 7.89528 3.23999 8.03849C3.69727 8.57891 3.82823 9.24823 3.85724 9.84577C3.88027 10.3202 3.83997 10.8311 3.80466 11.2787C3.79613 11.3869 3.78788 11.4915 3.78089 11.5909C3.74159 12.1502 3.74136 12.5512 3.82492 12.8309C3.86225 12.9559 3.9095 13.0301 3.95819 13.0788C4.00487 13.1256 4.0846 13.1809 4.23951 13.2199C4.35591 13.2492 4.53039 13.2689 4.70075 13.2796C4.78076 13.2845 4.85115 13.2871 4.90117 13.2883C4.92606 13.2889 4.94559 13.2892 4.95837 13.2894L4.97222 13.2895L4.97497 13.2895L5.64975 13.2896L5.64966 14.6396L4.97455 14.6395L4.97471 13.9645Z\" fill=\"%23333333\"/%3E%3C/svg%3E") url("data:image/svg+xml,%3Csvg width=\"15\" height=\"13\" viewBox=\"-2 0 13 13\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 6C12 9.31371 9.31371 12 6 12C2.68629 12 0 9.31371 0 6C0 2.68629 2.68629 0 6 0C9.31371 0 12 2.68629 12 6ZM5.27988 2.40003H6.71988V6.72003H5.27988V2.40003ZM6.72009 8.16003H5.28009V9.60003H6.72009V8.16003Z\" fill=\"%23DB3700\"/%3E%3C/svg%3E");
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
       }
     }
 
     &:not(.ck-merge-field-image_with-warning_default-value-used) {
       &:before {
         content: url("data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"15\" viewBox=\"0 0 16 15\" fill=\"none\"%3E%3Ccircle cx=\"7.89981\" cy=\"7.70938\" r=\"1.35\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 1.3645C10.8242 0.6895 10.8243 0.6895 10.8243 0.6895L10.8254 0.689501L10.8275 0.689505L10.834 0.689533L10.8558 0.689721C10.8741 0.689929 10.8998 0.690334 10.9313 0.691122C10.9942 0.692692 11.0818 0.695814 11.1822 0.702076C11.3725 0.713953 11.648 0.739273 11.8889 0.799933C12.2461 0.889854 12.5529 1.05305 12.7956 1.29598C13.0364 1.5369 13.1814 1.82347 13.2674 2.11173C13.4307 2.65843 13.4025 3.29399 13.3646 3.83275C13.3558 3.95861 13.3462 4.0811 13.3369 4.20063C13.3027 4.63909 13.2716 5.03792 13.29 5.41777C13.3131 5.89278 13.4121 6.20897 13.5894 6.41849C13.7897 6.65519 14.0336 6.8041 14.2365 6.89438C14.3365 6.93893 14.4218 6.96703 14.4787 6.98333C14.507 6.99142 14.5277 6.99644 14.5391 6.99901L14.5476 7.00087L15.0991 7.09901V7.6645H12.9373C12.8081 7.55756 12.68 7.43372 12.5588 7.29052C12.1016 6.7501 11.9706 6.08078 11.9416 5.48324C11.9186 5.00885 11.9589 4.49792 11.9942 4.05032C12.0027 3.94209 12.0109 3.83752 12.0179 3.73811C12.0572 3.17882 12.0575 2.77784 11.9739 2.49806C11.9366 2.37307 11.8893 2.29891 11.8406 2.25018C11.794 2.20346 11.7142 2.14808 11.5593 2.10908C11.4429 2.07977 11.2684 2.06009 11.0981 2.04945C11.0181 2.04446 10.9477 2.04195 10.8977 2.0407C10.8728 2.04008 10.8532 2.03978 10.8405 2.03963L10.8266 2.03951L10.8239 2.0395L10.1491 2.03945L10.1492 0.689453L10.8243 0.6895L10.8241 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M10.8241 13.9645C10.8242 14.6395 10.8243 14.6395 10.8243 14.6395H10.8254L10.8275 14.6395L10.834 14.6395L10.8558 14.6393C10.8741 14.6391 10.8998 14.6387 10.9313 14.6379C10.9942 14.6363 11.0818 14.6332 11.1822 14.6269C11.3725 14.6151 11.648 14.5897 11.8889 14.5291C12.2461 14.4392 12.5529 14.276 12.7956 14.033C13.0364 13.7921 13.1814 13.5055 13.2674 13.2173C13.4307 12.6706 13.4025 12.035 13.3646 11.4963C13.3558 11.3704 13.3462 11.2479 13.3369 11.1284C13.3027 10.6899 13.2716 10.2911 13.29 9.91123C13.3131 9.43623 13.4121 9.12004 13.5894 8.91051C13.7897 8.67382 14.0336 8.52491 14.2365 8.43463C14.3365 8.39008 14.4218 8.36198 14.4787 8.34568C14.507 8.33759 14.5277 8.33257 14.5391 8.32999L14.5476 8.32813L15.0991 8.23V7.6645H12.9373C12.8081 7.77144 12.68 7.89528 12.5588 8.03849C12.1016 8.57891 11.9706 9.24823 11.9416 9.84577C11.9186 10.3202 11.9589 10.8311 11.9942 11.2787C12.0027 11.3869 12.0109 11.4915 12.0179 11.5909C12.0572 12.1502 12.0575 12.5512 11.9739 12.8309C11.9366 12.9559 11.8893 13.0301 11.8406 13.0788C11.794 13.1256 11.7142 13.1809 11.5593 13.2199C11.4429 13.2492 11.2684 13.2689 11.0981 13.2796C11.0181 13.2845 10.9477 13.2871 10.8977 13.2883C10.8728 13.2889 10.8532 13.2892 10.8405 13.2894L10.8266 13.2895L10.8239 13.2895L10.1491 13.2896L10.1492 14.6396L10.8243 14.6395L10.8241 13.9645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 1.3645C4.97466 0.6895 4.97455 0.6895 4.97455 0.6895L4.97338 0.689501L4.97131 0.689505L4.96483 0.689533L4.94301 0.689721C4.92472 0.689929 4.89906 0.690334 4.86749 0.691122C4.8046 0.692692 4.71698 0.695814 4.61666 0.702076C4.42635 0.713953 4.15083 0.739273 3.9099 0.799933C3.55276 0.889854 3.24593 1.05305 3.00319 1.29598C2.76247 1.5369 2.61747 1.82347 2.53138 2.11173C2.3681 2.65843 2.39635 3.29399 2.43421 3.83275C2.44306 3.95861 2.45262 4.0811 2.46194 4.20063C2.49615 4.63909 2.52727 5.03792 2.50883 5.41777C2.48576 5.89278 2.38671 6.20897 2.20942 6.41849C2.00914 6.65519 1.76518 6.8041 1.56236 6.89438C1.46229 6.93893 1.37703 6.96703 1.32009 6.98333C1.29181 6.99142 1.2711 6.99644 1.25976 6.99901L1.25122 7.00087L0.699707 7.09901V7.6645H2.86155C2.9907 7.55756 3.11882 7.43372 3.23999 7.29052C3.69727 6.7501 3.82823 6.08078 3.85724 5.48324C3.88027 5.00885 3.83997 4.49792 3.80466 4.05032C3.79613 3.94209 3.78788 3.83752 3.78089 3.73811C3.74159 3.17882 3.74136 2.77784 3.82492 2.49806C3.86225 2.37307 3.9095 2.29891 3.95819 2.25018C4.00487 2.20346 4.0846 2.14808 4.23951 2.10908C4.35591 2.07977 4.53039 2.06009 4.70075 2.04945C4.78076 2.04446 4.85115 2.04195 4.90117 2.0407C4.92606 2.04008 4.94559 2.03978 4.95837 2.03963L4.97222 2.03951L4.97497 2.0395L5.64975 2.03945L5.64966 0.689453L4.97455 0.6895L4.97471 1.3645Z\" fill=\"%23333333\"/%3E%3Cpath d=\"M4.97471 13.9645C4.97466 14.6395 4.97455 14.6395 4.97455 14.6395H4.97338L4.97131 14.6395L4.96483 14.6395L4.94301 14.6393C4.92472 14.6391 4.89906 14.6387 4.86749 14.6379C4.8046 14.6363 4.71698 14.6332 4.61666 14.6269C4.42635 14.6151 4.15083 14.5897 3.9099 14.5291C3.55276 14.4392 3.24593 14.276 3.00319 14.033C2.76247 13.7921 2.61747 13.5055 2.53138 13.2173C2.3681 12.6706 2.39635 12.035 2.43421 11.4963C2.44306 11.3704 2.45261 11.2479 2.46194 11.1284C2.49615 10.6899 2.52727 10.2911 2.50883 9.91123C2.48576 9.43623 2.38671 9.12004 2.20942 8.91051C2.00914 8.67382 1.76518 8.52491 1.56236 8.43463C1.46229 8.39008 1.37703 8.36198 1.32009 8.34568C1.29181 8.33759 1.2711 8.33257 1.25976 8.32999L1.25122 8.32813L0.699707 8.23V7.6645H2.86155C2.9907 7.77144 3.11882 7.89528 3.23999 8.03849C3.69727 8.57891 3.82823 9.24823 3.85724 9.84577C3.88027 10.3202 3.83997 10.8311 3.80466 11.2787C3.79613 11.3869 3.78788 11.4915 3.78089 11.5909C3.74159 12.1502 3.74136 12.5512 3.82492 12.8309C3.86225 12.9559 3.9095 13.0301 3.95819 13.0788C4.00487 13.1256 4.0846 13.1809 4.23951 13.2199C4.35591 13.2492 4.53039 13.2689 4.70075 13.2796C4.78076 13.2845 4.85115 13.2871 4.90117 13.2883C4.92606 13.2889 4.94559 13.2892 4.95837 13.2894L4.97222 13.2895L4.97497 13.2895L5.64975 13.2896L5.64966 14.6396L4.97455 14.6395L4.97471 13.9645Z\" fill=\"%23333333\"/%3E%3C/svg%3E");
-        outline: 1px solid var(--ck-color-merge-fields-value-outline);
+        outline: 1px solid var(--ck-merge-fields-value-outline-color, var(--ck-color-merge-fields-value-outline));
       }
     }
   }
@@ -7054,7 +7257,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & .ck-merge-fields-form__status {
     padding: var(--ck-spacing-medium, var(--ck-spacing-base));
     color: var(--ck-color-text);
-    background-color: var(--ck-color-merge-fields-form-error-background);
+    background-color: var(--ck-merge-fields-form-error-background-color, var(--ck-color-merge-fields-form-error-background));
     border-radius: 2px;
     justify-content: center;
     align-items: center;
@@ -7065,24 +7268,24 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck-editor__editable.ck-read-only {
   & .ck-merge-field-block:hover:not(.ck-widget_selected), & .ck-merge-field-image:hover:not(.ck-widget_selected) {
-    outline: 1px solid var(--ck-color-merge-fields-block-outline);
+    outline: 1px solid var(--ck-merge-fields-block-outline-color, var(--ck-color-merge-fields-block-outline));
   }
 
   & .ck-merge-field:hover:not(.ck-widget_selected) {
     &:not(.ck-merge-field-block *) {
-      outline: 1px solid var(--ck-color-merge-fields-outline);
+      outline: 1px solid var(--ck-merge-fields-outline-color, var(--ck-color-merge-fields-outline));
 
       &.ck-merge-field_with-warning {
-        outline: 1px solid var(--ck-color-merge-fields-with-warning-outline);
+        outline: 1px solid var(--ck-merge-fields-with-warning-outline-color, var(--ck-color-merge-fields-with-warning-outline));
       }
 
       &.ck-merge-field_with-value {
-        outline: 1px solid var(--ck-color-merge-fields-value-outline);
+        outline: 1px solid var(--ck-merge-fields-value-outline-color, var(--ck-color-merge-fields-value-outline));
       }
     }
 
     &:not(.ck-merge-field_with-warning):not(.ck-merge-field_with-value) {
-      outline: 1px solid var(--ck-color-merge-fields-outline);
+      outline: 1px solid var(--ck-merge-fields-outline-color, var(--ck-color-merge-fields-outline));
       padding-top: var(--ck-merge-fields-paddings-vertical);
       padding-bottom: var(--ck-merge-fields-paddings-vertical);
     }
@@ -7139,6 +7342,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-pagination-label-background-color: #c4c4c4;
   --ck-pagination-label-border-radius: 0 var(--ck-border-radius-control-small) var(--ck-border-radius-control-small) 0;
   --ck-pagination-label-padding: var(--ck-spacing-padding-compact);
+  --ck-pagination-label-text-color: var(--ck-color-text-inverse);
 }
 
 .ck.ck-pagination_enabled {
@@ -7281,7 +7485,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     font-size: var(--ck-font-size-tiny, var(--ck-font-size-xs));
     background: var(--ck-pagination-label-background-color);
     border-radius: var(--ck-pagination-label-border-radius);
-    color: var(--ck-color-text-inverse);
+    color: var(--ck-pagination-label-text-color);
     text-align: center;
     min-width: 18px;
     padding: var(--ck-pagination-label-padding);
@@ -7291,6 +7495,10 @@ div.ck.ck-ai-suggestion__content-part-state {
     right: -1px;
     transform: translateX(100%);
   }
+}
+
+:root, :host {
+  --ck-user-marker-tooltip-text-color: #fff;
 }
 
 .ck .ck-user__marker-dot {
@@ -7313,7 +7521,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   font-weight: initial;
   opacity: 0;
   padding: var(--ck-spacing-small, var(--ck-spacing-sm));
-  color: #fff;
+  color: var(--ck-user-marker-tooltip-text-color);
   white-space: nowrap;
   transition: opacity var(--ck-transition-duration-control) linear, transform var(--ck-duration-slow) ease-in-out;
   z-index: 99999;
@@ -7382,6 +7590,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-presence-list-dropdown-background-color: var(--ck-color-surface-container);
   --ck-presence-list-dropdown-border-color: var(--ck-color-border-container);
   --ck-presence-list-hover-background-color: var(--ck-color-interactive-hover-surface);
+  --ck-presence-list-avatar-border-color: initial;
+  --ck-presence-list-counter-border-color: initial;
+  --ck-presence-list-counter-background-color: initial;
+  --ck-presence-list-counter-text-color: initial;
   --ck-presence-list-dropdown-list-max-width: 250px;
   --ck-presence-list-dropdown-list-min-width: 196px;
   --ck-presence-list-users-tooltip-max-width: 120px;
@@ -7531,8 +7743,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & .ck-user {
-      --ck-presence-list-avatar-border-color: var(--ck-color-base-foreground);
-      border: 2px solid var(--ck-presence-list-avatar-border-color);
+      border: 2px solid var(--ck-presence-list-avatar-border-color, var(--ck-color-surface-subtle));
     }
 
     & .ck-presence-list__users-counter {
@@ -7628,10 +7839,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__users-counter {
-  --ck-presence-list-counter-border-color: var(--ck-user-avatar-background, var(--ck-user-avatar-background-color));
-  --ck-presence-list-counter-background-color: var(--ck-user-avatar-color, var(--ck-user-avatar-text-color));
-  border: 2px solid var(--ck-presence-list-counter-border-color);
-  background-color: var(--ck-presence-list-counter-background-color);
+  border: 2px solid var(--ck-presence-list-counter-border-color, var(--ck-user-avatar-background, var(--ck-user-avatar-background-color)));
+  background-color: var(--ck-presence-list-counter-background-color, var(--ck-user-avatar-color, var(--ck-user-avatar-text-color)));
   box-sizing: border-box;
   height: calc(var(--ck-user-avatar-size) - 4px);
   width: calc(var(--ck-user-avatar-size) - 4px);
@@ -7645,8 +7854,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-presence-list__users-counter__text {
-  --ck-presence-list-counter-text-color: var(--ck-user-avatar-background, var(--ck-user-avatar-background-color));
-  color: var(--ck-presence-list-counter-text-color);
+  color: var(--ck-presence-list-counter-text-color, var(--ck-user-avatar-background, var(--ck-user-avatar-background-color)));
   cursor: default;
   -webkit-user-select: none;
   user-select: none;
@@ -7760,10 +7968,6 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-revision-history-sidebar__revision-name {
-  left: calc(-1 * var(--ck-spacing-small, var(--ck-spacing-sm)));
-  margin-right: 30px;
-  font-size: 1.2em;
-  font-weight: bold;
   display: block;
   position: relative;
 
@@ -7773,39 +7977,34 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > .ck-input {
-      padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline-compact);
-      min-height: auto;
-      color: inherit;
-      font-family: inherit;
-      font-weight: bold;
-      font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
-      border-radius: var(--ck-border-radius-control);
       width: 100%;
       min-width: auto;
       transition: var(--ck-revision-history-revision-transition);
       text-overflow: ellipsis;
-      background: none;
+      font-family: inherit;
 
       @media (prefers-reduced-motion: reduce) {
         transition: none;
-      }
-
-      &, &:focus, &[readonly] {
-        background: none;
-      }
-
-      &:not(.ck-input_focused) {
-        border-color: #0000;
-      }
-
-      &::placeholder {
-        color: inherit;
       }
 
       &[readonly] {
         pointer-events: none;
       }
     }
+  }
+}
+
+.ck.ck-revision-history-sidebar__revision:not(.ck-revision-history-sidebar__revision_editing) .ck-revision-history-sidebar__revision-name {
+  & > .ck-labeled-field-view__input-wrapper > .ck-input {
+    min-height: auto;
+    box-shadow: none;
+    color: inherit;
+    font-weight: var(--ck-font-weight-ui-heading);
+    line-height: var(--ck-line-height-base);
+    background: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
   }
 }
 
@@ -7822,19 +8021,20 @@ div.ck.ck-ai-suggestion__content-part-state {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
-    font-weight: bold;
     font-size: var(--ck-revision-history-revision-author-font-size);
+    line-height: var(--ck-line-height-base);
     color: var(--ck-revision-history-revision-author-text-color);
     display: block;
     overflow: hidden;
   }
 
   & .ck-icon {
-    left: calc(-1 * var(--ck-revision-history-revision-author-icon-offset));
-    top: calc(var(--ck-revision-history-revision-author-font-size)/2);
-    width: 11px;
-    height: 10px;
+    inset-inline-start: calc(-1 * var(--ck-revision-history-revision-author-icon-offset));
+    width: calc(var(--ck-revision-history-revision-author-icon-offset) - var(--ck-spacing-gap-snug));
+    height: calc(.625 * var(--ck-font-size-normal, var(--ck-font-size-base)));
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &:not(:first-of-type) .ck-icon {
@@ -7845,22 +8045,19 @@ div.ck.ck-ai-suggestion__content-part-state {
 .ck {
   &.ck-revision-history-sidebar__revision {
     & .ck-revision-history-sidebar__revision__actions {
-      top: var(--ck-revision-history-revision-padding-block);
-      right: var(--ck-revision-history-revision-padding-inline);
-      display: none;
-      position: absolute;
-
-      & .ck-dropdown__button {
-        min-width: unset;
-        min-height: unset;
-
-        & .ck-button__icon {
-          transform: scale(.7);
-        }
-      }
+      opacity: 0;
 
       & .ck-dropdown__arrow {
         display: none;
+      }
+
+      & .ck-dropdown__button:focus:not(:focus-visible) {
+        border-color: var(--ck-button-border-color);
+        box-shadow: none;
+      }
+
+      & .ck-list__item > .ck-button .ck-button__label {
+        line-height: calc(var(--ck-line-height-base) * var(--ck-font-size-normal, var(--ck-font-size-base)));
       }
 
       & .ck-list__item__danger {
@@ -7868,35 +8065,14 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
     }
 
-    &.ck-revision-history-sidebar__revision_selected {
-      & .ck-revision-history-sidebar__revision__actions {
-        & .ck-dropdown__button {
-          color: var(--ck-revision-history-revision-selected-input-text-color);
-
-          &:hover, &.ck-on {
-            background: var(--ck-button-hover-background);
-            color: initial;
-          }
-        }
-      }
+    &.ck-revision-history-sidebar__revision_selected .ck-revision-history-sidebar__revision__actions .ck-dropdown__button {
+      --ck-button-default-text-color: var(--ck-revision-history-revision-selected-actions-text-color);
+      --ck-button-default-hover-text-color: var(--ck-revision-history-revision-selected-actions-hover-text-color);
+      --ck-button-on-text-color: var(--ck-revision-history-revision-selected-actions-hover-text-color, var(--ck-color-interactive-selected-text));
     }
 
-    &.ck-revision-history-sidebar__revision_highlighted {
-      & .ck-revision-history-sidebar__revision__actions {
-        & .ck-dropdown__button {
-          &:hover, &.ck-on {
-            background: var(--ck-revision-history-revision-highlighted-hover-background-color);
-
-            &:hover {
-              filter: brightness(95%);
-            }
-          }
-        }
-      }
-    }
-
-    &:hover:not(.ck-disabled) .ck-revision-history-sidebar__revision__actions, &:not(.ck-disabled) .ck-revision-history-sidebar__revision__actions.ck-on {
-      display: block;
+    &:has(:focus-visible) .ck-revision-history-sidebar__revision__actions, &:not(.ck-disabled):hover .ck-revision-history-sidebar__revision__actions, &:not(.ck-disabled) .ck-revision-history-sidebar__revision__actions.ck-on {
+      opacity: 1;
     }
   }
 }
@@ -7904,41 +8080,51 @@ div.ck.ck-ai-suggestion__content-part-state {
 :root, :host {
   --ck-revision-history-revision-background-color: var(--ck-color-surface-container);
   --ck-revision-history-revision-padding-inline: var(--ck-spacing-padding-comfortable);
-  --ck-revision-history-revision-padding-block: var(--ck-spacing-large, var(--ck-spacing-lg));
-  --ck-revision-history-revision-padding: var(--ck-spacing-padding-comfortable);
-  --ck-revision-history-revision-border-color: #47576b;
-  --ck-revision-history-revision-selected-border-color: var(--ck-color-base-active);
-  --ck-revision-history-revision-highlighted-border-color: transparent;
+  --ck-revision-history-revision-padding-block: var(--ck-spacing-padding-comfortable);
+  --ck-revision-history-revision-padding: var(--ck-revision-history-revision-padding-block) var(--ck-revision-history-revision-padding-inline);
+  --ck-revision-history-revision-border-color: var(--ck-color-border-container);
+  --ck-revision-history-revision-selected-border-color: var(--ck-color-border-accent);
+  --ck-revision-history-revision-highlighted-border-color: var(--ck-color-border-accent);
   --ck-revision-history-revision-author-text-color: inherit;
-  --ck-revision-history-revision-date-text-color: inherit;
+  --ck-revision-history-revision-date-text-color: var(--ck-color-text-secondary);
   --ck-revision-history-revision-shadow: var(--ck-revision-history-revision-box-shadow, 0);
-  --ck-revision-history-revision-author-icon-offset: 20px;
+  --ck-revision-history-revision-author-icon-offset: calc(var(--ck-font-size-normal, var(--ck-font-size-base)) + var(--ck-spacing-gap-snug));
   --ck-revision-history-revision-transition: var(--ck-revision-history-revision-transitions, background var(--ck-transition-duration-control-fast) ease-in, border var(--ck-transition-duration-control-fast) ease-in);
   --ck-revision-history-revision-selected-text-color: var(--ck-color-text-primary);
-  --ck-revision-history-revision-selected-input-text-color: #4a67d6;
+  --ck-revision-history-revision-selected-input-text-color: var(--ck-color-interactive-selected-text);
   --ck-revision-history-revision-selected-input-empty-text-color: var(--ck-revision-history-revision-selected-input-text-color-empty, var(--ck-color-base-background));
   --ck-revision-history-revision-selected-author-text-color: var(--ck-revision-history-revision-selected-text-color);
   --ck-revision-history-revision-author-font-size: var(--ck-font-size-md);
-  --ck-revision-history-revision-selected-date-text-color: #525252;
+  --ck-revision-history-revision-selected-date-text-color: var(--ck-color-text-secondary);
+  --ck-revision-history-revision-selected-actions-text-color: initial;
+  --ck-revision-history-revision-selected-actions-hover-text-color: initial;
   --ck-revision-history-revision-selected-background-color: var(--ck-color-surface-canvas);
-  --ck-revision-history-revision-highlighted-background-color: #e0f1ff;
+  --ck-revision-history-revision-highlighted-background-color: var(--ck-color-surface-container);
   --ck-revision-history-revision-highlighted-hover-background-color: var(--ck-revision-history-revision-highlighted-background-color-hover, #cce7ff);
   --ck-revision-history-revision-delete-confirmation-background-color: var(--ck-revision-history-revision-delete-confirmation-background, #fcc);
   --ck-revision-history-revision-delete-confirmation-active-button-background-color: var(--ck-revision-history-revision-delete-confirmation-active-button-background, #ffb3b3);
   --ck-revision-history-revision-radius: var(--ck-border-radius-surface);
-  --ck-revision-history-revision-active-radius: 0 var(--ck-border-radius-surface) var(--ck-border-radius-surface) 0;
+  --ck-revision-history-revision-active-radius: var(--ck-border-radius-surface);
 }
 
 .ck.ck-revision-history-sidebar__revision-wrapper {
   & .ck-revision-history-sidebar__revision {
+    column-gap: var(--ck-spacing-gap);
+    color: var(--ck-color-text);
     background: var(--ck-revision-history-revision-background-color);
     padding: var(--ck-revision-history-revision-padding);
     border-radius: var(--ck-revision-history-revision-radius);
-    border-left: 3px solid var(--ck-revision-history-revision-border-color);
+    border: var(--ck-border-width-surface) solid var(--ck-revision-history-revision-border-color);
     box-shadow: var(--ck-revision-history-revision-shadow);
     width: 100%;
     transition: transform var(--ck-transition-duration-control-emphasized) ease;
-    display: block;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "name actions"
+                         "date actions"
+                         "edit edit"
+                         "authors authors"
+                         "pill pill";
+    display: grid;
     position: relative;
 
     @media (prefers-reduced-motion: reduce) {
@@ -7949,46 +8135,88 @@ div.ck.ck-ai-suggestion__content-part-state {
       margin-bottom: 0;
     }
 
+    & .ck-revision-history-sidebar__revision-name {
+      grid-area: name;
+    }
+
+    & .ck-revision-history-sidebar__revision__actions {
+      grid-area: actions;
+      align-self: start;
+      display: flex;
+    }
+
     & .ck-revision-history-sidebar__revision__date {
       color: var(--ck-revision-history-revision-date-text-color);
       font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
-      opacity: .8;
+      line-height: var(--ck-line-height-base);
       text-overflow: ellipsis;
       white-space: nowrap;
+      grid-area: date;
       width: 100%;
-      font-weight: bold;
       display: block;
       overflow: hidden;
+    }
+
+    & .ck-revision-history-sidebar__revision__edit-actions {
+      justify-content: flex-end;
+      gap: var(--ck-spacing-gap);
+      margin-top: var(--ck-spacing-gap);
+      grid-area: edit;
+      display: flex;
     }
 
     & .ck-revision-history-sidebar__revision__controls-wrapper {
       margin: var(--ck-spacing-standard, var(--ck-spacing-base)) 0 0;
       flex-direction: row;
+      grid-area: authors;
       align-items: flex-start;
       display: flex;
     }
 
     & .ck-revision-history-sidebar__revision-authors {
-      margin: 0 0 0 var(--ck-revision-history-revision-author-icon-offset);
+      gap: var(--ck-spacing-gap-compact);
+      margin: 0;
+      flex-direction: column;
       flex: 0 auto;
       min-width: 0;
+      margin-inline-start: var(--ck-revision-history-revision-author-icon-offset);
       padding: 0;
+      display: flex;
     }
 
     & .ck-revision-history-sidebar__revision-ai-pill-row {
       width: 100%;
-      margin-top: var(--ck-spacing-small, var(--ck-spacing-sm));
+      margin-top: var(--ck-spacing-gap);
+      grid-area: pill;
       justify-content: flex-end;
       display: flex;
     }
 
+    &.ck-revision-history-sidebar__revision_editing .ck-revision-history-sidebar__revision-name {
+      grid-column: 1 / -1;
+    }
+
+    &:not(.ck-revision-history-sidebar__revision_editing):has(:focus-visible) {
+      border-color: var(--ck-interactive-focus-border-color);
+      box-shadow: var(--ck-interactive-focus-shadow);
+    }
+
     &.ck-revision-history-sidebar__revision_selected, &.ck-revision-history-sidebar__revision_highlighted {
-      transform: translateX(calc(-1 * var(--ck-revision-history-sidebar-timeline-padding)));
       border-radius: var(--ck-revision-history-revision-active-radius);
+
+      &:before {
+        content: "";
+        background: var(--ck-revision-history-revision-selected-border-color);
+        border-start-end-radius: var(--ck-border-radius-control-small);
+        border-end-end-radius: var(--ck-border-radius-control-small);
+        width: 3px;
+        position: absolute;
+        inset-block: 3px;
+        inset-inline-start: calc(-1 * (var(--ck-revision-history-sidebar-timeline-padding) + var(--ck-border-width-surface)));
+      }
     }
 
     &.ck-revision-history-sidebar__revision_selected {
-      border-left-color: var(--ck-revision-history-revision-selected-border-color);
       background: var(--ck-revision-history-revision-selected-background-color);
       color: var(--ck-revision-history-revision-selected-text-color);
 
@@ -8000,18 +8228,17 @@ div.ck.ck-ai-suggestion__content-part-state {
         color: var(--ck-revision-history-revision-selected-author-text-color);
       }
 
-      & .ck-revision-history-sidebar__revision-name .ck-input {
+      & .ck-revision-history-sidebar__revision-name {
         color: var(--ck-revision-history-revision-selected-input-text-color);
-
-        &.ck-input-text_empty::placeholder {
-          opacity: .7;
-        }
       }
     }
 
     &.ck-revision-history-sidebar__revision_highlighted {
-      border-left-color: var(--ck-revision-history-revision-highlighted-border-color);
       background: var(--ck-revision-history-revision-highlighted-background-color);
+
+      &:before {
+        background: var(--ck-revision-history-revision-highlighted-border-color);
+      }
     }
 
     &.ck-revision-history-sidebar__actions_dropdown_open {
@@ -8087,7 +8314,8 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-revision-history-sidebar-revision-vertical-spacing: calc(2 * var(--ck-spacing-standard, var(--ck-spacing-base)));
+  --ck-revision-history-sidebar-revision-vertical-spacing: var(--ck-spacing-gap);
+  --ck-revision-history-sidebar-time-period-vertical-spacing: var(--ck-spacing-gap-spacious);
 }
 
 .ck.ck-revision-history-sidebar__time-period {
@@ -8095,16 +8323,16 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-revision-history-sidebar__time-period__label {
     background: var(--ck-revision-history-sidebar-period-background-color);
-    padding: var(--ck-spacing-control-padding-block) var(--ck-spacing-control-padding-inline);
+    width: fit-content;
+    font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
+    font-weight: var(--ck-font-weight-ui-label);
+    line-height: var(--ck-line-height-base);
+    letter-spacing: .02em;
+    padding: 0 var(--ck-spacing-padding-snug);
     border-radius: var(--ck-border-radius-control);
-    color: var(--ck-color-text-inverse);
+    color: var(--ck-revision-history-sidebar-period-text-color);
     text-transform: uppercase;
-    font-size: 9px;
-    font-weight: bold;
-
-    &:first-child {
-      margin-top: var(--ck-spacing-standard, var(--ck-spacing-base));
-    }
+    display: block;
   }
 
   & .ck-revision-history-sidebar__time-period__revisions {
@@ -8117,40 +8345,46 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   &:not(.ck-hidden) + .ck-revision-history-sidebar__time-period {
-    margin-top: var(--ck-revision-history-sidebar-revision-vertical-spacing);
+    margin-top: var(--ck-revision-history-sidebar-time-period-vertical-spacing);
   }
 }
 
+:root, :host {
+  --ck-revision-history-sidebar-header-border-bottom: var(--ck-border-width-divider) solid var(--ck-color-divider);
+}
+
 .ck.ck-revision-history-sidebar__header {
-  --header-height: max(calc(var(--ck-ui-component-min-height, var(--ck-size-min-height)) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 1px),
-		calc(var(--ck-icon-size) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 1px));
+  --header-height: max(calc(var(--ck-size-control-min-height) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + var(--ck-border-width-surface)),
+		calc(var(--ck-icon-size) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + 2 * var(--ck-spacing-small, var(--ck-spacing-sm)) + var(--ck-border-width-surface)));
   height: var(--header-height);
   min-height: var(--header-height);
   line-height: var(--header-height);
-  border-bottom: var(--ck-border-divider);
+  border-bottom: var(--ck-revision-history-sidebar-header-border-bottom);
+  font-family: inherit;
+  font-size: var(--ck-font-size-md);
   color: inherit;
   padding: 0 var(--ck-revision-history-sidebar-timeline-padding);
   flex-direction: row;
   align-items: center;
-  font-family: inherit;
   font-weight: bold;
   display: flex;
   overflow: hidden;
 
   & .ck-revision-history-sidebar__header__label {
-    color: inherit;
     font-family: inherit;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-weight: var(--ck-font-weight-ui-heading);
+    color: inherit;
+    font-size: var(--ck-font-size-md);
   }
 
   & .ck-icon {
-    margin-right: var(--ck-spacing-large, var(--ck-spacing-lg));
+    margin-inline-end: var(--ck-spacing-gap);
   }
 }
 
 :root, :host {
-  --ck-revision-history-sidebar-period-background-color: var(--ck-revision-history-sidebar-period-background, #ff5724);
+  --ck-revision-history-sidebar-period-background-color: var(--ck-revision-history-sidebar-period-background, var(--ck-color-surface-subtle));
+  --ck-revision-history-sidebar-period-text-color: var(--ck-color-text-secondary);
   --ck-revision-history-sidebar-timeline-padding: var(--ck-spacing-padding-comfortable);
 }
 
@@ -8206,7 +8440,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & > * {
     vertical-align: bottom;
-    font-size: var(--ck-font-size-standard);
+    font-size: var(--ck-font-size-md);
   }
 
   &.ck-revision-change__add {
@@ -8224,14 +8458,16 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-revision-change__author {
-    vertical-align: baseline;
     font-weight: normal;
+    font-size: inherit;
+    vertical-align: baseline;
   }
 
   & .ck-revision-change__ai-note {
     color: var(--ck-color-suggestion-ai-accent, var(--ck-suggestion-ai-accent-color));
-    vertical-align: baseline;
     font-weight: bold;
+    font-size: inherit;
+    vertical-align: baseline;
   }
 
   &.ck-revision-change_ai > span {
@@ -8248,6 +8484,25 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
+.ck.ck-editor.ck-revision-viewer-editor {
+  & .ck-editor__top .ck-sticky-panel .ck-sticky-panel__content {
+    &, & > :first-child {
+      border-start-end-radius: 0;
+    }
+  }
+
+  & .ck-editor__main > .ck-editor__editable_root {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &[dir="rtl"] .ck-editor__main > .ck-editor__editable_root {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: var(--ck-editor-frame-border-radius);
+  }
+}
+
 .ck.ck-button {
   &.ck-revision-history-ui__back-to-editing {
     background: var(--ck-color-interactive-primary-surface);
@@ -8260,7 +8515,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-editor__editable_inline.ck-revision-history-root-add {
-  border: 3px solid var(--ck-suggestion-marker-insertion-border-color);
+  border: var(--ck-suggestion-marker-border-width, 3px) var(--ck-suggestion-marker-insertion-border-style, solid) var(--ck-suggestion-marker-insertion-border-color);
 
   &.ck-revision-history-root--active {
     border-color: var(--ck-color-suggestion-marker-insertion-border-active, var(--ck-suggestion-marker-insertion-active-border-color));
@@ -8268,7 +8523,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-editor__editable_inline.ck-revision-history-root-remove {
-  border: 3px solid var(--ck-suggestion-marker-deletion-border-color);
+  border: var(--ck-suggestion-marker-border-width, 3px) var(--ck-suggestion-marker-deletion-border-style, solid) var(--ck-suggestion-marker-deletion-border-color);
 
   &.ck-revision-history-root--active {
     border-color: var(--ck-suggestion-marker-deletion-active-border-color);
@@ -8330,6 +8585,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-slash-command-button-width: 250px;
   --ck-slash-command-description-width: 200px;
   --ck-slash-command-button-radius: var(--ck-list-dropdown-button-border-radius, 0);
+  --ck-slash-command-icon-text-color: var(--ck-color-text);
+  --ck-slash-command-icon-background-color: var(--ck-color-surface-container);
+  --ck-slash-command-icon-border-radius: var(--ck-border-radius-control-small);
 }
 
 .ck-mentions .ck.ck-button.ck-slash-command-button {
@@ -8341,10 +8599,10 @@ div.ck.ck-ai-suggestion__content-part-state {
   overflow: hidden;
 
   & .ck.ck-icon {
-    color: var(--ck-color-text);
-    background-color: var(--ck-color-surface-container);
+    color: var(--ck-slash-command-icon-text-color);
+    background-color: var(--ck-slash-command-icon-background-color);
+    border-radius: var(--ck-slash-command-icon-border-radius);
     box-sizing: initial;
-    border-radius: 2px;
     flex-shrink: 0;
     margin-left: 0;
     padding: 5px;
@@ -8401,7 +8659,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-source-editing-enhanced-height: calc(var(--ck-dialog-max-height)            /* ─▶   Total max height of the dialog     */
 		- var(--ck-form-header-height)         /* ─▶   Height of the dialog header        */
 		- 2 * var(--ck-spacing-large, var(--ck-spacing-lg))          /* ─┐                                       */
-		- var(--ck-ui-component-min-height, var(--ck-size-min-height))    /*  ├─▶ Height of the dialog actions bar   */
+		- var(--ck-size-control-min-height)    /*  ├─▶ Height of the dialog actions bar   */
 		- 2 * var(--ck-spacing-tiny, var(--ck-spacing-xs))           /* ─┘                                       */
 		- 2 * var(--ck-dialog-content-padding)           /* ─▶   Padding of the dialog content           */);
   --ck-source-editing-enhanced-width: min(80vw, 1200px);
@@ -8447,6 +8705,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-template-list-gap: var(--ck-spacing-gap-compact);
   --ck-template-search-field-padding: var(--ck-spacing-padding-comfortable);
   --ck-template-list-item-title-font-size: var(--ck-font-size-md);
+  --ck-template-description-text-color: initial;
 }
 
 .ck-button.ck-template-button {
@@ -8506,7 +8765,7 @@ div.ck.ck-ai-suggestion__content-part-state {
           overflow: hidden;
 
           &:not(:focus) {
-            border-color: var(--ck-color-dropdown-panel-background, var(--ck-dropdown-panel-background-color));
+            border-color: #0000;
           }
 
           & > .ck.ck-icon {
@@ -8528,7 +8787,7 @@ div.ck.ck-ai-suggestion__content-part-state {
             & > .ck.ck-button__label {
               font-weight: bold;
               font-size: var(--ck-template-list-item-title-font-size);
-              color: var(--ck-color-text);
+              color: inherit;
               white-space: nowrap;
               text-overflow: ellipsis;
               line-height: 1.2;
@@ -8538,7 +8797,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
             & .ck-template-form__description {
               font-size: var(--ck-font-size-small, var(--ck-font-size-sm));
-              color: var(--ck-color-text);
+              color: var(--ck-template-description-text-color, inherit);
               margin-top: var(--ck-spacing-tiny, var(--ck-spacing-xs));
               white-space: normal;
               text-overflow: ellipsis;
@@ -11750,15 +12009,27 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 }
 
+:root, :host {
+  --ck-uploadcare-font-size: 13px;
+  --ck-uploadcare-font-family: var(--ck-font-face, var(--ck-font-family));
+  --ck-uploadcare-border-radius: var(--ck-border-radius-control-small);
+  --ck-uploadcare-padding: calc(.6em * 1.5);
+  --ck-uploadcare-text-color: #333;
+  --ck-uploadcare-secondary-text-color: #333;
+  --ck-uploadcare-muted-text-color: #333;
+  --ck-uploadcare-border-color: #ccced1;
+}
+
 .ck-uploadcare-theme {
-  --uc-font-size: 13px;
-  --uc-radius: 2px;
-  --uc-padding: calc(.6em * 1.5);
+  --uc-font-size: var(--ck-uploadcare-font-size);
+  --uc-font-family: var(--ck-uploadcare-font-family);
+  --uc-radius: var(--ck-uploadcare-border-radius);
+  --uc-padding: var(--ck-uploadcare-padding);
   --uc-primary-oklch-light: 54.45% .182 263.76;
-  --uc-foreground-light: #333;
-  --uc-secondary-foreground-light: #333;
-  --uc-muted-foreground-light: #333;
-  --uc-border-light: #ccced1;
+  --uc-foreground-light: var(--ck-uploadcare-text-color);
+  --uc-secondary-foreground-light: var(--ck-uploadcare-secondary-text-color);
+  --uc-muted-foreground-light: var(--ck-uploadcare-muted-text-color);
+  --uc-border-light: var(--ck-uploadcare-border-color);
 }
 
 :root, :host {
@@ -11767,6 +12038,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-uploadcare-color-image-background: oklch(97% 0 0);
   --ck-uploadcare-color-icon-error: #db3700;
   --ck-uploadcare-color-skeleton: #fafafa;
+  --ck-uploadcare-form-image-background-color: initial;
+  --ck-uploadcare-form-error-icon-color: initial;
+  --ck-uploadcare-form-skeleton-background-color: initial;
 }
 
 .ck .ck-uploadcare-form {
@@ -11777,7 +12051,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck-uploadcare-form__loading-spinner {
       width: 100%;
       height: var(--ck-uploadcare-external-source-view-height);
-      background-color: var(--ck-uploadcare-color-image-background);
+      background-color: var(--ck-uploadcare-form-image-background-color, var(--ck-uploadcare-color-image-background));
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -11793,7 +12067,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck-uploadcare-form__error-contents {
       width: 100%;
       height: var(--ck-uploadcare-external-source-view-height);
-      background-color: var(--ck-uploadcare-color-image-background);
+      background-color: var(--ck-uploadcare-form-image-background-color, var(--ck-uploadcare-color-image-background));
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -11807,7 +12081,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       }
 
       & .ck-icon {
-        color: var(--ck-uploadcare-color-icon-error);
+        color: var(--ck-uploadcare-form-error-icon-color, var(--ck-uploadcare-color-icon-error));
       }
 
       & .ck-button {
@@ -11830,7 +12104,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       display: flex;
 
       & span {
-        background-color: var(--ck-uploadcare-color-skeleton);
+        background-color: var(--ck-uploadcare-form-skeleton-background-color, var(--ck-uploadcare-color-skeleton));
         width: 32px;
         height: 32px;
         display: block;
@@ -11869,7 +12143,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   & uc-btn-ui button, & .uc-primary-btn, & .uc-secondary-btn {
     padding: var(--ck-spacing-control-padding-block-compact) var(--ck-spacing-control-padding-inline);
     min-width: var(--ck-button-standard-min-width);
-    min-height: var(--ck-ui-component-min-height, var(--ck-size-min-height));
+    min-height: var(--ck-size-control-min-height);
     border-radius: var(--ck-border-radius-control);
   }
 
