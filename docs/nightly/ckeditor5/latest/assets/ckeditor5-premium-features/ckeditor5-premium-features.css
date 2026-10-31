@@ -73,7 +73,7 @@
   --ck-ai-form-content-height: 175px;
   --ck-ai-form-content-background: var(--ck-color-surface-subtle);
   --ck-ai-form-history-font-size: .9em;
-  --ck-ai-form-error-background: hsla(from var(--ck-color-feedback-error) h s l / .1);
+  --ck-ai-form-error-background: var(--ck-ai-error-background-color);
 }
 
 .ck .ck-ai-form {
@@ -119,7 +119,7 @@
         white-space: normal;
         width: 100%;
         padding: var(--ck-spacing-padding-tight) var(--ck-spacing-padding);
-        min-height: calc(var(--ck-line-height-base) * var(--ck-font-size-base));
+        min-height: calc(var(--ck-line-height-base) * var(--ck-font-size-normal, var(--ck-font-size-base)));
         box-sizing: content-box;
 
         [dir="ltr"] & {
@@ -710,9 +710,9 @@
       display: grid;
 
       & > .ck-ai-web-sources__header {
-        grid-column-start: span 3;
         font-size: 12px;
-        font-weight: 500;
+        font-weight: var(--ck-font-weight-medium);
+        grid-column-start: span 3;
         line-height: 1.4em;
 
         & > .ck-icon {
@@ -756,7 +756,7 @@
           text-overflow: ellipsis;
           max-width: 75px;
           font-size: 10px;
-          font-weight: 700;
+          font-weight: var(--ck-font-weight-bold);
           line-height: 1.4em;
           overflow: hidden;
         }
@@ -1062,7 +1062,7 @@
 :root, :host {
   --ck-ai-model-selector-item-name-font-size: var(--ck-font-size-md);
   --ck-ai-model-selector-item-description-font-size: var(--ck-font-size-sm);
-  --ck-ai-model-selector-item-capability-icon-size: var(--ck-font-size-base);
+  --ck-ai-model-selector-item-capability-icon-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   --ck-ai-model-selector-item-secondary-color: var(--ck-ai-neutral-600-color);
 }
 
@@ -1156,7 +1156,7 @@
   --ck-ai-chat-model-selection-panel-max-width: 426px;
   --ck-ai-chat-model-selection-item-name-font-size: var(--ck-font-size-md);
   --ck-ai-chat-model-selection-item-description-font-size: var(--ck-font-size-sm);
-  --ck-ai-chat-model-selection-item-capability-icon-size: var(--ck-font-size-base);
+  --ck-ai-chat-model-selection-item-capability-icon-size: var(--ck-font-size-normal, var(--ck-font-size-base));
 }
 
 .ck.ck-ai-chat-controls {
@@ -1205,7 +1205,7 @@
 
     & .ck-ai-chat-controls__drop-overlay__label {
       font-size: 13px;
-      font-weight: bold;
+      font-weight: var(--ck-font-weight-bold);
     }
   }
 
@@ -1705,7 +1705,7 @@
         }
 
         & .ck-ai-chat-resources__item__icon {
-          --ck-icon-size: var(--ck-font-size-base);
+          --ck-icon-size: var(--ck-font-size-normal, var(--ck-font-size-base));
           margin-inline-end: var(--ck-spacing-control-icon-gap);
         }
 
@@ -1769,8 +1769,8 @@
   --ck-ai-chat-disclaimer-divider-width: 210px;
   --ck-ai-chat-suggestion-icon-default-color: var(--ck-color-text);
   --ck-ai-chat-user-context-background-color: var(--ck-ai-neutral-50-color);
-  --ck-ai-chat-flash-color: var(--ck-color-interactive-selected-surface);
-  --ck-ai-chat-flash-text-color: var(--ck-color-interactive-selected-text);
+  --ck-ai-chat-flash-color: var(--ck-ai-accent-50-color);
+  --ck-ai-chat-flash-text-color: var(--ck-ai-accent-700-color);
   --ck-ai-chat-animation-duration: .6s;
   --ck-ai-chat-animation-timing: ease-out;
 }
@@ -1811,6 +1811,7 @@
 }
 
 .ck.ck-ai-suggestion__body__content-part {
+  --ck-suggestion-marker-format-gap-color: var(--ck-color-surface-canvas);
   border-radius: var(--ck-ai-suggestion-content-part-radius);
   border: var(--ck-border-width-surface) solid var(--ck-color-border-container);
   padding: var(--ck-spacing-padding-comfortable);
@@ -1857,7 +1858,7 @@
   }
 
   & .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
-    box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-preview-insertion-active-background-color);
+    box-shadow: -7px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background)), -10px 0 0 0 var(--ck-ai-suggestion-preview-insertion-active-background-color);
   }
 
   & .ck-suggestion-marker-deletion:not([data-author-id="$aiSuggestion"]) {
@@ -2105,7 +2106,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
 .ck.ck-tabs {
   --ck-tab-button-active-background: var(--ck-ai-tab-active-surface-color);
-  font-size: var(--ck-font-size-base);
+  font-size: var(--ck-font-size-normal, var(--ck-font-size-base));
   border: var(--ck-border-surface);
   border-radius: var(--ck-tabs-border-radius);
   min-width: 0;
@@ -2443,7 +2444,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
   & .ck-ai-chat-history__item-check-container {
     height: var(--ck-size-control-min-height);
-    --ck-icon-size: var(--ck-font-size-base);
+    --ck-icon-size: var(--ck-font-size-normal, var(--ck-font-size-base));
     min-width: var(--ck-ai-chat-history-check-slot-width);
     align-items: center;
     display: flex;
@@ -2622,7 +2623,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     }
 
     & > span:first-child {
-      font-weight: bold;
+      font-weight: var(--ck-font-weight-bold);
       display: block;
     }
 
@@ -2802,7 +2803,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-suggestion-marker-formatBlock:not([data-author-id="$aiSuggestion"]) {
-    box-shadow: -7px 0 0 0 var(--ck-color-base-background), -10px 0 0 0 var(--ck-ai-suggestion-preview-insertion-background-color);
+    box-shadow: -7px 0 0 0 var(--ck-suggestion-marker-format-gap-color, var(--ck-color-base-background)), -10px 0 0 0 var(--ck-ai-suggestion-preview-insertion-background-color);
   }
 
   & > .ck-suggestion-marker-formatBlock:not(.table:not(.layout-table):not(.table-style-align-left):not(.table-style-block-align-left)):not(.image:not(.image-style-align-left):not(.image-style-block-align-left)):not(.media:not(.media-style-align-left):not(.media-style-block-align-left)) {
@@ -2832,6 +2833,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck.ck-ai-balloon {
+  --ck-suggestion-marker-format-gap-color: var(--ck-color-dialog-background, var(--ck-dialog-background-color));
   flex-direction: column;
   justify-content: space-between;
   display: flex;
@@ -2847,7 +2849,6 @@ div.ck.ck-ai-suggestion__content-part-state {
     border-bottom: none;
 
     & .ck-form__header__label {
-      font-weight: 600;
       line-height: 1.5em;
     }
   }
@@ -3094,7 +3095,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 :root, :host {
-  --ck-ai-header-icon-color: var(--ck-color-text);
+  --ck-ai-header-icon-color: var(--ck-form-header-text-color, var(--ck-color-text));
 }
 
 .ck-ai-header {
@@ -3112,7 +3113,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     margin-inline-start: var(--ck-spacing-gap);
 
     & > .ck-button__icon {
-      --ck-icon-size: var(--ck-font-size-base);
+      --ck-icon-size: var(--ck-font-size-normal, var(--ck-font-size-base));
       color: var(--ck-ai-header-icon-color);
     }
   }
@@ -3128,7 +3129,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 
     & > .ck.ck-icon.ck-button__icon {
       --ck-icon-size: var(--ck-font-size-md);
-      color: var(--ck-ai-chat-text-color);
+      color: inherit;
     }
   }
 
@@ -3235,7 +3236,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-neutral-600-color: var(--ck-color-text-secondary);
   --ck-ai-neutral-300-color: var(--ck-color-border-container);
   --ck-ai-neutral-100-color: var(--ck-color-interactive-hover-surface);
-  --ck-ai-neutral-50-color: var(--ck-color-base-foreground);
+  --ck-ai-neutral-50-color: var(--ck-color-surface-subtle);
   --ck-ai-white-color: var(--ck-color-surface-canvas);
   --ck-ai-accent-700-color: var(--ck-color-interactive-primary-surface);
   --ck-ai-accent-700-a1-color: hsla(from var(--ck-ai-accent-700-color) h s l / var(--ck-ai-alpha-1));
@@ -3278,12 +3279,12 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-suggestion-preview-deletion-active-background-color: var(--ck-ai-deletion-active-background-color);
   --ck-ai-suggestion-preview-deletion-stroke-color: var(--ck-ai-deletion-stroke-color);
   --ck-ai-suggestion-pill-accepted-text-color: var(--ck-color-feedback-success);
-  --ck-ai-suggestion-pill-accepted-background-color: hsla(from var(--ck-color-feedback-success) h s l / var(--ck-ai-alpha-1));
+  --ck-ai-suggestion-pill-accepted-background-color: var(--ck-color-feedback-success-surface);
   --ck-ai-suggestion-pill-rejected-text-color: var(--ck-color-feedback-error);
-  --ck-ai-suggestion-pill-rejected-background-color: hsla(from var(--ck-color-feedback-error) h s l / var(--ck-ai-alpha-1));
+  --ck-ai-suggestion-pill-rejected-background-color: var(--ck-color-feedback-error-surface);
   --ck-ai-suggestion-pill-outdated-text-color: var(--ck-color-text-secondary);
   --ck-ai-suggestion-pill-outdated-background-color: hsla(from var(--ck-color-text-secondary) h s l / var(--ck-ai-alpha-1));
-  --ck-ai-error-background-color: hsla(from var(--ck-color-feedback-error) h s l / var(--ck-ai-alpha-1));
+  --ck-ai-error-background-color: var(--ck-color-feedback-error-surface);
   --ck-ai-error-border-color: var(--ck-ai-deletion-border-color);
   --ck-ai-warning-color: #f0b428;
   --ck-ai-warning-background-color: hsla(from var(--ck-ai-warning-color) h s l / var(--ck-ai-alpha-1));
@@ -3926,14 +3927,14 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-review-summary-border-radius: var(--ck-radius-base);
   --ck-ai-review-summary-padding: var(--ck-spacing-padding-comfortable);
   --ck-ai-review-summary-gap: var(--ck-spacing-gap-compact);
-  --ck-ai-review-summary-title-color: var(--ck-color-base-text);
+  --ck-ai-review-summary-title-color: var(--ck-ai-neutral-900-color);
   --ck-ai-review-summary-title-font-size: var(--ck-font-size-md);
   --ck-ai-review-summary-title-font-weight: var(--ck-font-weight-bold);
   --ck-ai-review-summary-counts-font-size: var(--ck-font-size-md);
   --ck-ai-review-summary-counts-font-weight: var(--ck-font-weight-medium);
-  --ck-ai-review-summary-accepted-color: var(--ck-color-base-success);
-  --ck-ai-review-summary-dismissed-color: var(--ck-color-base-error);
-  --ck-ai-review-summary-hint-color: var(--ck-color-base-text-light);
+  --ck-ai-review-summary-accepted-color: var(--ck-ai-suggestion-pill-accepted-text-color);
+  --ck-ai-review-summary-dismissed-color: var(--ck-ai-suggestion-pill-rejected-text-color);
+  --ck-ai-review-summary-hint-color: var(--ck-ai-neutral-600-color);
   --ck-ai-review-summary-hint-font-size: var(--ck-font-size-sm);
   --ck-ai-review-summary-hint-font-weight: var(--ck-font-weight-medium);
 }
@@ -4113,7 +4114,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       & .ck-ai_review__check-list-item-description {
         color: var(--ck-ai-review-check-list-item-description-color);
         font-size: var(--ck-ai-review-check-list-item-description-font-size);
-        font-weight: 400;
+        font-weight: var(--ck-font-weight-ui-default);
         line-height: var(--ck-line-height-base);
         white-space: normal;
       }
@@ -8458,7 +8459,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   }
 
   & .ck-revision-change__author {
-    font-weight: normal;
+    font-weight: var(--ck-font-weight-ui-default);
     font-size: inherit;
     vertical-align: baseline;
   }
@@ -8701,6 +8702,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-template-dropdown-view-height: 300px;
   --ck-template-icon-size: 32px;
   --ck-template-list-border-radius: var(--ck-list-border-radius);
+  --ck-template-list-item-border-radius: var(--ck-border-radius-surface);
   --ck-template-list-padding: var(--ck-spacing-padding);
   --ck-template-list-gap: var(--ck-spacing-gap-compact);
   --ck-template-search-field-padding: var(--ck-spacing-padding-comfortable);
@@ -8752,7 +8754,7 @@ div.ck.ck-ai-suggestion__content-part-state {
         & > .ck.ck-button {
           width: 100%;
           padding: calc(.2 * var(--ck-line-height-base) * var(--ck-font-size-normal, var(--ck-font-size-base)));
-          border-radius: var(--ck-border-radius-uniform);
+          border-radius: var(--ck-template-list-item-border-radius);
           grid-template-columns: var(--ck-template-icon-size) 1fr;
           grid-template-rows: minmax(var(--ck-template-icon-size), auto);
           gap: var(--ck-spacing-gap-comfortable) var(--ck-spacing-gap-comfortable);
