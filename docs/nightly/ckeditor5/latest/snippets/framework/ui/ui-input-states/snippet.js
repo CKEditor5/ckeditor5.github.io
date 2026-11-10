@@ -1,0 +1,1 @@
+import{LabeledFieldView as l,ToolbarView as o,createLabeledInputText as s,Locale as r}from"ckeditor5";var e=new r,t=new l(e,s);t.set({label:"Enabled state",isEnabled:!0});t.render();var n=new l(e,s);n.set({label:"Disabled state",isEnabled:!1});n.render();var b=[t,n],a=new o(e);b.forEach(d=>a.items.add(d));a.render();document.querySelector(".ui-input-states").append(a.element);
