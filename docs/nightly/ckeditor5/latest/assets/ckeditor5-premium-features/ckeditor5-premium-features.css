@@ -7739,6 +7739,9 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-presence-list-dropdown-list-item-gap: var(--ck-spacing-gap);
   --ck-presence-list-dropdown-list-item-border-radius: var(--ck-border-radius-control);
   --ck-presence-list-dropdown-user-name-font-size: var(--ck-font-size-md);
+  --ck-presence-list-dropdown-user-name-gap: var(--ck-spacing-gap-tight);
+  --ck-presence-list-dropdown-separator-color: var(--ck-list-divider-color);
+  --ck-presence-list-dropdown-separator-gap: var(--ck-spacing-gap-snug);
   --ck-presence-list-focus-border-radius: var(--ck-border-radius-control);
 }
 
@@ -7815,6 +7818,10 @@ div.ck.ck-ai-suggestion__content-part-state {
     white-space: nowrap;
     display: inline-block;
     overflow: hidden;
+  }
+
+  &.ck-presence-list__list-item__tooltip_me > .ck-tooltip__text {
+    white-space: initial;
   }
 }
 
@@ -7940,6 +7947,22 @@ div.ck.ck-ai-suggestion__content-part-state {
       box-shadow: var(--ck-focus-outer-shadow, var(--ck-interactive-focus-shadow)), 0 0;
       position: relative;
     }
+
+    &.ck-presence-list__dropdown-list-item_me:not(:last-child) {
+      margin-block-end: calc(2 * var(--ck-presence-list-dropdown-separator-gap) +
+				var(--ck-border-width-divider) -
+				var(--ck-list-item-outer-padding));
+
+      &:after {
+        content: "";
+        inset-inline: calc(-1 * var(--ck-list-item-outer-padding));
+        height: var(--ck-border-width-divider);
+        background: var(--ck-presence-list-dropdown-separator-color);
+        pointer-events: none;
+        position: absolute;
+        inset-block-start: calc(100% + var(--ck-presence-list-dropdown-separator-gap));
+      }
+    }
   }
 
   & .ck.ck-presence-list__dropdown-list {
@@ -7950,12 +7973,25 @@ div.ck.ck-ai-suggestion__content-part-state {
       position: absolute;
     }
 
-    & .ck-user__full-name {
+    & .ck-presence-list__dropdown-list-item-name {
+      gap: var(--ck-presence-list-dropdown-user-name-gap);
+      min-width: 0;
+      display: flex;
+    }
+
+    & .ck-user__full-name, & .ck-presence-list__dropdown-list-item-you {
       white-space: nowrap;
-      text-overflow: ellipsis;
       color: var(--ck-color-text);
       font-size: var(--ck-presence-list-dropdown-user-name-font-size);
+    }
+
+    & .ck-user__full-name {
+      text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    & .ck-presence-list__dropdown-list-item-you {
+      flex-shrink: 0;
     }
 
     & .ck.ck-presence-list__marker {
