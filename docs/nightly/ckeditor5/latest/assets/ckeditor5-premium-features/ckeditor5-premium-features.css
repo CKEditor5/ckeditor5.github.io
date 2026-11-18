@@ -424,14 +424,21 @@
       font-size: var(--ck-ai-chat-suggestion-container-header-font-size);
       color: var(--ck-color-text-primary);
       font-weight: var(--ck-font-weight-semibold);
+      white-space: normal;
+      text-align: start;
       flex-grow: 1;
     }
 
     & > .ck-icon {
       width: 14px;
       height: 14px;
-      margin-right: var(--ck-spacing-gap);
       color: var(--ck-color-text-primary);
+      flex-shrink: 0;
+      margin-inline-end: var(--ck-spacing-gap);
+    }
+
+    & > .ck-button {
+      flex-shrink: 0;
     }
 
     & > .ck-switchbutton {
@@ -494,6 +501,7 @@
     }
 
     & .ck.ck-ai-chat__feed__item.ck-ai-notification_warning {
+      white-space: normal;
       width: 100%;
       margin-left: 0;
       margin-right: 0;
@@ -5563,7 +5571,7 @@ div.ck.ck-ai-suggestion__content-part-state {
 }
 
 .ck .ck-comment:after {
-  top: calc(var(--ck-user-avatar-size) + (2 * var(--ck-spacing-padding, var(--ck-spacing-sm))));
+  top: calc(var(--ck-user-avatar-size) + (2 * var(--ck-spacing-padding)));
   height: calc(100% - var(--ck-user-avatar-size) - var(--ck-spacing-padding));
 }
 
