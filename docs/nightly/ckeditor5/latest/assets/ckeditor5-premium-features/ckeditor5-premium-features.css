@@ -3018,12 +3018,18 @@ div.ck.ck-ai-suggestion__content-part-state {
     transition: none;
   }
 
+  &.ck-ai_review-navigation-panel-balloon_moved {
+    position: fixed;
+  }
+
   & > .ck-ai_review-navigation-panel {
     margin-inline: var(--ck-ai-review-navigation-panel-inset);
     border: var(--ck-border-surface);
     border-radius: var(--ck-border-radius-surface);
     background: var(--ck-color-surface-canvas);
     box-shadow: var(--ck-shadow-surface-floating);
+    -webkit-user-select: none;
+    user-select: none;
     flex-direction: column;
     display: flex;
 
@@ -3035,6 +3041,10 @@ div.ck.ck-ai-suggestion__content-part-state {
       border-radius: var(--ck-border-radius-surface) var(--ck-border-radius-surface) 0 0;
       background: var(--ck-ai-review-navigation-panel-header-background);
       display: flex;
+    }
+
+    & .ck-ai_review-navigation-panel__header, & .ck-ai_review-navigation-panel__header :not(.ck-button, .ck-button *, .ck-dropdown__panel, .ck-dropdown__panel *) {
+      cursor: grab;
     }
 
     & .ck-ai_review-navigation-panel__header__notice {
@@ -3070,6 +3080,7 @@ div.ck.ck-ai-suggestion__content-part-state {
     & .ck-ai_review-navigation-panel__header__icon {
       --ck-icon-size: 1em;
       color: inherit;
+      pointer-events: none;
       flex-shrink: 0;
     }
 
@@ -3276,12 +3287,12 @@ div.ck.ck-ai-suggestion__content-part-state {
   --ck-ai-insertion-border-color: var(--ck-color-diff-insertion-border);
   --ck-ai-insertion-background-color: var(--ck-color-diff-insertion-background);
   --ck-ai-insertion-active-border-color: var(--ck-color-diff-insertion-border-active);
-  --ck-ai-insertion-active-background-color: var(--ck-color-diff-insertion-background-active);
+  --ck-ai-insertion-active-background-color: hsla(from var(--ck-color-diff-insertion-background-active) h s l / var(--ck-ai-alpha-5));
   --ck-ai-deletion-border-color: var(--ck-color-diff-deletion-border);
   --ck-ai-deletion-background-color: var(--ck-color-diff-deletion-background);
   --ck-ai-deletion-stroke-color: var(--ck-color-diff-deletion-stroke);
   --ck-ai-deletion-active-border-color: var(--ck-color-diff-deletion-border-active);
-  --ck-ai-deletion-active-background-color: var(--ck-color-diff-deletion-background-active);
+  --ck-ai-deletion-active-background-color: hsla(from var(--ck-color-diff-deletion-background-active) h s l / var(--ck-ai-alpha-5));
   --ck-ai-inactive-insertion-border-color: #b9bbba59;
   --ck-ai-inactive-insertion-active-border-color: #93959380;
   --ck-ai-inactive-insertion-background-color: #eceeec59;
@@ -7503,7 +7514,7 @@ div.ck.ck-ai-suggestion__content-part-state {
       padding: 0;
     }
 
-    & .ck-widget__type-around, & .ck-fake-selection-container, & .ck-widget__selection-handle, & .ck-widget__resizer, & .ck-table-column-resizer {
+    & .ck-widget__type-around, & .ck-fake-selection-container, & .ck-widget__selection-handle, & .ck-widget__resizer, & .ck-table-column-resizer, & .ck-table-row-resizer {
       display: none;
     }
 
@@ -9030,7 +9041,7 @@ div.ck.ck-ai-suggestion__content-part-state {
   user-select: text;
   overflow-x: hidden;
 
-  & .ck-widget__selection-handle, & .ck-table-column-resizer {
+  & .ck-widget__selection-handle, & .ck-table-column-resizer, & .ck-table-row-resizer {
     display: none;
   }
 }
